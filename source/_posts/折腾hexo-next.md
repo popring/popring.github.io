@@ -68,7 +68,7 @@ git clone https://github.com/iissnan/hexo-theme-next.git
 
 接下来修改 `hexo` 根目录下的 `_config.yml` 文件中的 `theme` 修改为主题名 
 
-![1](/折腾hexo-next/hexo1.jpg)
+![](https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115435.jpg)
 
 
 

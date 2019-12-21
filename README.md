@@ -1,15 +1,13 @@
 # popring blog
 
-> 前言： 当前博客为个人心情记录及开发过程踩坑记录，学习笔记请到此[仓库](https://github.com/popring/Learning-Notes)
-
-## demo案例
-
-### weui 系列
-
-1. [weui 系列之上拉刷新，下拉加载](https://popring.github.io/demo/weui/refresh-load.html) 
-2. [weui-tab 结合 上拉刷新](https://popring.github.io/demo/weui/tab-refresh-load.html)
 
 
 
 
+## 待学习
+
+- [ ] [剖析Vue实现原理 - 如何实现双向绑定mvvm](https://github.com/DMQ/mvvm)
+
+- [ ] [某乎,GET和POST的区别](https://zhuanlan.zhihu.com/p/57361216)
+- [ ] [前端路由的两种实现方式：hash 和 history api](https://www.jianshu.com/p/d2aa8fb951e4#meee)
 
