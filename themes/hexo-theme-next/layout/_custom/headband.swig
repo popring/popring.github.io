@@ -1,7 +1,7 @@
-<div id="headband">
-	<p style="color: #333; text-align: center; line-height: 50px;">
+<div>
+	<p style="color: #333; text-align: center; height: 30px; line-height: 50px;">
 		<span>毕业倒计时：</span>
-		<span id="headbandDiff"></span>
+		<span id="countDown"></span>
 	</p>
 </div>
 
@@ -14,7 +14,7 @@
 			var diff = Math.abs(endDate - nowDate);
 
 			var str = calcTime(diff);
-			document.querySelector('#headbandDiff').innerText = str;
+			document.querySelector('#countDown').innerText = str;
 			function calcTime (mss) {
 				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
 				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
