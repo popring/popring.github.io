@@ -20,7 +20,9 @@
   {% endif %}
 
   <div class="{{ container_class }} {% block page_class %}{% endblock %}">
-    <div class="headband"></div>
+    <div class="headband" style="height: 50px; background: transparent;">
+      {%- include '_custom/headband.swig' %}
+    </div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"> {%- include '_partials/header.swig' %} </div>
