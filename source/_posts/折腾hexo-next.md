@@ -3,7 +3,7 @@ title: 折腾hexo + next
 date: 2019-02-01 11:46:47
 tags: 
 - hexo
-- next
+- 踩坑
 categories: 其他
 ---
 

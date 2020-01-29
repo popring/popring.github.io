@@ -1,5 +1,5 @@
 <div>
-	<p style="color: #333; text-align: center; height: 30px; line-height: 50px;">
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
 		<span>毕业倒计时：</span>
 		<span id="countDown"></span>
 	</p>

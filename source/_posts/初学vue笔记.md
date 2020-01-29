@@ -4,7 +4,7 @@ date: 2019-12-27 18:13:21
 tags:
 - Vue
 categories:
-- Vue
+- JavaScript
 ---
 
 
