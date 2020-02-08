@@ -10,10 +10,22 @@ categories:
 
 - 开启管理员模式
   Start-Process powershell -verb runAs
-  <!-- more -->
+  
+- 删除文件夹
+  
+  rm -r -f [文件夹名称]
+
+<!-- more -->
 
 ## 开启管理员模式
 
 ```powershell
 Start-Process powershell -verb runAs
 ```
+
+## 删除文件夹
+
+```powershell
+rm -r -f [文件夹名称]
+```
+

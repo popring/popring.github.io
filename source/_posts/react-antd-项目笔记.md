@@ -15,40 +15,39 @@ categories:
 
 <!-- more -->
 
-> 记录学习React心路历程
+> 记录学习React心路历程，以及开发过程中遇到的疑难杂症
 
-## [React 生命周期](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+# React
 
-- `getDefaultProps`
-- `getInitialState`
+## [React 生命周期](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)（按顺序从上往下）
 
+### Mounting
 
+| lifecycle name     | description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| constructor        | react 组件挂载前会调用它的构造函数                           |
+| componentWillMound | ***过时***，挂载前调用                                       |
+| render             | class组件中唯一必须实现的方法，最好为纯函数，代码更加简洁易懂 |
+| componentDidMount  | 组件挂载后调用                                               |
 
-- `constructor`    在 React 组件挂载之前，会调用它的构造函数 
+### Updating
 
-- `componentWillMount`    **过时**，在挂载前调用
-- `render`     是 class 组件中唯一必须实现的方法。 
-- `componentDidMount`    组件挂载后立即调用
+| lifecycle name                                      | description                                                  |
+| --------------------------------------------------- | ------------------------------------------------------------ |
+| componentWillReceiveProps`                          | ***过时***，在已挂载的组件接收新的props之前被调用            |
+| shouldComponentUpdate(nextProps, nextState)         | 根据此函数的返回值判断 React 组件的输出是否受当前 state 或 props 更改的影响，默认为`true`， `state` 或 `props` 更新时是否需要重新渲染视图 |
+| componentWillUpdate                                 | **过时**，当组件接收新的props或state时，会在渲染之前调用     |
+| componentDidUpdate(preveProps, prevState, snapshot) | 组件更新后调用，首先渲染不会被调用                           |
 
+### Unmounting
 
+| lifecycle name       | description                                                  |
+| -------------------- | ------------------------------------------------------------ |
+| componentWillUnmount | 组件卸载及销毁前调用，此方法中执行必要的清除操作（例如：清除定时器，取消网络请求，清除在 `componentDidMount()` 中创建的订阅） |
 
-- `componentWillReceiveProps `   **过时**，在已挂载的组件接收新的props之前被调用
+## 组件内部的函数 `this` 指向问题
 
-
-
-- `shouldComponentUpdate(nextProps, nextState)`     根据此函数的返回值判断 React 组件的输出是否受当前 state 或 props 更改的影响，默认为`true`
-- `componentWillUpdate`    **过时**，当组件接收新的props或state时，会在渲染之前调用
-- `componentDidUpdate(preveProps, prevState, snapshot)`   组件更新后调用
-
-
-
-- `componentWillUnmount `   组件卸载或销毁前调用
-
-
-
-### 组件内部的函数
-
-组件内函数this的指向问题
+> 多半刚入门 `react` 的新手都会遇到这个问题，组件内函数this[**的指向问题**]()
 
 **React组件**中函数**不能**直接这么写，调用的时候使用**setState**会有问题，需要解决this指向问题
 
@@ -63,8 +62,6 @@ export default class Life extends React.Component {
   }
 }
 ```
-
-
 
 解决1, 绑定this指向
 
@@ -88,8 +85,6 @@ export default class Life extends React.Component {
 }
 ```
 
-
-
 解决2, 直接使用箭头函数
 
 ```jsx
@@ -112,61 +107,37 @@ export default class Life extends React.Component {
 }
 ```
 
+## State
 
-
-### 对象的操作
-
-#### 对象的赋值
-
-假设
+状态管理
 
 ```js
-obj1 = {
-  a: 1,
-  b: 2,
-  c: 3
+class Example extends React.Component {
+  // 可以在这里定义
+  state = {}
+	
+	constructor(props) {
+    super(props)
+    // 也可以在这里定义
+    this.state = {}
+  }
 }
 ```
 
-```js
-obj2 = {
-  c: 33,
-  d: 44
-}
-```
+修改状态
 
-将对象 `obj2` 属性的值赋值到 `obj1`中的属性 ，相同的属性覆盖，但**不修改**`obj1`的其他值。俗称，浅拷贝
+- 不要直接修改 `state` ，使用 `this.setState()`
+-  `state` 可能是异步的
 
-```js
-Object.assign(obj1,obj2);
+## React父子之间相互调用
 
-// 或者使用ES6语法，更简单
-obj1 = { ...obj1, ...obj2};
-```
-
-#### 判断对象中是否含有某个属性
-
-仍以上面两个对象为例，则
-
-```js
-// true
-obj1.hasOwnProperty('a');
-
-// false
-obj2.hasOwnProperty('a');
-```
-
-
-
-## React父子之间传值和调用方法
-
-### 传值
-
-> 用了 `redux` 之后，真香。
+### 父子间数据传递
 
 #### 父传子
 
-> 点击父组件按钮，子组件的获取到的值也会变化
+> 父组件发生变化，值传入子组件，从而重新渲染
+>
+> 子组件接收的为一个值。
 
 ```js
 // 子组件
@@ -203,53 +174,53 @@ class Father extends React.Component {
 
 #### 子传父
 
+> 父组件
+
 ```js
 // 子组件
 class Children extends React.Component {
   state = {
-    flag: 1
-  };
-  handleClick = () => {
+   flag: 0 
+  }
+  handleClick = ()=>{
+    const flag = this.state.flag + 1;
     this.setState({
-      flag: this.state.flag + 1
-    });
-    this.props.fn(this.state.flag);
-  };
+      flag
+    })
+    this.props.fn(flag);
+  }
   render() {
     return (
-      <div>
-      	<button onClick={this.handleClick}>子组件</button>
-      </div>
-    );
+      <button onClick={this.handleClick}>点击flag加1</button>
+    )
   }
 }
+
 // 父组件
 class Father extends React.Component {
   state = {
-    flag: null
+    flag: 0
   }
-  handleClick = (flag) => {
-    console.log(flag);
+
+  fn = (cflag)=>{
     this.setState({
-      flag: flag
+      flag: cflag
     })
   }
   render() {
     return (
       <div>
-        <button>
-        	这是父组件 --- {this.state.flag}
-        </button>
-        <Children fn={this.handleClick} />
-   	 	</div>
-    );
-	}
+        <Children fn={this.fn} />
+        <p>这是父组件.显示子组件flag值： {this.state.flag}</p>
+      </div>
+    )
+  }
 }
 
-ReactDOM.render(<Father />, document.getElementById("root"));
+React.render(<Father />, document.getElementById('app'))
 ```
 
-
+> Tips: 这样也有明显的缺点，如果父子间传值层数或者值过多，这个方法显然过于麻烦，因此 `React` 官方给出了解决方法。 [Context](#Context)
 
 ### 调用方法
 
@@ -291,8 +262,6 @@ class Children extends React.Component {
       ReactDOM.render(<Father />, document.getElementById("root"));
 ```
 
-
-
 #### 子调用父方法
 
 ```js
@@ -325,7 +294,155 @@ class Father extends React.Component {
 }
 ```
 
+## Context
 
+> Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法。
+
+```js
+const MyContext = React.createContext(0);
+
+class Children extends React.Component {
+  static contextType = MyContext;
+  render() {
+    return (
+       <p>子组件组件显示父组件flag值 {this.context}</p>
+    )
+  }
+}
+
+class Father extends React.Component {
+  state = {
+    flag: 0
+  }
+  handleClick = ()=>{
+    const flag = this.state.flag+1;
+    this.setState({
+      flag
+    })
+  }
+  render() {
+    return (
+      <div>
+        <MyContext.Provider value={this.state.flag}>
+          <Children />
+        </MyContext.Provider>
+        <p>父组件 flag值 {this.state.flag}</p>
+        <button onClick={this.handleClick}>点击flag加1</button>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<Father />, document.getElementById('app'))
+```
+
+
+## 配置相对路径
+
+> 配置后 **@**表示根目录下的 **src**路径，配置  `jsconfig` 后 `vscode` 提示更加友好
+
+**webpack.config.js**
+
+```js
+alias: {
+	//...,
+	'@': path.resolve(__dirname, '../src')
+}
+```
+
+**jsconfig.json**
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
+```
+
+[jsconfig 配置详情](https://code.visualstudio.com/docs/languages/jsconfig)
+
+
+
+# Koa
+
+
+### 异步延时函数
+
+> setTimeout 会被加入异步队列，需使用promise来解决
+>
+> [为此还专门在思否提问 sf](https://segmentfault.com/q/1010000021028375)
+
+```js
+async function delayer(time = 2000) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });
+}
+
+async (ctx, next) => {
+  await delayer(1000);
+  await next();
+  ctx.body = 'hello';
+}
+```
+
+
+
+# 其他
+
+## 对象的操作
+
+### 对象的赋值
+
+假设
+
+```js
+obj1 = {
+  a: 1,
+  b: 2,
+  c: 3
+}
+```
+
+```js
+obj2 = {
+  c: 33,
+  d: 44
+}
+```
+
+将对象 `obj2` 属性的值赋值到 `obj1`中的属性 ，相同的属性覆盖，但**不修改**`obj1`的其他值。俗称，浅拷贝
+
+```js
+Object.assign(obj1,obj2);
+
+// 或者使用ES6语法，更简单
+obj1 = { ...obj1, ...obj2};
+```
+
+### 判断对象中是否含有某个属性
+
+仍以上面两个对象为例，则
+
+```js
+// true
+obj1.hasOwnProperty('a');
+
+// false
+obj2.hasOwnProperty('a');
+```
 
 ### 过滤对象属性
 
@@ -374,51 +491,3 @@ console.log(newProps);
 **forEach**
 
 遍历对象和数组。
-
-
-
-
-## 配置绝对路径
-
-> 返回./../../** 这么繁琐的操作了，配置后 **@**表示根目录下的 **src**路径
-
-**webpack.config.js**
-
-```js
-alias: {
-	//...,
-	'@': path.resolve(__dirname, '../src')
-}
-```
-
-
-
-
-
-# Koa
-
-
-
-
-### 异步延时函数
-
-> setTimeout 会被加入异步队列，需使用promise来解决
-
-```js
-async function delayer(time = 2000) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, time);
-  });
-}
-
-async (ctx, next) => {
-  await delayer(1000);
-  await next();
-  ctx.body = 'hello';
-}
-```
-
-
-
