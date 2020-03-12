@@ -6,8 +6,12 @@ tags:
 - antd
 - 踩坑
 categories:
-	- JavaScript
+- JavaScript
 ---
+
+> **Atwood 定律**
+>
+> Any application that can be written in JavaScript, will eventually be written in JavaScript. （任何能够用JavaScript实现的应用，最终都必将由JavaScript实现。） – Jeff Atwood
 
 记录react学习进程，以及使用 `antd` 和 `react` 写 `demo` 时候遇到的问题。
 
@@ -336,6 +340,26 @@ class Father extends React.Component {
 ReactDOM.render(<Father />, document.getElementById('app'))
 ```
 
+## Fragments
+
+> 单组件返回多个元素，解决不需要根节点包裹的情况。
+
+段语法
+
+```js
+class Columns extends React.Component {
+  render() {
+    return (
+      <>
+        <td>Hello</td>
+        <td>World</td>
+      </>
+    );
+  }
+}
+```
+
+
 
 ## 配置相对路径
 
@@ -380,7 +404,7 @@ alias: {
 
 > setTimeout 会被加入异步队列，需使用promise来解决
 >
-> [为此还专门在思否提问 sf](https://segmentfault.com/q/1010000021028375)
+> [为此还专门在思否提问](https://segmentfault.com/q/1010000021028375)
 
 ```js
 async function delayer(time = 2000) {
