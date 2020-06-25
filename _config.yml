@@ -81,4 +81,3 @@ deploy:
   type: git
   repo: https://github.com/popring/popring.github.io
   branch: master
-  message: Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}
