@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="新的一年，应继续保持学习，计划  vue 深入学习，之前还是学习的不够深入 TypeScript 也应该入手了，都 0202 年了，总不能还不会 ts 吧 走进后端，koa, eggjs 等学一个 不挂科 不挂科 不挂科">
+<meta name="keywords" content="前端 菜鸡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019年技术总结">
+<meta property="og:url" content="https://popring.github.io/2020/01/07/总结/2019年技术总结/index.html">
+<meta property="og:site_name" content="Harry&#39;s Blog">
+<meta property="og:description" content="新的一年，应继续保持学习，计划  vue 深入学习，之前还是学习的不够深入 TypeScript 也应该入手了，都 0202 年了，总不能还不会 ts 吧 走进后端，koa, eggjs 等学一个 不挂科 不挂科 不挂科">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200107130123.png">
+<meta property="og:image" content="http://static.galileo.xiaojukeji.com/static/tms/shield/scroll-4.png">
+<meta property="og:updated_time" content="2020-07-27T04:30:06.971Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019年技术总结">
+<meta name="twitter:description" content="新的一年，应继续保持学习，计划  vue 深入学习，之前还是学习的不够深入 TypeScript 也应该入手了，都 0202 年了，总不能还不会 ts 吧 走进后端，koa, eggjs 等学一个 不挂科 不挂科 不挂科">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200107130123.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'popring'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://popring.github.io/2020/01/07/总结/2019年技术总结/">
+
+
+
+
+
+  <title>2019年技术总结 | Harry's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div><div>
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
+		<span>毕业倒计时：</span>
+		<span id="countDown"></span>
+	</p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		graduate();
+		function graduate() {
+			var nowDate = Date.parse(new Date());
+			var endDate = Date.parse(new Date('2021-07-01'));
+			var diff = Math.abs(endDate - nowDate);
+
+			var str = calcTime(diff);
+			document.querySelector('#countDown').innerText = str;
+			function calcTime (mss) {
+				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
+				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+				var minutes = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / (1000 * 60)));
+				var seconds = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / 1000 % 60));
+				// return `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+				return days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+			};
+
+			function toTwoFix(time) {
+				return time < 10 ? '0' + time : time;
+			}
+		}
+
+
+		setInterval(function() {
+			graduate();
+		},1000);
+	})();
+</script>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Harry's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">前端砖工一名，只想说，冬天敲代码不仅手冷，头还冷。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2020/01/07/总结/2019年技术总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Harry Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2019年技术总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-07T12:58:16+08:00">
+                2020-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/总结/" itemprop="url" rel="index">
+                    <span itemprop="name">总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>新的一年，应继续保持学习，计划</p>
+<ul>
+<li><code>vue</code> 深入学习，之前还是学习的不够深入</li>
+<li><code>TypeScript</code> 也应该入手了，都 <code>0202</code> 年了，总不能还不会 <code>ts</code> 吧</li>
+<li>走进后端，<code>koa</code>, <code>eggjs</code> 等学一个</li>
+<li>不挂科</li>
+<li>不挂科</li>
+<li>不挂科</li>
+</ul>
+<a id="more"></a>
+<h1 id="2019年度总结"><a href="#2019年度总结" class="headerlink" title="2019年度总结"></a>2019年度总结</h1><blockquote>
+<p>吾日三省吾身，今年又是菜鸡的一年</p>
+</blockquote>
+<h2 id="github-提交记录"><a href="#github-提交记录" class="headerlink" title="github 提交记录"></a>github 提交记录</h2><p><a href="https://github.com/popring?tab=overview&amp;from=2019-12-01&amp;to=2019-12-31" target="_blank" rel="noopener">github</a></p>
+<blockquote>
+<p>删除了一些仓库，响应的提交记录也被移除了</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200107130123.png" alt></p>
+<h2 id="技术总结"><a href="#技术总结" class="headerlink" title="技术总结"></a>技术总结</h2><p>由于上半年都在公司实习和准备考试，所以新学的知识不多，主要集中在下半年。</p>
+<p>不过还是遇到些问题（主要原因是当时的知识不成体系，有点杂乱）</p>
+<ul>
+<li>箭头函数</li>
+</ul>
+<p>当时在chrome中使用箭头函数调试，一点问题都没有，但在 <code>iOS</code> 中怎么先显示不出来。</p>
+<p>经过多次排查，才发现，<code>iOS</code> 版本不够高，底层 <code>webkit</code> 内核版本自然也不高，所以不支持箭头函数。</p>
+<p>这也算是兼容性问题，都怪我当时年少无知。。。</p>
+<ul>
+<li>微信网页 下拉刷新问题</li>
+</ul>
+<p>代码就不贴了，正常情况下微信网页内下拉会显示当前网址的域名等信息。</p>
+<p>所以我们实现下拉刷新就不能以常规的方式实现了，在全局内容的最外层加一个 <code>div</code>，每次滚动都是值滚动内层的 <code>div</code>，如果到了顶部，仍继续下拉，则可以执行下拉刷新操作。当时用的是 <code>jquery-weui</code> ，<a href="http://www.jqweui.cn/extends#pull-to-refresh，之前也用" target="_blank" rel="noopener">http://www.jqweui.cn/extends#pull-to-refresh，之前也用</a> <code>swiper</code> 做过类似功能。</p>
+<ul>
+<li>获取表单的值</li>
+</ul>
+<p>记得当时的我用 <code>jQuery</code> ，傻傻的每次获取表单值的时候，都是傻傻的用 <code>$(&#39;#xx&#39;).value()</code>，然后一个页面写了五六个（心疼以后维护我代码的小伙伴）。直到又来偶然看到一篇文章，一行代码获取表单值，我惊了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#form"</span>).serialize(); <span class="comment">// 序列化为字符串</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">"#form"</span>).serializeArray(); <span class="comment">// 序列化为数组</span></span><br></pre></td></tr></table></figure>
+<p>然后就是今年下半年</p>
+<ul>
+<li><p>vue 做了一个类似 去哪儿网，这个项目唯一的特色就是城市选择列表，可以滑动右边的字母，左边城市列表也会调到响应的字母，<code>better-scroll</code> 插件实现。</p>
+<p>滚动原理</p>
+<p><img src="http://static.galileo.xiaojukeji.com/static/tms/shield/scroll-4.png" alt></p>
+</li>
+<li><p>小黄车后台管理系统，使用 <code>react</code> 全家桶，大致了解下 <code>react</code> 生态圈，主要是<code>react</code>, <code>react-router</code>, <code>redux</code>, <code>ant-design</code>，顺带了解了下 <code>Echarts</code> 绘图（主要是 <code>d3.js</code> 中文学习资料太少，英文看起来慢，目前还停留在画个简单的柱形图）。</p>
+<p><code>react</code> 全家桶用过之后，感觉很类似 <code>vue</code>，不过又与<code>vue</code>不同，<code>react</code> 体现的更加开放，更加注重原生<code>js</code>，所以意味这你要封装很多的组件，也意味着代码水平决定了你的组件的健壮度。而 <code>vue</code> 相对于新手来说就友好很多了，很多常用的功能官方都已经封装好了，上手很快。所以 <code>vue</code> 更适合快速开发项目，而 <code>react</code> 更加适合大项目。</p>
+<p>就最近遇到的问题，<code>vue-router</code> 中内置了 <code>beforeEach</code> 路由守卫功能，而 <code>react</code> 中则需要自己写，引用作者的话 <a href="https://github.com/ReactTraining/react-router/issues/4962#issuecomment-355572622" target="_blank" rel="noopener">You can do this from within your render function. JSX doesn’t need an API for this because it’s more flexible.</a> </p>
+</li>
+</ul>
+<h2 id="新年新气象"><a href="#新年新气象" class="headerlink" title="新年新气象"></a>新年新气象</h2><p>新的一年，应继续保持学习，计划</p>
+<ul>
+<li><code>vue</code> 深入学习，之前还是学习的不够深入</li>
+<li><code>TypeScript</code> 也应该入手了，都 <code>0202</code> 年了，总不能还不会 <code>ts</code> 吧</li>
+<li>走进后端，<code>koa</code>, <code>eggjs</code> 等学一个</li>
+<li>不挂科</li>
+<li>不挂科</li>
+<li>不挂科</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/07/command/powershell-常用命令/" rel="next" title="powershell 常用命令">
+                <i class="fa fa-chevron-left"></i> powershell 常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/26/JavaScript/react-antd-项目笔记/" rel="prev" title="react+antd 项目笔记">
+                react+antd 项目笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4" alt="Harry Hao">
+            
+              <p class="site-author-name" itemprop="name">Harry Hao</p>
+              <p class="site-description motion-element" itemprop="description">个人的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/popring" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:koler778@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+<div style="margin:  10px 0;">
+	<a href="https://info.flagcounter.com/MQZk"><img src="https://s01.flagcounter.com/countxl/MQZk/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_6/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+</div>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2019年度总结"><span class="nav-number">1.</span> <span class="nav-text">2019年度总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#github-提交记录"><span class="nav-number">1.1.</span> <span class="nav-text">github 提交记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术总结"><span class="nav-number">1.2.</span> <span class="nav-text">技术总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新年新气象"><span class="nav-number">1.3.</span> <span class="nav-text">新年新气象</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harry Hao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

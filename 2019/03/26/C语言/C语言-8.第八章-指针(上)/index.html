@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Learning Notes,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第八章 指针（上）地址和指针的基本概念 内容可变，地址不可变  有了变量的地址，存取变量就可以通过两种方式 通过变量名 通过变量的地址  12345// 指针变量int *p;// 变量类型 int *; 变量名为 p// 指针变量一律占4个字节 基类型指针变量所指向的变量的类型 1234567891011121314int a = 1;double b = 8.2;int *p;double *">
+<meta name="keywords" content="Learning Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言 第八章 指针（上）">
+<meta property="og:url" content="https://popring.github.io/2019/03/26/C语言/C语言-8.第八章-指针(上)/index.html">
+<meta property="og:site_name" content="Harry&#39;s Blog">
+<meta property="og:description" content="第八章 指针（上）地址和指针的基本概念 内容可变，地址不可变  有了变量的地址，存取变量就可以通过两种方式 通过变量名 通过变量的地址  12345// 指针变量int *p;// 变量类型 int *; 变量名为 p// 指针变量一律占4个字节 基类型指针变量所指向的变量的类型 1234567891011121314int a = 1;double b = 8.2;int *p;double *">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-27T04:30:06.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言 第八章 指针（上）">
+<meta name="twitter:description" content="第八章 指针（上）地址和指针的基本概念 内容可变，地址不可变  有了变量的地址，存取变量就可以通过两种方式 通过变量名 通过变量的地址  12345// 指针变量int *p;// 变量类型 int *; 变量名为 p// 指针变量一律占4个字节 基类型指针变量所指向的变量的类型 1234567891011121314int a = 1;double b = 8.2;int *p;double *">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'popring'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://popring.github.io/2019/03/26/C语言/C语言-8.第八章-指针(上)/">
+
+
+
+
+
+  <title>C语言 第八章 指针（上） | Harry's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div><div>
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
+		<span>毕业倒计时：</span>
+		<span id="countDown"></span>
+	</p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		graduate();
+		function graduate() {
+			var nowDate = Date.parse(new Date());
+			var endDate = Date.parse(new Date('2021-07-01'));
+			var diff = Math.abs(endDate - nowDate);
+
+			var str = calcTime(diff);
+			document.querySelector('#countDown').innerText = str;
+			function calcTime (mss) {
+				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
+				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+				var minutes = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / (1000 * 60)));
+				var seconds = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / 1000 % 60));
+				// return `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+				return days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+			};
+
+			function toTwoFix(time) {
+				return time < 10 ? '0' + time : time;
+			}
+		}
+
+
+		setInterval(function() {
+			graduate();
+		},1000);
+	})();
+</script>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Harry's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">前端砖工一名，只想说，冬天敲代码不仅手冷，头还冷。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/03/26/C语言/C语言-8.第八章-指针(上)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Harry Hao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C语言 第八章 指针（上）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T14:00:00+08:00">
+                2019-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-Language/" itemprop="url" rel="index">
+                    <span itemprop="name">C Language</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第八章-指针（上）"><a href="#第八章-指针（上）" class="headerlink" title="第八章 指针（上）"></a>第八章 指针（上）</h2><h3 id="地址和指针的基本概念"><a href="#地址和指针的基本概念" class="headerlink" title="地址和指针的基本概念"></a>地址和指针的基本概念</h3><blockquote>
+<p>内容可变，地址不可变</p>
+</blockquote>
+<h4 id="有了变量的地址，存取变量就可以通过两种方式"><a href="#有了变量的地址，存取变量就可以通过两种方式" class="headerlink" title="有了变量的地址，存取变量就可以通过两种方式"></a>有了变量的地址，存取变量就可以通过两种方式</h4><ol>
+<li>通过变量名</li>
+<li>通过变量的地址</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指针变量</span></span><br><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 变量类型 int *; 变量名为 p</span></span><br><span class="line"><span class="comment">// 指针变量一律占4个字节</span></span><br></pre></td></tr></table></figure>
+<h4 id="基类型"><a href="#基类型" class="headerlink" title="基类型"></a>基类型</h4><p>指针变量所指向的变量的类型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">double</span> b = <span class="number">8.2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"><span class="keyword">double</span> *q;</span><br><span class="line"><span class="keyword">void</span> *r;</span><br><span class="line"></span><br><span class="line"><span class="comment">// p为int *型，只能指向int型</span></span><br><span class="line">p = &amp;a;</span><br><span class="line"><span class="comment">// q为double *型，只能指向double型</span></span><br><span class="line">q = &amp;b;</span><br><span class="line"><span class="comment">// r为void *型，可以指向任何类型</span></span><br><span class="line">r = &amp;a;</span><br><span class="line">r = &amp;b;</span><br></pre></td></tr></table></figure>
+<h3 id="指针变量的赋值"><a href="#指针变量的赋值" class="headerlink" title="指针变量的赋值"></a>指针变量的赋值</h3><blockquote>
+<p>指针变量值为0（地址值为0）时，表示什么也不指向 - 空指针。【地址值为NULL也表示空指针】</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> *p;</span><br></pre></td></tr></table></figure>
+<p>赋值语句的方法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = &amp;a;</span><br></pre></td></tr></table></figure>
+<p>定义指针变量时初始化（定义时赋初值）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> *q = &amp;b;</span><br></pre></td></tr></table></figure>
+<p>允许指针变量之间赋值，但另两个指针变量必须基类型相同</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">q = p;</span><br><span class="line"><span class="keyword">int</span> *r;</span><br><span class="line">r = q;</span><br></pre></td></tr></table></figure>
+<h4 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"><span class="comment">// 下面两种情况都表示空指针</span></span><br><span class="line">p = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// NULL（全大写），系统定义的宏 #define NULL 0</span></span><br><span class="line">p = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="两运算符-amp"><a href="#两运算符-amp" class="headerlink" title="两运算符(&amp;, *)"></a>两运算符(<code>&amp;</code>, <code>*</code>)</h3><h4 id="amp-取地址运算符"><a href="#amp-取地址运算符" class="headerlink" title="&amp;取地址运算符"></a><code>&amp;</code>取地址运算符</h4><blockquote>
+<p>获取变量的地址，用法：&amp;变量名</p>
+</blockquote>
+<h4 id="指针运算符（间接访问运算符）"><a href="#指针运算符（间接访问运算符）" class="headerlink" title="*指针运算符（间接访问运算符）"></a><code>*</code>指针运算符（间接访问运算符）</h4><blockquote>
+<p>获取或改写以p为地址的内存内容</p>
+</blockquote>
+<p><code>*p</code>，<code>*</code>不是获得或改变指针变量本身的值，而是获得或改写它所指向单元的值。</p>
+<p><code>int *p</code>，<code>*</code>运算只能用于指针变量，不能用于普通变量（如<code>*a</code>错误）；</p>
+<blockquote>
+<p><code>&amp;</code>和<code>*</code>互为逆运算</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = &amp;a;</span><br><span class="line"></span><br><span class="line">p == &amp;a;</span><br><span class="line"></span><br><span class="line">*p == *&amp;a == a;</span><br><span class="line"></span><br><span class="line">&amp;*p == p;</span><br><span class="line"></span><br><span class="line">&amp;*&amp;*&amp;*p == p;</span><br><span class="line"></span><br><span class="line">*&amp;*&amp;*&amp;p == a;</span><br></pre></td></tr></table></figure>
+<h3 id="数组的指针"><a href="#数组的指针" class="headerlink" title="数组的指针"></a>数组的指针</h3><h4 id="指针变量的运算"><a href="#指针变量的运算" class="headerlink" title="指针变量的运算"></a>指针变量的运算</h4><blockquote>
+<p>指向向前或向后移动n个单元，</p>
+<p>p+n=p中的地址编号 + (每元素字节数*n)</p>
+<p>p-n=p中的地址编号 - (每元素字节数*n)</p>
+<p>概运算应只针对<code>指向数组的指针变量</code>进行，否则毫无意义</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">p = &amp;a[<span class="number">1</span>];</span><br><span class="line"><span class="comment">// p++运算后与&amp;a[2]相等</span></span><br><span class="line">p++;</span><br><span class="line"></span><br><span class="line"><span class="comment">// p+=2 运算后与&amp;a[4]相等</span></span><br><span class="line">p+=<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>每个 <code>char</code> 型变量占1个字节，对基类型为<code>char</code>的指针变量+n，恰好是地址+n</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c[<span class="number">4</span>] = &#123;<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>&#125;</span><br><span class="line"><span class="keyword">char</span> *p = &amp;c[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>void 类型的指针不能做+(-)n的运算（也不能++, –的运算）</p>
+</blockquote>
+<h5 id="指针的变量相减"><a href="#指针的变量相减" class="headerlink" title="指针的变量相减"></a>指针的变量相减</h5><blockquote>
+<p>两指针变量的加减乘除运算时没有意义的。</p>
+<p>p1 - p2 = (p1中的地址编号 - p2中的地址编号)/镁元素字节数</p>
+</blockquote>
+<h5 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h5><p>该运算一般只对指向同一数组的元素的两个指针变量进项，表示他们所指向元素的先后位置</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表示p1和p2指向数组的同一个元素</span></span><br><span class="line">p1 == p2</span><br><span class="line"></span><br><span class="line"><span class="comment">// 表示p1所指元素位于p2所指元素之后;</span></span><br><span class="line">p1 &gt; p2</span><br><span class="line"></span><br><span class="line"><span class="comment">// 表示p1所指元素位于p2所指元素之前;</span></span><br><span class="line">p1 &lt; p2</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 与0和NULL比较</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 表示p为空指针</span></span><br><span class="line">p == <span class="number">0</span>;</span><br><span class="line">p == <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 表示p不是空指针</span></span><br><span class="line">p != <span class="number">0</span>;</span><br><span class="line">p != <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="数组元素的地址转换为元素下标"><a href="#数组元素的地址转换为元素下标" class="headerlink" title="数组元素的地址转换为元素下标"></a>数组元素的地址转换为元素下标</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p, *q;</span><br><span class="line">q = &amp;a[<span class="number">0</span>];</span><br><span class="line">p = &amp;a[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">p - a 则得<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h4 id="两个重要公式"><a href="#两个重要公式" class="headerlink" title="两个重要公式"></a>两个重要公式</h4><h5 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h5><blockquote>
+<p>编译时编译系统将<code>a[i]</code>全部变为<code>*(a+i)</code>.</p>
+<p><code>a[i]</code>就是语法糖，便于我们理解而设计的成为语法糖。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line">a + i == &amp;a[i];</span><br><span class="line"></span><br><span class="line">a[i] == *(a+i)</span><br></pre></td></tr></table></figure>
+<h5 id="指针变量可写为数组的形式"><a href="#指针变量可写为数组的形式" class="headerlink" title="指针变量可写为数组的形式"></a>指针变量可写为数组的形式</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = x[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">x[i] == *(x+i);</span><br><span class="line"></span><br><span class="line">&amp;x[i] == x+i;</span><br></pre></td></tr></table></figure>
+<h4 id="指针变量与一位数组名的统一"><a href="#指针变量与一位数组名的统一" class="headerlink" title="指针变量与一位数组名的统一"></a>指针变量与一位数组名的统一</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>];</span><br><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"></span><br><span class="line">p = a;</span><br><span class="line">p = &amp;a[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">p[<span class="number">0</span>] == *p == a[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">p[i] == a[i];</span><br><span class="line">*(p+i) == *(a+i);</span><br><span class="line"></span><br><span class="line">p 和 a 不能互相转换</span><br><span class="line">p的值（地址）可被修改，a的值（地址）不能被修改</span><br><span class="line">p是变量，a是假想的“指针变量”（是常量）</span><br></pre></td></tr></table></figure>
+<h4 id="指针运算的优先级"><a href="#指针运算的优先级" class="headerlink" title="指针运算的优先级"></a>指针运算的优先级</h4><p><code>&amp;</code>, <code>*</code>的优先级和<code>++</code>, <code>--</code>相同，都非常高，仅次于<code>()</code></p>
+<p>与<code>++</code>, <code>--</code>统计运算时，从右至左结合</p>
+<h3 id="二维数组的指针"><a href="#二维数组的指针" class="headerlink" title="二维数组的指针"></a>二维数组的指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 行指针</span></span><br><span class="line"><span class="keyword">int</span> (*q)[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line">q = a;</span><br></pre></td></tr></table></figure>
+<h4 id="一个表格、两句法则"><a href="#一个表格、两句法则" class="headerlink" title="一个表格、两句法则"></a>一个表格、两句法则</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>草稿写法</th>
+<th>±1效果</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二级指针</td>
+<td>[[]]</td>
+<td>移动一行</td>
+<td>int (*q)[4];     int <code>b[3][4];</code> 中的b</td>
+</tr>
+<tr>
+<td>二级指针</td>
+<td>[[]]</td>
+<td>必移动4字节</td>
+<td>int <em>\</em>r;      int *s[3];   中的s</td>
+</tr>
+<tr>
+<td>一级指针</td>
+<td>[]</td>
+<td>移动一个单位(int型4字节，char型1字节…)</td>
+<td>int *p;   int a[2]; 中的a</td>
+</tr>
+<tr>
+<td>普通变量</td>
+<td></td>
+<td>变量值±1</td>
+<td>int x;</td>
+</tr>
+</tbody>
+</table>
+<p>法则：</p>
+<ol>
+<li>定义变量时：一个<code>*</code>或一个<code>[]</code>升一级</li>
+<li>使用时：一个<code>*</code>或一个<code>[]</code>降一级；一个<code>&amp;</code>升一级</li>
+</ol>
+<h4 id="两个重要公式-1"><a href="#两个重要公式-1" class="headerlink" title="两个重要公式"></a>两个重要公式</h4><blockquote>
+<p>二维数组元素的写法 <code>a[i][j]</code> 是<code>*(*(a+i)+j)</code>的语法糖</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">x[i] == *(x+i);</span><br><span class="line"></span><br><span class="line">&amp;x[i] == x+i;</span><br><span class="line"></span><br><span class="line">a[i] == *(a+i) == q[i] == *(q+i);</span><br><span class="line"></span><br><span class="line">q[i][j] == *(a[i]+j) == *(*(a+i)+j)==q[i][j] == *(q[i]+j) == *(*(q+i)+j)；</span><br><span class="line"></span><br><span class="line">特殊的 i=<span class="number">0</span>,j=<span class="number">0</span></span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>] == **a;</span><br><span class="line">&amp;a[<span class="number">0</span>][<span class="number">0</span>] == *a;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Learning-Notes/" rel="tag"># Learning Notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/25/C语言/C语言-7.第七章-函数/" rel="next" title="C语言 第七章 函数">
+                <i class="fa fa-chevron-left"></i> C语言 第七章 函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/27/C语言/C语言-8.第八章-指针(下)/" rel="prev" title="C语言 第八章 指针（下）">
+                C语言 第八章 指针（下） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4" alt="Harry Hao">
+            
+              <p class="site-author-name" itemprop="name">Harry Hao</p>
+              <p class="site-description motion-element" itemprop="description">个人的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/popring" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:koler778@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+<div style="margin:  10px 0;">
+	<a href="https://info.flagcounter.com/MQZk"><img src="https://s01.flagcounter.com/countxl/MQZk/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_6/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+</div>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第八章-指针（上）"><span class="nav-number">1.</span> <span class="nav-text">第八章 指针（上）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地址和指针的基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">地址和指针的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有了变量的地址，存取变量就可以通过两种方式"><span class="nav-number">1.1.1.</span> <span class="nav-text">有了变量的地址，存取变量就可以通过两种方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基类型"><span class="nav-number">1.1.2.</span> <span class="nav-text">基类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针变量的赋值"><span class="nav-number">1.2.</span> <span class="nav-text">指针变量的赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊情况"><span class="nav-number">1.2.1.</span> <span class="nav-text">特殊情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两运算符-amp"><span class="nav-number">1.3.</span> <span class="nav-text">两运算符(&amp;, *)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#amp-取地址运算符"><span class="nav-number">1.3.1.</span> <span class="nav-text">&amp;取地址运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指针运算符（间接访问运算符）"><span class="nav-number">1.3.2.</span> <span class="nav-text">*指针运算符（间接访问运算符）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的指针"><span class="nav-number">1.4.</span> <span class="nav-text">数组的指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指针变量的运算"><span class="nav-number">1.4.1.</span> <span class="nav-text">指针变量的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#指针的变量相减"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">指针的变量相减</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系运算"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">关系运算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组元素的地址转换为元素下标"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">数组元素的地址转换为元素下标</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两个重要公式"><span class="nav-number">1.4.2.</span> <span class="nav-text">两个重要公式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法糖"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">语法糖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#指针变量可写为数组的形式"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">指针变量可写为数组的形式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指针变量与一位数组名的统一"><span class="nav-number">1.4.3.</span> <span class="nav-text">指针变量与一位数组名的统一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指针运算的优先级"><span class="nav-number">1.4.4.</span> <span class="nav-text">指针运算的优先级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组的指针"><span class="nav-number">1.5.</span> <span class="nav-text">二维数组的指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个表格、两句法则"><span class="nav-number">1.5.1.</span> <span class="nav-text">一个表格、两句法则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两个重要公式-1"><span class="nav-number">1.5.2.</span> <span class="nav-text">两个重要公式</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harry Hao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
