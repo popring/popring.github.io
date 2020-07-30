@@ -95,7 +95,7 @@
 <meta property="og:description" content="前言CSS的单位长度分为  绝对长度单位 相对长度单位  其中 绝对长度单位分为 cm（厘米）, mm（毫米）, in（英寸）. pt（点）, px（像素） 相对长度单位分为 em（父元素字体大小）, rem（根元素字体大小）, vw（视窗宽度）, vh（视窗高度） 大家都喜欢只对比 em 和 rem ，但 vw vh 也是属于绝对长度，并且也比较常用，所以这里我放在一起对比了。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200328163110.png">
-<meta property="og:updated_time" content="2020-07-27T04:30:06.969Z">
+<meta property="og:updated_time" content="2020-07-30T10:38:43.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="em、rem和vw(vh)区别">
 <meta name="twitter:description" content="前言CSS的单位长度分为  绝对长度单位 相对长度单位  其中 绝对长度单位分为 cm（厘米）, mm（毫米）, in（英寸）. pt（点）, px（像素） 相对长度单位分为 em（父元素字体大小）, rem（根元素字体大小）, vw（视窗宽度）, vh（视窗高度） 大家都喜欢只对比 em 和 rem ，但 vw vh 也是属于绝对长度，并且也比较常用，所以这里我放在一起对比了。">
@@ -419,7 +419,7 @@
 <p><strong>example</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>111<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span>	</span><br><span class="line">		* &#123;</span><br><span class="line">			margin: 0;</span><br><span class="line">			padding: 0;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="css">		<span class="selector-id">#fa</span> &#123;</span></span><br><span class="line">			width: 100vw;</span><br><span class="line">			height: 100vh;</span><br><span class="line">			background: red;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"fa"</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200328163110.png" alt></p>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p><code>em</code> 是根据元素自身的字体大小来定义的，但看到网上很多说的都是根据 父元素的字体大小，其实这个说法不完全正确 </p>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p><code>em</code> ，<strong>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</strong></p>
 <p><a href="#show-you-code">代码</a></p>
 <p><strong>如果不定义元素自身字体大小，默认继承父节点字体大小</strong></p>
 <blockquote>
@@ -558,7 +558,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
