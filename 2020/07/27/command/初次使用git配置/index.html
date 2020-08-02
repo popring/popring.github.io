@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Harry&#39;s Blog">
 <meta property="og:description" content="配置个信息 连接github 配置git代理：http、https、ssh">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-27T05:10:44.364Z">
+<meta property="og:updated_time" content="2020-08-01T12:31:04.207Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初次使用git配置">
 <meta name="twitter:description" content="配置个信息 连接github 配置git代理：http、https、ssh">
@@ -415,7 +415,9 @@
 <h2 id="配置-git-http代理"><a href="#配置-git-http代理" class="headerlink" title="配置 git http代理"></a>配置 git http代理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 具体端口号，修改为自己本地代理配置</span></span><br><span class="line"></span><br><span class="line">git config --global http.proxy socks://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line">git config --global https.proxy socks://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 取消代理</span></span><br><span class="line"></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line"></span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
 <h2 id="配置-git-ssh-代理"><a href="#配置-git-ssh-代理" class="headerlink" title="配置 git ssh 代理"></a>配置 git ssh 代理</h2><p>修改<code>~/.ssh/config</code> （如不存在自行创建）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 必须是 github.com</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   <span class="comment"># 走 HTTP 代理</span></span><br><span class="line">   <span class="comment"># ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=8080</span></span><br><span class="line">   <span class="comment"># 走 socks5 代理（如 Shadowsocks）</span></span><br><span class="line">   <span class="comment"># ProxyCommand nc -v -x 127.0.0.1:1080 %h %p</span></span><br></pre></td></tr></table></figure>
+<h2 id="解决中文文件名乱码"><a href="#解决中文文件名乱码" class="headerlink" title="解决中文文件名乱码"></a>解决中文文件名乱码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config core.quotepath <span class="literal">false</span>  --global</span><br></pre></td></tr></table></figure>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://gist.github.com/chuyik/02d0d37a49edc162546441092efae6a1" target="_blank" rel="noopener">https://gist.github.com/chuyik/02d0d37a49edc162546441092efae6a1</a></p>
+<p>乱码 <a href="https://blog.csdn.net/zhanlanmg/article/details/49862779" target="_blank" rel="noopener">https://blog.csdn.net/zhanlanmg/article/details/49862779</a></p>
 
       
     </div>
@@ -537,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -559,7 +561,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -611,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置个人信息"><span class="nav-number">1.</span> <span class="nav-text">配置个人信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接github"><span class="nav-number">2.</span> <span class="nav-text">连接github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-git-http代理"><span class="nav-number">3.</span> <span class="nav-text">配置 git http代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-git-ssh-代理"><span class="nav-number">4.</span> <span class="nav-text">配置 git ssh 代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置个人信息"><span class="nav-number">1.</span> <span class="nav-text">配置个人信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接github"><span class="nav-number">2.</span> <span class="nav-text">连接github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-git-http代理"><span class="nav-number">3.</span> <span class="nav-text">配置 git http代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-git-ssh-代理"><span class="nav-number">4.</span> <span class="nav-text">配置 git ssh 代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决中文文件名乱码"><span class="nav-number">5.</span> <span class="nav-text">解决中文文件名乱码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
