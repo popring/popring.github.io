@@ -94,8 +94,18 @@ Host github.com
 
 
 
+## 解决中文文件名乱码
+
+```bash
+git config core.quotepath false  --global
+```
+
+
+
 
 
 ## 参考
 
 https://gist.github.com/chuyik/02d0d37a49edc162546441092efae6a1
+
+乱码 https://blog.csdn.net/zhanlanmg/article/details/49862779
