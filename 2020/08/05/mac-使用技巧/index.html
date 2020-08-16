@@ -86,15 +86,18 @@
 
 
 
+<meta name="description" content="快捷键  brew iterm2 mac">
 <meta name="keywords" content="brew,iterm2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mac 使用技巧">
 <meta property="og:url" content="https://popring.github.io/2020/08/05/mac-使用技巧/index.html">
 <meta property="og:site_name" content="Harry&#39;s Blog">
+<meta property="og:description" content="快捷键  brew iterm2 mac">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-07T11:25:28.007Z">
+<meta property="og:updated_time" content="2020-08-16T09:28:45.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac 使用技巧">
+<meta name="twitter:description" content="快捷键  brew iterm2 mac">
 
 
 
@@ -375,7 +378,13 @@
       
 
       
-        <hr>
+        <p>快捷键</p>
+<ul>
+<li>brew</li>
+<li>iterm2</li>
+<li>mac</li>
+</ul>
+<hr>
 <a id="more"></a>
 <h2 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h2><blockquote>
 <p>mac 下软件管理工具，类似node的npm，python的pip，，，</p>
@@ -389,7 +398,7 @@
 </blockquote>
 <h3 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew search node</span><br></pre></td></tr></table></figure>
 <h3 id="brew-services"><a href="#brew-services" class="headerlink" title="brew services"></a>brew services</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[sudo] brew services [list]:</span><br><span class="line">		列出当前用户的所有服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services run (formula|--all):</span><br><span class="line">		运行没有注册启动的服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services start (formula|--all):</span><br><span class="line">		启动服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services stop (formula|--all):</span><br><span class="line">    关闭服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services restart (formula|--all):</span><br><span class="line">    重启服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services cleanup:</span><br><span class="line">    移除所有未使用的服务。</span><br></pre></td></tr></table></figure>
-<h2 id="iterm2"><a href="#iterm2" class="headerlink" title="iterm2"></a>iterm2</h2><h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><table>
+<h2 id="iterm2快捷键"><a href="#iterm2快捷键" class="headerlink" title="iterm2快捷键"></a>iterm2快捷键</h2><table>
 <thead>
 <tr>
 <th>快捷键</th>
@@ -406,11 +415,35 @@
 <td>恢复当前行</td>
 </tr>
 <tr>
-<td></td>
+<td>Control + A</td>
+<td>光标置于当前行首</td>
+</tr>
+<tr>
+<td>Control + E</td>
+<td>光标置于当前行尾</td>
+</tr>
+<tr>
+<td>Control + W</td>
+<td>删除光标前的内容</td>
+</tr>
+<tr>
+<td>Control + K</td>
+<td>删除光标后的内容</td>
+</tr>
+<tr>
+<td>CMD + T</td>
+<td>打开一个新窗口</td>
+</tr>
+<tr>
+<td>CMD + W</td>
+<td>关闭当前窗口</td>
 </tr>
 </tbody>
 </table>
-<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><table>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><blockquote>
+<p>只整理了个人常用的快捷键，其他还请查看文档。</p>
+</blockquote>
+<table>
 <thead>
 <tr>
 <th>快捷键</th>
@@ -419,15 +452,70 @@
 </thead>
 <tbody>
 <tr>
+<td>:q</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>忽略更改退出</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>保存退出</td>
+</tr>
+<tr>
+<td>A</td>
+<td>在光标所在行尾开始插入</td>
+</tr>
+<tr>
+<td>I</td>
+<td>在光标所在行头开始插入</td>
+</tr>
+<tr>
 <td>dd</td>
 <td>删除当前行</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>u</td>
+<td>撤销修改</td>
 </tr>
 <tr>
-<td></td>
+<td>ctrl+R</td>
+<td>重做</td>
+</tr>
+<tr>
+<td>上下左右</td>
+<td>k,j,h,l</td>
+</tr>
+<tr>
+<td>0,  <code>&lt;Home&gt;</code></td>
+<td>行首</td>
+</tr>
+<tr>
+<td>$, <code>&lt;End&gt;</code></td>
+<td>行尾</td>
+</tr>
+<tr>
+<td>i</td>
+<td>输入模式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control + command + D</td>
+<td>查询</td>
+</tr>
+<tr>
+<td>command + Q</td>
+<td>退出当前软件</td>
 </tr>
 </tbody>
 </table>
@@ -628,7 +716,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#brew"><span class="nav-number">1.</span> <span class="nav-text">brew</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-node-v12"><span class="nav-number">1.1.</span> <span class="nav-text">安装 node-v12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-iterm2"><span class="nav-number">1.2.</span> <span class="nav-text">安装 iterm2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索软件"><span class="nav-number">1.3.</span> <span class="nav-text">搜索软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#brew-services"><span class="nav-number">1.4.</span> <span class="nav-text">brew services</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iterm2"><span class="nav-number">2.</span> <span class="nav-text">iterm2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷键"><span class="nav-number">2.1.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim"><span class="nav-number">2.2.</span> <span class="nav-text">vim</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#brew"><span class="nav-number">1.</span> <span class="nav-text">brew</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-node-v12"><span class="nav-number">1.1.</span> <span class="nav-text">安装 node-v12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-iterm2"><span class="nav-number">1.2.</span> <span class="nav-text">安装 iterm2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索软件"><span class="nav-number">1.3.</span> <span class="nav-text">搜索软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#brew-services"><span class="nav-number">1.4.</span> <span class="nav-text">brew services</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iterm2快捷键"><span class="nav-number">2.</span> <span class="nav-text">iterm2快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim"><span class="nav-number">3.</span> <span class="nav-text">vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mac快捷键"><span class="nav-number">4.</span> <span class="nav-text">mac快捷键</span></a></li></ol></div>
             
 
           </div>

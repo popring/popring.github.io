@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="js,面试题,">
+  <meta name="keywords" content="面试题,js,">
 
 
 
@@ -86,13 +86,13 @@
 
 
 
-<meta name="keywords" content="js,面试题">
+<meta name="keywords" content="面试题,js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="备战校招第十一天">
 <meta property="og:url" content="https://popring.github.io/2020/08/08/备战校招/备战校招第十一天/index.html">
 <meta property="og:site_name" content="Harry&#39;s Blog">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-08T03:24:12.325Z">
+<meta property="og:updated_time" content="2020-08-13T11:55:54.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="备战校招第十一天">
 
@@ -404,13 +404,13 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.hobbies = [<span class="string">"eat"</span>];</span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="comment">// 不遍历原型上的属性</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(p)); <span class="comment">// [ 'name', 'age' ]</span></span><br><span class="line"><span class="comment">// 可遍历原型链上的可枚举属性</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">in</span> p) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item); <span class="comment">// name age hobbies</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="异步编程的几种方式"><a href="#异步编程的几种方式" class="headerlink" title="异步编程的几种方式"></a>异步编程的几种方式</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h3><h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><h2 id="load-事件-和-DOMContentLoaded-事件区别"><a href="#load-事件-和-DOMContentLoaded-事件区别" class="headerlink" title="load 事件 和 DOMContentLoaded 事件区别"></a><code>load</code> 事件 和 <code>DOMContentLoaded</code> 事件区别</h2><h3 id="load-事件"><a href="#load-事件" class="headerlink" title="load 事件"></a><code>load</code> 事件</h3><blockquote>
 <p>下面代码具有相同含义，只是写法不同，具体查看文章，备战校招第九天 - DOM事件类 - DOM事件级别</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, (event) =&gt; &#123;</span><br><span class="line">&gt;   <span class="built_in">console</span>.log(<span class="string">'page is fully loaded'</span>);</span><br><span class="line">&gt; &#125;);</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="comment">// 大家更熟这种写法</span></span><br><span class="line">&gt; <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&gt;   <span class="built_in">console</span>.log(<span class="string">'page is fully loaded'</span>);</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, (event) =&gt; &#123;</span><br><span class="line">&gt;   <span class="built_in">console</span>.log(<span class="string">'page is fully loaded'</span>);</span><br><span class="line">&gt; &#125;);</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="comment">// 大家可能更熟这种写法</span></span><br><span class="line">&gt; <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&gt;   <span class="built_in">console</span>.log(<span class="string">'page is fully loaded'</span>);</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>当整个页面所依赖的资源（样式表、图片、子框架等）加载完毕触发 <code>load</code> 事件。</p>
 <h3 id="DOMContentLoaded-事件"><a href="#DOMContentLoaded-事件" class="headerlink" title="DOMContentLoaded 事件"></a><code>DOMContentLoaded</code> 事件</h3><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">window</span>.addEventListener(<span class="string">"DOMContentLoaded"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&gt;   <span class="built_in">console</span>.log(<span class="string">`window.addEventListener("DOMContentLoaded") 事件`</span>);</span><br><span class="line">&gt; &#125;)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>当初始的HTML文档完全加载和解析完成，触发 <code>DOMContetnLoaded</code> 事件。注意：<strong><code>DOMContentLoaded</code></strong> 事件必须等待其所属script之前的样式表加载解析完成才会触发。</p>
+<p>当初始的HTML文档完全加载和解析完成，无需等待图片等资源加载完毕，就可以触发 <code>DOMContetnLoaded</code> 事件。注意：<strong><code>DOMContentLoaded</code></strong> 事件必须等待其所属script之前的样式表加载解析完成才会触发。</p>
 <h3 id="顺序"><a href="#顺序" class="headerlink" title="顺序"></a>顺序</h3><ul>
 <li><code>DOMContentLoaded</code> 优先执行</li>
 <li><code>load</code> ，而<code>load</code>事件中的 <code>window.onload</code> 和 <code>window.addEventListener(&quot;load&quot;)</code> 两种写法，则是代码中哪个靠前，哪个先执行（按照顺序执行）</li>
@@ -466,9 +466,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js/" rel="tag"># js</a>
-          
             <a href="/tags/面试题/" rel="tag"># 面试题</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
           
         </div>
       
