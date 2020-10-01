@@ -5,3 +5,5 @@ db.json
 public/
 node_modules/
 .deploy*/
+github-deploy-key.pub
+github-deploy-key
