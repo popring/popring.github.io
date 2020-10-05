@@ -202,6 +202,403 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/03/27/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-8.%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%8C%87%E9%92%88(%E4%B8%8B)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/27/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-8.%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%8C%87%E9%92%88(%E4%B8%8B)/" class="post-title-link" itemprop="url">C语言 第八章 指针（下）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-27 17:56:46" itemprop="dateCreated datePublished" datetime="2019-03-27T17:56:46+08:00">2019-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-Language/" itemprop="url" rel="index"><span itemprop="name">C Language</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="第八章-指针（下）"><a href="#第八章-指针（下）" class="headerlink" title="第八章 指针（下）"></a>第八章 指针（下）</h2><h3 id="指针变量做函数参数"><a href="#指针变量做函数参数" class="headerlink" title="指针变量做函数参数"></a>指针变量做函数参数</h3><blockquote>
+<p>如果要改变a, b的值，要使用指针指向a,b</p>
+</blockquote>
+<p>输入两个数，如果第一个数大于第二个数，则交换两个数，否则直接输出</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a,b;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入两个数字\n&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;a, &amp;b);</span><br><span class="line">	<span class="keyword">if</span>(a&lt;b) swap(&amp;a, &amp;b);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d, %d\n&quot;</span>, a, b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *p, <span class="keyword">int</span> *q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp;</span><br><span class="line">	temp = *p;</span><br><span class="line">	*p = *q;</span><br><span class="line">	*q = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组函数参数"><a href="#数组函数参数" class="headerlink" title="数组函数参数"></a>数组函数参数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[] == <span class="keyword">int</span> *a;</span><br><span class="line"><span class="keyword">int</span> a[N] == <span class="keyword">int</span> *a;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[N][<span class="number">4</span>] = <span class="keyword">int</span> (*a)[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">int</span> a[][<span class="number">4</span>] = <span class="keyword">int</span> (*a)[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *a[N] == <span class="keyword">int</span> *a;</span><br><span class="line"><span class="keyword">int</span> *a[] == <span class="keyword">int</span> *a;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> d[<span class="number">3</span>] = &#123;<span class="number">1.1</span>, <span class="number">2.2</span>, <span class="number">4.3</span>&#125;;</span><br><span class="line">	fun_add(d);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%f\n&quot;</span>, d[<span class="number">2</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun_add</span><span class="params">(<span class="keyword">double</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	p[<span class="number">1</span>] = p[<span class="number">0</span>] + p[<span class="number">2</span>];</span><br><span class="line">	<span class="comment">// 上面一行代码与下一行相同</span></span><br><span class="line">	<span class="comment">//*(p+1) = *p + *(p+2);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数的指针"><a href="#函数的指针" class="headerlink" title="函数的指针"></a>函数的指针</h3><h3 id="字符串的指针"><a href="#字符串的指针" class="headerlink" title="字符串的指针"></a>字符串的指针</h3><blockquote>
+<p>字符串结尾会有<code>\0</code>来标识当前字符串的结束</p>
+<p>初值个数不得超过数组大小</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">20</span>] = <span class="string">&quot;HelloWorld&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>以char *型指针变量保存字符串首地址</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *ps = <span class="string">&quot;iPhone&quot;</span>;</span><br><span class="line"><span class="comment">// 只是将ps的指向地址改变，而不保存字符串内容本身。</span></span><br><span class="line">ps = <span class="string">&quot;iPad&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s[] = <span class="string">&quot;iTouch&quot;</span>;</span><br><span class="line"><span class="comment">// 可以</span></span><br><span class="line">ps = s;</span><br><span class="line"><span class="comment">// 错误，s的值不可以改变</span></span><br><span class="line">s = <span class="string">&quot;iMac&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串的输入输出"><a href="#字符串的输入输出" class="headerlink" title="字符串的输入输出"></a>字符串的输入输出</h3><blockquote>
+<p>printf(“%s”, 一级地址);</p>
+<p>其含义时从改地址开始逐个字符输出，直到遇到<code>&#39;\0&#39;</code>为止（<code>\0</code>不输出，也不自动换行）</p>
+<p>输出字符串其他略有不同，后面要接地址，而不是直接接数据</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, 数据);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, 数据);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%f&quot;</span>, 数据);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, 地址);</span><br></pre></td></tr></table></figure>
+
+<h4 id="puts-一级地址"><a href="#puts-一级地址" class="headerlink" title="puts(一级地址)"></a>puts(一级地址)</h4><blockquote>
+<p>其含义是从地址开始逐个字符输出，直至<code>\0</code>为止（<code>\0</code>不输出）；然后自动换行（即最后再多输出一个<code>&#39;\n&#39;</code>）</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">puts</span>(ps);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, ps);</span><br></pre></td></tr></table></figure>
+
+<h4 id="scanf-“-s”-一级地址"><a href="#scanf-“-s”-一级地址" class="headerlink" title="scanf(“%s”, 一级地址)"></a>scanf(“%s”, 一级地址)</h4><blockquote>
+<p>其含义是：读入键盘键入的一个字符串（最后要键入回车表示结束，但不键入’\0’），存入“一级地址”开始的一顿内存空间（回车符不存入），并自动在最后一个字符的后面添加<code>&#39;\0&#39;</code>。</p>
+<p><strong>如果字符串中含有空格或Tab符，只能读入空格或Tab符之前的部分（不读空格和Tab符）。</strong></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[<span class="number">30</span>];</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, a);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, a);</span><br><span class="line"><span class="comment">// 此时输入 how are you? &lt;回车&gt;</span></span><br><span class="line"><span class="comment">// 只会输出 how</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="gets-一级地址"><a href="#gets-一级地址" class="headerlink" title="gets(一级地址)"></a>gets(一级地址)</h4><blockquote>
+<p>其含义是：读入从键盘键入的一行字符（最后一定要键入回车表示结束，但不键入<code>&#39;\0&#39;</code>，存入“一级地址”开始的一顿内存空间（回车符不存入），并自动在最后一个字符的后面添加<code>&#39;\0&#39;</code>。如果字符串中含有空格、Tab符也一起读入并不中断。）</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> b[<span class="number">30</span>];</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, b);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, b);</span><br><span class="line"><span class="comment">// 此时输入 how are you? &lt;回车&gt;</span></span><br><span class="line"><span class="comment">// 会整句输出</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串处理（常用套路）"><a href="#字符串处理（常用套路）" class="headerlink" title="字符串处理（常用套路）"></a>字符串处理（常用套路）</h3><h4 id="数组法"><a href="#数组法" class="headerlink" title="数组法"></a>数组法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; s[i]!=<span class="string">&#x27;\0&#x27;</span>; i++)</span><br><span class="line">    <span class="built_in">printf</span>(s[i]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; s[i];i++)</span><br><span class="line">	<span class="built_in">printf</span>(s[i]);</span><br></pre></td></tr></table></figure>
+
+<h4 id="指针法"><a href="#指针法" class="headerlink" title="指针法"></a>指针法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *p;</span><br><span class="line">p = 字符串起始地址;</span><br><span class="line"><span class="keyword">while</span>(*p != <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    用*p访问或处理每个字符;</span><br><span class="line">    p++;	<span class="comment">//使p指向字符串的下一个字符</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="39-0-39-和末尾字符定位"><a href="#39-0-39-和末尾字符定位" class="headerlink" title="&#39;\0&#39;和末尾字符定位"></a><code>&#39;\0&#39;</code>和末尾字符定位</h4><p>让p指向字符串的最后一个字符</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(*p)</span><br><span class="line">	p++;</span><br><span class="line">p--;</span><br></pre></td></tr></table></figure>
+
+<h4 id="字符串的连接"><a href="#字符串的连接" class="headerlink" title="字符串的连接"></a>字符串的连接</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s1[<span class="number">20</span>] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="keyword">char</span> s2[] = <span class="string">&quot;World&quot;</span>;</span><br><span class="line"><span class="keyword">char</span> *ps1 = s1;</span><br><span class="line"><span class="keyword">while</span>(*ps1) ps1++;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> *ps2 = s2;</span><br><span class="line"><span class="keyword">while</span>(*ps2)</span><br><span class="line">&#123;</span><br><span class="line">    *ps1 = *ps2;</span><br><span class="line">    ps1++;</span><br><span class="line">    ps2++;</span><br><span class="line">&#125;</span><br><span class="line">*ps1=<span class="string">&#x27;\0&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="字符串倒序"><a href="#字符串倒序" class="headerlink" title="字符串倒序"></a>字符串倒序</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *p, *q, t;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(*q) q--;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(*p)</span><br><span class="line">    &#123;</span><br><span class="line">        t = *q;</span><br><span class="line">        *q = *p;</span><br><span class="line">        *p = t;</span><br><span class="line">        p++;q++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> st[<span class="number">80</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, st);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;正序： %s&quot;</span>, st);</span><br><span class="line">    reverse(st);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;倒序： %s&quot;</span>, st);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用字符串函数"><a href="#常用字符串函数" class="headerlink" title="常用字符串函数"></a>常用字符串函数</h3><blockquote>
+<p>使用以下函数要包含头文件 <code>#include &lt;string.h&gt;</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>含义</th>
+<th>功能详细说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>strlen(地址)</td>
+<td>求字符串长度</td>
+<td>函数返回值为字符串的长度，即从地址开始到’\0’的字符个数（不计’\0’，但其中空格、Tab符、回车符等都计数）</td>
+</tr>
+<tr>
+<td>strcat(串1地址,   串2地址)</td>
+<td>字符串连接   “串1=串1+串2”</td>
+<td>把从串2地址开始到’\0’的内容，连接到串1的后面（删去串1最后的’\0’），结果仍存入串1地址开始的空间中，并在结果字符串末尾自动添加新’\0’（串1地址的空间应足够大）</td>
+</tr>
+<tr>
+<td>strcpy(串1地址,   串2地址)</td>
+<td>字符串拷贝   “串1=串2”</td>
+<td>把从串2地址开始到’\0’的内容，拷贝到串1地址开始的空间中，’\0’也一同拷贝（串1地址的空间应足够大）</td>
+</tr>
+<tr>
+<td>strcmp(串1地址,   串2地址)</td>
+<td>字符串比较   “串1&gt;串2”   “串1&lt;串2”   “串1==串2”</td>
+<td>两个字符串的大小结果由函数返回值说明：   若函数返回值 &gt; 0，说明 串1 &gt; 串2    若函数返回值 &lt; 0，说明 串1 &lt; 串2    若函数返回值 == 0，说明   串1 = = 串2</td>
+</tr>
+</tbody></table>
+<h3 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof"></a>sizeof</h3><blockquote>
+<p>求占用多少字节，结果为整数</p>
+<p>sizeof 是运算符，不是函数，同时也是关键字</p>
+</blockquote>
+<p><code>sizeof(类型 或表达式)</code></p>
+<h3 id="常用字符函数"><a href="#常用字符函数" class="headerlink" title="常用字符函数"></a>常用字符函数</h3><blockquote>
+<p>需要包含头文件 #include <code>&lt;ctype.h&gt;</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>isalpha(ch)</th>
+<th>检查ch是否为字母字符，是返回1，否返回0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isdigit(ch)</td>
+<td>检查ch是否为数字字符，是返回1，否返回0</td>
+</tr>
+<tr>
+<td>isspace(ch)</td>
+<td>检查ch是否为空白分隔符，即是否为空格、跳格(Tab,  ‘\t’)、换行符(‘\n’)、回车符(‘\r’)、换页符(‘\f’)5种之一。   如是这些字符返回1，否则返回0</td>
+</tr>
+<tr>
+<td>islower(ch)</td>
+<td>检查ch是否为小写字母字符，是返回1，否返回0</td>
+</tr>
+<tr>
+<td>isupper(ch)</td>
+<td>检查ch是否为大写字母字符，是返回1，否返回0</td>
+</tr>
+<tr>
+<td>tolower(ch)</td>
+<td>将ch转换为小写字母，函数返回转换后的字符</td>
+</tr>
+<tr>
+<td>toupper(ch)</td>
+<td>将ch转换为大写字母，函数返回转换后的字符</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/03/26/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-8.%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%8C%87%E9%92%88(%E4%B8%8A)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/26/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-8.%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%8C%87%E9%92%88(%E4%B8%8A)/" class="post-title-link" itemprop="url">C语言 第八章 指针（上）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-26 14:00:00" itemprop="dateCreated datePublished" datetime="2019-03-26T14:00:00+08:00">2019-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-Language/" itemprop="url" rel="index"><span itemprop="name">C Language</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="第八章-指针（上）"><a href="#第八章-指针（上）" class="headerlink" title="第八章 指针（上）"></a>第八章 指针（上）</h2><h3 id="地址和指针的基本概念"><a href="#地址和指针的基本概念" class="headerlink" title="地址和指针的基本概念"></a>地址和指针的基本概念</h3><blockquote>
+<p>内容可变，地址不可变</p>
+</blockquote>
+<h4 id="有了变量的地址，存取变量就可以通过两种方式"><a href="#有了变量的地址，存取变量就可以通过两种方式" class="headerlink" title="有了变量的地址，存取变量就可以通过两种方式"></a>有了变量的地址，存取变量就可以通过两种方式</h4><ol>
+<li>通过变量名</li>
+<li>通过变量的地址</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指针变量</span></span><br><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 变量类型 int *; 变量名为 p</span></span><br><span class="line"><span class="comment">// 指针变量一律占4个字节</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="基类型"><a href="#基类型" class="headerlink" title="基类型"></a>基类型</h4><p>指针变量所指向的变量的类型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">double</span> b = <span class="number">8.2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"><span class="keyword">double</span> *q;</span><br><span class="line"><span class="keyword">void</span> *r;</span><br><span class="line"></span><br><span class="line"><span class="comment">// p为int *型，只能指向int型</span></span><br><span class="line">p = &amp;a;</span><br><span class="line"><span class="comment">// q为double *型，只能指向double型</span></span><br><span class="line">q = &amp;b;</span><br><span class="line"><span class="comment">// r为void *型，可以指向任何类型</span></span><br><span class="line">r = &amp;a;</span><br><span class="line">r = &amp;b;</span><br></pre></td></tr></table></figure>
+
+<h3 id="指针变量的赋值"><a href="#指针变量的赋值" class="headerlink" title="指针变量的赋值"></a>指针变量的赋值</h3><blockquote>
+<p>指针变量值为0（地址值为0）时，表示什么也不指向 - 空指针。【地址值为NULL也表示空指针】</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> *p;</span><br></pre></td></tr></table></figure>
+
+<p>赋值语句的方法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = &amp;a;</span><br></pre></td></tr></table></figure>
+
+<p>定义指针变量时初始化（定义时赋初值）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> *q = &amp;b;</span><br></pre></td></tr></table></figure>
+
+<p>允许指针变量之间赋值，但另两个指针变量必须基类型相同</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">q = p;</span><br><span class="line"><span class="keyword">int</span> *r;</span><br><span class="line">r = q;</span><br></pre></td></tr></table></figure>
+
+<h4 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"><span class="comment">// 下面两种情况都表示空指针</span></span><br><span class="line">p = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// NULL（全大写），系统定义的宏 #define NULL 0</span></span><br><span class="line">p = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="两运算符-amp"><a href="#两运算符-amp" class="headerlink" title="两运算符(&amp;, *)"></a>两运算符(<code>&amp;</code>, <code>*</code>)</h3><h4 id="amp-取地址运算符"><a href="#amp-取地址运算符" class="headerlink" title="&amp;取地址运算符"></a><code>&amp;</code>取地址运算符</h4><blockquote>
+<p>获取变量的地址，用法：&amp;变量名</p>
+</blockquote>
+<h4 id="指针运算符（间接访问运算符）"><a href="#指针运算符（间接访问运算符）" class="headerlink" title="*指针运算符（间接访问运算符）"></a><code>*</code>指针运算符（间接访问运算符）</h4><blockquote>
+<p>获取或改写以p为地址的内存内容</p>
+</blockquote>
+<p><code>*p</code>，<code>*</code>不是获得或改变指针变量本身的值，而是获得或改写它所指向单元的值。</p>
+<p><code>int *p</code>，<code>*</code>运算只能用于指针变量，不能用于普通变量（如<code>*a</code>错误）；</p>
+<blockquote>
+<p><code>&amp;</code>和<code>*</code>互为逆运算</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = &amp;a;</span><br><span class="line"></span><br><span class="line">p == &amp;a;</span><br><span class="line"></span><br><span class="line">*p == *&amp;a == a;</span><br><span class="line"></span><br><span class="line">&amp;*p == p;</span><br><span class="line"></span><br><span class="line">&amp;*&amp;*&amp;*p == p;</span><br><span class="line"></span><br><span class="line">*&amp;*&amp;*&amp;p == a;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组的指针"><a href="#数组的指针" class="headerlink" title="数组的指针"></a>数组的指针</h3><h4 id="指针变量的运算"><a href="#指针变量的运算" class="headerlink" title="指针变量的运算"></a>指针变量的运算</h4><blockquote>
+<p>指向向前或向后移动n个单元，</p>
+<p>p+n=p中的地址编号 + (每元素字节数*n)</p>
+<p>p-n=p中的地址编号 - (每元素字节数*n)</p>
+<p>概运算应只针对<code>指向数组的指针变量</code>进行，否则毫无意义</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">p = &amp;a[<span class="number">1</span>];</span><br><span class="line"><span class="comment">// p++运算后与&amp;a[2]相等</span></span><br><span class="line">p++;</span><br><span class="line"></span><br><span class="line"><span class="comment">// p+=2 运算后与&amp;a[4]相等</span></span><br><span class="line">p+=<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>每个 <code>char</code> 型变量占1个字节，对基类型为<code>char</code>的指针变量+n，恰好是地址+n</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c[<span class="number">4</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">char</span> *p = &amp;c[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>void 类型的指针不能做+(-)n的运算（也不能++, –的运算）</p>
+</blockquote>
+<h5 id="指针的变量相减"><a href="#指针的变量相减" class="headerlink" title="指针的变量相减"></a>指针的变量相减</h5><blockquote>
+<p>两指针变量的加减乘除运算时没有意义的。</p>
+<p>p1 - p2 = (p1中的地址编号 - p2中的地址编号)/镁元素字节数</p>
+</blockquote>
+<h5 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h5><p>该运算一般只对指向同一数组的元素的两个指针变量进项，表示他们所指向元素的先后位置</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表示p1和p2指向数组的同一个元素</span></span><br><span class="line">p1 == p2</span><br><span class="line"></span><br><span class="line"><span class="comment">// 表示p1所指元素位于p2所指元素之后;</span></span><br><span class="line">p1 &gt; p2</span><br><span class="line"></span><br><span class="line"><span class="comment">// 表示p1所指元素位于p2所指元素之前;</span></span><br><span class="line">p1 &lt; p2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 与0和NULL比较</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 表示p为空指针</span></span><br><span class="line">p == <span class="number">0</span>;</span><br><span class="line">p == <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 表示p不是空指针</span></span><br><span class="line">p != <span class="number">0</span>;</span><br><span class="line">p != <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="数组元素的地址转换为元素下标"><a href="#数组元素的地址转换为元素下标" class="headerlink" title="数组元素的地址转换为元素下标"></a>数组元素的地址转换为元素下标</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p, *q;</span><br><span class="line">q = &amp;a[<span class="number">0</span>];</span><br><span class="line">p = &amp;a[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">p - a 则得<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="两个重要公式"><a href="#两个重要公式" class="headerlink" title="两个重要公式"></a>两个重要公式</h4><h5 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h5><blockquote>
+<p>编译时编译系统将<code>a[i]</code>全部变为<code>*(a+i)</code>.</p>
+<p><code>a[i]</code>就是语法糖，便于我们理解而设计的成为语法糖。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line">a + i == &amp;a[i];</span><br><span class="line"></span><br><span class="line">a[i] == *(a+i)</span><br></pre></td></tr></table></figure>
+
+<h5 id="指针变量可写为数组的形式"><a href="#指针变量可写为数组的形式" class="headerlink" title="指针变量可写为数组的形式"></a>指针变量可写为数组的形式</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = x[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">x[i] == *(x+i);</span><br><span class="line"></span><br><span class="line">&amp;x[i] == x+i;</span><br></pre></td></tr></table></figure>
+
+<h4 id="指针变量与一位数组名的统一"><a href="#指针变量与一位数组名的统一" class="headerlink" title="指针变量与一位数组名的统一"></a>指针变量与一位数组名的统一</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>];</span><br><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"></span><br><span class="line">p = a;</span><br><span class="line">p = &amp;a[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">p[<span class="number">0</span>] == *p == a[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">p[i] == a[i];</span><br><span class="line">*(p+i) == *(a+i);</span><br><span class="line"></span><br><span class="line">p 和 a 不能互相转换</span><br><span class="line">p的值（地址）可被修改，a的值（地址）不能被修改</span><br><span class="line">p是变量，a是假想的“指针变量”（是常量）</span><br></pre></td></tr></table></figure>
+
+<h4 id="指针运算的优先级"><a href="#指针运算的优先级" class="headerlink" title="指针运算的优先级"></a>指针运算的优先级</h4><p><code>&amp;</code>, <code>*</code>的优先级和<code>++</code>, <code>--</code>相同，都非常高，仅次于<code>()</code></p>
+<p>与<code>++</code>, <code>--</code>统计运算时，从右至左结合</p>
+<h3 id="二维数组的指针"><a href="#二维数组的指针" class="headerlink" title="二维数组的指针"></a>二维数组的指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 行指针</span></span><br><span class="line"><span class="keyword">int</span> (*q)[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line">q = a; </span><br></pre></td></tr></table></figure>
+
+<h4 id="一个表格、两句法则"><a href="#一个表格、两句法则" class="headerlink" title="一个表格、两句法则"></a>一个表格、两句法则</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>草稿写法</th>
+<th>±1效果</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>二级指针</td>
+<td>[[]]</td>
+<td>移动一行</td>
+<td>int (*q)[4];     int <code>b[3][4];</code> 中的b</td>
+</tr>
+<tr>
+<td>二级指针</td>
+<td>[[]]</td>
+<td>必移动4字节</td>
+<td>int <em>\</em>r;      int *s[3];   中的s</td>
+</tr>
+<tr>
+<td>一级指针</td>
+<td>[]</td>
+<td>移动一个单位(int型4字节，char型1字节…)</td>
+<td>int *p;   int a[2]; 中的a</td>
+</tr>
+<tr>
+<td>普通变量</td>
+<td></td>
+<td>变量值±1</td>
+<td>int x;</td>
+</tr>
+</tbody></table>
+<p>法则：</p>
+<ol>
+<li>定义变量时：一个<code>*</code>或一个<code>[]</code>升一级</li>
+<li>使用时：一个<code>*</code>或一个<code>[]</code>降一级；一个<code>&amp;</code>升一级</li>
+</ol>
+<h4 id="两个重要公式-1"><a href="#两个重要公式-1" class="headerlink" title="两个重要公式"></a>两个重要公式</h4><blockquote>
+<p>二维数组元素的写法 <code>a[i][j]</code> 是<code>*(*(a+i)+j)</code>的语法糖</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">x[i] == *(x+i);</span><br><span class="line"></span><br><span class="line">&amp;x[i] == x+i;</span><br><span class="line"></span><br><span class="line">a[i] == *(a+i) == q[i] == *(q+i);</span><br><span class="line"></span><br><span class="line">q[i][j] == *(a[i]+j) == *(*(a+i)+j)==q[i][j] == *(q[i]+j) == *(*(q+i)+j)；</span><br><span class="line"></span><br><span class="line">特殊的 i=<span class="number">0</span>,j=<span class="number">0</span></span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>] == **a;</span><br><span class="line">&amp;a[<span class="number">0</span>][<span class="number">0</span>] == *a;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/03/25/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-7.%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -233,7 +630,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -439,7 +836,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -547,7 +944,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -666,7 +1063,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -761,7 +1158,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -954,7 +1351,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1292,7 +1689,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1377,7 +1774,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
+                <time title="修改时间：2020-10-05 13:24:57" itemprop="dateModified" datetime="2020-10-05T13:24:57+08:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1407,183 +1804,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/03/09/JavaScript/JS%E4%B8%AD%E7%9A%84substr%E5%92%8CsubString%E8%BF%98%E6%9C%89slice%E7%9A%84%E5%8C%BA%E5%88%AB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/02/01/JavaScript/%E6%8A%98%E8%85%BEhexo-next/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
-      <meta itemprop="name" content="popring">
-      <meta itemprop="description" content="No description is best description.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="popring's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/01/JavaScript/%E6%8A%98%E8%85%BEhexo-next/" class="post-title-link" itemprop="url">折腾hexo + next</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-02-01 11:46:47" itemprop="dateCreated datePublished" datetime="2019-02-01T11:46:47+08:00">2019-02-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>hexo 安装</p>
-</li>
-<li><p>使用 Next 主题</p>
-</li>
-<li><p>创建页面</p>
-</li>
-<li><p>本文无亮点，观看需谨慎。</p>
-</li>
-<li><p>最后想说，先去翻翻官方文档，再看第三方的，毕竟，官方的才正宗。</p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/02/01/JavaScript/%E6%8A%98%E8%85%BEhexo-next/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/01/28/%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E6%9C%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
-      <meta itemprop="name" content="popring">
-      <meta itemprop="description" content="No description is best description.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="popring's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/28/%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E6%9C%9F/" class="post-title-link" itemprop="url">每周总结 - 第二期</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-01-28 11:15:24" itemprop="dateCreated datePublished" datetime="2019-01-28T11:15:24+08:00">2019-01-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-02 10:07:38" itemprop="dateModified" datetime="2020-10-02T10:07:38+08:00">2020-10-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本周总结：</p>
-<ul>
-<li>Yarn 学习</li>
-<li>Ajax 中 XHR 和 Fetch 的区别</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/01/28/%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E6%9C%9F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1674,7 +1894,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1687,7 +1907,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">54</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
