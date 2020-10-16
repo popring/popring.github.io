@@ -9,7 +9,7 @@ categories:
 
 ---
 
-先前的 [小黄车后台管理系统](https://github.com/popring/OFO-MS/tree/master) ，开发完成后，现看来，目录过于复杂，代码冗余，对强迫症的我来说，实属看不下去了，趁着过年有时间，使用 ts 进行了重构，并在之前的基础上对 `react ` 和 `typescript` 有了进一步的理解。
+先前的 [小黄车后台管理系统](https://github.com/popring/ofo-ms/tree/ofo-ms-js) ，开发完成后，现看来，目录过于复杂，代码冗余，对强迫症的我来说，实属看不下去了，趁着过年有时间，使用 ts 进行了重构，并在之前的基础上对 `react ` 和 `typescript` 有了进一步的理解。
 
 参考了 github 的开源项目 [react-admin](https://github.com/yezihaohao/react-admin)，感谢大佬的代码，给了很多灵感。
 

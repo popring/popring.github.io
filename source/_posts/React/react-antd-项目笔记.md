@@ -30,7 +30,7 @@ categories:
 | lifecycle name     | description                                                  |
 | ------------------ | ------------------------------------------------------------ |
 | constructor        | react 组件挂载前会调用它的构造函数                           |
-| componentWillMound | ***过时***，挂载前调用                                       |
+| componentWillMount | ***过时***，挂载前调用                                       |
 | render             | class组件中唯一必须实现的方法，最好为纯函数，代码更加简洁易懂 |
 | componentDidMount  | 组件挂载后调用                                               |
 

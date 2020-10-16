@@ -121,7 +121,8 @@ brew search node
 
 ## mac快捷键
 
-| 快捷键                | 说明         |
-| --------------------- | ------------ |
-| Control + command + D | 查询         |
-| command + Q           | 退出当前软件 |
+| 快捷键                | 说明               |
+| --------------------- | ------------------ |
+| Control + command + D | 查询               |
+| command + Q           | 退出当前软件       |
+| command + Shift + .   | 显示/隐藏 隐藏文件 |
