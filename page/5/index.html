@@ -202,6 +202,429 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/03/20/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-2.%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/20/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-2.%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-title-link" itemprop="url">C语言 第二章 数据类型和运算符</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-20 10:59:49" itemprop="dateCreated datePublished" datetime="2019-03-20T10:59:49+08:00">2019-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-17 23:24:37" itemprop="dateModified" datetime="2020-10-17T23:24:37+08:00">2020-10-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-Language/" itemprop="url" rel="index"><span itemprop="name">C Language</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="第一章-概述"><a href="#第一章-概述" class="headerlink" title="第一章 概述"></a>第一章 概述</h2><blockquote>
+<p>Good things are worth the wait.</p>
+<p>美好的事物都值得等待。</p>
+</blockquote>
+<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>命名规则：</p>
+<p>标识符名很简单，字母数字下划线。</p>
+<p>字母区分大小写，非数打头非关键。</p>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><blockquote>
+<p>程序运行过程中值不会变化的成为常量。</p>
+</blockquote>
+<h3 id="C语言编译过程"><a href="#C语言编译过程" class="headerlink" title="C语言编译过程"></a>C语言编译过程</h3><p>C语言源程序 -&gt; 目标程序 -&gt; 可执行程序</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221114933.png"></p>
+<h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><p>二进制转换十进制</p>
+<p>十进制转换二进制</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221114928.png"></p>
+<h2 id="第二章-数据类型运算符和表达式"><a href="#第二章-数据类型运算符和表达式" class="headerlink" title="第二章 数据类型运算符和表达式"></a>第二章 数据类型运算符和表达式</h2><h3 id="整形常量"><a href="#整形常量" class="headerlink" title="整形常量"></a>整形常量</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 十进制</span></span><br><span class="line">a = <span class="number">10</span>;</span><br><span class="line"><span class="comment">// 八进制</span></span><br><span class="line">a = <span class="number">012</span>;</span><br><span class="line"><span class="comment">// 十六进制</span></span><br><span class="line">a = <span class="number">0xA</span>;</span><br><span class="line"><span class="comment">// 不允许写为二进制形式。</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>整型常量表示法，十进制数直接打。</p>
+<p>数前添零进制八，十六进制再加叉。</p>
+</blockquote>
+<h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><h4 id="整型类型"><a href="#整型类型" class="headerlink" title="整型类型"></a>整型类型</h4><blockquote>
+<p>int, short int, long int, long long int</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">类型</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">short</td>
+<td align="center">整数型</td>
+<td align="left">2个字节</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">长整型</td>
+<td align="left">4个字节</td>
+</tr>
+<tr>
+<td align="center">signed</td>
+<td align="center">有符号型</td>
+<td align="left">可以保存负数的整型变量（signed可省略）</td>
+</tr>
+<tr>
+<td align="center">unsigned</td>
+<td align="center">无符号型</td>
+<td align="left">可保存正数和0，但不能保存负数的整型变量</td>
+</tr>
+<tr>
+<td align="center">signed short int a</td>
+<td align="center">有符号短整型</td>
+<td align="left">2字节，-32768 ~ 32767</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">整数型</td>
+<td align="left">4个字节</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h4 id="浮点类型（也称为实型）"><a href="#浮点类型（也称为实型）" class="headerlink" title="浮点类型（也称为实型）"></a>浮点类型（也称为实型）</h4><blockquote>
+<p>float, double, 双精度浮点型</p>
+<p>根据精度不同，克表示数据范围不同，根据实际情况选用。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">float</td>
+<td align="center">单精度型</td>
+<td>4个字节，最大7位有效数字</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">双精度型</td>
+<td>8个字节，最大15位有效数字</td>
+</tr>
+</tbody></table>
+<h5 id="小数形式"><a href="#小数形式" class="headerlink" title="小数形式"></a>小数形式</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> f;</span><br><span class="line">f = <span class="number">12.</span>;</span><br><span class="line">f = <span class="number">.36</span>;</span><br><span class="line">f = <span class="number">1.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以省略正数部分的0</span></span><br><span class="line"><span class="comment">// 也可以省略小数末尾的0</span></span><br><span class="line"><span class="comment">// 但必须有小数点。</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="指数形式"><a href="#指数形式" class="headerlink" title="指数形式"></a>指数形式</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// E(或e)代表 x10</span></span><br><span class="line"><span class="number">2.1E5</span> == <span class="number">2.1</span> * <span class="built_in">pow</span>(<span class="number">10</span>,<span class="number">5</span>);</span><br><span class="line"><span class="number">-0.8E-2</span> = <span class="number">-0.8</span> * <span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">-2</span>);</span><br><span class="line">...</span><br><span class="line"><span class="comment">// E(e)后面必须是正数，前后两边紧相连</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="整型变量和实型变量"><a href="#整型变量和实型变量" class="headerlink" title="整型变量和实型变量"></a>整型变量和实型变量</h4><p>整型变量：只能保存整数，不能保存实数。（例如：int）</p>
+<p>实型变量：只能保存实数，不能保存正数。（例如：float, double）</p>
+<h4 id="常量后缀"><a href="#常量后缀" class="headerlink" title="常量后缀"></a>常量后缀</h4><h5 id="L-或l"><a href="#L-或l" class="headerlink" title="L(或l)"></a>L(或l)</h5><p>整数后加为长整型(<code>long</code>)，实数后加为长双精度型(<code>long double</code>)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0L</span>, <span class="number">12L</span>, <span class="number">1.2L</span></span><br></pre></td></tr></table></figure>
+
+<p>U(或u)</p>
+<p>只能加在整数后，表示常量为<code>无符号型</code>，不能表示负数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0U</span>, <span class="number">6U</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可既用L又用U</span></span><br><span class="line"><span class="number">12L</span>U, <span class="number">6L</span>U</span><br></pre></td></tr></table></figure>
+
+<h5 id="F-或f"><a href="#F-或f" class="headerlink" title="F(或f)"></a>F(或f)</h5><p>表示常量为单精度型，加在整数后，则此数不为整数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.23f</span>, <span class="number">356F</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h3><blockquote>
+<p>单引号包裹的一个字符，称为字符常量。</p>
+<p>单引号内必须为英文，只能有一个字符，每个字符常量占一个字节（8个bit位），单引号是定界符不属于字符内容。</p>
+</blockquote>
+<h4 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h4><blockquote>
+<p>标准ASCII码0~127，字符和整数是混用的，字符可边做对应的ASCII码</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>ASCII码</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0~31, 127</td>
+<td>控制字符（不可显示）</td>
+</tr>
+<tr>
+<td>32</td>
+<td>空格字符</td>
+</tr>
+<tr>
+<td>48~57</td>
+<td>数字’0’~’9’</td>
+</tr>
+<tr>
+<td>65~90</td>
+<td>‘A’~’Z’，</td>
+</tr>
+<tr>
+<td>97~122</td>
+<td>‘a’~’z’，小写字母比大写多32</td>
+</tr>
+</tbody></table>
+<h4 id="转义字符-39-39"><a href="#转义字符-39-39" class="headerlink" title="转义字符 &#39;\&#39;"></a>转义字符 <code>&#39;\&#39;</code></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\n 换行符</span><br><span class="line">\a 响铃符</span><br><span class="line">\t 制表符</span><br><span class="line">\\ 表示 \ 字符</span><br><span class="line">\&#x27; 表示 &#x27; 字符</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><blockquote>
+<p>末尾 \0 表示字符串结束</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>字符常量</th>
+<th>字符串常量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>引号</td>
+<td>单引号</td>
+<td>双引号</td>
+</tr>
+<tr>
+<td>字符个数</td>
+<td>只能占一个字符</td>
+<td>可含0~多个字符</td>
+</tr>
+<tr>
+<td>能否将值赋值给char型变量</td>
+<td>可以</td>
+<td>不可以</td>
+</tr>
+<tr>
+<td>有无对应变量</td>
+<td>有字符型变量</td>
+<td>无字符型变量</td>
+</tr>
+<tr>
+<td>占用内存字符数</td>
+<td>一律一个字节</td>
+<td>字符串字符数（长度）+1</td>
+</tr>
+</tbody></table>
+<h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><blockquote>
+<p>优先级：</p>
+<p>先乘除，后加减</p>
+<p><code>*</code> <code>/</code> <code>%</code>优先级相同，高于 <code>+</code> <code>-</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ - * / %</span><br></pre></td></tr></table></figure>
+
+<h4 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h4><p>表达式的类型：</p>
+<p>两个运算量类型一致时，与两个运算量的类型一致。</p>
+<p>两个运算量类型不一致时，表达式的类型与其中较高类型运算量的类型一致（较低类型自动转换为高类型再运算）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> -&gt; <span class="keyword">int</span> -&gt; <span class="keyword">float</span> -&gt; <span class="keyword">double</span></span><br><span class="line">特殊：所有浮点数必然转换为 <span class="keyword">double</span> 再运算（即使两个 <span class="keyword">float</span> 型量的运算也会先转换为 <span class="keyword">double</span> ）</span><br></pre></td></tr></table></figure>
+
+<h4 id="取整数的个、十、百、千…"><a href="#取整数的个、十、百、千…" class="headerlink" title="取整数的个、十、百、千…"></a>取整数的个、十、百、千…</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;</span><br><span class="line">a = <span class="number">123456</span>;</span><br><span class="line"><span class="comment">// 个位</span></span><br><span class="line">a%<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 十位</span></span><br><span class="line">(a/<span class="number">10</span>)%<span class="number">10</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 百位</span></span><br><span class="line">(a/<span class="number">100</span>)%<span class="number">10</span></span><br><span class="line">    </span><br><span class="line">...</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 取最高位时，a/100000 ，只会有一位数，不%10 也可以</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>习题</strong></p>
+<ol>
+<li>一个数位78378 取它的所有千位和百位</li>
+<li>水仙花</li>
+</ol>
+<h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><blockquote>
+<p>= 赋值运算符优先级再C语言中排倒数第二位</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">n = <span class="number">8</span>;</span><br><span class="line">n += n *= n - <span class="number">2</span>;</span><br><span class="line"><span class="comment">// 拆分运算</span></span><br><span class="line">n += n *= <span class="number">6</span>;</span><br><span class="line">n += <span class="number">48</span>;</span><br><span class="line">n = n + <span class="number">48</span>;</span><br><span class="line">n = <span class="number">96</span>;</span><br><span class="line"><span class="comment">// 所以表达式的值为 96，表达式求值后的n的值为 96</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自增和自减"><a href="#自增和自减" class="headerlink" title="自增和自减"></a>自增和自减</h3><blockquote>
+<p>i++</p>
+<p>单目运算符 优先级很高，仅次于括号()</p>
+<p>只能用于变量</p>
+</blockquote>
+<p>i++ 计算后会修改<code>i</code> 自身的值</p>
+<h4 id="i-和-i-的区别"><a href="#i-和-i-的区别" class="headerlink" title="i++ 和 ++i 的区别"></a><code>i++</code> 和 <code>++i</code> 的区别</h4><p><code>++</code>在先，先加后用；</p>
+<p><code>++</code>在后，后加先用；</p>
+<p><code>--</code>在先，先减后用；</p>
+<p><code>--</code>在后，后减先用；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>, b;</span><br><span class="line">b = <span class="number">5</span> - a++;</span><br><span class="line"><span class="comment">// 计算后，b=4 a=2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">1</span>, b;</span><br><span class="line">b = <span class="number">5</span> - ++a;</span><br><span class="line"><span class="comment">// 计算后，b=3 a=2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="逗号运算符和逗号表达式"><a href="#逗号运算符和逗号表达式" class="headerlink" title="逗号运算符和逗号表达式"></a>逗号运算符和逗号表达式</h3><blockquote>
+<p>逗号运算符优先级最低（倒数第一），顺序自左到右</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 运算符</span></span><br><span class="line"><span class="keyword">int</span> x=<span class="number">1</span>, y=<span class="number">2</span>, z;</span><br><span class="line">z = (x++, y++);</span><br><span class="line">z = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 表达式亦相同</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><blockquote>
+<p>2个条件</p>
+<p>数据必须转换为二进制才能进行</p>
+<p>只能对整型数据和字符型数据进行</p>
+</blockquote>
+<h4 id="按位与-amp-和逻辑-amp-amp-不同"><a href="#按位与-amp-和逻辑-amp-amp-不同" class="headerlink" title="按位与 &amp; 和逻辑 &amp;&amp; 不同"></a>按位与 <code>&amp;</code> 和逻辑 <code>&amp;&amp;</code> 不同</h4><h5 id="按位与-amp"><a href="#按位与-amp" class="headerlink" title="按位与 &amp;"></a>按位与 <code>&amp;</code></h5><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221114929.png"></p>
+<h5 id="按位或"><a href="#按位或" class="headerlink" title="按位或 |"></a>按位或 <code>|</code></h5><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221114930.png"></p>
+<h5 id="按位异或"><a href="#按位异或" class="headerlink" title="按位异或 ^"></a>按位异或 <code>^</code></h5><blockquote>
+<p>性质：</p>
+<p>任何数与他的本身按位异或，结果都为0</p>
+<p>a^k^k = a，可根据这个性质对数据加密</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221114932.png"></p>
+<h5 id="按位求反"><a href="#按位求反" class="headerlink" title="按位求反 ~"></a>按位求反 <code>~</code></h5><blockquote>
+<p><code>~</code>是单目运算符，将数据转换为二进制后，将个二进制位反过来，0变1，1变0</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221114931.png"></p>
+<h4 id="左移-lt-lt-右移-gt-gt"><a href="#左移-lt-lt-右移-gt-gt" class="headerlink" title="左移 &lt;&lt; 右移 &gt;&gt;"></a>左移 <code>&lt;&lt;</code> 右移 <code>&gt;&gt;</code></h4><h5 id="左移-lt-lt"><a href="#左移-lt-lt" class="headerlink" title="左移 &lt;&lt;"></a>左移 <code>&lt;&lt;</code></h5><blockquote>
+<p>将 <code>&lt;&lt;</code>左边的数的各二进制整体左移若干位，由 <code>&lt;&lt;</code>右边的数指定移动的位数。移出的位将被舍弃。</p>
+<p>一个数左移<code>i</code>位，相当于乘以2的<code>i</code>次方</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> &lt;&lt; <span class="number">4</span></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="number">3</span> * (<span class="number">2</span>*<span class="number">2</span>*<span class="number">2</span>*<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="右移"><a href="#右移" class="headerlink" title="右移"></a>右移</h5><blockquote>
+<p>将 <code>&gt;&gt;</code>左边的数的各二进制整体右移若干位，由 <code>&gt;&gt;</code>右边的数指定移动的位数。移出的位将被舍弃。</p>
+<p>一个数左移<code>i</code>位，相当于乘以2的<code>i</code>次方</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">15</span> &gt;&gt; <span class="number">2</span></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="number">15</span> / (<span class="number">2</span>*<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="空类型"><a href="#空类型" class="headerlink" title="空类型"></a>空类型</h4><blockquote>
+<p>void</p>
+</blockquote>
+<h4 id="派生类型"><a href="#派生类型" class="headerlink" title="派生类型"></a>派生类型</h4><blockquote>
+<ol>
+<li>指针类型 *</li>
+<li>数组类型 []</li>
+<li>结构体类型 struct</li>
+<li>共同体类型 union</li>
+<li>函数类型</li>
+</ol>
+</blockquote>
+<h3 id="Visual-Stdio-快捷键"><a href="#Visual-Stdio-快捷键" class="headerlink" title="Visual Stdio 快捷键"></a>Visual Stdio 快捷键</h3><p>注释: Ctrl + K, Ctrl + C</p>
+<p>取消注释：Ctrl + K , Ctrl + U</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/03/10/command/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/10/command/git/" class="post-title-link" itemprop="url">Git 学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-10 13:32:49" itemprop="dateCreated datePublished" datetime="2019-03-10T13:32:49+08:00">2019-03-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-17 23:24:37" itemprop="dateModified" datetime="2020-10-17T23:24:37+08:00">2020-10-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Command/" itemprop="url" rel="index"><span itemprop="name">Command</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>官方中文文档 <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">https://git-scm.com/book/zh/v2</a></p>
+</blockquote>
+<p>查看远程仓库地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/03/10/command/git/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/03/09/JavaScript/JS%E4%B8%AD%E7%9A%84substr%E5%92%8CsubString%E8%BF%98%E6%9C%89slice%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -233,7 +656,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-16 23:44:25" itemprop="dateModified" datetime="2020-10-16T23:44:25+08:00">2020-10-16</time>
+                <time title="修改时间：2020-10-17 23:24:37" itemprop="dateModified" datetime="2020-10-17T23:24:37+08:00">2020-10-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -317,7 +740,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-16 23:44:25" itemprop="dateModified" datetime="2020-10-16T23:44:25+08:00">2020-10-16</time>
+                <time title="修改时间：2020-10-17 23:24:37" itemprop="dateModified" datetime="2020-10-17T23:24:37+08:00">2020-10-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -409,7 +832,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-16 23:44:25" itemprop="dateModified" datetime="2020-10-16T23:44:25+08:00">2020-10-16</time>
+                <time title="修改时间：2020-10-17 23:24:37" itemprop="dateModified" datetime="2020-10-17T23:24:37+08:00">2020-10-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -494,7 +917,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-16 23:44:25" itemprop="dateModified" datetime="2020-10-16T23:44:25+08:00">2020-10-16</time>
+                <time title="修改时间：2020-10-17 23:24:37" itemprop="dateModified" datetime="2020-10-17T23:24:37+08:00">2020-10-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -584,7 +1007,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-16 23:44:25" itemprop="dateModified" datetime="2020-10-16T23:44:25+08:00">2020-10-16</time>
+                <time title="修改时间：2020-10-17 23:24:37" itemprop="dateModified" datetime="2020-10-17T23:24:37+08:00">2020-10-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -704,20 +1127,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
