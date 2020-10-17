@@ -15,7 +15,7 @@ categories:
 
 记录react学习进程，以及使用 `antd` 和 `react` 写 `demo` 时候遇到的问题。
 
-项目地址：https://github.com/popring/OFO-MS/tree/master
+项目地址：https://github.com/popring/ofo-ms/tree/ofo-ms-js
 
 <!-- more -->
 
