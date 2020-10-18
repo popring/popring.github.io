@@ -512,7 +512,7 @@ math:
 
 # Easily enable fast Ajax navigation on your website.
 # Dependencies: https://github.com/theme-next/theme-next-pjax
-pjax: false
+pjax: true
 
 # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
 # For more information: https://fancyapps.com/fancybox
@@ -739,7 +739,7 @@ algolia_search:
 # Local Search
 # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
 local_search:
-  enable: false
+  enable: true
   # If auto, trigger search by changing input.
   # If manual, trigger search by pressing enter key or search button.
   trigger: auto
@@ -836,9 +836,9 @@ motion:
     post_block: fadeIn
     post_header: slideDownIn
     post_body: slideDownIn
-    coll_header: slideLeftIn
+    coll_header: swoopIn
     # Only for Pisces | Gemini.
-    sidebar: slideUpIn
+    sidebar: bounceIn
 
 # Progress bar in the top during page loading.
 # Dependencies: https://github.com/theme-next/theme-next-pace

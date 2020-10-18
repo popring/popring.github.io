@@ -106,3 +106,10 @@ deploy:
   type: git
   repo: https://github.com/popring/popring.github.io
   branch: master
+
+# search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
