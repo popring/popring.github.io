@@ -4,7 +4,7 @@ date: 2020-07-27 12:48:24
 tags:
 - git
 categories:
-- command
+- Command
 ---
 
 

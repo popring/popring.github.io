@@ -4,7 +4,7 @@ date: 2020-08-05 09:15:10
 tags:
 - brew
 - iterm2
-categories:
+categories: Command
 ---
 
 快捷键
