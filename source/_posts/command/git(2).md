@@ -196,3 +196,9 @@ git log --onelien
 
 ---
 
+
+
+### git config --list --show-origin
+
+展示当前个人git配置
+

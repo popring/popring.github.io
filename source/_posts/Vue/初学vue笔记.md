@@ -1,10 +1,8 @@
 ---
 title: 初学vue笔记
 date: 2019-12-27 18:13:21
-tags:
-- Vue
-categories:
-- JavaScript
+tags: Vue
+categories: Vue
 ---
 
 
