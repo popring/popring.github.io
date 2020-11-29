@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>leetcode-70.爬楼梯</title>
+    <url>/2020/11/08/leetcode-%E7%88%AC%E6%A5%BC%E6%A2%AF/</url>
+    <content><![CDATA[<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p>注意：给定 n 是一个正整数。</p>
+<p>示例 1：</p>
+<p>输入： 2<br>输出： 2<br>解释： 有两种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶</li>
+<li>2 阶<br>示例 2：</li>
+</ol>
+<p>输入： 3<br>输出： 3<br>解释： 有三种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶 + 1 阶</li>
+<li>1 阶 + 2 阶</li>
+<li>2 阶 + 1 阶</li>
+</ol>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/climbing-stairs">https://leetcode-cn.com/problems/climbing-stairs</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<hr>
+<a id="more"></a>
+
+
+
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><blockquote>
+<p>实测，这个会超时</p>
+<p>时间复杂度：O(n^2)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">3</span>) <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">return</span> climbStairs(n<span class="number">-1</span>) + climbStairs(n<span class="number">-2</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="递归缓存（记忆化递归）"><a href="#递归缓存（记忆化递归）" class="headerlink" title="递归缓存（记忆化递归）"></a>递归缓存（记忆化递归）</h2><blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 递归缓存</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params <span class="type">&#123;Array&#125;</span> </span>steps </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairsMemo = <span class="function"><span class="keyword">function</span> (<span class="params">steps, n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (steps[n] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> steps[n]</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        steps[n] = n</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        steps[n] = climbStairsMemo(steps, n - <span class="number">1</span>) + climbStairsMemo(steps, n - <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> steps = <span class="keyword">new</span> <span class="built_in">Array</span>(n).fill(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> climbStairsMemo(steps, n)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> steps = []</span><br><span class="line">    steps[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    steps[<span class="number">2</span>] = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        steps[i] = steps[i<span class="number">-1</span>] + steps[i<span class="number">-2</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="动态规划优化版（斐波那契数列）"><a href="#动态规划优化版（斐波那契数列）" class="headerlink" title="动态规划优化版（斐波那契数列）"></a>动态规划优化版（斐波那契数列）</h2><blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(1)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> first = <span class="number">1</span>, second = <span class="number">2</span>, res = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>) <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        res = first + second</span><br><span class="line">        first = second</span><br><span class="line">        second = res</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从输入url到页面显示经过了什么？</title>
     <url>/2020/10/02/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
     <content><![CDATA[<p>经典面试题，不必多说。</p>
@@ -1837,6 +1900,130 @@
       </tags>
   </entry>
   <entry>
+    <title>Vue父子组件生命周期</title>
+    <url>/2019/12/27/Vue/Vue%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+    <content><![CDATA[<p>Vue官网找了一圈没找到关于在父组件中使用子组件，生命周期是如何运行的。</p>
+<p>先说结论</p>
+<ul>
+<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
+<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
+<li>父组件  `mounted</li>
+</ul>
+<p>若使用 props 进行父子组件传值（若只进行自身组件数据进行维护，只会执行自身组件的生命周期函数）</p>
+<ul>
+<li>父组件 <code>beforeUpdate</code></li>
+<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
+<li>父组件 <code>updated</code></li>
+</ul>
+<p>销毁阶段</p>
+<ul>
+<li>父组件 <code>beforeDestory</code></li>
+<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
+<li>父组件  <code>destoryed</code></li>
+</ul>
+<a id="more"></a>
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>当在父组件中，使用子组件，那么父子组件的生命周期是如何进行的？</p>
+<h2 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h2><p>首先，来回顾下Vue生命周期，以下为<a href="https://cn.vuejs.org/v2/guide/instance.html#%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90">官方文档中的生命周期图</a></p>
+<p><img src="https://cn.vuejs.org/images/lifecycle.png" alt="Vue 实例生命周期"></p>
+<p>这里只列出了结论，没有进行实践，如需详情查看，请点击<a href="https://segmentfault.com/a/1190000011381906">详解vue生命周期</a></p>
+<h3 id="beforeCreate-created"><a href="#beforeCreate-created" class="headerlink" title="beforeCreate - created"></a>beforeCreate - created</h3><p>这两个阶段主要是<strong>初始化事件、进行数据检测</strong>，但此时还没有 <code>el</code> 选项。    </p>
+<h3 id="created-beforeMount"><a href="#created-beforeMount" class="headerlink" title="created - beforeMount"></a>created - beforeMount</h3><p>首先判断是否有无 <code>el</code> 选项，</p>
+<ul>
+<li>若有则继续编译</li>
+<li>若没有 <code>el</code> 选项则会停止编译，意味着生命周期结束，直接调用 <code>vm.$mount(el)</code>。</li>
+</ul>
+<p>紧接着继续判断有无 <code>template</code> 选项，</p>
+<ul>
+<li>若有则会将 <code>template</code> 编译为 <code>render</code> 函数，</li>
+<li>若无，则会引用外部 <code>html</code> 作为模板编译。</li>
+<li>其中 <code>new Vue</code> 中还有一个选项 <code>render</code>，以 <code>createElement</code> 作为参数进行渲染操作。</li>
+</ul>
+<p>经过实验，渲染优先级如下</p>
+<p><code>render</code> &gt; <code>template</code> &gt; <code>外部 html</code></p>
+<h3 id="beforeMount-mounted"><a href="#beforeMount-mounted" class="headerlink" title="beforeMount - mounted"></a>beforeMount - mounted</h3><p>给示例对象添加 <code>$el</code> 选项，并替换掉挂载到 <code>dom</code> 对象。</p>
+<h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><p>将页面中的填充位，用数据进行替换。（例如：<code>&lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</code> 替换后 <code>&lt;div&gt;Hello World&lt;/div&gt;</code>）</p>
+<h3 id="beforeUpdate-updated"><a href="#beforeUpdate-updated" class="headerlink" title="beforeUpdate - updated"></a>beforeUpdate - updated</h3><p>当组件内的 <code>data</code> 属性发生变化时，会执行这两个生命周期（<code>beforeUpdate</code>和 <code>updated</code>），</p>
+<h3 id="beforeDestory-destoryed"><a href="#beforeDestory-destoryed" class="headerlink" title="beforeDestory - destoryed"></a>beforeDestory - destoryed</h3><p><strong>beforeDestroy</strong>钩子函数在实例销毁之前调用。在这一步，实例仍然完全可用。<br><strong>destroyed</strong>钩子函数在Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</p>
+<h2 id="构建代码"><a href="#构建代码" class="headerlink" title="构建代码"></a>构建代码</h2><p>回到原题，Vue 父子组件生命周期是如何执行的。</p>
+<p>首先需要构建一个父子组件的结构，代码如下，可以在线访问 <a href="https://codesandbox.io/s/laughing-field-sm9gm?file=/src/components/Father.vue:0-998">codesandbox</a></p>
+<h3 id="父组件代码"><a href="#父组件代码" class="headerlink" title="父组件代码"></a>父组件代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;router-link to&#x3D;&quot;&#x2F;&quot;&gt;HomePage&lt;&#x2F;router-link&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;button @click&#x3D;&quot;handleClick&quot;&gt;更新父组件data数据&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;Son :val&#x3D;&quot;type&quot; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Son from &quot;.&#x2F;Son&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Father&quot;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Son,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Father&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type &#x3D; &quot;Father Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Father created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Father mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Father updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Father destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="子组件代码"><a href="#子组件代码" class="headerlink" title="子组件代码"></a>子组件代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; val &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;button @click&#x3D;&quot;handleClick&quot;&gt;子组件数据更新&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Son&quot;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    val: String,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Son&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type &#x3D; &quot;Son Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Son created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Son mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Son updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Son destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="首次进入"><a href="#首次进入" class="headerlink" title="首次进入"></a>首次进入</h3><blockquote>
+<p>运行效果，点击页面中 Father 进入组件</p>
+</blockquote>
+<img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129113333.png" alt="image-20201129113325929" style="zoom:50%;" />
+
+
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">This is Father beforeCreate </span><br><span class="line">This is Father created </span><br><span class="line">This is Father beforeMount </span><br><span class="line">This is Son beforeCreate </span><br><span class="line">This is Son created </span><br><span class="line">This is Son beforeMount </span><br><span class="line">This is Son mounted </span><br><span class="line">This is Father mounted </span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以看出首先进入</p>
+<ul>
+<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
+<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
+<li>父组件  <code>mounted</code></li>
+</ul>
+<p>其实这个也不难理解，刚开始没经过思考的我，认为是先执行完父组件生命周期，才会执行子组件生命周期。再次翻看官方文档之后，理解 vue 设计思路和一些理念，就可以理解生命周期为什么这么执行了。</p>
+<p>在进入父组件时候，首先肯定需要进行初始化事件、数据，然后进入挂载的阶段，当在挂载过程中，又发现子组件，自然而然的需要先把子组件挂载上去才可以继续进行父组件的生命周期，于是就形成了上面的这种景象。</p>
+<h3 id="数据更新阶段"><a href="#数据更新阶段" class="headerlink" title="数据更新阶段"></a>数据更新阶段</h3><blockquote>
+<p>点击更新子组件数据，就会看到只会在自己组件的更新周期函数</p>
+</blockquote>
+<p>此时，父子组件各自维护自己的 data 值，并没有进行父组件传值操作。</p>
+<p>更新父组件 data 值后，并不会影响到子组件的 beforeUpdate、updated</p>
+<img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115024.png" alt="image-20201129115023984" style="zoom: 50%;" />
+
+
+
+<p>子组件更新自身数据也是一样</p>
+<img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115134.png" alt="image-20201129115134288" style="zoom:50%;" />
+
+
+
+<p>那么如果使用 <code>props</code>传递到子组件中，那么生命周期又会如何执行。</p>
+<blockquote>
+<p>点击更新父组件data 数据，此时父组件的数据已经通过 props 形式传入子组件</p>
+</blockquote>
+<img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129122619.png" alt="image-20201129122619463" style="zoom:50%;" />
+
+
+
+<p>不出所料，生命周期函数</p>
+<ul>
+<li>父组件 <code>beforeUpdate</code></li>
+<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
+<li>父组件 <code>updated</code></li>
+</ul>
+<h3 id="销毁阶段"><a href="#销毁阶段" class="headerlink" title="销毁阶段"></a>销毁阶段</h3><blockquote>
+<p>点击页面中的 HomePage 返回主页，就会触发销毁阶段。</p>
+</blockquote>
+<p>其实也是一样的思路，就还没做实验，盲猜都应该是</p>
+<ul>
+<li>父组件 <code>beforeDestory</code></li>
+<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
+<li>父组件  <code>destoryed</code></li>
+</ul>
+<p>经过试验证明后，也确实是这样</p>
+<img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129114216.png" alt="image-20201129114216299" style="zoom:50%;" />
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://segmentfault.com/a/1190000011381906">https://segmentfault.com/a/1190000011381906</a></p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue 记录</title>
     <url>/2020/10/17/Vue/Vue%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<ul>
@@ -1927,6 +2114,7 @@
 <p>比如, 提交 C1 可以被 rebase 到 C3 之后。这看起来 C1 中的工作是在 C3 之后进行的，但实际上是在 C3 之前。</p>
 <p>一些开发人员喜欢保留提交历史，因此更偏爱 merge。而其他人（比如我自己）可能更喜欢干净的提交树，于是偏爱 rebase。</p>
 <hr>
+<h3 id="git-config-–list-–show-origin"><a href="#git-config-–list-–show-origin" class="headerlink" title="git config –list –show-origin"></a>git config –list –show-origin</h3><p>展示当前个人git配置</p>
 ]]></content>
       <categories>
         <category>Command</category>
@@ -4177,12 +4365,14 @@
 <a id="more"></a>
 
 <p>阿里内推面（杭州）</p>
+<p>面试时长：20min 左右</p>
 <ul>
 <li>自我介绍</li>
 <li>cdn 原理</li>
 <li>dns解析 原理</li>
 </ul>
 <p>腾讯一面（深圳）</p>
+<p>面试时长：20min 左右</p>
 <ul>
 <li>自我介绍</li>
 <li>http状态码</li>
@@ -4191,6 +4381,7 @@
 <li>koa 洋葱模型</li>
 </ul>
 <p>易的网络科技有限公司公司（厦门）</p>
+<p>面试时长：30min</p>
 <ul>
 <li>展示下你的项目</li>
 <li>介绍一下你最有成就的项目</li>
@@ -4199,6 +4390,7 @@
 <li>后端如何进行鉴权，换句话说 token是怎么传输给后端的</li>
 </ul>
 <p>厦门升迅信息科技有限公司</p>
+<p>面试时长：30min左右</p>
 <ul>
 <li>MVVM 是什么</li>
 <li>Vue 和 jQuery 区别在哪里</li>
@@ -4210,12 +4402,13 @@
 <li>什么时候可以来厦门</li>
 </ul>
 <p>广州市网讯信息技术有限公司</p>
+<p>面试时间：30min左右</p>
 <ul>
 <li>自我介绍</li>
 <li>有做过微信端开发吗</li>
 <li>有做过移动端开发吗</li>
 <li>跨域方法、jsonp原理</li>
-<li>看你项目都是后端，准备做后端吗</li>
+<li>看你项目有些是后端，准备做后端吗</li>
 <li>职业规划</li>
 <li>什么时候可以来广州</li>
 <li>期望薪资</li>
@@ -4223,7 +4416,7 @@
 </ul>
 <p>阅文集团 - 笔试（上海）</p>
 <ul>
-<li>在一段时间内只允许一个进程访问的资源，称为  <u>xxxxxx</u></li>
+<li>在一段时间内只允许一个进程访问的资源，称为  <u>临界资源</u>（选一个：共享资源、独占资源、临界资源、共享区）</li>
 <li>以下不会显示的是<ul>
 <li><code>&lt;span hidden&gt;&lt;/span&gt;</code></li>
 <li><code>&lt;style style=&quot;display:block;&quot;&gt;body&#123;&#125;&lt;/style&gt;</code></li>
@@ -4232,7 +4425,7 @@
 </ul>
 </li>
 <li>字母K所在ASCII表中十六进制是4B，则二进制 1001000 字符是 </li>
-<li>对称算法</li>
+<li>对称算法有什么</li>
 <li>css属性不支持负值的是<ul>
 <li>padding</li>
 <li>vertical-center</li>
@@ -4260,6 +4453,7 @@
 <li>算法题；最长重复子串，青蛙跳台阶</li>
 </ul>
 <p>猫眼 - 一面（北京）</p>
+<p>面试时间：1h多</p>
 <blockquote>
 <p>代码题部分答案：<a href="https://github.com/popring/demo/tree/master/interview/%E7%8C%AB%E7%9C%BC">链接</a></p>
 </blockquote>
@@ -4312,6 +4506,7 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
 </li>
 </ul>
 <p>有鱼智能科技 （深圳）</p>
+<p>面试时间：30min</p>
 <ul>
 <li>自我介绍</li>
 <li>上拉刷新、下拉加载 如何实现的，难度在哪</li>
@@ -4334,6 +4529,29 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
 <li>做过的性能优化</li>
 <li>如何设计移动端和PC端共用一套页面？媒体查询，面试官提示后更愿意听到<code>rem</code></li>
 <li>还有什么想问的</li>
+</ul>
+<p>微医（杭州）</p>
+<p>面试时间：45min</p>
+<ul>
+<li>自我介绍，包括自己所做的一些项目</li>
+<li>vue 双向数据流了解吗？（这里理解错了，<code>v-model</code> 只是语法糖）</li>
+<li>vue 数据流和 react 数据流有什么区别</li>
+<li>设计模式这块了解吗，比如观察者模式、发布/订阅模式这些区别是什么</li>
+<li>跨域了解吗，<code>jsonp</code> 原理和缺点，CORS设置的请求头是什么？除了 <code>Access-Control-Allow-Origin</code> ，还有什么（当时思路走偏了，应该还包括 <code>Access-Control-Allow-Methods</code>、<code>xxx-Headers</code> <code>xxx-Credentials</code> 这类）</li>
+<li>聊聊 <code>options</code> 请求</li>
+<li>短时间内如果发送多次post请求，浏览器每次都会进行options请求检验吗（options 请求默认会有缓存）</li>
+<li>http缓存了解多少</li>
+<li>如果不想用到强缓存，只想用协商缓存，我要怎么设置 cache-control</li>
+<li>讲一下事件循环（这里我讲的有点问题）</li>
+<li>按照之前你讲的，浏览器是执行完微任务就回去执行宏任务，往复一直循环，那么这样是不是就阻塞了其他的渲染进程</li>
+<li>如果你了解浏览器底层相关知识，你可以从那个思路讲讲。</li>
+<li>进程和线程区别</li>
+<li>webpack 了解吗</li>
+<li>抛开一些使用层面上的，你觉得它是为了解决什么问题出来？（之前说了很多废话，但是重点就在嘴边没说出来，主要是解决模块化）</li>
+<li>你谈到了 ES6的 import 和 CommondJS require，那你知道他们除了使用层面的区别，还有什么区别</li>
+<li>这么想，如果在a模块引入了b模块，同时在b模块又引入了a模块，那么在<code>import</code>和<code>require</code>表现又分别是什么</li>
+<li>如果让你设计一个webpack你会怎么考虑</li>
+<li>反问阶段</li>
 </ul>
 ]]></content>
       <categories>
@@ -4580,7 +4798,7 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>[项目] 毕设-专升本报名系统总结</title>
+    <title>[项目] 毕设-报名系统总结</title>
     <url>/2020/10/19/%E6%80%BB%E7%BB%93/%E6%AF%95%E8%AE%BE%E9%A1%B9%E7%9B%AE-%E4%B8%93%E5%8D%87%E6%9C%AC%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93-1/</url>
     <content><![CDATA[<p>内容待添加</p>
 <a id="more"></a>
@@ -4924,7 +5142,7 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
 </blockquote>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>Vue</category>
       </categories>
       <tags>
         <tag>Vue</tag>
