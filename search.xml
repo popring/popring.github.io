@@ -1901,7 +1901,7 @@
   </entry>
   <entry>
     <title>Vue父子组件生命周期</title>
-    <url>/2019/12/27/Vue/Vue%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+    <url>/2020/11/30/Vue/Vue%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
     <content><![CDATA[<p>Vue官网找了一圈没找到关于在父组件中使用子组件，生命周期是如何运行的。</p>
 <p>先说结论</p>
 <ul>
