@@ -65,15 +65,29 @@
   </entry>
   <entry>
     <title>从输入url到页面显示经过了什么？</title>
-    <url>/2020/10/02/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
-    <content><![CDATA[<p>经典面试题，不必多说。</p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+    <url>/2021/03/06/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>HTTP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
 <a id="more"></a>
 
 
 
-<p>内容待添加。。。</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
 ]]></content>
+      <tags>
+        <tag>interview</tag>
+      </tags>
   </entry>
   <entry>
     <title>好文推荐</title>
@@ -3188,6 +3202,7 @@
     <url>/2021/02/20/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/12-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%A4%A9/</url>
     <content><![CDATA[<ul>
 <li>RESTful API</li>
+<li>Vue 双向数据绑定原理</li>
 </ul>
 <hr>
 <a id="more"></a>
@@ -3220,7 +3235,20 @@
 <li>Hypermedia API，返回结果中提供链接，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。</li>
 <li>服务器返回的交互数据格式应为 <code>json</code> ，避免使用 <code>XML</code></li>
 </ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html">http://www.ruanyifeng.com/blog/2014/05/restful_api.html</a></p>
+<h2 id="Vue-双向数据绑定原理"><a href="#Vue-双向数据绑定原理" class="headerlink" title="Vue 双向数据绑定原理"></a>Vue 双向数据绑定原理</h2><ul>
+<li>首先需要将数据变得可检测状态，使用函数 <code>Object.defineProperty</code> 进行 <code>Observe</code></li>
+<li><code>Object.defineProperty</code> 中最后一个参数中有两个特殊的属性，分别是 <code>set</code> 和 <code>get</code>，在<code>get</code> 中收集依赖，<code>set</code> 中通知更新</li>
+<li>并为每一个数据都建立一个依赖管理器 <code>Dep</code></li>
+<li>谁用到数据谁就是依赖，就为谁创建一个 <code>Watcher</code></li>
+<li>为每一个依赖创建一个 <code>Watcher</code> 实例，当数据发生变化，通知 <code>Watcher</code> 实例，由 <code>Watcher</code> 实例去做真实的更新操作</li>
+</ul>
+<p><img src="https://vue-js.com/learn-vue/assets/img/3.0b99330d.jpg" alt="具体步骤看图"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>resetful <a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html">http://www.ruanyifeng.com/blog/2014/05/restful_api.html</a></p>
+<p>Vue 双向数据绑定原理</p>
+<ul>
+<li><a href="https://vue-js.com/learn-vue/reactive/object.html#_1-%E5%89%8D%E8%A8%80">https://vue-js.com/learn-vue/reactive/object.html#_1-%E5%89%8D%E8%A8%80</a></li>
+<li><a href="https://messiahhh.github.io/blog/frontend/vue.html#vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E7%9A%84%E5%8E%9F%E7%90%86">https://messiahhh.github.io/blog/frontend/vue.html#vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E7%9A%84%E5%8E%9F%E7%90%86</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>备战</category>
