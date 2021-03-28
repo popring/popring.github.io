@@ -3258,6 +3258,22 @@
       </tags>
   </entry>
   <entry>
+    <title>13-备战校招十三天</title>
+    <url>/2021/03/16/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/13-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E4%B8%89%E5%A4%A9/</url>
+    <content><![CDATA[<ul>
+<li>子元素的 margin/padding 的百分比值 是基于父元素的宽度</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="子元素的-margin-padding-的百分比值-是基于父元素的宽度"><a href="#子元素的-margin-padding-的百分比值-是基于父元素的宽度" class="headerlink" title="子元素的 margin/padding 的百分比值 是基于父元素的宽度"></a>子元素的 margin/padding 的百分比值 是基于父元素的宽度</h2>]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备战校招第二天</title>
     <url>/2020/06/25/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/2-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%BA%8C%E5%A4%A9/</url>
     <content><![CDATA[<ol>
@@ -3453,7 +3469,7 @@
 
 <p>运行上面代码，点击会发现，输出的均为</p>
 <p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626101322.png" alt="image-20200626101322509"></p>
-<p>这是因为虽形成了三个闭包作用域，但他们共享了一个词法作用域，在这个作用域中又只有一个变量 <code>i</code> ，<code>var</code> 又有变量提升特性，在循环后执行点击时间前，<code>i</code> 的值都已经指向了最后一个数 <code>5</code>了。</p>
+<p>这是因为虽形成了三个闭包作用域，但他们共享了一个词法作用域，在这个作用域中又只有一个变量 <code>i</code> ，<code>var</code> 的作用域数函数作用域，但定义 <code>i</code> 外并未有函数，所以这里的 <code>i</code> 是挂载在全局的。在循环后执行点击时间前，<code>i</code> 的值都已经指向了最后一个数 <code>5</code>了。</p>
 <p><strong>解决方法（修改下列任何一种都可以）</strong></p>
 <ul>
 <li><p>将 <code>var i=0;</code> 换为 <code>let i=0;</code> ，这种也是最简单的，<code>let</code> 是 ES6 修复 <code>var</code> 的设计缺陷而出现的</p>
@@ -4894,7 +4910,7 @@
 <p>猫眼 - 一面（北京）</p>
 <p>面试时间：1h多</p>
 <blockquote>
-<p>代码题部分答案：<a href="https://github.com/popring/demo/tree/master/interview/%E7%8C%AB%E7%9C%BC">链接</a></p>
+<p>代码题部分答案：<a href="https://github.com/popring/demo/tree/master/interview/%E7%8C%AB%E7%9C%BC%E4%B8%80%E9%9D%A2">链接</a></p>
 </blockquote>
 <ul>
 <li><p>自我介绍</p>

@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/25027560/38223495-d02aec3e-371d-11e8-92ae-fe7c729ab6e5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730175925.png">
 <meta property="article:published_time" content="2020-06-26T00:52:26.000Z">
-<meta property="article:modified_time" content="2021-03-06T09:18:18.946Z">
+<meta property="article:modified_time" content="2021-03-28T15:05:59.549Z">
 <meta property="article:author" content="popring">
 <meta property="article:tag" content="性能">
 <meta property="article:tag" content="http">
@@ -273,7 +273,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-06 17:18:18" itemprop="dateModified" datetime="2021-03-06T17:18:18+08:00">2021-03-06</time>
+                <time title="修改时间：2021-03-28 23:05:59" itemprop="dateModified" datetime="2021-03-28T23:05:59+08:00">2021-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -333,7 +333,7 @@
 
 <p>运行上面代码，点击会发现，输出的均为</p>
 <p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626101322.png" alt="image-20200626101322509"></p>
-<p>这是因为虽形成了三个闭包作用域，但他们共享了一个词法作用域，在这个作用域中又只有一个变量 <code>i</code> ，<code>var</code> 又有变量提升特性，在循环后执行点击时间前，<code>i</code> 的值都已经指向了最后一个数 <code>5</code>了。</p>
+<p>这是因为虽形成了三个闭包作用域，但他们共享了一个词法作用域，在这个作用域中又只有一个变量 <code>i</code> ，<code>var</code> 的作用域数函数作用域，但定义 <code>i</code> 外并未有函数，所以这里的 <code>i</code> 是挂载在全局的。在循环后执行点击时间前，<code>i</code> 的值都已经指向了最后一个数 <code>5</code>了。</p>
 <p><strong>解决方法（修改下列任何一种都可以）</strong></p>
 <ul>
 <li><p>将 <code>var i=0;</code> 换为 <code>let i=0;</code> ，这种也是最简单的，<code>let</code> 是 ES6 修复 <code>var</code> 的设计缺陷而出现的</p>
@@ -538,7 +538,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
