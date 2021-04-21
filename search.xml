@@ -64,32 +64,6 @@
       </tags>
   </entry>
   <entry>
-    <title>从输入url到页面显示经过了什么？</title>
-    <url>/2021/03/06/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>HTTP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<a id="more"></a>
-
-
-
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <tags>
-        <tag>interview</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>好文推荐</title>
     <url>/2020/09/19/%E5%A5%BD%E6%96%87%E6%8E%A8%E8%8D%90/</url>
     <content><![CDATA[<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><p><a href="https://blog.csdn.net/weixin_42112865/article/details/100979363">页面渲染大量数据的性能优化（时间分片）</a></p>
@@ -4496,6 +4470,25 @@
       </tags>
   </entry>
   <entry>
+    <title>年度总结 2020-2021.04</title>
+    <url>/2021/04/18/%E6%80%BB%E7%BB%93/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%932020-2021-04/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+
+<p><strong>虽然总结会迟到，但绝不会缺席。</strong></p>
+<blockquote>
+<p>最近一直忙于春招和准备论文，博客已经有个把个月没有更了，趁着现在刚好有空，来回顾下一年来的收获与感想。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
+      <tags>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>春招记录</title>
     <url>/2021/02/06/%E6%80%BB%E7%BB%93/%E6%98%A5%E6%8B%9B%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h2 id="微店"><a href="#微店" class="headerlink" title="微店"></a>微店</h2><h3 id="一面电面（25min-左右）"><a href="#一面电面（25min-左右）" class="headerlink" title="一面电面（25min 左右）"></a>一面电面（25min 左右）</h3><blockquote>
@@ -5014,6 +5007,75 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
       </categories>
       <tags>
         <tag>面试总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>get和post区别</title>
+    <url>/2021/04/21/%E7%AE%80%E5%8D%95%E8%81%8A/get%E5%92%8Cpost%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+</ul>
+<p>额外可以聊</p>
+<ul>
+<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
+<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
+</ul>
+<p><a href="https://www.zhihu.com/question/28586791/answer/767316172">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>https握手过程</title>
+    <url>/2021/04/21/%E7%AE%80%E5%8D%95%E8%81%8A/https%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
+<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
+<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
+<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
+<li>服务端使用自己的私钥，对随机数进行解密。</li>
+<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
+</ul>
+<p>注意几个细节</p>
+<ul>
+<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
+</ul>
+<p><a href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">图解SSL/TLS协议</a></p>
+<p><a href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">SSL/TLS协议运行机制的概述</a></p>
+]]></content>
+      <tags>
+        <tag>https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么？</title>
+    <url>/2021/03/06/%E7%AE%80%E5%8D%95%E8%81%8A/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>HTTP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
+<a id="more"></a>
+
+
+
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <tags>
+        <tag>interview</tag>
       </tags>
   </entry>
   <entry>
