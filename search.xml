@@ -66,8 +66,9 @@
   <entry>
     <title>好文推荐</title>
     <url>/2020/09/19/%E5%A5%BD%E6%96%87%E6%8E%A8%E8%8D%90/</url>
-    <content><![CDATA[<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><p><a href="https://blog.csdn.net/weixin_42112865/article/details/100979363">页面渲染大量数据的性能优化（时间分片）</a></p>
-<h1 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h1><p><a href="https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></p>
+    <content><![CDATA[<h2 id="一些有趣的网站"><a href="#一些有趣的网站" class="headerlink" title="一些有趣的网站"></a>一些有趣的网站</h2><p><a href="https://skyline.github.com/popring/2020">Skyline</a> 可视化展示 <code>github</code> 提交记录</p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p><a href="https://blog.csdn.net/weixin_42112865/article/details/100979363">页面渲染大量数据的性能优化（时间分片）</a></p>
+<h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><p><a href="https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -4785,7 +4786,7 @@
   </entry>
   <entry>
     <title>[项目] 毕设-报名系统总结</title>
-    <url>/2020/10/19/%E6%80%BB%E7%BB%93/%E6%AF%95%E8%AE%BE%E9%A1%B9%E7%9B%AE-%E4%B8%93%E5%8D%87%E6%9C%AC%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93-1/</url>
+    <url>/2020/10/19/%E6%80%BB%E7%BB%93/%E6%AF%95%E8%AE%BE%E9%A1%B9%E7%9B%AE-%E8%80%83%E8%AF%95%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>内容待添加</p>
 <a id="more"></a>
 
@@ -5030,6 +5031,9 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
 </ul>
 <p><a href="https://www.zhihu.com/question/28586791/answer/767316172">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎</a></p>
 ]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
   </entry>
   <entry>
     <title>https握手过程</title>
@@ -5048,6 +5052,9 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
 <p><a href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">图解SSL/TLS协议</a></p>
 <p><a href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">SSL/TLS协议运行机制的概述</a></p>
 ]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
       <tags>
         <tag>https</tag>
       </tags>
@@ -5074,6 +5081,9 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
 
 <p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
 ]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
       <tags>
         <tag>interview</tag>
       </tags>
