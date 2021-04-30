@@ -2,7 +2,7 @@
 title: 从输入url到页面显示经过了什么？
 date: 2021-03-06 14:51:51
 tags: interview
-categories:
+categories: 简单聊
 ---
 
 

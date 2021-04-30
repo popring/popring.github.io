@@ -566,7 +566,7 @@ comments:
   style: tabs
   # Choose a comment system to be displayed by default.
   # Available values: changyan | disqus | disqusjs | gitalk | livere | valine
-  active:
+  active: 
   # Setting `true` means remembering the comment system selected by the visitor.
   storage: true
   # Lazyload all comment systems.
@@ -581,8 +581,8 @@ comments:
 
 # Disqus
 disqus:
-  enable: false
-  shortname:
+  enable: true
+  shortname: popring
   count: true
   #post_meta_order: 0
 
@@ -905,7 +905,7 @@ vendors:
 
   # Internal version: 0.2.8
   # pjax: //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
-  pjax:
+  pjax: //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
 
   # FancyBox
   # jquery: //cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
