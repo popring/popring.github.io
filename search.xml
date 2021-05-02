@@ -3178,6 +3178,7 @@
     <content><![CDATA[<ul>
 <li>RESTful API</li>
 <li>Vue 双向数据绑定原理</li>
+<li>元素的 margin/padding 的百分比值 是基于父元素的宽度</li>
 </ul>
 <hr>
 <a id="more"></a>
@@ -3218,29 +3219,13 @@
 <li>为每一个依赖创建一个 <code>Watcher</code> 实例，当数据发生变化，通知 <code>Watcher</code> 实例，由 <code>Watcher</code> 实例去做真实的更新操作</li>
 </ul>
 <p><img src="https://vue-js.com/learn-vue/assets/img/3.0b99330d.jpg" alt="具体步骤看图"></p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>resetful <a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html">http://www.ruanyifeng.com/blog/2014/05/restful_api.html</a></p>
+<h2 id="子元素的-margin-padding-的百分比值-是基于父元素的宽度"><a href="#子元素的-margin-padding-的百分比值-是基于父元素的宽度" class="headerlink" title="子元素的 margin/padding 的百分比值 是基于父元素的宽度"></a>子元素的 margin/padding 的百分比值 是基于父元素的宽度</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>resetful <a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html">http://www.ruanyifeng.com/blog/2014/05/restful_api.html</a></p>
 <p>Vue 双向数据绑定原理</p>
 <ul>
 <li><a href="https://vue-js.com/learn-vue/reactive/object.html#_1-%E5%89%8D%E8%A8%80">https://vue-js.com/learn-vue/reactive/object.html#_1-%E5%89%8D%E8%A8%80</a></li>
 <li><a href="https://messiahhh.github.io/blog/frontend/vue.html#vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E7%9A%84%E5%8E%9F%E7%90%86">https://messiahhh.github.io/blog/frontend/vue.html#vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E7%9A%84%E5%8E%9F%E7%90%86</a></li>
 </ul>
 ]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>13-备战校招十三天</title>
-    <url>/2021/03/16/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/13-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E4%B8%89%E5%A4%A9/</url>
-    <content><![CDATA[<ul>
-<li>子元素的 margin/padding 的百分比值 是基于父元素的宽度</li>
-</ul>
-<a id="more"></a>
-
-<h2 id="子元素的-margin-padding-的百分比值-是基于父元素的宽度"><a href="#子元素的-margin-padding-的百分比值-是基于父元素的宽度" class="headerlink" title="子元素的 margin/padding 的百分比值 是基于父元素的宽度"></a>子元素的 margin/padding 的百分比值 是基于父元素的宽度</h2>]]></content>
       <categories>
         <category>备战</category>
       </categories>
@@ -5045,7 +5030,7 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
 <li>服务端使用自己的私钥，对随机数进行解密。</li>
 <li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
 </ul>
-<p>注意几个细节</p>
+<p>细节</p>
 <ul>
 <li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
 </ul>
@@ -5086,6 +5071,24 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
       </categories>
       <tags>
         <tag>interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可替换元素和不可替换元素</title>
+    <url>/2021/05/02/%E7%AE%80%E5%8D%95%E8%81%8A/%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0%E5%92%8C%E9%9D%9E%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
+<p>例如：浏览器会根据<img>标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<input>标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<img>、<input>、<textarea>、<select>、<object>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
+<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
+<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
+<p>例如： <label>label中的内容</label> 标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<p><a href="https://www.nowcoder.com/questionTerminal/480a591c51e848169c31de26c639e4d1">牛客题目</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Replaced_element">mdn 可替换元素</a></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
       </tags>
   </entry>
   <entry>
