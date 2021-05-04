@@ -5077,10 +5077,14 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
     <title>可替换元素和不可替换元素</title>
     <url>/2021/05/02/%E7%AE%80%E5%8D%95%E8%81%8A/%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0%E5%92%8C%E9%9D%9E%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0/</url>
     <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
-<p>例如：浏览器会根据<img>标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<input>标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<img>、<input>、<textarea>、<select>、<object>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
+<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
 <p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
 <h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
-<p>例如： <label>label中的内容</label> 标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p><a href="https://www.nowcoder.com/questionTerminal/480a591c51e848169c31de26c639e4d1">牛客题目</a></p>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Replaced_element">mdn 可替换元素</a></p>
 ]]></content>
