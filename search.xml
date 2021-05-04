@@ -1896,7 +1896,7 @@
 <ul>
 <li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
 <li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
-<li>父组件  `mounted</li>
+<li>父组件  <code>mounted</code></li>
 </ul>
 <p>若使用 props 进行父子组件传值（若只进行自身组件数据进行维护，只会执行自身组件的生命周期函数）</p>
 <ul>
@@ -5045,8 +5045,8 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>从输入url到页面显示经过了什么？</title>
-    <url>/2021/03/06/%E7%AE%80%E5%8D%95%E8%81%8A/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/2021/03/06/%E7%AE%80%E5%8D%95%E8%81%8A/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88/</url>
     <content><![CDATA[<p>大致分为以下几个过程</p>
 <ul>
 <li>URL 解析</li>
