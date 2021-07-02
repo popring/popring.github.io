@@ -1,3 +1,4 @@
+<!--
 <div>
 	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
 		<span>毕业倒计时：</span>
@@ -35,3 +36,4 @@
 		},1000);
 	})();
 </script>
+-->
