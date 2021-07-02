@@ -286,15 +286,162 @@ function curry(fn) {
 
 ![img](https://miro.medium.com/max/3172/1*xWlaYdGM43c5UtE-2sDbLw.png)
 
-# 9. 防抖
+# 9. 防抖(debouncing)
 
-防抖
+**防抖**只不过是减少不必要的耗时计算，从而提高浏览器性能。在某些情况下，某些功能需要更多时间来执行某个操作。例如，以电子商务网站上的搜索栏为例。
+假设用户想要获得“**Tutorix study kit**”。他在搜索栏中键入产品的每个字符。输入每个字符后，会从浏览器到服务器进行 Api 调用，以获取所需的产品。由于他想要“Tutorix study kit”，因此用户必须从浏览器到服务器进行 17 次 Api 调用。想象一个场景，当数百万人进行相同的搜索从而调用数十亿的 Api 时。所以一次调用数十亿个 Api 肯定会导致浏览器性能变慢。为了减少这个缺点，Debounceing 出现了。
+在这种情况下，Debounce 将在两次击键之间设置一个时间间隔，假设为 2 秒。如果两次击键之间的时间超过 2 秒，则只会调用 Api。在这 2 秒内，用户至少可以输入一些字符，从而减少 Api 调用的那些字符。由于 Api 调用减少了，浏览器性能将得到提高。必须注意 Debounce 函数在每次击键时都会更新。
+
+## 代码
+
+```js
+const debounce = (func, time = 17, options = {
+    leading: true,
+    context: null
+}) => {
+    let timer;
+    const _debounce = function (...args) {
+        if (timer) {
+            clearTimeout(timer)
+        }
+        if (options.leading && !timer) {
+            timer = setTimeout(null, time)
+            func.apply(options.context, args)
+        }else{
+            timer = setTimeout(() => {
+                func.apply(options.context, args)
+                timer = null
+            }, time)
+        }
+    };
+
+    _debounce.cancel = function () {
+        clearTimeout(timer)
+        timer = null
+    };
+    return _debounce
+}
+```
+
+# 10. 节流(Throttling)
+
+节流将改变一个函数，它在一个时间内只能呗出发一次。例如，无论用户点击按钮多少次，节流后只会在 `1000` 毫秒内执行一次函数。
 
 
 
+![img](https://raw.githubusercontent.com/popring/assets-repo/master/img/20210614182716.gif)
+
+```js
+const throttle = (func, time = 17, options = {
+
+    leading: true,
+    trailing: false,
+    context: null
+}) => {
+    let previous = new Date(0).getTime()
+    let timer;
+    const _throttle = function (...args) {
+        let now = new Date().getTime();
+
+        if (!options.leading) {
+            if (timer) return
+            timer = setTimeout(() => {
+                timer = null
+                func.apply(options.context, args)
+            }, time)
+        } else if (now - previous > time) {
+            func.apply(options.context, args)
+            previous = now
+        } else if (options.trailing) {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                func.apply(options.context, args)
+            }, time)
+        }
+    };
+
+    _throttle.cancel = () => {
+        previous = 0;
+        clearTimeout(timer);
+        timer = null
+    };
+    return _throttle
+};
+```
 
 
 
+# 11. 图片懒加载
+
+图片懒加载是指在网站上异步加载图片，也就是说，在上面的内容完全加载完之后，或者说有条件的，只有当他们出现在浏览器的窗口内。这就意味着，如果用户不向下滚动，放在底部的图片将不会被加载。
+
+```js
+// getBoundingClientRect
+let imgList1 = [...document.querySelectorAll(".get_bounding_rect")]
+let num = imgList1.length
+
+let lazyLoad1 = (function () {
+    let count = 0
+    return function () {
+        let deleteIndexList = []
+        imgList1.forEach((img,index) => {
+            let rect = img.getBoundingClientRect()
+            if (rect.top < window.innerHeight) {
+                img.src = img.dataset.src
+                // Add picture to delete list after loading successfully
+                deleteIndexList.push(index)
+                count++
+                if (count === num) {
+                    //When all pictures are loaded, unbind scroll event
+                    document.removeEventListener('scroll',lazyLoad1)
+                }
+            }
+        })
+        // Delete loaded pictures
+        imgList1 = imgList1.filter((_,index)=>!deleteIndexList.includes(index))
+
+    }
+})()
+```
+
+
+
+# 12. 数组随机打乱(洗牌算法)
+
+我们经常需要去打乱一个数组。
+
+## 代码
+
+```js
+// Randomly select one of all elements after the current element to exchange with the current element
+function shuffle(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let randomIndex = i + Math.floor(Math.random() * (arr.length - i));
+        [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]]
+    }
+    return arr
+}
+
+// Generate a new array, randomly take an element from the original array and put it into the new array
+function shuffle2(arr) {
+    let _arr = []
+    while (arr.length) {
+        let randomIndex = Math.floor(Math.random() * (arr.length))
+        _arr.push(arr.splice(randomIndex, 1)[0])
+    }
+    return _arr
+}
+```
+
+## 案例
+
+![img](https://raw.githubusercontent.com/popring/assets-repo/master/img/20210614183815.png)
+
+
+
+# 13. 单例模式
+
+单例模式将限制一个对象的实例只能有一个。这个对象被称为单例。
 
 
 

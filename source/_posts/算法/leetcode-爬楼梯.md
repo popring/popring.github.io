@@ -2,7 +2,7 @@
 title: leetcode-70.爬楼梯
 date: 2020-11-08 11:13:40
 tags: 算法
-categories: leetcode
+categories: 算法
 ---
 
 

@@ -1,10 +1,8 @@
 ---
 title: scrollTop值为0等疑难杂症
 date: 2018-10-19 23:54:40
-tags: 
-- 浏览器兼容性
-categories: 
-- html
+tags: 浏览器兼容性
+categories: JavaScript
 ---
 
  自测有效果

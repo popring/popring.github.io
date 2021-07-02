@@ -1,7 +1,7 @@
 ---
 title: get和post区别
 date: 2021-04-21 10:22:13
-tags:
+tags: http
 categories: 简单聊
 ---
 

@@ -4,7 +4,7 @@ date: 2019-02-01 11:46:47
 tags: 
 - hexo
 - 项目总结
-categories: 总结
+categories: JavaScript
 ---
 
 - hexo 安装

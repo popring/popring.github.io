@@ -4,8 +4,7 @@ date: 2019-12-10 13:32:49
 tags:
 - axios
 - ajax
-categories:
-- JavaScript
+categories: JavaScript
 ---
 
 # axios使用总结

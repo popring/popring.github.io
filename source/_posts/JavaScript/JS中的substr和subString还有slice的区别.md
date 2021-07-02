@@ -2,8 +2,7 @@
 title: JS中的substr和subString还有slice的区别
 date: 2019-03-09 23:32:11
 tags:
-categories:
-- JavaScript
+categories: JavaScript
 ---
 
 区别就是一个长一个短。皮一下，很开心。
