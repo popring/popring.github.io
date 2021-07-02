@@ -1,69 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>leetcode-70.爬楼梯</title>
-    <url>/2020/11/08/leetcode-%E7%88%AC%E6%A5%BC%E6%A2%AF/</url>
-    <content><![CDATA[<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
-<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
-<p>注意：给定 n 是一个正整数。</p>
-<p>示例 1：</p>
-<p>输入： 2<br>输出： 2<br>解释： 有两种方法可以爬到楼顶。</p>
-<ol>
-<li>1 阶 + 1 阶</li>
-<li>2 阶<br>示例 2：</li>
-</ol>
-<p>输入： 3<br>输出： 3<br>解释： 有三种方法可以爬到楼顶。</p>
-<ol>
-<li>1 阶 + 1 阶 + 1 阶</li>
-<li>1 阶 + 2 阶</li>
-<li>2 阶 + 1 阶</li>
-</ol>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/climbing-stairs">https://leetcode-cn.com/problems/climbing-stairs</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<hr>
-<a id="more"></a>
-
-
-
-<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><blockquote>
-<p>实测，这个会超时</p>
-<p>时间复杂度：O(n^2)</p>
-<p>空间复杂度：O(n)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">3</span>) <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">return</span> climbStairs(n<span class="number">-1</span>) + climbStairs(n<span class="number">-2</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="递归缓存（记忆化递归）"><a href="#递归缓存（记忆化递归）" class="headerlink" title="递归缓存（记忆化递归）"></a>递归缓存（记忆化递归）</h2><blockquote>
-<p>时间复杂度：O(n)</p>
-<p>空间复杂度：O(n)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 递归缓存</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params <span class="type">&#123;Array&#125;</span> </span>steps </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairsMemo = <span class="function"><span class="keyword">function</span> (<span class="params">steps, n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (steps[n] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> steps[n]</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        steps[n] = n</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        steps[n] = climbStairsMemo(steps, n - <span class="number">1</span>) + climbStairsMemo(steps, n - <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> steps = <span class="keyword">new</span> <span class="built_in">Array</span>(n).fill(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> climbStairsMemo(steps, n)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><blockquote>
-<p>时间复杂度：O(n)</p>
-<p>空间复杂度：O(n)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> steps = []</span><br><span class="line">    steps[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    steps[<span class="number">2</span>] = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        steps[i] = steps[i<span class="number">-1</span>] + steps[i<span class="number">-2</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="动态规划优化版（斐波那契数列）"><a href="#动态规划优化版（斐波那契数列）" class="headerlink" title="动态规划优化版（斐波那契数列）"></a>动态规划优化版（斐波那契数列）</h2><blockquote>
-<p>时间复杂度：O(n)</p>
-<p>空间复杂度：O(1)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> first = <span class="number">1</span>, second = <span class="number">2</span>, res = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>) <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        res = first + second</span><br><span class="line">        first = second</span><br><span class="line">        second = res</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>好文推荐</title>
     <url>/2020/09/19/%E5%A5%BD%E6%96%87%E6%8E%A8%E8%8D%90/</url>
     <content><![CDATA[<h2 id="一些有趣的网站"><a href="#一些有趣的网站" class="headerlink" title="一些有趣的网站"></a>一些有趣的网站</h2><p><a href="https://skyline.github.com/popring/2020">Skyline</a> 可视化展示 <code>github</code> 提交记录</p>
@@ -1381,7 +1318,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>Other Skills</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
         <tag>Chrome</tag>
@@ -1744,7 +1681,7 @@
 <p><strong>总结，一行代码解决兼容性</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sTop=<span class="built_in">document</span>.body.scrollTop+<span class="built_in">document</span>.documentElement.scrollTop;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>html</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
         <tag>浏览器兼容性</tag>
@@ -1820,6 +1757,128 @@
       </tags>
   </entry>
   <entry>
+    <title>[项目] 小程序 and wepy</title>
+    <url>/2019/08/26/JavaScript/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B8%A9%E5%9D%91%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h2 id="Mini-Program-Notes"><a href="#Mini-Program-Notes" class="headerlink" title="Mini Program Notes"></a>Mini Program Notes</h2><h3 id="尺寸单位-rpx和px"><a href="#尺寸单位-rpx和px" class="headerlink" title="尺寸单位 - rpx和px"></a>尺寸单位 - rpx和px</h3><ul>
+<li>rpx（responsive pixel）: 可以根据屏幕宽度进行自适应。规定屏幕宽为750rpx。如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx = 375px = 750物理像素，1rpx = 0.5px = 1物理像素。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">设备</th>
+<th align="left">rpx换算px (屏幕宽度/750)</th>
+<th align="left">px换算rpx (750/屏幕宽度)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">iPhone5</td>
+<td align="left">1rpx = 0.42px</td>
+<td align="left">1px = 2.34rpx</td>
+</tr>
+<tr>
+<td align="left">iPhone6</td>
+<td align="left">1rpx = 0.5px</td>
+<td align="left">1px = 2rpx</td>
+</tr>
+<tr>
+<td align="left">iPhone6 Plus</td>
+<td align="left">1rpx = 0.552px</td>
+<td align="left">1px = 1.81rpx</td>
+</tr>
+</tbody></table>
+<p><strong>详情查看官方文档</strong></p>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/component/">组件</a></p>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/">API</a></p>
+<h3 id="小程序生命周期-Life-Cycle"><a href="#小程序生命周期-Life-Cycle" class="headerlink" title="小程序生命周期(Life Cycle)"></a>小程序生命周期(Life Cycle)</h3><p><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html">文档</a></p>
+<p><img src="https://res.wx.qq.com/wxdoc/dist/assets/img/page-lifecycle.2e646c86.png" alt="jpg"></p>
+<h3 id="事件传参"><a href="#事件传参" class="headerlink" title="事件传参"></a>事件传参</h3><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p><code>bindtap</code>或者<code>bindtap(1)</code> 都会会直接当成函数名直接调用包括<strong>括号</strong></p>
+<h4 id="传参使用自定义属性-data"><a href="#传参使用自定义属性-data" class="headerlink" title="传参使用自定义属性 data-*"></a>传参使用自定义属性 data-*</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">bindtap</span>=<span class="string">&quot;bdtap&quot;</span> <span class="attr">data-info</span>=<span class="string">&quot;1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// js代码</span><br><span class="line">bdtap() &#123;</span><br><span class="line">	// e.target.dataset 获取data-*的值</span><br><span class="line">	console.log(e.target.dataset.info)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="wxs"><a href="#wxs" class="headerlink" title="wxs"></a>wxs</h3><ul>
+<li>没有兼容性</li>
+<li>与JavaScript不同</li>
+<li>隔离性：不能调用<code>js</code>代码，也不能调用小程序提供的<code>API</code></li>
+<li>不能作为事件回调</li>
+<li><code>IOS</code>设备比<code>JavaScript</code>运行环境<strong>快2~20倍</strong>，而在<code>Android</code>和<code>JavaScript</code>环境运行效率无差异</li>
+</ul>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><blockquote>
+<p>wx:if 控制元素的渲染，为惰性渲染，更高的切换消耗</p>
+<p>hidden 始终会渲染，只是简单的控制显示和隐藏，更高的出事渲染消耗</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 相当于 v-if</span><br><span class="line">wx:if&#x3D;&quot;&quot;</span><br><span class="line">wx:elif&#x3D;&quot;&quot;</span><br><span class="line">wx:else</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 控制元素的显示和隐藏</span><br><span class="line">hidden </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 列表渲染</span><br><span class="line">wx:for&#x3D;&quot;&quot;</span><br><span class="line">wx:for-index&#x3D;&quot;&quot;</span><br><span class="line">wx:for-item&#x3D;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="block标签"><a href="#block标签" class="headerlink" title="block标签"></a>block标签</h4><blockquote>
+<p>相当于vue中的<code>template</code>，只做包括，当前标签不会渲染出来，内容会渲染</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">block</span>&gt;</span><span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/">自定义组件</a></h3><h4 id="数据监听器"><a href="#数据监听器" class="headerlink" title="数据监听器"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/observer.html">数据监听器</a></h4><blockquote>
+<p>类似于<code>Vue</code>中的<code>watch</code>，支持版本2.6.1以上</p>
+</blockquote>
+<h5 id="数据监听器-1"><a href="#数据监听器-1" class="headerlink" title="数据监听器"></a>数据监听器</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">    observers: &#123;</span><br><span class="line">        <span class="string">&#x27;字段1&#x27;</span>, <span class="string">&#x27;字段2&#x27;</span>: <span class="function"><span class="keyword">function</span>(<span class="params">字段<span class="number">1</span>的新值，字段<span class="number">2</span>的新值</span>) </span>&#123;</span><br><span class="line">   			<span class="comment">// do something         </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="监听子数据字段的变化"><a href="#监听子数据字段的变化" class="headerlink" title="监听子数据字段的变化"></a>监听子数据字段的变化</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  observers: &#123;</span><br><span class="line">    <span class="string">&#x27;some.subfield&#x27;</span>: <span class="function"><span class="keyword">function</span> (<span class="params">subfield</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 使用 setData 设置 this.data.some.subfield 时触发</span></span><br><span class="line">      <span class="comment">// （除此以外，使用 setData 设置 this.data.some 也会触发）</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;arr[12]&#x27;</span>: <span class="function"><span class="keyword">function</span> (<span class="params">arr12</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 使用 setData 设置 this.data.arr[12] 时触发</span></span><br><span class="line">      <span class="comment">// （除此以外，使用 setData 设置 this.data.arr 也会触发）</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="通配符-监听所有子数据字段的变化"><a href="#通配符-监听所有子数据字段的变化" class="headerlink" title="通配符**监听所有子数据字段的变化"></a>通配符<code>**</code>监听所有子数据字段的变化</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  observers: &#123;</span><br><span class="line">    <span class="string">&#x27;some.field.**&#x27;</span>: <span class="function"><span class="keyword">function</span> (<span class="params">field</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 使用 setData 设置 this.data.some.field 本身或其下任何子数据字段时触发</span></span><br><span class="line">      <span class="comment">// （除此以外，使用 setData 设置 this.data.some 也会触发）</span></span><br><span class="line">      field === <span class="built_in">this</span>.data.some.field</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/lifetimes.html">组件的生命周期</a></h4><h4 id="取消顶部导航栏"><a href="#取消顶部导航栏" class="headerlink" title="取消顶部导航栏"></a>取消顶部导航栏</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;window&quot;</span>: &#123;</span><br><span class="line">        navigationStyle: &quot;custom&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="将图片转换为base64"><a href="#将图片转换为base64" class="headerlink" title="将图片转换为base64"></a>将图片转换为<code>base64</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fileManger = wx.getFileSystemManger()</span><br><span class="line"><span class="keyword">const</span> fileStr = fileManger.readFileSync(<span class="string">&#x27;dir&#x27;</span>, <span class="string">&#x27;base64&#x27;</span>)</span><br><span class="line"><span class="comment">// fileStr 即为 图片的base64</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="hover-class"><a href="#hover-class" class="headerlink" title="hover-class"></a>hover-class</h4><blockquote>
+<p>去除<code>navigator</code>跳转链接的跳转时的默认灰色背景，设置为<code>none</code></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">navigator</span> <span class="attr">hover-class</span>=<span class="string">&quot;none&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="WEPY"><a href="#WEPY" class="headerlink" title="WEPY"></a>WEPY</h2><h4 id="创建-wepy-项目"><a href="#创建-wepy-项目" class="headerlink" title="创建 wepy 项目"></a>创建 <code>wepy</code> 项目</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装wepy-cli</span></span><br><span class="line">yarn global add wepy-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建项目</span></span><br><span class="line">wepy new myproject</span><br><span class="line"><span class="comment"># 1.7.0之后的版本使用 wepy init standard myproject 初始化项目，使用 wepy list 查看项目模板</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换至目录</span></span><br><span class="line"><span class="built_in">cd</span> myproject</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">yarn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启实时编译</span></span><br><span class="line">wepy build --watch</span><br></pre></td></tr></table></figure>
+
+<h4 id="wepy-cli-命令"><a href="#wepy-cli-命令" class="headerlink" title="wepy-cli 命令"></a>wepy-cli 命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 根据生成一个新项目</span></span><br><span class="line">init [options] &lt;template-name&gt; [project-name]</span><br><span class="line">		</span><br><span class="line">    -c --<span class="built_in">clone</span>  use git <span class="built_in">clone</span></span><br><span class="line">    --offline   use cached template</span><br><span class="line">    -h, --<span class="built_in">help</span>  output usage information</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建项目</span></span><br><span class="line">build [options]</span><br><span class="line">		-f, --file &lt;file&gt;      待编译wpy文件</span><br><span class="line">    -s, --<span class="built_in">source</span> &lt;<span class="built_in">source</span>&gt;  源码目录</span><br><span class="line">    -t, --target &lt;target&gt;  生成代码目录</span><br><span class="line">    -o, --output &lt;<span class="built_in">type</span>&gt;    编译类型：web，weapp。默认为weapp</span><br><span class="line">    -p, --platform &lt;<span class="built_in">type</span>&gt;  编译平台：browser, wechat，qq。默认为browser</span><br><span class="line">    -w, --watch            监听文件改动</span><br><span class="line">    --no-cache             对于引用到的文件，即使无改动也会再次编译</span><br><span class="line">    -h, --<span class="built_in">help</span>             output usage information</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出可用的官方模板</span></span><br><span class="line">list [options]</span><br><span class="line">		</span><br><span class="line">		-g, --github  list all registered github projects</span><br><span class="line">    -h, --<span class="built_in">help</span>    output usage information</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新至最新版</span></span><br><span class="line">upgrade [options]</span><br><span class="line"></span><br><span class="line">		--cli   upgrade wepy-cli</span><br><span class="line">    --wepy  upgrade wepy</span><br><span class="line">    -h, --<span class="built_in">help</span>  output usage information</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="wepy-文件结构"><a href="#wepy-文件结构" class="headerlink" title="wepy 文件结构"></a><code>wepy</code> 文件结构</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── dist                   小程序运行代码目录（该目录由WePY的build指令自动编译生成，请不要直接修改该目录下的文件）</span><br><span class="line">├── node_modules           </span><br><span class="line">├── src                    代码编写的目录（该目录为使用WePY后的开发目录）</span><br><span class="line">|   ├── components         WePY组件目录（组件不属于完整页面，仅供完整页面或其他组件引用）</span><br><span class="line">|   |   ├── com_a.wpy      可复用的WePY组件a</span><br><span class="line">|   |   └── com_b.wpy      可复用的WePY组件b</span><br><span class="line">|   ├── pages              WePY页面目录（属于完整页面）</span><br><span class="line">|   |   ├── index.wpy      index页面（经build后，会在dist目录下的pages目录生成index.js、index.json、index.wxml和index.wxss文件）</span><br><span class="line">|   |   └── other.wpy      other页面（经build后，会在dist目录下的pages目录生成other.js、other.json、other.wxml和other.wxss文件）</span><br><span class="line">|   └── app.wpy            小程序配置项（全局数据、样式、声明钩子等；经build后，会在dist目录下生成app.js、app.json和app.wxss文件）</span><br><span class="line">└── package.json           项目的package配置</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="wepy，为异步API启用Promise"><a href="#wepy，为异步API启用Promise" class="headerlink" title="wepy，为异步API启用Promise"></a>wepy，为异步API启用Promise</h4><p>修改 <code>app.wpy</code> 文件</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">super</span>()</span><br><span class="line">    <span class="comment">// 通过下面这一行代码，可以为异步的API，</span></span><br><span class="line">    <span class="comment">// 开启Promise功能，这样，异步API调用的结果，返回值是Promise对象</span></span><br><span class="line">    <span class="built_in">this</span>.use(<span class="string">&#x27;promisify&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="将页面的业务逻辑抽离到单独的-mixin-文件"><a href="#将页面的业务逻辑抽离到单独的-mixin-文件" class="headerlink" title="将页面的业务逻辑抽离到单独的 mixin 文件"></a>将页面的业务逻辑抽离到单独的 <code>mixin</code> 文件</h4><blockquote>
+<p>精简小程序页面的代码，将 <code>script</code> 中的业务逻辑抽离到对应的 <code>mixin</code> 文件中</p>
+</blockquote>
+<ul>
+<li>抽离的文件路径 <code>src -&gt; mixins -&gt; index.js</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> wepy <span class="keyword">from</span> <span class="string">&#x27;wepy&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">extens</span> <span class="title">wepy</span>.<span class="title">mixin</span> </span>&#123;</span><br><span class="line">  data = &#123;&#125;</span><br><span class="line">  methods = &#123;&#125;</span><br><span class="line">  computed = &#123;&#125;</span><br><span class="line">  onLoad() &#123;&#125;</span><br><span class="line">  <span class="comment">// ,..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对应页面导入抽离出去的 <code>js</code> 文件</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> wepy <span class="keyword">from</span> <span class="string">&#x27;wepy&#x27;</span></span></span><br><span class="line"><span class="javascript"><span class="comment">// 1. 导入js，@为 src 层的绝对路径</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> mix <span class="keyword">from</span> <span class="string">&#x27;@/mixins/index.js&#x27;</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">wepy</span>.<span class="title">page</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 2. 导入并挂载</span></span></span><br><span class="line">  mixins = [mix]</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>异步函数中更新数据的时候需要手动触发渲染 <code>this.$apply()</code></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://tencent.github.io/wepy">小程序框架 - WePY</a></p>
+<p><a href="https://tencent.github.io/wepy/document.html#/./doc.cli?id=%e4%bd%bf%e7%94%a8-usage">wepy-cli</a></p>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html">小程序文档</a></p>
+<p><a href="https://gitee.com/koler778/hmugo">黑马优购项目</a></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>微信</tag>
+        <tag>wepy</tag>
+        <tag>小程序</tag>
+        <tag>项目总结</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[项目] 折腾hexo + next</title>
     <url>/2019/02/01/JavaScript/%E6%8A%98%E8%85%BEhexo-next/</url>
     <content><![CDATA[<ul>
@@ -1870,11 +1929,11 @@
 
 ]]></content>
       <categories>
-        <category>总结</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
         <tag>项目总结</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2253,24 +2312,105 @@
   </entry>
   <entry>
     <title>Vue 记录</title>
-    <url>/2020/10/17/Vue/Vue%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<ul>
-<li>v-if 和 v-show 区别</li>
-</ul>
-<a id="more"></a>
-
-
-
-<h2 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a>v-if 和 v-show 区别</h2><p>先看下每个指令的功能</p>
-<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
+    <url>/2020/10/17/Vue/v-if%E5%92%8Cv-show%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
 <h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
 <p>当条件变化时该指令触发过渡效果。</p>
-<h3 id="v-if-和-v-show-区别-1"><a href="#v-if-和-v-show-区别-1" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
+<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
 <li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
 <li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
 <li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
 <li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
 <li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[项目] 去哪儿网踩坑（Vue-cli配置和Vuex）</title>
+    <url>/2019/09/28/Vue/%E5%8E%BB%E5%93%AA%E5%84%BF%E7%BD%91%E8%B8%A9%E5%9D%91/</url>
+    <content><![CDATA[<p><a href="https://gitee.com/koler778/qunaerwangtest">去哪儿网项目链接</a></p>
+<h2 id="Vue-cli-配置"><a href="#Vue-cli-配置" class="headerlink" title="Vue-cli 配置"></a>Vue-cli 配置</h2><h3 id="Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias"><a href="#Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias" class="headerlink" title="Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias"></a>Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias</h3><h4 id="vue-cli-2-x"><a href="#vue-cli-2-x" class="headerlink" title="vue-cli 2.x"></a>vue-cli 2.x</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>],</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: resolve(<span class="string">&#x27;src&#x27;</span>),</span><br><span class="line">			<span class="comment">// resolve 函数文件已配置好</span></span><br><span class="line">			<span class="string">&#x27;styles&#x27;</span>: resolve(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="vue-cli-3-x"><a href="#vue-cli-3-x" class="headerlink" title="vue-cli 3.x"></a>vue-cli 3.x</h4><p>直接在项目根目录新建 <code>vue.config.js</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  configureWebpack: &#123;</span><br><span class="line">    resolve: &#123;</span><br><span class="line">      alias: &#123;</span><br><span class="line">        <span class="string">&#x27;styles&#x27;</span>: path.resolve(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="stylus配置别名"><a href="#stylus配置别名" class="headerlink" title="stylus配置别名"></a>stylus配置别名</h3><p>在以上配置<code>webpack别名目录</code>后，在页面引入 <code>stylus</code> 文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;stylus&quot; scoped&gt;</span><br><span class="line">&#x2F;* 此处的~styles 指的就是 src&#x2F;assets&#x2F;styles *&#x2F;</span><br><span class="line">@import &#39;~styles&#x2F;varibles.styl&#39;;</span><br><span class="line">...</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h3><p><a href="https://zh.wikipedia.org/wiki/HTTP%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5">http持久链接 keep-alive 维基百科</a></p>
+<p><a href="https://cn.vuejs.org/v2/api/#keep-alive">Vue官方解释</a></p>
+<blockquote>
+<p>keep-alive 是持久化连接技术</p>
+<p>但在vue中是包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们，当组件在 <code>&lt;keep-alive&gt;</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code> 这两个生命周期钩子函数将会被对应执行。由于不会销毁，所以生命周期函数 <code>created</code>，<code>mounted</code>都不会执行第二次</p>
+</blockquote>
+<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><blockquote>
+<p>普通情况下 <strong>store</strong> 就已够用，但如果数据特别大而且特别多的时候，而且还是相互之间需要传值，这个时候就该 <strong>vuex</strong> 上场了。</p>
+<p>官方解释：</p>
+<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。</p>
+</blockquote>
+<p><img src="https://vuex.vuejs.org/vuex.png"></p>
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><blockquote>
+<p>相当于组件中的 data，只要挂载到Vue上，所有组件都可以访问</p>
+</blockquote>
+<p>组件中获取state</p>
+<p>第一种 简单直接，就是写起来有点麻烦</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;this.$store.state.city&#125;&#125;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://vuex.vuejs.org/zh/guide/state.html#%E5%AF%B9%E8%B1%A1%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6">第二种 对象展开运算符</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;city&#125;&#125;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; mapState &#125; from &#39;vuex&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">		...mapState([&#39;city&#39;])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><p><strong>优势</strong></p>
+<ul>
+<li>Action 提交的是 mutation，而不是直接变更状态。</li>
+<li>Action 可以包含任意异步操作。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">actions: &#123;</span><br><span class="line">  changeCity(context, city) &#123;</span><br><span class="line">    context.commit(<span class="string">&#x27;changeCityName&#x27;</span>, city)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>组件中调用 dispath 可以调用到actions内的函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">this</span>.$store.dispatch(<span class="string">&#x27;changeCity&#x27;</span>, <span class="string">&#x27;北京&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">changeCityName(state, city) &#123;</span><br><span class="line">	state.city = city</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a><a href="https://vuex.vuejs.org/zh/guide/modules.html">module</a></h3><h2 id="异步加载组件"><a href="#异步加载组件" class="headerlink" title="异步加载组件"></a><a href="https://router.vuejs.org/zh/guide/advanced/lazy-loading.html#%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD">异步加载组件</a></h2><p>将原来的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: Home &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>修改为异步加载，有效减少的 app.js 文件大小</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./page/home/Home.vue&#x27;</span>) &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>项目总结</tag>
+        <tag>Vue</tag>
+        <tag>Vue-cli</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>毕设-考试报名系统总结复盘</title>
+    <url>/2020/10/19/Vue/%E6%AF%95%E8%AE%BE-%E8%80%83%E8%AF%95%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93%E5%A4%8D%E7%9B%98/</url>
+    <content><![CDATA[<p>内容待添加</p>
+<a id="more"></a>
+
+
+
+
+
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="组件封装"><a href="#组件封装" class="headerlink" title="组件封装"></a>组件封装</h3><h3 id="常用功能封装"><a href="#常用功能封装" class="headerlink" title="常用功能封装"></a>常用功能封装</h3><h3 id="请求接口-api-封装"><a href="#请求接口-api-封装" class="headerlink" title="请求接口 api 封装"></a>请求接口 <code>api</code> 封装</h3><h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><ul>
+<li>引入cdn加速 公共库</li>
 </ul>
 ]]></content>
       <categories>
@@ -2946,6 +3086,578 @@
       </categories>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux实战技能100讲 笔记</title>
+    <url>/2021/07/02/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>Linux入门时做的笔记， <code>shell</code> 相关笔记没有学完不全，以后有空继续学习。</p>
+<p>主要为常规的一些命令、压缩打包、权限等。</p>
+<a id="more"></a>
+
+<h2 id="万能帮助命令"><a href="#万能帮助命令" class="headerlink" title="万能帮助命令"></a>万能帮助命令</h2><ul>
+<li>man</li>
+<li>help</li>
+<li>info</li>
+<li>网络资源</li>
+</ul>
+<h2 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h2><table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ls</td>
+<td>查看当前文件夹目录，<code>-l</code> 长格式显示， <code>-a</code>显示隐藏文件， <code>-r</code>逆序显示， <code>-t</code>按时间顺序显示， <code>-R</code>递归显示，<code>-h</code> 文件大小单位</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>切换目录</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>显示当前目录名称</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td>创建文件夹</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td>删除空目录</td>
+</tr>
+<tr>
+<td>rm</td>
+<td><code>-r</code> 删除非空目录 <code>-f</code> 强制删除不提示</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>复制文件, <code>-p</code> 保留原来的修改时间，<code>-a</code>保留权限，<code>-r</code> 复制目录</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>移动文件</td>
+</tr>
+<tr>
+<td>touch</td>
+<td>创建文件</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>查看文件</td>
+</tr>
+<tr>
+<td>head</td>
+<td>查看文件头</td>
+</tr>
+<tr>
+<td>tail</td>
+<td>查看文件尾</td>
+</tr>
+<tr>
+<td>wc</td>
+<td>统计统计文件信息</td>
+</tr>
+</tbody></table>
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><p>用途:操作多个相似(有简单规律律)的⽂文件 常⽤用通配符</p>
+<ul>
+<li><code>*</code> 匹配任何字符串串</li>
+<li><code>?</code> 匹配1个字符串串</li>
+<li><code>[xyz]</code> 匹配xyz任意⼀一个字符 [a-z] 匹配⼀一个范围</li>
+<li><code>[!xyz]</code> 或 <code>[^xyz]</code>  不不匹配</li>
+</ul>
+<h3 id="打包解压缩"><a href="#打包解压缩" class="headerlink" title="打包解压缩"></a>打包解压缩</h3><blockquote>
+<p>常用压缩格式为 <code>.tar.gz .tar.bz2 .tgz</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>descrption</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tar</td>
+<td><code>c</code> 打包</td>
+</tr>
+<tr>
+<td></td>
+<td><code>x</code> 解包</td>
+</tr>
+<tr>
+<td></td>
+<td><code>f</code> 指定操作类型为文件</td>
+</tr>
+<tr>
+<td></td>
+<td><code>z</code> gzip 格式压缩和解压缩</td>
+</tr>
+<tr>
+<td></td>
+<td><code>j</code> bzip2 格式压缩和解压缩</td>
+</tr>
+</tbody></table>
+<h3 id="用户与权限相关"><a href="#用户与权限相关" class="headerlink" title="用户与权限相关"></a>用户与权限相关</h3><h4 id="用户管理相关命令"><a href="#用户管理相关命令" class="headerlink" title="用户管理相关命令"></a>用户管理相关命令</h4><blockquote>
+<p>添加用户之后会产生几个目录或添加文件内容等，比如添加wilson</p>
+<ul>
+<li><code>/home/wilson</code></li>
+<li><code>/etc/passwd</code>，会添加 <code>wilson</code> 相关信息</li>
+<li><code>/etc/shadow</code>，和密码相关</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>useradd</td>
+<td>添加用户, <code>-g</code> 指定用户组</td>
+</tr>
+<tr>
+<td>id</td>
+<td>查看用户信息</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>修改用户密码</td>
+</tr>
+<tr>
+<td>userdel</td>
+<td>删除用户，<code>-r</code> 删除包括用户的数据</td>
+</tr>
+<tr>
+<td>usermod</td>
+<td>修改⽤用户属性，<code>-g</code> 修改用户组</td>
+</tr>
+<tr>
+<td>chage</td>
+<td>修改⽤用户属性</td>
+</tr>
+<tr>
+<td>groupadd</td>
+<td>添加用户组</td>
+</tr>
+<tr>
+<td>groupdel</td>
+<td>删除用户组</td>
+</tr>
+</tbody></table>
+<h4 id="用户切换"><a href="#用户切换" class="headerlink" title="用户切换"></a>用户切换</h4><table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>su</td>
+<td>切换用户</td>
+</tr>
+<tr>
+<td>sudo</td>
+<td>赋予普通用户执行管理员命令</td>
+</tr>
+<tr>
+<td>visudo</td>
+<td>设置需要使⽤用 sudo 的⽤用户(组)</td>
+</tr>
+</tbody></table>
+<h4 id="用户配置文件"><a href="#用户配置文件" class="headerlink" title="用户配置文件"></a>用户配置文件</h4><h5 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h5><blockquote>
+<p>用户配置文件</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200819154222.png" alt="image-20200819154215497"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wilson:x:1001:1001::&#x2F;home&#x2F;wilson:&#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+
+<p>其中</p>
+<ul>
+<li><code>wilison</code> : 表示用户名</li>
+<li><code>x</code> : 表示此用户是否需要密码登录</li>
+<li><code>1001</code> : uid</li>
+<li><code>1001</code> : gid</li>
+<li><code>空</code> : <code>1001</code> 与<code>/home/wilison</code> 之间为注释</li>
+<li><code>/home/wilson</code> : 用户的 <code>home</code> 目录</li>
+<li><code>/bin/bash</code> : 用户登录后的命令解释器，如果为 <code>/sbin/nologin</code> 则不允许登录</li>
+</ul>
+<h5 id="etc-shadow"><a href="#etc-shadow" class="headerlink" title="/etc/shadow"></a>/etc/shadow</h5><blockquote>
+<p>用户密码配置相关文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wilson:$6$wB5SlwF0OiEnRvc7$kdfaxXgiQySteIrPxnTd70DZSFTvBIB3TpXYEuQbiRYLnlgcQGUST2E0M&#x2F;uQwhGd.ZwIJLLaV&#x2F;B36d8ijSUxP0:18493:0:99999:7:::</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>wilson</code> : 用户名称</li>
+<li><code>$...0</code> : 加密后的密码</li>
+</ul>
+<h5 id="etc-group"><a href="#etc-group" class="headerlink" title="/etc/group"></a>/etc/group</h5><blockquote>
+<p>用户组配置文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">group1:x:1003:</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>group1</code> : 用户组名称</li>
+<li><code>x</code> : 是否需要密码验证</li>
+<li><code>1003</code> : 组的 gid</li>
+</ul>
+<h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200819162242.png" alt="image-20200819162242107"></p>
+<h4 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h4><ul>
+<li><code>-</code> : 普通文件类型</li>
+<li><code>d</code> : 目录文件</li>
+<li><code>b</code> : 块文件类型 (“设备”)</li>
+<li><code>c</code> : 字符特殊文件 (“设备”)</li>
+<li><code>l</code> : 符号链接 (“快捷方式”)</li>
+<li><code>f</code> : 命名管道</li>
+<li><code>s</code> : 套接字文件</li>
+</ul>
+<h4 id="文件权限-1"><a href="#文件权限-1" class="headerlink" title="文件权限"></a>文件权限</h4><ul>
+<li><code>r</code> : 读权限，数字代表 <code>4</code></li>
+<li><code>w</code> : 写权限，数字代表 <code>2</code></li>
+<li><code>x</code> : 执行权限，数字代表 <code>1</code></li>
+</ul>
+<h4 id="目录权限"><a href="#目录权限" class="headerlink" title="目录权限"></a>目录权限</h4><ul>
+<li><code>x</code> : 进入目录</li>
+<li><code>rx</code> : 显示目录内的文件名</li>
+<li><code>wx</code> : 修改目录内的文件名</li>
+</ul>
+<h4 id="文件权限表示方式"><a href="#文件权限表示方式" class="headerlink" title="文件权限表示方式"></a>文件权限表示方式</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-rw-r-xr-- 1 userame groupname mtime filename</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>rw-</code> : 文件属主的权限</li>
+<li><code>r-x</code> : 文件属组的权限</li>
+<li><code>r--</code> : 其他用户的权限</li>
+</ul>
+<h3 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h3><h4 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h4><blockquote>
+<p>修改⽂文件、⽬目录权限</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 增加所属主的权限 可读</span></span><br><span class="line">chmod u+r afile</span><br><span class="line"><span class="comment"># 增加所属组的权限 可写</span></span><br><span class="line">chmod g+w afile</span><br><span class="line"><span class="comment"># 减去其他用户的权限 可写</span></span><br><span class="line">chmod o-w afile</span><br><span class="line"><span class="comment"># 设置所属主的权限 可读写执行</span></span><br><span class="line">chmod u=rwx afile</span><br><span class="line"><span class="comment"># 添加所属主、所属组、其他用户权限 均可读</span></span><br><span class="line">chmod a+r afile</span><br><span class="line"><span class="comment"># 使用数字代表权限，6=r+w, 4=r, 以下命令表示 rw-r--r--</span></span><br><span class="line">chmod 644 afile</span><br></pre></td></tr></table></figure>
+
+<h4 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h4><blockquote>
+<p>更改属主、属组</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chown user1:group1 afile.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h3><ul>
+<li>SUID：⽤于二进制可执⾏文件，执⾏命令时取文件属主权限</li>
+<li>SGID：⽤于目录，在该⽬录下创建新的⽂件和⽬录，权限自动更改为该目录的属组</li>
+<li>SBIT：⽤于目录，该目录下新建的文件和目录，仅 root 和⾃己可以删除</li>
+</ul>
+<h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h3 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h3><h4 id="⽹络状态查看"><a href="#⽹络状态查看" class="headerlink" title="⽹络状态查看"></a>⽹络状态查看</h4><p>net-tools</p>
+<ul>
+<li>ifconfig</li>
+<li>route</li>
+<li>netstat</li>
+</ul>
+<p>iproute</p>
+<ul>
+<li>ip</li>
+<li>ss</li>
+</ul>
+<p>ifconfig</p>
+<p>eth0第一块网卡(网络接口). 你的第一个网络接口可能叫做下面的名字  eno1板载网卡</p>
+<ul>
+<li>ens33 PCI-E网卡</li>
+<li>enp0s3 无法获取物理信息的PCI-E网卡</li>
+<li>CentOS 7使用了- -致性网络设备命名，以上都不匹配则使用eth0</li>
+</ul>
+<h4 id="⽹络配置"><a href="#⽹络配置" class="headerlink" title="⽹络配置"></a>⽹络配置</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ifconfig &lt;接口&gt; &lt;IP地址&gt; [netmask 子网掩码]</span><br><span class="line">ifup &lt;接口&gt;</span><br><span class="line">ifdown &lt;接口&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="路由命令"><a href="#路由命令" class="headerlink" title="路由命令"></a>路由命令</h4><p>添加网关</p>
+<ul>
+<li>route add default gw &lt;网关ip&gt;</li>
+<li>route add -host &lt;指定ip&gt; gw &lt;网关ip&gt;</li>
+<li>route add -net &lt; &lt;指定网段&gt; netmask &lt;子网掩码&gt; gw &lt;网关ip&gt;</li>
+</ul>
+<h4 id="⽹络故障排除"><a href="#⽹络故障排除" class="headerlink" title="⽹络故障排除"></a>⽹络故障排除</h4><ul>
+<li>ping</li>
+<li>traceroute</li>
+<li>mtr</li>
+<li>nslookup</li>
+<li>telnet</li>
+<li>tcpdump</li>
+<li>netstat</li>
+<li>SS</li>
+</ul>
+<h4 id="⽹络服务管理"><a href="#⽹络服务管理" class="headerlink" title="⽹络服务管理"></a>⽹络服务管理</h4><p>网络服务管理程序分为两种，分别为SysV和systemd</p>
+<ul>
+<li>service network startlstoplrestart</li>
+<li>chkconfig -list network</li>
+<li>systemctl list-unit-files NetworkManager.service</li>
+<li>systemctl startlstoplrestart NetworkManger</li>
+<li>systemctl enableldisable NetworkManger</li>
+</ul>
+<h4 id="常用⽹络配置文件"><a href="#常用⽹络配置文件" class="headerlink" title="常用⽹络配置文件"></a>常用⽹络配置文件</h4><ul>
+<li>ifcfg-eth0</li>
+<li>/etc/hosts</li>
+</ul>
+<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h4 id="软件包管理器"><a href="#软件包管理器" class="headerlink" title="软件包管理器"></a>软件包管理器</h4><p>包管理器是方便软件安装、卸载，解决软件依赖关系的重要工具</p>
+<ul>
+<li>CentOS、RedHat使用yum包管理器，软件安装包格式为rpm</li>
+<li>Debian、 Ubuntu使用apt包管理器， 软件安装包格式为deb</li>
+</ul>
+<h4 id="rpm包和rpm命令"><a href="#rpm包和rpm命令" class="headerlink" title="rpm包和rpm命令"></a>rpm包和rpm命令</h4><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821154942.png" alt="image-20200821154942269"></p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rpm</td>
+<td><code>-q</code> 查询软件包</td>
+</tr>
+<tr>
+<td></td>
+<td><code>-i</code> 安装软件包</td>
+</tr>
+<tr>
+<td></td>
+<td><code>-e</code> 卸载软件包</td>
+</tr>
+</tbody></table>
+<h4 id="yum仓库"><a href="#yum仓库" class="headerlink" title="yum仓库"></a>yum仓库</h4><blockquote>
+<p><code>rpm</code> 需要自己解决依赖关系，软件包来源不可靠，所以出现了<code>yum</code></p>
+</blockquote>
+<h5 id="yum-更改源"><a href="#yum-更改源" class="headerlink" title="yum 更改源"></a>yum 更改源</h5><ol>
+<li>备份</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/</li>
+</ol>
+<p><strong>CentOS 6</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-6.repo</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-6.repo</span><br></pre></td></tr></table></figure>
+
+<p><strong>CentOS 7</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<p><strong>CentOS 8</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-8.repo</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-8.repo</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>运行 yum makecache 生成缓存</li>
+</ol>
+<h5 id="yum-命令"><a href="#yum-命令" class="headerlink" title="yum 命令"></a>yum 命令</h5><table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>yum</td>
+<td><code>install</code> 安装软件包</td>
+</tr>
+<tr>
+<td></td>
+<td><code>remove</code> 卸载软件包</td>
+</tr>
+<tr>
+<td></td>
+<td>`list</td>
+</tr>
+<tr>
+<td></td>
+<td><code>update</code> 升级软件包</td>
+</tr>
+</tbody></table>
+<h4 id="升级内核"><a href="#升级内核" class="headerlink" title="升级内核"></a>升级内核</h4><table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>uname -r</code></td>
+<td>查看内核版本</td>
+</tr>
+<tr>
+<td><code>yum install kernel-3.10.0</code></td>
+<td>升级内核版本</td>
+</tr>
+<tr>
+<td><code>yum update</code></td>
+<td>升级已安装的其他软件包和补丁</td>
+</tr>
+</tbody></table>
+<h4 id="grub-配置文件"><a href="#grub-配置文件" class="headerlink" title="grub 配置文件"></a>grub 配置文件</h4><ul>
+<li><p>grub 配置文件</p>
+<ul>
+<li>/etc/default/grub</li>
+<li>/etc/grub.d/</li>
+<li>/boot/grub2/grub.cfg</li>
+<li>grub2-mkconfig -0 /boot/grub2/grub.cfg</li>
+</ul>
+</li>
+<li><p>使用单用户进入系统(忘记root密码)</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821160012.png" alt="image-20200821160012669"></p>
+<ul>
+<li><p>第一步，开机时选择内核这里选择合适的内核，光标停留，按 <code>e</code> 选择</p>
+</li>
+<li><p>第二步，修改 <code>grub</code> 启动信息。（光标后的信息是没有的，需要自己手动添加，centos6 为 <code>single</code>，centos7.8 <code>rd.break</code>），然后按照指示 <code>ctrl+x</code> 来启动</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821160321.png" alt="image-20200821160321084"></p>
+</li>
+<li><p>启动后执行一下命令，重新挂载一下根目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mount -o remount,rw /sysroot</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>继续执行 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chroot /sysroot</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>然后就可以修改密码了(<code>password</code> 为修改后的密码)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> password | passwd --stdin root</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可能还会有SELinux进行监测，暂时性关闭</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/selinux/config</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821161107.png" alt="image-20200821161107110"></p>
+<p>设置为 <code>SELINUX=disabled</code></p>
+</li>
+<li><p>然后退出重启就可以按照刚才设置的root用户进行登录了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">rebooot</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><blockquote>
+<p>Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。</p>
+<p>Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。</p>
+<p>Ken Thompson 的 sh 是第一种 Unix Shell，Windows Explorer 是一个典型的图形界面 Shell。</p>
+</blockquote>
+<p>查看 <code>shell</code> 类型</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat /etc/shells</span><br></pre></td></tr></table></figure>
+
+<h3 id="Linux-引导过程"><a href="#Linux-引导过程" class="headerlink" title="Linux 引导过程"></a>Linux 引导过程</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BIOS -&gt; MBR -&gt; BootLoader(grub) -&gt; kernel -&gt; systemd(initd) -&gt; 系统初始化 -&gt; shell</span><br></pre></td></tr></table></figure>
+
+<h3 id="shell-脚本格式"><a href="#shell-脚本格式" class="headerlink" title="shell 脚本格式"></a>shell 脚本格式</h3><ul>
+<li>UNIX 哲学：一条命令只做一件事</li>
+<li>为了组合命令和多次执行，使用脚本文件来保存需要执行的命令</li>
+<li>赋予该文件执行权限（chmod u+rx filename）<ul>
+<li>二进制文件 给个 x 权限（可执行）即可</li>
+<li>shell 脚本需要 rx 权限（可读可执行）</li>
+</ul>
+</li>
+<li><code>shell</code> 文件后缀为 <code>.sh</code></li>
+<li><code>#</code> 开头为注释 <code>#!/bin/bash</code> 开头表示使用 <code>bash</code> 执行脚本</li>
+</ul>
+<h3 id="管道与重定向"><a href="#管道与重定向" class="headerlink" title="管道与重定向"></a>管道与重定向</h3><h4 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h4><p><code>|</code> : 讲两个命令分隔开，将前一个的输出传入到第二个命令的输入。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查找当前文件夹内的 .txt 后缀的文件</span></span><br><span class="line">ls -l | grep .txt</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>输入重定向 <code>&lt;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将 text.txt 文件内的内容赋值给 var 变量</span></span><br><span class="line"><span class="built_in">read</span> var &lt; text.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过本命令查看是否赋值成功</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$var</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>输出重定向 <code>&gt;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将 123 输出到 a.txt 文件内</span></span><br><span class="line"><span class="built_in">echo</span> 123 &gt; a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 123 追加到 a.txt 文件内</span></span><br><span class="line"><span class="built_in">echo</span> 123 &gt;&gt; a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 错误内容 输出到 a.txt</span></span><br><span class="line">ak 2&gt; a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 无论正确还是错误，都输出到 a.txt</span></span><br><span class="line">ls -l &amp;&gt; a.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h4><ul>
+<li>字母、数字、下划线</li>
+<li>不能以数字开头</li>
+</ul>
+<h4 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h4><ul>
+<li>变量名=变量值</li>
+<li>计算赋值<code>let a=10+20</code></li>
+<li>将命令赋值给变量 <code>l=ls</code></li>
+<li>将命令结果赋值给变量 <code>letc=$(ls -l /etc)</code></li>
+</ul>
+<h4 id="变量的引用"><a href="#变量的引用" class="headerlink" title="变量的引用"></a>变量的引用</h4><ul>
+<li><code>$&#123;变量名&#125;</code></li>
+<li><code>echo $&#123;变量名&#125;</code></li>
+<li>省略写法为 <code>$变量名</code></li>
+</ul>
+<h4 id="变量的引用范围"><a href="#变量的引用范围" class="headerlink" title="变量的引用范围"></a>变量的引用范围</h4><blockquote>
+<p>只在当前进程生效，不回影响到别的进程，巧用 source,  bash…</p>
+</blockquote>
+<ul>
+<li>导出变量 <code>export</code></li>
+<li>删除变量 <code>unset</code></li>
+</ul>
+<h4 id="环境变量、预定义变量与位置变量"><a href="#环境变量、预定义变量与位置变量" class="headerlink" title="环境变量、预定义变量与位置变量"></a>环境变量、预定义变量与位置变量</h4><ul>
+<li>$PATH 命令索引</li>
+<li>获取命令运行参数 $0 $1…</li>
+</ul>
+<h4 id="环境变量配置文件"><a href="#环境变量配置文件" class="headerlink" title="环境变量配置文件"></a>环境变量配置文件</h4><ul>
+<li>/etc/profile</li>
+<li>/etc/profile.d/</li>
+<li>~/.bash_profile</li>
+<li>~/.bashrc</li>
+<li>/etc/bashrc</li>
+</ul>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><ul>
+<li>定义数组</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ipts=(10.0.0.1 10.0.0.2 10.0.0.3)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>显示数组所有元素</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;ipts[@]&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>显示数组元素个数</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#ipts[@]&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>显示数组的第一个元素</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;ipts[0]&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="转义和引用"><a href="#转义和引用" class="headerlink" title="转义和引用"></a>转义和引用</h4><blockquote>
+<p>一个字符不仅有字面意义，还有元意(meta-meaning)</p>
+</blockquote>
+<ul>
+<li><code>#</code> 注释</li>
+<li><code>;</code> 分号</li>
+<li><code>\</code> 转义符号（<code>\r \n \t \$ \\ ...</code>）</li>
+<li><code>&quot;</code> （完全引用，解释变量）和 <code>&#39; </code> 引号（不完全引用，不解释变量）</li>
+</ul>
+<h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><ul>
+<li>赋值运算符 let “变量名=变量值” （简化为 双圆括号 <code>(( a=10))</code>）</li>
+<li>算数运算符 使用 <code>expr 4 + 5（只支持整数）</code></li>
+<li>数字常量： 0开头八进制，0x十六进制</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4432,8 +5144,8 @@
       </tags>
   </entry>
   <entry>
-    <title>[年度] 2019年技术总结</title>
-    <url>/2020/01/07/%E6%80%BB%E7%BB%93/2019%E5%B9%B4%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/</url>
+    <title>2019年度总结</title>
+    <url>/2020/01/07/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/2019%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>新的一年，应继续保持学习，计划</p>
 <ul>
 <li><code>vue</code> 深入学习，之前还是学习的不够深入</li>
@@ -4498,283 +5210,62 @@
 <p>来还愿，除了 深度学习 <code>vue</code> ，其他计划都圆满完成</p>
 ]]></content>
       <categories>
-        <category>总结</category>
+        <category>年度总结</category>
       </categories>
-      <tags>
-        <tag>年度总结</tag>
-      </tags>
   </entry>
   <entry>
-    <title>[项目] 去哪儿网踩坑（Vue-cli配置和Vuex）</title>
-    <url>/2019/09/28/%E6%80%BB%E7%BB%93/%E5%8E%BB%E5%93%AA%E5%84%BF%E7%BD%91%E8%B8%A9%E5%9D%91/</url>
-    <content><![CDATA[<p><a href="https://gitee.com/koler778/qunaerwangtest">去哪儿网项目链接</a></p>
-<h2 id="Vue-cli-配置"><a href="#Vue-cli-配置" class="headerlink" title="Vue-cli 配置"></a>Vue-cli 配置</h2><h3 id="Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias"><a href="#Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias" class="headerlink" title="Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias"></a>Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias</h3><h4 id="vue-cli-2-x"><a href="#vue-cli-2-x" class="headerlink" title="vue-cli 2.x"></a>vue-cli 2.x</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>],</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: resolve(<span class="string">&#x27;src&#x27;</span>),</span><br><span class="line">			<span class="comment">// resolve 函数文件已配置好</span></span><br><span class="line">			<span class="string">&#x27;styles&#x27;</span>: resolve(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="vue-cli-3-x"><a href="#vue-cli-3-x" class="headerlink" title="vue-cli 3.x"></a>vue-cli 3.x</h4><p>直接在项目根目录新建 <code>vue.config.js</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  configureWebpack: &#123;</span><br><span class="line">    resolve: &#123;</span><br><span class="line">      alias: &#123;</span><br><span class="line">        <span class="string">&#x27;styles&#x27;</span>: path.resolve(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+    <title>2020年度总结</title>
+    <url>/2021/07/02/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/2020%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>写这篇文章的时候，已经在2021年的七月份了，也是拖延了半年才终才想起来。</p>
 <a id="more"></a>
 
-<h3 id="stylus配置别名"><a href="#stylus配置别名" class="headerlink" title="stylus配置别名"></a>stylus配置别名</h3><p>在以上配置<code>webpack别名目录</code>后，在页面引入 <code>stylus</code> 文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;stylus&quot; scoped&gt;</span><br><span class="line">&#x2F;* 此处的~styles 指的就是 src&#x2F;assets&#x2F;styles *&#x2F;</span><br><span class="line">@import &#39;~styles&#x2F;varibles.styl&#39;;</span><br><span class="line">...</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
 
 
-
-<h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h3><p><a href="https://zh.wikipedia.org/wiki/HTTP%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5">http持久链接 keep-alive 维基百科</a></p>
-<p><a href="https://cn.vuejs.org/v2/api/#keep-alive">Vue官方解释</a></p>
+<h1 id="2020年度总结"><a href="#2020年度总结" class="headerlink" title="2020年度总结"></a>2020年度总结</h1><blockquote>
+<p>有些事情不是看到希望才会去坚持，而是坚持了才会看到希望。</p>
+</blockquote>
+<h2 id="github提交记录"><a href="#github提交记录" class="headerlink" title="github提交记录"></a>github提交记录</h2><blockquote>
+<p>主要还是在写毕设的项目，前端Vue+ElementUI，后端Express+Sequelize+MySQL</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702204903.png" alt="image-20210702204856883"></p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>上半年因为疫情原因，就出了很多表情包，是蛮有趣的。🐶</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702213713.jpg" alt="mmexport1579599860300"></p>
+<p>也看到很多博主科普真假口罩，很不幸我就高价买过口罩，，</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702213849.png" alt="mask"></p>
+<h3 id="减肥"><a href="#减肥" class="headerlink" title="减肥"></a>减肥</h3><p>等到<code>9</code>月份开学前，才发现在家的半年时间已经胖了将近<code>20斤</code>，虽然数字上对我造成了冲击，但行动上依旧没有行动起来。直到去了学校之后，同学竟然都没认出来我，，，我就知道自己变化多大了，😂。</p>
+<p>疫情前的体重大约70Kg，还好有个好室友，每天拉着我去跑步，控制饮食一系列操作下来，减肥也算初步有成效。以下为减肥变化的体重。</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702214514.jpg" alt="P00804-205330"></p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702214722.jpg" alt="mmexport1600837504472"></p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702214704.jpg" alt="mmexport1602638489026"></p>
+<p>顺便带几张在学校拍的照片</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702223659.jpg" alt="P00908-180830"></p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702223900.jpg" alt="P00907-183541"></p>
+<h3 id="实习"><a href="#实习" class="headerlink" title="实习"></a>实习</h3><p>开学后，由于学校有课就没有抓住秋招，到了十月份学校的课程才结束，而那会儿秋招基本快已经结束，我才开始投简历。</p>
+<p>不出意外，投了很多简历石沉大海（当然一部分也是简历的原因）。</p>
+<p>知道大公司没戏之后，就投了几家小公司（说实话当然看着同学一个一个都出去实习，自己还是有点着急的）。</p>
+<p>最后我去了厦门。</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702222937.jpg" alt="P10223-143934"></p>
+<p>当时的老板还是比较认可我的，也给了我一些比较艰巨的任务，说实话我都不知道我怎么扛下来的，，作为实习生的我第一次接到大活，还是有点小慌，好在最后也做完了，没啥大问题。</p>
+<p>在实习这段时间自己也沉淀了很多东西，为后来的春招打下了基础，很多东西也都是写项目时候遇到真真实实存在的问题。当然对 <code>Vue</code> 全家桶的使用也越来越熟练，为了方便些业务，自己封装了几个组件、Vue的指令之类的，还有将 <code>ElementUI</code> 魔改（以后要维护这些代码的兄弟受苦了）。</p>
+<p>同时也是在厦门的这段时间，看到的大圣老师的早起打卡，渐渐的养成了早睡早起的习惯。晚上下班回家后，真的的没有经历去学习啥的，但早上却是一天的开始，读书学习精力很充沛，有时候不想看书就早起锻炼一下活动活动身体。</p>
+<h3 id="读书"><a href="#读书" class="headerlink" title="读书"></a>读书</h3><p>两个月时间把 <code>深入浅出Nodejs</code> 和 <code>白帽子讲Web攻防</code> 看完了，当然这两本书也只是看完第一遍了，很多东西只停留在了表面理解，还需后续的多刷几遍来加深理解。</p>
+<p>这一年，还看了两篇传记 <code>阿迅</code>、<code>平均分</code>，光鲜亮丽的面前，都是背后经过了不为人知的心酸。其中阿迅有一段写的很好，就摘抄出来了。</p>
 <blockquote>
-<p>keep-alive 是持久化连接技术</p>
-<p>但在vue中是包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们，当组件在 <code>&lt;keep-alive&gt;</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code> 这两个生命周期钩子函数将会被对应执行。由于不会销毁，所以生命周期函数 <code>created</code>，<code>mounted</code>都不会执行第二次</p>
+<p>曾经历了背叛，才知道忠诚的价值；曾直面了磨难，才激起奋斗的意志；曾被嘲笑损贬，才清楚尊重的意义；曾被四面围困，才倾听内心的声音；曾被病痛折磨，才领悟健康的攸关；曾感受了孤独，才珍惜真爱的陪伴；曾遭遇了绝望，才明白梦想的力量；曾经历了生死，才懂得因果的必然。</p>
 </blockquote>
-<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><blockquote>
-<p>普通情况下 <strong>store</strong> 就已够用，但如果数据特别大而且特别多的时候，而且还是相互之间需要传值，这个时候就该 <strong>vuex</strong> 上场了。</p>
-<p>官方解释：</p>
-<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。</p>
-</blockquote>
-<p><img src="https://vuex.vuejs.org/vuex.png"></p>
-<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><blockquote>
-<p>相当于组件中的 data，只要挂载到Vue上，所有组件都可以访问</p>
-</blockquote>
-<p>组件中获取state</p>
-<p>第一种 简单直接，就是写起来有点麻烦</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;this.$store.state.city&#125;&#125;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://vuex.vuejs.org/zh/guide/state.html#%E5%AF%B9%E8%B1%A1%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6">第二种 对象展开运算符</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;city&#125;&#125;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; mapState &#125; from &#39;vuex&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">		...mapState([&#39;city&#39;])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><p><strong>优势</strong></p>
-<ul>
-<li>Action 提交的是 mutation，而不是直接变更状态。</li>
-<li>Action 可以包含任意异步操作。</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">actions: &#123;</span><br><span class="line">  changeCity(context, city) &#123;</span><br><span class="line">    context.commit(<span class="string">&#x27;changeCityName&#x27;</span>, city)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>组件中调用 dispath 可以调用到actions内的函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">this</span>.$store.dispatch(<span class="string">&#x27;changeCity&#x27;</span>, <span class="string">&#x27;北京&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">changeCityName(state, city) &#123;</span><br><span class="line">	state.city = city</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="module"><a href="#module" class="headerlink" title="module"></a><a href="https://vuex.vuejs.org/zh/guide/modules.html">module</a></h3><h2 id="异步加载组件"><a href="#异步加载组件" class="headerlink" title="异步加载组件"></a><a href="https://router.vuejs.org/zh/guide/advanced/lazy-loading.html#%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD">异步加载组件</a></h2><p>将原来的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: Home &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>修改为异步加载，有效减少的 app.js 文件大小</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./page/home/Home.vue&#x27;</span>) &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
+<h3 id="照片"><a href="#照片" class="headerlink" title="照片"></a>照片</h3><p>随手拍的几张不错的，就丢出来了。</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702225811.jpg" alt="P01120-060921"></p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702225821.jpg" alt="P01108-172257"></p>
+<h3 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h3><p>今年在技术上或许没啥好总结的，更多的是在原来技术上进行的一种熟练。</p>
+<p>遇到的问题也有输出成文章。（争取早日将文章补完😂）</p>
 ]]></content>
       <categories>
-        <category>总结</category>
+        <category>年度总结</category>
       </categories>
-      <tags>
-        <tag>项目总结</tag>
-        <tag>Vue</tag>
-        <tag>Vue-cli</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[项目] 小程序 and wepy</title>
-    <url>/2019/08/26/%E6%80%BB%E7%BB%93/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B8%A9%E5%9D%91%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<h2 id="Mini-Program-Notes"><a href="#Mini-Program-Notes" class="headerlink" title="Mini Program Notes"></a>Mini Program Notes</h2><h3 id="尺寸单位-rpx和px"><a href="#尺寸单位-rpx和px" class="headerlink" title="尺寸单位 - rpx和px"></a>尺寸单位 - rpx和px</h3><ul>
-<li>rpx（responsive pixel）: 可以根据屏幕宽度进行自适应。规定屏幕宽为750rpx。如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx = 375px = 750物理像素，1rpx = 0.5px = 1物理像素。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="left">设备</th>
-<th align="left">rpx换算px (屏幕宽度/750)</th>
-<th align="left">px换算rpx (750/屏幕宽度)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">iPhone5</td>
-<td align="left">1rpx = 0.42px</td>
-<td align="left">1px = 2.34rpx</td>
-</tr>
-<tr>
-<td align="left">iPhone6</td>
-<td align="left">1rpx = 0.5px</td>
-<td align="left">1px = 2rpx</td>
-</tr>
-<tr>
-<td align="left">iPhone6 Plus</td>
-<td align="left">1rpx = 0.552px</td>
-<td align="left">1px = 1.81rpx</td>
-</tr>
-</tbody></table>
-<p><strong>详情查看官方文档</strong></p>
-<p><a href="https://developers.weixin.qq.com/miniprogram/dev/component/">组件</a></p>
-<p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/">API</a></p>
-<h3 id="小程序生命周期-Life-Cycle"><a href="#小程序生命周期-Life-Cycle" class="headerlink" title="小程序生命周期(Life Cycle)"></a>小程序生命周期(Life Cycle)</h3><p><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html">文档</a></p>
-<p><img src="https://res.wx.qq.com/wxdoc/dist/assets/img/page-lifecycle.2e646c86.png" alt="jpg"></p>
-<h3 id="事件传参"><a href="#事件传参" class="headerlink" title="事件传参"></a>事件传参</h3><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p><code>bindtap</code>或者<code>bindtap(1)</code> 都会会直接当成函数名直接调用包括<strong>括号</strong></p>
-<h4 id="传参使用自定义属性-data"><a href="#传参使用自定义属性-data" class="headerlink" title="传参使用自定义属性 data-*"></a>传参使用自定义属性 data-*</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">bindtap</span>=<span class="string">&quot;bdtap&quot;</span> <span class="attr">data-info</span>=<span class="string">&quot;1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// js代码</span><br><span class="line">bdtap() &#123;</span><br><span class="line">	// e.target.dataset 获取data-*的值</span><br><span class="line">	console.log(e.target.dataset.info)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="wxs"><a href="#wxs" class="headerlink" title="wxs"></a>wxs</h3><ul>
-<li>没有兼容性</li>
-<li>与JavaScript不同</li>
-<li>隔离性：不能调用<code>js</code>代码，也不能调用小程序提供的<code>API</code></li>
-<li>不能作为事件回调</li>
-<li><code>IOS</code>设备比<code>JavaScript</code>运行环境<strong>快2~20倍</strong>，而在<code>Android</code>和<code>JavaScript</code>环境运行效率无差异</li>
-</ul>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><blockquote>
-<p>wx:if 控制元素的渲染，为惰性渲染，更高的切换消耗</p>
-<p>hidden 始终会渲染，只是简单的控制显示和隐藏，更高的出事渲染消耗</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 相当于 v-if</span><br><span class="line">wx:if&#x3D;&quot;&quot;</span><br><span class="line">wx:elif&#x3D;&quot;&quot;</span><br><span class="line">wx:else</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 控制元素的显示和隐藏</span><br><span class="line">hidden </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 列表渲染</span><br><span class="line">wx:for&#x3D;&quot;&quot;</span><br><span class="line">wx:for-index&#x3D;&quot;&quot;</span><br><span class="line">wx:for-item&#x3D;&quot;&quot;</span><br></pre></td></tr></table></figure>
-
-<h4 id="block标签"><a href="#block标签" class="headerlink" title="block标签"></a>block标签</h4><blockquote>
-<p>相当于vue中的<code>template</code>，只做包括，当前标签不会渲染出来，内容会渲染</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">block</span>&gt;</span><span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/">自定义组件</a></h3><h4 id="数据监听器"><a href="#数据监听器" class="headerlink" title="数据监听器"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/observer.html">数据监听器</a></h4><blockquote>
-<p>类似于<code>Vue</code>中的<code>watch</code>，支持版本2.6.1以上</p>
-</blockquote>
-<h5 id="数据监听器-1"><a href="#数据监听器-1" class="headerlink" title="数据监听器"></a>数据监听器</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">    observers: &#123;</span><br><span class="line">        <span class="string">&#x27;字段1&#x27;</span>, <span class="string">&#x27;字段2&#x27;</span>: <span class="function"><span class="keyword">function</span>(<span class="params">字段<span class="number">1</span>的新值，字段<span class="number">2</span>的新值</span>) </span>&#123;</span><br><span class="line">   			<span class="comment">// do something         </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="监听子数据字段的变化"><a href="#监听子数据字段的变化" class="headerlink" title="监听子数据字段的变化"></a>监听子数据字段的变化</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  observers: &#123;</span><br><span class="line">    <span class="string">&#x27;some.subfield&#x27;</span>: <span class="function"><span class="keyword">function</span> (<span class="params">subfield</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 使用 setData 设置 this.data.some.subfield 时触发</span></span><br><span class="line">      <span class="comment">// （除此以外，使用 setData 设置 this.data.some 也会触发）</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;arr[12]&#x27;</span>: <span class="function"><span class="keyword">function</span> (<span class="params">arr12</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 使用 setData 设置 this.data.arr[12] 时触发</span></span><br><span class="line">      <span class="comment">// （除此以外，使用 setData 设置 this.data.arr 也会触发）</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="通配符-监听所有子数据字段的变化"><a href="#通配符-监听所有子数据字段的变化" class="headerlink" title="通配符**监听所有子数据字段的变化"></a>通配符<code>**</code>监听所有子数据字段的变化</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  observers: &#123;</span><br><span class="line">    <span class="string">&#x27;some.field.**&#x27;</span>: <span class="function"><span class="keyword">function</span> (<span class="params">field</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 使用 setData 设置 this.data.some.field 本身或其下任何子数据字段时触发</span></span><br><span class="line">      <span class="comment">// （除此以外，使用 setData 设置 this.data.some 也会触发）</span></span><br><span class="line">      field === <span class="built_in">this</span>.data.some.field</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/lifetimes.html">组件的生命周期</a></h4><h4 id="取消顶部导航栏"><a href="#取消顶部导航栏" class="headerlink" title="取消顶部导航栏"></a>取消顶部导航栏</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;window&quot;</span>: &#123;</span><br><span class="line">        navigationStyle: &quot;custom&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="将图片转换为base64"><a href="#将图片转换为base64" class="headerlink" title="将图片转换为base64"></a>将图片转换为<code>base64</code></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fileManger = wx.getFileSystemManger()</span><br><span class="line"><span class="keyword">const</span> fileStr = fileManger.readFileSync(<span class="string">&#x27;dir&#x27;</span>, <span class="string">&#x27;base64&#x27;</span>)</span><br><span class="line"><span class="comment">// fileStr 即为 图片的base64</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="hover-class"><a href="#hover-class" class="headerlink" title="hover-class"></a>hover-class</h4><blockquote>
-<p>去除<code>navigator</code>跳转链接的跳转时的默认灰色背景，设置为<code>none</code></p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">navigator</span> <span class="attr">hover-class</span>=<span class="string">&quot;none&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h2 id="WEPY"><a href="#WEPY" class="headerlink" title="WEPY"></a>WEPY</h2><h4 id="创建-wepy-项目"><a href="#创建-wepy-项目" class="headerlink" title="创建 wepy 项目"></a>创建 <code>wepy</code> 项目</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装wepy-cli</span></span><br><span class="line">yarn global add wepy-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建项目</span></span><br><span class="line">wepy new myproject</span><br><span class="line"><span class="comment"># 1.7.0之后的版本使用 wepy init standard myproject 初始化项目，使用 wepy list 查看项目模板</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换至目录</span></span><br><span class="line"><span class="built_in">cd</span> myproject</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">yarn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启实时编译</span></span><br><span class="line">wepy build --watch</span><br></pre></td></tr></table></figure>
-
-<h4 id="wepy-cli-命令"><a href="#wepy-cli-命令" class="headerlink" title="wepy-cli 命令"></a>wepy-cli 命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 根据生成一个新项目</span></span><br><span class="line">init [options] &lt;template-name&gt; [project-name]</span><br><span class="line">		</span><br><span class="line">    -c --<span class="built_in">clone</span>  use git <span class="built_in">clone</span></span><br><span class="line">    --offline   use cached template</span><br><span class="line">    -h, --<span class="built_in">help</span>  output usage information</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建项目</span></span><br><span class="line">build [options]</span><br><span class="line">		-f, --file &lt;file&gt;      待编译wpy文件</span><br><span class="line">    -s, --<span class="built_in">source</span> &lt;<span class="built_in">source</span>&gt;  源码目录</span><br><span class="line">    -t, --target &lt;target&gt;  生成代码目录</span><br><span class="line">    -o, --output &lt;<span class="built_in">type</span>&gt;    编译类型：web，weapp。默认为weapp</span><br><span class="line">    -p, --platform &lt;<span class="built_in">type</span>&gt;  编译平台：browser, wechat，qq。默认为browser</span><br><span class="line">    -w, --watch            监听文件改动</span><br><span class="line">    --no-cache             对于引用到的文件，即使无改动也会再次编译</span><br><span class="line">    -h, --<span class="built_in">help</span>             output usage information</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出可用的官方模板</span></span><br><span class="line">list [options]</span><br><span class="line">		</span><br><span class="line">		-g, --github  list all registered github projects</span><br><span class="line">    -h, --<span class="built_in">help</span>    output usage information</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新至最新版</span></span><br><span class="line">upgrade [options]</span><br><span class="line"></span><br><span class="line">		--cli   upgrade wepy-cli</span><br><span class="line">    --wepy  upgrade wepy</span><br><span class="line">    -h, --<span class="built_in">help</span>  output usage information</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="wepy-文件结构"><a href="#wepy-文件结构" class="headerlink" title="wepy 文件结构"></a><code>wepy</code> 文件结构</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── dist                   小程序运行代码目录（该目录由WePY的build指令自动编译生成，请不要直接修改该目录下的文件）</span><br><span class="line">├── node_modules           </span><br><span class="line">├── src                    代码编写的目录（该目录为使用WePY后的开发目录）</span><br><span class="line">|   ├── components         WePY组件目录（组件不属于完整页面，仅供完整页面或其他组件引用）</span><br><span class="line">|   |   ├── com_a.wpy      可复用的WePY组件a</span><br><span class="line">|   |   └── com_b.wpy      可复用的WePY组件b</span><br><span class="line">|   ├── pages              WePY页面目录（属于完整页面）</span><br><span class="line">|   |   ├── index.wpy      index页面（经build后，会在dist目录下的pages目录生成index.js、index.json、index.wxml和index.wxss文件）</span><br><span class="line">|   |   └── other.wpy      other页面（经build后，会在dist目录下的pages目录生成other.js、other.json、other.wxml和other.wxss文件）</span><br><span class="line">|   └── app.wpy            小程序配置项（全局数据、样式、声明钩子等；经build后，会在dist目录下生成app.js、app.json和app.wxss文件）</span><br><span class="line">└── package.json           项目的package配置</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="wepy，为异步API启用Promise"><a href="#wepy，为异步API启用Promise" class="headerlink" title="wepy，为异步API启用Promise"></a>wepy，为异步API启用Promise</h4><p>修改 <code>app.wpy</code> 文件</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">super</span>()</span><br><span class="line">    <span class="comment">// 通过下面这一行代码，可以为异步的API，</span></span><br><span class="line">    <span class="comment">// 开启Promise功能，这样，异步API调用的结果，返回值是Promise对象</span></span><br><span class="line">    <span class="built_in">this</span>.use(<span class="string">&#x27;promisify&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="将页面的业务逻辑抽离到单独的-mixin-文件"><a href="#将页面的业务逻辑抽离到单独的-mixin-文件" class="headerlink" title="将页面的业务逻辑抽离到单独的 mixin 文件"></a>将页面的业务逻辑抽离到单独的 <code>mixin</code> 文件</h4><blockquote>
-<p>精简小程序页面的代码，将 <code>script</code> 中的业务逻辑抽离到对应的 <code>mixin</code> 文件中</p>
-</blockquote>
-<ul>
-<li>抽离的文件路径 <code>src -&gt; mixins -&gt; index.js</code></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> wepy <span class="keyword">from</span> <span class="string">&#x27;wepy&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">extens</span> <span class="title">wepy</span>.<span class="title">mixin</span> </span>&#123;</span><br><span class="line">  data = &#123;&#125;</span><br><span class="line">  methods = &#123;&#125;</span><br><span class="line">  computed = &#123;&#125;</span><br><span class="line">  onLoad() &#123;&#125;</span><br><span class="line">  <span class="comment">// ,..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>对应页面导入抽离出去的 <code>js</code> 文件</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> wepy <span class="keyword">from</span> <span class="string">&#x27;wepy&#x27;</span></span></span><br><span class="line"><span class="javascript"><span class="comment">// 1. 导入js，@为 src 层的绝对路径</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> mix <span class="keyword">from</span> <span class="string">&#x27;@/mixins/index.js&#x27;</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">wepy</span>.<span class="title">page</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 2. 导入并挂载</span></span></span><br><span class="line">  mixins = [mix]</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>异步函数中更新数据的时候需要手动触发渲染 <code>this.$apply()</code></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://tencent.github.io/wepy">小程序框架 - WePY</a></p>
-<p><a href="https://tencent.github.io/wepy/document.html#/./doc.cli?id=%e4%bd%bf%e7%94%a8-usage">wepy-cli</a></p>
-<p><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html">小程序文档</a></p>
-<p><a href="https://gitee.com/koler778/hmugo">黑马优购项目</a></p>
-]]></content>
-      <categories>
-        <category>总结</category>
-      </categories>
-      <tags>
-        <tag>项目总结</tag>
-        <tag>微信</tag>
-        <tag>wepy</tag>
-        <tag>小程序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>年度总结 2020-2021.04</title>
-    <url>/2021/04/18/%E6%80%BB%E7%BB%93/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%932020-2021-04/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-
-<p><strong>虽然总结会迟到，但绝不会缺席。</strong></p>
-<blockquote>
-<p>最近一直忙于春招和准备论文，博客已经有个把个月没有更了，趁着现在刚好有空，来回顾下一年来的收获与感想。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>总结</category>
-      </categories>
-      <tags>
-        <tag>总结</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>春招记录</title>
-    <url>/2021/02/06/%E6%80%BB%E7%BB%93/%E6%98%A5%E6%8B%9B%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="微店"><a href="#微店" class="headerlink" title="微店"></a>微店</h2><h3 id="一面电面（25min-左右）"><a href="#一面电面（25min-左右）" class="headerlink" title="一面电面（25min 左右）"></a>一面电面（25min 左右）</h3><blockquote>
-<p>面了不到半个小时，我以为凉了，，，没想到中午约二面了</p>
-</blockquote>
-<ul>
-<li>自我介绍</li>
-<li>ES 6 class 继承怎么理解</li>
-<li>深浅拷贝</li>
-<li>实现深拷贝思路</li>
-<li>如何判断函数、对象</li>
-<li>从 url 输入一个地址到页面渲染经历了什么</li>
-<li>https 建立过程</li>
-<li>浏览器如何渲染页面，渲染过程（之前这里说的不够详细）</li>
-<li>http 缓存（协商缓存少说一个，尴尬）</li>
-<li>强缓存返回 http code 是多少，协商缓存返回的 http code 是多少</li>
-<li>http 2.0 聊一下</li>
-<li>自己实现一个脚手架，你觉得需要考虑什么</li>
-<li>webpack 的 loader 和 plugin有自己写过，去了解它的原理吗</li>
-<li>总结自己，竞争前端岗位，你觉得自己有哪些优势</li>
-</ul>
-<h3 id="二面视频面（40min）"><a href="#二面视频面（40min）" class="headerlink" title="二面视频面（40min）"></a>二面视频面（40min）</h3><blockquote>
-<p>基本毫无准备，一天面两次，还是有点累的。</p>
-<p>话说面试感觉面试官怕我是过来练手的，太难了。</p>
-</blockquote>
-<ul>
-<li>自我介绍</li>
-<li>介绍目前正在做的项目，在项目中负责的部分</li>
-<li>项目中遇到的困难</li>
-<li>栈和堆有什么区别</li>
-<li>有没有深入了解过 Vue，了解的 Vue 原理有哪些</li>
-<li>从 url 输入一个地址到页面渲染经历了什么</li>
-<li>知道的 HTTP 请求头有哪些</li>
-<li>referer 知道是什么吗</li>
-<li>什么是跨域，如何解决</li>
-<li>浏览器本地缓存有什么，localStorage、sessionStorage、cookie 区别</li>
-<li>cookie 不能使用 js 获取或设置吗（上一题说区别时候，说cookie 一般只在服务端调用就被问了）</li>
-<li>cookie 有什么字段，http-only 作用是什么</li>
-<li>ts 中对 装饰器 Decorators 怎么理解</li>
-<li>垂直居中布局</li>
-<li>px、rpx、em、rem、vw/vh 区别</li>
-<li>有没有关注新技术的发展</li>
-<li>聊一下什么是微前端（上一个问题，我提到了一嘴，就被问了）</li>
-<li>场景题，移动端一个商品搜索结果页面，如果数据过大，怎么解决？（其实这里没有 get 到面试官想问的点，所以我就大概提了下服务端渲染和分页）</li>
-<li>还能怎么解决，导致前端卡顿，怎么优化（长列表怎么优化，滑动窗口）</li>
-<li>服务端渲染是什么</li>
-<li>AST 有没有听过</li>
-<li>你觉得自己竞争有什么优缺点</li>
-<li>反问阶段</li>
-</ul>
-]]></content>
-      <categories>
-        <category>总结</category>
-      </categories>
-      <tags>
-        <tag>interview</tag>
-      </tags>
   </entry>
   <entry>
     <title>[每周] 第一期</title>
-    <url>/2019/01/26/%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%80%E6%9C%9F/</url>
+    <url>/2019/01/26/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%80%E6%9C%9F/</url>
     <content><![CDATA[<blockquote>
 <p>webpack 常用命令</p>
 <ul>
@@ -4886,7 +5377,7 @@
   </entry>
   <entry>
     <title>[每周] 第二期</title>
-    <url>/2019/01/28/%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E6%9C%9F/</url>
+    <url>/2019/01/28/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E6%9C%9F/</url>
     <content><![CDATA[<p>本周总结：</p>
 <ul>
 <li>Yarn 学习</li>
@@ -5009,30 +5500,155 @@
       </tags>
   </entry>
   <entry>
-    <title>[项目] 毕设-报名系统总结</title>
-    <url>/2020/10/19/%E6%80%BB%E7%BB%93/%E6%AF%95%E8%AE%BE%E9%A1%B9%E7%9B%AE-%E8%80%83%E8%AF%95%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>内容待添加</p>
+    <title>get和post区别</title>
+    <url>/2021/04/21/%E7%AE%80%E5%8D%95%E8%81%8A/get%E5%92%8Cpost%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+</ul>
+<p>额外可以聊</p>
+<ul>
+<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
+<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
+</ul>
+<p><a href="https://www.zhihu.com/question/28586791/answer/767316172">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎</a></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>https握手过程</title>
+    <url>/2021/04/21/%E7%AE%80%E5%8D%95%E8%81%8A/https%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
+<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
+<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
+<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
+<li>服务端使用自己的私钥，对随机数进行解密。</li>
+<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
+</ul>
+<p>细节</p>
+<ul>
+<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
+</ul>
+<p><a href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">图解SSL/TLS协议</a></p>
+<p><a href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">SSL/TLS协议运行机制的概述</a></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/2021/03/06/%E7%AE%80%E5%8D%95%E8%81%8A/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>HTTP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
 <a id="more"></a>
 
 
 
-
-
-<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="组件封装"><a href="#组件封装" class="headerlink" title="组件封装"></a>组件封装</h3><h3 id="常用功能封装"><a href="#常用功能封装" class="headerlink" title="常用功能封装"></a>常用功能封装</h3><h3 id="请求接口-api-封装"><a href="#请求接口-api-封装" class="headerlink" title="请求接口 api 封装"></a>请求接口 <code>api</code> 封装</h3><h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><ul>
-<li>引入cdn加速 公共库</li>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>春招面经</title>
+    <url>/2021/02/06/%E7%AE%80%E5%8D%95%E8%81%8A/%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/</url>
+    <content><![CDATA[<blockquote>
+<p>更多面经请移步：<a href="https://www.nowcoder.com/profile/464647589/myDiscussPost">https://www.nowcoder.com/profile/464647589/myDiscussPost</a></p>
+</blockquote>
+<h2 id="微店"><a href="#微店" class="headerlink" title="微店"></a>微店</h2><h3 id="一面电面（25min-左右）"><a href="#一面电面（25min-左右）" class="headerlink" title="一面电面（25min 左右）"></a>一面电面（25min 左右）</h3><blockquote>
+<p>面了不到半个小时，我以为凉了，，，没想到中午约二面了</p>
+</blockquote>
+<ul>
+<li>自我介绍</li>
+<li>ES 6 class 继承怎么理解</li>
+<li>深浅拷贝</li>
+<li>实现深拷贝思路</li>
+<li>如何判断函数、对象</li>
+<li>从 url 输入一个地址到页面渲染经历了什么</li>
+<li>https 建立过程</li>
+<li>浏览器如何渲染页面，渲染过程（之前这里说的不够详细）</li>
+<li>http 缓存（协商缓存少说一个，尴尬）</li>
+<li>强缓存返回 http code 是多少，协商缓存返回的 http code 是多少</li>
+<li>http 2.0 聊一下</li>
+<li>自己实现一个脚手架，你觉得需要考虑什么</li>
+<li>webpack 的 loader 和 plugin有自己写过，去了解它的原理吗</li>
+<li>总结自己，竞争前端岗位，你觉得自己有哪些优势</li>
+</ul>
+<h3 id="二面视频面（40min）"><a href="#二面视频面（40min）" class="headerlink" title="二面视频面（40min）"></a>二面视频面（40min）</h3><blockquote>
+<p>基本毫无准备，一天面两次，还是有点累的。</p>
+<p>话说面试感觉面试官怕我是过来练手的，太难了。</p>
+</blockquote>
+<ul>
+<li>自我介绍</li>
+<li>介绍目前正在做的项目，在项目中负责的部分</li>
+<li>项目中遇到的困难</li>
+<li>栈和堆有什么区别</li>
+<li>有没有深入了解过 Vue，了解的 Vue 原理有哪些</li>
+<li>从 url 输入一个地址到页面渲染经历了什么</li>
+<li>知道的 HTTP 请求头有哪些</li>
+<li>referer 知道是什么吗</li>
+<li>什么是跨域，如何解决</li>
+<li>浏览器本地缓存有什么，localStorage、sessionStorage、cookie 区别</li>
+<li>cookie 不能使用 js 获取或设置吗（上一题说区别时候，说cookie 一般只在服务端调用就被问了）</li>
+<li>cookie 有什么字段，http-only 作用是什么</li>
+<li>ts 中对 装饰器 Decorators 怎么理解</li>
+<li>垂直居中布局</li>
+<li>px、rpx、em、rem、vw/vh 区别</li>
+<li>有没有关注新技术的发展</li>
+<li>聊一下什么是微前端（上一个问题，我提到了一嘴，就被问了）</li>
+<li>场景题，移动端一个商品搜索结果页面，如果数据过大，怎么解决？（其实这里没有 get 到面试官想问的点，所以我就大概提了下服务端渲染和分页）</li>
+<li>还能怎么解决，导致前端卡顿，怎么优化（长列表怎么优化，滑动窗口）</li>
+<li>服务端渲染是什么</li>
+<li>AST 有没有听过</li>
+<li>你觉得自己竞争有什么优缺点</li>
+<li>反问阶段</li>
 </ul>
 ]]></content>
       <categories>
-        <category>总结</category>
+        <category>简单聊</category>
       </categories>
       <tags>
-        <tag>Vue</tag>
+        <tag>面经</tag>
       </tags>
   </entry>
   <entry>
     <title>[面经] 秋招、实习面经</title>
-    <url>/2020/11/01/%E6%80%BB%E7%BB%93/%E7%A7%8B%E6%8B%9B%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/</url>
-    <content><![CDATA[<h2 id="个人校招面经"><a href="#个人校招面经" class="headerlink" title="个人校招面经"></a>个人校招面经</h2><blockquote>
+    <url>/2020/11/01/%E7%AE%80%E5%8D%95%E8%81%8A/%E7%A7%8B%E6%8B%9B%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/</url>
+    <content><![CDATA[<blockquote>
+<p>更多面经请移步：<a href="https://www.nowcoder.com/profile/464647589/myDiscussPost">https://www.nowcoder.com/profile/464647589/myDiscussPost</a></p>
+</blockquote>
+<h2 id="个人校招面经"><a href="#个人校招面经" class="headerlink" title="个人校招面经"></a>个人校招面经</h2><blockquote>
 <p>有些可能写的不全，没有及时总结（这是个坏习惯），有的只是总结了下个人回答的不太好的部分，仅供参考。</p>
 </blockquote>
 <a id="more"></a>
@@ -5231,85 +5847,7 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
         <category>总结</category>
       </categories>
       <tags>
-        <tag>面试总结</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>get和post区别</title>
-    <url>/2021/04/21/%E7%AE%80%E5%8D%95%E8%81%8A/get%E5%92%8Cpost%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<ul>
-<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
-<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
-<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
-<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
-<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
-<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
-<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
-<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
-<li>GET参数通过URL传递，POST放在Request body中。</li>
-</ul>
-<p>额外可以聊</p>
-<ul>
-<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
-<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
-</ul>
-<p><a href="https://www.zhihu.com/question/28586791/answer/767316172">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎</a></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>https握手过程</title>
-    <url>/2021/04/21/%E7%AE%80%E5%8D%95%E8%81%8A/https%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
-<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
-<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
-<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
-<li>服务端使用自己的私钥，对随机数进行解密。</li>
-<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
-</ul>
-<p>细节</p>
-<ul>
-<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
-</ul>
-<p><a href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">图解SSL/TLS协议</a></p>
-<p><a href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">SSL/TLS协议运行机制的概述</a></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>https</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从输入url到页面显示经过了什么</title>
-    <url>/2021/03/06/%E7%AE%80%E5%8D%95%E8%81%8A/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>HTTP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<a id="more"></a>
-
-
-
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>interview</tag>
+        <tag>面经</tag>
       </tags>
   </entry>
   <entry>
@@ -5332,6 +5870,69 @@ vue.$emit(&#39;msg&#39;, 1)</code></pre>
       </categories>
       <tags>
         <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-70.爬楼梯</title>
+    <url>/2020/11/08/%E7%AE%97%E6%B3%95/leetcode-%E7%88%AC%E6%A5%BC%E6%A2%AF/</url>
+    <content><![CDATA[<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p>注意：给定 n 是一个正整数。</p>
+<p>示例 1：</p>
+<p>输入： 2<br>输出： 2<br>解释： 有两种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶</li>
+<li>2 阶<br>示例 2：</li>
+</ol>
+<p>输入： 3<br>输出： 3<br>解释： 有三种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶 + 1 阶</li>
+<li>1 阶 + 2 阶</li>
+<li>2 阶 + 1 阶</li>
+</ol>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/climbing-stairs">https://leetcode-cn.com/problems/climbing-stairs</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<hr>
+<a id="more"></a>
+
+
+
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><blockquote>
+<p>实测，这个会超时</p>
+<p>时间复杂度：O(n^2)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">3</span>) <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">return</span> climbStairs(n<span class="number">-1</span>) + climbStairs(n<span class="number">-2</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="递归缓存（记忆化递归）"><a href="#递归缓存（记忆化递归）" class="headerlink" title="递归缓存（记忆化递归）"></a>递归缓存（记忆化递归）</h2><blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 递归缓存</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params <span class="type">&#123;Array&#125;</span> </span>steps </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairsMemo = <span class="function"><span class="keyword">function</span> (<span class="params">steps, n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (steps[n] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> steps[n]</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        steps[n] = n</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        steps[n] = climbStairsMemo(steps, n - <span class="number">1</span>) + climbStairsMemo(steps, n - <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> steps = <span class="keyword">new</span> <span class="built_in">Array</span>(n).fill(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> climbStairsMemo(steps, n)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> steps = []</span><br><span class="line">    steps[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    steps[<span class="number">2</span>] = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        steps[i] = steps[i<span class="number">-1</span>] + steps[i<span class="number">-2</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="动态规划优化版（斐波那契数列）"><a href="#动态规划优化版（斐波那契数列）" class="headerlink" title="动态规划优化版（斐波那契数列）"></a>动态规划优化版（斐波那契数列）</h2><blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(1)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> first = <span class="number">1</span>, second = <span class="number">2</span>, res = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>) <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        res = first + second</span><br><span class="line">        first = second</span><br><span class="line">        second = res</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
