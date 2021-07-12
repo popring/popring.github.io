@@ -3090,7 +3090,7 @@
   </entry>
   <entry>
     <title>linux实战技能100讲 笔记</title>
-    <url>/2021/07/02/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/</url>
+    <url>/2021/07/12/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>Linux入门时做的笔记， <code>shell</code> 相关笔记没有学完不全，以后有空继续学习。</p>
 <p>主要为常规的一些命令、压缩打包、权限等。</p>
 <a id="more"></a>
@@ -5558,7 +5558,7 @@
 <ul>
 <li>URL 解析</li>
 <li>DNS 解析</li>
-<li>HTTP 握手</li>
+<li>TCP 握手</li>
 <li>检查是否有缓存</li>
 <li>构建 DOM 树，解析 html</li>
 <li>构建 CSSOM</li>
