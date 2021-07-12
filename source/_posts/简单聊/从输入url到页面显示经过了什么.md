@@ -11,7 +11,7 @@ categories: 简单聊
 
 - URL 解析
 - DNS 解析
-- HTTP 握手
+- TCP 握手
 - 检查是否有缓存
 - 构建 DOM 树，解析 html
 - 构建 CSSOM

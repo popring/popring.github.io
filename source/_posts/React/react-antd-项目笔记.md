@@ -5,8 +5,7 @@ tags:
 - React
 - antd
 - 踩坑
-categories:
-- JavaScript
+categories: JavaScript
 ---
 
 > **Atwood 定律**

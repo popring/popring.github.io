@@ -4,8 +4,7 @@ date: 2020-02-07 15:51:33
 tags:
 - react
 - typescript
-categories:
-- JavaScript
+categories: JavaScript
 
 ---
 
