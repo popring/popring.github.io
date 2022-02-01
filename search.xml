@@ -3090,7 +3090,7 @@
   </entry>
   <entry>
     <title>linux实战技能100讲 笔记</title>
-    <url>/2022/02/01/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/</url>
+    <url>/2021/06/02/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>Linux入门时做的笔记， <code>shell</code> 相关笔记没有学完不全，以后有空继续学习。</p>
 <p>主要为常规的一些命令、压缩打包、权限等。</p>
 <a id="more"></a>
@@ -3513,22 +3513,12 @@
 </li>
 <li><p>启动后执行一下命令，重新挂载一下根目录</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mount -o remount,rw /sysroot</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><p>继续执行 </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chroot /sysroot</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
-</ul>
-<ul>
 <li><p>然后就可以修改密码了(<code>password</code> 为修改后的密码)</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> password | passwd --stdin root</span><br></pre></td></tr></table></figure>
 </li>
@@ -3540,9 +3530,6 @@
 </li>
 <li><p>然后退出重启就可以按照刚才设置的root用户进行登录了。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">rebooot</span><br></pre></td></tr></table></figure>
-
-
-
 
 </li>
 </ul>
@@ -3570,12 +3557,8 @@
 <h3 id="管道与重定向"><a href="#管道与重定向" class="headerlink" title="管道与重定向"></a>管道与重定向</h3><h4 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h4><p><code>|</code> : 讲两个命令分隔开，将前一个的输出传入到第二个命令的输入。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查找当前文件夹内的 .txt 后缀的文件</span></span><br><span class="line">ls -l | grep .txt</span><br></pre></td></tr></table></figure>
 
-
-
 <h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>输入重定向 <code>&lt;</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将 text.txt 文件内的内容赋值给 var 变量</span></span><br><span class="line"><span class="built_in">read</span> var &lt; text.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过本命令查看是否赋值成功</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$var</span></span><br></pre></td></tr></table></figure>
-
-
 
 <p>输出重定向 <code>&gt;</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将 123 输出到 a.txt 文件内</span></span><br><span class="line"><span class="built_in">echo</span> 123 &gt; a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 123 追加到 a.txt 文件内</span></span><br><span class="line"><span class="built_in">echo</span> 123 &gt;&gt; a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 错误内容 输出到 a.txt</span></span><br><span class="line">ak 2&gt; a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 无论正确还是错误，都输出到 a.txt</span></span><br><span class="line">ls -l &amp;&gt; a.txt</span><br></pre></td></tr></table></figure>
@@ -3618,28 +3601,20 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ipts=(10.0.0.1 10.0.0.2 10.0.0.3)</span><br></pre></td></tr></table></figure>
 
-
-
 <ul>
 <li>显示数组所有元素</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;ipts[@]&#125;</span></span><br></pre></td></tr></table></figure>
-
-
 
 <ul>
 <li>显示数组元素个数</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#ipts[@]&#125;</span></span><br></pre></td></tr></table></figure>
 
-
-
 <ul>
 <li>显示数组的第一个元素</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;ipts[0]&#125;</span></span><br></pre></td></tr></table></figure>
-
-
 
 <h4 id="转义和引用"><a href="#转义和引用" class="headerlink" title="转义和引用"></a>转义和引用</h4><blockquote>
 <p>一个字符不仅有字面意义，还有元意(meta-meaning)</p>

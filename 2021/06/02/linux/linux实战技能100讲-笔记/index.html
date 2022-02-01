@@ -23,7 +23,7 @@
   <meta name="description" content="Linux入门时做的笔记， shell 相关笔记没有学完不全，以后有空继续学习。 主要为常规的一些命令、压缩打包、权限等。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux实战技能100讲 笔记">
-<meta property="og:url" content="https://popring.github.io/2022/02/01/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://popring.github.io/2021/06/02/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="popring&#39;s Blog">
 <meta property="og:description" content="Linux入门时做的笔记， shell 相关笔记没有学完不全，以后有空继续学习。 主要为常规的一些命令、压缩打包、权限等。">
 <meta property="og:locale" content="zh_CN">
@@ -33,14 +33,14 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821160012.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821160321.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821161107.png">
-<meta property="article:published_time" content="2022-02-01T15:01:10.491Z">
-<meta property="article:modified_time" content="2022-02-01T15:01:10.491Z">
+<meta property="article:published_time" content="2021-06-02T12:35:00.000Z">
+<meta property="article:modified_time" content="2022-02-01T15:03:19.961Z">
 <meta property="article:author" content="popring">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200819154222.png">
 
-<link rel="canonical" href="https://popring.github.io/2022/02/01/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="https://popring.github.io/2021/06/02/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
@@ -242,7 +242,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2022/02/01/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2021/06/02/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
@@ -265,8 +265,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-02-01 23:01:10" itemprop="dateCreated datePublished" datetime="2022-02-01T23:01:10+08:00">2022-02-01</time>
+              <time title="创建时间：2021-06-02 20:35:00" itemprop="dateCreated datePublished" datetime="2021-06-02T20:35:00+08:00">2021-06-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-01 23:03:19" itemprop="dateModified" datetime="2022-02-01T23:03:19+08:00">2022-02-01</time>
+              </span>
 
           
   
@@ -277,8 +284,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2022/02/01/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/02/01/linux/linux实战技能100讲-笔记/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2021/06/02/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/06/02/linux/linux实战技能100讲-笔记/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -715,22 +722,12 @@
 </li>
 <li><p>启动后执行一下命令，重新挂载一下根目录</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -o remount,rw /sysroot</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><p>继续执行 </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot /sysroot</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
-</ul>
-<ul>
 <li><p>然后就可以修改密码了(<code>password</code> 为修改后的密码)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> password | passwd --stdin root</span><br></pre></td></tr></table></figure>
 </li>
@@ -742,9 +739,6 @@
 </li>
 <li><p>然后退出重启就可以按照刚才设置的root用户进行登录了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">rebooot</span><br></pre></td></tr></table></figure>
-
-
-
 
 </li>
 </ul>
@@ -772,12 +766,8 @@
 <h3 id="管道与重定向"><a href="#管道与重定向" class="headerlink" title="管道与重定向"></a>管道与重定向</h3><h4 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h4><p><code>|</code> : 讲两个命令分隔开，将前一个的输出传入到第二个命令的输入。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找当前文件夹内的 .txt 后缀的文件</span></span><br><span class="line">ls -l | grep .txt</span><br></pre></td></tr></table></figure>
 
-
-
 <h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>输入重定向 <code>&lt;</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将 text.txt 文件内的内容赋值给 var 变量</span></span><br><span class="line"><span class="built_in">read</span> var &lt; text.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过本命令查看是否赋值成功</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$var</span></span><br></pre></td></tr></table></figure>
-
-
 
 <p>输出重定向 <code>&gt;</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将 123 输出到 a.txt 文件内</span></span><br><span class="line"><span class="built_in">echo</span> 123 &gt; a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 123 追加到 a.txt 文件内</span></span><br><span class="line"><span class="built_in">echo</span> 123 &gt;&gt; a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 错误内容 输出到 a.txt</span></span><br><span class="line">ak 2&gt; a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 无论正确还是错误，都输出到 a.txt</span></span><br><span class="line">ls -l &amp;&gt; a.txt</span><br></pre></td></tr></table></figure>
@@ -820,28 +810,20 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipts=(10.0.0.1 10.0.0.2 10.0.0.3)</span><br></pre></td></tr></table></figure>
 
-
-
 <ul>
 <li>显示数组所有元素</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;ipts[@]&#125;</span></span><br></pre></td></tr></table></figure>
-
-
 
 <ul>
 <li>显示数组元素个数</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#ipts[@]&#125;</span></span><br></pre></td></tr></table></figure>
 
-
-
 <ul>
 <li>显示数组的第一个元素</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;ipts[0]&#125;</span></span><br></pre></td></tr></table></figure>
-
-
 
 <h4 id="转义和引用"><a href="#转义和引用" class="headerlink" title="转义和引用"></a>转义和引用</h4><blockquote>
 <p>一个字符不仅有字面意义，还有元意(meta-meaning)</p>
@@ -875,10 +857,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/01/02/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/2021%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="prev" title="2021年度总结">
-      <i class="fa fa-chevron-left"></i> 2021年度总结
+    <a href="/2021/05/02/%E7%AE%80%E5%8D%95%E8%81%8A/%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0%E5%92%8C%E9%9D%9E%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0/" rel="prev" title="可替换元素和不可替换元素">
+      <i class="fa fa-chevron-left"></i> 可替换元素和不可替换元素
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/02/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/2020%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="next" title="2020年度总结">
+      2020年度总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -1095,8 +1080,8 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://popring.github.io/2022/02/01/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/";
-    this.page.identifier = "2022/02/01/linux/linux实战技能100讲-笔记/";
+    this.page.url = "https://popring.github.io/2021/06/02/linux/linux%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD100%E8%AE%B2-%E7%AC%94%E8%AE%B0/";
+    this.page.identifier = "2021/06/02/linux/linux实战技能100讲-笔记/";
     this.page.title = "linux实战技能100讲 笔记";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
