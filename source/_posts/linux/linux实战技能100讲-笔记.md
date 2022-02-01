@@ -1,9 +1,8 @@
 ---
 title: linux实战技能100讲 笔记
+date: 2021-06-02 20:35:00
 tags: linux
 ---
-
-
 
 Linux入门时做的笔记， `shell` 相关笔记没有学完不全，以后有空继续学习。
 
@@ -18,25 +17,23 @@ Linux入门时做的笔记， `shell` 相关笔记没有学完不全，以后有
 - info
 - 网络资源
 
-
-
 ## 系统操作
 
-| command | description                                                  |
-| ------- | ------------------------------------------------------------ |
+| command | description                                                                   |
+| ------- | ----------------------------------------------------------------------------- |
 | ls      | 查看当前文件夹目录，`-l` 长格式显示， `-a`显示隐藏文件， `-r`逆序显示， `-t`按时间顺序显示， `-R`递归显示，`-h` 文件大小单位 |
-| cd      | 切换目录                                                     |
-| pwd     | 显示当前目录名称                                             |
-| mkdir   | 创建文件夹                                                   |
-| rmdir   | 删除空目录                                                   |
-| rm      | `-r` 删除非空目录 `-f` 强制删除不提示                        |
-| cp      | 复制文件, `-p` 保留原来的修改时间，`-a`保留权限，`-r` 复制目录 |
-| mv      | 移动文件                                                     |
-| touch   | 创建文件                                                     |
-| cat     | 查看文件                                                     |
-| head    | 查看文件头                                                   |
-| tail    | 查看文件尾                                                   |
-| wc      | 统计统计文件信息                                             |
+| cd      | 切换目录                                                                          |
+| pwd     | 显示当前目录名称                                                                      |
+| mkdir   | 创建文件夹                                                                         |
+| rmdir   | 删除空目录                                                                         |
+| rm      | `-r` 删除非空目录 `-f` 强制删除不提示                                                      |
+| cp      | 复制文件, `-p` 保留原来的修改时间，`-a`保留权限，`-r` 复制目录                                       |
+| mv      | 移动文件                                                                          |
+| touch   | 创建文件                                                                          |
+| cat     | 查看文件                                                                          |
+| head    | 查看文件头                                                                         |
+| tail    | 查看文件尾                                                                         |
+| wc      | 统计统计文件信息                                                                      |
 
 ### 通配符
 
@@ -44,20 +41,18 @@ Linux入门时做的笔记， `shell` 相关笔记没有学完不全，以后有
 
 - `*` 匹配任何字符串串
 - `?` 匹配1个字符串串
--  `[xyz]` 匹配xyz任意⼀一个字符 [a-z] 匹配⼀一个范围
--  `[!xyz]` 或 `[^xyz]`  不不匹配
-
-
+- `[xyz]` 匹配xyz任意⼀一个字符 [a-z] 匹配⼀一个范围
+- `[!xyz]` 或 `[^xyz]`  不不匹配
 
 ### 打包解压缩
 
 > 常用压缩格式为 `.tar.gz .tar.bz2 .tgz`
 
-| command | descrption                 |
-| ------- | -------------------------- |
-| tar     | `c` 打包                   |
-|         | `x` 解包                   |
-|         | `f` 指定操作类型为文件     |
+| command | descrption         |
+| ------- | ------------------ |
+| tar     | `c` 打包             |
+|         | `x` 解包             |
+|         | `f` 指定操作类型为文件      |
 |         | `z` gzip 格式压缩和解压缩  |
 |         | `j` bzip2 格式压缩和解压缩 |
 
@@ -66,28 +61,28 @@ Linux入门时做的笔记， `shell` 相关笔记没有学完不全，以后有
 #### 用户管理相关命令
 
 > 添加用户之后会产生几个目录或添加文件内容等，比如添加wilson
->
+> 
 > - `/home/wilson`
 > - `/etc/passwd`，会添加 `wilson` 相关信息
 > - `/etc/shadow`，和密码相关
 
-| command  | description                       |
-| -------- | --------------------------------- |
-| useradd  | 添加用户, `-g` 指定用户组         |
-| id       | 查看用户信息                      |
-| passwd   | 修改用户密码                      |
+| command  | description         |
+| -------- | ------------------- |
+| useradd  | 添加用户, `-g` 指定用户组    |
+| id       | 查看用户信息              |
+| passwd   | 修改用户密码              |
 | userdel  | 删除用户，`-r` 删除包括用户的数据 |
-| usermod  | 修改⽤用户属性，`-g` 修改用户组   |
-| chage    | 修改⽤用户属性                    |
-| groupadd | 添加用户组                        |
-| groupdel | 删除用户组                        |
+| usermod  | 修改⽤用户属性，`-g` 修改用户组  |
+| chage    | 修改⽤用户属性             |
+| groupadd | 添加用户组               |
+| groupdel | 删除用户组               |
 
 #### 用户切换
 
-| command | description                      |
-| ------- | -------------------------------- |
-| su      | 切换用户                         |
-| sudo    | 赋予普通用户执行管理员命令       |
+| command | description          |
+| ------- | -------------------- |
+| su      | 切换用户                 |
+| sudo    | 赋予普通用户执行管理员命令        |
 | visudo  | 设置需要使⽤用 sudo 的⽤用户(组) |
 
 #### 用户配置文件
@@ -138,8 +133,6 @@ group1:x:1003:
 ### 文件权限
 
 ![image-20200819162242107](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200819162242.png)
-
-
 
 #### 文件类型
 
@@ -207,8 +200,6 @@ chown user1:group1 afile.txt
 - SUID：⽤于二进制可执⾏文件，执⾏命令时取文件属主权限
 - SGID：⽤于目录，在该⽬录下创建新的⽂件和⽬录，权限自动更改为该目录的属组
 - SBIT：⽤于目录，该目录下新建的文件和目录，仅 root 和⾃己可以删除
-
-
 
 ## 系统管理
 
@@ -290,11 +281,11 @@ ifdown <接口>
 
 ![image-20200821154942269](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821154942.png)
 
-| command | description     |
-| ------- | --------------- |
-| rpm     | `-q` 查询软件包 |
-|         | `-i` 安装软件包 |
-|         | `-e` 卸载软件包 |
+| command | description |
+| ------- | ----------- |
+| rpm     | `-q` 查询软件包  |
+|         | `-i` 安装软件包  |
+|         | `-e` 卸载软件包  |
 
 #### yum仓库
 
@@ -350,95 +341,83 @@ curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos
 
 ##### yum 命令
 
-| command | description                   |
-| ------- | ----------------------------- |
-| yum     | `install` 安装软件包          |
-|         | `remove` 卸载软件包           |
-|         | `list | grouplist` 查看软件包 |
-|         | `update` 升级软件包           |
-
-
+| command | description     |
+| ------- | --------------- |
+| yum     | `install` 安装软件包 |
+|         | `remove` 卸载软件包  |
+|         | `list           |
+|         | `update` 升级软件包  |
 
 #### 升级内核
 
-| command                     | description                  |
-| --------------------------- | ---------------------------- |
-| `uname -r`                  | 查看内核版本                 |
-| `yum install kernel-3.10.0` | 升级内核版本                 |
+| command                     | description    |
+| --------------------------- | -------------- |
+| `uname -r`                  | 查看内核版本         |
+| `yum install kernel-3.10.0` | 升级内核版本         |
 | `yum update`                | 升级已安装的其他软件包和补丁 |
-
-
 
 #### grub 配置文件
 
 - grub 配置文件
+  
   - /etc/default/grub
   - /etc/grub.d/
   - /boot/grub2/grub.cfg
   - grub2-mkconfig -0 /boot/grub2/grub.cfg
 
 - 使用单用户进入系统(忘记root密码)
-
+  
   ![image-20200821160012669](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821160012.png)
-
+  
   - 第一步，开机时选择内核这里选择合适的内核，光标停留，按 `e` 选择
-
+  
   - 第二步，修改 `grub` 启动信息。（光标后的信息是没有的，需要自己手动添加，centos6 为 `single`，centos7.8 `rd.break`），然后按照指示 `ctrl+x` 来启动
-
+    
     ![image-20200821160321084](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821160321.png)
-
+  
   - 启动后执行一下命令，重新挂载一下根目录
-
+    
     ```bash
     mount -o remount,rw /sysroot
     ```
 
-    
+- 继续执行 
+  
+  ```bash
+  chroot /sysroot
+  ```
 
-  - 继续执行 
+- 然后就可以修改密码了(`password` 为修改后的密码)
+  
+  ```bash
+  echo password | passwd --stdin root
+  ```
 
-    ```bash
-    chroot /sysroot
-    ```
+- 可能还会有SELinux进行监测，暂时性关闭
+  
+  ```bash
+  vi /etc/selinux/config
+  ```
+  
+  ![image-20200821161107110](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821161107.png)
+  
+  设置为 `SELINUX=disabled`
 
-    
-
-  - 然后就可以修改密码了(`password` 为修改后的密码)
-
-    ```bash
-    echo password | passwd --stdin root
-    ```
-
-  - 可能还会有SELinux进行监测，暂时性关闭
-
-    ```bash
-    vi /etc/selinux/config
-    ```
-
-    ![image-20200821161107110](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200821161107.png)
-
-    设置为 `SELINUX=disabled`
-
-  - 然后退出重启就可以按照刚才设置的root用户进行登录了。
-
-    ```bash
-    exit
-    
-    rebooot
-    ```
-
-
-
+- 然后退出重启就可以按照刚才设置的root用户进行登录了。
+  
+  ```bash
+  exit
+  
+  rebooot
+  ```
 
 ## shell
 
 > Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。
->
+> 
 > Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。
->
+> 
 > Ken Thompson 的 sh 是第一种 Unix Shell，Windows Explorer 是一个典型的图形界面 Shell。
-
-
 
 查看 `shell` 类型
 
@@ -455,7 +434,7 @@ BIOS -> MBR -> BootLoader(grub) -> kernel -> systemd(initd) -> 系统初始化 -
 ### shell 脚本格式
 
 - UNIX 哲学：一条命令只做一件事
--  为了组合命令和多次执行，使用脚本文件来保存需要执行的命令
+- 为了组合命令和多次执行，使用脚本文件来保存需要执行的命令
 - 赋予该文件执行权限（chmod u+rx filename）
   - 二进制文件 给个 x 权限（可执行）即可
   - shell 脚本需要 rx 权限（可读可执行）
@@ -473,8 +452,6 @@ BIOS -> MBR -> BootLoader(grub) -> kernel -> systemd(initd) -> 系统初始化 -
 ls -l | grep .txt
 ```
 
-
-
 #### 重定向
 
 输入重定向 `<`
@@ -486,8 +463,6 @@ read var < text.txt
 # 通过本命令查看是否赋值成功
 echo $var
 ```
-
-
 
 输出重定向 `>`
 
@@ -515,7 +490,7 @@ ls -l &> a.txt
 #### 赋值
 
 - 变量名=变量值
--  计算赋值`let a=10+20`
+- 计算赋值`let a=10+20`
 - 将命令赋值给变量 `l=ls`
 - 将命令结果赋值给变量 `letc=$(ls -l /etc)`
 
@@ -525,7 +500,7 @@ ls -l &> a.txt
 - `echo ${变量名}`
 - 省略写法为 `$变量名`
 
-#### 变量的引用范围 
+#### 变量的引用范围
 
 > 只在当前进程生效，不回影响到别的进程，巧用 source,  bash...
 
@@ -553,15 +528,11 @@ ls -l &> a.txt
 ipts=(10.0.0.1 10.0.0.2 10.0.0.3)
 ```
 
-
-
 - 显示数组所有元素
 
 ```bash
 echo ${ipts[@]}
 ```
-
-
 
 - 显示数组元素个数
 
@@ -569,15 +540,11 @@ echo ${ipts[@]}
 echo ${#ipts[@]}
 ```
 
-
-
 - 显示数组的第一个元素
 
 ```bash
 echo ${ipts[0]}
 ```
-
-
 
 #### 转义和引用
 
@@ -588,13 +555,8 @@ echo ${ipts[0]}
 - `\` 转义符号（`\r \n \t \$ \\ ...`）
 - `"` （完全引用，解释变量）和 `' ` 引号（不完全引用，不解释变量）
 
-
-
 #### 运算符
 
 - 赋值运算符 let "变量名=变量值" （简化为 双圆括号 `(( a=10))`）
 - 算数运算符 使用 `expr 4 + 5（只支持整数）`
 - 数字常量： 0开头八进制，0x十六进制
-
-
-
