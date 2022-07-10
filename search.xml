@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>公用翻墙代理-backup</title>
+    <url>/2022/07/10/%E5%85%AC%E7%94%A8%E7%BF%BB%E5%A2%99%E4%BB%A3%E7%90%86-backup/</url>
+    <content><![CDATA[<ol>
+<li><p>找到host文件位置，window下位置如图所示，mac下host位置 <code>/etc/hosts</code> 。</p>
+</li>
+<li><p>按照下图规则添加host记录</p>
+</li>
+<li><p>打开 <code>free-ss.site</code> 网站</p>
+</li>
+<li><p>V 账号 =&gt; v2ray，S账号 =&gt; shadowsocks</p>
+</li>
+<li><p>使用代理软件添加规则，Windows 下推荐 v2rayN，或者使用 Clash For windows 在win和mac下都可使用，然后就可以畅游网络世界了。</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/202207101608681.png"></p>
+]]></content>
+      <categories>
+        <category>vpn</category>
+      </categories>
+      <tags>
+        <tag>vpn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>好文推荐</title>
     <url>/2020/09/19/%E5%A5%BD%E6%96%87%E6%8E%A8%E8%8D%90/</url>
     <content><![CDATA[<h2 id="一些有趣的网站"><a href="#一些有趣的网站" class="headerlink" title="一些有趣的网站"></a>一些有趣的网站</h2><p><a href="https://skyline.github.com/popring/2020">Skyline</a> 可视化展示 <code>github</code> 提交记录</p>
