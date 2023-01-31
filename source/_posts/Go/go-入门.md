@@ -52,6 +52,14 @@ $env:GOPROXY = "https://goproxy.cn"
 
 
 
-## 参考
+## 相关Go资料
 
 [Goproxy 中国](https://goproxy.cn/)
+
+[Go语言101](https://gfw.go101.org/article/101.html)
+
+[Go官方语言规范 - 英文](https://go.dev/ref/spec#Introduction)：据说看完此文档，Go基本就入门了
+
+[Go by Example](https://gobyexample-cn.github.io/)：通过实践入门
+
+[7天用Go从零实现Web框架Gee教程](https://geektutu.com/post/gee.html)

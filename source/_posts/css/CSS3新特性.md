@@ -77,3 +77,6 @@ input {
 }
 ```
 
+## 链接
+
+[css 优先级计算](https://polypane.app/css-specificity-calculator)

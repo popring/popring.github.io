@@ -115,5 +115,8 @@ categories: linux
 
 ## 参考资料
 
-https://www.openvim.com/
+[openvim](https://www.openvim.com/): vim 入门教程
 
+[vim-adventures](https://vim-adventures.com/): vim 入门游戏
+
+[vimonlineeditor](https://www.vimonlineeditor.com/): 网页在线vim，本地无环境可尝试使用

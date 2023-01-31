@@ -560,3 +560,8 @@ echo ${ipts[0]}
 - 赋值运算符 let "变量名=变量值" （简化为 双圆括号 `(( a=10))`）
 - 算数运算符 使用 `expr 4 + 5（只支持整数）`
 - 数字常量： 0开头八进制，0x十六进制
+
+
+## 其他资料
+
+[bash-simple-guide-chinese](https://github.com/jpcr987i/bash-simple-guide-chinese)
