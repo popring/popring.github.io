@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105733.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105910.png">
 <meta property="article:published_time" content="2020-06-25T10:25:39.000Z">
-<meta property="article:modified_time" content="2022-07-10T08:25:56.952Z">
+<meta property="article:modified_time" content="2023-01-31T07:57:36.239Z">
 <meta property="article:author" content="popring">
 <meta property="article:tag" content="安全">
 <meta property="article:tag" content="盒模型">
@@ -273,7 +273,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-10 16:25:56" itemprop="dateModified" datetime="2022-07-10T16:25:56+08:00">2022-07-10</time>
+                <time title="修改时间：2023-01-31 15:57:36" itemprop="dateModified" datetime="2023-01-31T15:57:36+08:00">2023-01-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -321,14 +321,14 @@
 
 <a id="more"></a>
 
-<h3 id="css-盒模型"><a href="#css-盒模型" class="headerlink" title="css 盒模型"></a>css 盒模型</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width，height） */</span></span><br><span class="line"><span class="selector-tag">box-sizing</span> : <span class="selector-tag">content-box</span>;</span><br><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width - border - padding） */</span></span><br><span class="line"><span class="selector-tag">box-sizing</span> : <span class="selector-tag">border-box</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="css-盒模型"><a href="#css-盒模型" class="headerlink" title="css 盒模型"></a>css 盒模型</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width，height） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : content-box;</span><br><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width - border - padding） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : border-box;</span><br></pre></td></tr></table></figure>
 
 <p><strong>content-box</strong></p>
 <p>尺寸计算公式：</p>
 <p><code>width</code> = 内容的宽度</p>
 <p><code>height</code> = 内容的高度</p>
 <p>宽度和高度的计算值都不包含内容的边框（border）和内边距（padding）。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="tag"><span class="string">    width: 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">    height: 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">    background-color: blue;</span></span></span><br><span class="line"><span class="tag"><span class="string">    border: 1px solid red;</span></span></span><br><span class="line"><span class="tag"><span class="string">    box-sizing: content-box;</span></span></span><br><span class="line"><span class="tag"><span class="string">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div</span><br><span class="line">  style=&quot;</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background-color: blue;</span><br><span class="line">    border: 1px solid red;</span><br><span class="line">    box-sizing: content-box;</span><br><span class="line">  &quot;</span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105733.png" alt="image-20200625105733283"></p>
 <p>实际内容区域为 <code>100px</code> ，边框为 <code>1px</code> </p>
@@ -336,7 +336,7 @@
 <p>尺寸计算公式：</p>
 <p><em><code>width</code> = border + padding + 内容的宽度</em></p>
 <p><em><code>height</code> = border + padding + 内容的高度</em></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="tag"><span class="string">    width: 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">    height: 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">    background-color: blue;</span></span></span><br><span class="line"><span class="tag"><span class="string">    border: 1px solid red;</span></span></span><br><span class="line"><span class="tag"><span class="string">    box-sizing: border-box;</span></span></span><br><span class="line"><span class="tag"><span class="string">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div</span><br><span class="line">  style=&quot;</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background-color: blue;</span><br><span class="line">    border: 1px solid red;</span><br><span class="line">    box-sizing: border-box;</span><br><span class="line">  &quot;</span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105910.png" alt="image-20200625105909902"></p>
 <p>实际内容区域为 <code>98px</code> ，上下边框各为 <code>1px</code> </p>
@@ -397,10 +397,10 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://api.alice.com/cors&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">&#x27;PUT&#x27;</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(<span class="string">&#x27;X-Custom-Header&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
 
 <p>发送 <code>PUT</code> 请求，会先发送一个预检请求，内容如下</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">OPTIONS</span> <span class="string">/cors</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Origin</span>: http://api.bob.com // 请求域</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span>: PUT // 请求方法</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span>: X-Custom-Header // 请求头信息</span><br><span class="line"><span class="attribute">Host</span>: api.alice.com</span><br><span class="line"><span class="attribute">Accept-Language</span>: en-US</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0...</span><br></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">OPTIONS</span> <span class="string">/cors</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://api.bob.com // 请求域</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span><span class="punctuation">: </span>PUT // 请求方法</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span><span class="punctuation">: </span>X-Custom-Header // 请求头信息</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.alice.com</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0...</span><br></pre></td></tr></table></figure>
 
 <p>服务端如果确认，返回如下信息</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span>: Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line"><span class="attribute">Server</span>: Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span>: http://api.bob.com // 允许跨域地址</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span>: GET, POST, PUT // 允许跨域方法</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span>: X-Custom-Header // 支持首部列表</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Encoding</span>: gzip</span><br><span class="line"><span class="attribute">Content-Length</span>: 0</span><br><span class="line"><span class="attribute">Keep-Alive</span>: timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span>: Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span>: text/plain</span><br></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>http://api.bob.com // 允许跨域地址</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span><span class="punctuation">: </span>GET, POST, PUT // 允许跨域方法</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span><span class="punctuation">: </span>X-Custom-Header // 支持首部列表</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Encoding</span><span class="punctuation">: </span>gzip</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line"><span class="attribute">Keep-Alive</span><span class="punctuation">: </span>timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/plain</span><br></pre></td></tr></table></figure>
 
 <p>服务端如果否定了，返回一个正常的HTTP响应即可，但不包含跨域相关信息（此时，会触发<code>ajax</code>的 <code>onerror</code> 错误回调）</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://api.alice.com.</span><br><span class="line">Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.</span><br></pre></td></tr></table></figure>
@@ -561,7 +561,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -574,7 +574,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -620,7 +620,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

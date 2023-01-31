@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://res.wx.qq.com/wxdoc/dist/assets/img/page-lifecycle.2e646c86.png">
 <meta property="article:published_time" content="2019-08-26T02:19:19.000Z">
-<meta property="article:modified_time" content="2022-07-10T08:25:56.952Z">
+<meta property="article:modified_time" content="2023-01-31T07:57:36.235Z">
 <meta property="article:author" content="popring">
 <meta property="article:tag" content="微信">
 <meta property="article:tag" content="wepy">
@@ -270,7 +270,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-10 16:25:56" itemprop="dateModified" datetime="2022-07-10T16:25:56+08:00">2022-07-10</time>
+                <time title="修改时间：2023-01-31 15:57:36" itemprop="dateModified" datetime="2023-01-31T15:57:36+08:00">2023-01-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -391,7 +391,7 @@
 
 
 <h4 id="wepy，为异步API启用Promise"><a href="#wepy，为异步API启用Promise" class="headerlink" title="wepy，为异步API启用Promise"></a>wepy，为异步API启用Promise</h4><p>修改 <code>app.wpy</code> 文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">super</span>()</span><br><span class="line">    <span class="comment">// 通过下面这一行代码，可以为异步的API，</span></span><br><span class="line">    <span class="comment">// 开启Promise功能，这样，异步API调用的结果，返回值是Promise对象</span></span><br><span class="line">    <span class="built_in">this</span>.use(<span class="string">&#x27;promisify&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>()</span><br><span class="line">    <span class="comment">// 通过下面这一行代码，可以为异步的API，</span></span><br><span class="line">    <span class="comment">// 开启Promise功能，这样，异步API调用的结果，返回值是Promise对象</span></span><br><span class="line">    <span class="built_in">this</span>.use(<span class="string">&#x27;promisify&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -401,7 +401,7 @@
 <ul>
 <li>抽离的文件路径 <code>src -&gt; mixins -&gt; index.js</code></li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wepy <span class="keyword">from</span> <span class="string">&#x27;wepy&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">extens</span> <span class="title">wepy</span>.<span class="title">mixin</span> </span>&#123;</span><br><span class="line">  data = &#123;&#125;</span><br><span class="line">  methods = &#123;&#125;</span><br><span class="line">  computed = &#123;&#125;</span><br><span class="line">  onLoad() &#123;&#125;</span><br><span class="line">  <span class="comment">// ,..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wepy <span class="keyword">from</span> <span class="string">&#x27;wepy&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">extens</span> <span class="title">wepy</span>.<span class="title">mixin</span> </span>&#123;</span><br><span class="line">  data = &#123;&#125;</span><br><span class="line">  methods = &#123;&#125;</span><br><span class="line">  computed = &#123;&#125;</span><br><span class="line">  <span class="function"><span class="title">onLoad</span>(<span class="params"></span>)</span> &#123;&#125;</span><br><span class="line">  <span class="comment">// ,..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>对应页面导入抽离出去的 <code>js</code> 文件</li>
@@ -524,7 +524,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -537,7 +537,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -583,7 +583,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
