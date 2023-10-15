@@ -1,7 +1,7 @@
 ---
 title: setTimeout为什么会有延迟
 date: 2023-06-18 13:13:13
-tags: browser
+tags: [浏览器, 面试题]
 categories: 简单聊
 ---
 
