@@ -250,6 +250,233 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/04/27/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-10.%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/27/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-10.%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">C语言 第十章 文件操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-27 09:30:15" itemprop="dateCreated datePublished" datetime="2019-04-27T09:30:15+08:00">2019-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-Language/" itemprop="url" rel="index"><span itemprop="name">C Language</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/04/27/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-10.%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/27/C语言/C语言-10.第十章-文件操作/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="第十章-文件操作"><a href="#第十章-文件操作" class="headerlink" title="第十章 文件操作"></a>第十章 文件操作</h2><h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><h4 id="文本文件"><a href="#文本文件" class="headerlink" title="文本文件"></a>文本文件</h4><p>也称ASCII码文件，每字符占一个字节存储，每字节保存的是字符的ASCII码。可用文本编辑器打开查看，例如<code>.txt</code>、代码源程序<code>.c</code>、等等</p>
+<h4 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h4><p>以二进制编码的形式保存，例如可执行文件（<code>.exe</code>）、位图文件(<code>.bmp</code>)、word文件(<code>.docx</code>)等都属于二进制文件。这种文件不能用文本编辑器打开查看，强行打开会乱码，无法读懂。</p>
+<p><strong>优点</strong>：</p>
+<p>“全部看作二进制”，输入输出的开始和结束由程序控制而不受换行、空格等字符的限制；比文本文件一般体积小，节省存储空间。</p>
+<h3 id="文件的读写"><a href="#文件的读写" class="headerlink" title="文件的读写"></a>文件的读写</h3><h4 id="文件操作步骤"><a href="#文件操作步骤" class="headerlink" title="文件操作步骤"></a>文件操作步骤</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义文件指针</span></span><br><span class="line">FILE *fp;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开文件（使文件指针关联文件）</span></span><br><span class="line">fp = fopen(文件名，打开方式);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读写文件</span></span><br><span class="line"><span class="comment">// 通过调用系统库函数读写文件，函数中都需要一个文件指针参数fp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭文件（断开文件指针和文件的关联）</span></span><br><span class="line">fclose(fp);</span><br></pre></td></tr></table></figure>
+
+<h4 id="向文件写入字符串"><a href="#向文件写入字符串" class="headerlink" title="向文件写入字符串"></a>向文件写入字符串</h4><blockquote>
+<p>如果文件事先已经存在，则会被删除重；如不存在，则直接新建。</p>
+<p><code>fprintf()</code>为写入文件</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    fp = fopen(<span class="string">&quot;file.txt&quot;</span>,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="built_in">fprintf</span>(fp, <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    fclose(fp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="fopen-char-filename-char-mode"><a href="#fopen-char-filename-char-mode" class="headerlink" title="fopen(char *filename, char *mode)"></a><code>fopen(char *filename, char *mode)</code></h4><p><code>filename</code>：要打开的文件名称</p>
+<p><code>mode</code>：文件访问模式</p>
+<table>
+<thead>
+<tr>
+<th>mode</th>
+<th>introduce</th>
+<th>remark</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>r</code></td>
+<td>允许读文件（<code>read</code>）</td>
+<td>文件必须存在，否则出错</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>允许覆盖写文件(<code>write</code>)</td>
+<td>文件必须被新建（如文件已存在会删除源文件，然后新建）</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>允许追加写文件（<code>append</code>）</td>
+<td>文件不存在时才新建，否则只在源文件末尾添加数据</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>即允许读也允许写文件</td>
+<td></td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>以二进制格式打开文件（<code>binary</code>）</td>
+<td></td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>以文本格式打开文件（<code>text</code>）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="C语言常用文本文件读写函数"><a href="#C语言常用文本文件读写函数" class="headerlink" title="C语言常用文本文件读写函数"></a>C语言常用文本文件读写函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fgetc或getc</td>
+<td>从当前位置指针处读取文件中的一个字符（1个字符占1个字节），读取后，读写位置指针自动后移1字节</td>
+<td>字符变量=fgetc(fp);</td>
+</tr>
+<tr>
+<td>fputc或putc</td>
+<td>在当前位置指针处向文件中写入一个字符（1个字符占1个字节），写入后，读写位置指针自动后移1字节</td>
+<td>fputc(字符, fp);</td>
+</tr>
+<tr>
+<td>fgets</td>
+<td>读取文件中的一个字符串，读写位置指针自动后移</td>
+<td>fgets(字符数组名,   n, fp);</td>
+</tr>
+<tr>
+<td>fputs</td>
+<td>在当前位置指针处向文件中写入一个字符串（不写入’\0’字符，最后也不自动加’\n’）；写入后，位置指针自动后移该字符串长度的字节。</td>
+<td>fputs(字符串首地址,   fp);</td>
+</tr>
+<tr>
+<td>fscanf</td>
+<td>从当前位置指针处按格式读取文件中的多个数据，类似于scanf，只不过不是从键盘输入，而是从文件中读取；读取后，位置指针自动后移</td>
+<td>fscanf(fp,   “格式控制字符串”,   变量1的地址, 变量2的地址, …);</td>
+</tr>
+<tr>
+<td>fprintf</td>
+<td>在当前位置指针处按格式向文件中写入多个数据，类似于printf，只不过不是显示到屏幕上，而是写入到文件中；写入后，位置指针自动后移</td>
+<td>fprintf(fp,   “格式控制字符串”,   数据1, 数据2, …);</td>
+</tr>
+</tbody></table>
+<h3 id="C语言常用二进制文件读写函数"><a href="#C语言常用二进制文件读写函数" class="headerlink" title="C语言常用二进制文件读写函数"></a>C语言常用二进制文件读写函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fread</td>
+<td>从当前位置指针处读取文件中的一批字节，这批字节由count个数据块、每数据块长size个字节组成，共size*count个字节。所读取的字节存入参数buffer地址开始的一段内存空间。读取后，文件位置指针跟随后移实际读取的字节数。函数返回实际读取的数据块数（如读到文件尾或出错，实际读取的数据块数可能小于count）</td>
+<td>fread(buffer, size, count, fp);</td>
+</tr>
+<tr>
+<td>fwrite</td>
+<td>在当前位置指针处向文件中写入一批字节，这批字节位于内存中参数buffer地址开始的一段内存空间，由count个数据块、每数据块长size个字节组成，共size*count个字节。写入后，文件位置指针跟随后移实际写入的字节数。函数返回实际写入的数据块数（如写入出错，实际写入的数据块数可能小于count）</td>
+<td>fwrite(buffer, size, count, fp);</td>
+</tr>
+</tbody></table>
+<h3 id="C语言常用文件位置指针定位库函数"><a href="#C语言常用文件位置指针定位库函数" class="headerlink" title="C语言常用文件位置指针定位库函数"></a>C语言常用文件位置指针定位库函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rewind</td>
+<td>把文件位置指针移到文件开头</td>
+<td>rewind(fp);</td>
+</tr>
+<tr>
+<td>fseek</td>
+<td>把文件位置指针从ori开始的位置，向文件尾部(n&gt;0时)或文件首部(n&lt;0时)移动n个字节。ori可有3种取值：   0、1、2分别表示从文件首、当前位置和文件尾开始移动，   0、1、2也可分别写为符号常量SEEK_SET、SEEK_CUR、SEEK_END</td>
+<td>fseek(fp, n, ori);    一般n为long型，常量加字母后缀L(l)</td>
+</tr>
+<tr>
+<td>ftell</td>
+<td>若执行成功，函数返回当前文件位置指针的位置（文件中第一个字节的位置为0）；若执行失败，函数返回-1</td>
+<td>n = ftell(fp);</td>
+</tr>
+<tr>
+<td>feof</td>
+<td>判断读文件是否已越过了文件末尾</td>
+<td>if (feof(fp) )   …</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/03/30/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-9.%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -281,7 +508,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -461,7 +688,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -673,7 +900,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -886,7 +1113,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1106,7 +1333,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1228,7 +1455,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1361,7 +1588,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1470,7 +1697,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1677,7 +1904,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
+                <time title="修改时间：2023-11-06 14:24:27" itemprop="dateModified" datetime="2023-11-06T14:24:27+08:00">2023-11-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1994,105 +2221,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/03/10/%E6%8A%80%E6%9C%AF/%E5%85%A5%E9%97%A8git-%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
-      <meta itemprop="name" content="popring">
-      <meta itemprop="description" content="No description is best description.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="popring's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/10/%E6%8A%80%E6%9C%AF/%E5%85%A5%E9%97%A8git-%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">入门git-笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-03-10 13:32:49" itemprop="dateCreated datePublished" datetime="2019-03-10T13:32:49+08:00">2019-03-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-15 22:36:16" itemprop="dateModified" datetime="2023-10-15T22:36:16+08:00">2023-10-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/03/10/%E6%8A%80%E6%9C%AF/%E5%85%A5%E9%97%A8git-%E7%AC%94%E8%AE%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/10/技术/入门git-笔记/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>官方中文文档 <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">https://git-scm.com/book/zh/v2</a></p>
-</blockquote>
-<p>查看远程仓库地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/03/10/%E6%8A%80%E6%9C%AF/%E5%85%A5%E9%97%A8git-%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2164,20 +2292,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

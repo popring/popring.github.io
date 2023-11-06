@@ -25,6 +25,37 @@
       </tags>
   </entry>
   <entry>
+    <title>魔方还原教程</title>
+    <url>/2023/11/06/%E9%AD%94%E6%96%B9%E8%BF%98%E5%8E%9F%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p><a href="https://www.bilibili.com/video/BV1hJ411p7k6/?vd_source=12522a0c5cd9c1f8f8f3415821571934">bilibili</a></p>
+<ol>
+<li><p>黄心白色十字</p>
+</li>
+<li><p>确定中点和最下层一致 并做成白心白色十字<br>对齐固定中点与最下层中点一致 翻转向下90度 此时白色为底色 置于最下层</p>
+</li>
+<li><p>确定最下层与中心方块一致<br>当第一层有白色混合棱角 移到另外两色块中间 使用右手公式（上左下右） 多次切换</p>
+</li>
+<li><p>确定第二层与中心方块一致<br>当第一层有不含黄色方块<br>将其面向色块与中心色块保持一致 另一色块在其一侧 移动上层 使其远离另一色块<br>如果方向为左 做右手公式（上左下右） 再将白色方块置于左侧 做左手公式（上右下左）<br>如果方向为右 做左手公式（上右下左） 再将白色方块置于右侧 做右手公式（上左下右）<br>当第一层均包含黄色方块<br>将第二次异常方块置于右手 做右手公式（上左下右） 再将白色方块置于左侧 做左手公式（上右下左）<br>此时异常方块已移动到最上层 再重复（当第一层有不含黄色方块）</p>
+</li>
+<li><p>确定最上层黄心十字<br>当上层无L型或横型 选任意方向 前方顺时针90度 做右手公式（上左下右） 前方逆时针90度<br>此时为L型  两边朝向右手 前方顺时针90度 做右手公式（上左下右） 前方逆时针90度<br>此时为横型 平行横线     前方顺时针90度 做右手公式（上左下右） 前方逆时针90度</p>
+</li>
+<li><p>确定最上层上平面<br>下右上右下右右上<br>此时有小鱼图样 （有且只有三个黄色块）<br>鱼头朝上 下右上右下右右上<br>此时有两个非黄色色块<br>侧面黄色置于左上朝外 下右上右下右右上<br>此时有小鱼图样 （有且只有三个黄色块）<br>鱼头朝上 下右上右下右右上</p>
+</li>
+<li><p>确定最上层角块<br>有角块颜色一致<br>选择角块颜色一致的朝下 面向黄色 上右上 下面180° 下左上 下面180° 右面180°<br>无角块颜色一致<br>选择任意朝下 面向黄色 上右上 下面180° 下左上 下面180° 右面180°<br>有角块颜色一致</p>
+</li>
+<li><p>确定最上层中点<br>有好的一面<br>好的一面对准自己 下左下右 下右下左 上左180°<br>没好的一面<br>任意一面对准自己 下左下右 下右下左 上左180°<br>好的一面</p>
+<p>完结！</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>魔方</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言 第十章 文件操作</title>
     <url>/2019/04/27/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-10.%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h2 id="第十章-文件操作"><a href="#第十章-文件操作" class="headerlink" title="第十章 文件操作"></a>第十章 文件操作</h2><h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><h4 id="文本文件"><a href="#文本文件" class="headerlink" title="文本文件"></a>文本文件</h4><p>也称ASCII码文件，每字符占一个字节存储，每字节保存的是字符的ASCII码。可用文本编辑器打开查看，例如<code>.txt</code>、代码源程序<code>.c</code>、等等</p>
@@ -2336,6 +2367,49 @@
       </tags>
   </entry>
   <entry>
+    <title>备战校招第八天</title>
+    <url>/2020/07/30/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/8-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%85%AB%E5%A4%A9/</url>
+    <content><![CDATA[<ul>
+<li><code>display:none</code> 和 <code>visibilty: hidden</code> 区别</li>
+</ul>
+<hr>
+<a id="more"></a>
+
+
+
+<h2 id="display-none-和-visibility-hidden-区别"><a href="#display-none-和-visibility-hidden-区别" class="headerlink" title="display:none 和 visibility: hidden 区别"></a><code>display:none</code> 和 <code>visibility: hidden</code> 区别</h2><p>代码</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;visibility: hidden;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;display: none;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>显示如下</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730115508.png" alt="image-20200730115503519"></p>
+<p>可以看出</p>
+<ul>
+<li><p>占据位置</p>
+<p>visibility 隐藏元素而不更改文档的布局，相当于此元素变成透明。</p>
+<p>display 直接将元素完全隐藏（就好像这个元素不存在一样）。</p>
+</li>
+<li><p>属性继承</p>
+<p>visibility 是继承属性，<strong>要注意若将其子元素设为 <code>visibility: visible</code>，则该子元素依然可见。</strong></p>
+<p>display 若父元素设置为 <code>none</code> ，子元素也随之隐藏。</p>
+</li>
+<li><p>页面修改相关值后，是否会重新渲染</p>
+<p>visibility 不会重新渲染，</p>
+<p>display 会重新渲染</p>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display">https://developer.mozilla.org/zh-CN/docs/Web/CSS/display</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility">https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility</a></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备战校招第七天</title>
     <url>/2020/07/27/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/7-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%83%E5%A4%A9/</url>
     <content><![CDATA[<ul>
@@ -2397,49 +2471,6 @@
       <tags>
         <tag>面试题</tag>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>备战校招第八天</title>
-    <url>/2020/07/30/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/8-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%85%AB%E5%A4%A9/</url>
-    <content><![CDATA[<ul>
-<li><code>display:none</code> 和 <code>visibilty: hidden</code> 区别</li>
-</ul>
-<hr>
-<a id="more"></a>
-
-
-
-<h2 id="display-none-和-visibility-hidden-区别"><a href="#display-none-和-visibility-hidden-区别" class="headerlink" title="display:none 和 visibility: hidden 区别"></a><code>display:none</code> 和 <code>visibility: hidden</code> 区别</h2><p>代码</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;visibility: hidden;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;display: none;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>显示如下</p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730115508.png" alt="image-20200730115503519"></p>
-<p>可以看出</p>
-<ul>
-<li><p>占据位置</p>
-<p>visibility 隐藏元素而不更改文档的布局，相当于此元素变成透明。</p>
-<p>display 直接将元素完全隐藏（就好像这个元素不存在一样）。</p>
-</li>
-<li><p>属性继承</p>
-<p>visibility 是继承属性，<strong>要注意若将其子元素设为 <code>visibility: visible</code>，则该子元素依然可见。</strong></p>
-<p>display 若父元素设置为 <code>none</code> ，子元素也随之隐藏。</p>
-</li>
-<li><p>页面修改相关值后，是否会重新渲染</p>
-<p>visibility 不会重新渲染，</p>
-<p>display 会重新渲染</p>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display">https://developer.mozilla.org/zh-CN/docs/Web/CSS/display</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility">https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility</a></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -4911,58 +4942,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vim 笔记</title>
-    <url>/2021/02/02/%E6%8A%80%E6%9C%AF/vim/</url>
-    <content><![CDATA[<p><code>vim</code> 神器，依旧宝刀未老，用起来真香。</p>
-<a id="more"></a>
-
-<h2 id="i-insert-模式，可以输入文字"><a href="#i-insert-模式，可以输入文字" class="headerlink" title="i insert 模式，可以输入文字"></a><code>i</code> insert 模式，可以输入文字</h2><h2 id="v-visual-模式"><a href="#v-visual-模式" class="headerlink" title="v visual 模式"></a><code>v</code> visual 模式</h2><h2 id="nomal-模式"><a href="#nomal-模式" class="headerlink" title="nomal 模式"></a>nomal 模式</h2><blockquote>
-<p>刚打开 vim 是 <code>normal</code> 模式，可以输入指令</p>
-</blockquote>
-<h3 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h3><blockquote>
-<p>还可以配合数字使用，例如 <code>5w</code> 表示，光标移至后五个单词的位置。</p>
-</blockquote>
-<p><code>h</code> 光标左移</p>
-<p><code>l</code> 光标右移</p>
-<p><code>j</code> 光标下移</p>
-<p><code>k</code> 光标上移</p>
-<p><code>w</code> 光标移至下一单词的起始位置</p>
-<p><code>b</code> 光标移至上一单词的起始位置</p>
-<p><code>e</code> 光标移至单词的结束位置</p>
-<p><code>0</code> 跳转至当前行开始位置 </p>
-<p><code>$</code> 跳转至当前行结束位置</p>
-<p><code>%</code> 匹配括号时光标位置切换置另一位置</p>
-<p><code>gg</code> 光标切换至顶部</p>
-<p><code>G</code> 光标切换至底部</p>
-<p><code>number G</code> 光标切换至指定行起始位置(number 为待跳转至的行数，与 <code>G</code> 之间无空格)</p>
-<p><code>*</code> 向后查找当前字符</p>
-<p><code>#</code> 向前查找当前字符</p>
-<p><code>/char</code> 查找指定字符字符串(char 为待查找的字符串) </p>
-<p><code>n</code>  查找到指定字符串后，查找下一个</p>
-<p><code>N</code>  查找到指定字符串后，查找上一个</p>
-<p><code>o</code> 光标下一行插入一行，并且光标定位至下一行</p>
-<p><code>O</code> 光标上一行插入一行，并且光标定位至上一行</p>
-<p><code>x</code>  删除光标位置字符</p>
-<p><code>s char</code> 替换光标位置字符(char 为替换后字符，中间无空格)</p>
-<p><code>d command</code> 进入删除指令，结合 <code>w</code> 删除第一个单词。</p>
-<p><code>dd</code> 剪切当前行</p>
-<p><code>p</code> 粘贴</p>
-<p><code>.</code> 重复前一次操作</p>
-<p><code>:u</code> 撤回上次操作</p>
-<p><code>:set nu</code> 显示行数</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/wsdjeg/vim-galore-zh_cn">Vim 从入门到精通 PDF</a>： 强烈推荐</p>
-<p><a href="https://www.openvim.com/">openvim</a>： vim 入门教程</p>
-<p><a href="https://vim-adventures.com/">vim-adventures</a>：vim 入门游戏</p>
-<p><a href="https://www.vimonlineeditor.com/">vimonlineeditor</a>：网页在线vim，本地无环境可尝试使用</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>visibility: hidden、display: none、opacity: 0 区别</title>
     <url>/2020/10/16/%E6%8A%80%E6%9C%AF/visibility-hidden%E3%80%81display-none%E3%80%81opacity-0-%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>做了以下的实验，可以得出结论，</p>
@@ -5055,6 +5034,58 @@
       </categories>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim 笔记</title>
+    <url>/2021/02/02/%E6%8A%80%E6%9C%AF/vim/</url>
+    <content><![CDATA[<p><code>vim</code> 神器，依旧宝刀未老，用起来真香。</p>
+<a id="more"></a>
+
+<h2 id="i-insert-模式，可以输入文字"><a href="#i-insert-模式，可以输入文字" class="headerlink" title="i insert 模式，可以输入文字"></a><code>i</code> insert 模式，可以输入文字</h2><h2 id="v-visual-模式"><a href="#v-visual-模式" class="headerlink" title="v visual 模式"></a><code>v</code> visual 模式</h2><h2 id="nomal-模式"><a href="#nomal-模式" class="headerlink" title="nomal 模式"></a>nomal 模式</h2><blockquote>
+<p>刚打开 vim 是 <code>normal</code> 模式，可以输入指令</p>
+</blockquote>
+<h3 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h3><blockquote>
+<p>还可以配合数字使用，例如 <code>5w</code> 表示，光标移至后五个单词的位置。</p>
+</blockquote>
+<p><code>h</code> 光标左移</p>
+<p><code>l</code> 光标右移</p>
+<p><code>j</code> 光标下移</p>
+<p><code>k</code> 光标上移</p>
+<p><code>w</code> 光标移至下一单词的起始位置</p>
+<p><code>b</code> 光标移至上一单词的起始位置</p>
+<p><code>e</code> 光标移至单词的结束位置</p>
+<p><code>0</code> 跳转至当前行开始位置 </p>
+<p><code>$</code> 跳转至当前行结束位置</p>
+<p><code>%</code> 匹配括号时光标位置切换置另一位置</p>
+<p><code>gg</code> 光标切换至顶部</p>
+<p><code>G</code> 光标切换至底部</p>
+<p><code>number G</code> 光标切换至指定行起始位置(number 为待跳转至的行数，与 <code>G</code> 之间无空格)</p>
+<p><code>*</code> 向后查找当前字符</p>
+<p><code>#</code> 向前查找当前字符</p>
+<p><code>/char</code> 查找指定字符字符串(char 为待查找的字符串) </p>
+<p><code>n</code>  查找到指定字符串后，查找下一个</p>
+<p><code>N</code>  查找到指定字符串后，查找上一个</p>
+<p><code>o</code> 光标下一行插入一行，并且光标定位至下一行</p>
+<p><code>O</code> 光标上一行插入一行，并且光标定位至上一行</p>
+<p><code>x</code>  删除光标位置字符</p>
+<p><code>s char</code> 替换光标位置字符(char 为替换后字符，中间无空格)</p>
+<p><code>d command</code> 进入删除指令，结合 <code>w</code> 删除第一个单词。</p>
+<p><code>dd</code> 剪切当前行</p>
+<p><code>p</code> 粘贴</p>
+<p><code>.</code> 重复前一次操作</p>
+<p><code>:u</code> 撤回上次操作</p>
+<p><code>:set nu</code> 显示行数</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/wsdjeg/vim-galore-zh_cn">Vim 从入门到精通 PDF</a>： 强烈推荐</p>
+<p><a href="https://www.openvim.com/">openvim</a>： vim 入门教程</p>
+<p><a href="https://vim-adventures.com/">vim-adventures</a>：vim 入门游戏</p>
+<p><a href="https://www.vimonlineeditor.com/">vimonlineeditor</a>：网页在线vim，本地无环境可尝试使用</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
