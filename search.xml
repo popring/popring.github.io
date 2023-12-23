@@ -69,9 +69,67 @@
 <p>DISC矩阵分析模型类似于一种测评工具，目的是通过预测他人行为性格的倾向性，更好的了解他人，获得最佳沟通策略，提高沟通效率。</p>
 <p>D：Dominance属于老板型／指挥者，表现为目标明确、执行力强。不要挑战主控这类人整个沟通的欲望，显现出接纳和温和的态度，利用提供建议和暗示的方式让人更容易接受。<br>I：Influence属于社交型／影响者，表现为热爱分享、外向活泼。渴望认同和赞美；沟通前提，建立良好的社交关系，激励他们接受新主张或建议；完全对立的方式只会带来负面效果。<br>S：Steadiness属于被动型／支持者，表现为依赖和迁就。隐忍，渴望尊重和支持，给予对方帮助、安慰和指导。<br>C：Compliance属于修正型／思考者，表现为注重细节、追求卓越。工作中要拿出实际数据，证明理论无误；生活上，要有理有据不能胡编乱造不经过大脑。</p>
 <h3 id="时间管理矩阵"><a href="#时间管理矩阵" class="headerlink" title="时间管理矩阵"></a>时间管理矩阵</h3><p>时间安排规划</p>
-<p>(百度百科)[<a href="https://baike.baidu.com/item/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86%E4%BC%98%E5%85%88%E7%9F%A9%E9%98%B5?fromtitle=%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86%E7%9F%A9%E9%98%B5&amp;fromid=14747948&amp;fromModule=lemma_search-box%5D">https://baike.baidu.com/item/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86%E4%BC%98%E5%85%88%E7%9F%A9%E9%98%B5?fromtitle=%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86%E7%9F%A9%E9%98%B5&amp;fromid=14747948&amp;fromModule=lemma_search-box]</a></p>
 <p><a href="https://baike.baidu.com/item/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86%E4%BC%98%E5%85%88%E7%9F%A9%E9%98%B5?fromtitle=%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86%E7%9F%A9%E9%98%B5&fromid=14747948&fromModule=lemma_search-box">百度百科</a></p>
 <p>重要且紧急：优先去做<br>重要但不紧急：有计划的去做，避免成为重要且紧急<br>紧急但不重要：交给别人做（不认同此观点）<br>不紧急不重要：尽量少做</p>
+<p>tips：推荐高效能人士的七个习惯里的时间管理方式</p>
+<h3 id="麦肯锡七步分析法"><a href="#麦肯锡七步分析法" class="headerlink" title="麦肯锡七步分析法"></a>麦肯锡七步分析法</h3><p>理清解决问题思路</p>
+<ul>
+<li>明确问题<br>拆解维度：目的、效果、效率、标准等<ul>
+<li>清晰的问题描述</li>
+<li>界定问题考虑的方向</li>
+</ul>
+</li>
+<li>分解问题<br>运用结构化图标，根据问题描述拆解成多个全面且、清晰易于操作的子议题，或是提出以事实的假设</li>
+<li>优先排序<br>需根据关键要素、重要性程度进行排序</li>
+<li>议题分析<br>根据重要问题将与其香馆的关键影响因素进行分类及分工，并制定详细地可事实计划</li>
+<li>关键因素分析，分析方法如下<ul>
+<li>因果分析: <a href="https://baike.baidu.com/item/%E5%9B%A0%E6%9E%9C%E5%88%86%E6%9E%90/7250080">为了确定引起某一现象变化原因的分析，主要解决“为什么”的问题</a></li>
+<li>标杆分析: <a href="https://wiki.mbalib.com/wiki/%E6%A0%87%E6%9D%86%E5%88%86%E6%9E%90%E6%B3%95">是一个系统的、持续性的评估过程，通过不断地将企业流程与世界上居领先地位的企业相比较，以获得帮助企业改善经营绩效的信息</a></li>
+<li>趋势分析: <a href="https://baike.baidu.com/item/%E8%B6%8B%E5%8A%BF%E5%88%86%E6%9E%90%E6%B3%95">通过对有关指标的各期对基期的变化趋势的分析，从中发现问题，为追索和检查账目提供线索的一种分析方法。</a></li>
+<li>比例分析: <a href="https://baike.baidu.com/item/%E6%AF%94%E7%8E%87%E5%88%86%E6%9E%90%E6%B3%95/7955404">通过财务报表的有关指标的比率计算，分析企业财务状况和经营成果，了解企业发展前景的分析方法</a></li>
+<li>模型分析</li>
+</ul>
+</li>
+<li>综合确认<br>对前面的计划进行分析，优化，不断完善工作计划</li>
+<li>组织实施<ul>
+<li>让相关人员了解分析的结果与行动方案，按既定的计划进行实施</li>
+<li>对实施过程进行监督、跟踪、反馈</li>
+</ul>
+</li>
+</ul>
+<h3 id="WBS-工作分解法"><a href="#WBS-工作分解法" class="headerlink" title="WBS 工作分解法"></a>WBS 工作分解法</h3><p>Work Breakdown Structure，工作分解结构；拆解工作项目分配</p>
+<p>分解原则</p>
+<ul>
+<li>将主体项目逐步细化分解，每个人物要求分解到不能再细化为止，最底层的任务活动直接分派到个人完成。即项目→任务→工作→日常活动</li>
+</ul>
+<p>分解方式</p>
+<ul>
+<li>基于交付成果，上层一般以可交付成果为导向；下层一般为可交付成果的工作内容</li>
+<li>基于工作过程，一般是将上层按照工作流程分解，下层按照工作内容划分</li>
+</ul>
+<h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><ul>
+<li>可视化展现项目进度，还可详细区分出计划和实际活动完成情况</li>
+<li>适合小型项目，绘制项一般不超过30项，过多会导致增加阅读难度</li>
+</ul>
+<h3 id="高效-PDCA-循环法"><a href="#高效-PDCA-循环法" class="headerlink" title="高效 PDCA 循环法"></a>高效 PDCA 循环法</h3><p>Plan Do Check Act, 周而复始不断进行这四个动作，一个循环中可以解决一些问题， 未解决的问题便进入到下一次循环之中，直至问题最终解决。</p>
+<ul>
+<li>Plan (计划): 根据任务的目标和要求，制定科学的活动规划。</li>
+<li>Do (执行)：按照预定的计划、标准，根据已知的信息，设计具体的、可运作的方案和计划，实现预期目标的过程。</li>
+<li>Check (检查): 检查执行计划的实施方案和结果是否达到了目标。</li>
+<li>Act (处理): 就是对总结检查的结果进行处理，总结经验并吸取教训。</li>
+</ul>
+<h3 id="SWOT-分析法"><a href="#SWOT-分析法" class="headerlink" title="SWOT 分析法"></a>SWOT 分析法</h3><p>Strength Weakness Opportunity Threats, 态势分析法, 将研究对象(人、公司、产品)密切相关的内部优劣势和外部机会威胁进行系统分析，得出决策性结论。</p>
+<ul>
+<li>S即strength（优势），是指企业自身拥有的特长或者资源，是有竞争优势的。</li>
+<li>W即weakness（劣势），是指与竞争对手相比，做的不太好或没有竞争优势的地方。</li>
+<li>O即opportunity（机会），是指外部环境可以寻求的发展机会。</li>
+<li>T即threats（威胁），是指外部环境有可能对企业造成的不利因素。</li>
+</ul>
+<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><ul>
+<li>决策树一般是自上而下生成的，每个决策或事件(即非自然状态)都可能引出两个或多个时间，导致不同结果</li>
+<li>决策树一般由方块节点、圆形节点、方案支、概率支等组成</li>
+<li>应用决策树进行决策时，必须具备目标、方案、变量、损益和概率等条件</li>
+</ul>
 ]]></content>
       <categories>
         <category>职场</category>
@@ -253,137 +311,6 @@
 <td>feof</td>
 <td>判断读文件是否已越过了文件末尾</td>
 <td>if (feof(fp) )   …</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言 第三章 顺序结构</title>
-    <url>/2019/03/21/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-3.%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h2 id="第三章-顺序结构"><a href="#第三章-顺序结构" class="headerlink" title="第三章 顺序结构"></a>第三章 顺序结构</h2><blockquote>
-<p>You only get one shot, do not miss your chance to blow.</p>
-<p>你只有一发子弹，不要错过引爆全场的机会。</p>
-</blockquote>
-<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 大括号是程序块的分界符，后不跟分号(;)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每条语句后要加分号，语句也可以也在同一行，但要用分号分割</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><blockquote>
-<p>C语言程序的 <code>输入/输出</code> 都要通过<strong>库函数</strong>完成</p>
-<p>库函数，就是“仓库“里的函数</p>
-<p>在C语言要使用“库函数”，首先要用 <code>#include</code> 将一些文件包含到程序中，文件后缀一般为 <code>.h</code> ，称为头文件。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// 或者是</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdio.h&quot;</span></span></span><br></pre></td></tr></table></figure>
-
-<h4 id="putchar"><a href="#putchar" class="headerlink" title="putchar()"></a>putchar()</h4><blockquote>
-<p>单字符输出</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">putchar</span>(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="getchar"><a href="#getchar" class="headerlink" title="getchar()"></a>getchar()</h4><blockquote>
-<p>单字符输入</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">getchar();</span><br></pre></td></tr></table></figure>
-
-<h4 id="printf"><a href="#printf" class="headerlink" title="printf()"></a>printf()</h4><blockquote>
-<p>格式输出函数</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>格式字符串控全体，</p>
-<p>数据替换百分比<code>(%)</code></p>
-<p>字符c，正数d</p>
-<p>小数f，指数e</p>
-<p>欧<code>(o)</code>八叉<code>(x)</code>六<code>u</code>无号</p>
-<p>字符串<code>s</code>要牢记</p>
-<p>间数全宽点小数</p>
-<p>负号表示左对齐</p>
-</blockquote>
-<h4 id="scanf"><a href="#scanf" class="headerlink" title="scanf()"></a>scanf()</h4><blockquote>
-<p>格式输入函数</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;格式控制字符串&quot;</span>, 变量<span class="number">1</span>的地址, 变量<span class="number">2</span>的地址, ...)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> main</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> a,b,c;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;input a,b,c\n&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;a=%d, b=%d, c=%d&quot;</span>, a, b, c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>scanf, 键盘输入</p>
-<p>后为地址，不能输出。</p>
-<p>间数宽度，%c全读。</p>
-<p>非格式符，麻烦用户。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th><strong>函数</strong></th>
-<th><strong>功能</strong></th>
-<th><strong>用法举例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>sqrt(x)</td>
-<td>求x的算术平方根，x≥0</td>
-<td>sqrt(2)</td>
-</tr>
-<tr>
-<td>abs(x)</td>
-<td>求x（整数）的绝对值</td>
-<td>abs(-5)</td>
-</tr>
-<tr>
-<td>fabs(x)</td>
-<td>求x（实数）的绝对值</td>
-<td>fabs(-2.5)</td>
-</tr>
-<tr>
-<td>log(x)</td>
-<td>求自然对数ln(x)</td>
-<td>log(2)</td>
-</tr>
-<tr>
-<td>exp(x)</td>
-<td>求ex的值</td>
-<td>exp(2)</td>
-</tr>
-<tr>
-<td>pow(x,y)</td>
-<td>求xy的值，注意x^y是“按位异或”不是求xy</td>
-<td>pow(2, 3)</td>
-</tr>
-<tr>
-<td>sin(x)</td>
-<td>求x的正弦值，x单位为弧度</td>
-<td>sin(30*3.14/180)</td>
-</tr>
-<tr>
-<td>cos(x)</td>
-<td>求x的余弦值，x单位为弧度</td>
-<td>cos(3.14)</td>
-</tr>
-<tr>
-<td>tan(x)</td>
-<td>求x的正切值，x单位为弧度</td>
-<td>tan(1.3)</td>
-</tr>
-<tr>
-<td>asin(x)</td>
-<td>求sin-1(x)的值（弧度），-1≤x≤1</td>
-<td>asin(1)</td>
-</tr>
-<tr>
-<td>acos(x)</td>
-<td>求cos-1(x)的值（弧度），-1≤x≤1</td>
-<td>acos(0)</td>
-</tr>
-<tr>
-<td>atan(x)</td>
-<td>求tan-1(x)的值（弧度）</td>
-<td>atan(-82.24)</td>
 </tr>
 </tbody></table>
 ]]></content>
@@ -662,6 +589,137 @@
 </blockquote>
 <h3 id="Visual-Stdio-快捷键"><a href="#Visual-Stdio-快捷键" class="headerlink" title="Visual Stdio 快捷键"></a>Visual Stdio 快捷键</h3><p>注释: Ctrl + K, Ctrl + C</p>
 <p>取消注释：Ctrl + K , Ctrl + U</p>
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言 第三章 顺序结构</title>
+    <url>/2019/03/21/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-3.%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h2 id="第三章-顺序结构"><a href="#第三章-顺序结构" class="headerlink" title="第三章 顺序结构"></a>第三章 顺序结构</h2><blockquote>
+<p>You only get one shot, do not miss your chance to blow.</p>
+<p>你只有一发子弹，不要错过引爆全场的机会。</p>
+</blockquote>
+<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 大括号是程序块的分界符，后不跟分号(;)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每条语句后要加分号，语句也可以也在同一行，但要用分号分割</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><blockquote>
+<p>C语言程序的 <code>输入/输出</code> 都要通过<strong>库函数</strong>完成</p>
+<p>库函数，就是“仓库“里的函数</p>
+<p>在C语言要使用“库函数”，首先要用 <code>#include</code> 将一些文件包含到程序中，文件后缀一般为 <code>.h</code> ，称为头文件。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// 或者是</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdio.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="putchar"><a href="#putchar" class="headerlink" title="putchar()"></a>putchar()</h4><blockquote>
+<p>单字符输出</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">putchar</span>(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="getchar"><a href="#getchar" class="headerlink" title="getchar()"></a>getchar()</h4><blockquote>
+<p>单字符输入</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">getchar();</span><br></pre></td></tr></table></figure>
+
+<h4 id="printf"><a href="#printf" class="headerlink" title="printf()"></a>printf()</h4><blockquote>
+<p>格式输出函数</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>格式字符串控全体，</p>
+<p>数据替换百分比<code>(%)</code></p>
+<p>字符c，正数d</p>
+<p>小数f，指数e</p>
+<p>欧<code>(o)</code>八叉<code>(x)</code>六<code>u</code>无号</p>
+<p>字符串<code>s</code>要牢记</p>
+<p>间数全宽点小数</p>
+<p>负号表示左对齐</p>
+</blockquote>
+<h4 id="scanf"><a href="#scanf" class="headerlink" title="scanf()"></a>scanf()</h4><blockquote>
+<p>格式输入函数</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;格式控制字符串&quot;</span>, 变量<span class="number">1</span>的地址, 变量<span class="number">2</span>的地址, ...)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> main</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> a,b,c;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;input a,b,c\n&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;a=%d, b=%d, c=%d&quot;</span>, a, b, c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>scanf, 键盘输入</p>
+<p>后为地址，不能输出。</p>
+<p>间数宽度，%c全读。</p>
+<p>非格式符，麻烦用户。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>函数</strong></th>
+<th><strong>功能</strong></th>
+<th><strong>用法举例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sqrt(x)</td>
+<td>求x的算术平方根，x≥0</td>
+<td>sqrt(2)</td>
+</tr>
+<tr>
+<td>abs(x)</td>
+<td>求x（整数）的绝对值</td>
+<td>abs(-5)</td>
+</tr>
+<tr>
+<td>fabs(x)</td>
+<td>求x（实数）的绝对值</td>
+<td>fabs(-2.5)</td>
+</tr>
+<tr>
+<td>log(x)</td>
+<td>求自然对数ln(x)</td>
+<td>log(2)</td>
+</tr>
+<tr>
+<td>exp(x)</td>
+<td>求ex的值</td>
+<td>exp(2)</td>
+</tr>
+<tr>
+<td>pow(x,y)</td>
+<td>求xy的值，注意x^y是“按位异或”不是求xy</td>
+<td>pow(2, 3)</td>
+</tr>
+<tr>
+<td>sin(x)</td>
+<td>求x的正弦值，x单位为弧度</td>
+<td>sin(30*3.14/180)</td>
+</tr>
+<tr>
+<td>cos(x)</td>
+<td>求x的余弦值，x单位为弧度</td>
+<td>cos(3.14)</td>
+</tr>
+<tr>
+<td>tan(x)</td>
+<td>求x的正切值，x单位为弧度</td>
+<td>tan(1.3)</td>
+</tr>
+<tr>
+<td>asin(x)</td>
+<td>求sin-1(x)的值（弧度），-1≤x≤1</td>
+<td>asin(1)</td>
+</tr>
+<tr>
+<td>acos(x)</td>
+<td>求cos-1(x)的值（弧度），-1≤x≤1</td>
+<td>acos(0)</td>
+</tr>
+<tr>
+<td>atan(x)</td>
+<td>求tan-1(x)的值（弧度）</td>
+<td>atan(-82.24)</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>C Language</category>
@@ -1224,6 +1282,110 @@
       </tags>
   </entry>
   <entry>
+    <title>C语言 第九章 结构体</title>
+    <url>/2019/03/30/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-9.%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/</url>
+    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
+<p>结构体类型，不占内存，不能保存数据；</p>
+<p>内存空间，可以保存数据</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sizeof对类型和变量均可使用</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(struct stu);</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
+<p>因无类型名，无法再重新定义其他变量</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
+<p>结构体变量用 <code>.</code></p>
+<p>结构体指针变量用 <code>-&gt;</code></p>
+<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
+<p>用法与传普通变量类似，</p>
+</blockquote>
+<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
+<p>结构体指针做函数参数，可以修改原来实参的值。</p>
+<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">    <span class="keyword">int</span> month;</span><br><span class="line">    <span class="keyword">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>第二种</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">int</span> year;</span><br><span class="line">        <span class="keyword">int</span> month;</span><br><span class="line">        <span class="keyword">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
+<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">double</span> a,b;</span><br></pre></td></tr></table></figure>
+
+<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="left">介绍</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">malloc</td>
+<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)malloc(size)</td>
+</tr>
+<tr>
+<td align="center">calloc</td>
+<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)calloc(n,size)</td>
+</tr>
+<tr>
+<td align="center">free</td>
+<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
+<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
+</tr>
+</tbody></table>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
+<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
+<p>链表类型：单向链表，双向链表，循环链表。。。</p>
+</blockquote>
+<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><a href="https://zh.wikipedia.org/wiki/%E9%93%BE%E8%A1%A8">链表介绍</a></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
+<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
+</blockquote>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
+<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
+<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
+<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
+</blockquote>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
+<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
+<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
+</blockquote>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
+<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="keyword">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line"><span class="function">SNODE *<span class="title">create_list</span><span class="params">(<span class="keyword">int</span> data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">out_list</span><span class="params">(SNODE *h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = <span class="keyword">new</span> struct node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
+
+<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line"><span class="keyword">delete</span> p;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备战校招第一天</title>
     <url>/2020/06/24/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/1-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
     <content><![CDATA[<ol>
@@ -1338,110 +1500,6 @@
         <tag>JavaScript</tag>
         <tag>js编程题</tag>
         <tag>事件循环机制</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言 第九章 结构体</title>
-    <url>/2019/03/30/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-9.%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/</url>
-    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
-<p>结构体类型，不占内存，不能保存数据；</p>
-<p>内存空间，可以保存数据</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>sizeof对类型和变量均可使用</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(struct stu);</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
-<p>因无类型名，无法再重新定义其他变量</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
-<p>结构体变量用 <code>.</code></p>
-<p>结构体指针变量用 <code>-&gt;</code></p>
-<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
-<p>用法与传普通变量类似，</p>
-</blockquote>
-<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
-<p>结构体指针做函数参数，可以修改原来实参的值。</p>
-<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">    <span class="keyword">int</span> month;</span><br><span class="line">    <span class="keyword">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>第二种</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">int</span> year;</span><br><span class="line">        <span class="keyword">int</span> month;</span><br><span class="line">        <span class="keyword">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
-<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">double</span> a,b;</span><br></pre></td></tr></table></figure>
-
-<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
-<thead>
-<tr>
-<th align="center">函数名</th>
-<th align="left">介绍</th>
-<th align="left">备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">malloc</td>
-<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)malloc(size)</td>
-</tr>
-<tr>
-<td align="center">calloc</td>
-<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)calloc(n,size)</td>
-</tr>
-<tr>
-<td align="center">free</td>
-<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
-<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
-</tr>
-</tbody></table>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
-<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
-<p>链表类型：单向链表，双向链表，循环链表。。。</p>
-</blockquote>
-<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><a href="https://zh.wikipedia.org/wiki/%E9%93%BE%E8%A1%A8">链表介绍</a></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
-<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
-</blockquote>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
-<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
-<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
-<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
-</blockquote>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
-<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
-<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
-</blockquote>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
-<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="keyword">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line"><span class="function">SNODE *<span class="title">create_list</span><span class="params">(<span class="keyword">int</span> data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">out_list</span><span class="params">(SNODE *h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = <span class="keyword">new</span> struct node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
-
-<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line"><span class="keyword">delete</span> p;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3862,46 +3920,6 @@
       </tags>
   </entry>
   <entry>
-    <title>go 入门</title>
-    <url>/2020/10/17/%E6%8A%80%E6%9C%AF/go-%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-
-<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
-<p>天朝特殊环境，不得不配置为国内的源</p>
-</blockquote>
-<p>打开终端并执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE&#x3D;on</span><br><span class="line">go env -w GOPROXY&#x3D;https:&#x2F;&#x2F;goproxy.cn,direct</span><br></pre></td></tr></table></figure>
-
-
-
-<p>macOS 或 Linux</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
-
-
-
-<p>windows</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><a href="https://goproxy.cn/">Goproxy 中国</a></p>
-<p><a href="https://gfw.go101.org/article/101.html">Go语言101</a></p>
-<p><a href="https://go.dev/ref/spec#Introduction">Go官方语言规范 - 英文</a>：据说看完此文档，Go基本就入门了</p>
-<p><a href="https://gobyexample-cn.github.io/">Go by Example</a>：通过实践入门</p>
-<p><a href="https://geektutu.com/post/gee.html">7天用Go从零实现Web框架Gee教程</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>em、rem和vw(vh)区别</title>
     <url>/2020/03/28/%E6%8A%80%E6%9C%AF/em%E5%92%8Crem%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CSS的<strong>单位长度</strong>分为</p>
@@ -3950,6 +3968,46 @@
       </categories>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>go 入门</title>
+    <url>/2020/10/17/%E6%8A%80%E6%9C%AF/go-%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+
+<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
+<p>天朝特殊环境，不得不配置为国内的源</p>
+</blockquote>
+<p>打开终端并执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE&#x3D;on</span><br><span class="line">go env -w GOPROXY&#x3D;https:&#x2F;&#x2F;goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+
+
+
+<p>macOS 或 Linux</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
+
+
+
+<p>windows</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><a href="https://goproxy.cn/">Goproxy 中国</a></p>
+<p><a href="https://gfw.go101.org/article/101.html">Go语言101</a></p>
+<p><a href="https://go.dev/ref/spec#Introduction">Go官方语言规范 - 英文</a>：据说看完此文档，Go基本就入门了</p>
+<p><a href="https://gobyexample-cn.github.io/">Go by Example</a>：通过实践入门</p>
+<p><a href="https://geektutu.com/post/gee.html">7天用Go从零实现Web框架Gee教程</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
       </tags>
   </entry>
   <entry>
@@ -4948,6 +5006,29 @@
       </tags>
   </entry>
   <entry>
+    <title>v-if和v-show区别</title>
+    <url>/2020/10/17/%E6%8A%80%E6%9C%AF/v-if%E5%92%8Cv-show%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
+<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
+<p>当条件变化时该指令触发过渡效果。</p>
+<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
+<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
+<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
+<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
+<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
+<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
+</ul>
+<p>关联文章：</p>
+<p><a href="https://popring.github.io/2020/10/16/css/visibility-hidden%E3%80%81display-none%E3%80%81opacity-0-%E5%8C%BA%E5%88%AB/">visibility: hidden、display: none、opacity: 0 区别</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>scrollTop值为0等疑难杂症</title>
     <url>/2018/10/19/%E6%8A%80%E6%9C%AF/scrollTop%E5%80%BC%E4%B8%BA0%E7%AD%89%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</url>
     <content><![CDATA[<p> 自测有效果</p>
@@ -4973,29 +5054,6 @@
       </categories>
       <tags>
         <tag>浏览器兼容性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>v-if和v-show区别</title>
-    <url>/2020/10/17/%E6%8A%80%E6%9C%AF/v-if%E5%92%8Cv-show%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
-<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
-<p>当条件变化时该指令触发过渡效果。</p>
-<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
-<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
-<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
-<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
-<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
-<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
-</ul>
-<p>关联文章：</p>
-<p><a href="https://popring.github.io/2020/10/16/css/visibility-hidden%E3%80%81display-none%E3%80%81opacity-0-%E5%8C%BA%E5%88%AB/">visibility: hidden、display: none、opacity: 0 区别</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
