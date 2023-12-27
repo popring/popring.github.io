@@ -17,8 +17,6 @@
 <h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><p><a href="https://docs.google.com/document/d/16aoMrMGHPIR1i_eUNRvksdDdwcDG6KiOJN6Vfh-n8-s/edit#heading=h.2o89lfunn1li">Google 技术写作</a></p>
 <h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><p><a href="https://regexcrossword.com/howtoplay">How to play | Regex Crossword</a></p>
 <h2 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h2><p><a href="https://mp.weixin.qq.com/s/q461so9lWk4FKJGZ-p7Vcg">提问的智慧</a></p>
-<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p><a href="https://mp.weixin.qq.com/s/WsldmkW2ovp-okxSY3le9g">Typescript 类型编程，从入门到通达</a></p>
-<p><a href="https://medium.com/free-code-camp/typescript-curry-ramda-types-f747e99744ab">Learn Advanced TypeScript Types</a></p>
 ]]></content>
       <tags>
         <tag>like</tag>
@@ -1902,160 +1900,6 @@
       </tags>
   </entry>
   <entry>
-    <title>备战校招第三天</title>
-    <url>/2020/06/26/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/3-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%89%E5%A4%A9/</url>
-    <content><![CDATA[<ol>
-<li><p>css 垂直水平居中</p>
-</li>
-<li><p>闭包</p>
-</li>
-<li><p>浏览器缓存相关</p>
-</li>
-<li><p>性能优化</p>
-</li>
-</ol>
-<hr>
-<a id="more"></a>
-
-<h3 id="css-垂直水平居中"><a href="#css-垂直水平居中" class="headerlink" title="css 垂直水平居中"></a>css 垂直水平居中</h3><p><strong>第一种 position+transform</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">      #box &#123;</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line">        </span><br><span class="line"><span class="css">        <span class="attribute">position</span>: relative;</span></span><br><span class="line">      &#125;</span><br><span class="line">      #cbox &#123;</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: orange;</span></span><br><span class="line">        </span><br><span class="line"><span class="css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">        <span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span></span><br><span class="line">      &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>第二种 flex</strong> </p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  #box &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">    <span class="attribute">align-items</span>: center;</span></span><br><span class="line"><span class="css">    <span class="attribute">justify-content</span>: center;</span></span><br><span class="line">  &#125;</span><br><span class="line">  #cbox &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: orange;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>第三种 padding + margin</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  #box &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="css">    <span class="attribute">padding</span>: <span class="number">250px</span> <span class="number">0</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">  #cbox &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>以上三种代码显示效果均为</p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626093658.png" alt="image-20200626093651504"></p>
-<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>闭包可以从内部函数访问到外部函数作用域。</p>
-<ul>
-<li><p><strong>模拟私有方法</strong></p>
-<p>Java有私有属性，<code>private</code>，而 js 也可以通过模拟来实现私有变量和方法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> makeCounter = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> privateCounter = <span class="number">0</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">changeBy</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    privateCounter += val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    increment: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(-<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> privateCounter;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Counter1 = makeCounter();</span><br><span class="line"><span class="keyword">var</span> Counter2 = makeCounter();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 0 */</span></span><br><span class="line">Counter1.increment();</span><br><span class="line">Counter1.increment();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 2 */</span></span><br><span class="line">Counter1.decrement();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 1 */</span></span><br><span class="line"><span class="built_in">console</span>.log(Counter2.value()); <span class="comment">/* logs 0 */</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>经典闭包问题</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line"><span class="javascript">    btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>运行上面代码，点击会发现，输出的均为</p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626101322.png" alt="image-20200626101322509"></p>
-<p>这是因为虽形成了三个闭包作用域，但他们共享了一个词法作用域，在这个作用域中又只有一个变量 <code>i</code> ，<code>var</code> 的作用域数函数作用域，但定义 <code>i</code> 外并未有函数，所以这里的 <code>i</code> 是挂载在全局的。在循环后执行点击时间前，<code>i</code> 的值都已经指向了最后一个数 <code>5</code>了。</p>
-<p><strong>解决方法（修改下列任何一种都可以）</strong></p>
-<ul>
-<li><p>将 <code>var i=0;</code> 换为 <code>let i=0;</code> ，这种也是最简单的，<code>let</code> 是 ES6 修复 <code>var</code> 的设计缺陷而出现的</p>
-</li>
-<li><p>使用更多的闭包</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">i</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line">    btn.onclick = handleClick(i)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>匿名闭包</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    ;(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line"><span class="javascript">      btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)(i)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>性能</p>
-<p>在处理速度和内存消耗方面都是有负面影响，所以原则是少用，别再不必要的地方使用。</p>
-</li>
-</ul>
-<h3 id="缓存相关"><a href="#缓存相关" class="headerlink" title="缓存相关"></a>缓存相关</h3><p><img src="https://user-images.githubusercontent.com/25027560/38461517-c7f2f422-3b04-11e8-8e94-20bbeb2a32b8.png" alt="缓存"></p>
-<h3 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h3><h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h4><p>浏览器加载资源前，会根据请求头 <code>expires</code>和 <code>cache-control</code> 判断是否命中强缓存，如果命中，则不会发送请求到服务器。</p>
-<p><strong>Expires</strong></p>
-<p><strong>http1.0</strong> 提出，表示资源过期时间的 header，描述为一个绝对时间，服务器返回。（如果修改本地时间，可能会造成缓存失效。）</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">expires</span><span class="punctuation">: </span>Tue, 14 Jul 2020 13:13:53 GMT</span><br></pre></td></tr></table></figure>
-
-<p><strong>Cache-Control</strong></p>
-<p><strong>http1.1</strong> 提出，优先级高于 <code>Expires</code> ，表示相对时间</p>
-<p>缓存请求指令</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=&lt;seconds&gt;</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-stale[=&lt;seconds&gt;]	// 表示客户端接受一个已过期的资源</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>min-fresh=&lt;seconds&gt;		// 表示客户端获取一个在指定的秒数内保持最新状态的响应</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-cache 							// 在发布缓存前，强制要求把缓存提交给服务器进行验证（协商缓存验证）</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-store								// 不存储和不使用任何缓存</span><br></pre></td></tr></table></figure>
-
-<p>缓存响应指令</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>must-revalidate</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-cache					// 如缓存请求指令</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-store					// 如缓存请求指令</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>public						// 表示响应可以为任何对象（客户端、代理服务器等，包括通常不可缓存的</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>private					// 只能被单个用户缓存（私有缓存）</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=&lt;seconds&gt;	// 缓存存储最大周期，单位秒</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>s-maxage=&lt;seconds&gt;	// 覆盖 max-age或 expires 头，仅在共享缓存中有效</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><p>如果没有命中强缓存，浏览器会发送一个请求到服务器，通过 <code>last-modified</code> 和 <code>etag</code> 验证资源是否命中协商缓存，如果命中，会将这个请求返回，但不返回资源的数据，依旧从缓存中读取资源。</p>
-<p><strong>Last-Modified 和 If-Modified-Since</strong></p>
-<p><strong>http1.0</strong> 引入，<code>Last-Modified</code> 是响应头中的属性，表示资源的修改时间。浏览器请求时会在请求头上加上 <code>If-Modified-Since</code> （上次返回的<code>Last-Modified</code>的值），询问是否资源有更新，如有立刻将新的资源返回。</p>
-<p>准确性不如 <code>Etag</code>，所以这个为备用机制。</p>
-<p><strong>ETag 和 If-None-Match</strong></p>
-<p><strong>http1.1</strong> 引入，<code>Etag</code>就像一个指纹，资源变化都会导致ETag变化，跟最后修改时间没有关系，<code>ETag</code>可以保证每一个资源是唯一的。优先级高于 <code>Last-Modified</code> 。</p>
-<p><code>If-None-Match</code>的header会将上次返回的<code>Etag</code>发送给服务器，询问该资源的<code>Etag</code>是否有更新，有变动就会发送新的资源回来</p>
-<p><img src="https://user-images.githubusercontent.com/25027560/38223495-d02aec3e-371d-11e8-92ae-fe7c729ab6e5.png"></p>
-<h4 id="异同点总结"><a href="#异同点总结" class="headerlink" title="异同点总结"></a>异同点总结</h4><ul>
-<li>相同点，都是从客户端缓存中加载资源，而不是从服务器加载资源。</li>
-<li>不同点，强缓存不发送请求到服务器，协商缓存会发送请求到服务器。</li>
-</ul>
-<h4 id="缓存优先级顺序（由低到高）"><a href="#缓存优先级顺序（由低到高）" class="headerlink" title="缓存优先级顺序（由低到高）"></a>缓存优先级顺序（由低到高）</h4><p>强缓存</p>
-<ul>
-<li><strong>Expire</strong></li>
-<li><strong>Cache-Control</strong></li>
-</ul>
-<p>协商缓存</p>
-<ul>
-<li><strong>Last-Modified 和 If-Modified-Since</strong></li>
-<li><strong>ETag 和 If-None-Match</strong></li>
-</ul>
-<h4 id="用户操作和行为"><a href="#用户操作和行为" class="headerlink" title="用户操作和行为"></a>用户操作和行为</h4><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730175925.png" alt="img"></p>
-<ul>
-<li>普通F5刷新，强缓存失效，只进行协商缓存</li>
-<li>Ctrl+F5刷新，强缓存和协商缓存均失效</li>
-</ul>
-<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p><strong>图片优化</strong>，可以减少 <code>http</code> 请求数量</p>
-<ul>
-<li>雪碧图、精灵图</li>
-<li>Base64</li>
-<li>字体图标</li>
-</ul>
-<p><strong>压缩资源</strong>大小</p>
-<ul>
-<li>HTML压缩</li>
-<li>css 压缩</li>
-<li>js 压缩与混淆</li>
-<li>图片压缩，（可以尝试webp格式）</li>
-<li>开启 gzip</li>
-</ul>
-<p><strong>缓存</strong></p>
-<ul>
-<li>DNS 缓存</li>
-<li>http 缓存</li>
-<li>浏览器缓存</li>
-</ul>
-<p>其他优化</p>
-<ul>
-<li><p>数据校验，避免无用数据重复发送</p>
-</li>
-<li><p>不使用 <code>css @import</code> </p>
-</li>
-<li><p>比如你使用空的 src 和 href（会重定向到当前页面地址）</p>
-</li>
-<li><p>使用CDN</p>
-</li>
-<li><p>减少重绘回流</p>
-</li>
-<li><p>webpack 打包使用优化插件</p>
-</li>
-</ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>闭包</p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures</a></p>
-<p>缓存</p>
-<p><a href="https://github.com/amandakelake/blog/issues/41">https://github.com/amandakelake/blog/issues/41</a></p>
-<p><a href="https://segmentfault.com/a/1190000021248694">https://segmentfault.com/a/1190000021248694</a></p>
-<p>性能优化</p>
-<p><a href="https://www.cnblogs.com/xiaohuochai/p/9178390.html">https://www.cnblogs.com/xiaohuochai/p/9178390.html</a></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>性能</tag>
-        <tag>http</tag>
-        <tag>布局</tag>
-        <tag>闭包</tag>
-        <tag>缓存</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>备战校招第四天</title>
     <url>/2020/06/27/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/4-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%9B%9B%E5%A4%A9/</url>
     <content><![CDATA[<ol>
@@ -2281,6 +2125,160 @@
       <tags>
         <tag>http</tag>
         <tag>http status codes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>备战校招第三天</title>
+    <url>/2020/06/26/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/3-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%89%E5%A4%A9/</url>
+    <content><![CDATA[<ol>
+<li><p>css 垂直水平居中</p>
+</li>
+<li><p>闭包</p>
+</li>
+<li><p>浏览器缓存相关</p>
+</li>
+<li><p>性能优化</p>
+</li>
+</ol>
+<hr>
+<a id="more"></a>
+
+<h3 id="css-垂直水平居中"><a href="#css-垂直水平居中" class="headerlink" title="css 垂直水平居中"></a>css 垂直水平居中</h3><p><strong>第一种 position+transform</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">      #box &#123;</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line">        </span><br><span class="line"><span class="css">        <span class="attribute">position</span>: relative;</span></span><br><span class="line">      &#125;</span><br><span class="line">      #cbox &#123;</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: orange;</span></span><br><span class="line">        </span><br><span class="line"><span class="css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">        <span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span></span><br><span class="line">      &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>第二种 flex</strong> </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  #box &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">    <span class="attribute">align-items</span>: center;</span></span><br><span class="line"><span class="css">    <span class="attribute">justify-content</span>: center;</span></span><br><span class="line">  &#125;</span><br><span class="line">  #cbox &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: orange;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>第三种 padding + margin</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  #box &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="css">    <span class="attribute">padding</span>: <span class="number">250px</span> <span class="number">0</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">  #cbox &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上三种代码显示效果均为</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626093658.png" alt="image-20200626093651504"></p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>闭包可以从内部函数访问到外部函数作用域。</p>
+<ul>
+<li><p><strong>模拟私有方法</strong></p>
+<p>Java有私有属性，<code>private</code>，而 js 也可以通过模拟来实现私有变量和方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> makeCounter = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> privateCounter = <span class="number">0</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">changeBy</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    privateCounter += val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    increment: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(-<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> privateCounter;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Counter1 = makeCounter();</span><br><span class="line"><span class="keyword">var</span> Counter2 = makeCounter();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 0 */</span></span><br><span class="line">Counter1.increment();</span><br><span class="line">Counter1.increment();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 2 */</span></span><br><span class="line">Counter1.decrement();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 1 */</span></span><br><span class="line"><span class="built_in">console</span>.log(Counter2.value()); <span class="comment">/* logs 0 */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>经典闭包问题</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line"><span class="javascript">    btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行上面代码，点击会发现，输出的均为</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626101322.png" alt="image-20200626101322509"></p>
+<p>这是因为虽形成了三个闭包作用域，但他们共享了一个词法作用域，在这个作用域中又只有一个变量 <code>i</code> ，<code>var</code> 的作用域数函数作用域，但定义 <code>i</code> 外并未有函数，所以这里的 <code>i</code> 是挂载在全局的。在循环后执行点击时间前，<code>i</code> 的值都已经指向了最后一个数 <code>5</code>了。</p>
+<p><strong>解决方法（修改下列任何一种都可以）</strong></p>
+<ul>
+<li><p>将 <code>var i=0;</code> 换为 <code>let i=0;</code> ，这种也是最简单的，<code>let</code> 是 ES6 修复 <code>var</code> 的设计缺陷而出现的</p>
+</li>
+<li><p>使用更多的闭包</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">i</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line">    btn.onclick = handleClick(i)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匿名闭包</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    ;(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line"><span class="javascript">      btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)(i)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>性能</p>
+<p>在处理速度和内存消耗方面都是有负面影响，所以原则是少用，别再不必要的地方使用。</p>
+</li>
+</ul>
+<h3 id="缓存相关"><a href="#缓存相关" class="headerlink" title="缓存相关"></a>缓存相关</h3><p><img src="https://user-images.githubusercontent.com/25027560/38461517-c7f2f422-3b04-11e8-8e94-20bbeb2a32b8.png" alt="缓存"></p>
+<h3 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h3><h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h4><p>浏览器加载资源前，会根据请求头 <code>expires</code>和 <code>cache-control</code> 判断是否命中强缓存，如果命中，则不会发送请求到服务器。</p>
+<p><strong>Expires</strong></p>
+<p><strong>http1.0</strong> 提出，表示资源过期时间的 header，描述为一个绝对时间，服务器返回。（如果修改本地时间，可能会造成缓存失效。）</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">expires</span><span class="punctuation">: </span>Tue, 14 Jul 2020 13:13:53 GMT</span><br></pre></td></tr></table></figure>
+
+<p><strong>Cache-Control</strong></p>
+<p><strong>http1.1</strong> 提出，优先级高于 <code>Expires</code> ，表示相对时间</p>
+<p>缓存请求指令</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=&lt;seconds&gt;</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-stale[=&lt;seconds&gt;]	// 表示客户端接受一个已过期的资源</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>min-fresh=&lt;seconds&gt;		// 表示客户端获取一个在指定的秒数内保持最新状态的响应</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-cache 							// 在发布缓存前，强制要求把缓存提交给服务器进行验证（协商缓存验证）</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-store								// 不存储和不使用任何缓存</span><br></pre></td></tr></table></figure>
+
+<p>缓存响应指令</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>must-revalidate</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-cache					// 如缓存请求指令</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-store					// 如缓存请求指令</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>public						// 表示响应可以为任何对象（客户端、代理服务器等，包括通常不可缓存的</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>private					// 只能被单个用户缓存（私有缓存）</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=&lt;seconds&gt;	// 缓存存储最大周期，单位秒</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>s-maxage=&lt;seconds&gt;	// 覆盖 max-age或 expires 头，仅在共享缓存中有效</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><p>如果没有命中强缓存，浏览器会发送一个请求到服务器，通过 <code>last-modified</code> 和 <code>etag</code> 验证资源是否命中协商缓存，如果命中，会将这个请求返回，但不返回资源的数据，依旧从缓存中读取资源。</p>
+<p><strong>Last-Modified 和 If-Modified-Since</strong></p>
+<p><strong>http1.0</strong> 引入，<code>Last-Modified</code> 是响应头中的属性，表示资源的修改时间。浏览器请求时会在请求头上加上 <code>If-Modified-Since</code> （上次返回的<code>Last-Modified</code>的值），询问是否资源有更新，如有立刻将新的资源返回。</p>
+<p>准确性不如 <code>Etag</code>，所以这个为备用机制。</p>
+<p><strong>ETag 和 If-None-Match</strong></p>
+<p><strong>http1.1</strong> 引入，<code>Etag</code>就像一个指纹，资源变化都会导致ETag变化，跟最后修改时间没有关系，<code>ETag</code>可以保证每一个资源是唯一的。优先级高于 <code>Last-Modified</code> 。</p>
+<p><code>If-None-Match</code>的header会将上次返回的<code>Etag</code>发送给服务器，询问该资源的<code>Etag</code>是否有更新，有变动就会发送新的资源回来</p>
+<p><img src="https://user-images.githubusercontent.com/25027560/38223495-d02aec3e-371d-11e8-92ae-fe7c729ab6e5.png"></p>
+<h4 id="异同点总结"><a href="#异同点总结" class="headerlink" title="异同点总结"></a>异同点总结</h4><ul>
+<li>相同点，都是从客户端缓存中加载资源，而不是从服务器加载资源。</li>
+<li>不同点，强缓存不发送请求到服务器，协商缓存会发送请求到服务器。</li>
+</ul>
+<h4 id="缓存优先级顺序（由低到高）"><a href="#缓存优先级顺序（由低到高）" class="headerlink" title="缓存优先级顺序（由低到高）"></a>缓存优先级顺序（由低到高）</h4><p>强缓存</p>
+<ul>
+<li><strong>Expire</strong></li>
+<li><strong>Cache-Control</strong></li>
+</ul>
+<p>协商缓存</p>
+<ul>
+<li><strong>Last-Modified 和 If-Modified-Since</strong></li>
+<li><strong>ETag 和 If-None-Match</strong></li>
+</ul>
+<h4 id="用户操作和行为"><a href="#用户操作和行为" class="headerlink" title="用户操作和行为"></a>用户操作和行为</h4><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730175925.png" alt="img"></p>
+<ul>
+<li>普通F5刷新，强缓存失效，只进行协商缓存</li>
+<li>Ctrl+F5刷新，强缓存和协商缓存均失效</li>
+</ul>
+<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p><strong>图片优化</strong>，可以减少 <code>http</code> 请求数量</p>
+<ul>
+<li>雪碧图、精灵图</li>
+<li>Base64</li>
+<li>字体图标</li>
+</ul>
+<p><strong>压缩资源</strong>大小</p>
+<ul>
+<li>HTML压缩</li>
+<li>css 压缩</li>
+<li>js 压缩与混淆</li>
+<li>图片压缩，（可以尝试webp格式）</li>
+<li>开启 gzip</li>
+</ul>
+<p><strong>缓存</strong></p>
+<ul>
+<li>DNS 缓存</li>
+<li>http 缓存</li>
+<li>浏览器缓存</li>
+</ul>
+<p>其他优化</p>
+<ul>
+<li><p>数据校验，避免无用数据重复发送</p>
+</li>
+<li><p>不使用 <code>css @import</code> </p>
+</li>
+<li><p>比如你使用空的 src 和 href（会重定向到当前页面地址）</p>
+</li>
+<li><p>使用CDN</p>
+</li>
+<li><p>减少重绘回流</p>
+</li>
+<li><p>webpack 打包使用优化插件</p>
+</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>闭包</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures</a></p>
+<p>缓存</p>
+<p><a href="https://github.com/amandakelake/blog/issues/41">https://github.com/amandakelake/blog/issues/41</a></p>
+<p><a href="https://segmentfault.com/a/1190000021248694">https://segmentfault.com/a/1190000021248694</a></p>
+<p>性能优化</p>
+<p><a href="https://www.cnblogs.com/xiaohuochai/p/9178390.html">https://www.cnblogs.com/xiaohuochai/p/9178390.html</a></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>性能</tag>
+        <tag>http</tag>
+        <tag>布局</tag>
+        <tag>闭包</tag>
+        <tag>缓存</tag>
       </tags>
   </entry>
   <entry>
@@ -3278,6 +3276,41 @@
       </tags>
   </entry>
   <entry>
+    <title>JS中的substr和subString还有slice的区别</title>
+    <url>/2019/03/09/%E6%8A%80%E6%9C%AF/JS%E4%B8%AD%E7%9A%84substr%E5%92%8CsubString%E8%BF%98%E6%9C%89slice%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
+<p>注意：</p>
+<p><code>substr</code> 官方不推荐不使用</p>
+<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+<a id="more"></a>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substr">String.prototype.substr()</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substring">String,prototype.substring()</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/slice">String.prototype.slice()</a></p>
+<blockquote>
+<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+</blockquote>
+<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
+<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
+<p><code>length </code> 可选，提取字符的长度</p>
+</blockquote>
+<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
+<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
+<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
+</blockquote>
+<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
+<p><code>beginSlice</code>索引开始，提取字符串</p>
+<p><code>endSlice</code>，可选，索引结束提取字符串</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Chrome 调试技巧</title>
     <url>/2020/01/29/%E6%8A%80%E6%9C%AF/Chrome-%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<blockquote>
@@ -3340,41 +3373,6 @@
       </categories>
       <tags>
         <tag>Chrome</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS中的substr和subString还有slice的区别</title>
-    <url>/2019/03/09/%E6%8A%80%E6%9C%AF/JS%E4%B8%AD%E7%9A%84substr%E5%92%8CsubString%E8%BF%98%E6%9C%89slice%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
-<p>注意：</p>
-<p><code>substr</code> 官方不推荐不使用</p>
-<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
-<a id="more"></a>
-
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substr">String.prototype.substr()</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substring">String,prototype.substring()</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/slice">String.prototype.slice()</a></p>
-<blockquote>
-<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
-</blockquote>
-<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
-<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
-<p><code>length </code> 可选，提取字符的长度</p>
-</blockquote>
-<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
-<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
-<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
-</blockquote>
-<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
-<p><code>beginSlice</code>索引开始，提取字符串</p>
-<p><code>endSlice</code>，可选，索引结束提取字符串</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -3893,6 +3891,182 @@
       </categories>
       <tags>
         <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 使用技巧</title>
+    <url>/2020/08/05/%E6%8A%80%E6%9C%AF/mac-%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p>快捷键</p>
+<ul>
+<li>brew</li>
+<li>iterm2</li>
+<li>mac</li>
+</ul>
+<hr>
+<a id="more"></a>
+
+
+
+<h2 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h2><blockquote>
+<p>mac 下软件管理工具，类似node的npm，python的pip，，，</p>
+</blockquote>
+<h3 id="安装-node-v12"><a href="#安装-node-v12" class="headerlink" title="安装 node-v12"></a>安装 <code>node-v12</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install node@12</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-iterm2"><a href="#安装-iterm2" class="headerlink" title="安装 iterm2"></a>安装 <code>iterm2</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><a href="https://www.zhihu.com/question/22624898/answer/22782144">引用</a></p>
+<p><code>brew install </code> ，前者是是从下载源码解压然后 ./configure &amp;&amp; make install ，同时会包含相关依存库。并自动配置好各种环境变量，而且易于卸载。</p>
+<p> <code>brew cask install</code> ，是已经编译好的包，只需要下载解压放在统一的目录中（/opt/homebrew-cask/Caskroom）</p>
+</blockquote>
+<h3 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew search node</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="brew-services"><a href="#brew-services" class="headerlink" title="brew services"></a>brew services</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[sudo] brew services [list]:</span><br><span class="line">		列出当前用户的所有服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services run (formula|--all):</span><br><span class="line">		运行没有注册启动的服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services start (formula|--all):</span><br><span class="line">		启动服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services stop (formula|--all):</span><br><span class="line">    关闭服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services restart (formula|--all):</span><br><span class="line">    重启服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services cleanup:</span><br><span class="line">    移除所有未使用的服务。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="iterm2快捷键"><a href="#iterm2快捷键" class="headerlink" title="iterm2快捷键"></a>iterm2快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Control + U</td>
+<td>清空当前行</td>
+</tr>
+<tr>
+<td>Control + Y</td>
+<td>恢复当前行</td>
+</tr>
+<tr>
+<td>Control + A</td>
+<td>光标置于当前行首</td>
+</tr>
+<tr>
+<td>Control + E</td>
+<td>光标置于当前行尾</td>
+</tr>
+<tr>
+<td>Control + W</td>
+<td>删除光标前的内容</td>
+</tr>
+<tr>
+<td>Control + K</td>
+<td>删除光标后的内容</td>
+</tr>
+<tr>
+<td>CMD + T</td>
+<td>打开一个新窗口</td>
+</tr>
+<tr>
+<td>CMD + W</td>
+<td>关闭当前窗口</td>
+</tr>
+</tbody></table>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><blockquote>
+<p>只整理了个人常用的快捷键，其他还请查看文档。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:q</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>忽略更改退出</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>保存退出</td>
+</tr>
+<tr>
+<td>A</td>
+<td>在光标所在行尾开始插入</td>
+</tr>
+<tr>
+<td>I</td>
+<td>在光标所在行头开始插入</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销修改</td>
+</tr>
+<tr>
+<td>ctrl+R</td>
+<td>重做</td>
+</tr>
+<tr>
+<td>上下左右</td>
+<td>k,j,h,l</td>
+</tr>
+<tr>
+<td>0,  <code>&lt;Home&gt;</code></td>
+<td>行首</td>
+</tr>
+<tr>
+<td>$, <code>&lt;End&gt;</code></td>
+<td>行尾</td>
+</tr>
+<tr>
+<td>i</td>
+<td>输入模式</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制当前行</td>
+</tr>
+<tr>
+<td>p</td>
+<td>粘贴</td>
+</tr>
+<tr>
+<td>:set nu</td>
+<td>显示行号</td>
+</tr>
+</tbody></table>
+<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Control + command + D</td>
+<td>查询</td>
+</tr>
+<tr>
+<td>command + Q</td>
+<td>退出当前软件</td>
+</tr>
+<tr>
+<td>command + Shift + .</td>
+<td>显示/隐藏 隐藏文件</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>brew</tag>
+        <tag>iterm2</tag>
       </tags>
   </entry>
   <entry>
@@ -4448,182 +4622,6 @@
       </tags>
   </entry>
   <entry>
-    <title>mac 使用技巧</title>
-    <url>/2020/08/05/%E6%8A%80%E6%9C%AF/mac-%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<p>快捷键</p>
-<ul>
-<li>brew</li>
-<li>iterm2</li>
-<li>mac</li>
-</ul>
-<hr>
-<a id="more"></a>
-
-
-
-<h2 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h2><blockquote>
-<p>mac 下软件管理工具，类似node的npm，python的pip，，，</p>
-</blockquote>
-<h3 id="安装-node-v12"><a href="#安装-node-v12" class="headerlink" title="安装 node-v12"></a>安装 <code>node-v12</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install node@12</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装-iterm2"><a href="#安装-iterm2" class="headerlink" title="安装 iterm2"></a>安装 <code>iterm2</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p><a href="https://www.zhihu.com/question/22624898/answer/22782144">引用</a></p>
-<p><code>brew install </code> ，前者是是从下载源码解压然后 ./configure &amp;&amp; make install ，同时会包含相关依存库。并自动配置好各种环境变量，而且易于卸载。</p>
-<p> <code>brew cask install</code> ，是已经编译好的包，只需要下载解压放在统一的目录中（/opt/homebrew-cask/Caskroom）</p>
-</blockquote>
-<h3 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew search node</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="brew-services"><a href="#brew-services" class="headerlink" title="brew services"></a>brew services</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[sudo] brew services [list]:</span><br><span class="line">		列出当前用户的所有服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services run (formula|--all):</span><br><span class="line">		运行没有注册启动的服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services start (formula|--all):</span><br><span class="line">		启动服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services stop (formula|--all):</span><br><span class="line">    关闭服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services restart (formula|--all):</span><br><span class="line">    重启服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services cleanup:</span><br><span class="line">    移除所有未使用的服务。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="iterm2快捷键"><a href="#iterm2快捷键" class="headerlink" title="iterm2快捷键"></a>iterm2快捷键</h2><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Control + U</td>
-<td>清空当前行</td>
-</tr>
-<tr>
-<td>Control + Y</td>
-<td>恢复当前行</td>
-</tr>
-<tr>
-<td>Control + A</td>
-<td>光标置于当前行首</td>
-</tr>
-<tr>
-<td>Control + E</td>
-<td>光标置于当前行尾</td>
-</tr>
-<tr>
-<td>Control + W</td>
-<td>删除光标前的内容</td>
-</tr>
-<tr>
-<td>Control + K</td>
-<td>删除光标后的内容</td>
-</tr>
-<tr>
-<td>CMD + T</td>
-<td>打开一个新窗口</td>
-</tr>
-<tr>
-<td>CMD + W</td>
-<td>关闭当前窗口</td>
-</tr>
-</tbody></table>
-<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><blockquote>
-<p>只整理了个人常用的快捷键，其他还请查看文档。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>:q</td>
-<td>退出</td>
-</tr>
-<tr>
-<td>:q!</td>
-<td>忽略更改退出</td>
-</tr>
-<tr>
-<td>:wq</td>
-<td>保存退出</td>
-</tr>
-<tr>
-<td>A</td>
-<td>在光标所在行尾开始插入</td>
-</tr>
-<tr>
-<td>I</td>
-<td>在光标所在行头开始插入</td>
-</tr>
-<tr>
-<td>dd</td>
-<td>删除当前行</td>
-</tr>
-<tr>
-<td>u</td>
-<td>撤销修改</td>
-</tr>
-<tr>
-<td>ctrl+R</td>
-<td>重做</td>
-</tr>
-<tr>
-<td>上下左右</td>
-<td>k,j,h,l</td>
-</tr>
-<tr>
-<td>0,  <code>&lt;Home&gt;</code></td>
-<td>行首</td>
-</tr>
-<tr>
-<td>$, <code>&lt;End&gt;</code></td>
-<td>行尾</td>
-</tr>
-<tr>
-<td>i</td>
-<td>输入模式</td>
-</tr>
-<tr>
-<td>yy</td>
-<td>复制当前行</td>
-</tr>
-<tr>
-<td>p</td>
-<td>粘贴</td>
-</tr>
-<tr>
-<td>:set nu</td>
-<td>显示行号</td>
-</tr>
-</tbody></table>
-<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Control + command + D</td>
-<td>查询</td>
-</tr>
-<tr>
-<td>command + Q</td>
-<td>退出当前软件</td>
-</tr>
-<tr>
-<td>command + Shift + .</td>
-<td>显示/隐藏 隐藏文件</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>brew</tag>
-        <tag>iterm2</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>powershell 常用命令</title>
     <url>/2020/01/07/%E6%8A%80%E6%9C%AF/powershell-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>开启管理员模式</p>
@@ -4916,6 +4914,24 @@
       </categories>
       <tags>
         <tag>浏览器兼容性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TypeScript总结</title>
+    <url>/2023/12/27/%E6%8A%80%E6%9C%AF/typescript%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="TypeScript-相关收藏"><a href="#TypeScript-相关收藏" class="headerlink" title="TypeScript 相关收藏"></a>TypeScript 相关收藏</h2><h3 id="入门文章类"><a href="#入门文章类" class="headerlink" title="入门文章类"></a>入门文章类</h3><p><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a>: github 10k star, author xcatliu.</p>
+<p><a href="https://mp.weixin.qq.com/s/WsldmkW2ovp-okxSY3le9g">Typescript 类型编程，从入门到通达</a></p>
+<p><a href="https://medium.com/free-code-camp/typescript-curry-ramda-types-f747e99744ab">Learn Advanced TypeScript Types</a></p>
+<p><a href="https://www.typescriptlang.org/zh/cheatsheets">TypeScript Cheat Sheets</a></p>
+<h3 id="通关挑战类"><a href="#通关挑战类" class="headerlink" title="通关挑战类"></a>通关挑战类</h3><p><a href="https://typescript-exercises.github.io/">Typescript Exercises</a>：一共16关</p>
+<p><a href="https://github.com/sindresorhus/type-fest">type-fest</a></p>
+<p><a href="https://github.com/type-challenges/type-challenges/">type-challenges</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -5330,6 +5346,30 @@
       </tags>
   </entry>
   <entry>
+    <title>公用翻墙代理-backup</title>
+    <url>/2022/07/10/%E6%8A%80%E6%9C%AF/%E5%85%AC%E7%94%A8%E7%BF%BB%E5%A2%99%E4%BB%A3%E7%90%86-backup/</url>
+    <content><![CDATA[<ol>
+<li><p>找到host文件位置，window下位置如图所示，mac下host位置 <code>/etc/hosts</code> 。</p>
+</li>
+<li><p>按照下图规则添加host记录</p>
+</li>
+<li><p>打开 <code>free-ss.site</code> 网站</p>
+</li>
+<li><p>V 账号 =&gt; v2ray，S账号 =&gt; shadowsocks</p>
+</li>
+<li><p>使用代理软件添加规则，Windows 下推荐 v2rayN，或者使用 Clash For windows 在win和mac下都可使用，然后就可以畅游网络世界了。</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/202207101608681.png"></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>vpn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>入门git-代理配置篇</title>
     <url>/2020/07/27/%E6%8A%80%E6%9C%AF/%E5%85%A5%E9%97%A8git-%E9%85%8D%E7%BD%AE%E7%AF%87/</url>
     <content><![CDATA[<p>配置个信息</p>
@@ -5375,30 +5415,6 @@
       </categories>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>公用翻墙代理-backup</title>
-    <url>/2022/07/10/%E6%8A%80%E6%9C%AF/%E5%85%AC%E7%94%A8%E7%BF%BB%E5%A2%99%E4%BB%A3%E7%90%86-backup/</url>
-    <content><![CDATA[<ol>
-<li><p>找到host文件位置，window下位置如图所示，mac下host位置 <code>/etc/hosts</code> 。</p>
-</li>
-<li><p>按照下图规则添加host记录</p>
-</li>
-<li><p>打开 <code>free-ss.site</code> 网站</p>
-</li>
-<li><p>V 账号 =&gt; v2ray，S账号 =&gt; shadowsocks</p>
-</li>
-<li><p>使用代理软件添加规则，Windows 下推荐 v2rayN，或者使用 Clash For windows 在win和mac下都可使用，然后就可以畅游网络世界了。</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/202207101608681.png"></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>vpn</tag>
       </tags>
   </entry>
   <entry>
@@ -5804,28 +5820,6 @@
       </tags>
   </entry>
   <entry>
-    <title>可替换元素和不可替换元素</title>
-    <url>/2021/05/02/%E7%AE%80%E5%8D%95%E8%81%8A/%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0%E5%92%8C%E9%9D%9E%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0/</url>
-    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
-<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
-<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
-<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
-<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><a href="https://www.nowcoder.com/questionTerminal/480a591c51e848169c31de26c639e4d1">牛客题目</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Replaced_element">mdn 可替换元素</a></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>从输入url到页面显示经过了什么</title>
     <url>/2021/03/06/%E7%AE%80%E5%8D%95%E8%81%8A/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88/</url>
     <content><![CDATA[<p>大致分为以下几个过程</p>
@@ -5853,6 +5847,28 @@
       <tags>
         <tag>面试题</tag>
         <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可替换元素和不可替换元素</title>
+    <url>/2021/05/02/%E7%AE%80%E5%8D%95%E8%81%8A/%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0%E5%92%8C%E9%9D%9E%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
+<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
+<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
+<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
+<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><a href="https://www.nowcoder.com/questionTerminal/480a591c51e848169c31de26c639e4d1">牛客题目</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Replaced_element">mdn 可替换元素</a></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
       </tags>
   </entry>
   <entry>
