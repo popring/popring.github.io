@@ -1165,6 +1165,191 @@
       </tags>
   </entry>
   <entry>
+    <title>备战校招第十天</title>
+    <url>/2020/08/02/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/10-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E5%A4%A9/</url>
+    <content><![CDATA[<ul>
+<li>面向对象实现继承</li>
+<li>HTTP 协议类</li>
+<li>通信类</li>
+<li>安全类</li>
+<li>渲染机制类</li>
+<li>提升页面性能</li>
+<li>错误监控</li>
+</ul>
+<hr>
+<a id="more"></a>
+
+
+
+<h2 id="面向对象实现继承"><a href="#面向对象实现继承" class="headerlink" title="面向对象实现继承"></a>面向对象实现继承</h2><h3 id="第一种：借助构造函数实现"><a href="#第一种：借助构造函数实现" class="headerlink" title="第一种：借助构造函数实现"></a>第一种：借助构造函数实现</h3><blockquote>
+<p> 可以调用父类构造函数，但获取不到父类原型对象上的方法和属性</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P1&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">P1.prototype.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;say hello&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  P1.call(<span class="built_in">this</span>);</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;c1&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o1 = <span class="keyword">new</span> C1();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o1 :&gt;&gt; &quot;</span>, o1);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;o1.say :&gt;&gt; &#x27;</span>, o1.say());</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种：利用原型链实现"><a href="#第二种：利用原型链实现" class="headerlink" title="第二种：利用原型链实现"></a>第二种：利用原型链实现</h3><blockquote>
+<p>缺点：原型链中的原型对象是共用的。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P2&quot;</span>;</span><br><span class="line">  <span class="built_in">this</span>.play = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;c2&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">C2.prototype = <span class="keyword">new</span> P2();</span><br><span class="line"><span class="keyword">var</span> o2 = <span class="keyword">new</span> C2();</span><br><span class="line"><span class="keyword">var</span> o3 = <span class="keyword">new</span> C2();</span><br><span class="line"><span class="comment">// 理想状态应该是只有 o2.play 发生变化，但实际上 o3.play 也发生了变化</span></span><br><span class="line">o2.play.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o2 :&gt;&gt; &quot;</span>, o2);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o3 :&gt;&gt; &quot;</span>, o3);</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三种：组合继承"><a href="#第三种：组合继承" class="headerlink" title="第三种：组合继承"></a>第三种：组合继承</h3><blockquote>
+<p>将前两种方法组合，解决了之前的缺点，但父类被调用了两次</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P3&quot;</span>;</span><br><span class="line">  <span class="built_in">this</span>.play = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 父类调用第一次</span></span><br><span class="line">  P3.call(<span class="built_in">this</span>)</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;C3&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 父类调用第二次</span></span><br><span class="line">C3.prototype = <span class="keyword">new</span> P3();</span><br><span class="line"><span class="keyword">var</span> o4 = <span class="keyword">new</span> C3();</span><br><span class="line"><span class="keyword">var</span> o5 = <span class="keyword">new</span> C3();</span><br><span class="line">o4.play.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o4 :&gt;&gt; &quot;</span>, o4);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o5 :&gt;&gt; &quot;</span>, o5);</span><br></pre></td></tr></table></figure>
+
+<h3 id="第四种：组合继承优化1"><a href="#第四种：组合继承优化1" class="headerlink" title="第四种：组合继承优化1"></a>第四种：组合继承优化1</h3><blockquote>
+<p>无法判断是子类创建的对象还是父类创建的对象</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P4</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P4&quot;</span>;</span><br><span class="line">  <span class="built_in">this</span>.play = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C4</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  P4.call(<span class="built_in">this</span>)</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;C4&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">C4.prototype = P4.prototype;</span><br><span class="line"><span class="keyword">var</span> o6 = <span class="keyword">new</span> C4();</span><br><span class="line"><span class="keyword">var</span> o7 = <span class="keyword">new</span> C4();</span><br><span class="line">o6.play.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o6 :&gt;&gt; &quot;</span>, o6);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o7 :&gt;&gt; &quot;</span>, o7);</span><br></pre></td></tr></table></figure>
+
+<h3 id="第五种：组合继承优化2"><a href="#第五种：组合继承优化2" class="headerlink" title="第五种：组合继承优化2"></a>第五种：组合继承优化2</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P5</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P5&quot;</span>;</span><br><span class="line">  <span class="built_in">this</span>.play = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C5</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  P5.call(<span class="built_in">this</span>)</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;C5&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">C5.prototype = <span class="built_in">Object</span>.create(P5.prototype);</span><br><span class="line">C5.prototype.constructor = C5</span><br><span class="line"><span class="keyword">var</span> o8 = <span class="keyword">new</span> C5();</span><br><span class="line"><span class="keyword">var</span> o9 = <span class="keyword">new</span> C5();</span><br><span class="line">o8.play.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o8 :&gt;&gt; &quot;</span>, o8);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o9 :&gt;&gt; &quot;</span>, o9);</span><br></pre></td></tr></table></figure>
+
+<h3 id="第六种：ES6-class-定义"><a href="#第六种：ES6-class-定义" class="headerlink" title="第六种：ES6 class 定义"></a>第六种：ES6 class 定义</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">P6</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&quot;P6&quot;</span></span><br><span class="line">    <span class="built_in">this</span>.play = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C6</span> <span class="keyword">extends</span> <span class="title">P6</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>()</span><br><span class="line">    <span class="built_in">this</span>.type = <span class="string">&quot;C6&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o10 = <span class="keyword">new</span> C6()</span><br><span class="line"><span class="keyword">var</span> o11 = <span class="keyword">new</span> C6()</span><br><span class="line">o10.play.push(<span class="number">4</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;o10 :&gt;&gt; &#x27;</span>, o10);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;o11 :&gt;&gt; &#x27;</span>, o11);</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTP协议类"><a href="#HTTP协议类" class="headerlink" title="HTTP协议类"></a>HTTP协议类</h2><h3 id="http主要特点"><a href="#http主要特点" class="headerlink" title="http主要特点"></a>http主要特点</h3><ul>
+<li>简单</li>
+<li>快速</li>
+<li>无连接</li>
+<li>无状态</li>
+</ul>
+<h3 id="http报文组成部分"><a href="#http报文组成部分" class="headerlink" title="http报文组成部分"></a>http报文组成部分</h3><p>请求报文</p>
+<ul>
+<li>请求行：http方法、 页面地址、 http协议以及版本</li>
+<li>请求头：key-value值</li>
+<li>空行：分割请求头和请求体</li>
+<li>请求体</li>
+</ul>
+<p>响应报文</p>
+<ul>
+<li>状态行： http协议版本、状态码</li>
+<li>响应头：和请求头类似</li>
+<li>空行</li>
+<li>响应体</li>
+</ul>
+<h3 id="http-方法"><a href="#http-方法" class="headerlink" title="http 方法"></a>http 方法</h3><ul>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>DELETE</li>
+<li>HEAD</li>
+</ul>
+<h3 id="get和post区别"><a href="#get和post区别" class="headerlink" title="get和post区别"></a>get和post区别</h3><ul>
+<li>在浏览器回退时，get无害，post则会再次提交请求</li>
+<li>url地址，get可以被收藏，post不行</li>
+<li>缓存，get会主动缓存，post不回，需手动设置</li>
+<li>get请求只能进习惯url编码，post支持多种编码</li>
+<li>get请求会在历史记录中，post不会</li>
+<li>get请求在URL中传递参数有长度限制，post没有限制</li>
+<li>参数的数据类型，get只接受ASCII自负，post没有限制</li>
+<li>get比post更不安全，因为参数直接暴露在url中，所以不能传递敏感信息</li>
+<li>get参数通过url传递，post放在请求体中</li>
+</ul>
+<h3 id="http-状态码"><a href="#http-状态码" class="headerlink" title="http 状态码"></a>http 状态码</h3><p>1xx：指示信息，表示请求已接受，继续处理</p>
+<p>2xx：成功，表示请求已成功被接收</p>
+<p>3xx：重定向</p>
+<p>4xx：客户端错误</p>
+<p>5xx：服务器错误</p>
+<h2 id="通信类"><a href="#通信类" class="headerlink" title="通信类"></a>通信类</h2><h3 id="跨域通信"><a href="#跨域通信" class="headerlink" title="跨域通信"></a>跨域通信</h3><ul>
+<li>JSONP</li>
+<li>Hash</li>
+<li>PostMessage</li>
+<li>Websocket</li>
+<li>CORS</li>
+</ul>
+<h2 id="安全类"><a href="#安全类" class="headerlink" title="安全类"></a>安全类</h2><h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><p>跨站脚本攻击</p>
+<ul>
+<li>存储型XSS：跨站代码存储在数据库</li>
+<li>反射型XSS：恶意代码在url中</li>
+<li>DOM型XSS：DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。</li>
+</ul>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>页面注入脚本，执行恶意  js 代码</p>
+<h4 id="防御措施"><a href="#防御措施" class="headerlink" title="防御措施"></a>防御措施</h4><ul>
+<li>输入内容过滤</li>
+<li>转译html</li>
+<li>cookie设置http-only，防止恶意获取cookie</li>
+<li>少用直接渲染或者执行html的js代码，比如：<code>document.write()</code>、<code>innerHTML</code>、<code>vue中的v-html</code>等</li>
+</ul>
+<h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><p>跨站请求伪造</p>
+<h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>用户登陆A网站，A网站下发cookie。用户登陆B网站，B网站诱导用户点击链接，用户点击链接，访问A网站并携带cookie。</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200802155816.png" alt="image-20200802155816883"></p>
+<h4 id="防御措施-1"><a href="#防御措施-1" class="headerlink" title="防御措施"></a>防御措施</h4><ul>
+<li>token 验证</li>
+<li>referer 验证</li>
+</ul>
+<h2 id="渲染机制类"><a href="#渲染机制类" class="headerlink" title="渲染机制类"></a>渲染机制类</h2><h3 id="DOCTYPE"><a href="#DOCTYPE" class="headerlink" title="DOCTYPE"></a>DOCTYPE</h3><blockquote>
+<p> DTD是 <a href="https://zh.wikipedia.org/wiki/XML">XML</a>文件的<strong>文档类型定义</strong>（Document Type Definition）可以看成一个或者多个XML文件的模板，在这里可以定义XML文件中的元素、元素的属性、元素的排列方式、元素包含的内容等等。</p>
+</blockquote>
+<p><code>&lt;!DOCTYPE&gt;</code> 声明必须是 HTML 文档的第一行，位于 <html> 标签之前。</p>
+<p><code>&lt;!DOCTYPE&gt;</code> 声明不是 HTML 标签；它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令。</p>
+<h4 id="html5"><a href="#html5" class="headerlink" title="html5"></a>html5</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="html4-01-strict"><a href="#html4-01-strict" class="headerlink" title="html4.01 strict"></a>html4.01 strict</h4><p>该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/html4/strict.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="HTML-4-01-Transitional"><a href="#HTML-4-01-Transitional" class="headerlink" title="HTML 4.01 Transitional"></a>HTML 4.01 Transitional</h4><p>该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如 font）。允许框架集（Framesets）。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h3><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200802163318.png" alt="image-20200802163318185"></p>
+<h4 id="Reflow-重排"><a href="#Reflow-重排" class="headerlink" title="Reflow 重排"></a>Reflow 重排</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>当<code>Render Tree</code>中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为重排（又称为回流）。</p>
+<h5 id="触发reflow"><a href="#触发reflow" class="headerlink" title="触发reflow"></a>触发reflow</h5><ul>
+<li>增加、删除、修改DOM节点是，会导致reflow或repaint</li>
+<li>移动DOM位置或者动画执行时</li>
+<li>修改CSS样式时</li>
+<li>Resize 窗口时，或者滚动的时候</li>
+<li>修改网页的默认字体时 </li>
+</ul>
+<h4 id="Repaint-重绘"><a href="#Repaint-重绘" class="headerlink" title="Repaint 重绘"></a>Repaint 重绘</h4><h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><p>当页面中元素样式的改变并不影响它在文档流中的位置时（例如：<code>color</code>、<code>background-color</code>、<code>visibility</code>等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。</p>
+<h5 id="触发repaint"><a href="#触发repaint" class="headerlink" title="触发repaint"></a>触发repaint</h5><p>DOM改动</p>
+<p>CSS改动</p>
+<h5 id="减少repaint频率"><a href="#减少repaint频率" class="headerlink" title="减少repaint频率"></a>减少repaint频率</h5><ul>
+<li>使用 DocumentFragment</li>
+<li>virtual dom</li>
+</ul>
+<h2 id="提升页面性能"><a href="#提升页面性能" class="headerlink" title="提升页面性能"></a>提升页面性能</h2><h3 id="资源压缩合并，减少http请求"><a href="#资源压缩合并，减少http请求" class="headerlink" title="资源压缩合并，减少http请求"></a>资源压缩合并，减少http请求</h3><h3 id="非核心代码异步加载"><a href="#非核心代码异步加载" class="headerlink" title="非核心代码异步加载"></a>非核心代码异步加载</h3><ul>
+<li>动态脚本加载</li>
+<li>defer：html解析完之后执行，如果是多个则按照顺序执行</li>
+<li>async：加载完之后立即执行，如果是多个，执行顺序与加载顺序无关</li>
+</ul>
+<h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h3><p>请查看备战校招第三天</p>
+<h3 id="CDN加速"><a href="#CDN加速" class="headerlink" title="CDN加速"></a>CDN加速</h3><h3 id="预解析DNS"><a href="#预解析DNS" class="headerlink" title="预解析DNS"></a>预解析DNS</h3><p>浏览器默认会进行<code>a标签</code>dns解析，但https协议的可能会默认不解析，下面这行代码强制开启<code>a标签</code>dns解析</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;x-dns-prefetch-control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;on&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>预解析</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;dns-prefetch&quot;</span> <span class="attr">href</span>=<span class="string">&quot;//host_name_to_prefetch.com&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="错误监控"><a href="#错误监控" class="headerlink" title="错误监控"></a>错误监控</h2><h3 id="前端错误的分类"><a href="#前端错误的分类" class="headerlink" title="前端错误的分类"></a>前端错误的分类</h3><ul>
+<li>即时运行错误</li>
+<li>资源加载错误</li>
+</ul>
+<h3 id="错误的捕获方式"><a href="#错误的捕获方式" class="headerlink" title="错误的捕获方式"></a>错误的捕获方式</h3><h4 id="运行时错误捕获方式"><a href="#运行时错误捕获方式" class="headerlink" title="运行时错误捕获方式"></a>运行时错误捕获方式</h4><ul>
+<li>try..catch</li>
+<li>window.onerror</li>
+</ul>
+<h4 id="资源加载错误"><a href="#资源加载错误" class="headerlink" title="资源加载错误"></a>资源加载错误</h4><ul>
+<li>object.onerror</li>
+<li>performance.getEntries()</li>
+<li>window.Error 事件捕获（冒泡获取不到）</li>
+</ul>
+<h3 id="上报错误的基本原理"><a href="#上报错误的基本原理" class="headerlink" title="上报错误的基本原理"></a>上报错误的基本原理</h3><ul>
+<li><p><code>Ajax</code> 通信方式上报</p>
+</li>
+<li><p>利用  <code>Image</code> 对象上报</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">new</span> Image()).src=<span class="string">&quot;https://baidu.com/uploadError?type=1&quot;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>继承</tag>
+        <tag>安全</tag>
+        <tag>渲染机制</tag>
+        <tag>性能</tag>
+        <tag>监控</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言 第九章 结构体</title>
     <url>/2019/03/30/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-9.%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E7%BB%93%E6%9E%84%E4%BD%93/</url>
     <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
@@ -1383,191 +1568,6 @@
         <tag>JavaScript</tag>
         <tag>js编程题</tag>
         <tag>事件循环机制</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>备战校招第十天</title>
-    <url>/2020/08/02/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/10-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E5%A4%A9/</url>
-    <content><![CDATA[<ul>
-<li>面向对象实现继承</li>
-<li>HTTP 协议类</li>
-<li>通信类</li>
-<li>安全类</li>
-<li>渲染机制类</li>
-<li>提升页面性能</li>
-<li>错误监控</li>
-</ul>
-<hr>
-<a id="more"></a>
-
-
-
-<h2 id="面向对象实现继承"><a href="#面向对象实现继承" class="headerlink" title="面向对象实现继承"></a>面向对象实现继承</h2><h3 id="第一种：借助构造函数实现"><a href="#第一种：借助构造函数实现" class="headerlink" title="第一种：借助构造函数实现"></a>第一种：借助构造函数实现</h3><blockquote>
-<p> 可以调用父类构造函数，但获取不到父类原型对象上的方法和属性</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P1&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">P1.prototype.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;say hello&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  P1.call(<span class="built_in">this</span>);</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;c1&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o1 = <span class="keyword">new</span> C1();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o1 :&gt;&gt; &quot;</span>, o1);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;o1.say :&gt;&gt; &#x27;</span>, o1.say());</span><br></pre></td></tr></table></figure>
-
-<h3 id="第二种：利用原型链实现"><a href="#第二种：利用原型链实现" class="headerlink" title="第二种：利用原型链实现"></a>第二种：利用原型链实现</h3><blockquote>
-<p>缺点：原型链中的原型对象是共用的。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P2&quot;</span>;</span><br><span class="line">  <span class="built_in">this</span>.play = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;c2&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">C2.prototype = <span class="keyword">new</span> P2();</span><br><span class="line"><span class="keyword">var</span> o2 = <span class="keyword">new</span> C2();</span><br><span class="line"><span class="keyword">var</span> o3 = <span class="keyword">new</span> C2();</span><br><span class="line"><span class="comment">// 理想状态应该是只有 o2.play 发生变化，但实际上 o3.play 也发生了变化</span></span><br><span class="line">o2.play.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o2 :&gt;&gt; &quot;</span>, o2);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o3 :&gt;&gt; &quot;</span>, o3);</span><br></pre></td></tr></table></figure>
-
-<h3 id="第三种：组合继承"><a href="#第三种：组合继承" class="headerlink" title="第三种：组合继承"></a>第三种：组合继承</h3><blockquote>
-<p>将前两种方法组合，解决了之前的缺点，但父类被调用了两次</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P3&quot;</span>;</span><br><span class="line">  <span class="built_in">this</span>.play = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 父类调用第一次</span></span><br><span class="line">  P3.call(<span class="built_in">this</span>)</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;C3&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 父类调用第二次</span></span><br><span class="line">C3.prototype = <span class="keyword">new</span> P3();</span><br><span class="line"><span class="keyword">var</span> o4 = <span class="keyword">new</span> C3();</span><br><span class="line"><span class="keyword">var</span> o5 = <span class="keyword">new</span> C3();</span><br><span class="line">o4.play.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o4 :&gt;&gt; &quot;</span>, o4);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o5 :&gt;&gt; &quot;</span>, o5);</span><br></pre></td></tr></table></figure>
-
-<h3 id="第四种：组合继承优化1"><a href="#第四种：组合继承优化1" class="headerlink" title="第四种：组合继承优化1"></a>第四种：组合继承优化1</h3><blockquote>
-<p>无法判断是子类创建的对象还是父类创建的对象</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P4</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P4&quot;</span>;</span><br><span class="line">  <span class="built_in">this</span>.play = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C4</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  P4.call(<span class="built_in">this</span>)</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;C4&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">C4.prototype = P4.prototype;</span><br><span class="line"><span class="keyword">var</span> o6 = <span class="keyword">new</span> C4();</span><br><span class="line"><span class="keyword">var</span> o7 = <span class="keyword">new</span> C4();</span><br><span class="line">o6.play.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o6 :&gt;&gt; &quot;</span>, o6);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o7 :&gt;&gt; &quot;</span>, o7);</span><br></pre></td></tr></table></figure>
-
-<h3 id="第五种：组合继承优化2"><a href="#第五种：组合继承优化2" class="headerlink" title="第五种：组合继承优化2"></a>第五种：组合继承优化2</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">P5</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;P5&quot;</span>;</span><br><span class="line">  <span class="built_in">this</span>.play = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">C5</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  P5.call(<span class="built_in">this</span>)</span><br><span class="line">  <span class="built_in">this</span>.type = <span class="string">&quot;C5&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">C5.prototype = <span class="built_in">Object</span>.create(P5.prototype);</span><br><span class="line">C5.prototype.constructor = C5</span><br><span class="line"><span class="keyword">var</span> o8 = <span class="keyword">new</span> C5();</span><br><span class="line"><span class="keyword">var</span> o9 = <span class="keyword">new</span> C5();</span><br><span class="line">o8.play.push(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o8 :&gt;&gt; &quot;</span>, o8);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;o9 :&gt;&gt; &quot;</span>, o9);</span><br></pre></td></tr></table></figure>
-
-<h3 id="第六种：ES6-class-定义"><a href="#第六种：ES6-class-定义" class="headerlink" title="第六种：ES6 class 定义"></a>第六种：ES6 class 定义</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">P6</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&quot;P6&quot;</span></span><br><span class="line">    <span class="built_in">this</span>.play = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C6</span> <span class="keyword">extends</span> <span class="title">P6</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>()</span><br><span class="line">    <span class="built_in">this</span>.type = <span class="string">&quot;C6&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o10 = <span class="keyword">new</span> C6()</span><br><span class="line"><span class="keyword">var</span> o11 = <span class="keyword">new</span> C6()</span><br><span class="line">o10.play.push(<span class="number">4</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;o10 :&gt;&gt; &#x27;</span>, o10);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;o11 :&gt;&gt; &#x27;</span>, o11);</span><br></pre></td></tr></table></figure>
-
-<h2 id="HTTP协议类"><a href="#HTTP协议类" class="headerlink" title="HTTP协议类"></a>HTTP协议类</h2><h3 id="http主要特点"><a href="#http主要特点" class="headerlink" title="http主要特点"></a>http主要特点</h3><ul>
-<li>简单</li>
-<li>快速</li>
-<li>无连接</li>
-<li>无状态</li>
-</ul>
-<h3 id="http报文组成部分"><a href="#http报文组成部分" class="headerlink" title="http报文组成部分"></a>http报文组成部分</h3><p>请求报文</p>
-<ul>
-<li>请求行：http方法、 页面地址、 http协议以及版本</li>
-<li>请求头：key-value值</li>
-<li>空行：分割请求头和请求体</li>
-<li>请求体</li>
-</ul>
-<p>响应报文</p>
-<ul>
-<li>状态行： http协议版本、状态码</li>
-<li>响应头：和请求头类似</li>
-<li>空行</li>
-<li>响应体</li>
-</ul>
-<h3 id="http-方法"><a href="#http-方法" class="headerlink" title="http 方法"></a>http 方法</h3><ul>
-<li>GET</li>
-<li>POST</li>
-<li>PUT</li>
-<li>DELETE</li>
-<li>HEAD</li>
-</ul>
-<h3 id="get和post区别"><a href="#get和post区别" class="headerlink" title="get和post区别"></a>get和post区别</h3><ul>
-<li>在浏览器回退时，get无害，post则会再次提交请求</li>
-<li>url地址，get可以被收藏，post不行</li>
-<li>缓存，get会主动缓存，post不回，需手动设置</li>
-<li>get请求只能进习惯url编码，post支持多种编码</li>
-<li>get请求会在历史记录中，post不会</li>
-<li>get请求在URL中传递参数有长度限制，post没有限制</li>
-<li>参数的数据类型，get只接受ASCII自负，post没有限制</li>
-<li>get比post更不安全，因为参数直接暴露在url中，所以不能传递敏感信息</li>
-<li>get参数通过url传递，post放在请求体中</li>
-</ul>
-<h3 id="http-状态码"><a href="#http-状态码" class="headerlink" title="http 状态码"></a>http 状态码</h3><p>1xx：指示信息，表示请求已接受，继续处理</p>
-<p>2xx：成功，表示请求已成功被接收</p>
-<p>3xx：重定向</p>
-<p>4xx：客户端错误</p>
-<p>5xx：服务器错误</p>
-<h2 id="通信类"><a href="#通信类" class="headerlink" title="通信类"></a>通信类</h2><h3 id="跨域通信"><a href="#跨域通信" class="headerlink" title="跨域通信"></a>跨域通信</h3><ul>
-<li>JSONP</li>
-<li>Hash</li>
-<li>PostMessage</li>
-<li>Websocket</li>
-<li>CORS</li>
-</ul>
-<h2 id="安全类"><a href="#安全类" class="headerlink" title="安全类"></a>安全类</h2><h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><p>跨站脚本攻击</p>
-<ul>
-<li>存储型XSS：跨站代码存储在数据库</li>
-<li>反射型XSS：恶意代码在url中</li>
-<li>DOM型XSS：DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。</li>
-</ul>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>页面注入脚本，执行恶意  js 代码</p>
-<h4 id="防御措施"><a href="#防御措施" class="headerlink" title="防御措施"></a>防御措施</h4><ul>
-<li>输入内容过滤</li>
-<li>转译html</li>
-<li>cookie设置http-only，防止恶意获取cookie</li>
-<li>少用直接渲染或者执行html的js代码，比如：<code>document.write()</code>、<code>innerHTML</code>、<code>vue中的v-html</code>等</li>
-</ul>
-<h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><p>跨站请求伪造</p>
-<h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>用户登陆A网站，A网站下发cookie。用户登陆B网站，B网站诱导用户点击链接，用户点击链接，访问A网站并携带cookie。</p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200802155816.png" alt="image-20200802155816883"></p>
-<h4 id="防御措施-1"><a href="#防御措施-1" class="headerlink" title="防御措施"></a>防御措施</h4><ul>
-<li>token 验证</li>
-<li>referer 验证</li>
-</ul>
-<h2 id="渲染机制类"><a href="#渲染机制类" class="headerlink" title="渲染机制类"></a>渲染机制类</h2><h3 id="DOCTYPE"><a href="#DOCTYPE" class="headerlink" title="DOCTYPE"></a>DOCTYPE</h3><blockquote>
-<p> DTD是 <a href="https://zh.wikipedia.org/wiki/XML">XML</a>文件的<strong>文档类型定义</strong>（Document Type Definition）可以看成一个或者多个XML文件的模板，在这里可以定义XML文件中的元素、元素的属性、元素的排列方式、元素包含的内容等等。</p>
-</blockquote>
-<p><code>&lt;!DOCTYPE&gt;</code> 声明必须是 HTML 文档的第一行，位于 <html> 标签之前。</p>
-<p><code>&lt;!DOCTYPE&gt;</code> 声明不是 HTML 标签；它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令。</p>
-<h4 id="html5"><a href="#html5" class="headerlink" title="html5"></a>html5</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="html4-01-strict"><a href="#html4-01-strict" class="headerlink" title="html4.01 strict"></a>html4.01 strict</h4><p>该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/html4/strict.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="HTML-4-01-Transitional"><a href="#HTML-4-01-Transitional" class="headerlink" title="HTML 4.01 Transitional"></a>HTML 4.01 Transitional</h4><p>该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如 font）。允许框架集（Framesets）。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h3><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200802163318.png" alt="image-20200802163318185"></p>
-<h4 id="Reflow-重排"><a href="#Reflow-重排" class="headerlink" title="Reflow 重排"></a>Reflow 重排</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>当<code>Render Tree</code>中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为重排（又称为回流）。</p>
-<h5 id="触发reflow"><a href="#触发reflow" class="headerlink" title="触发reflow"></a>触发reflow</h5><ul>
-<li>增加、删除、修改DOM节点是，会导致reflow或repaint</li>
-<li>移动DOM位置或者动画执行时</li>
-<li>修改CSS样式时</li>
-<li>Resize 窗口时，或者滚动的时候</li>
-<li>修改网页的默认字体时 </li>
-</ul>
-<h4 id="Repaint-重绘"><a href="#Repaint-重绘" class="headerlink" title="Repaint 重绘"></a>Repaint 重绘</h4><h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><p>当页面中元素样式的改变并不影响它在文档流中的位置时（例如：<code>color</code>、<code>background-color</code>、<code>visibility</code>等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。</p>
-<h5 id="触发repaint"><a href="#触发repaint" class="headerlink" title="触发repaint"></a>触发repaint</h5><p>DOM改动</p>
-<p>CSS改动</p>
-<h5 id="减少repaint频率"><a href="#减少repaint频率" class="headerlink" title="减少repaint频率"></a>减少repaint频率</h5><ul>
-<li>使用 DocumentFragment</li>
-<li>virtual dom</li>
-</ul>
-<h2 id="提升页面性能"><a href="#提升页面性能" class="headerlink" title="提升页面性能"></a>提升页面性能</h2><h3 id="资源压缩合并，减少http请求"><a href="#资源压缩合并，减少http请求" class="headerlink" title="资源压缩合并，减少http请求"></a>资源压缩合并，减少http请求</h3><h3 id="非核心代码异步加载"><a href="#非核心代码异步加载" class="headerlink" title="非核心代码异步加载"></a>非核心代码异步加载</h3><ul>
-<li>动态脚本加载</li>
-<li>defer：html解析完之后执行，如果是多个则按照顺序执行</li>
-<li>async：加载完之后立即执行，如果是多个，执行顺序与加载顺序无关</li>
-</ul>
-<h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h3><p>请查看备战校招第三天</p>
-<h3 id="CDN加速"><a href="#CDN加速" class="headerlink" title="CDN加速"></a>CDN加速</h3><h3 id="预解析DNS"><a href="#预解析DNS" class="headerlink" title="预解析DNS"></a>预解析DNS</h3><p>浏览器默认会进行<code>a标签</code>dns解析，但https协议的可能会默认不解析，下面这行代码强制开启<code>a标签</code>dns解析</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;x-dns-prefetch-control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;on&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>预解析</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;dns-prefetch&quot;</span> <span class="attr">href</span>=<span class="string">&quot;//host_name_to_prefetch.com&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="错误监控"><a href="#错误监控" class="headerlink" title="错误监控"></a>错误监控</h2><h3 id="前端错误的分类"><a href="#前端错误的分类" class="headerlink" title="前端错误的分类"></a>前端错误的分类</h3><ul>
-<li>即时运行错误</li>
-<li>资源加载错误</li>
-</ul>
-<h3 id="错误的捕获方式"><a href="#错误的捕获方式" class="headerlink" title="错误的捕获方式"></a>错误的捕获方式</h3><h4 id="运行时错误捕获方式"><a href="#运行时错误捕获方式" class="headerlink" title="运行时错误捕获方式"></a>运行时错误捕获方式</h4><ul>
-<li>try..catch</li>
-<li>window.onerror</li>
-</ul>
-<h4 id="资源加载错误"><a href="#资源加载错误" class="headerlink" title="资源加载错误"></a>资源加载错误</h4><ul>
-<li>object.onerror</li>
-<li>performance.getEntries()</li>
-<li>window.Error 事件捕获（冒泡获取不到）</li>
-</ul>
-<h3 id="上报错误的基本原理"><a href="#上报错误的基本原理" class="headerlink" title="上报错误的基本原理"></a>上报错误的基本原理</h3><ul>
-<li><p><code>Ajax</code> 通信方式上报</p>
-</li>
-<li><p>利用  <code>Image</code> 对象上报</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">new</span> Image()).src=<span class="string">&quot;https://baidu.com/uploadError?type=1&quot;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>继承</tag>
-        <tag>安全</tag>
-        <tag>渲染机制</tag>
-        <tag>性能</tag>
-        <tag>监控</tag>
       </tags>
   </entry>
   <entry>
@@ -1900,6 +1900,160 @@
       </tags>
   </entry>
   <entry>
+    <title>备战校招第三天</title>
+    <url>/2020/06/26/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/3-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%89%E5%A4%A9/</url>
+    <content><![CDATA[<ol>
+<li><p>css 垂直水平居中</p>
+</li>
+<li><p>闭包</p>
+</li>
+<li><p>浏览器缓存相关</p>
+</li>
+<li><p>性能优化</p>
+</li>
+</ol>
+<hr>
+<a id="more"></a>
+
+<h3 id="css-垂直水平居中"><a href="#css-垂直水平居中" class="headerlink" title="css 垂直水平居中"></a>css 垂直水平居中</h3><p><strong>第一种 position+transform</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">      #box &#123;</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line">        </span><br><span class="line"><span class="css">        <span class="attribute">position</span>: relative;</span></span><br><span class="line">      &#125;</span><br><span class="line">      #cbox &#123;</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: orange;</span></span><br><span class="line">        </span><br><span class="line"><span class="css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">        <span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span></span><br><span class="line">      &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>第二种 flex</strong> </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  #box &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">    <span class="attribute">align-items</span>: center;</span></span><br><span class="line"><span class="css">    <span class="attribute">justify-content</span>: center;</span></span><br><span class="line">  &#125;</span><br><span class="line">  #cbox &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: orange;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>第三种 padding + margin</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  #box &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="css">    <span class="attribute">padding</span>: <span class="number">250px</span> <span class="number">0</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">  #cbox &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上三种代码显示效果均为</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626093658.png" alt="image-20200626093651504"></p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>闭包可以从内部函数访问到外部函数作用域。</p>
+<ul>
+<li><p><strong>模拟私有方法</strong></p>
+<p>Java有私有属性，<code>private</code>，而 js 也可以通过模拟来实现私有变量和方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> makeCounter = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> privateCounter = <span class="number">0</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">changeBy</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    privateCounter += val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    increment: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(-<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> privateCounter;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Counter1 = makeCounter();</span><br><span class="line"><span class="keyword">var</span> Counter2 = makeCounter();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 0 */</span></span><br><span class="line">Counter1.increment();</span><br><span class="line">Counter1.increment();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 2 */</span></span><br><span class="line">Counter1.decrement();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 1 */</span></span><br><span class="line"><span class="built_in">console</span>.log(Counter2.value()); <span class="comment">/* logs 0 */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>经典闭包问题</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line"><span class="javascript">    btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行上面代码，点击会发现，输出的均为</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626101322.png" alt="image-20200626101322509"></p>
+<p>这是因为虽形成了三个闭包作用域，但他们共享了一个词法作用域，在这个作用域中又只有一个变量 <code>i</code> ，<code>var</code> 的作用域数函数作用域，但定义 <code>i</code> 外并未有函数，所以这里的 <code>i</code> 是挂载在全局的。在循环后执行点击时间前，<code>i</code> 的值都已经指向了最后一个数 <code>5</code>了。</p>
+<p><strong>解决方法（修改下列任何一种都可以）</strong></p>
+<ul>
+<li><p>将 <code>var i=0;</code> 换为 <code>let i=0;</code> ，这种也是最简单的，<code>let</code> 是 ES6 修复 <code>var</code> 的设计缺陷而出现的</p>
+</li>
+<li><p>使用更多的闭包</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">i</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line">    btn.onclick = handleClick(i)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匿名闭包</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    ;(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line"><span class="javascript">      btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)(i)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>性能</p>
+<p>在处理速度和内存消耗方面都是有负面影响，所以原则是少用，别再不必要的地方使用。</p>
+</li>
+</ul>
+<h3 id="缓存相关"><a href="#缓存相关" class="headerlink" title="缓存相关"></a>缓存相关</h3><p><img src="https://user-images.githubusercontent.com/25027560/38461517-c7f2f422-3b04-11e8-8e94-20bbeb2a32b8.png" alt="缓存"></p>
+<h3 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h3><h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h4><p>浏览器加载资源前，会根据请求头 <code>expires</code>和 <code>cache-control</code> 判断是否命中强缓存，如果命中，则不会发送请求到服务器。</p>
+<p><strong>Expires</strong></p>
+<p><strong>http1.0</strong> 提出，表示资源过期时间的 header，描述为一个绝对时间，服务器返回。（如果修改本地时间，可能会造成缓存失效。）</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">expires</span><span class="punctuation">: </span>Tue, 14 Jul 2020 13:13:53 GMT</span><br></pre></td></tr></table></figure>
+
+<p><strong>Cache-Control</strong></p>
+<p><strong>http1.1</strong> 提出，优先级高于 <code>Expires</code> ，表示相对时间</p>
+<p>缓存请求指令</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=&lt;seconds&gt;</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-stale[=&lt;seconds&gt;]	// 表示客户端接受一个已过期的资源</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>min-fresh=&lt;seconds&gt;		// 表示客户端获取一个在指定的秒数内保持最新状态的响应</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-cache 							// 在发布缓存前，强制要求把缓存提交给服务器进行验证（协商缓存验证）</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-store								// 不存储和不使用任何缓存</span><br></pre></td></tr></table></figure>
+
+<p>缓存响应指令</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>must-revalidate</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-cache					// 如缓存请求指令</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-store					// 如缓存请求指令</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>public						// 表示响应可以为任何对象（客户端、代理服务器等，包括通常不可缓存的</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>private					// 只能被单个用户缓存（私有缓存）</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=&lt;seconds&gt;	// 缓存存储最大周期，单位秒</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>s-maxage=&lt;seconds&gt;	// 覆盖 max-age或 expires 头，仅在共享缓存中有效</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><p>如果没有命中强缓存，浏览器会发送一个请求到服务器，通过 <code>last-modified</code> 和 <code>etag</code> 验证资源是否命中协商缓存，如果命中，会将这个请求返回，但不返回资源的数据，依旧从缓存中读取资源。</p>
+<p><strong>Last-Modified 和 If-Modified-Since</strong></p>
+<p><strong>http1.0</strong> 引入，<code>Last-Modified</code> 是响应头中的属性，表示资源的修改时间。浏览器请求时会在请求头上加上 <code>If-Modified-Since</code> （上次返回的<code>Last-Modified</code>的值），询问是否资源有更新，如有立刻将新的资源返回。</p>
+<p>准确性不如 <code>Etag</code>，所以这个为备用机制。</p>
+<p><strong>ETag 和 If-None-Match</strong></p>
+<p><strong>http1.1</strong> 引入，<code>Etag</code>就像一个指纹，资源变化都会导致ETag变化，跟最后修改时间没有关系，<code>ETag</code>可以保证每一个资源是唯一的。优先级高于 <code>Last-Modified</code> 。</p>
+<p><code>If-None-Match</code>的header会将上次返回的<code>Etag</code>发送给服务器，询问该资源的<code>Etag</code>是否有更新，有变动就会发送新的资源回来</p>
+<p><img src="https://user-images.githubusercontent.com/25027560/38223495-d02aec3e-371d-11e8-92ae-fe7c729ab6e5.png"></p>
+<h4 id="异同点总结"><a href="#异同点总结" class="headerlink" title="异同点总结"></a>异同点总结</h4><ul>
+<li>相同点，都是从客户端缓存中加载资源，而不是从服务器加载资源。</li>
+<li>不同点，强缓存不发送请求到服务器，协商缓存会发送请求到服务器。</li>
+</ul>
+<h4 id="缓存优先级顺序（由低到高）"><a href="#缓存优先级顺序（由低到高）" class="headerlink" title="缓存优先级顺序（由低到高）"></a>缓存优先级顺序（由低到高）</h4><p>强缓存</p>
+<ul>
+<li><strong>Expire</strong></li>
+<li><strong>Cache-Control</strong></li>
+</ul>
+<p>协商缓存</p>
+<ul>
+<li><strong>Last-Modified 和 If-Modified-Since</strong></li>
+<li><strong>ETag 和 If-None-Match</strong></li>
+</ul>
+<h4 id="用户操作和行为"><a href="#用户操作和行为" class="headerlink" title="用户操作和行为"></a>用户操作和行为</h4><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730175925.png" alt="img"></p>
+<ul>
+<li>普通F5刷新，强缓存失效，只进行协商缓存</li>
+<li>Ctrl+F5刷新，强缓存和协商缓存均失效</li>
+</ul>
+<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p><strong>图片优化</strong>，可以减少 <code>http</code> 请求数量</p>
+<ul>
+<li>雪碧图、精灵图</li>
+<li>Base64</li>
+<li>字体图标</li>
+</ul>
+<p><strong>压缩资源</strong>大小</p>
+<ul>
+<li>HTML压缩</li>
+<li>css 压缩</li>
+<li>js 压缩与混淆</li>
+<li>图片压缩，（可以尝试webp格式）</li>
+<li>开启 gzip</li>
+</ul>
+<p><strong>缓存</strong></p>
+<ul>
+<li>DNS 缓存</li>
+<li>http 缓存</li>
+<li>浏览器缓存</li>
+</ul>
+<p>其他优化</p>
+<ul>
+<li><p>数据校验，避免无用数据重复发送</p>
+</li>
+<li><p>不使用 <code>css @import</code> </p>
+</li>
+<li><p>比如你使用空的 src 和 href（会重定向到当前页面地址）</p>
+</li>
+<li><p>使用CDN</p>
+</li>
+<li><p>减少重绘回流</p>
+</li>
+<li><p>webpack 打包使用优化插件</p>
+</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>闭包</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures</a></p>
+<p>缓存</p>
+<p><a href="https://github.com/amandakelake/blog/issues/41">https://github.com/amandakelake/blog/issues/41</a></p>
+<p><a href="https://segmentfault.com/a/1190000021248694">https://segmentfault.com/a/1190000021248694</a></p>
+<p>性能优化</p>
+<p><a href="https://www.cnblogs.com/xiaohuochai/p/9178390.html">https://www.cnblogs.com/xiaohuochai/p/9178390.html</a></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>性能</tag>
+        <tag>http</tag>
+        <tag>布局</tag>
+        <tag>闭包</tag>
+        <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备战校招第四天</title>
     <url>/2020/06/27/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/4-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%9B%9B%E5%A4%A9/</url>
     <content><![CDATA[<ol>
@@ -2125,160 +2279,6 @@
       <tags>
         <tag>http</tag>
         <tag>http status codes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>备战校招第三天</title>
-    <url>/2020/06/26/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/3-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%89%E5%A4%A9/</url>
-    <content><![CDATA[<ol>
-<li><p>css 垂直水平居中</p>
-</li>
-<li><p>闭包</p>
-</li>
-<li><p>浏览器缓存相关</p>
-</li>
-<li><p>性能优化</p>
-</li>
-</ol>
-<hr>
-<a id="more"></a>
-
-<h3 id="css-垂直水平居中"><a href="#css-垂直水平居中" class="headerlink" title="css 垂直水平居中"></a>css 垂直水平居中</h3><p><strong>第一种 position+transform</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">      #box &#123;</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line">        </span><br><span class="line"><span class="css">        <span class="attribute">position</span>: relative;</span></span><br><span class="line">      &#125;</span><br><span class="line">      #cbox &#123;</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: orange;</span></span><br><span class="line">        </span><br><span class="line"><span class="css">        <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">        <span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span></span><br><span class="line">      &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>第二种 flex</strong> </p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  #box &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">    <span class="attribute">align-items</span>: center;</span></span><br><span class="line"><span class="css">    <span class="attribute">justify-content</span>: center;</span></span><br><span class="line">  &#125;</span><br><span class="line">  #cbox &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: orange;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>第三种 padding + margin</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  #box &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="css">    <span class="attribute">padding</span>: <span class="number">250px</span> <span class="number">0</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">  #cbox &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: orange;</span></span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;cbox&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>以上三种代码显示效果均为</p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626093658.png" alt="image-20200626093651504"></p>
-<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>闭包可以从内部函数访问到外部函数作用域。</p>
-<ul>
-<li><p><strong>模拟私有方法</strong></p>
-<p>Java有私有属性，<code>private</code>，而 js 也可以通过模拟来实现私有变量和方法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> makeCounter = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> privateCounter = <span class="number">0</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">changeBy</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    privateCounter += val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    increment: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      changeBy(-<span class="number">1</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> privateCounter;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Counter1 = makeCounter();</span><br><span class="line"><span class="keyword">var</span> Counter2 = makeCounter();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 0 */</span></span><br><span class="line">Counter1.increment();</span><br><span class="line">Counter1.increment();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 2 */</span></span><br><span class="line">Counter1.decrement();</span><br><span class="line"><span class="built_in">console</span>.log(Counter1.value()); <span class="comment">/* logs 1 */</span></span><br><span class="line"><span class="built_in">console</span>.log(Counter2.value()); <span class="comment">/* logs 0 */</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>经典闭包问题</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line"><span class="javascript">    btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>运行上面代码，点击会发现，输出的均为</p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200626101322.png" alt="image-20200626101322509"></p>
-<p>这是因为虽形成了三个闭包作用域，但他们共享了一个词法作用域，在这个作用域中又只有一个变量 <code>i</code> ，<code>var</code> 的作用域数函数作用域，但定义 <code>i</code> 外并未有函数，所以这里的 <code>i</code> 是挂载在全局的。在循环后执行点击时间前，<code>i</code> 的值都已经指向了最后一个数 <code>5</code>了。</p>
-<p><strong>解决方法（修改下列任何一种都可以）</strong></p>
-<ul>
-<li><p>将 <code>var i=0;</code> 换为 <code>let i=0;</code> ，这种也是最简单的，<code>let</code> 是 ES6 修复 <code>var</code> 的设计缺陷而出现的</p>
-</li>
-<li><p>使用更多的闭包</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">i</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line">    btn.onclick = handleClick(i)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>匿名闭包</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>按钮5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> btns = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;button&#x27;</span>)</span></span><br><span class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; btns.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">    ;(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> btn = btns[i]</span></span><br><span class="line"><span class="javascript">      btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">&#x27;点击了第&#x27;</span> + i + <span class="string">&#x27;个按钮&#x27;</span>)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)(i)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>性能</p>
-<p>在处理速度和内存消耗方面都是有负面影响，所以原则是少用，别再不必要的地方使用。</p>
-</li>
-</ul>
-<h3 id="缓存相关"><a href="#缓存相关" class="headerlink" title="缓存相关"></a>缓存相关</h3><p><img src="https://user-images.githubusercontent.com/25027560/38461517-c7f2f422-3b04-11e8-8e94-20bbeb2a32b8.png" alt="缓存"></p>
-<h3 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h3><h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h4><p>浏览器加载资源前，会根据请求头 <code>expires</code>和 <code>cache-control</code> 判断是否命中强缓存，如果命中，则不会发送请求到服务器。</p>
-<p><strong>Expires</strong></p>
-<p><strong>http1.0</strong> 提出，表示资源过期时间的 header，描述为一个绝对时间，服务器返回。（如果修改本地时间，可能会造成缓存失效。）</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">expires</span><span class="punctuation">: </span>Tue, 14 Jul 2020 13:13:53 GMT</span><br></pre></td></tr></table></figure>
-
-<p><strong>Cache-Control</strong></p>
-<p><strong>http1.1</strong> 提出，优先级高于 <code>Expires</code> ，表示相对时间</p>
-<p>缓存请求指令</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=&lt;seconds&gt;</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-stale[=&lt;seconds&gt;]	// 表示客户端接受一个已过期的资源</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>min-fresh=&lt;seconds&gt;		// 表示客户端获取一个在指定的秒数内保持最新状态的响应</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-cache 							// 在发布缓存前，强制要求把缓存提交给服务器进行验证（协商缓存验证）</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-store								// 不存储和不使用任何缓存</span><br></pre></td></tr></table></figure>
-
-<p>缓存响应指令</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>must-revalidate</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-cache					// 如缓存请求指令</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>no-store					// 如缓存请求指令</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>public						// 表示响应可以为任何对象（客户端、代理服务器等，包括通常不可缓存的</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>private					// 只能被单个用户缓存（私有缓存）</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=&lt;seconds&gt;	// 缓存存储最大周期，单位秒</span><br><span class="line"><span class="attribute">Cache-control</span><span class="punctuation">: </span>s-maxage=&lt;seconds&gt;	// 覆盖 max-age或 expires 头，仅在共享缓存中有效</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><p>如果没有命中强缓存，浏览器会发送一个请求到服务器，通过 <code>last-modified</code> 和 <code>etag</code> 验证资源是否命中协商缓存，如果命中，会将这个请求返回，但不返回资源的数据，依旧从缓存中读取资源。</p>
-<p><strong>Last-Modified 和 If-Modified-Since</strong></p>
-<p><strong>http1.0</strong> 引入，<code>Last-Modified</code> 是响应头中的属性，表示资源的修改时间。浏览器请求时会在请求头上加上 <code>If-Modified-Since</code> （上次返回的<code>Last-Modified</code>的值），询问是否资源有更新，如有立刻将新的资源返回。</p>
-<p>准确性不如 <code>Etag</code>，所以这个为备用机制。</p>
-<p><strong>ETag 和 If-None-Match</strong></p>
-<p><strong>http1.1</strong> 引入，<code>Etag</code>就像一个指纹，资源变化都会导致ETag变化，跟最后修改时间没有关系，<code>ETag</code>可以保证每一个资源是唯一的。优先级高于 <code>Last-Modified</code> 。</p>
-<p><code>If-None-Match</code>的header会将上次返回的<code>Etag</code>发送给服务器，询问该资源的<code>Etag</code>是否有更新，有变动就会发送新的资源回来</p>
-<p><img src="https://user-images.githubusercontent.com/25027560/38223495-d02aec3e-371d-11e8-92ae-fe7c729ab6e5.png"></p>
-<h4 id="异同点总结"><a href="#异同点总结" class="headerlink" title="异同点总结"></a>异同点总结</h4><ul>
-<li>相同点，都是从客户端缓存中加载资源，而不是从服务器加载资源。</li>
-<li>不同点，强缓存不发送请求到服务器，协商缓存会发送请求到服务器。</li>
-</ul>
-<h4 id="缓存优先级顺序（由低到高）"><a href="#缓存优先级顺序（由低到高）" class="headerlink" title="缓存优先级顺序（由低到高）"></a>缓存优先级顺序（由低到高）</h4><p>强缓存</p>
-<ul>
-<li><strong>Expire</strong></li>
-<li><strong>Cache-Control</strong></li>
-</ul>
-<p>协商缓存</p>
-<ul>
-<li><strong>Last-Modified 和 If-Modified-Since</strong></li>
-<li><strong>ETag 和 If-None-Match</strong></li>
-</ul>
-<h4 id="用户操作和行为"><a href="#用户操作和行为" class="headerlink" title="用户操作和行为"></a>用户操作和行为</h4><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730175925.png" alt="img"></p>
-<ul>
-<li>普通F5刷新，强缓存失效，只进行协商缓存</li>
-<li>Ctrl+F5刷新，强缓存和协商缓存均失效</li>
-</ul>
-<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p><strong>图片优化</strong>，可以减少 <code>http</code> 请求数量</p>
-<ul>
-<li>雪碧图、精灵图</li>
-<li>Base64</li>
-<li>字体图标</li>
-</ul>
-<p><strong>压缩资源</strong>大小</p>
-<ul>
-<li>HTML压缩</li>
-<li>css 压缩</li>
-<li>js 压缩与混淆</li>
-<li>图片压缩，（可以尝试webp格式）</li>
-<li>开启 gzip</li>
-</ul>
-<p><strong>缓存</strong></p>
-<ul>
-<li>DNS 缓存</li>
-<li>http 缓存</li>
-<li>浏览器缓存</li>
-</ul>
-<p>其他优化</p>
-<ul>
-<li><p>数据校验，避免无用数据重复发送</p>
-</li>
-<li><p>不使用 <code>css @import</code> </p>
-</li>
-<li><p>比如你使用空的 src 和 href（会重定向到当前页面地址）</p>
-</li>
-<li><p>使用CDN</p>
-</li>
-<li><p>减少重绘回流</p>
-</li>
-<li><p>webpack 打包使用优化插件</p>
-</li>
-</ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>闭包</p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures</a></p>
-<p>缓存</p>
-<p><a href="https://github.com/amandakelake/blog/issues/41">https://github.com/amandakelake/blog/issues/41</a></p>
-<p><a href="https://segmentfault.com/a/1190000021248694">https://segmentfault.com/a/1190000021248694</a></p>
-<p>性能优化</p>
-<p><a href="https://www.cnblogs.com/xiaohuochai/p/9178390.html">https://www.cnblogs.com/xiaohuochai/p/9178390.html</a></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>性能</tag>
-        <tag>http</tag>
-        <tag>布局</tag>
-        <tag>闭包</tag>
-        <tag>缓存</tag>
       </tags>
   </entry>
   <entry>
@@ -3006,118 +3006,6 @@
       </categories>
   </entry>
   <entry>
-    <title>[每周] 第一期</title>
-    <url>/2019/01/26/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%80%E6%9C%9F/</url>
-    <content><![CDATA[<blockquote>
-<p>webpack 常用命令</p>
-<ul>
-<li><code>webpack</code> building for development</li>
-<li><code>webpack -p</code> building for production, minification (压缩，打包)</li>
-<li><code>webpack --watch</code> for continuous incremental building (监听变动并自动打包)</li>
-<li><code>webpack -d</code> including source maps(生成map映射文件，告知哪些模块最终打包到哪里了)</li>
-<li><code>webpack --colors</code> making building output pretty (美化展示信息)</li>
-</ul>
-</blockquote>
-<a id="more"></a>
-
-<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p><a href="https://www.webpackjs.com/concepts/">webpack中文网</a></p>
-<p><a href="https://github.com/ruanyf/webpack-demos">阮一峰的webpack-demo</a></p>
-<p><a href="https://github.com/dongyuanxin/webpack-demos">dongyuanxin webpack教程</a></p>
-<blockquote>
-<p>全局安装 webpack and webpack-dev-server</p>
-<p>webpack 常用命令</p>
-<ul>
-<li><code>webpack</code> building for development</li>
-<li><code>webpack -p</code> building for production, minification (压缩，打包)</li>
-<li><code>webpack --watch</code> for continuous incremental building (监听变动并自动打包)</li>
-<li><code>webpack -d</code> including source maps(生成map映射文件，告知哪些模块最终打包到哪里了)</li>
-<li><code>webpack --colors</code> making building output pretty (美化展示信息)</li>
-</ul>
-</blockquote>
-<p>脚本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; package.json</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    &quot;script&quot;: &#123;</span><br><span class="line">        &quot;dev&quot;: &quot;webpack-dev-server --open&quot;,</span><br><span class="line">        &quot;build&quot;: &quot;webpack -p&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Entry-File（入口文件）"><a href="#Entry-File（入口文件）" class="headerlink" title="Entry File（入口文件）"></a>Entry File（入口文件）</h3><p>*<em>入口起点(entry point)**指示 webpack 应该使用哪个模块，来作为构建其内部</em>依赖图*的开始。进入入口起点后，webpack 会找出有哪些模块和库是入口起点（直接和间接）依赖的。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exprots =&#123;</span><br><span class="line">    <span class="comment">// 入口文件位置</span></span><br><span class="line">    entry: <span class="string">&#x27;./main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="多入口文件"><a href="#多入口文件" class="headerlink" title="多入口文件"></a><strong>多入口文件</strong></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        <span class="comment">// bundle1或bundle2 代表输出的文件名</span></span><br><span class="line">        bundle1: <span class="string">&#x27;./main1.js&#x27;</span>,</span><br><span class="line">        bundle2: <span class="string">&#x27;./main2.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">&#x27;[name].js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Output-（出口）"><a href="#Output-（出口）" class="headerlink" title="Output （出口）"></a>Output （出口）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./main&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">    	<span class="comment">//生成 bundle.js 的路径</span></span><br><span class="line">        path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>), </span><br><span class="line">        <span class="comment">// 生成 bundle.js 文件名</span></span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h3><p>loader 用来处理非 JavaScript 文件，webpakck 本身也只能理解 JavaScript。</p>
-<p>webpack 中 loader 有了两个配置属性：</p>
-<ol>
-<li><code>test</code> 属性，用于标识出应该被对应的 loader 进行转换的某个或某些文件。</li>
-<li><code>use</code> 属性，表示进行转换时，应该使用哪个 loader 。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* webpack.config.js */</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, use: <span class="string">&#x27;raw-loader&#x27;</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>提示：当 webpack 碰到 [ 在 <code>require()/import</code> 语句中被解析为 <code>.txt</code> ] 时，在对它打包前，先用 <code>raw-loader</code> 转换一下。</p>
-<p>rules 规则 在 module 下。</p>
-</blockquote>
-<h3 id="Plugins（插件）"><a href="#Plugins（插件）" class="headerlink" title="Plugins（插件）"></a>Plugins（插件）</h3><p>loader 被用于转换某些类型的模块，而插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* webpack.config.js */</span></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>); <span class="comment">// 通过 npm 安装</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>); <span class="comment">// 用于访问内置插件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, use: <span class="string">&#x27;raw-loader&#x27;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
-
-<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><blockquote>
-<p>development 开发环境</p>
-<p>production 生产环境</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    mode: <span class="string">&#x27;production&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><h3 id="标准盒子模型（content-box，默认）"><a href="#标准盒子模型（content-box，默认）" class="headerlink" title="标准盒子模型（content-box，默认）"></a>标准盒子模型（content-box，默认）</h3><p>height =  内容高度<img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115332.jpg"></p>
-<h3 id="IE盒子模型（border-box）"><a href="#IE盒子模型（border-box）" class="headerlink" title="IE盒子模型（border-box）"></a>IE盒子模型（border-box）</h3><p>height=  内容高度 + border + padding</p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115333.jpg"></p>
-<p>box-sizing 属性可以被用来调整这些表现（MDN 文档）:</p>
-<ul>
-<li><code>content-box</code>  是默认值。如果你设置一个元素的宽为100px，那么这个元素的内容区会有100px宽，并且任何边框和内边距的宽度都会被增加到最后绘制出来的元素宽度中。</li>
-<li><code>border-box</code> 告诉浏览器去理解你设置的边框和内边距的值是包含在width内的。也就是说，如果你将一个元素的width设为100px,那么这100px会包含其它的border和padding，内容区的实际宽度会是width减去border + padding的计算值。大多数情况下这使得我们更容易的去设定一个元素的宽高。</li>
-</ul>
-<p>由此可得，当你定义一个元素的宽或高时，元素又需要加padding or border ，但又不希望元素的宽高被改变，用border-box 再合适不过了。</p>
-<p>文章图片引用自：<a href="https://blog.csdn.net/huangpin815/article/details/76651680">https://blog.csdn.net/huangpin815/article/details/76651680</a></p>
-<h2 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h2><h3 id="将requres请求封装"><a href="#将requres请求封装" class="headerlink" title="将requres请求封装"></a>将requres请求封装</h3><p>将 <code>wx.request</code> 请求进行 Promise封装，使用，以及后期维护更加方便</p>
-  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* request.js */</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">url, method, data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">&#x27;http://api.douban.com/&#x27;</span>;</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        wx.request(&#123;</span><br><span class="line">            url,</span><br><span class="line">            method,</span><br><span class="line">            data,</span><br><span class="line">            success: resolve,</span><br><span class="line">            fail: reject</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* index.js */</span></span><br><span class="line"><span class="comment">// 导入 request.js 文件</span></span><br><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request.js&#x27;</span>);</span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">request(<span class="string">&#x27;v2/movie/in_theaters&#x27;</span>, <span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;&#x27;</span>).then(</span><br><span class="line">	<span class="comment">/* 处理函数 */</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h3 id="添加编译模式"><a href="#添加编译模式" class="headerlink" title="添加编译模式"></a>添加编译模式</h3><p>添加编译模式，方便调试，直接针对某一页面进行调式，还可以传入进入页面的参数</p>
-<blockquote>
-<p>模式名称：list页面<br>启动页面：pages/list/list<br>启动参数：id=5<br>进入场景：默认</p>
-</blockquote>
-<h3 id="WeUI-框架（其实和网页版的一样）"><a href="#WeUI-框架（其实和网页版的一样）" class="headerlink" title="WeUI 框架（其实和网页版的一样）"></a>WeUI 框架（其实和网页版的一样）</h3><p><a href="https://github.com/Tencent/weui-wxss">WeUI 小程序 版本</a></p>
-<p><a href="https://github.com/Tencent/weui">WeUI 网页版</a></p>
-<h3 id="wxs-函数"><a href="#wxs-函数" class="headerlink" title="wxs 函数"></a>wxs 函数</h3><p> <strong><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html">官方文档</a></strong></p>
-<p>友情提醒：（此方法不支持一些新特性）</p>
-<p>可以直接在模板中直接调用</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;view&gt;&#123;&#123; util.xxHandle(<span class="string">&#x27;123&#x27;</span>) &#125;&#125;&lt;/view&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 直接在 wxml 中写方法 */</span></span><br><span class="line">&lt;wxs name=<span class="string">&quot;util&quot;</span>&gt;</span><br><span class="line">    <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">        xxHandle: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&#x27;-&#x27;</span>+str;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/wxs&gt;</span><br><span class="line"><span class="comment">/* 也可以引入js文件 */</span></span><br><span class="line">&lt;wxs <span class="built_in">module</span>=<span class="string">&quot;util&quot;</span> src=<span class="string">&quot;../util.js&quot;</span>&gt;&lt;/wxs&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="leetcode-刷题"><a href="#leetcode-刷题" class="headerlink" title="leetcode 刷题"></a>leetcode 刷题</h2><p><a href="https://leetcode-cn.com/problems/valid-parentheses/">有效的括号</a></p>
-<p>本题其实并没有那么特别复杂，就像是自己写编译器，匹配括号。</p>
-<p><code>[], &#123;&#125;, ()</code></p>
-<p>匹配不匹配，短一点的人眼可以直接识别出来</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;([)]&quot;</span>  <span class="comment">// 很明显不和谐</span></span><br><span class="line"><span class="string">&quot;([])&quot;</span>	<span class="comment">// 这个就舒服很多了</span></span><br></pre></td></tr></table></figure>
-
-<p>由于这个可能性，可能有点多，之前的那种思路时不可行了，还是官方推荐的哪个思路给力。</p>
-<p>根据栈的原理。</p>
-<p>假如 需要检测的时这个字符串 <code>([]())&#123;&#125;[]</code></p>
-<ol>
-<li>当遇到左括号，也可称为开括号，将其压入栈中</li>
-<li>当遇到闭括号，将栈中的最顶部的元素推出与当前的闭括号比较是否匹配</li>
-<li>如果匹配，则继续，不匹配，表示当前当前字符串时无效字符串。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">s</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isValid = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> regs = &#123;</span><br><span class="line">        <span class="string">&#x27;(&#x27;</span>: <span class="string">&#x27;)&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&#123;&#x27;</span>: <span class="string">&#x27;&#125;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;[&#x27;</span>: <span class="string">&#x27;]&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 判断是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (s == <span class="string">&#x27;&#x27;</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(s.length % <span class="number">2</span> != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">    <span class="comment">// 拆分字符串</span></span><br><span class="line">    <span class="keyword">let</span> stack = [],</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> e = s[i];</span><br><span class="line">        <span class="keyword">if</span> (regs[e] == <span class="literal">undefined</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (e != regs[stack.pop()]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stack.push(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !stack.length;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>完成于 2019年1月27日 22点29分</p>
-]]></content>
-      <categories>
-        <category>年度总结</category>
-      </categories>
-      <tags>
-        <tag>前端工程化</tag>
-        <tag>webpack</tag>
-        <tag>html</tag>
-        <tag>小程序</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[每周] 第二期</title>
     <url>/2019/01/28/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E6%9C%9F/</url>
     <content><![CDATA[<p>本周总结：</p>
@@ -3276,38 +3164,115 @@
       </tags>
   </entry>
   <entry>
-    <title>JS中的substr和subString还有slice的区别</title>
-    <url>/2019/03/09/%E6%8A%80%E6%9C%AF/JS%E4%B8%AD%E7%9A%84substr%E5%92%8CsubString%E8%BF%98%E6%9C%89slice%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
-<p>注意：</p>
-<p><code>substr</code> 官方不推荐不使用</p>
-<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+    <title>[每周] 第一期</title>
+    <url>/2019/01/26/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%80%E6%9C%9F/</url>
+    <content><![CDATA[<blockquote>
+<p>webpack 常用命令</p>
+<ul>
+<li><code>webpack</code> building for development</li>
+<li><code>webpack -p</code> building for production, minification (压缩，打包)</li>
+<li><code>webpack --watch</code> for continuous incremental building (监听变动并自动打包)</li>
+<li><code>webpack -d</code> including source maps(生成map映射文件，告知哪些模块最终打包到哪里了)</li>
+<li><code>webpack --colors</code> making building output pretty (美化展示信息)</li>
+</ul>
+</blockquote>
 <a id="more"></a>
 
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substr">String.prototype.substr()</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substring">String,prototype.substring()</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/slice">String.prototype.slice()</a></p>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p><a href="https://www.webpackjs.com/concepts/">webpack中文网</a></p>
+<p><a href="https://github.com/ruanyf/webpack-demos">阮一峰的webpack-demo</a></p>
+<p><a href="https://github.com/dongyuanxin/webpack-demos">dongyuanxin webpack教程</a></p>
 <blockquote>
-<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+<p>全局安装 webpack and webpack-dev-server</p>
+<p>webpack 常用命令</p>
+<ul>
+<li><code>webpack</code> building for development</li>
+<li><code>webpack -p</code> building for production, minification (压缩，打包)</li>
+<li><code>webpack --watch</code> for continuous incremental building (监听变动并自动打包)</li>
+<li><code>webpack -d</code> including source maps(生成map映射文件，告知哪些模块最终打包到哪里了)</li>
+<li><code>webpack --colors</code> making building output pretty (美化展示信息)</li>
+</ul>
 </blockquote>
-<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
-<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
-<p><code>length </code> 可选，提取字符的长度</p>
+<p>脚本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; package.json</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    &quot;script&quot;: &#123;</span><br><span class="line">        &quot;dev&quot;: &quot;webpack-dev-server --open&quot;,</span><br><span class="line">        &quot;build&quot;: &quot;webpack -p&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Entry-File（入口文件）"><a href="#Entry-File（入口文件）" class="headerlink" title="Entry File（入口文件）"></a>Entry File（入口文件）</h3><p>*<em>入口起点(entry point)**指示 webpack 应该使用哪个模块，来作为构建其内部</em>依赖图*的开始。进入入口起点后，webpack 会找出有哪些模块和库是入口起点（直接和间接）依赖的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exprots =&#123;</span><br><span class="line">    <span class="comment">// 入口文件位置</span></span><br><span class="line">    entry: <span class="string">&#x27;./main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多入口文件"><a href="#多入口文件" class="headerlink" title="多入口文件"></a><strong>多入口文件</strong></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        <span class="comment">// bundle1或bundle2 代表输出的文件名</span></span><br><span class="line">        bundle1: <span class="string">&#x27;./main1.js&#x27;</span>,</span><br><span class="line">        bundle2: <span class="string">&#x27;./main2.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">&#x27;[name].js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Output-（出口）"><a href="#Output-（出口）" class="headerlink" title="Output （出口）"></a>Output （出口）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./main&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">    	<span class="comment">//生成 bundle.js 的路径</span></span><br><span class="line">        path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>), </span><br><span class="line">        <span class="comment">// 生成 bundle.js 文件名</span></span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h3><p>loader 用来处理非 JavaScript 文件，webpakck 本身也只能理解 JavaScript。</p>
+<p>webpack 中 loader 有了两个配置属性：</p>
+<ol>
+<li><code>test</code> 属性，用于标识出应该被对应的 loader 进行转换的某个或某些文件。</li>
+<li><code>use</code> 属性，表示进行转换时，应该使用哪个 loader 。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* webpack.config.js */</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, use: <span class="string">&#x27;raw-loader&#x27;</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>提示：当 webpack 碰到 [ 在 <code>require()/import</code> 语句中被解析为 <code>.txt</code> ] 时，在对它打包前，先用 <code>raw-loader</code> 转换一下。</p>
+<p>rules 规则 在 module 下。</p>
 </blockquote>
-<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
-<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
-<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
+<h3 id="Plugins（插件）"><a href="#Plugins（插件）" class="headerlink" title="Plugins（插件）"></a>Plugins（插件）</h3><p>loader 被用于转换某些类型的模块，而插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* webpack.config.js */</span></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>); <span class="comment">// 通过 npm 安装</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>); <span class="comment">// 用于访问内置插件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, use: <span class="string">&#x27;raw-loader&#x27;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
+
+<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><blockquote>
+<p>development 开发环境</p>
+<p>production 生产环境</p>
 </blockquote>
-<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
-<p><code>beginSlice</code>索引开始，提取字符串</p>
-<p><code>endSlice</code>，可选，索引结束提取字符串</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    mode: <span class="string">&#x27;production&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><h3 id="标准盒子模型（content-box，默认）"><a href="#标准盒子模型（content-box，默认）" class="headerlink" title="标准盒子模型（content-box，默认）"></a>标准盒子模型（content-box，默认）</h3><p>height =  内容高度<img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115332.jpg"></p>
+<h3 id="IE盒子模型（border-box）"><a href="#IE盒子模型（border-box）" class="headerlink" title="IE盒子模型（border-box）"></a>IE盒子模型（border-box）</h3><p>height=  内容高度 + border + padding</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115333.jpg"></p>
+<p>box-sizing 属性可以被用来调整这些表现（MDN 文档）:</p>
+<ul>
+<li><code>content-box</code>  是默认值。如果你设置一个元素的宽为100px，那么这个元素的内容区会有100px宽，并且任何边框和内边距的宽度都会被增加到最后绘制出来的元素宽度中。</li>
+<li><code>border-box</code> 告诉浏览器去理解你设置的边框和内边距的值是包含在width内的。也就是说，如果你将一个元素的width设为100px,那么这100px会包含其它的border和padding，内容区的实际宽度会是width减去border + padding的计算值。大多数情况下这使得我们更容易的去设定一个元素的宽高。</li>
+</ul>
+<p>由此可得，当你定义一个元素的宽或高时，元素又需要加padding or border ，但又不希望元素的宽高被改变，用border-box 再合适不过了。</p>
+<p>文章图片引用自：<a href="https://blog.csdn.net/huangpin815/article/details/76651680">https://blog.csdn.net/huangpin815/article/details/76651680</a></p>
+<h2 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h2><h3 id="将requres请求封装"><a href="#将requres请求封装" class="headerlink" title="将requres请求封装"></a>将requres请求封装</h3><p>将 <code>wx.request</code> 请求进行 Promise封装，使用，以及后期维护更加方便</p>
+  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* request.js */</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">url, method, data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">&#x27;http://api.douban.com/&#x27;</span>;</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        wx.request(&#123;</span><br><span class="line">            url,</span><br><span class="line">            method,</span><br><span class="line">            data,</span><br><span class="line">            success: resolve,</span><br><span class="line">            fail: reject</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* index.js */</span></span><br><span class="line"><span class="comment">// 导入 request.js 文件</span></span><br><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request.js&#x27;</span>);</span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">request(<span class="string">&#x27;v2/movie/in_theaters&#x27;</span>, <span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;&#x27;</span>).then(</span><br><span class="line">	<span class="comment">/* 处理函数 */</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="添加编译模式"><a href="#添加编译模式" class="headerlink" title="添加编译模式"></a>添加编译模式</h3><p>添加编译模式，方便调试，直接针对某一页面进行调式，还可以传入进入页面的参数</p>
+<blockquote>
+<p>模式名称：list页面<br>启动页面：pages/list/list<br>启动参数：id=5<br>进入场景：默认</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
+<h3 id="WeUI-框架（其实和网页版的一样）"><a href="#WeUI-框架（其实和网页版的一样）" class="headerlink" title="WeUI 框架（其实和网页版的一样）"></a>WeUI 框架（其实和网页版的一样）</h3><p><a href="https://github.com/Tencent/weui-wxss">WeUI 小程序 版本</a></p>
+<p><a href="https://github.com/Tencent/weui">WeUI 网页版</a></p>
+<h3 id="wxs-函数"><a href="#wxs-函数" class="headerlink" title="wxs 函数"></a>wxs 函数</h3><p> <strong><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html">官方文档</a></strong></p>
+<p>友情提醒：（此方法不支持一些新特性）</p>
+<p>可以直接在模板中直接调用</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;view&gt;&#123;&#123; util.xxHandle(<span class="string">&#x27;123&#x27;</span>) &#125;&#125;&lt;/view&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 直接在 wxml 中写方法 */</span></span><br><span class="line">&lt;wxs name=<span class="string">&quot;util&quot;</span>&gt;</span><br><span class="line">    <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">        xxHandle: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&#x27;-&#x27;</span>+str;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/wxs&gt;</span><br><span class="line"><span class="comment">/* 也可以引入js文件 */</span></span><br><span class="line">&lt;wxs <span class="built_in">module</span>=<span class="string">&quot;util&quot;</span> src=<span class="string">&quot;../util.js&quot;</span>&gt;&lt;/wxs&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="leetcode-刷题"><a href="#leetcode-刷题" class="headerlink" title="leetcode 刷题"></a>leetcode 刷题</h2><p><a href="https://leetcode-cn.com/problems/valid-parentheses/">有效的括号</a></p>
+<p>本题其实并没有那么特别复杂，就像是自己写编译器，匹配括号。</p>
+<p><code>[], &#123;&#125;, ()</code></p>
+<p>匹配不匹配，短一点的人眼可以直接识别出来</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;([)]&quot;</span>  <span class="comment">// 很明显不和谐</span></span><br><span class="line"><span class="string">&quot;([])&quot;</span>	<span class="comment">// 这个就舒服很多了</span></span><br></pre></td></tr></table></figure>
+
+<p>由于这个可能性，可能有点多，之前的那种思路时不可行了，还是官方推荐的哪个思路给力。</p>
+<p>根据栈的原理。</p>
+<p>假如 需要检测的时这个字符串 <code>([]())&#123;&#125;[]</code></p>
+<ol>
+<li>当遇到左括号，也可称为开括号，将其压入栈中</li>
+<li>当遇到闭括号，将栈中的最顶部的元素推出与当前的闭括号比较是否匹配</li>
+<li>如果匹配，则继续，不匹配，表示当前当前字符串时无效字符串。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">s</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isValid = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> regs = &#123;</span><br><span class="line">        <span class="string">&#x27;(&#x27;</span>: <span class="string">&#x27;)&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&#123;&#x27;</span>: <span class="string">&#x27;&#125;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;[&#x27;</span>: <span class="string">&#x27;]&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 判断是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (s == <span class="string">&#x27;&#x27;</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(s.length % <span class="number">2</span> != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">    <span class="comment">// 拆分字符串</span></span><br><span class="line">    <span class="keyword">let</span> stack = [],</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> e = s[i];</span><br><span class="line">        <span class="keyword">if</span> (regs[e] == <span class="literal">undefined</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (e != regs[stack.pop()]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stack.push(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !stack.length;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>完成于 2019年1月27日 22点29分</p>
+]]></content>
       <categories>
-        <category>技术</category>
+        <category>年度总结</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>前端工程化</tag>
+        <tag>webpack</tag>
+        <tag>html</tag>
+        <tag>小程序</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -3373,6 +3338,41 @@
       </categories>
       <tags>
         <tag>Chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS中的substr和subString还有slice的区别</title>
+    <url>/2019/03/09/%E6%8A%80%E6%9C%AF/JS%E4%B8%AD%E7%9A%84substr%E5%92%8CsubString%E8%BF%98%E6%9C%89slice%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
+<p>注意：</p>
+<p><code>substr</code> 官方不推荐不使用</p>
+<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+<a id="more"></a>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substr">String.prototype.substr()</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substring">String,prototype.substring()</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/slice">String.prototype.slice()</a></p>
+<blockquote>
+<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+</blockquote>
+<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
+<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
+<p><code>length </code> 可选，提取字符的长度</p>
+</blockquote>
+<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
+<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
+<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
+</blockquote>
+<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
+<p><code>beginSlice</code>索引开始，提取字符串</p>
+<p><code>endSlice</code>，可选，索引结束提取字符串</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="built_in">console</span>.log(str.slice(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -3891,182 +3891,6 @@
       </categories>
       <tags>
         <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac 使用技巧</title>
-    <url>/2020/08/05/%E6%8A%80%E6%9C%AF/mac-%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<p>快捷键</p>
-<ul>
-<li>brew</li>
-<li>iterm2</li>
-<li>mac</li>
-</ul>
-<hr>
-<a id="more"></a>
-
-
-
-<h2 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h2><blockquote>
-<p>mac 下软件管理工具，类似node的npm，python的pip，，，</p>
-</blockquote>
-<h3 id="安装-node-v12"><a href="#安装-node-v12" class="headerlink" title="安装 node-v12"></a>安装 <code>node-v12</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install node@12</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装-iterm2"><a href="#安装-iterm2" class="headerlink" title="安装 iterm2"></a>安装 <code>iterm2</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p><a href="https://www.zhihu.com/question/22624898/answer/22782144">引用</a></p>
-<p><code>brew install </code> ，前者是是从下载源码解压然后 ./configure &amp;&amp; make install ，同时会包含相关依存库。并自动配置好各种环境变量，而且易于卸载。</p>
-<p> <code>brew cask install</code> ，是已经编译好的包，只需要下载解压放在统一的目录中（/opt/homebrew-cask/Caskroom）</p>
-</blockquote>
-<h3 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew search node</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="brew-services"><a href="#brew-services" class="headerlink" title="brew services"></a>brew services</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[sudo] brew services [list]:</span><br><span class="line">		列出当前用户的所有服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services run (formula|--all):</span><br><span class="line">		运行没有注册启动的服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services start (formula|--all):</span><br><span class="line">		启动服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services stop (formula|--all):</span><br><span class="line">    关闭服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services restart (formula|--all):</span><br><span class="line">    重启服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services cleanup:</span><br><span class="line">    移除所有未使用的服务。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="iterm2快捷键"><a href="#iterm2快捷键" class="headerlink" title="iterm2快捷键"></a>iterm2快捷键</h2><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Control + U</td>
-<td>清空当前行</td>
-</tr>
-<tr>
-<td>Control + Y</td>
-<td>恢复当前行</td>
-</tr>
-<tr>
-<td>Control + A</td>
-<td>光标置于当前行首</td>
-</tr>
-<tr>
-<td>Control + E</td>
-<td>光标置于当前行尾</td>
-</tr>
-<tr>
-<td>Control + W</td>
-<td>删除光标前的内容</td>
-</tr>
-<tr>
-<td>Control + K</td>
-<td>删除光标后的内容</td>
-</tr>
-<tr>
-<td>CMD + T</td>
-<td>打开一个新窗口</td>
-</tr>
-<tr>
-<td>CMD + W</td>
-<td>关闭当前窗口</td>
-</tr>
-</tbody></table>
-<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><blockquote>
-<p>只整理了个人常用的快捷键，其他还请查看文档。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>:q</td>
-<td>退出</td>
-</tr>
-<tr>
-<td>:q!</td>
-<td>忽略更改退出</td>
-</tr>
-<tr>
-<td>:wq</td>
-<td>保存退出</td>
-</tr>
-<tr>
-<td>A</td>
-<td>在光标所在行尾开始插入</td>
-</tr>
-<tr>
-<td>I</td>
-<td>在光标所在行头开始插入</td>
-</tr>
-<tr>
-<td>dd</td>
-<td>删除当前行</td>
-</tr>
-<tr>
-<td>u</td>
-<td>撤销修改</td>
-</tr>
-<tr>
-<td>ctrl+R</td>
-<td>重做</td>
-</tr>
-<tr>
-<td>上下左右</td>
-<td>k,j,h,l</td>
-</tr>
-<tr>
-<td>0,  <code>&lt;Home&gt;</code></td>
-<td>行首</td>
-</tr>
-<tr>
-<td>$, <code>&lt;End&gt;</code></td>
-<td>行尾</td>
-</tr>
-<tr>
-<td>i</td>
-<td>输入模式</td>
-</tr>
-<tr>
-<td>yy</td>
-<td>复制当前行</td>
-</tr>
-<tr>
-<td>p</td>
-<td>粘贴</td>
-</tr>
-<tr>
-<td>:set nu</td>
-<td>显示行号</td>
-</tr>
-</tbody></table>
-<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Control + command + D</td>
-<td>查询</td>
-</tr>
-<tr>
-<td>command + Q</td>
-<td>退出当前软件</td>
-</tr>
-<tr>
-<td>command + Shift + .</td>
-<td>显示/隐藏 隐藏文件</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>brew</tag>
-        <tag>iterm2</tag>
       </tags>
   </entry>
   <entry>
@@ -4619,6 +4443,182 @@
       <tags>
         <tag>笔记</tag>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac 使用技巧</title>
+    <url>/2020/08/05/%E6%8A%80%E6%9C%AF/mac-%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p>快捷键</p>
+<ul>
+<li>brew</li>
+<li>iterm2</li>
+<li>mac</li>
+</ul>
+<hr>
+<a id="more"></a>
+
+
+
+<h2 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h2><blockquote>
+<p>mac 下软件管理工具，类似node的npm，python的pip，，，</p>
+</blockquote>
+<h3 id="安装-node-v12"><a href="#安装-node-v12" class="headerlink" title="安装 node-v12"></a>安装 <code>node-v12</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install node@12</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-iterm2"><a href="#安装-iterm2" class="headerlink" title="安装 iterm2"></a>安装 <code>iterm2</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><a href="https://www.zhihu.com/question/22624898/answer/22782144">引用</a></p>
+<p><code>brew install </code> ，前者是是从下载源码解压然后 ./configure &amp;&amp; make install ，同时会包含相关依存库。并自动配置好各种环境变量，而且易于卸载。</p>
+<p> <code>brew cask install</code> ，是已经编译好的包，只需要下载解压放在统一的目录中（/opt/homebrew-cask/Caskroom）</p>
+</blockquote>
+<h3 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew search node</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="brew-services"><a href="#brew-services" class="headerlink" title="brew services"></a>brew services</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[sudo] brew services [list]:</span><br><span class="line">		列出当前用户的所有服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services run (formula|--all):</span><br><span class="line">		运行没有注册启动的服务。</span><br><span class="line"></span><br><span class="line">[sudo] brew services start (formula|--all):</span><br><span class="line">		启动服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services stop (formula|--all):</span><br><span class="line">    关闭服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services restart (formula|--all):</span><br><span class="line">    重启服务</span><br><span class="line"></span><br><span class="line">[sudo] brew services cleanup:</span><br><span class="line">    移除所有未使用的服务。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="iterm2快捷键"><a href="#iterm2快捷键" class="headerlink" title="iterm2快捷键"></a>iterm2快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Control + U</td>
+<td>清空当前行</td>
+</tr>
+<tr>
+<td>Control + Y</td>
+<td>恢复当前行</td>
+</tr>
+<tr>
+<td>Control + A</td>
+<td>光标置于当前行首</td>
+</tr>
+<tr>
+<td>Control + E</td>
+<td>光标置于当前行尾</td>
+</tr>
+<tr>
+<td>Control + W</td>
+<td>删除光标前的内容</td>
+</tr>
+<tr>
+<td>Control + K</td>
+<td>删除光标后的内容</td>
+</tr>
+<tr>
+<td>CMD + T</td>
+<td>打开一个新窗口</td>
+</tr>
+<tr>
+<td>CMD + W</td>
+<td>关闭当前窗口</td>
+</tr>
+</tbody></table>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><blockquote>
+<p>只整理了个人常用的快捷键，其他还请查看文档。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:q</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>忽略更改退出</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>保存退出</td>
+</tr>
+<tr>
+<td>A</td>
+<td>在光标所在行尾开始插入</td>
+</tr>
+<tr>
+<td>I</td>
+<td>在光标所在行头开始插入</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销修改</td>
+</tr>
+<tr>
+<td>ctrl+R</td>
+<td>重做</td>
+</tr>
+<tr>
+<td>上下左右</td>
+<td>k,j,h,l</td>
+</tr>
+<tr>
+<td>0,  <code>&lt;Home&gt;</code></td>
+<td>行首</td>
+</tr>
+<tr>
+<td>$, <code>&lt;End&gt;</code></td>
+<td>行尾</td>
+</tr>
+<tr>
+<td>i</td>
+<td>输入模式</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制当前行</td>
+</tr>
+<tr>
+<td>p</td>
+<td>粘贴</td>
+</tr>
+<tr>
+<td>:set nu</td>
+<td>显示行号</td>
+</tr>
+</tbody></table>
+<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Control + command + D</td>
+<td>查询</td>
+</tr>
+<tr>
+<td>command + Q</td>
+<td>退出当前软件</td>
+</tr>
+<tr>
+<td>command + Shift + .</td>
+<td>显示/隐藏 隐藏文件</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>brew</tag>
+        <tag>iterm2</tag>
       </tags>
   </entry>
   <entry>
@@ -5935,6 +5935,18 @@
       </tags>
   </entry>
   <entry>
+    <title>OKR</title>
+    <url>/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/OKR/</url>
+    <content><![CDATA[<p><a href="https://baike.baidu.com/item/OKR">https://baike.baidu.com/item/OKR</a></p>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
+        <tag>OKR</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>优势管理</title>
     <url>/2023/12/23/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E4%BC%98%E5%8A%BF%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<a id="more"></a>
@@ -6020,6 +6032,21 @@
       </categories>
       <tags>
         <tag>优势</tag>
+        <tag>思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>六色思考帽</title>
+    <url>/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E5%85%AD%E8%89%B2%E6%80%9D%E8%80%83%E5%B8%BD/</url>
+    <content><![CDATA[<p><a href="https://baike.baidu.com/item/%E5%85%AD%E9%A1%B6%E6%80%9D%E8%80%83%E5%B8%BD">百度百科</a></p>
+<p>六顶思考帽，是指使用六种不同颜色的帽子代表六种不同的思维模式。任何人都有能力使用以下六种基本思维模式：</p>
+<p>白色思考帽：白色是中立而客观的。戴上白色思考帽，人们思考的是关注客观的事实和数据。<br>绿色思考帽：绿色代表茵茵芳草，象征勃勃生机。绿色思考帽寓意创造力和想象力。具有创造性思考、头脑风暴、求异思维等功能。<br>黄色思考帽：黄色代表价值与肯定。戴上黄色思考帽，人们从正面考虑问题，表达乐观的、满怀希望的、建设性的观点。<br>黑色思考帽：戴上黑色思考帽，人们可以运用否定、怀疑、质疑的看法，合乎逻辑的进行批判，尽情发表负面的意见，找出逻辑上的错误。<br>红色思考帽：红色是情感的色彩。戴上红色思考帽，人们可以表现自己的情绪，人们还可以表达直觉、感受、预感等方面的看法。<br>蓝色思考帽：蓝色思考帽负责控制和调节思维过程。负责控制各种思考帽的使用顺序，规划和管理整个思考过程，并负责做出结论。</p>
+<p>不同场合、场景下使用不同的思考帽。</p>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
         <tag>思维</tag>
       </tags>
   </entry>
