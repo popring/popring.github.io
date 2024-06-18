@@ -9,6 +9,51 @@
 ]]></content>
   </entry>
   <entry>
+    <title>好文收藏</title>
+    <url>/2023/01/31/%E5%A5%BD%E6%96%87%E6%94%B6%E8%97%8F/</url>
+    <content><![CDATA[<h2 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h2><p><a href="https://mp.weixin.qq.com/s/PpTZA-JPB0-5pvC1J4iZxw">迄今为止最全的前端监控体系搭建篇(长文预警)</a></p>
+<p><a href="https://caelumtian.github.io/2019/10/22/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A71/">前端性能监控（一）指标收集</a></p>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><p><a href="https://www.patterns.dev/">https://www.patterns.dev/</a></p>
+<h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><p><a href="https://docs.google.com/document/d/16aoMrMGHPIR1i_eUNRvksdDdwcDG6KiOJN6Vfh-n8-s/edit#heading=h.2o89lfunn1li">Google 技术写作</a></p>
+<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><p><a href="https://regexcrossword.com/howtoplay">How to play | Regex Crossword</a></p>
+<h2 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h2><p><a href="https://mp.weixin.qq.com/s/q461so9lWk4FKJGZ-p7Vcg">提问的智慧</a></p>
+]]></content>
+      <tags>
+        <tag>like</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>魔方还原教程</title>
+    <url>/2023/11/06/%E9%AD%94%E6%96%B9%E8%BF%98%E5%8E%9F%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p><a href="https://www.bilibili.com/video/BV1hJ411p7k6/?vd_source=12522a0c5cd9c1f8f8f3415821571934">bilibili</a></p>
+<ol>
+<li><p>黄心白色十字</p>
+</li>
+<li><p>确定中点和最下层一致 并做成白心白色十字<br>对齐固定中点与最下层中点一致 翻转向下90度 此时白色为底色 置于最下层</p>
+</li>
+<li><p>确定最下层与中心方块一致<br>当第一层有白色混合棱角 移到另外两色块中间 使用右手公式（上左下右） 多次切换</p>
+</li>
+<li><p>确定第二层与中心方块一致<br>当第一层有不含黄色方块<br>将其面向色块与中心色块保持一致 另一色块在其一侧 移动上层 使其远离另一色块<br>如果方向为左 做右手公式（上左下右） 再将白色方块置于左侧 做左手公式（上右下左）<br>如果方向为右 做左手公式（上右下左） 再将白色方块置于右侧 做右手公式（上左下右）<br>当第一层均包含黄色方块<br>将第二次异常方块置于右手 做右手公式（上左下右） 再将白色方块置于左侧 做左手公式（上右下左）<br>此时异常方块已移动到最上层 再重复（当第一层有不含黄色方块）</p>
+</li>
+<li><p>确定最上层黄心十字<br>当上层无L型或横型 选任意方向 前方顺时针90度 做右手公式（上左下右） 前方逆时针90度<br>此时为L型  两边朝向右手 前方顺时针90度 做右手公式（上左下右） 前方逆时针90度<br>此时为横型 平行横线     前方顺时针90度 做右手公式（上左下右） 前方逆时针90度</p>
+</li>
+<li><p>确定最上层上平面<br>下右上右下右右上<br>此时有小鱼图样 （有且只有三个黄色块）<br>鱼头朝上 下右上右下右右上<br>此时有两个非黄色色块<br>侧面黄色置于左上朝外 下右上右下右右上<br>此时有小鱼图样 （有且只有三个黄色块）<br>鱼头朝上 下右上右下右右上</p>
+</li>
+<li><p>确定最上层角块<br>有角块颜色一致<br>选择角块颜色一致的朝下 面向黄色 上右上 下面180° 下左上 下面180° 右面180°<br>无角块颜色一致<br>选择任意朝下 面向黄色 上右上 下面180° 下左上 下面180° 右面180°<br>有角块颜色一致</p>
+</li>
+<li><p>确定最上层中点<br>有好的一面<br>好的一面对准自己 下左下右 下右下左 上左180°<br>没好的一面<br>任意一面对准自己 下左下右 下右下左 上左180°<br>好的一面</p>
+<p>完结！</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>魔方</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言 第十章 文件操作</title>
     <url>/2019/04/27/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-10.%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h2 id="第十章-文件操作"><a href="#第十章-文件操作" class="headerlink" title="第十章 文件操作"></a>第十章 文件操作</h2><h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><h4 id="文本文件"><a href="#文本文件" class="headerlink" title="文本文件"></a>文本文件</h4><p>也称ASCII码文件，每字符占一个字节存储，每字节保存的是字符的ASCII码。可用文本编辑器打开查看，例如<code>.txt</code>、代码源程序<code>.c</code>、等等</p>
@@ -157,51 +202,6 @@
       </categories>
       <tags>
         <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>好文收藏</title>
-    <url>/2023/01/31/%E5%A5%BD%E6%96%87%E6%94%B6%E8%97%8F/</url>
-    <content><![CDATA[<h2 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h2><p><a href="https://mp.weixin.qq.com/s/PpTZA-JPB0-5pvC1J4iZxw">迄今为止最全的前端监控体系搭建篇(长文预警)</a></p>
-<p><a href="https://caelumtian.github.io/2019/10/22/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A71/">前端性能监控（一）指标收集</a></p>
-<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><p><a href="https://www.patterns.dev/">https://www.patterns.dev/</a></p>
-<h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><p><a href="https://docs.google.com/document/d/16aoMrMGHPIR1i_eUNRvksdDdwcDG6KiOJN6Vfh-n8-s/edit#heading=h.2o89lfunn1li">Google 技术写作</a></p>
-<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><p><a href="https://regexcrossword.com/howtoplay">How to play | Regex Crossword</a></p>
-<h2 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h2><p><a href="https://mp.weixin.qq.com/s/q461so9lWk4FKJGZ-p7Vcg">提问的智慧</a></p>
-]]></content>
-      <tags>
-        <tag>like</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>魔方还原教程</title>
-    <url>/2023/11/06/%E9%AD%94%E6%96%B9%E8%BF%98%E5%8E%9F%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p><a href="https://www.bilibili.com/video/BV1hJ411p7k6/?vd_source=12522a0c5cd9c1f8f8f3415821571934">bilibili</a></p>
-<ol>
-<li><p>黄心白色十字</p>
-</li>
-<li><p>确定中点和最下层一致 并做成白心白色十字<br>对齐固定中点与最下层中点一致 翻转向下90度 此时白色为底色 置于最下层</p>
-</li>
-<li><p>确定最下层与中心方块一致<br>当第一层有白色混合棱角 移到另外两色块中间 使用右手公式（上左下右） 多次切换</p>
-</li>
-<li><p>确定第二层与中心方块一致<br>当第一层有不含黄色方块<br>将其面向色块与中心色块保持一致 另一色块在其一侧 移动上层 使其远离另一色块<br>如果方向为左 做右手公式（上左下右） 再将白色方块置于左侧 做左手公式（上右下左）<br>如果方向为右 做左手公式（上右下左） 再将白色方块置于右侧 做右手公式（上左下右）<br>当第一层均包含黄色方块<br>将第二次异常方块置于右手 做右手公式（上左下右） 再将白色方块置于左侧 做左手公式（上右下左）<br>此时异常方块已移动到最上层 再重复（当第一层有不含黄色方块）</p>
-</li>
-<li><p>确定最上层黄心十字<br>当上层无L型或横型 选任意方向 前方顺时针90度 做右手公式（上左下右） 前方逆时针90度<br>此时为L型  两边朝向右手 前方顺时针90度 做右手公式（上左下右） 前方逆时针90度<br>此时为横型 平行横线     前方顺时针90度 做右手公式（上左下右） 前方逆时针90度</p>
-</li>
-<li><p>确定最上层上平面<br>下右上右下右右上<br>此时有小鱼图样 （有且只有三个黄色块）<br>鱼头朝上 下右上右下右右上<br>此时有两个非黄色色块<br>侧面黄色置于左上朝外 下右上右下右右上<br>此时有小鱼图样 （有且只有三个黄色块）<br>鱼头朝上 下右上右下右右上</p>
-</li>
-<li><p>确定最上层角块<br>有角块颜色一致<br>选择角块颜色一致的朝下 面向黄色 上右上 下面180° 下左上 下面180° 右面180°<br>无角块颜色一致<br>选择任意朝下 面向黄色 上右上 下面180° 下左上 下面180° 右面180°<br>有角块颜色一致</p>
-</li>
-<li><p>确定最上层中点<br>有好的一面<br>好的一面对准自己 下左下右 下右下左 上左180°<br>没好的一面<br>任意一面对准自己 下左下右 下右下左 上左180°<br>好的一面</p>
-<p>完结！</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>魔方</tag>
       </tags>
   </entry>
   <entry>
@@ -645,6 +645,52 @@
       </tags>
   </entry>
   <entry>
+    <title>C语言 第六章 数组</title>
+    <url>/2019/03/24/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-6.%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h2 id="第六章-数组"><a href="#第六章-数组" class="headerlink" title="第六章 数组"></a>第六章 数组</h2><h3 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义数组的长度</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组也是变量，必须先定义，后使用，不能与其他变量名、数组名重名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义时赋初值</span></span><br><span class="line"><span class="keyword">int</span> x[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常用编程套路，数组与循环结合</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;元素个数; i++)</span><br><span class="line">    对a[i]的操作</span><br></pre></td></tr></table></figure>
+
+<h4 id="一维数组的运用"><a href="#一维数组的运用" class="headerlink" title="一维数组的运用"></a>一维数组的运用</h4><p>已知10名同学的考试成绩，请编程统计及格人数，并计算10名同学成绩的平均分。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#inlcude <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> b[N] = &#123;<span class="number">58.0</span>, <span class="number">69.0</span>, <span class="number">92.1</span>, <span class="number">33.3</span>, <span class="number">50.1</span>, <span class="number">66.5</span>, <span class="number">12.5</span>, <span class="number">63.4</span>, <span class="number">68.4</span>, <span class="number">10.1</span>&#125;, sum, avg;</span><br><span class="line">	<span class="keyword">int</span> i, pass;</span><br><span class="line">	sum = <span class="number">0</span>; pass=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		sum += b[i];</span><br><span class="line">		<span class="keyword">if</span>(b[i]&gt;= <span class="number">60</span>)</span><br><span class="line">			pass++;</span><br><span class="line">	&#125;</span><br><span class="line">	avg = sum / N;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;通过考试人数为: %d\n&quot;</span>, pass);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;平均分数为: %5.1f&quot;</span>, avg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%5.1f&quot;</span>, fa);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>5表示输出数字长度为五位</p>
+<p>1表示输出数字的小数后1位</p>
+</blockquote>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>];<span class="keyword">int</span> i=<span class="number">3</span>;</span><br><span class="line">a[i]=<span class="number">1</span>;		引用数组时，下标可以是常量</span><br><span class="line"><span class="keyword">int</span> x[i];	定义数组时不能用变量表示元素个数</span><br><span class="line">a[i++]=<span class="number">2</span>;	a[<span class="number">3</span>]=<span class="number">2</span>;之后i由<span class="number">3</span>变为<span class="number">4</span></span><br><span class="line">			下标必须为整数</span><br><span class="line">			不能一次引用整个数组</span><br></pre></td></tr></table></figure>
+
+<h4 id="一位数组的初始化"><a href="#一位数组的初始化" class="headerlink" title="一位数组的初始化"></a>一位数组的初始化</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">5</span>, <span class="number">10</span>&#125;;</span><br><span class="line"><span class="comment">// 如果数组长度多于初始化值得时候，数组中未赋值的元素将默认赋值为0，相当于</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">5</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对字符型数组，后面元素自动赋&#x27;\0&#x27;实质上仍是赋值0</span></span><br><span class="line"><span class="keyword">char</span> s[<span class="number">4</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组初始化另一种写法，C会自动计算数组长度</span></span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="程序例"><a href="#程序例" class="headerlink" title="程序例"></a>程序例</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> 编程删除数组b中下标为<span class="number">2</span>的元素</span><br><span class="line">b[<span class="number">5</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92</span>&#125;;</span><br><span class="line">修改后</span><br><span class="line">b[<span class="number">5</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">86</span>, <span class="number">92</span>, <span class="number">92</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">2.</span> 编程在数组b中的下标为<span class="number">2</span>的元素之前，插入新元素<span class="number">100</span>。</span><br><span class="line">b[<span class="number">10</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92</span>&#125;;</span><br><span class="line">修改后</span><br><span class="line">b[<span class="number">10</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">100</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">3.</span> 选择排序，将数组b从小到大排序</span><br><span class="line">b[<span class="number">5</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92</span>&#125;;</span><br><span class="line">排序后</span><br><span class="line">b[<span class="number">5</span>] = &#123;<span class="number">60</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92.</span> <span class="number">99</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><blockquote>
+<p>二维数组又为特殊的一维数组，它的每个元素又是一维数组</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">二维数组的定义</span><br><span class="line">数组类型 数组名[行数][列数]</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span>型的变量名为a的数组，<span class="number">2</span>行<span class="number">3</span>列</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>二维数组在内存中的存储形式</p>
+<p>硬件存储器（内存）是连续的和线性的，二维表形式的二维数组在内存中是<code>线性存储和按行排列</code>。</p>
+<p><strong>注意</strong>：</p>
+<p>任何情况下，都不能省略列数（即不能省略第二个[] 内的数）;</p>
+<p>在能判断出行数时，可省略行数（即可省略第一个[]内的数）；</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line"><span class="comment">// 只有定义时赋初值才能用 =&#123;&#125; 的形式，故上述写法错误</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言 第五章 循环结构</title>
     <url>/2019/03/23/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-5.%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h2 id="第五章-循环结构"><a href="#第五章-循环结构" class="headerlink" title="第五章 循环结构"></a>第五章 循环结构</h2><blockquote>
@@ -692,52 +738,6 @@
 
 
 
-
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言 第六章 数组</title>
-    <url>/2019/03/24/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-6.%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h2 id="第六章-数组"><a href="#第六章-数组" class="headerlink" title="第六章 数组"></a>第六章 数组</h2><h3 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义数组的长度</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组也是变量，必须先定义，后使用，不能与其他变量名、数组名重名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义时赋初值</span></span><br><span class="line"><span class="keyword">int</span> x[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常用编程套路，数组与循环结合</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;元素个数; i++)</span><br><span class="line">    对a[i]的操作</span><br></pre></td></tr></table></figure>
-
-<h4 id="一维数组的运用"><a href="#一维数组的运用" class="headerlink" title="一维数组的运用"></a>一维数组的运用</h4><p>已知10名同学的考试成绩，请编程统计及格人数，并计算10名同学成绩的平均分。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#inlcude <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> b[N] = &#123;<span class="number">58.0</span>, <span class="number">69.0</span>, <span class="number">92.1</span>, <span class="number">33.3</span>, <span class="number">50.1</span>, <span class="number">66.5</span>, <span class="number">12.5</span>, <span class="number">63.4</span>, <span class="number">68.4</span>, <span class="number">10.1</span>&#125;, sum, avg;</span><br><span class="line">	<span class="keyword">int</span> i, pass;</span><br><span class="line">	sum = <span class="number">0</span>; pass=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		sum += b[i];</span><br><span class="line">		<span class="keyword">if</span>(b[i]&gt;= <span class="number">60</span>)</span><br><span class="line">			pass++;</span><br><span class="line">	&#125;</span><br><span class="line">	avg = sum / N;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;通过考试人数为: %d\n&quot;</span>, pass);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;平均分数为: %5.1f&quot;</span>, avg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%5.1f&quot;</span>, fa);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>5表示输出数字长度为五位</p>
-<p>1表示输出数字的小数后1位</p>
-</blockquote>
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>];<span class="keyword">int</span> i=<span class="number">3</span>;</span><br><span class="line">a[i]=<span class="number">1</span>;		引用数组时，下标可以是常量</span><br><span class="line"><span class="keyword">int</span> x[i];	定义数组时不能用变量表示元素个数</span><br><span class="line">a[i++]=<span class="number">2</span>;	a[<span class="number">3</span>]=<span class="number">2</span>;之后i由<span class="number">3</span>变为<span class="number">4</span></span><br><span class="line">			下标必须为整数</span><br><span class="line">			不能一次引用整个数组</span><br></pre></td></tr></table></figure>
-
-<h4 id="一位数组的初始化"><a href="#一位数组的初始化" class="headerlink" title="一位数组的初始化"></a>一位数组的初始化</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">5</span>, <span class="number">10</span>&#125;;</span><br><span class="line"><span class="comment">// 如果数组长度多于初始化值得时候，数组中未赋值的元素将默认赋值为0，相当于</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">5</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对字符型数组，后面元素自动赋&#x27;\0&#x27;实质上仍是赋值0</span></span><br><span class="line"><span class="keyword">char</span> s[<span class="number">4</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组初始化另一种写法，C会自动计算数组长度</span></span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="程序例"><a href="#程序例" class="headerlink" title="程序例"></a>程序例</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span> 编程删除数组b中下标为<span class="number">2</span>的元素</span><br><span class="line">b[<span class="number">5</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92</span>&#125;;</span><br><span class="line">修改后</span><br><span class="line">b[<span class="number">5</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">86</span>, <span class="number">92</span>, <span class="number">92</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">2.</span> 编程在数组b中的下标为<span class="number">2</span>的元素之前，插入新元素<span class="number">100</span>。</span><br><span class="line">b[<span class="number">10</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92</span>&#125;;</span><br><span class="line">修改后</span><br><span class="line">b[<span class="number">10</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">100</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">3.</span> 选择排序，将数组b从小到大排序</span><br><span class="line">b[<span class="number">5</span>] = &#123;<span class="number">99</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92</span>&#125;;</span><br><span class="line">排序后</span><br><span class="line">b[<span class="number">5</span>] = &#123;<span class="number">60</span>, <span class="number">75</span>, <span class="number">86</span>, <span class="number">92.</span> <span class="number">99</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><blockquote>
-<p>二维数组又为特殊的一维数组，它的每个元素又是一维数组</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">二维数组的定义</span><br><span class="line">数组类型 数组名[行数][列数]</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span>型的变量名为a的数组，<span class="number">2</span>行<span class="number">3</span>列</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>二维数组在内存中的存储形式</p>
-<p>硬件存储器（内存）是连续的和线性的，二维表形式的二维数组在内存中是<code>线性存储和按行排列</code>。</p>
-<p><strong>注意</strong>：</p>
-<p>任何情况下，都不能省略列数（即不能省略第二个[] 内的数）;</p>
-<p>在能判断出行数时，可省略行数（即可省略第一个[]内的数）；</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line"><span class="comment">// 只有定义时赋初值才能用 =&#123;&#125; 的形式，故上述写法错误</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -2282,70 +2282,6 @@
       </tags>
   </entry>
   <entry>
-    <title>备战校招第七天</title>
-    <url>/2020/07/27/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/7-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%83%E5%A4%A9/</url>
-    <content><![CDATA[<ul>
-<li><p>统计文档内所有标签</p>
-</li>
-<li><p>三栏布局，高度已知，左右两栏各<code>300px</code>，中间自适应</p>
-</li>
-</ul>
-<hr>
-<a id="more"></a>
-
-
-
-<h2 id="统计文档内所有标签"><a href="#统计文档内所有标签" class="headerlink" title="统计文档内所有标签"></a>统计文档内所有标签</h2><p>统计下列标签，返回结果放在一个数组内，均为小写，可以不按照顺序，示例如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回</span></span><br><span class="line">[<span class="string">&quot;html&quot;</span>, <span class="string">&quot;head&quot;</span>, <span class="string">&quot;body&quot;</span>, <span class="string">&quot;div&quot;</span>, <span class="string">&quot;p&quot;</span>]</span><br></pre></td></tr></table></figure>
-
-<h3 id="第一种：根据js内置函数递归获取-document-all"><a href="#第一种：根据js内置函数递归获取-document-all" class="headerlink" title="第一种：根据js内置函数递归获取(document.all)"></a>第一种：根据<code>js</code>内置函数递归获取(<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/all"><del>document.all</del></a>)</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTags</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tags = <span class="built_in">document</span>.all()</span><br><span class="line">  <span class="keyword">var</span> res = []</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> tags) &#123;</span><br><span class="line">    res.push(item.tagName.toLowerCase())</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="第二种：getElmentByTagNames-39-39"><a href="#第二种：getElmentByTagNames-39-39" class="headerlink" title="第二种：getElmentByTagNames(&#39;*&#39;)"></a>第二种：<code>getElmentByTagNames(&#39;*&#39;)</code></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTags</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tags = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;*&#x27;</span>)</span><br><span class="line">  <span class="keyword">var</span> res = []</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> tags) &#123;</span><br><span class="line">    res.push(item.tagName.toLowerCase())</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="三栏布局，高度已知，左右两栏各300px，中间自适应"><a href="#三栏布局，高度已知，左右两栏各300px，中间自适应" class="headerlink" title="三栏布局，高度已知，左右两栏各300px，中间自适应"></a>三栏布局，高度已知，左右两栏各<code>300px</code>，中间自适应</h2><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200727170756.png" alt="image-20200727170756952"></p>
-<p>介绍下方法和思路</p>
-<ol>
-<li><p>float 布局</p>
-<p>左栏和右栏浮动，中间默认</p>
-</li>
-<li><p>绝对定位</p>
-<p>左栏 <code>left:0</code> 右栏 <code>right:0</code> 中间<code>left:300px; right:300px;</code></p>
-</li>
-<li><p>flex布局</p>
-<p>父元素设置为 <code>display: flex;</code></p>
-<p>设置左右宽为300px</p>
-<p>中间设置 <code>flex: 1;</code> 相当于 <code>flex-grow:1;</code></p>
-</li>
-<li><p>table布局</p>
-<p>父元素 <code>display: table;</code></p>
-<p>子元素 <code>display: table-cell; </code></p>
-<p>左右各为 <code>300px</code></p>
-</li>
-<li><p>grid布局</p>
-<p>通过设置 <code>row</code> 和 <code>column</code> 来控制</p>
-</li>
-</ol>
-<blockquote>
-<p>建议将如下代码粘贴到编辑器里查看</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>三栏布局<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">html</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line">      .layout &#123;</span><br><span class="line"><span class="css">        <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line"><span class="css">      <span class="selector-class">.left-center-right</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">min-height</span>: <span class="number">100px</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line">      .left-center-right .left &#123;</span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line">      &#125;</span><br><span class="line">      .left-center-right .center &#123;</span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: red;</span></span><br><span class="line">      &#125;</span><br><span class="line">      .left-center-right .right &#123;</span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: blue;</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 浮动布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .float .left &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">float</span>: left;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .float .center &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        .float .right &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">float</span>: right;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right float&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">          1. 浮动布局</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 定位布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .absoulte &#123;</span><br><span class="line"><span class="css">          <span class="attribute">position</span>: relative;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .absoulte .left &#123;</span><br><span class="line"><span class="css">          <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line">        &#125;.absoulte .center &#123;</span><br><span class="line"><span class="css">          <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">          <span class="attribute">left</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">right</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .absoulte .right &#123;</span><br><span class="line"><span class="css">          <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right absoulte&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">          2. 定位布局</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 3. flex布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .flex &#123;</span><br><span class="line"><span class="css">          <span class="attribute">margin-top</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">display</span>: flex;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .flex .left &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .flex .center &#123;</span><br><span class="line"><span class="css">          <span class="attribute">flex</span>: <span class="number">1</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .flex .right &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right flex&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">            3. flex布局</span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- table 布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .table &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">display</span>: table;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.table</span>&gt;<span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="css">          <span class="attribute">display</span>: table-cell;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .table .left &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .table .right &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right table&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">          4. table 布局</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- grid 布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .grid &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">display</span>: grid;</span></span><br><span class="line"><span class="css">          grid-template-<span class="attribute">columns</span>: <span class="number">300px</span> auto <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          grid-template-rows: <span class="number">100px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right grid&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">          5. grid 布局</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>备战校招第六天</title>
     <url>/2020/06/30/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/6-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%85%AD%E5%A4%A9/</url>
     <content><![CDATA[<ol>
@@ -2426,6 +2362,70 @@
       <tags>
         <tag>js编程题</tag>
         <tag>react</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>备战校招第七天</title>
+    <url>/2020/07/27/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/7-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%83%E5%A4%A9/</url>
+    <content><![CDATA[<ul>
+<li><p>统计文档内所有标签</p>
+</li>
+<li><p>三栏布局，高度已知，左右两栏各<code>300px</code>，中间自适应</p>
+</li>
+</ul>
+<hr>
+<a id="more"></a>
+
+
+
+<h2 id="统计文档内所有标签"><a href="#统计文档内所有标签" class="headerlink" title="统计文档内所有标签"></a>统计文档内所有标签</h2><p>统计下列标签，返回结果放在一个数组内，均为小写，可以不按照顺序，示例如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回</span></span><br><span class="line">[<span class="string">&quot;html&quot;</span>, <span class="string">&quot;head&quot;</span>, <span class="string">&quot;body&quot;</span>, <span class="string">&quot;div&quot;</span>, <span class="string">&quot;p&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="第一种：根据js内置函数递归获取-document-all"><a href="#第一种：根据js内置函数递归获取-document-all" class="headerlink" title="第一种：根据js内置函数递归获取(document.all)"></a>第一种：根据<code>js</code>内置函数递归获取(<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/all"><del>document.all</del></a>)</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTags</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tags = <span class="built_in">document</span>.all()</span><br><span class="line">  <span class="keyword">var</span> res = []</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> tags) &#123;</span><br><span class="line">    res.push(item.tagName.toLowerCase())</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种：getElmentByTagNames-39-39"><a href="#第二种：getElmentByTagNames-39-39" class="headerlink" title="第二种：getElmentByTagNames(&#39;*&#39;)"></a>第二种：<code>getElmentByTagNames(&#39;*&#39;)</code></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTags</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tags = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;*&#x27;</span>)</span><br><span class="line">  <span class="keyword">var</span> res = []</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> tags) &#123;</span><br><span class="line">    res.push(item.tagName.toLowerCase())</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="三栏布局，高度已知，左右两栏各300px，中间自适应"><a href="#三栏布局，高度已知，左右两栏各300px，中间自适应" class="headerlink" title="三栏布局，高度已知，左右两栏各300px，中间自适应"></a>三栏布局，高度已知，左右两栏各<code>300px</code>，中间自适应</h2><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200727170756.png" alt="image-20200727170756952"></p>
+<p>介绍下方法和思路</p>
+<ol>
+<li><p>float 布局</p>
+<p>左栏和右栏浮动，中间默认</p>
+</li>
+<li><p>绝对定位</p>
+<p>左栏 <code>left:0</code> 右栏 <code>right:0</code> 中间<code>left:300px; right:300px;</code></p>
+</li>
+<li><p>flex布局</p>
+<p>父元素设置为 <code>display: flex;</code></p>
+<p>设置左右宽为300px</p>
+<p>中间设置 <code>flex: 1;</code> 相当于 <code>flex-grow:1;</code></p>
+</li>
+<li><p>table布局</p>
+<p>父元素 <code>display: table;</code></p>
+<p>子元素 <code>display: table-cell; </code></p>
+<p>左右各为 <code>300px</code></p>
+</li>
+<li><p>grid布局</p>
+<p>通过设置 <code>row</code> 和 <code>column</code> 来控制</p>
+</li>
+</ol>
+<blockquote>
+<p>建议将如下代码粘贴到编辑器里查看</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>三栏布局<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">html</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line">      .layout &#123;</span><br><span class="line"><span class="css">        <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line"><span class="css">      <span class="selector-class">.left-center-right</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">min-height</span>: <span class="number">100px</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line">      .left-center-right .left &#123;</span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line">      &#125;</span><br><span class="line">      .left-center-right .center &#123;</span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: red;</span></span><br><span class="line">      &#125;</span><br><span class="line">      .left-center-right .right &#123;</span><br><span class="line"><span class="css">        <span class="attribute">background-color</span>: blue;</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 浮动布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .float .left &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">float</span>: left;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .float .center &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        .float .right &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">float</span>: right;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right float&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">          1. 浮动布局</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 定位布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .absoulte &#123;</span><br><span class="line"><span class="css">          <span class="attribute">position</span>: relative;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .absoulte .left &#123;</span><br><span class="line"><span class="css">          <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line">        &#125;.absoulte .center &#123;</span><br><span class="line"><span class="css">          <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">          <span class="attribute">left</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">right</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .absoulte .right &#123;</span><br><span class="line"><span class="css">          <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right absoulte&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">          2. 定位布局</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 3. flex布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .flex &#123;</span><br><span class="line"><span class="css">          <span class="attribute">margin-top</span>: <span class="number">120px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">display</span>: flex;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .flex .left &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .flex .center &#123;</span><br><span class="line"><span class="css">          <span class="attribute">flex</span>: <span class="number">1</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .flex .right &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right flex&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">            3. flex布局</span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- table 布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .table &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">display</span>: table;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.table</span>&gt;<span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="css">          <span class="attribute">display</span>: table-cell;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .table .left &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .table .right &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right table&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">          4. table 布局</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- grid 布局 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        .grid &#123;</span><br><span class="line"><span class="css">          <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="css">          <span class="attribute">display</span>: grid;</span></span><br><span class="line"><span class="css">          grid-template-<span class="attribute">columns</span>: <span class="number">300px</span> auto <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">          grid-template-rows: <span class="number">100px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;left-center-right grid&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">          5. grid 布局</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -3032,118 +3032,6 @@
       </categories>
   </entry>
   <entry>
-    <title>[每周] 第一期</title>
-    <url>/2019/01/26/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%80%E6%9C%9F/</url>
-    <content><![CDATA[<blockquote>
-<p>webpack 常用命令</p>
-<ul>
-<li><code>webpack</code> building for development</li>
-<li><code>webpack -p</code> building for production, minification (压缩，打包)</li>
-<li><code>webpack --watch</code> for continuous incremental building (监听变动并自动打包)</li>
-<li><code>webpack -d</code> including source maps(生成map映射文件，告知哪些模块最终打包到哪里了)</li>
-<li><code>webpack --colors</code> making building output pretty (美化展示信息)</li>
-</ul>
-</blockquote>
-<a id="more"></a>
-
-<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p><a href="https://www.webpackjs.com/concepts/">webpack中文网</a></p>
-<p><a href="https://github.com/ruanyf/webpack-demos">阮一峰的webpack-demo</a></p>
-<p><a href="https://github.com/dongyuanxin/webpack-demos">dongyuanxin webpack教程</a></p>
-<blockquote>
-<p>全局安装 webpack and webpack-dev-server</p>
-<p>webpack 常用命令</p>
-<ul>
-<li><code>webpack</code> building for development</li>
-<li><code>webpack -p</code> building for production, minification (压缩，打包)</li>
-<li><code>webpack --watch</code> for continuous incremental building (监听变动并自动打包)</li>
-<li><code>webpack -d</code> including source maps(生成map映射文件，告知哪些模块最终打包到哪里了)</li>
-<li><code>webpack --colors</code> making building output pretty (美化展示信息)</li>
-</ul>
-</blockquote>
-<p>脚本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; package.json</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    &quot;script&quot;: &#123;</span><br><span class="line">        &quot;dev&quot;: &quot;webpack-dev-server --open&quot;,</span><br><span class="line">        &quot;build&quot;: &quot;webpack -p&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Entry-File（入口文件）"><a href="#Entry-File（入口文件）" class="headerlink" title="Entry File（入口文件）"></a>Entry File（入口文件）</h3><p>*<em>入口起点(entry point)**指示 webpack 应该使用哪个模块，来作为构建其内部</em>依赖图*的开始。进入入口起点后，webpack 会找出有哪些模块和库是入口起点（直接和间接）依赖的。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exprots =&#123;</span><br><span class="line">    <span class="comment">// 入口文件位置</span></span><br><span class="line">    entry: <span class="string">&#x27;./main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="多入口文件"><a href="#多入口文件" class="headerlink" title="多入口文件"></a><strong>多入口文件</strong></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        <span class="comment">// bundle1或bundle2 代表输出的文件名</span></span><br><span class="line">        bundle1: <span class="string">&#x27;./main1.js&#x27;</span>,</span><br><span class="line">        bundle2: <span class="string">&#x27;./main2.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">&#x27;[name].js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Output-（出口）"><a href="#Output-（出口）" class="headerlink" title="Output （出口）"></a>Output （出口）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./main&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">    	<span class="comment">//生成 bundle.js 的路径</span></span><br><span class="line">        path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>), </span><br><span class="line">        <span class="comment">// 生成 bundle.js 文件名</span></span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h3><p>loader 用来处理非 JavaScript 文件，webpakck 本身也只能理解 JavaScript。</p>
-<p>webpack 中 loader 有了两个配置属性：</p>
-<ol>
-<li><code>test</code> 属性，用于标识出应该被对应的 loader 进行转换的某个或某些文件。</li>
-<li><code>use</code> 属性，表示进行转换时，应该使用哪个 loader 。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* webpack.config.js */</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, use: <span class="string">&#x27;raw-loader&#x27;</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>提示：当 webpack 碰到 [ 在 <code>require()/import</code> 语句中被解析为 <code>.txt</code> ] 时，在对它打包前，先用 <code>raw-loader</code> 转换一下。</p>
-<p>rules 规则 在 module 下。</p>
-</blockquote>
-<h3 id="Plugins（插件）"><a href="#Plugins（插件）" class="headerlink" title="Plugins（插件）"></a>Plugins（插件）</h3><p>loader 被用于转换某些类型的模块，而插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* webpack.config.js */</span></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>); <span class="comment">// 通过 npm 安装</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>); <span class="comment">// 用于访问内置插件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, use: <span class="string">&#x27;raw-loader&#x27;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
-
-<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><blockquote>
-<p>development 开发环境</p>
-<p>production 生产环境</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    mode: <span class="string">&#x27;production&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><h3 id="标准盒子模型（content-box，默认）"><a href="#标准盒子模型（content-box，默认）" class="headerlink" title="标准盒子模型（content-box，默认）"></a>标准盒子模型（content-box，默认）</h3><p>height =  内容高度<img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115332.jpg"></p>
-<h3 id="IE盒子模型（border-box）"><a href="#IE盒子模型（border-box）" class="headerlink" title="IE盒子模型（border-box）"></a>IE盒子模型（border-box）</h3><p>height=  内容高度 + border + padding</p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115333.jpg"></p>
-<p>box-sizing 属性可以被用来调整这些表现（MDN 文档）:</p>
-<ul>
-<li><code>content-box</code>  是默认值。如果你设置一个元素的宽为100px，那么这个元素的内容区会有100px宽，并且任何边框和内边距的宽度都会被增加到最后绘制出来的元素宽度中。</li>
-<li><code>border-box</code> 告诉浏览器去理解你设置的边框和内边距的值是包含在width内的。也就是说，如果你将一个元素的width设为100px,那么这100px会包含其它的border和padding，内容区的实际宽度会是width减去border + padding的计算值。大多数情况下这使得我们更容易的去设定一个元素的宽高。</li>
-</ul>
-<p>由此可得，当你定义一个元素的宽或高时，元素又需要加padding or border ，但又不希望元素的宽高被改变，用border-box 再合适不过了。</p>
-<p>文章图片引用自：<a href="https://blog.csdn.net/huangpin815/article/details/76651680">https://blog.csdn.net/huangpin815/article/details/76651680</a></p>
-<h2 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h2><h3 id="将requres请求封装"><a href="#将requres请求封装" class="headerlink" title="将requres请求封装"></a>将requres请求封装</h3><p>将 <code>wx.request</code> 请求进行 Promise封装，使用，以及后期维护更加方便</p>
-  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* request.js */</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">url, method, data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">&#x27;http://api.douban.com/&#x27;</span>;</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        wx.request(&#123;</span><br><span class="line">            url,</span><br><span class="line">            method,</span><br><span class="line">            data,</span><br><span class="line">            success: resolve,</span><br><span class="line">            fail: reject</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* index.js */</span></span><br><span class="line"><span class="comment">// 导入 request.js 文件</span></span><br><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request.js&#x27;</span>);</span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">request(<span class="string">&#x27;v2/movie/in_theaters&#x27;</span>, <span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;&#x27;</span>).then(</span><br><span class="line">	<span class="comment">/* 处理函数 */</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h3 id="添加编译模式"><a href="#添加编译模式" class="headerlink" title="添加编译模式"></a>添加编译模式</h3><p>添加编译模式，方便调试，直接针对某一页面进行调式，还可以传入进入页面的参数</p>
-<blockquote>
-<p>模式名称：list页面<br>启动页面：pages/list/list<br>启动参数：id=5<br>进入场景：默认</p>
-</blockquote>
-<h3 id="WeUI-框架（其实和网页版的一样）"><a href="#WeUI-框架（其实和网页版的一样）" class="headerlink" title="WeUI 框架（其实和网页版的一样）"></a>WeUI 框架（其实和网页版的一样）</h3><p><a href="https://github.com/Tencent/weui-wxss">WeUI 小程序 版本</a></p>
-<p><a href="https://github.com/Tencent/weui">WeUI 网页版</a></p>
-<h3 id="wxs-函数"><a href="#wxs-函数" class="headerlink" title="wxs 函数"></a>wxs 函数</h3><p> <strong><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html">官方文档</a></strong></p>
-<p>友情提醒：（此方法不支持一些新特性）</p>
-<p>可以直接在模板中直接调用</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;view&gt;&#123;&#123; util.xxHandle(<span class="string">&#x27;123&#x27;</span>) &#125;&#125;&lt;/view&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 直接在 wxml 中写方法 */</span></span><br><span class="line">&lt;wxs name=<span class="string">&quot;util&quot;</span>&gt;</span><br><span class="line">    <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">        xxHandle: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&#x27;-&#x27;</span>+str;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/wxs&gt;</span><br><span class="line"><span class="comment">/* 也可以引入js文件 */</span></span><br><span class="line">&lt;wxs <span class="built_in">module</span>=<span class="string">&quot;util&quot;</span> src=<span class="string">&quot;../util.js&quot;</span>&gt;&lt;/wxs&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="leetcode-刷题"><a href="#leetcode-刷题" class="headerlink" title="leetcode 刷题"></a>leetcode 刷题</h2><p><a href="https://leetcode-cn.com/problems/valid-parentheses/">有效的括号</a></p>
-<p>本题其实并没有那么特别复杂，就像是自己写编译器，匹配括号。</p>
-<p><code>[], &#123;&#125;, ()</code></p>
-<p>匹配不匹配，短一点的人眼可以直接识别出来</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;([)]&quot;</span>  <span class="comment">// 很明显不和谐</span></span><br><span class="line"><span class="string">&quot;([])&quot;</span>	<span class="comment">// 这个就舒服很多了</span></span><br></pre></td></tr></table></figure>
-
-<p>由于这个可能性，可能有点多，之前的那种思路时不可行了，还是官方推荐的哪个思路给力。</p>
-<p>根据栈的原理。</p>
-<p>假如 需要检测的时这个字符串 <code>([]())&#123;&#125;[]</code></p>
-<ol>
-<li>当遇到左括号，也可称为开括号，将其压入栈中</li>
-<li>当遇到闭括号，将栈中的最顶部的元素推出与当前的闭括号比较是否匹配</li>
-<li>如果匹配，则继续，不匹配，表示当前当前字符串时无效字符串。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">s</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isValid = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> regs = &#123;</span><br><span class="line">        <span class="string">&#x27;(&#x27;</span>: <span class="string">&#x27;)&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&#123;&#x27;</span>: <span class="string">&#x27;&#125;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;[&#x27;</span>: <span class="string">&#x27;]&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 判断是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (s == <span class="string">&#x27;&#x27;</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(s.length % <span class="number">2</span> != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">    <span class="comment">// 拆分字符串</span></span><br><span class="line">    <span class="keyword">let</span> stack = [],</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> e = s[i];</span><br><span class="line">        <span class="keyword">if</span> (regs[e] == <span class="literal">undefined</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (e != regs[stack.pop()]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stack.push(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !stack.length;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>完成于 2019年1月27日 22点29分</p>
-]]></content>
-      <categories>
-        <category>年度总结</category>
-      </categories>
-      <tags>
-        <tag>前端工程化</tag>
-        <tag>webpack</tag>
-        <tag>html</tag>
-        <tag>小程序</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[每周] 第二期</title>
     <url>/2019/01/28/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%BA%8C%E6%9C%9F/</url>
     <content><![CDATA[<p>本周总结：</p>
@@ -3265,6 +3153,118 @@
         <tag>ajax</tag>
         <tag>XMLHttpRequest</tag>
         <tag>fetch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[每周] 第一期</title>
+    <url>/2019/01/26/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/%E6%AF%8F%E5%91%A8%E6%80%BB%E7%BB%93-%E7%AC%AC%E4%B8%80%E6%9C%9F/</url>
+    <content><![CDATA[<blockquote>
+<p>webpack 常用命令</p>
+<ul>
+<li><code>webpack</code> building for development</li>
+<li><code>webpack -p</code> building for production, minification (压缩，打包)</li>
+<li><code>webpack --watch</code> for continuous incremental building (监听变动并自动打包)</li>
+<li><code>webpack -d</code> including source maps(生成map映射文件，告知哪些模块最终打包到哪里了)</li>
+<li><code>webpack --colors</code> making building output pretty (美化展示信息)</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p><a href="https://www.webpackjs.com/concepts/">webpack中文网</a></p>
+<p><a href="https://github.com/ruanyf/webpack-demos">阮一峰的webpack-demo</a></p>
+<p><a href="https://github.com/dongyuanxin/webpack-demos">dongyuanxin webpack教程</a></p>
+<blockquote>
+<p>全局安装 webpack and webpack-dev-server</p>
+<p>webpack 常用命令</p>
+<ul>
+<li><code>webpack</code> building for development</li>
+<li><code>webpack -p</code> building for production, minification (压缩，打包)</li>
+<li><code>webpack --watch</code> for continuous incremental building (监听变动并自动打包)</li>
+<li><code>webpack -d</code> including source maps(生成map映射文件，告知哪些模块最终打包到哪里了)</li>
+<li><code>webpack --colors</code> making building output pretty (美化展示信息)</li>
+</ul>
+</blockquote>
+<p>脚本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; package.json</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    &quot;script&quot;: &#123;</span><br><span class="line">        &quot;dev&quot;: &quot;webpack-dev-server --open&quot;,</span><br><span class="line">        &quot;build&quot;: &quot;webpack -p&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Entry-File（入口文件）"><a href="#Entry-File（入口文件）" class="headerlink" title="Entry File（入口文件）"></a>Entry File（入口文件）</h3><p>*<em>入口起点(entry point)**指示 webpack 应该使用哪个模块，来作为构建其内部</em>依赖图*的开始。进入入口起点后，webpack 会找出有哪些模块和库是入口起点（直接和间接）依赖的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exprots =&#123;</span><br><span class="line">    <span class="comment">// 入口文件位置</span></span><br><span class="line">    entry: <span class="string">&#x27;./main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多入口文件"><a href="#多入口文件" class="headerlink" title="多入口文件"></a><strong>多入口文件</strong></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        <span class="comment">// bundle1或bundle2 代表输出的文件名</span></span><br><span class="line">        bundle1: <span class="string">&#x27;./main1.js&#x27;</span>,</span><br><span class="line">        bundle2: <span class="string">&#x27;./main2.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">&#x27;[name].js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Output-（出口）"><a href="#Output-（出口）" class="headerlink" title="Output （出口）"></a>Output （出口）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./main&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">    	<span class="comment">//生成 bundle.js 的路径</span></span><br><span class="line">        path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>), </span><br><span class="line">        <span class="comment">// 生成 bundle.js 文件名</span></span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h3><p>loader 用来处理非 JavaScript 文件，webpakck 本身也只能理解 JavaScript。</p>
+<p>webpack 中 loader 有了两个配置属性：</p>
+<ol>
+<li><code>test</code> 属性，用于标识出应该被对应的 loader 进行转换的某个或某些文件。</li>
+<li><code>use</code> 属性，表示进行转换时，应该使用哪个 loader 。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* webpack.config.js */</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">        filename: <span class="string">&#x27;bundle.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, use: <span class="string">&#x27;raw-loader&#x27;</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>提示：当 webpack 碰到 [ 在 <code>require()/import</code> 语句中被解析为 <code>.txt</code> ] 时，在对它打包前，先用 <code>raw-loader</code> 转换一下。</p>
+<p>rules 规则 在 module 下。</p>
+</blockquote>
+<h3 id="Plugins（插件）"><a href="#Plugins（插件）" class="headerlink" title="Plugins（插件）"></a>Plugins（插件）</h3><p>loader 被用于转换某些类型的模块，而插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* webpack.config.js */</span></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>); <span class="comment">// 通过 npm 安装</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>); <span class="comment">// 用于访问内置插件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>, use: <span class="string">&#x27;raw-loader&#x27;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
+
+<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><blockquote>
+<p>development 开发环境</p>
+<p>production 生产环境</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    mode: <span class="string">&#x27;production&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><h3 id="标准盒子模型（content-box，默认）"><a href="#标准盒子模型（content-box，默认）" class="headerlink" title="标准盒子模型（content-box，默认）"></a>标准盒子模型（content-box，默认）</h3><p>height =  内容高度<img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115332.jpg"></p>
+<h3 id="IE盒子模型（border-box）"><a href="#IE盒子模型（border-box）" class="headerlink" title="IE盒子模型（border-box）"></a>IE盒子模型（border-box）</h3><p>height=  内容高度 + border + padding</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115333.jpg"></p>
+<p>box-sizing 属性可以被用来调整这些表现（MDN 文档）:</p>
+<ul>
+<li><code>content-box</code>  是默认值。如果你设置一个元素的宽为100px，那么这个元素的内容区会有100px宽，并且任何边框和内边距的宽度都会被增加到最后绘制出来的元素宽度中。</li>
+<li><code>border-box</code> 告诉浏览器去理解你设置的边框和内边距的值是包含在width内的。也就是说，如果你将一个元素的width设为100px,那么这100px会包含其它的border和padding，内容区的实际宽度会是width减去border + padding的计算值。大多数情况下这使得我们更容易的去设定一个元素的宽高。</li>
+</ul>
+<p>由此可得，当你定义一个元素的宽或高时，元素又需要加padding or border ，但又不希望元素的宽高被改变，用border-box 再合适不过了。</p>
+<p>文章图片引用自：<a href="https://blog.csdn.net/huangpin815/article/details/76651680">https://blog.csdn.net/huangpin815/article/details/76651680</a></p>
+<h2 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h2><h3 id="将requres请求封装"><a href="#将requres请求封装" class="headerlink" title="将requres请求封装"></a>将requres请求封装</h3><p>将 <code>wx.request</code> 请求进行 Promise封装，使用，以及后期维护更加方便</p>
+  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* request.js */</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">url, method, data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">&#x27;http://api.douban.com/&#x27;</span>;</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        wx.request(&#123;</span><br><span class="line">            url,</span><br><span class="line">            method,</span><br><span class="line">            data,</span><br><span class="line">            success: resolve,</span><br><span class="line">            fail: reject</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* index.js */</span></span><br><span class="line"><span class="comment">// 导入 request.js 文件</span></span><br><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">&#x27;request.js&#x27;</span>);</span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">request(<span class="string">&#x27;v2/movie/in_theaters&#x27;</span>, <span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;&#x27;</span>).then(</span><br><span class="line">	<span class="comment">/* 处理函数 */</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="添加编译模式"><a href="#添加编译模式" class="headerlink" title="添加编译模式"></a>添加编译模式</h3><p>添加编译模式，方便调试，直接针对某一页面进行调式，还可以传入进入页面的参数</p>
+<blockquote>
+<p>模式名称：list页面<br>启动页面：pages/list/list<br>启动参数：id=5<br>进入场景：默认</p>
+</blockquote>
+<h3 id="WeUI-框架（其实和网页版的一样）"><a href="#WeUI-框架（其实和网页版的一样）" class="headerlink" title="WeUI 框架（其实和网页版的一样）"></a>WeUI 框架（其实和网页版的一样）</h3><p><a href="https://github.com/Tencent/weui-wxss">WeUI 小程序 版本</a></p>
+<p><a href="https://github.com/Tencent/weui">WeUI 网页版</a></p>
+<h3 id="wxs-函数"><a href="#wxs-函数" class="headerlink" title="wxs 函数"></a>wxs 函数</h3><p> <strong><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html">官方文档</a></strong></p>
+<p>友情提醒：（此方法不支持一些新特性）</p>
+<p>可以直接在模板中直接调用</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;view&gt;&#123;&#123; util.xxHandle(<span class="string">&#x27;123&#x27;</span>) &#125;&#125;&lt;/view&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 直接在 wxml 中写方法 */</span></span><br><span class="line">&lt;wxs name=<span class="string">&quot;util&quot;</span>&gt;</span><br><span class="line">    <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">        xxHandle: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&#x27;-&#x27;</span>+str;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/wxs&gt;</span><br><span class="line"><span class="comment">/* 也可以引入js文件 */</span></span><br><span class="line">&lt;wxs <span class="built_in">module</span>=<span class="string">&quot;util&quot;</span> src=<span class="string">&quot;../util.js&quot;</span>&gt;&lt;/wxs&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="leetcode-刷题"><a href="#leetcode-刷题" class="headerlink" title="leetcode 刷题"></a>leetcode 刷题</h2><p><a href="https://leetcode-cn.com/problems/valid-parentheses/">有效的括号</a></p>
+<p>本题其实并没有那么特别复杂，就像是自己写编译器，匹配括号。</p>
+<p><code>[], &#123;&#125;, ()</code></p>
+<p>匹配不匹配，短一点的人眼可以直接识别出来</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;([)]&quot;</span>  <span class="comment">// 很明显不和谐</span></span><br><span class="line"><span class="string">&quot;([])&quot;</span>	<span class="comment">// 这个就舒服很多了</span></span><br></pre></td></tr></table></figure>
+
+<p>由于这个可能性，可能有点多，之前的那种思路时不可行了，还是官方推荐的哪个思路给力。</p>
+<p>根据栈的原理。</p>
+<p>假如 需要检测的时这个字符串 <code>([]())&#123;&#125;[]</code></p>
+<ol>
+<li>当遇到左括号，也可称为开括号，将其压入栈中</li>
+<li>当遇到闭括号，将栈中的最顶部的元素推出与当前的闭括号比较是否匹配</li>
+<li>如果匹配，则继续，不匹配，表示当前当前字符串时无效字符串。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">s</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isValid = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> regs = &#123;</span><br><span class="line">        <span class="string">&#x27;(&#x27;</span>: <span class="string">&#x27;)&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&#123;&#x27;</span>: <span class="string">&#x27;&#125;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;[&#x27;</span>: <span class="string">&#x27;]&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 判断是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (s == <span class="string">&#x27;&#x27;</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(s.length % <span class="number">2</span> != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">    <span class="comment">// 拆分字符串</span></span><br><span class="line">    <span class="keyword">let</span> stack = [],</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> e = s[i];</span><br><span class="line">        <span class="keyword">if</span> (regs[e] == <span class="literal">undefined</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (e != regs[stack.pop()]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stack.push(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !stack.length;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>完成于 2019年1月27日 22点29分</p>
+]]></content>
+      <categories>
+        <category>年度总结</category>
+      </categories>
+      <tags>
+        <tag>前端工程化</tag>
+        <tag>webpack</tag>
+        <tag>html</tag>
+        <tag>小程序</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -3829,46 +3829,6 @@
       </tags>
   </entry>
   <entry>
-    <title>go 入门</title>
-    <url>/2020/10/17/%E6%8A%80%E6%9C%AF/go-%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-
-<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
-<p>天朝特殊环境，不得不配置为国内的源</p>
-</blockquote>
-<p>打开终端并执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE&#x3D;on</span><br><span class="line">go env -w GOPROXY&#x3D;https:&#x2F;&#x2F;goproxy.cn,direct</span><br></pre></td></tr></table></figure>
-
-
-
-<p>macOS 或 Linux</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
-
-
-
-<p>windows</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><a href="https://goproxy.cn/">Goproxy 中国</a></p>
-<p><a href="https://gfw.go101.org/article/101.html">Go语言101</a></p>
-<p><a href="https://go.dev/ref/spec#Introduction">Go官方语言规范 - 英文</a>：据说看完此文档，Go基本就入门了</p>
-<p><a href="https://gobyexample-cn.github.io/">Go by Example</a>：通过实践入门</p>
-<p><a href="https://geektutu.com/post/gee.html">7天用Go从零实现Web框架Gee教程</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>em、rem和vw(vh)区别</title>
     <url>/2020/03/28/%E6%8A%80%E6%9C%AF/em%E5%92%8Crem%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CSS的<strong>单位长度</strong>分为</p>
@@ -3917,6 +3877,46 @@
       </categories>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>go 入门</title>
+    <url>/2020/10/17/%E6%8A%80%E6%9C%AF/go-%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+
+<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
+<p>天朝特殊环境，不得不配置为国内的源</p>
+</blockquote>
+<p>打开终端并执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE&#x3D;on</span><br><span class="line">go env -w GOPROXY&#x3D;https:&#x2F;&#x2F;goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+
+
+
+<p>macOS 或 Linux</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
+
+
+
+<p>windows</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><a href="https://goproxy.cn/">Goproxy 中国</a></p>
+<p><a href="https://gfw.go101.org/article/101.html">Go语言101</a></p>
+<p><a href="https://go.dev/ref/spec#Introduction">Go官方语言规范 - 英文</a>：据说看完此文档，Go基本就入门了</p>
+<p><a href="https://gobyexample-cn.github.io/">Go by Example</a>：通过实践入门</p>
+<p><a href="https://geektutu.com/post/gee.html">7天用Go从零实现Web框架Gee教程</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
       </tags>
   </entry>
   <entry>
@@ -5623,6 +5623,64 @@
       </categories>
   </entry>
   <entry>
+    <title>[项目] 折腾hexo + next</title>
+    <url>/2019/02/01/%E6%8A%80%E6%9C%AF/%E6%8A%98%E8%85%BEhexo-next/</url>
+    <content><![CDATA[<ul>
+<li><p>hexo 安装</p>
+</li>
+<li><p>使用 Next 主题</p>
+</li>
+<li><p>创建页面</p>
+</li>
+<li><p>本文无亮点，观看需谨慎。</p>
+</li>
+<li><p>最后想说，先去翻翻官方文档，再看第三方的，毕竟，官方的才正宗。</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="下载安装hexo"><a href="#下载安装hexo" class="headerlink" title="下载安装hexo"></a><a href="https://hexo.io/zh-cn/">下载安装hexo</a></h2><p>这一步没什么难度，就像官网所说的一样</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>一行命令解决，当然，首先你要安装上node.js</p>
+<p>然后就是创建文件夹，安装 <code>hexo</code> 依赖，运行，这样你的博客就搭建起来了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>然后就是自定义自己网站的标题，作者。。。</p>
+<p>统一在 <code>_config.yml</code> 文件内。详情信息，请翻官方文档。</p>
+<h3 id="hexo-命令"><a href="#hexo-命令" class="headerlink" title="hexo 命令"></a><a href="https://hexo.io/zh-cn/docs/commands">hexo 命令</a></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">hexo init blog </span><br><span class="line"><span class="comment"># 开启 heox 服务器</span></span><br><span class="line">hexo s || hexo server</span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">hexo g || hexo generate</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Next-主题"><a href="#Next-主题" class="headerlink" title="Next 主题"></a><a href="http://theme-next.iissnan.com/">Next 主题</a></h2><p>在刚开始用主题的时候，各种不熟悉，导致怎么都不会用，后来渐渐的对<code>Next</code> 有了新的认知，不仅美观，而且还优雅，功能还有一大堆。最主要的是还有官方文档说明。</p>
+<h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
+
+<p>并将主题放在 <code>hexo</code> 下的<code>/themes</code> 文件夹中。</p>
+<p>接下来修改 <code>hexo</code> 根目录下的 <code>_config.yml</code> 文件中的 <code>theme</code> 修改为主题名 </p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115435.jpg"></p>
+<h2 id="创建页面"><a href="#创建页面" class="headerlink" title="创建页面"></a>创建页面</h2><h3 id="添加-标签-页面"><a href="#添加-标签-页面" class="headerlink" title="添加 [标签] 页面"></a>添加 [标签] 页面</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加-分类-页面"><a href="#添加-分类-页面" class="headerlink" title="添加 [分类] 页面"></a>添加 [分类] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加-关于-页面"><a href="#添加-关于-页面" class="headerlink" title="添加 [关于] 页面"></a>添加 [关于] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
+
+<p>关于 <code>md</code> 文件位置： <code>blog/source/about/index.md</code></p>
+<p>修改内容，即可修改 关于 页面内容。</p>
+<blockquote>
+<p>tips: 标签和分类页面的 <code>md</code> 文件 修改无效果，页面是自动生成的。</p>
+</blockquote>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="开启服务器"><a href="#开启服务器" class="headerlink" title="开启服务器"></a>开启服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s || hexo server</span><br><span class="line">	-s <span class="comment"># 启动静态页面</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>项目总结</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小程序 and wepy</title>
     <url>/2019/08/26/%E6%8A%80%E6%9C%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B8%A9%E5%9D%91%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<h2 id="Mini-Program-Notes"><a href="#Mini-Program-Notes" class="headerlink" title="Mini Program Notes"></a>Mini Program Notes</h2><h3 id="尺寸单位-rpx和px"><a href="#尺寸单位-rpx和px" class="headerlink" title="尺寸单位 - rpx和px"></a>尺寸单位 - rpx和px</h3><ul>
@@ -5742,64 +5800,6 @@
         <tag>项目总结</tag>
         <tag>微信</tag>
         <tag>wepy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[项目] 折腾hexo + next</title>
-    <url>/2019/02/01/%E6%8A%80%E6%9C%AF/%E6%8A%98%E8%85%BEhexo-next/</url>
-    <content><![CDATA[<ul>
-<li><p>hexo 安装</p>
-</li>
-<li><p>使用 Next 主题</p>
-</li>
-<li><p>创建页面</p>
-</li>
-<li><p>本文无亮点，观看需谨慎。</p>
-</li>
-<li><p>最后想说，先去翻翻官方文档，再看第三方的，毕竟，官方的才正宗。</p>
-</li>
-</ul>
-<a id="more"></a>
-
-<h2 id="下载安装hexo"><a href="#下载安装hexo" class="headerlink" title="下载安装hexo"></a><a href="https://hexo.io/zh-cn/">下载安装hexo</a></h2><p>这一步没什么难度，就像官网所说的一样</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
-<p>一行命令解决，当然，首先你要安装上node.js</p>
-<p>然后就是创建文件夹，安装 <code>hexo</code> 依赖，运行，这样你的博客就搭建起来了。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>然后就是自定义自己网站的标题，作者。。。</p>
-<p>统一在 <code>_config.yml</code> 文件内。详情信息，请翻官方文档。</p>
-<h3 id="hexo-命令"><a href="#hexo-命令" class="headerlink" title="hexo 命令"></a><a href="https://hexo.io/zh-cn/docs/commands">hexo 命令</a></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">hexo init blog </span><br><span class="line"><span class="comment"># 开启 heox 服务器</span></span><br><span class="line">hexo s || hexo server</span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">hexo g || hexo generate</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Next-主题"><a href="#Next-主题" class="headerlink" title="Next 主题"></a><a href="http://theme-next.iissnan.com/">Next 主题</a></h2><p>在刚开始用主题的时候，各种不熟悉，导致怎么都不会用，后来渐渐的对<code>Next</code> 有了新的认知，不仅美观，而且还优雅，功能还有一大堆。最主要的是还有官方文档说明。</p>
-<h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
-
-<p>并将主题放在 <code>hexo</code> 下的<code>/themes</code> 文件夹中。</p>
-<p>接下来修改 <code>hexo</code> 根目录下的 <code>_config.yml</code> 文件中的 <code>theme</code> 修改为主题名 </p>
-<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115435.jpg"></p>
-<h2 id="创建页面"><a href="#创建页面" class="headerlink" title="创建页面"></a>创建页面</h2><h3 id="添加-标签-页面"><a href="#添加-标签-页面" class="headerlink" title="添加 [标签] 页面"></a>添加 [标签] 页面</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加-分类-页面"><a href="#添加-分类-页面" class="headerlink" title="添加 [分类] 页面"></a>添加 [分类] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加-关于-页面"><a href="#添加-关于-页面" class="headerlink" title="添加 [关于] 页面"></a>添加 [关于] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
-
-<p>关于 <code>md</code> 文件位置： <code>blog/source/about/index.md</code></p>
-<p>修改内容，即可修改 关于 页面内容。</p>
-<blockquote>
-<p>tips: 标签和分类页面的 <code>md</code> 文件 修改无效果，页面是自动生成的。</p>
-</blockquote>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="开启服务器"><a href="#开启服务器" class="headerlink" title="开启服务器"></a>开启服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s || hexo server</span><br><span class="line">	-s <span class="comment"># 启动静态页面</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>项目总结</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -6049,18 +6049,6 @@
       </categories>
   </entry>
   <entry>
-    <title>OKR</title>
-    <url>/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/OKR/</url>
-    <content><![CDATA[<p><a href="https://baike.baidu.com/item/OKR">https://baike.baidu.com/item/OKR</a></p>
-]]></content>
-      <categories>
-        <category>软素质</category>
-      </categories>
-      <tags>
-        <tag>OKR</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>优势管理</title>
     <url>/2023/12/23/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E4%BC%98%E5%8A%BF%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<a id="more"></a>
@@ -6150,6 +6138,18 @@
       </tags>
   </entry>
   <entry>
+    <title>OKR</title>
+    <url>/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/OKR/</url>
+    <content><![CDATA[<p><a href="https://baike.baidu.com/item/OKR">https://baike.baidu.com/item/OKR</a></p>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
+        <tag>OKR</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>六色思考帽</title>
     <url>/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E5%85%AD%E8%89%B2%E6%80%9D%E8%80%83%E5%B8%BD/</url>
     <content><![CDATA[<p><a href="https://baike.baidu.com/item/%E5%85%AD%E9%A1%B6%E6%80%9D%E8%80%83%E5%B8%BD">百度百科</a></p>
@@ -6162,6 +6162,36 @@
       </categories>
       <tags>
         <tag>思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初入职场小白需掌握</title>
+    <url>/2023/10/15/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E8%81%8C%E5%9C%BA%E9%94%A6%E5%9B%8A/</url>
+    <content><![CDATA[<h2 id="锦囊妙计"><a href="#锦囊妙计" class="headerlink" title="锦囊妙计"></a>锦囊妙计</h2><h3 id="锦囊一"><a href="#锦囊一" class="headerlink" title="锦囊一"></a>锦囊一</h3><ul>
+<li>互惠原则：长期的关系基于互惠，而非短期利益</li>
+<li>心里相容：尊重差异，互为对方所接受与认同</li>
+<li>自我了解：了解自我特点及不足，发挥长处</li>
+<li>差异化沟通：基于 <a href="https://baike.baidu.com/item/DISC/1586227">DISC</a> 风格的差异化沟通</li>
+</ul>
+<h3 id="锦囊二"><a href="#锦囊二" class="headerlink" title="锦囊二"></a>锦囊二</h3><ul>
+<li>真诚至上：基于双方的尊重、信任和关心</li>
+<li>化繁为简：工作沟通要用 <a href="https://www.douban.com/note/730389047/?_i=7357893h2YbPOo,7374883h2YbPOo">PREP</a> 归纳法</li>
+<li>数据为王：数字时代让数据说话</li>
+<li>价值共创：沟通有没有打动对方？痛点或痒点</li>
+<li>合适渠道：书面与口头组合</li>
+</ul>
+<h3 id="锦囊三"><a href="#锦囊三" class="headerlink" title="锦囊三"></a>锦囊三</h3><ul>
+<li>认知清晰：为什么要做？如何可以做成？目的比目标更重要</li>
+<li>问题解决：防火重于救火，行动为了达成而不是打卡</li>
+<li>行动力量：保持成事所需的高水准行动不打折</li>
+<li>价值制胜：工作的价值取绝于解决问题的难度</li>
+</ul>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
+        <tag>沟通</tag>
       </tags>
   </entry>
   <entry>
@@ -6277,36 +6307,6 @@
       <tags>
         <tag>思维</tag>
         <tag>效率</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>初入职场小白需掌握</title>
-    <url>/2023/10/15/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E8%81%8C%E5%9C%BA%E9%94%A6%E5%9B%8A/</url>
-    <content><![CDATA[<h2 id="锦囊妙计"><a href="#锦囊妙计" class="headerlink" title="锦囊妙计"></a>锦囊妙计</h2><h3 id="锦囊一"><a href="#锦囊一" class="headerlink" title="锦囊一"></a>锦囊一</h3><ul>
-<li>互惠原则：长期的关系基于互惠，而非短期利益</li>
-<li>心里相容：尊重差异，互为对方所接受与认同</li>
-<li>自我了解：了解自我特点及不足，发挥长处</li>
-<li>差异化沟通：基于 <a href="https://baike.baidu.com/item/DISC/1586227">DISC</a> 风格的差异化沟通</li>
-</ul>
-<h3 id="锦囊二"><a href="#锦囊二" class="headerlink" title="锦囊二"></a>锦囊二</h3><ul>
-<li>真诚至上：基于双方的尊重、信任和关心</li>
-<li>化繁为简：工作沟通要用 <a href="https://www.douban.com/note/730389047/?_i=7357893h2YbPOo,7374883h2YbPOo">PREP</a> 归纳法</li>
-<li>数据为王：数字时代让数据说话</li>
-<li>价值共创：沟通有没有打动对方？痛点或痒点</li>
-<li>合适渠道：书面与口头组合</li>
-</ul>
-<h3 id="锦囊三"><a href="#锦囊三" class="headerlink" title="锦囊三"></a>锦囊三</h3><ul>
-<li>认知清晰：为什么要做？如何可以做成？目的比目标更重要</li>
-<li>问题解决：防火重于救火，行动为了达成而不是打卡</li>
-<li>行动力量：保持成事所需的高水准行动不打折</li>
-<li>价值制胜：工作的价值取绝于解决问题的难度</li>
-</ul>
-]]></content>
-      <categories>
-        <category>软素质</category>
-      </categories>
-      <tags>
-        <tag>沟通</tag>
       </tags>
   </entry>
   <entry>
