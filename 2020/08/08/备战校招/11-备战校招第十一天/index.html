@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"popring.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"swoopIn","sidebar":"bounceIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Object.keys 和 for...in 区别  异步编程的几种方式  load 事件 和 DOMContentLoaded 事件区别  箭头函数  for...of 和for...in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="备战校招第十一天">
+<meta property="og:url" content="https://popring.github.io/2020/08/08/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/11-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E4%B8%80%E5%A4%A9/index.html">
+<meta property="og:site_name" content="popring&#39;s Blog">
+<meta property="og:description" content="Object.keys 和 for...in 区别  异步编程的几种方式  load 事件 和 DOMContentLoaded 事件区别  箭头函数  for...of 和for...in">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-08T00:49:32.000Z">
+<meta property="article:modified_time" content="2024-09-26T15:07:49.065Z">
+<meta property="article:author" content="popring">
+<meta property="article:tag" content="面试题">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://popring.github.io/2020/08/08/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/11-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E4%B8%80%E5%A4%A9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>备战校招第十一天 | popring's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WN0V7KJRVS');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f869367a20c50f7b23f96c1e4169d803";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div><!--
+<div>
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
+		<span>毕业倒计时：</span>
+		<span id="countDown"></span>
+	</p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		graduate();
+		function graduate() {
+			var nowDate = Date.parse(new Date());
+			var endDate = Date.parse(new Date('2021-07-01'));
+			var diff = Math.abs(endDate - nowDate);
+
+			var str = calcTime(diff);
+			document.querySelector('#countDown').innerText = str;
+			function calcTime (mss) {
+				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
+				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+				var minutes = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / (1000 * 60)));
+				var seconds = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / 1000 % 60));
+				// return `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+				return days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+			};
+
+			function toTwoFix(time) {
+				return time < 10 ? '0' + time : time;
+			}
+		}
+
+
+		setInterval(function() {
+			graduate();
+		},1000);
+	})();
+</script>
+-->
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">popring's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">何时才能财富自由</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2020/08/08/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/11-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E4%B8%80%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          备战校招第十一天
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-08 08:49:32" itemprop="dateCreated datePublished" datetime="2020-08-08T08:49:32+08:00">2020-08-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%87%E6%88%98/" itemprop="url" rel="index"><span itemprop="name">备战</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/08/08/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/11-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E4%B8%80%E5%A4%A9/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/08/备战校招/11-备战校招第十一天/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p><code>Object.keys</code> 和 <code>for...in</code> 区别</p>
+</li>
+<li><p>异步编程的几种方式</p>
+</li>
+<li><p><code>load</code> 事件 和 <code>DOMContentLoaded</code> 事件区别</p>
+</li>
+<li><p>箭头函数</p>
+</li>
+<li><p><code>for...of</code> 和<code>for...in</code></p>
+</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+
+
+<h2 id="Object-keys-和-for-in-区别"><a href="#Object-keys-和-for-in-区别" class="headerlink" title="Object.keys 和 for...in 区别"></a><code>Object.keys</code> 和 <code>for...in</code> 区别</h2><p><code>Object.keys</code> 不能遍历原型上的属性</p>
+<p><code>for...in</code>  可遍历原型链上的可枚举属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hobbies</span> = [<span class="string">&quot;eat&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="comment">// 不遍历原型上的属性</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(p)); <span class="comment">// [ &#x27;name&#x27;, &#x27;age&#x27; ]</span></span><br><span class="line"><span class="comment">// 可遍历原型链上的可枚举属性</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">in</span> p) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(item); <span class="comment">// name age hobbies</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="异步编程的几种方式"><a href="#异步编程的几种方式" class="headerlink" title="异步编程的几种方式"></a>异步编程的几种方式</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><blockquote>
+<p>比如：setTimeout、setInterval等</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;cb&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h3><blockquote>
+<p>在dom中常用的 addEventListener</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>)</span><br><span class="line">btn.<span class="title function_">addEventListener</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;btn 被点击&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><blockquote>
+<p>ES6 中新增特性，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise">详情</a> </p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">ms = <span class="number">0</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="title function_">resolve</span>()</span><br><span class="line">    &#125;, ms)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line"><span class="title function_">delay</span>(<span class="number">1000</span>).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h3 id="async-await"><a href="#async-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h3><blockquote>
+<p>promise 的语法糖，将 <code>promise</code> 的代码稍作修改，得到以下代码</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">ms = <span class="number">0</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="title function_">resolve</span>()</span><br><span class="line">    &#125;, ms)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">callBack</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="keyword">await</span> <span class="title function_">delay</span>(<span class="number">1000</span>)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line"><span class="title function_">callBack</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><h2 id="load-事件-和-DOMContentLoaded-事件区别"><a href="#load-事件-和-DOMContentLoaded-事件区别" class="headerlink" title="load 事件 和 DOMContentLoaded 事件区别"></a><code>load</code> 事件 和 <code>DOMContentLoaded</code> 事件区别</h2><h3 id="load-事件"><a href="#load-事件" class="headerlink" title="load 事件"></a><code>load</code> 事件</h3><blockquote>
+<p>下面代码具有相同含义，只是写法不同，具体查看文章，备战校招第九天 - DOM事件类 - DOM事件级别</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page is fully loaded&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 大家可能更熟这种写法</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page is fully loaded&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>当整个页面所依赖的资源（样式表、图片、子框架等）加载完毕触发 <code>load</code> 事件。</p>
+<h3 id="DOMContentLoaded-事件"><a href="#DOMContentLoaded-事件" class="headerlink" title="DOMContentLoaded 事件"></a><code>DOMContentLoaded</code> 事件</h3><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;DOMContentLoaded&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`window.addEventListener(&quot;DOMContentLoaded&quot;) 事件`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>当初始的HTML文档完全加载和解析完成，无需等待图片等资源加载完毕，就可以触发 <code>DOMContetnLoaded</code> 事件。注意：**<code>DOMContentLoaded</code>** 事件必须等待其所属script之前的样式表加载解析完成才会触发。</p>
+<h3 id="顺序"><a href="#顺序" class="headerlink" title="顺序"></a>顺序</h3><ul>
+<li><code>DOMContentLoaded</code> 优先执行</li>
+<li><code>load</code> ，而<code>load</code>事件中的 <code>window.onload</code> 和 <code>window.addEventListener(&quot;load&quot;)</code> 两种写法，则是代码中哪个靠前，哪个先执行（按照顺序执行）</li>
+</ul>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>箭头函数相比函数表达式更加简洁，并且没有<code>自己的this</code>、<code>constructor</code>、<code>arguments</code>、<code>super</code>或<code>new.target</code>。主要适用在一些需要匿名函数的地方，且不需要用到构造函数。</p>
+<h3 id="写法简洁"><a href="#写法简洁" class="headerlink" title="写法简洁"></a>写法简洁</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 简单写法</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">a</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;arrow function&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 如果只需要一个参数，则可以省略圆括号</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">b</span> = (<span class="params">arg1</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> arg1 + <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 若函数体内只有一句代码，还可以省略花括号</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">c</span> = (<span class="params">arg1, arg2</span>) =&gt; arg1 + arg2;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 剩下的都是按照这几种进行组合的方式，聪明的你一定知道如何做，想确定自己的想法，可以去参考下阮一峰老师的ES6入门书，链接在文章末尾</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如若需要一行代码返回对象，需要用圆括号包起来，防止产生歧义致使没有产生理想的结果</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">d</span> = (<span class="params"></span>) =&gt; (&#123;<span class="attr">a</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>没有自己的 this 指向，但在定义时就确定了this指向，而<code>function</code> 只有在运行时才会确定this指向。</li>
+<li>如果使用 call、apply、bind 调用，只能传递参数，第一个参数<code>this</code>则会忽略。</li>
+<li>没有构造函数，所以不能使用 new 来创建实例，否则会抛出一个异常（提示没有构造函数）。</li>
+<li>没有 prototype 属性。</li>
+<li>不可以使用<code>yield</code>命令，因此箭头函数不能用作 Generator 函数。</li>
+<li>没有 arguements 对象，可以用 es6 rest参数 代替。</li>
+</ol>
+<h2 id="for-of-和for-in"><a href="#for-of-和for-in" class="headerlink" title="for...of 和for...in"></a><code>for...of</code> 和<code>for...in</code></h2><h3 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h3><ul>
+<li><p>可迭代数组、类数组、String、Map、Set、arguements、DOM 集合等</p>
+</li>
+<li><p>如果数组过大，执行效率低于传统for循环(<code>for(let i=0; i&lt;arr.length; i++)</code>)</p>
+</li>
+<li><p>不会迭代原型上的属性。</p>
+</li>
+<li><p>遍历对象需要可以和 <code>Object.entries()</code>结合使用。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">22</span>,</span><br><span class="line">  <span class="attr">c</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="attr">d</span>: <span class="number">44</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, value] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>(obj)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;key :&gt;&gt; &quot;</span>, key);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;value :&gt;&gt; &quot;</span>, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="for…in"><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h3><blockquote>
+<p><strong><code>for...in</code>语句</strong>以任意顺序遍历一个对象的除<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a>以外的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Enumerability_and_ownership_of_properties">可枚举</a>属性。for…in迭代是无序的。</p>
+<p><strong>提示：</strong><code>for...in</code>不应该用于迭代一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Array"><code>Array</code></a>，其中索引顺序很重要。</p>
+</blockquote>
+<p>注意</p>
+<ul>
+<li><code>for..in</code> 会迭代原型上的可迭代属性，如若只需迭代自身属性，可以使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames"><code>getOwnPropertyNames()</code></a> 或 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>hasOwnProperty()</code></a> 来确定属性是否为自身的属性。</li>
+<li>如果使用 <code>for...in</code> 迭代数组，效率远低于 <code>for...of</code></li>
+</ul>
+<h3 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h3><p>无论是<code>for...in</code>还是<code>for...of</code>语句都是迭代一些东西。它们之间的主要区别在于它们的迭代方式。</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in"><code>for...in</code></a> 语句以任意顺序迭代对象的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Enumerability_and_ownership_of_properties">可枚举属性</a>。</p>
+<p><code>for...of</code> 语句遍历<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterables">可迭代对象</a>定义要迭代的数据。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/function#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0">阮一峰老师的ES6入门</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"># 面试题</a>
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/05/%E6%8A%80%E6%9C%AF/mac-%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" rel="prev" title="mac 使用技巧">
+      <i class="fa fa-chevron-left"></i> mac 使用技巧
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/19/%E5%A5%BD%E6%96%87%E6%8E%A8%E8%8D%90/" rel="next" title="好文推荐">
+      好文推荐 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-keys-%E5%92%8C-for-in-%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">Object.keys 和 for...in 区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">异步编程的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC"><span class="nav-number">2.2.</span> <span class="nav-text">事件监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise"><span class="nav-number">2.3.</span> <span class="nav-text">Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator"><span class="nav-number">2.4.</span> <span class="nav-text">Generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async-await"><span class="nav-number">2.5.</span> <span class="nav-text">async&#x2F;await</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85"><span class="nav-number">2.6.</span> <span class="nav-text">发布订阅</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#load-%E4%BA%8B%E4%BB%B6-%E5%92%8C-DOMContentLoaded-%E4%BA%8B%E4%BB%B6%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">load 事件 和 DOMContentLoaded 事件区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#load-%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">load 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOMContentLoaded-%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">DOMContentLoaded 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F"><span class="nav-number">3.3.</span> <span class="nav-text">顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">箭头函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E6%B3%95%E7%AE%80%E6%B4%81"><span class="nav-number">4.1.</span> <span class="nav-text">写法简洁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-of-%E5%92%8Cfor-in"><span class="nav-number">5.</span> <span class="nav-text">for...of 和for...in</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for%E2%80%A6of"><span class="nav-number">5.1.</span> <span class="nav-text">for…of</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for%E2%80%A6in"><span class="nav-number">5.2.</span> <span class="nav-text">for…in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E8%80%85%E5%8C%BA%E5%88%AB"><span class="nav-number">5.3.</span> <span class="nav-text">两者区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="popring"
+      src="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+  <p class="site-author-name" itemprop="name">popring</p>
+  <div class="site-description" itemprop="description">No description is best description.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/popring" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;popring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:koler778@gmail.com" title="E-Mail → mailto:koler778@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/277120110" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;277120110" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/10145341/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;10145341&#x2F;" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      
+      
+<div style="margin:  10px 0;">
+	<a target="_blank" rel="noopener" href="https://info.flagcounter.com/MQZk"><img src="https://s01.flagcounter.com/countxl/MQZk/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_6/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+</div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popring</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://popring.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://popring.github.io/2020/08/08/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/11-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E4%B8%80%E5%A4%A9/";
+    this.page.identifier = "2020/08/08/备战校招/11-备战校招第十一天/";
+    this.page.title = "备战校招第十一天";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://popring.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

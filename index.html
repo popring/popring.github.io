@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"popring.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"swoopIn","sidebar":"bounceIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="No description is best description.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="popring&#39;s Blog">
+<meta property="og:url" content="https://popring.github.io/index.html">
+<meta property="og:site_name" content="popring&#39;s Blog">
+<meta property="og:description" content="No description is best description.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="popring">
+<meta property="article:tag" content="blog popring">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://popring.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>popring's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WN0V7KJRVS');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f869367a20c50f7b23f96c1e4169d803";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div><!--
+<div>
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
+		<span>毕业倒计时：</span>
+		<span id="countDown"></span>
+	</p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		graduate();
+		function graduate() {
+			var nowDate = Date.parse(new Date());
+			var endDate = Date.parse(new Date('2021-07-01'));
+			var diff = Math.abs(endDate - nowDate);
+
+			var str = calcTime(diff);
+			document.querySelector('#countDown').innerText = str;
+			function calcTime (mss) {
+				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
+				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+				var minutes = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / (1000 * 60)));
+				var seconds = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / 1000 % 60));
+				// return `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+				return days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+			};
+
+			function toTwoFix(time) {
+				return time < 10 ? '0' + time : time;
+			}
+		}
+
+
+		setInterval(function() {
+			graduate();
+		},1000);
+	})();
+</script>
+-->
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">popring's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">何时才能财富自由</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2024/09/22/%E9%A6%96%E5%B1%8F%E9%AA%A8%E6%9E%B6%E5%B1%8F%E5%87%8F%E5%B0%91%E7%99%BD%E5%B1%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/22/%E9%A6%96%E5%B1%8F%E9%AA%A8%E6%9E%B6%E5%B1%8F%E5%87%8F%E5%B0%91%E7%99%BD%E5%B1%8F/" class="post-title-link" itemprop="url">使用骨架屏减少首屏白屏现象</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-22 21:55:05" itemprop="dateCreated datePublished" datetime="2024-09-22T21:55:05+08:00">2024-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">性能优化</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2024/09/22/%E9%A6%96%E5%B1%8F%E9%AA%A8%E6%9E%B6%E5%B1%8F%E5%87%8F%E5%B0%91%E7%99%BD%E5%B1%8F/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2024/09/22/首屏骨架屏减少白屏/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>用户从输入 <code>url</code> 到打开页面，经历的步骤可以参考<a href="https://popring.github.io/2021/03/06/%E7%AE%80%E5%8D%95%E8%81%8A/%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%BB%8F%E8%BF%87%E4%BA%86%E4%BB%80%E4%B9%88/">这里</a>。现代前端应用程序通常使用 <code>React</code>、<code>Vue</code>、<code>Angular</code>、<code>Solid</code> 等框架进行开发，这些框架统一管理工程化内容。</p>
+<p>这也导致了一个问题：通过这些框架开发的单页面应用（SPA）通常只包含一个 <code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</code>，而其余内容都是在后续脚本运行时动态渲染。这使得用户加载的 HTML 页面往往呈现为白屏，只有等到脚本解析执行后，内容才会呈现。因此，服务端渲染（SSR）应运而生，它在服务器端就将内容渲染好并返回给前端，虽然这需要整体改造项目，成本较高。另一种方案是使用首屏骨架图渲染，以减少白屏现象。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/22/%E9%A6%96%E5%B1%8F%E9%AA%A8%E6%9E%B6%E5%B1%8F%E5%87%8F%E5%B0%91%E7%99%BD%E5%B1%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2024/06/18/%E6%8A%80%E6%9C%AF/%E5%AE%9E%E7%8E%B0%E5%88%87%E6%8D%A2%E8%B7%AF%E7%94%B1%E6%97%B6%E5%BD%93%E5%89%8D%E5%B8%83%E5%B1%80%E8%BF%9B%E8%A1%8C%E5%8A%A0%E8%BD%BD%E5%85%B6%E4%BB%96%E8%B7%AF%E7%94%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/06/18/%E6%8A%80%E6%9C%AF/%E5%AE%9E%E7%8E%B0%E5%88%87%E6%8D%A2%E8%B7%AF%E7%94%B1%E6%97%B6%E5%BD%93%E5%89%8D%E5%B8%83%E5%B1%80%E8%BF%9B%E8%A1%8C%E5%8A%A0%E8%BD%BD%E5%85%B6%E4%BB%96%E8%B7%AF%E7%94%B1/" class="post-title-link" itemprop="url">实现切换路由时当前布局不变并加载其他路由</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-06-18 10:49:04" itemprop="dateCreated datePublished" datetime="2024-06-18T10:49:04+08:00">2024-06-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2024/06/18/%E6%8A%80%E6%9C%AF/%E5%AE%9E%E7%8E%B0%E5%88%87%E6%8D%A2%E8%B7%AF%E7%94%B1%E6%97%B6%E5%BD%93%E5%89%8D%E5%B8%83%E5%B1%80%E8%BF%9B%E8%A1%8C%E5%8A%A0%E8%BD%BD%E5%85%B6%E4%BB%96%E8%B7%AF%E7%94%B1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2024/06/18/技术/实现切换路由时当前布局进行加载其他路由/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近在过 <code>Next.js</code> 文档 ，看到拦截路由这一章，感觉到很惊讶（暂时没想到什么词可以形容了），这种设计在交互和代码上都着实可以称赞。同时联想了一下 <code>Vue.js</code> 如何实现。</p>
+<p><strong>举一个例子</strong></p>
+<p>路由定义</p>
+<ul>
+<li><code>/photo</code> : 图片列表</li>
+<li><code>/photo/xxx</code> : 具体某张图片的详情</li>
+</ul>
+<p>在页面 <code>/photo</code> 单击图片时，路由发生变化，进入图片详情 <code>/photo/123</code>， 可以通过模态框( Modal )展示内容。（官方称这种行为拦截路由，屏蔽 URL）</p>
+<p>此时，如果使用 <code>/photo/123</code> 直接进入图片详情，直接展示的是详情页面，而不是模态框。</p>
+<p><strong>此设计优势，参考 Next.js 官方</strong></p>
+<ul>
+<li>可通过URL分享</li>
+<li>刷新时可保留上下文，而不是关闭 Modal</li>
+<li>路由后退时关闭 Modal ，而不是真正的后退路由</li>
+<li>后退后可以向前导航打开 Modal</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/06/18/%E6%8A%80%E6%9C%AF/%E5%AE%9E%E7%8E%B0%E5%88%87%E6%8D%A2%E8%B7%AF%E7%94%B1%E6%97%B6%E5%BD%93%E5%89%8D%E5%B8%83%E5%B1%80%E8%BF%9B%E8%A1%8C%E5%8A%A0%E8%BD%BD%E5%85%B6%E4%BB%96%E8%B7%AF%E7%94%B1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2024/05/13/%E6%8A%80%E6%9C%AF/%E9%80%9A%E8%BF%87loader%E5%AE%9E%E7%8E%B0%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/05/13/%E6%8A%80%E6%9C%AF/%E9%80%9A%E8%BF%87loader%E5%AE%9E%E7%8E%B0%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">通过loader实现打包优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-05-13 11:19:42" itemprop="dateCreated datePublished" datetime="2024-05-13T11:19:42+08:00">2024-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2024/05/13/%E6%8A%80%E6%9C%AF/%E9%80%9A%E8%BF%87loader%E5%AE%9E%E7%8E%B0%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2024/05/13/技术/通过loader实现打包优化/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>一句话总结：通过配置 <code>pitching-loader</code> 实现按需打包，实现开发模式下打包加速。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/05/13/%E6%8A%80%E6%9C%AF/%E9%80%9A%E8%BF%87loader%E5%AE%9E%E7%8E%B0%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2024/02/26/%E8%BD%AC%E8%BD%BD/%E5%AF%B9%E8%B4%A1%E7%8C%AE%E6%9C%89%E6%BF%80%E6%83%85%EF%BC%8C%E5%AF%B9%E5%9B%9E%E6%8A%A5%E6%9C%89%E4%BF%A1%E5%BF%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/02/26/%E8%BD%AC%E8%BD%BD/%E5%AF%B9%E8%B4%A1%E7%8C%AE%E6%9C%89%E6%BF%80%E6%83%85%EF%BC%8C%E5%AF%B9%E5%9B%9E%E6%8A%A5%E6%9C%89%E4%BF%A1%E5%BF%83/" class="post-title-link" itemprop="url">[转]对贡献有激情，对回报有信心</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-02-26 15:12:08" itemprop="dateCreated datePublished" datetime="2024-02-26T15:12:08+08:00">2024-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AC%E8%BD%BD/" itemprop="url" rel="index"><span itemprop="name">转载</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2024/02/26/%E8%BD%AC%E8%BD%BD/%E5%AF%B9%E8%B4%A1%E7%8C%AE%E6%9C%89%E6%BF%80%E6%83%85%EF%BC%8C%E5%AF%B9%E5%9B%9E%E6%8A%A5%E6%9C%89%E4%BF%A1%E5%BF%83/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2024/02/26/转载/对贡献有激情，对回报有信心/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>本文摘录自是一位前辈的Blog</p>
+</blockquote>
+<p>一般的生意人，都在反复评估，自己的贡献和回报的关系。如果贡献大于回报，就说是吃亏了。贡献小于回报，就说占了便宜。<br>而我看到的伟大的公司，或者成功的生意人，发现他们有一种惊人的相似之处，总结出来，就是：<br>对贡献有激情，对回报有信心。</p>
+<p><strong>贡献和回报</strong><br>打个比方，一个作家，可以关注自己写的稿子的质量（就是自己的贡献），也可以关注自己的稿酬。<br>只对自己稿酬感兴趣的，却不关心如何提高自己写的文章的质量，他会是一个越来越失败的作家。相反的，如果把所有激情投入提高自己的文章质量，而不关心稿酬的话，他才可能成为伟大的作家。<br>有“理想”的公司，都是贡献真诚的感兴趣的公司。微软的任何产品，都在看怎样提高生产率；Google的两个创始人关心的是如何更好的组织世界的信息；皮埃尔关心让世界的任何人都有可能在互联网上实现交易，而爱迪生关心的是给人类光明。。。</p>
+<p><strong>回报和坚持</strong><br>如果一件事情是为了回报，这件事情很难持久。这和一个人的毅力无关。<br>当一个人还没有真正意识到自己做这件事情的意义的时候，常常会为了显而易见的回报来坚持做一些事情。但很少有事情可以让你立刻看到回报，于是会选择放弃。放弃，多半不是因为无法坚持而放弃，而是因为感觉到自己做这件事失去了意义，所以放弃。<br>写blog就是这样。如果只是很希望别人来看，来评论，就会一天访问十次自己的blog，看一看有没有人回复。不久就会精疲力尽，而且会发现，自己的努力并不会直接换来多少人回复（像我每天一篇写了第四个年头了，也不会有多少回复的）。这时，就会怀疑自己做这件事情的意义，于是就不写了。不用埋怨自己的毅力，这件事本来和毅力毫无关系。<br>而凡是能坚持的blogger，要么是把blog写给自己的，意识到每天的记录是帮助自己来整理思路，为了自己生活得更好，要么是为了兴趣，写BLOG仅仅是为了帮助别人，只关心分享，而不关心评论或者浏览量的。无论什么样的动机，只要能看到自己的努力是为了贡献，而不是回报，就会坚持。<br>只有对贡献有激情，不在乎回报的时候，你才能坚持做一件事情，就像伟大的公司因为有一个贡献的理念，才可以持久的保持激情，在取得巨大的成功以后，接着日复一日的寻找更大的贡献。<br>需要说明回报，绝不仅仅是钱，它可以是各种你追求的东西，甚至仅仅是一个指标。比如，锻炼身体，身体健康就是回报。如果不享受锻炼的过程，而是苦巴巴的咬着牙，说只要我坚持，就一定会身体好。。。八成，这种坚持不会超过一个月。这就是为了回报而坚持的例子。减肥不成功，不用怀疑自己的毅力。当你对一种新的生活方式本身没有兴趣而只是为了这种方式带来的回报来勒紧裤腰带不吃东西，又怎能让你长期的坚持？</p>
+<p><strong>网站的贡献和回报</strong><br>网站如何提供给用户更多的价值，这就是贡献；如何提高访问量，这是回报。<br>我个人的体会是，回报这个东西，就像一个电闸。当你把手摸上去的话，就像摸到了高压电一样，瞬间就会感觉的迷茫，压力，并看到投机取巧的办法看起来很有吸引力，就会像一个商人一样买卖流量。但如果把手抽回来，不去碰那一个电闸，感觉立刻好了很多，开始思考比如如何帮助用户，如何给予更多，贡献更多。世界于是又回到了鸟语花香，海阔天空的状态。<br>彻底想明白自己努力到底是为了贡献了，还是为了回报，是是否可以持久的，优秀的做好一件事情的关键。</p>
+<p><strong>对贡献有激情的时候，还要对回报有信心</strong><br>和对贡献的激情同等重要的是，对回报的信心，而不是置之不理。历史上成功的企业和个人，不但做出了巨大的贡献，也取得了与之相应的巨额的报酬，以及电影明星般的盛名。并不是每一个对贡献有激情的人都做得到这一点。<br>比如历史上有一个伟大的发明家（或许是最伟大的发明家之一），却鲜为人知。他就是Nikola Tesla。他发现或者开发了一系列伟大创新的基础技术，从无线电信号传输，到交流电，从特斯拉变压器到X光，荧光灯直到现代电网。他和爱迪生一起工作，却相比之下，却回报寥寥。不但老年穷困潦倒，也很少有人听说过他。1943年，这位为人类迎来电力时代的天才去世的时候，身边只有几只他捡来的病鸽子。<br>这是一个对贡献的激情却没有回报的例子。John Battelle在最近一本新书《The Search》里面就提到，Google的创始人Page就是一个深受这个故事感染的年轻人。Page说“Nikola是个伟大的发明家，但他没有取得他应该取得的成就。我喜欢发明，但同时也希望改变世界。我希望能把我的发明带到人们的手里，这样他们就可以使用我的发明，因为只有这才是真正重要的”。在发明了PageRank算法以后，到底是按照学术传统分享自己的成果，还是像商业公司一样保护自己的知识产权，是两个创办者在1997年夏天最大的问题。<br>当然，结果证明了，他们可以在像Tesla一样贡献的同时，用一种方式，来保证自己的回报。这种把贡献转换为回报方法给了他们信心，可以更专注的在贡献部分。</p>
+<p><strong>回报是贡献的影子</strong><br>回报是贡献影子。我是说，如果安排得得当的话。<br>当一个人奔向太阳的时候，影子会跟着你。<br>当他追随影子的时候，他将远离太阳，远离光明，最终失去影子。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2024/02/17/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/2023%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/02/17/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/2023%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2023年度总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-02-17 12:33:58" itemprop="dateCreated datePublished" datetime="2024-02-17T12:33:58+08:00">2024-02-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">年度总结</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2024/02/17/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/2023%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2024/02/17/年度总结/2023年度总结/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="2023-年度总结"><a href="#2023-年度总结" class="headerlink" title="2023 年度总结"></a>2023 年度总结</h1><blockquote>
+<p>凡事先从本质开始思考，然后再从本质一层层往回反推。在这样的思维模式下，你不会因为暂时的困难而对结果失去信心，也不会因为好高骛远而做出徒劳的努力——因为你非常清楚自己的目标是“第一原理”推导出的必然结果。这种理性的思维方式尤其值得我们学习。</p>
+<p>—来自《硅谷钢铁侠：埃隆马斯克》</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/02/17/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/2023%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E5%85%AD%E8%89%B2%E6%80%9D%E8%80%83%E5%B8%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E5%85%AD%E8%89%B2%E6%80%9D%E8%80%83%E5%B8%BD/" class="post-title-link" itemprop="url">六色思考帽</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-27 20:50:27" itemprop="dateCreated datePublished" datetime="2023-12-27T20:50:27+08:00">2023-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E7%B4%A0%E8%B4%A8/" itemprop="url" rel="index"><span itemprop="name">软素质</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E5%85%AD%E8%89%B2%E6%80%9D%E8%80%83%E5%B8%BD/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/12/27/软素质/六色思考帽/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%85%AD%E9%A1%B6%E6%80%9D%E8%80%83%E5%B8%BD">百度百科</a></p>
+<p>六顶思考帽，是指使用六种不同颜色的帽子代表六种不同的思维模式。任何人都有能力使用以下六种基本思维模式：</p>
+<p>白色思考帽：白色是中立而客观的。戴上白色思考帽，人们思考的是关注客观的事实和数据。<br>绿色思考帽：绿色代表茵茵芳草，象征勃勃生机。绿色思考帽寓意创造力和想象力。具有创造性思考、头脑风暴、求异思维等功能。<br>黄色思考帽：黄色代表价值与肯定。戴上黄色思考帽，人们从正面考虑问题，表达乐观的、满怀希望的、建设性的观点。<br>黑色思考帽：戴上黑色思考帽，人们可以运用否定、怀疑、质疑的看法，合乎逻辑的进行批判，尽情发表负面的意见，找出逻辑上的错误。<br>红色思考帽：红色是情感的色彩。戴上红色思考帽，人们可以表现自己的情绪，人们还可以表达直觉、感受、预感等方面的看法。<br>蓝色思考帽：蓝色思考帽负责控制和调节思维过程。负责控制各种思考帽的使用顺序，规划和管理整个思考过程，并负责做出结论。</p>
+<p>不同场合、场景下使用不同的思考帽。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/OKR/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/OKR/" class="post-title-link" itemprop="url">OKR</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-27 17:25:34" itemprop="dateCreated datePublished" datetime="2023-12-27T17:25:34+08:00">2023-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E7%B4%A0%E8%B4%A8/" itemprop="url" rel="index"><span itemprop="name">软素质</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/12/27/%E8%BD%AF%E7%B4%A0%E8%B4%A8/OKR/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/12/27/软素质/OKR/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/OKR">https://baike.baidu.com/item/OKR</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2023/12/27/%E6%8A%80%E6%9C%AF/typescript%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/27/%E6%8A%80%E6%9C%AF/typescript%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">TypeScript总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-27 10:50:40" itemprop="dateCreated datePublished" datetime="2023-12-27T10:50:40+08:00">2023-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/12/27/%E6%8A%80%E6%9C%AF/typescript%E6%80%BB%E7%BB%93/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/12/27/技术/typescript总结/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="TypeScript-相关收藏"><a href="#TypeScript-相关收藏" class="headerlink" title="TypeScript 相关收藏"></a>TypeScript 相关收藏</h2><h3 id="入门文章类"><a href="#入门文章类" class="headerlink" title="入门文章类"></a>入门文章类</h3><p><a target="_blank" rel="noopener" href="https://ts.xcatliu.com/">TypeScript 入门教程</a>: github 10k star, author xcatliu.</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/WsldmkW2ovp-okxSY3le9g">Typescript 类型编程，从入门到通达</a></p>
+<p><a target="_blank" rel="noopener" href="https://medium.com/free-code-camp/typescript-curry-ramda-types-f747e99744ab">Learn Advanced TypeScript Types</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/zh/cheatsheets">TypeScript Cheat Sheets</a></p>
+<h3 id="通关挑战类"><a href="#通关挑战类" class="headerlink" title="通关挑战类"></a>通关挑战类</h3><p><a target="_blank" rel="noopener" href="https://typescript-exercises.github.io/">Typescript Exercises</a>：一共16关</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/sindresorhus/type-fest">type-fest</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/type-challenges/type-challenges/">type-challenges</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2023/12/23/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E4%BC%98%E5%8A%BF%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/23/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E4%BC%98%E5%8A%BF%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">优势管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-23 23:32:01" itemprop="dateCreated datePublished" datetime="2023-12-23T23:32:01+08:00">2023-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E7%B4%A0%E8%B4%A8/" itemprop="url" rel="index"><span itemprop="name">软素质</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/12/23/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E4%BC%98%E5%8A%BF%E7%AE%A1%E7%90%86/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/12/23/软素质/优势管理/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+<h2 id="打开自己的“乔哈里窗”"><a href="#打开自己的“乔哈里窗”" class="headerlink" title="打开自己的“乔哈里窗”"></a>打开自己的“乔哈里窗”</h2><p>分为几个维度</p>
+<table>
+<thead>
+<tr>
+<th>自己知道</th>
+<th>自己不知道</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>他人知道</td>
+<td>他人不知道</td>
+</tr>
+</tbody></table>
+<p>自己知道: 开放区, 知道自己喜欢和擅长，快速打造自己核心竞争力<br>自己不知道: 盲目区, 找好友列出优缺点，自己列出优缺点；比较发现自己的盲区<br>他人知道: 隐藏区, 选定1-2个天赋可以练习，主动给自己创造外化输出的机会<br>他人不知道: 未知区，多尝试开发和探索多种可能</p>
+<h2 id="自我认识的五大误区"><a href="#自我认识的五大误区" class="headerlink" title="自我认识的五大误区"></a>自我认识的五大误区</h2><p><strong>误区一：自己最了解自己</strong></p>
+<p>成熟的自我认知，不会因为一时的成败而撼动自信心，从而产生自我的价值怀疑。</p>
+<p><strong>误区二：盲目复制</strong></p>
+<p>不能盲目的活在过去的成功模式中。</p>
+<p>自我认知的难点在于如何剖析自己在面对“未知世界”的生存能力，分析以往的经历中做到锐意进取、思而奋进。</p>
+<p><strong>误区三：成王败寇的过山车心态</strong></p>
+<p>自我认知的历程实际是一个对自己的价值逐步建立内部评测体系的过程，成熟的自我认知使得领导者不会因为一时的成败而撼动自信心，从而产生对自己价值的怀疑。</p>
+<p><strong>误区四：排斥扩展个人领导风格</strong></p>
+<p>成功的领导者都能采取两种以上不同的领导风格。</p>
+<p>领导风格：领跑、辅助、指令、民主、亲和</p>
+<p>领导风格因地制宜与坚定个人价值观并不冲突。</p>
+<p><strong>误区五：战略思维与生俱来</strong></p>
+<p>战略思维是可以通过实战获取经验</p>
+<p>自我认知是一切管理的基石，只有了解自己才能根据自身特点选择适合的管理方式，才能成为一个合格的管理者。</p>
+<h2 id="打破职业发展误区"><a href="#打破职业发展误区" class="headerlink" title="打破职业发展误区"></a>打破职业发展误区</h2><p><strong>误区一：成长过程中，人的个性会不断改变</strong></p>
+<ul>
+<li>真相：价值观、自我意识、技能等会变，但个性中最为核心的部分却永远不会变</li>
+</ul>
+<p><strong>误区二：在最弱的方面才会去的最大的进步</strong></p>
+<ul>
+<li>真相：在最强的方面，才会获得最大的进步</li>
+</ul>
+<p><strong>误区三：一个优秀的团队成员为了团队利益是愿意做任何事</strong></p>
+<ul>
+<li>真相：一个优秀的成员会主动发挥自己的优势，不需要为团队愿意做任何事</li>
+</ul>
+<p>想要摒除这些误区，问自己三个问题：</p>
+<ol>
+<li>是什么原因让你相信，xxx</li>
+<li>如果不再相信，xxx，会有什么损失</li>
+<li>如果相信xxx，你会得到什么好处</li>
+</ol>
+<p>打破职业发展误区，发展优势是应对竞争的最佳方式</p>
+<h2 id="如何使自己的成长不跑偏"><a href="#如何使自己的成长不跑偏" class="headerlink" title="如何使自己的成长不跑偏"></a>如何使自己的成长不跑偏</h2><p>导致偏离的原因</p>
+<ol>
+<li>外部环境影响，如周围的人都不学习和成长</li>
+<li>自身原因，如心情不好、没动力</li>
+</ol>
+<p>TPA 三步法：</p>
+<ol>
+<li><p><strong>Timing 发现时机</strong></p>
+<ul>
+<li>设定d定期反思时间，如每三个月时间反思</li>
+<li>状态不好时</li>
+<li>他人反馈时</li>
+</ul>
+</li>
+<li><p><strong>Problem 直面问题</strong></p>
+<ul>
+<li>觉得自己没问题，有问题都是他人的问题</li>
+<li>知道自己又问题，承认问题会让自己很不舒服</li>
+<li>直面问题，拖的越久，后果越大，直面问题，写出来</li>
+</ul>
+</li>
+<li><p><strong>Action 找出方案</strong></p>
+<ul>
+<li>针对主要原因，写出简单的解决方案</li>
+</ul>
+</li>
+</ol>
+<p>愿意主动反思的人都是强者，真正的强者是敢于面对自己的问题，并超越自己的问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2023/12/11/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E8%81%8C%E5%9C%BA%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/11/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E8%81%8C%E5%9C%BA%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">职场效率小工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-11 14:45:01" itemprop="dateCreated datePublished" datetime="2023-12-11T14:45:01+08:00">2023-12-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E7%B4%A0%E8%B4%A8/" itemprop="url" rel="index"><span itemprop="name">软素质</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/12/11/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E8%81%8C%E5%9C%BA%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/12/11/软素质/职场效率小工具/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>简介：</p>
+<ul>
+<li>SMART 法则-提高目标成功率的利器</li>
+<li>5W2H 分析法-缜密高效的思维方式</li>
+<li>掌握金字塔原理</li>
+<li>DISC 矩阵</li>
+<li>时间管理矩阵</li>
+<li>麦肯锡七步分析法</li>
+<li>WBS工作分析法</li>
+<li>甘特图</li>
+<li>搞笑 PDCA 循环法</li>
+<li>SWOT 分析法</li>
+<li>决策树</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/11/%E8%BD%AF%E7%B4%A0%E8%B4%A8/%E8%81%8C%E5%9C%BA%E6%95%88%E7%8E%87%E5%B0%8F%E5%B7%A5%E5%85%B7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="popring"
+      src="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+  <p class="site-author-name" itemprop="name">popring</p>
+  <div class="site-description" itemprop="description">No description is best description.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/popring" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;popring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:koler778@gmail.com" title="E-Mail → mailto:koler778@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/277120110" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;277120110" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/10145341/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;10145341&#x2F;" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      
+      
+<div style="margin:  10px 0;">
+	<a target="_blank" rel="noopener" href="https://info.flagcounter.com/MQZk"><img src="https://s01.flagcounter.com/countxl/MQZk/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_6/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+</div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popring</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://popring.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+</body>
+</html>

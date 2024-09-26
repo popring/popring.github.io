@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"popring.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"swoopIn","sidebar":"bounceIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="早期在学习 node 时候，做的笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 学习笔记">
+<meta property="og:url" content="https://popring.github.io/2019/05/16/%E6%8A%80%E6%9C%AF/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="popring&#39;s Blog">
+<meta property="og:description" content="早期在学习 node 时候，做的笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-16T09:15:07.000Z">
+<meta property="article:modified_time" content="2024-09-26T15:07:49.066Z">
+<meta property="article:author" content="popring">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://popring.github.io/2019/05/16/%E6%8A%80%E6%9C%AF/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Node.js 学习笔记 | popring's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WN0V7KJRVS');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f869367a20c50f7b23f96c1e4169d803";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div><!--
+<div>
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
+		<span>毕业倒计时：</span>
+		<span id="countDown"></span>
+	</p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		graduate();
+		function graduate() {
+			var nowDate = Date.parse(new Date());
+			var endDate = Date.parse(new Date('2021-07-01'));
+			var diff = Math.abs(endDate - nowDate);
+
+			var str = calcTime(diff);
+			document.querySelector('#countDown').innerText = str;
+			function calcTime (mss) {
+				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
+				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+				var minutes = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / (1000 * 60)));
+				var seconds = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / 1000 % 60));
+				// return `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+				return days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+			};
+
+			function toTwoFix(time) {
+				return time < 10 ? '0' + time : time;
+			}
+		}
+
+
+		setInterval(function() {
+			graduate();
+		},1000);
+	})();
+</script>
+-->
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">popring's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">何时才能财富自由</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2019/05/16/%E6%8A%80%E6%9C%AF/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Node.js 学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-05-16 17:15:07" itemprop="dateCreated datePublished" datetime="2019-05-16T17:15:07+08:00">2019-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/05/16/%E6%8A%80%E6%9C%AF/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/16/技术/Nodejs学习笔记/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>早期在学习 <code>node</code> 时候，做的笔记。</p>
+<span id="more"></span>
+
+
+
+<h2 id="NodeJS-简介"><a href="#NodeJS-简介" class="headerlink" title="NodeJS 简介"></a>NodeJS 简介</h2><p><strong>非阻塞IO</strong>，<strong>运行在Chome V8</strong>，<strong>事件驱动</strong></p>
+<h2 id="环境-调试"><a href="#环境-调试" class="headerlink" title="环境 调试"></a>环境 调试</h2><ul>
+<li>CommonJS</li>
+<li>global</li>
+<li>process</li>
+</ul>
+<h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a><code>CommonJS</code></h3><ul>
+<li>每个文件是一个模块，有自己的作用域</li>
+<li>在模块内部 <code>module</code> 变量代表模块本身</li>
+<li><code>module.exports</code> 属性代表模块对外接口</li>
+</ul>
+<h3 id="require-规则"><a href="#require-规则" class="headerlink" title="require 规则"></a><code>require</code> 规则</h3><ul>
+<li><p><code>/</code> 表示绝对路径， <code>./</code> 表示相对当前文件的路径</p>
+</li>
+<li><p>支持 js, json, node 拓展名，不写依次尝试</p>
+</li>
+<li><p>不写路径认为是 build-in 模块或者各级 <code>node_modules</code>内的第三方模块</p>
+</li>
+</ul>
+<h3 id="require-特性"><a href="#require-特性" class="headerlink" title="require 特性"></a><code>require</code> 特性</h3><ul>
+<li><code>module</code> 被加载的时候执行，加载后缓存</li>
+<li>一旦出现某个模块被循环加载，就只输出已经执行的部分，还未执行的部分不会输出</li>
+</ul>
+<h3 id="chalk-模块"><a href="#chalk-模块" class="headerlink" title="chalk 模块"></a><a target="_blank" rel="noopener" href="https://github.com/chalk/chalk"><code>chalk</code> 模块</a></h3><p>将所有的模块安装在 <code>node_modules</code> 下，无论是项目的依赖还是模块的依赖，或者是共同的依赖，都安装在 <code>node_modules</code> 下，早期的 <code>npm</code> 会将 模块的依赖安装在自身文件夹下的 <code>node_modules</code> 下，而如今的 <code>npm</code> 则是统一安装在项目根目录下的 <code>node_modules</code> 下。</p>
+<h3 id="modules-exports-和-exports-区别"><a href="#modules-exports-和-exports-区别" class="headerlink" title="modules.exports 和 exports 区别"></a><code>modules.exports</code> 和 <code>exports</code> 区别</h3><blockquote>
+<p>exports &#x3D; modules.exports;</p>
+<p>两者是相等的</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">exports</span> = modules.<span class="property">exports</span>;</span><br><span class="line"></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">function</span>(<span class="params"><span class="built_in">exports</span>, <span class="built_in">require</span>, <span class="variable language_">module</span>, __filename, __dirname</span>)&#123;</span><br><span class="line">        <span class="comment">// code</span></span><br><span class="line">	&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">test</span> = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这样会改变 exports 的指向，故失效</span></span><br><span class="line"><span class="built_in">exports</span> = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">test</span>: <span class="number">100</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果要修改为字面量形式</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">test</span>: <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="global-变量"><a href="#global-变量" class="headerlink" title="global 变量"></a><code>global</code> 变量</h3><ul>
+<li>CommonJS</li>
+<li>Buffer, process, console</li>
+<li>timer<ul>
+<li>setTimeout</li>
+<li>SetInterval</li>
+</ul>
+</li>
+</ul>
+<h3 id="process"><a href="#process" class="headerlink" title="process"></a><a target="_blank" rel="noopener" href="http://nodejs.cn/api/process.html">process</a></h3><ul>
+<li><code>argv</code> 返回进程启动时的命令行参数。 第一个元素是 <a target="_blank" rel="noopener" href="http://nodejs.cn/s/MCrAya"><code>process.execPath</code></a>。 使用 <code>process.argv0</code> 可以获取 <code>argv[0]</code> 原始的值。 第二个元素是当前执行的 JavaScript 文件的路径。 剩余的元素都是额外的命令行参数。</li>
+<li><code>argv0</code> 返回进程启动时传入的 <code>argv[0]</code> 的原始值。</li>
+<li><code>execArgv</code> 返回 Node.js 特定的命令行选项。</li>
+<li><code>execPath</code> 返回 Node.js 启动文件绝对路径</li>
+<li><code>env</code> 返回用户的环境信息</li>
+<li><code>cwd</code> 返回进程的当前工作目录</li>
+</ul>
+<h3 id="调试方法"><a href="#调试方法" class="headerlink" title="调试方法"></a><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/docs/guides/debugging-getting-started/">调试方法</a></h3><p>chrome</p>
+<p>vscode</p>
+<p>webstrom</p>
+<p>…</p>
+<h2 id="Node-js-基础"><a href="#Node-js-基础" class="headerlink" title="Node.js 基础"></a>Node.js 基础</h2><h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><blockquote>
+<p>normalize, join, resolve,</p>
+<p>basename, extname, dirname, </p>
+<p>parse, format</p>
+<p>sep, delimiter, win32, posix</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;normalize&#125; = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> normalize = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>).<span class="property">normalize</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// parse 返回当前 路径的 文件/文件夹信息</span></span><br><span class="line"><span class="keyword">let</span> parse = path.<span class="title function_">parse</span>(<span class="string">&#x27;D://nodejs/demo4/01_path.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(parse);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回</span></span><br><span class="line">&#123; </span><br><span class="line">  <span class="attr">root</span>: <span class="string">&#x27;D:/&#x27;</span>,</span><br><span class="line">  <span class="attr">dir</span>: <span class="string">&#x27;D://nodejs/demo4&#x27;</span>,</span><br><span class="line">  <span class="attr">base</span>: <span class="string">&#x27;01_path.js&#x27;</span>,</span><br><span class="line">  <span class="attr">ext</span>: <span class="string">&#x27;.js&#x27;</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;01_path&#x27;</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// format 与 parse 正好相反</span></span><br><span class="line"><span class="keyword">let</span> format = path.<span class="title function_">format</span>(&#123;</span><br><span class="line">    <span class="attr">root</span>: <span class="string">&#x27;/ignored&#x27;</span>,</span><br><span class="line">    <span class="attr">dir</span>: <span class="string">&#x27;/home/user/dir&#x27;</span>,</span><br><span class="line">    <span class="attr">base</span>: <span class="string">&#x27;file.txt&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(format);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回</span></span><br><span class="line"><span class="string">`/home/user/dir\file.txt`</span></span><br></pre></td></tr></table></figure>
+
+<p>path.format(pathObject)</p>
+<p>当为 <code>pathObject</code> 提供属性时，请记住有一个组合，其中一个属性优先于另一个属性：</p>
+<ul>
+<li>如果提供了 <code>pathObject.dir</code>，则忽略 <code>pathObject.root</code>。</li>
+<li>如果 <code>pathObject.base</code> 存在，则忽略 <code>pathObject.ext</code> 和 <code>pathObject.name</code>。</li>
+</ul>
+<blockquote>
+<p><code>__dirname</code>, <code>__filename</code>  总是返回文件的绝对路径</p>
+<p>process.cwd() 总是返回执行 node 命令所在文件夹</p>
+</blockquote>
+<h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><blockquote>
+<ul>
+<li><p>Buffer 用于处理二进制数据流</p>
+</li>
+<li><p>实例类似整数数组，大小固定</p>
+</li>
+<li><p>C++ 代码在 V8 堆外分配物理内存</p>
+</li>
+<li><p>Buffer.byteLength<br>Buffer.isBuffer() 是否为<code>Buffer</code>对象<br>Buffer.concat()</p>
+</li>
+<li><p>buf.length</p>
+<p>buf.toString()</p>
+<p>buf.fill()</p>
+<p>buf.equals()</p>
+<p>buf.indexOf()</p>
+<p>buf.copy()</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="events-事件"><a href="#events-事件" class="headerlink" title="events(事件)"></a><a target="_blank" rel="noopener" href="http://nodejs.cn/api/events.htm">events(事件)</a></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">EventEmitter</span> = <span class="built_in">require</span>(<span class="string">&#x27;events&#x27;</span>);</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomEvent</span> <span class="keyword">extends</span> <span class="title class_ inherited__">EventEmitter</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ce = <span class="keyword">new</span> <span class="title class_">CustomEvent</span>();</span><br><span class="line">ce.<span class="title function_">on</span>(<span class="string">&#x27;test&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;This is a test!&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    ce.<span class="title function_">emit</span>(<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">500</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>emitter.once() 事件只触发一回</p>
+<p>emitter.emit() 触发事件</p>
+<p>emitter.on()  –  emitter.addListener() 都为绑定事件</p>
+<p>emitter.removeListener() 移除事件</p>
+<p>emitter.removeAllListeners() 移除所有事件</p>
+<h3 id="fs"><a href="#fs" class="headerlink" title="fs"></a><a target="_blank" rel="noopener" href="http://nodejs.cn/api/fs.html">fs</a></h3><blockquote>
+<p>readFile 读文件</p>
+<p>writeFile 写文件</p>
+<p>stat 提供文件相关信息</p>
+<p>rename 更改文件名</p>
+<p>unlink 删除文件</p>
+<p>readdir 读文件夹</p>
+<p>mkdir 创建文件夹</p>
+<p>rmdir 删除文件夹</p>
+<p>watch 监视文件&#x2F;文件夹</p>
+<p>readstream</p>
+</blockquote>
+<h3 id="解决回调地狱问题"><a href="#解决回调地狱问题" class="headerlink" title="解决回调地狱问题"></a>解决回调地狱问题</h3><blockquote>
+<p>Promise</p>
+<p>promisify</p>
+<p>async await</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// promisify</span></span><br><span class="line"><span class="keyword">const</span> &#123;promisify&#125; =  <span class="built_in">require</span>(<span class="string">&#x27;util&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> read = <span class="title function_">promisify</span>(fs.<span class="property">readFile</span>);</span><br><span class="line"><span class="title function_">read</span>(<span class="string">&#x27;b.txt&#x27;</span>).<span class="title function_">then</span>( <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="title function_">toString</span>());</span><br><span class="line">&#125;).<span class="title function_">catch</span>( <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// async await</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> content = <span class="keyword">await</span> <span class="title function_">read</span>(<span class="string">&#x27;b.txt&#x27;</span>)</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(content.<span class="title function_">toString</span>());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h2><h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p><code>git</code> 忽略文件</p>
+<blockquote>
+<p>匹配模式前 <code>/</code> 代表项目根目录</p>
+<p>匹配模式最后加 <code>/</code> 代表是目录</p>
+<p>匹配模式前加 <code>!</code> 代表取反</p>
+<p><code>*</code> 代表任意字符</p>
+<p><code>?</code> 匹配任意一个字符</p>
+<p><code>**</code> 匹配多级目录</p>
+</blockquote>
+<h3 id="npmignore"><a href="#npmignore" class="headerlink" title=".npmignore"></a>.npmignore</h3><p><code>npm</code> 忽略文件 </p>
+<h3 id="EditorConfig"><a href="#EditorConfig" class="headerlink" title=".EditorConfig"></a>.EditorConfig</h3><blockquote>
+<p> EditorConfig有助于为跨越各种编辑器和IDE的同一项目的多个开发人员维护一致的编码样式。EditorConfig项目由用于定义编码样式<strong>的文件格式</strong>和一组<strong>文本编辑器插件组成</strong>，这些<strong>插件</strong>使编辑器能够读取文件格式并遵循定义的样式。EditorConfig文件易于阅读，与版本控制系统配合使用。</p>
+</blockquote>
+<p>官方模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># EditorConfig is awesome: https://EditorConfig.org</span><br><span class="line"></span><br><span class="line"># top-most EditorConfig file</span><br><span class="line">root = true</span><br><span class="line"></span><br><span class="line"># Unix-style newlines with a newline ending every file</span><br><span class="line">[*]</span><br><span class="line">end_of_line = lf</span><br><span class="line">insert_final_newline = true</span><br><span class="line"></span><br><span class="line"># Matches multiple files with brace expansion notation</span><br><span class="line"># Set default charset</span><br><span class="line">[*.&#123;js,py&#125;]</span><br><span class="line">charset = utf-8</span><br><span class="line"></span><br><span class="line"># 4 space indentation</span><br><span class="line">[*.py]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 4</span><br><span class="line"></span><br><span class="line"># Tab indentation (no size specified)</span><br><span class="line">[Makefile]</span><br><span class="line">indent_style = tab</span><br><span class="line"></span><br><span class="line"># Indentation override for all JS under lib directory</span><br><span class="line">[lib/**.js]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 2</span><br><span class="line"></span><br><span class="line"># Matches the exact files either package.json or .travis.yml</span><br><span class="line">[&#123;package.json,.travis.yml&#125;]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 2</span><br></pre></td></tr></table></figure>
+
+<h3 id="eslintignore"><a href="#eslintignore" class="headerlink" title=".eslintignore"></a>.eslintignore</h3><blockquote>
+<p>需要 <code>eslint</code> 忽略检查的文件</p>
+<p>规范同 <code>gitignore</code></p>
+</blockquote>
+<p>也可以在 <code>package.json</code> 中查找忽略的文件 <code>eslintIgnore</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;mypackage&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.0.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;eslintConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;env&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;browser&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;node&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;eslintIgnore&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;hello.js&quot;</span><span class="punctuation">,</span> <span class="string">&quot;world.js&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h3><blockquote>
+<p>JavaScript 代码检查工具。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yarn add --dev eslint</span><br><span class="line"><span class="comment"># 生成ESLint配置</span></span><br><span class="line">./node_modules/.bin/eslint --init</span><br></pre></td></tr></table></figure>
+
+<h4 id="内联禁用-ESLint规则"><a href="#内联禁用-ESLint规则" class="headerlink" title="内联禁用 ESLint规则"></a><a target="_blank" rel="noopener" href="http://eslint.cn/docs/user-guide/configuring#disabling-rules-with-inline-comments">内联禁用 <code>ESLint</code>规则</a></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* eslint-disable */</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-enable */</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* eslint-disable no-alert, no-console */</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-enable no-alert, no-console */</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>); <span class="comment">// eslint-disable-line</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// eslint-disable-next-line</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态资源服务器"><a href="#静态资源服务器" class="headerlink" title="静态资源服务器"></a>静态资源服务器</h2><h3 id="创建服务器"><a href="#创建服务器" class="headerlink" title="创建服务器"></a>创建服务器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入 http 模块</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">&#x27;chalk&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> conf = <span class="built_in">require</span>(<span class="string">&#x27;./config/defaultConfig&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>)=&gt;</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(conf.<span class="property">port</span>, conf.<span class="property">hostname</span>, <span class="function">()=&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> address = <span class="string">`http://<span class="subst">$&#123;conf.hostname&#125;</span>:<span class="subst">$&#123;conf.port&#125;</span>`</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">`Server started at the <span class="subst">$&#123;chalk.green(address)&#125;</span>`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将配置信息分离出</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">root</span>: process.<span class="title function_">cwd</span>(),</span><br><span class="line">    <span class="attr">hostname</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">9527</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="content-type-文件内容"><a href="#content-type-文件内容" class="headerlink" title="content-type: 文件内容"></a>content-type: 文件内容</h4><blockquote>
+<p>普通内容：text&#x2F;plain …</p>
+<p><a target="_blank" rel="noopener" href="http://tool.oschina.net/commons/">HTTP Content -Type 对照表</a></p>
+</blockquote>
+<h4 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h4><blockquote>
+<p>accept-encoding: gzip,bar,deflate…</p>
+</blockquote>
+<h4 id="range范围请求"><a href="#range范围请求" class="headerlink" title="range范围请求"></a>range范围请求</h4><h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><blockquote>
+<p>使用缓存技术，减少服务器压力</p>
+</blockquote>
+<h4 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x.y.z</span><br><span class="line">x 大版本，不保证兼容</span><br><span class="line">y 新增功能，并且兼容前面版本</span><br><span class="line">z 修复bug</span><br><span class="line"></span><br><span class="line">1.2.* 同等于 ~1.2.0</span><br><span class="line">永远是用最新的1.2.*</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="supervisor模块"><a href="#supervisor模块" class="headerlink" title="supervisor模块"></a>supervisor模块</h3><blockquote>
+<p>监听当前文件夹下的变化, 文件有变化 重新加载文件</p>
+<p>自动重新载入服务器</p>
+<p>supervise 模块需要全局安装</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 使用supervise 模块加载js文件</span><br><span class="line">supervisor app.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="handlebars-模块"><a href="#handlebars-模块" class="headerlink" title="handlebars 模块"></a>handlebars 模块</h3><blockquote>
+<p>模板引擎，类似<code>art-template</code>, ejs 等 </p>
+</blockquote>
+<p>2019年3月5日 23点25分</p>
+<blockquote>
+<p>网站访问路径没有处理好</p>
+</blockquote>
+<p>跳过</p>
+<h2 id="本地构建"><a href="#本地构建" class="headerlink" title="本地构建"></a>本地构建</h2><blockquote>
+<p>gulp, babel, webpack</p>
+</blockquote>
+<h3 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h3><p>glob</p>
+<blockquote>
+<p><code>*</code>匹配任意字符</p>
+<p><code>?</code>匹配一个字符</p>
+<p><code>[...]</code>匹配范围内的字符</p>
+<p><code>!(parttern1|pattern2)</code>匹配取反</p>
+<p><code>?(parttern1|pattern2)</code>匹配0个或1个</p>
+<p><code>+(parttern1|pattern2)</code>匹配1个或多个</p>
+<p><code>*(a|b|c)</code>匹配任意个</p>
+<p><code>@(pattern|pat*|pat?erN)</code>匹配特定的一个</p>
+<p><code>**</code>任意层级匹配</p>
+</blockquote>
+<h3 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h3><h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3><h2 id="单元测试和UI测试"><a href="#单元测试和UI测试" class="headerlink" title="单元测试和UI测试"></a>单元测试和UI测试</h2><p><a target="_blank" rel="noopener" href="https://www.chaijs.com/">chai</a></p>
+<p><a target="_blank" rel="noopener" href="https://mochajs.org/">mocha</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/gotwarlost/istanbul">istanbul</a></p>
+<h3 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h3><blockquote>
+<p>TDD, BDD</p>
+</blockquote>
+<h4 id="TDD：测试驱动开发"><a href="#TDD：测试驱动开发" class="headerlink" title="TDD：测试驱动开发"></a>TDD：测试驱动开发</h4><p>测试驱动开发是敏捷开发中的一项核心实践和技术，也是一种设计方法论。TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试代码确定需要编写什么产品代码。TDD的基本思路就是通过测试来推动整个开发的进行，但测试驱动开发并不只是单纯的测试工作，而是把需求分析，设计，质量控制量化的过程。TDD首先考虑使用需求（对象、功能、过程、接口等），主要是编写测试用例框架对功能的过程和接口进行设计，而测试框架可以持续进行验证。 </p>
+<h4 id="BDD：行为驱动开发（Behavior-Driven-Development）"><a href="#BDD：行为驱动开发（Behavior-Driven-Development）" class="headerlink" title="BDD：行为驱动开发（Behavior Driven Development）"></a>BDD：行为驱动开发（Behavior Driven Development）</h4><p>行为驱动开发是一种敏捷软件开发的技术，它鼓励软件项目中的开发者、QA和非技术人员或商业参与者之间的协作。主要是从用户的需求出发，强调系统行为。BDD最初是由Dan North在2003年命名，它包括验收测试和客户测试驱动等的极限编程的实践，作为对测试驱动开发的回应。</p>
+<p>转载自 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20161970/answer/100003242">某乎</a></p>
+<h3 id="Mocha"><a href="#Mocha" class="headerlink" title="Mocha"></a>Mocha</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;should, expect, assert&#125; = <span class="built_in">require</span>(<span class="string">&#x27;chai&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;add, mul&#125; = <span class="built_in">require</span>(<span class="string">&#x27;../src/math&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">should</span>();</span><br><span class="line"></span><br><span class="line"><span class="title function_">add</span>(<span class="number">3</span>, <span class="number">2</span>).<span class="property">should</span>.<span class="title function_">equal</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">expect</span>(<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">assert.<span class="title function_">equal</span>(<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mocha-1"><a href="#Mocha-1" class="headerlink" title="Mocha"></a>Mocha</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;should, expect, assert&#125; = <span class="built_in">require</span>(<span class="string">&#x27;chai&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;add, mul&#125; = <span class="built_in">require</span>(<span class="string">&#x27;../src/math&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;#math&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;add&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should return 5 when 3 + 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            assert.<span class="title function_">equal</span>(<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should return 6 when 3 + 3&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            assert.<span class="title function_">equal</span>(<span class="title function_">add</span>(<span class="number">3</span>, <span class="number">3</span>), <span class="number">6</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;mul&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should return 6 when 3 * 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            assert.<span class="title function_">equal</span>(<span class="title function_">mul</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">6</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="istanbul"><a href="#istanbul" class="headerlink" title="istanbul"></a>istanbul</h3><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/06/istanbul.html">http://www.ruanyifeng.com/blog/2015/06/istanbul.html</a></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p><a target="_blank" rel="noopener" href="http://nodejs.cn/api/">Node.js 中文网</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package">npmingore 介绍</a></p>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/docs/gitignore">gitignore 介绍</a></p>
+<p><a target="_blank" rel="noopener" href="https://editorconfig.org/">EditorConfig</a></p>
+<p><a target="_blank" rel="noopener" href="http://eslint.cn/">ESLint 中文网</a></p>
+<p><a target="_blank" rel="noopener" href="https://babeljs.io/">babel 官网</a></p>
+<p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/">webpack 官网</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/node/" rel="tag"># node</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/04/27/C%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80-10.%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="prev" title="C语言 第十章 文件操作">
+      <i class="fa fa-chevron-left"></i> C语言 第十章 文件操作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/08/26/%E6%8A%80%E6%9C%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B8%A9%E5%9D%91%E6%8C%87%E5%8D%97/" rel="next" title="小程序 and wepy">
+      小程序 and wepy <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NodeJS-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">NodeJS 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83-%E8%B0%83%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">环境 调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS"><span class="nav-number">2.1.</span> <span class="nav-text">CommonJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#require-%E8%A7%84%E5%88%99"><span class="nav-number">2.2.</span> <span class="nav-text">require 规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#require-%E7%89%B9%E6%80%A7"><span class="nav-number">2.3.</span> <span class="nav-text">require 特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chalk-%E6%A8%A1%E5%9D%97"><span class="nav-number">2.4.</span> <span class="nav-text">chalk 模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#modules-exports-%E5%92%8C-exports-%E5%8C%BA%E5%88%AB"><span class="nav-number">2.5.</span> <span class="nav-text">modules.exports 和 exports 区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#global-%E5%8F%98%E9%87%8F"><span class="nav-number">2.6.</span> <span class="nav-text">global 变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#process"><span class="nav-number">2.7.</span> <span class="nav-text">process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95"><span class="nav-number">2.8.</span> <span class="nav-text">调试方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-%E5%9F%BA%E7%A1%80"><span class="nav-number">3.</span> <span class="nav-text">Node.js 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#path"><span class="nav-number">3.1.</span> <span class="nav-text">path</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer"><span class="nav-number">3.2.</span> <span class="nav-text">Buffer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#events-%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.3.</span> <span class="nav-text">events(事件)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fs"><span class="nav-number">3.4.</span> <span class="nav-text">fs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1%E9%97%AE%E9%A2%98"><span class="nav-number">3.5.</span> <span class="nav-text">解决回调地狱问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">项目初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gitignore"><span class="nav-number">4.1.</span> <span class="nav-text">.gitignore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npmignore"><span class="nav-number">4.2.</span> <span class="nav-text">.npmignore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EditorConfig"><span class="nav-number">4.3.</span> <span class="nav-text">.EditorConfig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eslintignore"><span class="nav-number">4.4.</span> <span class="nav-text">.eslintignore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ESLint"><span class="nav-number">4.5.</span> <span class="nav-text">ESLint</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E8%81%94%E7%A6%81%E7%94%A8-ESLint%E8%A7%84%E5%88%99"><span class="nav-number">4.5.1.</span> <span class="nav-text">内联禁用 ESLint规则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">静态资源服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">5.1.</span> <span class="nav-text">创建服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#content-type-%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="nav-number">5.1.1.</span> <span class="nav-text">content-type: 文件内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="nav-number">5.1.2.</span> <span class="nav-text">压缩文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#range%E8%8C%83%E5%9B%B4%E8%AF%B7%E6%B1%82"><span class="nav-number">5.1.3.</span> <span class="nav-text">range范围请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%AD%98"><span class="nav-number">5.1.4.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">5.1.5.</span> <span class="nav-text">版本号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#supervisor%E6%A8%A1%E5%9D%97"><span class="nav-number">5.2.</span> <span class="nav-text">supervisor模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#handlebars-%E6%A8%A1%E5%9D%97"><span class="nav-number">5.3.</span> <span class="nav-text">handlebars 模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%9E%84%E5%BB%BA"><span class="nav-number">6.</span> <span class="nav-text">本地构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gulp"><span class="nav-number">6.1.</span> <span class="nav-text">gulp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babel"><span class="nav-number">6.2.</span> <span class="nav-text">babel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack"><span class="nav-number">6.3.</span> <span class="nav-text">webpack</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%92%8CUI%E6%B5%8B%E8%AF%95"><span class="nav-number">7.</span> <span class="nav-text">单元测试和UI测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD"><span class="nav-number">7.1.</span> <span class="nav-text">专业术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TDD%EF%BC%9A%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91"><span class="nav-number">7.1.1.</span> <span class="nav-text">TDD：测试驱动开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BDD%EF%BC%9A%E8%A1%8C%E4%B8%BA%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%EF%BC%88Behavior-Driven-Development%EF%BC%89"><span class="nav-number">7.1.2.</span> <span class="nav-text">BDD：行为驱动开发（Behavior Driven Development）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mocha"><span class="nav-number">7.2.</span> <span class="nav-text">Mocha</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mocha-1"><span class="nav-number">7.3.</span> <span class="nav-text">Mocha</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#istanbul"><span class="nav-number">7.4.</span> <span class="nav-text">istanbul</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number"></span> <span class="nav-text">References</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="popring"
+      src="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+  <p class="site-author-name" itemprop="name">popring</p>
+  <div class="site-description" itemprop="description">No description is best description.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/popring" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;popring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:koler778@gmail.com" title="E-Mail → mailto:koler778@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/277120110" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;277120110" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/10145341/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;10145341&#x2F;" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      
+      
+<div style="margin:  10px 0;">
+	<a target="_blank" rel="noopener" href="https://info.flagcounter.com/MQZk"><img src="https://s01.flagcounter.com/countxl/MQZk/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_6/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+</div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popring</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://popring.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://popring.github.io/2019/05/16/%E6%8A%80%E6%9C%AF/Nodejs%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/";
+    this.page.identifier = "2019/05/16/技术/Nodejs学习笔记/";
+    this.page.title = "Node.js 学习笔记";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://popring.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

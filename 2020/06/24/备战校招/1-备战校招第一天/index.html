@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"popring.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"swoopIn","sidebar":"bounceIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="BFC（块格式化上下文） 首页白屏 函数柯里化 bind、apply、call 如果阻塞了JS中的主线程会发生什么情况 浏览器和Node 事件循环机制区别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="备战校招第一天">
+<meta property="og:url" content="https://popring.github.io/2020/06/24/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/1-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%80%E5%A4%A9/index.html">
+<meta property="og:site_name" content="popring&#39;s Blog">
+<meta property="og:description" content="BFC（块格式化上下文） 首页白屏 函数柯里化 bind、apply、call 如果阻塞了JS中的主线程会发生什么情况 浏览器和Node 事件循环机制区别">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200624115734.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200706184516.png">
+<meta property="article:published_time" content="2020-06-24T00:55:46.000Z">
+<meta property="article:modified_time" content="2024-09-26T15:07:49.065Z">
+<meta property="article:author" content="popring">
+<meta property="article:tag" content="BFC">
+<meta property="article:tag" content="函数柯里化">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="js编程题">
+<meta property="article:tag" content="事件循环机制">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200624115734.png">
+
+<link rel="canonical" href="https://popring.github.io/2020/06/24/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/1-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%80%E5%A4%A9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>备战校招第一天 | popring's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WN0V7KJRVS');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f869367a20c50f7b23f96c1e4169d803";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div><!--
+<div>
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
+		<span>毕业倒计时：</span>
+		<span id="countDown"></span>
+	</p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		graduate();
+		function graduate() {
+			var nowDate = Date.parse(new Date());
+			var endDate = Date.parse(new Date('2021-07-01'));
+			var diff = Math.abs(endDate - nowDate);
+
+			var str = calcTime(diff);
+			document.querySelector('#countDown').innerText = str;
+			function calcTime (mss) {
+				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
+				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+				var minutes = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / (1000 * 60)));
+				var seconds = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / 1000 % 60));
+				// return `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+				return days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+			};
+
+			function toTwoFix(time) {
+				return time < 10 ? '0' + time : time;
+			}
+		}
+
+
+		setInterval(function() {
+			graduate();
+		},1000);
+	})();
+</script>
+-->
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">popring's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">何时才能财富自由</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2020/06/24/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/1-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%80%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          备战校招第一天
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-24 08:55:46" itemprop="dateCreated datePublished" datetime="2020-06-24T08:55:46+08:00">2020-06-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%87%E6%88%98/" itemprop="url" rel="index"><span itemprop="name">备战</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/06/24/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/1-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%80%E5%A4%A9/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/24/备战校招/1-备战校招第一天/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ol>
+<li>BFC（块格式化上下文）</li>
+<li>首页白屏</li>
+<li>函数柯里化</li>
+<li>bind、apply、call</li>
+<li>如果阻塞了JS中的主线程会发生什么情况</li>
+<li>浏览器和Node 事件循环机制区别</li>
+</ol>
+<hr>
+<span id="more"></span>
+
+<h3 id="BFC（块格式化上下文）"><a href="#BFC（块格式化上下文）" class="headerlink" title="BFC（块格式化上下文）"></a>BFC（块格式化上下文）</h3><p>常见的定位方案分为三种：普通流、浮动、绝对定位。</p>
+<p><strong>块格式化上下文（Block Formatting Context，BFC）</strong> 是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。而这里的 <code>BFC</code> 属于属于普通流，相当于具有 <code>BFC</code> 特性的元素可以看作一个独立的容器，无论容器内部的元素怎么调整，都不会影响到外部的元素。</p>
+<p>下列情况会创建BFC：</p>
+<ul>
+<li>根元素(<code>&lt;html&gt;</code>)</li>
+<li>浮动元素（元素的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"><code>float</code></a> 不是 <code>none</code>）</li>
+<li>绝对定位元素（元素的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position"><code>position</code></a> 为 <code>absolute</code> 或 <code>fixed</code>）</li>
+<li>行内块元素（元素的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>inline-block</code>）</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow"><code>overflow</code></a> 值不为 <code>visible</code> 的块元素</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 值为 <code>flow-root</code> 的元素</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/contain"><code>contain</code></a> 值为 <code>layout</code>、<code>content</code>或 paint 的元素</li>
+<li>弹性元素（<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a>为 <code>flex</code> 或 <code>inline-flex</code>元素的直接子元素）</li>
+<li>网格元素（<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a>为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）</li>
+<li>…</li>
+</ul>
+<p><strong>案例</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;border: 1px solid #000;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 45%; height: 300px; background-color: red; float: left;&quot;</span>&gt;</span>123<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 45%; height: 300px; background-color: blue; float: right;&quot;</span>&gt;</span>456<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这几行代码，如果直接运行会在网页上按照我们的预期显示出来两个色块，但仔细看下，会看出父元素的高度不正常，父元素看起来向空容器一样。原因在于子元素采用浮动，而浮动流不属于普通流，是独立定位的。</p>
+<p>解决方法，按照上述规则，使用一个合适的方法，来进行创建BFC，从而告诉浏览器 <code>”我的最外层div需要创建BFC，按照常规方式渲染“</code>。</p>
+<p>例如：在最外层 <code>div</code> 添加样式 <code>float: left</code>（上述规则指出只要 <code>float</code> 不为 <code>none</code> 即可创建BFC ） ,  当然如果觉得 float 不够优雅，还可以使用 <code>overflow: hidden;</code> 。（通常情况下，我们可能会使用伪元素添加 <code>clear:both;</code> 占位来清除浮动，从而使最外层 div 恢复正常）。</p>
+<p>详情请看，请看<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2009/04/float_clearing.html">阮老师的文章</a>。</p>
+<p>还有<strong>经典问题 <code>margin</code> 重叠问题</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: <span class="number">#f55</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background</span>: <span class="number">#fcc</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">line-height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Haha<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hehe<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行之后就会发现 两个 p标签 <code>margin</code> 发生重叠（同一个BFC内，两盒子垂直，就会发生 <code>margin</code> 塌陷重叠，而<code>margin</code> 值会以最大的为主。）</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200624115734.png" alt="image-20200624115733942"></p>
+<p>解决方法：</p>
+<ol>
+<li>将 margin 换为 padding</li>
+<li>利用 <code>BFC</code> ，在 p 外层添加个一层 div，并在新添加的元素上添加样式（overflow: hidden;），创建新的BFC，这样两个p标签不属于同一个BFC，则自然不会再发生 margin 重叠问题。</li>
+</ol>
+<h3 id="首页白屏"><a href="#首页白屏" class="headerlink" title="首页白屏"></a>首页白屏</h3><p>现在多数都使用的为Vue、React和Angular三大框架其中之一，但它们有个共同的特点，均为 JS 驱动，所以在 JS 解析前，网页处于空白页，什么都不显示，这就是我们所说的白屏。</p>
+<p>解决方法</p>
+<ol>
+<li>SSR，服务端渲染，有明显的好处，对SEO友好，还可以加快网页打开速度。</li>
+<li>预渲染，插件 <code>prerender-spa-plugin</code>，编译阶段就将对应的页面渲染好，但是是没有数据的</li>
+<li>骨架图，数据还未加载出来时，但会显示出网页的大致骨架，相对友好。</li>
+</ol>
+<h3 id="函数柯里化"><a href="#函数柯里化" class="headerlink" title="函数柯里化"></a>函数柯里化</h3><p>柯里化，是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">curry</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = fn.<span class="property">length</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">bindFn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">arguments</span>.<span class="property">length</span> &lt; len) &#123;</span><br><span class="line">      <span class="keyword">return</span> bindFn.<span class="title function_">bind</span>(<span class="literal">null</span>, ...<span class="variable language_">arguments</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> fn.<span class="title function_">call</span>(<span class="literal">null</span>, ...<span class="variable language_">arguments</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a + b)</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原版</span></span><br><span class="line"><span class="title function_">add</span>(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">// 柯里化后</span></span><br><span class="line"><span class="keyword">var</span> curryAdd = <span class="title function_">curry</span>(add)</span><br><span class="line"><span class="title function_">curryAdd</span>(<span class="number">1</span>)(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="bind、apply和call"><a href="#bind、apply和call" class="headerlink" title="bind、apply和call"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">bind</a>、<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply</a>和<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call">call</a></h3><p><strong>func.bind(thisArg[, arg1[, arg2[, …]]])</strong></p>
+<p>调用函数后，返回绑定 <code>this</code> 之后的函数（以下为mdn文档中的案例），并不会执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable language_">module</span> = &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="number">42</span>,</span><br><span class="line">  <span class="attr">getX</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">x</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> unboundGetX = <span class="variable language_">module</span>.<span class="property">getX</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unboundGetX</span>()); <span class="comment">// 直接调用，this指向全局</span></span><br><span class="line"><span class="comment">// expected output: undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> boundGetX = unboundGetX.<span class="title function_">bind</span>(<span class="variable language_">module</span>); <span class="comment">// 绑定this为module，this指向moudle</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">boundGetX</span>());</span><br><span class="line"><span class="comment">// expected output: 42</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>func.apply(thisArg, [argsArray])</strong></p>
+<p><code>apply</code> 接受一个<strong>参数数组</strong> ，并会执行此函数，如果没有传递参数（或传入 <code>null</code> 、 <code>undefined</code>）则默认指向 <code>window</code> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> max = <span class="title class_">Math</span>.<span class="property">max</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, numbers);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(max);</span><br><span class="line"><span class="comment">// expected output: 7</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> min = <span class="title class_">Math</span>.<span class="property">min</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, numbers);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(min);</span><br><span class="line"><span class="comment">// expected output: 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>function.call(thisArg, arg1, arg2, …)</strong></p>
+<p> <code>call</code> 接受的是一个<strong>参数列表</strong> ，并会执行此函数，如果没有传递参数（或传入 <code>null</code> 、 <code>undefined</code>）则默认指向 <code>window </code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Product</span>(<span class="params">name, price</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">price</span> = price;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Food</span>(<span class="params">name, price</span>) &#123;</span><br><span class="line">  <span class="comment">// 将Product的this指向为Food，并传入参数</span></span><br><span class="line">  <span class="title class_">Product</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, name, price);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">category</span> = <span class="string">&#x27;food&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title class_">Food</span>(<span class="string">&#x27;cheese&#x27;</span>, <span class="number">5</span>).<span class="property">name</span>);</span><br><span class="line"><span class="comment">// expected output: &quot;cheese&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。"><a href="#如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。" class="headerlink" title="如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。"></a>如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>))</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>首先，执行第一行，将 <code>setTimeout</code> 添加到宏任务队列</li>
+<li>其次，执行第二行，然后进入死循环，页面卡死</li>
+<li>同步代码都没有执行完，自然是不会执行宏任务队列中的任务</li>
+</ul>
+<h3 id="浏览器和Node-事件循环机制区别"><a href="#浏览器和Node-事件循环机制区别" class="headerlink" title="浏览器和Node 事件循环机制区别"></a>浏览器和Node 事件循环机制区别</h3><p>浏览器和Node 环境下，microtask 任务队列的执行时机不同</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;start&#x27;</span>)</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children2&#x27;</span>)</span><br><span class="line">        <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children2-1&#x27;</span>)&#125;)</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children3&#x27;</span>)</span><br><span class="line">        <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children3-1&#x27;</span>)&#125;)</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">    <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children1&#x27;</span>)&#125;)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;end&#x27;</span>) </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上代码在node11以下版本的执行结果，执行完一个阶段的所有任务。</span></span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// children1</span></span><br><span class="line"><span class="comment">// children2</span></span><br><span class="line"><span class="comment">// children3</span></span><br><span class="line"><span class="comment">// children2-1</span></span><br><span class="line"><span class="comment">// children3-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上代码在node11及浏览器的执行结果(顺序执行宏任务和微任务)</span></span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// children1</span></span><br><span class="line"><span class="comment">// children2</span></span><br><span class="line"><span class="comment">// children2-1</span></span><br><span class="line"><span class="comment">// children3</span></span><br><span class="line"><span class="comment">// children3-1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Node完整循环机制"><a href="#Node完整循环机制" class="headerlink" title="Node完整循环机制"></a>Node完整循环机制</h4><blockquote>
+<p>引用官方解释文字和图片</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200706184516.png" alt="image-20200706184509079"></p>
+<h5 id="阶段概述"><a href="#阶段概述" class="headerlink" title="阶段概述"></a>阶段概述</h5><p><strong>定时器</strong>：本阶段执行已经被 setTimeout() 和 setInterval() 的调度回调函数。<br><strong>待定回调</strong>：执行延迟到下一个循环迭代的 I&#x2F;O 回调。<br><strong>idle, prepare</strong>：仅系统内部使用。<br><strong>轮询</strong>：检索新的 I&#x2F;O 事件;执行与 I&#x2F;O 相关的回调（几乎所有情况下，除了关闭的回调函数，那些由计时器和 setImmediate() 调度的之外），其余情况 node 将在适当的时候在此阻塞。<br><strong>检测</strong>：setImmediate() 回调函数在这里执行。<br><strong>关闭的回调函数</strong>：一些关闭的回调函数，如：socket.on(‘close’, …)。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>BFC</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2009/04/float_clearing.html">http://www.ruanyifeng.com/blog/2009/04/float_clearing.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/entry/59c3713a518825396f4f6969">https://juejin.im/entry/59c3713a518825396f4f6969</a></p>
+<p>面经</p>
+<p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/177482">https://www.nowcoder.com/discuss/177482</a></p>
+<p>浏览器和Node循环机制区别</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/26#issuecomment-469188501">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/26#issuecomment-469188501</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5c337ae06fb9a049bc4cd218#heading-0">https://juejin.im/post/5c337ae06fb9a049bc4cd218#heading-0</a></p>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/BFC/" rel="tag"># BFC</a>
+              <a href="/tags/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/" rel="tag"># 函数柯里化</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/js%E7%BC%96%E7%A8%8B%E9%A2%98/" rel="tag"># js编程题</a>
+              <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/" rel="tag"># 事件循环机制</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/28/%E6%8A%80%E6%9C%AF/em%E5%92%8Crem%E5%8C%BA%E5%88%AB/" rel="prev" title="em、rem和vw(vh)区别">
+      <i class="fa fa-chevron-left"></i> em、rem和vw(vh)区别
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/25/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/2-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%BA%8C%E5%A4%A9/" rel="next" title="备战校招第二天">
+      备战校招第二天 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC%EF%BC%88%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">BFC（块格式化上下文）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%96%E9%A1%B5%E7%99%BD%E5%B1%8F"><span class="nav-number">2.</span> <span class="nav-text">首页白屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">函数柯里化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind%E3%80%81apply%E5%92%8Ccall"><span class="nav-number">4.</span> <span class="nav-text">bind、apply和call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E9%98%BB%E5%A1%9E%E4%BA%86JS%E4%B8%AD%E7%9A%84%E4%B8%BB%E7%BA%BF%E7%A8%8B%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%EF%BC%8C%E5%B0%B1%E6%98%AF%E4%B8%8B%E9%9D%A2%E7%9A%84%E4%BB%A3%E7%A0%81%E3%80%82"><span class="nav-number">5.</span> <span class="nav-text">如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CNode-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E5%8C%BA%E5%88%AB"><span class="nav-number">6.</span> <span class="nav-text">浏览器和Node 事件循环机制区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Node%E5%AE%8C%E6%95%B4%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6"><span class="nav-number">6.1.</span> <span class="nav-text">Node完整循环机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E6%A6%82%E8%BF%B0"><span class="nav-number">6.1.1.</span> <span class="nav-text">阶段概述</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">7.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="popring"
+      src="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+  <p class="site-author-name" itemprop="name">popring</p>
+  <div class="site-description" itemprop="description">No description is best description.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/popring" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;popring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:koler778@gmail.com" title="E-Mail → mailto:koler778@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/277120110" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;277120110" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/10145341/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;10145341&#x2F;" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      
+      
+<div style="margin:  10px 0;">
+	<a target="_blank" rel="noopener" href="https://info.flagcounter.com/MQZk"><img src="https://s01.flagcounter.com/countxl/MQZk/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_6/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+</div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popring</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://popring.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://popring.github.io/2020/06/24/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/1-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%80%E5%A4%A9/";
+    this.page.identifier = "2020/06/24/备战校招/1-备战校招第一天/";
+    this.page.title = "备战校招第一天";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://popring.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

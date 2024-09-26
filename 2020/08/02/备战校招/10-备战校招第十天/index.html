@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"popring.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"swoopIn","sidebar":"bounceIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="面向对象实现继承 HTTP 协议类 通信类 安全类 渲染机制类 提升页面性能 错误监控">
+<meta property="og:type" content="article">
+<meta property="og:title" content="备战校招第十天">
+<meta property="og:url" content="https://popring.github.io/2020/08/02/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/10-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E5%A4%A9/index.html">
+<meta property="og:site_name" content="popring&#39;s Blog">
+<meta property="og:description" content="面向对象实现继承 HTTP 协议类 通信类 安全类 渲染机制类 提升页面性能 错误监控">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200802155816.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200802163318.png">
+<meta property="article:published_time" content="2020-08-02T02:54:37.000Z">
+<meta property="article:modified_time" content="2024-09-26T15:07:49.065Z">
+<meta property="article:author" content="popring">
+<meta property="article:tag" content="继承">
+<meta property="article:tag" content="安全">
+<meta property="article:tag" content="渲染机制">
+<meta property="article:tag" content="性能">
+<meta property="article:tag" content="监控">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200802155816.png">
+
+<link rel="canonical" href="https://popring.github.io/2020/08/02/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/10-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E5%A4%A9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>备战校招第十天 | popring's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WN0V7KJRVS');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f869367a20c50f7b23f96c1e4169d803";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div><!--
+<div>
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
+		<span>毕业倒计时：</span>
+		<span id="countDown"></span>
+	</p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		graduate();
+		function graduate() {
+			var nowDate = Date.parse(new Date());
+			var endDate = Date.parse(new Date('2021-07-01'));
+			var diff = Math.abs(endDate - nowDate);
+
+			var str = calcTime(diff);
+			document.querySelector('#countDown').innerText = str;
+			function calcTime (mss) {
+				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
+				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+				var minutes = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / (1000 * 60)));
+				var seconds = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / 1000 % 60));
+				// return `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+				return days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+			};
+
+			function toTwoFix(time) {
+				return time < 10 ? '0' + time : time;
+			}
+		}
+
+
+		setInterval(function() {
+			graduate();
+		},1000);
+	})();
+</script>
+-->
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">popring's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">何时才能财富自由</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2020/08/02/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/10-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          备战校招第十天
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-02 10:54:37" itemprop="dateCreated datePublished" datetime="2020-08-02T10:54:37+08:00">2020-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%87%E6%88%98/" itemprop="url" rel="index"><span itemprop="name">备战</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/08/02/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/10-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E5%A4%A9/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/02/备战校招/10-备战校招第十天/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>面向对象实现继承</li>
+<li>HTTP 协议类</li>
+<li>通信类</li>
+<li>安全类</li>
+<li>渲染机制类</li>
+<li>提升页面性能</li>
+<li>错误监控</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+
+
+<h2 id="面向对象实现继承"><a href="#面向对象实现继承" class="headerlink" title="面向对象实现继承"></a>面向对象实现继承</h2><h3 id="第一种：借助构造函数实现"><a href="#第一种：借助构造函数实现" class="headerlink" title="第一种：借助构造函数实现"></a>第一种：借助构造函数实现</h3><blockquote>
+<p> 可以调用父类构造函数，但获取不到父类原型对象上的方法和属性</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">P1</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;P1&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable constant_">P1</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">say</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;say hello&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">C1</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable constant_">P1</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">type</span> = <span class="string">&quot;c1&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o1 = <span class="keyword">new</span> <span class="title function_">C1</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o1 :&gt;&gt; &quot;</span>, o1);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;o1.say :&gt;&gt; &#x27;</span>, o1.<span class="title function_">say</span>());</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二种：利用原型链实现"><a href="#第二种：利用原型链实现" class="headerlink" title="第二种：利用原型链实现"></a>第二种：利用原型链实现</h3><blockquote>
+<p>缺点：原型链中的原型对象是共用的。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">P2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;P2&quot;</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">play</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">C2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">type</span> = <span class="string">&quot;c2&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable constant_">C2</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title function_">P2</span>();</span><br><span class="line"><span class="keyword">var</span> o2 = <span class="keyword">new</span> <span class="title function_">C2</span>();</span><br><span class="line"><span class="keyword">var</span> o3 = <span class="keyword">new</span> <span class="title function_">C2</span>();</span><br><span class="line"><span class="comment">// 理想状态应该是只有 o2.play 发生变化，但实际上 o3.play 也发生了变化</span></span><br><span class="line">o2.<span class="property">play</span>.<span class="title function_">push</span>(<span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o2 :&gt;&gt; &quot;</span>, o2);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o3 :&gt;&gt; &quot;</span>, o3);</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三种：组合继承"><a href="#第三种：组合继承" class="headerlink" title="第三种：组合继承"></a>第三种：组合继承</h3><blockquote>
+<p>将前两种方法组合，解决了之前的缺点，但父类被调用了两次</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">P3</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;P3&quot;</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">play</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">C3</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 父类调用第一次</span></span><br><span class="line">  <span class="variable constant_">P3</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>)</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">type</span> = <span class="string">&quot;C3&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 父类调用第二次</span></span><br><span class="line"><span class="variable constant_">C3</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title function_">P3</span>();</span><br><span class="line"><span class="keyword">var</span> o4 = <span class="keyword">new</span> <span class="title function_">C3</span>();</span><br><span class="line"><span class="keyword">var</span> o5 = <span class="keyword">new</span> <span class="title function_">C3</span>();</span><br><span class="line">o4.<span class="property">play</span>.<span class="title function_">push</span>(<span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o4 :&gt;&gt; &quot;</span>, o4);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o5 :&gt;&gt; &quot;</span>, o5);</span><br></pre></td></tr></table></figure>
+
+<h3 id="第四种：组合继承优化1"><a href="#第四种：组合继承优化1" class="headerlink" title="第四种：组合继承优化1"></a>第四种：组合继承优化1</h3><blockquote>
+<p>无法判断是子类创建的对象还是父类创建的对象</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">P4</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;P4&quot;</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">play</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">C4</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable constant_">P4</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>)</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">type</span> = <span class="string">&quot;C4&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable constant_">C4</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="variable constant_">P4</span>.<span class="property"><span class="keyword">prototype</span></span>;</span><br><span class="line"><span class="keyword">var</span> o6 = <span class="keyword">new</span> <span class="title function_">C4</span>();</span><br><span class="line"><span class="keyword">var</span> o7 = <span class="keyword">new</span> <span class="title function_">C4</span>();</span><br><span class="line">o6.<span class="property">play</span>.<span class="title function_">push</span>(<span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o6 :&gt;&gt; &quot;</span>, o6);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o7 :&gt;&gt; &quot;</span>, o7);</span><br></pre></td></tr></table></figure>
+
+<h3 id="第五种：组合继承优化2"><a href="#第五种：组合继承优化2" class="headerlink" title="第五种：组合继承优化2"></a>第五种：组合继承优化2</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">P5</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;P5&quot;</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">play</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">C5</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable constant_">P5</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>)</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">type</span> = <span class="string">&quot;C5&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable constant_">C5</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="variable constant_">P5</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line"><span class="variable constant_">C5</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="variable constant_">C5</span></span><br><span class="line"><span class="keyword">var</span> o8 = <span class="keyword">new</span> <span class="title function_">C5</span>();</span><br><span class="line"><span class="keyword">var</span> o9 = <span class="keyword">new</span> <span class="title function_">C5</span>();</span><br><span class="line">o8.<span class="property">play</span>.<span class="title function_">push</span>(<span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o8 :&gt;&gt; &quot;</span>, o8);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o9 :&gt;&gt; &quot;</span>, o9);</span><br></pre></td></tr></table></figure>
+
+<h3 id="第六种：ES6-class-定义"><a href="#第六种：ES6-class-定义" class="headerlink" title="第六种：ES6 class 定义"></a>第六种：ES6 class 定义</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">P6</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;P6&quot;</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">play</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C6</span> <span class="keyword">extends</span> <span class="title class_ inherited__">P6</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">type</span> = <span class="string">&quot;C6&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o10 = <span class="keyword">new</span> <span class="title function_">C6</span>()</span><br><span class="line"><span class="keyword">var</span> o11 = <span class="keyword">new</span> <span class="title function_">C6</span>()</span><br><span class="line">o10.<span class="property">play</span>.<span class="title function_">push</span>(<span class="number">4</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;o10 :&gt;&gt; &#x27;</span>, o10);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;o11 :&gt;&gt; &#x27;</span>, o11);</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTP协议类"><a href="#HTTP协议类" class="headerlink" title="HTTP协议类"></a>HTTP协议类</h2><h3 id="http主要特点"><a href="#http主要特点" class="headerlink" title="http主要特点"></a>http主要特点</h3><ul>
+<li>简单</li>
+<li>快速</li>
+<li>无连接</li>
+<li>无状态</li>
+</ul>
+<h3 id="http报文组成部分"><a href="#http报文组成部分" class="headerlink" title="http报文组成部分"></a>http报文组成部分</h3><p>请求报文</p>
+<ul>
+<li>请求行：http方法、 页面地址、 http协议以及版本</li>
+<li>请求头：key-value值</li>
+<li>空行：分割请求头和请求体</li>
+<li>请求体</li>
+</ul>
+<p>响应报文</p>
+<ul>
+<li>状态行： http协议版本、状态码</li>
+<li>响应头：和请求头类似</li>
+<li>空行</li>
+<li>响应体</li>
+</ul>
+<h3 id="http-方法"><a href="#http-方法" class="headerlink" title="http 方法"></a>http 方法</h3><ul>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>DELETE</li>
+<li>HEAD</li>
+</ul>
+<h3 id="get和post区别"><a href="#get和post区别" class="headerlink" title="get和post区别"></a>get和post区别</h3><ul>
+<li>在浏览器回退时，get无害，post则会再次提交请求</li>
+<li>url地址，get可以被收藏，post不行</li>
+<li>缓存，get会主动缓存，post不回，需手动设置</li>
+<li>get请求只能进习惯url编码，post支持多种编码</li>
+<li>get请求会在历史记录中，post不会</li>
+<li>get请求在URL中传递参数有长度限制，post没有限制</li>
+<li>参数的数据类型，get只接受ASCII自负，post没有限制</li>
+<li>get比post更不安全，因为参数直接暴露在url中，所以不能传递敏感信息</li>
+<li>get参数通过url传递，post放在请求体中</li>
+</ul>
+<h3 id="http-状态码"><a href="#http-状态码" class="headerlink" title="http 状态码"></a>http 状态码</h3><p>1xx：指示信息，表示请求已接受，继续处理</p>
+<p>2xx：成功，表示请求已成功被接收</p>
+<p>3xx：重定向</p>
+<p>4xx：客户端错误</p>
+<p>5xx：服务器错误</p>
+<h2 id="通信类"><a href="#通信类" class="headerlink" title="通信类"></a>通信类</h2><h3 id="跨域通信"><a href="#跨域通信" class="headerlink" title="跨域通信"></a>跨域通信</h3><ul>
+<li>JSONP</li>
+<li>Hash</li>
+<li>PostMessage</li>
+<li>Websocket</li>
+<li>CORS</li>
+</ul>
+<h2 id="安全类"><a href="#安全类" class="headerlink" title="安全类"></a>安全类</h2><h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><p>跨站脚本攻击</p>
+<ul>
+<li>存储型XSS：跨站代码存储在数据库</li>
+<li>反射型XSS：恶意代码在url中</li>
+<li>DOM型XSS：DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。</li>
+</ul>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>页面注入脚本，执行恶意  js 代码</p>
+<h4 id="防御措施"><a href="#防御措施" class="headerlink" title="防御措施"></a>防御措施</h4><ul>
+<li>输入内容过滤</li>
+<li>转译html</li>
+<li>cookie设置http-only，防止恶意获取cookie</li>
+<li>少用直接渲染或者执行html的js代码，比如：<code>document.write()</code>、<code>innerHTML</code>、<code>vue中的v-html</code>等</li>
+</ul>
+<h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><p>跨站请求伪造</p>
+<h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>用户登陆A网站，A网站下发cookie。用户登陆B网站，B网站诱导用户点击链接，用户点击链接，访问A网站并携带cookie。</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200802155816.png" alt="image-20200802155816883"></p>
+<h4 id="防御措施-1"><a href="#防御措施-1" class="headerlink" title="防御措施"></a>防御措施</h4><ul>
+<li>token 验证</li>
+<li>referer 验证</li>
+</ul>
+<h2 id="渲染机制类"><a href="#渲染机制类" class="headerlink" title="渲染机制类"></a>渲染机制类</h2><h3 id="DOCTYPE"><a href="#DOCTYPE" class="headerlink" title="DOCTYPE"></a>DOCTYPE</h3><blockquote>
+<p> DTD是 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/XML">XML</a>文件的<strong>文档类型定义</strong>（Document Type Definition）可以看成一个或者多个XML文件的模板，在这里可以定义XML文件中的元素、元素的属性、元素的排列方式、元素包含的内容等等。</p>
+</blockquote>
+<p><code>&lt;!DOCTYPE&gt;</code> 声明必须是 HTML 文档的第一行，位于 <html> 标签之前。</p>
+<p><code>&lt;!DOCTYPE&gt;</code> 声明不是 HTML 标签；它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令。</p>
+<h4 id="html5"><a href="#html5" class="headerlink" title="html5"></a>html5</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="html4-01-strict"><a href="#html4-01-strict" class="headerlink" title="html4.01 strict"></a>html4.01 strict</h4><p>该 DTD 包含所有 HTML 元素和属性，但不包括展示性的和弃用的元素（比如 font）。不允许框架集（Framesets）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">HTML</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/html4/strict.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="HTML-4-01-Transitional"><a href="#HTML-4-01-Transitional" class="headerlink" title="HTML 4.01 Transitional"></a>HTML 4.01 Transitional</h4><p>该 DTD 包含所有 HTML 元素和属性，包括展示性的和弃用的元素（比如 font）。允许框架集（Framesets）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">HTML</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h3><p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200802163318.png" alt="image-20200802163318185"></p>
+<h4 id="Reflow-重排"><a href="#Reflow-重排" class="headerlink" title="Reflow 重排"></a>Reflow 重排</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>当<code>Render Tree</code>中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为重排（又称为回流）。</p>
+<h5 id="触发reflow"><a href="#触发reflow" class="headerlink" title="触发reflow"></a>触发reflow</h5><ul>
+<li>增加、删除、修改DOM节点是，会导致reflow或repaint</li>
+<li>移动DOM位置或者动画执行时</li>
+<li>修改CSS样式时</li>
+<li>Resize 窗口时，或者滚动的时候</li>
+<li>修改网页的默认字体时</li>
+</ul>
+<h4 id="Repaint-重绘"><a href="#Repaint-重绘" class="headerlink" title="Repaint 重绘"></a>Repaint 重绘</h4><h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><p>当页面中元素样式的改变并不影响它在文档流中的位置时（例如：<code>color</code>、<code>background-color</code>、<code>visibility</code>等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。</p>
+<h5 id="触发repaint"><a href="#触发repaint" class="headerlink" title="触发repaint"></a>触发repaint</h5><p>DOM改动</p>
+<p>CSS改动</p>
+<h5 id="减少repaint频率"><a href="#减少repaint频率" class="headerlink" title="减少repaint频率"></a>减少repaint频率</h5><ul>
+<li>使用 DocumentFragment</li>
+<li>virtual dom</li>
+</ul>
+<h2 id="提升页面性能"><a href="#提升页面性能" class="headerlink" title="提升页面性能"></a>提升页面性能</h2><h3 id="资源压缩合并，减少http请求"><a href="#资源压缩合并，减少http请求" class="headerlink" title="资源压缩合并，减少http请求"></a>资源压缩合并，减少http请求</h3><h3 id="非核心代码异步加载"><a href="#非核心代码异步加载" class="headerlink" title="非核心代码异步加载"></a>非核心代码异步加载</h3><ul>
+<li>动态脚本加载</li>
+<li>defer：html解析完之后执行，如果是多个则按照顺序执行</li>
+<li>async：加载完之后立即执行，如果是多个，执行顺序与加载顺序无关</li>
+</ul>
+<h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h3><p>请查看备战校招第三天</p>
+<h3 id="CDN加速"><a href="#CDN加速" class="headerlink" title="CDN加速"></a>CDN加速</h3><h3 id="预解析DNS"><a href="#预解析DNS" class="headerlink" title="预解析DNS"></a>预解析DNS</h3><p>浏览器默认会进行<code>a标签</code>dns解析，但https协议的可能会默认不解析，下面这行代码强制开启<code>a标签</code>dns解析</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;x-dns-prefetch-control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;on&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>预解析</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;dns-prefetch&quot;</span> <span class="attr">href</span>=<span class="string">&quot;//host_name_to_prefetch.com&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="错误监控"><a href="#错误监控" class="headerlink" title="错误监控"></a>错误监控</h2><h3 id="前端错误的分类"><a href="#前端错误的分类" class="headerlink" title="前端错误的分类"></a>前端错误的分类</h3><ul>
+<li>即时运行错误</li>
+<li>资源加载错误</li>
+</ul>
+<h3 id="错误的捕获方式"><a href="#错误的捕获方式" class="headerlink" title="错误的捕获方式"></a>错误的捕获方式</h3><h4 id="运行时错误捕获方式"><a href="#运行时错误捕获方式" class="headerlink" title="运行时错误捕获方式"></a>运行时错误捕获方式</h4><ul>
+<li>try..catch</li>
+<li>window.onerror</li>
+</ul>
+<h4 id="资源加载错误"><a href="#资源加载错误" class="headerlink" title="资源加载错误"></a>资源加载错误</h4><ul>
+<li>object.onerror</li>
+<li>performance.getEntries()</li>
+<li>window.Error 事件捕获（冒泡获取不到）</li>
+</ul>
+<h3 id="上报错误的基本原理"><a href="#上报错误的基本原理" class="headerlink" title="上报错误的基本原理"></a>上报错误的基本原理</h3><ul>
+<li><p><code>Ajax</code> 通信方式上报</p>
+</li>
+<li><p>利用  <code>Image</code> 对象上报</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">new</span> <span class="title class_">Image</span>()).<span class="property">src</span>=<span class="string">&quot;https://baidu.com/uploadError?type=1&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%A7%E6%89%BF/" rel="tag"># 继承</a>
+              <a href="/tags/%E5%AE%89%E5%85%A8/" rel="tag"># 安全</a>
+              <a href="/tags/%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/" rel="tag"># 渲染机制</a>
+              <a href="/tags/%E6%80%A7%E8%83%BD/" rel="tag"># 性能</a>
+              <a href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag"># 监控</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/01/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/9-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B9%9D%E5%A4%A9/" rel="prev" title="备战校招第九天">
+      <i class="fa fa-chevron-left"></i> 备战校招第九天
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/05/%E6%8A%80%E6%9C%AF/mac-%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" rel="next" title="mac 使用技巧">
+      mac 使用技巧 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF"><span class="nav-number">1.</span> <span class="nav-text">面向对象实现继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%EF%BC%9A%E5%80%9F%E5%8A%A9%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.</span> <span class="nav-text">第一种：借助构造函数实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">第二种：利用原型链实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%A7%8D%EF%BC%9A%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="nav-number">1.3.</span> <span class="nav-text">第三种：组合继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%A7%8D%EF%BC%9A%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF%E4%BC%98%E5%8C%961"><span class="nav-number">1.4.</span> <span class="nav-text">第四种：组合继承优化1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%A7%8D%EF%BC%9A%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF%E4%BC%98%E5%8C%962"><span class="nav-number">1.5.</span> <span class="nav-text">第五种：组合继承优化2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%A7%8D%EF%BC%9AES6-class-%E5%AE%9A%E4%B9%89"><span class="nav-number">1.6.</span> <span class="nav-text">第六种：ES6 class 定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">HTTP协议类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">http主要特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E6%8A%A5%E6%96%87%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">2.2.</span> <span class="nav-text">http报文组成部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">http 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get%E5%92%8Cpost%E5%8C%BA%E5%88%AB"><span class="nav-number">2.4.</span> <span class="nav-text">get和post区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">2.5.</span> <span class="nav-text">http 状态码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">通信类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F%E9%80%9A%E4%BF%A1"><span class="nav-number">3.1.</span> <span class="nav-text">跨域通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">安全类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS"><span class="nav-number">4.1.</span> <span class="nav-text">XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">4.1.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B2%E5%BE%A1%E6%8E%AA%E6%96%BD"><span class="nav-number">4.1.2.</span> <span class="nav-text">防御措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF"><span class="nav-number">4.2.</span> <span class="nav-text">CSRF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B2%E5%BE%A1%E6%8E%AA%E6%96%BD-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">防御措施</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%E7%B1%BB"><span class="nav-number">5.</span> <span class="nav-text">渲染机制类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOCTYPE"><span class="nav-number">5.1.</span> <span class="nav-text">DOCTYPE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#html5"><span class="nav-number">5.1.1.</span> <span class="nav-text">html5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#html4-01-strict"><span class="nav-number">5.1.2.</span> <span class="nav-text">html4.01 strict</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-4-01-Transitional"><span class="nav-number">5.1.3.</span> <span class="nav-text">HTML 4.01 Transitional</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B"><span class="nav-number">5.2.</span> <span class="nav-text">浏览器渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reflow-%E9%87%8D%E6%8E%92"><span class="nav-number">5.2.1.</span> <span class="nav-text">Reflow 重排</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">5.2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91reflow"><span class="nav-number">5.2.1.2.</span> <span class="nav-text">触发reflow</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Repaint-%E9%87%8D%E7%BB%98"><span class="nav-number">5.2.2.</span> <span class="nav-text">Repaint 重绘</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91repaint"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">触发repaint</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%87%8F%E5%B0%91repaint%E9%A2%91%E7%8E%87"><span class="nav-number">5.2.2.3.</span> <span class="nav-text">减少repaint频率</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E5%8D%87%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD"><span class="nav-number">6.</span> <span class="nav-text">提升页面性能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9%E5%90%88%E5%B9%B6%EF%BC%8C%E5%87%8F%E5%B0%91http%E8%AF%B7%E6%B1%82"><span class="nav-number">6.1.</span> <span class="nav-text">资源压缩合并，减少http请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD"><span class="nav-number">6.2.</span> <span class="nav-text">非核心代码异步加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98"><span class="nav-number">6.3.</span> <span class="nav-text">浏览器缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDN%E5%8A%A0%E9%80%9F"><span class="nav-number">6.4.</span> <span class="nav-text">CDN加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%A7%A3%E6%9E%90DNS"><span class="nav-number">6.5.</span> <span class="nav-text">预解析DNS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%9B%91%E6%8E%A7"><span class="nav-number">7.</span> <span class="nav-text">错误监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E9%94%99%E8%AF%AF%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">7.1.</span> <span class="nav-text">前端错误的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E6%8D%95%E8%8E%B7%E6%96%B9%E5%BC%8F"><span class="nav-number">7.2.</span> <span class="nav-text">错误的捕获方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E9%94%99%E8%AF%AF%E6%8D%95%E8%8E%B7%E6%96%B9%E5%BC%8F"><span class="nav-number">7.2.1.</span> <span class="nav-text">运行时错误捕获方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E9%94%99%E8%AF%AF"><span class="nav-number">7.2.2.</span> <span class="nav-text">资源加载错误</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E6%8A%A5%E9%94%99%E8%AF%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">7.3.</span> <span class="nav-text">上报错误的基本原理</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="popring"
+      src="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+  <p class="site-author-name" itemprop="name">popring</p>
+  <div class="site-description" itemprop="description">No description is best description.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/popring" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;popring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:koler778@gmail.com" title="E-Mail → mailto:koler778@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/277120110" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;277120110" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/10145341/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;10145341&#x2F;" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      
+      
+<div style="margin:  10px 0;">
+	<a target="_blank" rel="noopener" href="https://info.flagcounter.com/MQZk"><img src="https://s01.flagcounter.com/countxl/MQZk/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_6/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+</div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popring</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://popring.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://popring.github.io/2020/08/02/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/10-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E5%A4%A9/";
+    this.page.identifier = "2020/08/02/备战校招/10-备战校招第十天/";
+    this.page.title = "备战校招第十天";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://popring.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

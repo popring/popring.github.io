@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"popring.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"swoopIn","sidebar":"bounceIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="CSS模型 标准盒模型和IE盒模型 设置两种模型 获取盒模型的宽高 BFC   DOM事件类 DOM事件级别 DOM事件模型 事件 捕获&#x2F;冒泡 流程 Event 事件   原型链类 创建对象的几种方法 原型、构造函数、原型链、实例关系 instanceof 原理 new 运算符 模拟 new">
+<meta property="og:type" content="article">
+<meta property="og:title" content="备战校招第九天">
+<meta property="og:url" content="https://popring.github.io/2020/08/01/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/9-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B9%9D%E5%A4%A9/index.html">
+<meta property="og:site_name" content="popring&#39;s Blog">
+<meta property="og:description" content="CSS模型 标准盒模型和IE盒模型 设置两种模型 获取盒模型的宽高 BFC   DOM事件类 DOM事件级别 DOM事件模型 事件 捕获&#x2F;冒泡 流程 Event 事件   原型链类 创建对象的几种方法 原型、构造函数、原型链、实例关系 instanceof 原理 new 运算符 模拟 new">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200801151343.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200801151353.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200801185112.png">
+<meta property="article:published_time" content="2020-08-01T03:00:34.000Z">
+<meta property="article:modified_time" content="2024-09-26T15:07:49.066Z">
+<meta property="article:author" content="popring">
+<meta property="article:tag" content="BFC">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="盒模型">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200801151343.jpg">
+
+<link rel="canonical" href="https://popring.github.io/2020/08/01/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/9-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B9%9D%E5%A4%A9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>备战校招第九天 | popring's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WN0V7KJRVS');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f869367a20c50f7b23f96c1e4169d803";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div><!--
+<div>
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
+		<span>毕业倒计时：</span>
+		<span id="countDown"></span>
+	</p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		graduate();
+		function graduate() {
+			var nowDate = Date.parse(new Date());
+			var endDate = Date.parse(new Date('2021-07-01'));
+			var diff = Math.abs(endDate - nowDate);
+
+			var str = calcTime(diff);
+			document.querySelector('#countDown').innerText = str;
+			function calcTime (mss) {
+				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
+				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+				var minutes = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / (1000 * 60)));
+				var seconds = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / 1000 % 60));
+				// return `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+				return days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+			};
+
+			function toTwoFix(time) {
+				return time < 10 ? '0' + time : time;
+			}
+		}
+
+
+		setInterval(function() {
+			graduate();
+		},1000);
+	})();
+</script>
+-->
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">popring's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">何时才能财富自由</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2020/08/01/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/9-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B9%9D%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          备战校招第九天
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-01 11:00:34" itemprop="dateCreated datePublished" datetime="2020-08-01T11:00:34+08:00">2020-08-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%87%E6%88%98/" itemprop="url" rel="index"><span itemprop="name">备战</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/08/01/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/9-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B9%9D%E5%A4%A9/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/01/备战校招/9-备战校招第九天/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>CSS模型<ul>
+<li>标准盒模型和IE盒模型</li>
+<li>设置两种模型</li>
+<li>获取盒模型的宽高</li>
+<li>BFC</li>
+</ul>
+</li>
+<li>DOM事件类<ul>
+<li>DOM事件级别</li>
+<li>DOM事件模型</li>
+<li>事件 捕获&#x2F;冒泡 流程</li>
+<li>Event 事件</li>
+</ul>
+</li>
+<li>原型链类<ul>
+<li>创建对象的几种方法</li>
+<li>原型、构造函数、原型链、实例关系</li>
+<li>instanceof 原理</li>
+<li>new 运算符</li>
+<li>模拟 new</li>
+</ul>
+</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+
+
+<h2 id="CSS-盒模型"><a href="#CSS-盒模型" class="headerlink" title="CSS 盒模型"></a>CSS 盒模型</h2><h3 id="两种模型介绍"><a href="#两种模型介绍" class="headerlink" title="两种模型介绍"></a>两种模型介绍</h3><p><a href="./%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%BA%8C%E5%A4%A9.md">之前文章</a></p>
+<p>标准模型</p>
+<p>width（总宽度） &#x3D; width（内容宽度）</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200801151343.jpg" alt="img"></p>
+<p>IE模型</p>
+<p>width（总宽度） &#x3D; width（内容宽度） + padding + border</p>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200801151353.jpg" alt="img"></p>
+<h3 id="设置两种模型"><a href="#设置两种模型" class="headerlink" title="设置两种模型"></a>设置两种模型</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 标准盒子模型，大多数浏览器默认设置 */</span></span><br><span class="line"><span class="attribute">box-sizing</span>: content-box;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* IE盒子模型 */</span></span><br><span class="line"><span class="attribute">box-sizing</span>: border-box;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="js获取盒模型的宽高"><a href="#js获取盒模型的宽高" class="headerlink" title="js获取盒模型的宽高"></a>js获取盒模型的宽高</h3><blockquote>
+<p>样式导入的方式有三种</p>
+<ul>
+<li>通过 link 标签外联</li>
+<li>style标签</li>
+<li>内联样式（元素内添加style属性）</li>
+</ul>
+</blockquote>
+<h4 id="dom-style-width-height"><a href="#dom-style-width-height" class="headerlink" title="dom.style.width&#x2F;height"></a>dom.style.width&#x2F;height</h4><p>只能取出内联样式的属性，也就表示只能获取到内联属性的宽和高，对于使用其他两种方式导入获取不到</p>
+<h4 id="Element-currentStyle-width-height"><a href="#Element-currentStyle-width-height" class="headerlink" title="Element.currentStyle.width&#x2F;height"></a>Element.currentStyle.width&#x2F;height</h4><p>可以获取到即使运行的结果，但只支持IE</p>
+<h4 id="Window-getComputedStyle-dom-width-height"><a href="#Window-getComputedStyle-dom-width-height" class="headerlink" title="Window.getComputedStyle(dom).width&#x2F;height"></a>Window.getComputedStyle(dom).width&#x2F;height</h4><p>等同于上面的 <code>Element.currentStyle.width/height</code>，但兼容firefox、chrome</p>
+<h4 id="Element-getBoundingClientRect-width-height"><a href="#Element-getBoundingClientRect-width-height" class="headerlink" title="Element.getBoundingClientRect().width&#x2F;height"></a>Element.getBoundingClientRect().width&#x2F;height</h4><p>方法返回元素的大小及其相对于视口的位置。</p>
+<h3 id="BFC（块格式化上下文）"><a href="#BFC（块格式化上下文）" class="headerlink" title="BFC（块格式化上下文）"></a>BFC（块格式化上下文）</h3><p><a href="%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%80%E5%A4%A9.md">之前的总结</a></p>
+<p>与BFC相对应的还有IFC（内联格式化上下文）、GFC（网格格式化上下文 ）、FFC（自适应格式化上下文）</p>
+<h4 id="BFC基本概念"><a href="#BFC基本概念" class="headerlink" title="BFC基本概念"></a>BFC基本概念</h4><p>块格式化上下文</p>
+<h4 id="BFC原理"><a href="#BFC原理" class="headerlink" title="BFC原理"></a>BFC原理</h4><ul>
+<li>在BFC元素垂直方向会发生边距重叠</li>
+<li>BFC元素的边距不会与浮动元素的边距重叠 </li>
+<li>BFC元素是一个独立的容器，外面元素不回影响内部的元素，里面的元素也不回影响外面的元素</li>
+<li>计算BFC元素高度时，浮动元素 也会参加计算</li>
+</ul>
+<h4 id="如何创建BFC"><a href="#如何创建BFC" class="headerlink" title="如何创建BFC"></a>如何创建BFC</h4><p><a href="%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%80%E5%A4%A9.md">之前的总结</a></p>
+<h4 id="BFC使用场景"><a href="#BFC使用场景" class="headerlink" title="BFC使用场景"></a>BFC使用场景</h4><ul>
+<li>margin 重叠问题</li>
+<li>清除浮动</li>
+</ul>
+<h2 id="DOM事件类"><a href="#DOM事件类" class="headerlink" title="DOM事件类"></a>DOM事件类</h2><h3 id="DOM事件级别"><a href="#DOM事件级别" class="headerlink" title="DOM事件级别"></a>DOM事件级别</h3><h4 id="DOM0"><a href="#DOM0" class="headerlink" title="DOM0"></a>DOM0</h4><p>定义方式为 js 中的 <code>element.onclick = function() &#123;&#125;</code>，或者在html标签中使用 <code>onclick</code> 属性定义。</p>
+<h4 id="DOM1"><a href="#DOM1" class="headerlink" title="DOM1"></a>DOM1</h4><blockquote>
+<p>没有涉及和DOM事件相关的</p>
+</blockquote>
+<h4 id="DOM2"><a href="#DOM2" class="headerlink" title="DOM2"></a>DOM2</h4><p>element.addEventListener(‘click’, function() {}, false)</p>
+<h4 id="DOM3"><a href="#DOM3" class="headerlink" title="DOM3"></a>DOM3</h4><blockquote>
+<p>添加鼠标键盘等事件</p>
+</blockquote>
+<p>element.addEventListener(‘keyup’, function() {}, false)</p>
+<h3 id="DOM事件模型"><a href="#DOM事件模型" class="headerlink" title="DOM事件模型"></a>DOM事件模型</h3><h4 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h4><ul>
+<li><p>执行顺序，从上往下</p>
+</li>
+<li><p>定义事件时，addEventListener 的第三个参数为是否捕获事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span>&#123;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h4><ul>
+<li><p>执行顺序，从下往上</p>
+</li>
+<li><p>阻止继续冒泡</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">  event.<span class="title function_">stopPropagation</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="事件捕获流程"><a href="#事件捕获流程" class="headerlink" title="事件捕获流程"></a>事件捕获流程</h3><blockquote>
+<p>冒泡的流程与之相反</p>
+</blockquote>
+<p>window - document - html - body - xxx - 目标元素</p>
+<h3 id="Event对象的常见应用"><a href="#Event对象的常见应用" class="headerlink" title="Event对象的常见应用"></a>Event对象的常见应用</h3><p>event.preventDefault()</p>
+<blockquote>
+<p>阻止默认行为（事件）</p>
+</blockquote>
+<p>event.stopPropagation()</p>
+<blockquote>
+<p>阻止冒泡</p>
+</blockquote>
+<p>event.stopImmediatePropagation()</p>
+<blockquote>
+<p>阻止click事件冒泡,并且阻止当前元素上绑定的其他同类事件的事件监听函数的执行.</p>
+</blockquote>
+<p>event.currentTarget</p>
+<blockquote>
+<p>指向事件绑定的元素</p>
+</blockquote>
+<p>event.target</p>
+<blockquote>
+<p>事件触发的元素</p>
+</blockquote>
+<h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><h4 id="new-Event-typeArg-eventInit"><a href="#new-Event-typeArg-eventInit" class="headerlink" title="new Event(typeArg, eventInit);"></a>new Event(typeArg, eventInit);</h4><ul>
+<li>dispatchEvent 触发事件</li>
+</ul>
+<h4 id="new-CustomEvent-typeArg-customEventInit"><a href="#new-CustomEvent-typeArg-customEventInit" class="headerlink" title="new CustomEvent(typeArg, customEventInit);"></a>new CustomEvent(typeArg, customEventInit);</h4><ul>
+<li>dispatchEvent(event); 触发事件</li>
+</ul>
+<h3 id="原型链类"><a href="#原型链类" class="headerlink" title="原型链类"></a>原型链类</h3><h4 id="创建对象的几种方法"><a href="#创建对象的几种方法" class="headerlink" title="创建对象的几种方法"></a>创建对象的几种方法</h4><p>第一种 字面量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123;name : <span class="string">&#x27;o1&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二种（与第一种属于一类 ）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o2 = <span class="keyword">new</span> <span class="title class_">Object</span>(&#123;<span class="attr">name</span>: <span class="string">&#x27;o1&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>第三种 通过构造函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> M = <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o3 = <span class="keyword">new</span> <span class="title function_">M</span>(<span class="string">&#x27;o3&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>第四种 Object.create</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> P = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;o4&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o4 = <span class="title class_">Object</span>.<span class="title function_">create</span>(P)</span><br></pre></td></tr></table></figure>
+
+<h4 id="原型、构造函数、原型链、实例关系"><a href="#原型、构造函数、原型链、实例关系" class="headerlink" title="原型、构造函数、原型链、实例关系"></a>原型、构造函数、原型链、实例关系</h4><p>以上面的第三种举例</p>
+<ul>
+<li>构造函数为 M</li>
+<li>原型对象为 M.prototype</li>
+<li>实例为 o3</li>
+<li>原型对象的原型对象 <code>o3.__proto__.__proto__</code></li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/34183746/answer/58155878">总结</a></p>
+<ol>
+<li>对象有属性__proto__,指向该对象的构造函数的原型对象。</li>
+<li>方法除了有属性__proto__,还有属性prototype，prototype指向该方法的原型对象。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">mdn 总结</a></p>
+<p>每个实例对象（ object ）都有一个私有属性（称之为 <code>__proto__</code> ）指向它的构造函数的原型对象（<strong>prototype</strong> ）。该原型对象也有一个自己的原型对象( <code>__proto__</code> ) ，层层向上直到一个对象的原型对象为 <code>null</code>。根据定义，<code>null</code> 没有原型，并作为这个<strong>原型链</strong>中的最后一个环节。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200801185112.png" alt="image-20200801185112618"></p>
+<h4 id="instanceof-原理"><a href="#instanceof-原理" class="headerlink" title="instanceof 原理"></a>instanceof 原理</h4><blockquote>
+<p>mdn 文档解释这一句话解释的很清楚。</p>
+</blockquote>
+<p><strong><code>instanceof</code></strong> <strong>运算符</strong>用于检测构造函数的 <code>prototype</code> 属性是否出现在某个实例对象的原型链上。</p>
+<h4 id="typeof-原理"><a href="#typeof-原理" class="headerlink" title="typeof 原理"></a>typeof 原理</h4><blockquote>
+<p><strong><code>typeof</code></strong> 操作符返回一个字符串，表示未经计算的操作数的类型。除基本类型外，无论引用的是什么类型的对象，都会返回 <code>object</code>。</p>
+</blockquote>
+<p>typeof 可能返回值的类型</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/undefined">Undefined</a></td>
+<td align="left"><code>&quot;undefined&quot;</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Null">Null</a></td>
+<td align="left"><code>&quot;object&quot;</code> (见<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof#null">下文</a>)</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Boolean">Boolean</a></td>
+<td align="left"><code>&quot;boolean&quot;</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Number">Number</a></td>
+<td align="left"><code>&quot;number&quot;</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/BigInt">BigInt</a>(ECMAScript 2020 新增)</td>
+<td align="left"><code>&quot;bigint&quot;</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/%E5%AD%97%E7%AC%A6%E4%B8%B2">String</a></td>
+<td align="left"><code>&quot;string&quot;</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Symbol">Symbol</a> (ECMAScript 2015 新增)</td>
+<td align="left"><code>&quot;symbol&quot;</code></td>
+</tr>
+<tr>
+<td align="left">宿主对象（由 JS 环境提供）</td>
+<td align="left"><em>取决于具体实现</em></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Function">Function</a> 对象 (按照 ECMA-262 规范实现 [[Call]])</td>
+<td align="left"><code>&quot;function&quot;</code></td>
+</tr>
+<tr>
+<td align="left">其他任何对象</td>
+<td align="left"><code>&quot;object&quot;</code></td>
+</tr>
+</tbody></table>
+<h4 id="new-运算符"><a href="#new-运算符" class="headerlink" title="new 运算符"></a>new 运算符</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> M = <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name || <span class="string">&#x27;o33&#x27;</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> o3 = <span class="keyword">new</span> <span class="title function_">M</span>()</span><br></pre></td></tr></table></figure>
+
+<p>以上代码new步骤</p>
+<ol>
+<li>创建一个新对象，继承自 <code>M.prototype</code></li>
+<li>构造函数 M 执行，相应的参数传入（如果不传递参数，可以用 <code>new M</code> 代替 <code>new M()</code>）。this指向这个新实例。</li>
+<li>如果构造函数没有返回对象，则默认为 new 的结果。如果构造函数返回一个对象，那么返回的这个对象取代整个 new 出来的结果。</li>
+</ol>
+<h4 id="自己动手实现-new"><a href="#自己动手实现-new" class="headerlink" title="自己动手实现 new"></a>自己动手实现 new</h4><p>可以根据 new 步骤实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> M = <span class="keyword">function</span> (<span class="params">name</span>) &#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">name</span> = name || <span class="string">&quot;o33&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> P = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> obj = <span class="title class_">Object</span>.<span class="title function_">create</span>(M.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line">  <span class="keyword">var</span> k = M.<span class="title function_">call</span>(obj, ...<span class="variable language_">arguments</span>);</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> k === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">  	<span class="keyword">return</span> k</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">  	<span class="keyword">return</span> obj </span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = <span class="keyword">new</span> <span class="title function_">M</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o3 :&gt;&gt; &quot;</span>, o3);</span><br><span class="line"><span class="keyword">var</span> o4 = <span class="title function_">P</span>(<span class="string">&#x27;o4&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;o4 :&gt;&gt; &quot;</span>, o4);</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/BFC/" rel="tag"># BFC</a>
+              <a href="/tags/js/" rel="tag"># js</a>
+              <a href="/tags/%E7%9B%92%E6%A8%A1%E5%9E%8B/" rel="tag"># 盒模型</a>
+              <a href="/tags/css/" rel="tag"># css</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/30/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/8-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%85%AB%E5%A4%A9/" rel="prev" title="备战校招第八天">
+      <i class="fa fa-chevron-left"></i> 备战校招第八天
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/02/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/10-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E5%8D%81%E5%A4%A9/" rel="next" title="备战校招第十天">
+      备战校招第十天 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">CSS 盒模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">两种模型介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">设置两种模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js%E8%8E%B7%E5%8F%96%E7%9B%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%BD%E9%AB%98"><span class="nav-number">1.3.</span> <span class="nav-text">js获取盒模型的宽高</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dom-style-width-height"><span class="nav-number">1.3.1.</span> <span class="nav-text">dom.style.width&#x2F;height</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Element-currentStyle-width-height"><span class="nav-number">1.3.2.</span> <span class="nav-text">Element.currentStyle.width&#x2F;height</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Window-getComputedStyle-dom-width-height"><span class="nav-number">1.3.3.</span> <span class="nav-text">Window.getComputedStyle(dom).width&#x2F;height</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Element-getBoundingClientRect-width-height"><span class="nav-number">1.3.4.</span> <span class="nav-text">Element.getBoundingClientRect().width&#x2F;height</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC%EF%BC%88%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">BFC（块格式化上下文）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BFC%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.4.1.</span> <span class="nav-text">BFC基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BFC%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.2.</span> <span class="nav-text">BFC原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BABFC"><span class="nav-number">1.4.3.</span> <span class="nav-text">如何创建BFC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BFC%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.4.4.</span> <span class="nav-text">BFC使用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM%E4%BA%8B%E4%BB%B6%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">DOM事件类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM%E4%BA%8B%E4%BB%B6%E7%BA%A7%E5%88%AB"><span class="nav-number">2.1.</span> <span class="nav-text">DOM事件级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM0"><span class="nav-number">2.1.1.</span> <span class="nav-text">DOM0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM1"><span class="nav-number">2.1.2.</span> <span class="nav-text">DOM1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM2"><span class="nav-number">2.1.3.</span> <span class="nav-text">DOM2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM3"><span class="nav-number">2.1.4.</span> <span class="nav-text">DOM3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">DOM事件模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%95%E8%8E%B7"><span class="nav-number">2.2.1.</span> <span class="nav-text">捕获</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%92%E6%B3%A1"><span class="nav-number">2.2.2.</span> <span class="nav-text">冒泡</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">事件捕获流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">Event对象的常见应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6"><span class="nav-number">2.5.</span> <span class="nav-text">自定义事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#new-Event-typeArg-eventInit"><span class="nav-number">2.5.1.</span> <span class="nav-text">new Event(typeArg, eventInit);</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#new-CustomEvent-typeArg-customEventInit"><span class="nav-number">2.5.2.</span> <span class="nav-text">new CustomEvent(typeArg, customEventInit);</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%B1%BB"><span class="nav-number">2.6.</span> <span class="nav-text">原型链类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="nav-number">2.6.1.</span> <span class="nav-text">创建对象的几种方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB"><span class="nav-number">2.6.2.</span> <span class="nav-text">原型、构造函数、原型链、实例关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#instanceof-%E5%8E%9F%E7%90%86"><span class="nav-number">2.6.3.</span> <span class="nav-text">instanceof 原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#typeof-%E5%8E%9F%E7%90%86"><span class="nav-number">2.6.4.</span> <span class="nav-text">typeof 原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#new-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.6.5.</span> <span class="nav-text">new 运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%AE%9E%E7%8E%B0-new"><span class="nav-number">2.6.6.</span> <span class="nav-text">自己动手实现 new</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="popring"
+      src="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+  <p class="site-author-name" itemprop="name">popring</p>
+  <div class="site-description" itemprop="description">No description is best description.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/popring" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;popring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:koler778@gmail.com" title="E-Mail → mailto:koler778@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/277120110" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;277120110" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/10145341/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;10145341&#x2F;" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      
+      
+<div style="margin:  10px 0;">
+	<a target="_blank" rel="noopener" href="https://info.flagcounter.com/MQZk"><img src="https://s01.flagcounter.com/countxl/MQZk/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_6/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+</div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popring</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://popring.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://popring.github.io/2020/08/01/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/9-%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B9%9D%E5%A4%A9/";
+    this.page.identifier = "2020/08/01/备战校招/9-备战校招第九天/";
+    this.page.title = "备战校招第九天";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://popring.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

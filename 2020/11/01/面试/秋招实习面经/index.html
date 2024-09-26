@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"popring.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"swoopIn","sidebar":"bounceIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="更多面经请移步：https:&#x2F;&#x2F;www.nowcoder.com&#x2F;profile&#x2F;464647589&#x2F;myDiscussPost  个人校招面经 有些可能写的不全，没有及时总结（这是个坏习惯），有的只是总结了下个人回答的不太好的部分，仅供参考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="秋招实习面经">
+<meta property="og:url" content="https://popring.github.io/2020/11/01/%E9%9D%A2%E8%AF%95/%E7%A7%8B%E6%8B%9B%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/index.html">
+<meta property="og:site_name" content="popring&#39;s Blog">
+<meta property="og:description" content="更多面经请移步：https:&#x2F;&#x2F;www.nowcoder.com&#x2F;profile&#x2F;464647589&#x2F;myDiscussPost  个人校招面经 有些可能写的不全，没有及时总结（这是个坏习惯），有的只是总结了下个人回答的不太好的部分，仅供参考。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-01T00:55:46.000Z">
+<meta property="article:modified_time" content="2024-09-26T15:07:49.068Z">
+<meta property="article:author" content="popring">
+<meta property="article:tag" content="面试题">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://popring.github.io/2020/11/01/%E9%9D%A2%E8%AF%95/%E7%A7%8B%E6%8B%9B%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>秋招实习面经 | popring's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WN0V7KJRVS');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f869367a20c50f7b23f96c1e4169d803";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div><!--
+<div>
+	<p style="color: #fff; text-align: center; height: 30px; background: #222;">
+		<span>毕业倒计时：</span>
+		<span id="countDown"></span>
+	</p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		graduate();
+		function graduate() {
+			var nowDate = Date.parse(new Date());
+			var endDate = Date.parse(new Date('2021-07-01'));
+			var diff = Math.abs(endDate - nowDate);
+
+			var str = calcTime(diff);
+			document.querySelector('#countDown').innerText = str;
+			function calcTime (mss) {
+				var days = toTwoFix(parseInt(mss / (1000 * 60 * 60 * 24)));
+				var hours = toTwoFix(parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+				var minutes = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / (1000 * 60)));
+				var seconds = toTwoFix(parseInt((mss % (1000 * 60 * 60)) / 1000 % 60));
+				// return `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+				return days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+			};
+
+			function toTwoFix(time) {
+				return time < 10 ? '0' + time : time;
+			}
+		}
+
+
+		setInterval(function() {
+			graduate();
+		},1000);
+	})();
+</script>
+-->
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">popring's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">何时才能财富自由</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://popring.github.io/2020/11/01/%E9%9D%A2%E8%AF%95/%E7%A7%8B%E6%8B%9B%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+      <meta itemprop="name" content="popring">
+      <meta itemprop="description" content="No description is best description.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="popring's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          秋招实习面经
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-01 08:55:46" itemprop="dateCreated datePublished" datetime="2020-11-01T08:55:46+08:00">2020-11-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-26 23:07:49" itemprop="dateModified" datetime="2024-09-26T23:07:49+08:00">2024-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/11/01/%E9%9D%A2%E8%AF%95/%E7%A7%8B%E6%8B%9B%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/01/面试/秋招实习面经/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>更多面经请移步：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/profile/464647589/myDiscussPost">https://www.nowcoder.com/profile/464647589/myDiscussPost</a></p>
+</blockquote>
+<h2 id="个人校招面经"><a href="#个人校招面经" class="headerlink" title="个人校招面经"></a>个人校招面经</h2><blockquote>
+<p>有些可能写的不全，没有及时总结（这是个坏习惯），有的只是总结了下个人回答的不太好的部分，仅供参考。</p>
+</blockquote>
+<span id="more"></span>
+
+<p>阿里一面（杭州）</p>
+<p>面试时长：20min 左右</p>
+<ul>
+<li>自我介绍</li>
+<li>cdn 原理</li>
+<li>dns解析 原理</li>
+<li>如何寻找最近一级的节点</li>
+</ul>
+<p>腾讯一面（深圳）</p>
+<p>面试时长：20min 左右</p>
+<ul>
+<li>自我介绍</li>
+<li>http状态码</li>
+<li>输入url，到页面渲染经历了什么</li>
+<li>diff 算法</li>
+<li>koa 洋葱模型</li>
+</ul>
+<p>易的网络科技有限公司公司（厦门）</p>
+<p>面试时长：30min</p>
+<ul>
+<li>展示下你的项目</li>
+<li>介绍一下你最有成就的项目</li>
+<li>了解跨域吗？有什么方法可以跨域</li>
+<li>项目中用到的 axios，有用到拦截器吗？</li>
+<li>后端如何进行鉴权，换句话说 token是怎么传输给后端的</li>
+</ul>
+<p>厦门升迅信息科技有限公司</p>
+<p>面试时长：30min左右</p>
+<ul>
+<li>MVVM 是什么</li>
+<li>Vue 和 jQuery 区别在哪里</li>
+<li>Vue 生命周期函数</li>
+<li>Vue 3 了解吗？和 Vue 2有哪些不一样的地方</li>
+<li>localStorage 和 Vuex 区别</li>
+<li>有 java 基础吗</li>
+<li>想来厦门发展吗</li>
+<li>什么时候可以来厦门</li>
+</ul>
+<p>广州市网讯信息技术有限公司</p>
+<p>面试时间：30min左右</p>
+<ul>
+<li>自我介绍</li>
+<li>有做过微信端开发吗</li>
+<li>有做过移动端开发吗</li>
+<li>跨域方法、jsonp原理</li>
+<li>看你项目有些是后端，准备做后端吗</li>
+<li>职业规划</li>
+<li>什么时候可以来广州</li>
+<li>期望薪资</li>
+<li>反问</li>
+</ul>
+<p>阅文集团 - 笔试（上海）</p>
+<ul>
+<li>在一段时间内只允许一个进程访问的资源，称为  <u>临界资源</u>（选一个：共享资源、独占资源、临界资源、共享区）</li>
+<li>以下不会显示的是<ul>
+<li><code>&lt;span hidden&gt;&lt;/span&gt;</code></li>
+<li><code>&lt;style style=&quot;display:block;&quot;&gt;body&#123;&#125;&lt;/style&gt;</code></li>
+<li><code>&lt;input type=&quot; hidden&quot; name=&quot;token&quot;&gt;</code></li>
+<li><code>&lt;template&gt;文本&lt;/template&gt;</code></li>
+</ul>
+</li>
+<li>字母K所在ASCII表中十六进制是4B，则二进制 1001000 字符是 </li>
+<li>对称算法有什么</li>
+<li>css属性不支持负值的是<ul>
+<li>padding</li>
+<li>vertical-center</li>
+<li>margin</li>
+<li>letter-spaceing</li>
+</ul>
+</li>
+<li>hive 关键字</li>
+<li>setTimeout、Promise 相关执行顺序</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inner&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">var</span> wrap = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.wrapper&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> inner = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.inner&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">  </span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">click</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;click&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;setTimeout&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="number">0</span>)</span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;promise&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">  </span></span><br><span class="line"><span class="language-javascript">  wrap.<span class="property">onclick</span> = click</span></span><br><span class="line"><span class="language-javascript">  inner.<span class="property">onclick</span> = click</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>ones - 笔试（深圳）</p>
+<ul>
+<li>InnoDB</li>
+<li>创建索引</li>
+<li>归并排序</li>
+<li>SATAII 7.2k rpm，随机访问 1KB，访问次数大约是多少</li>
+<li>linux 权限 755</li>
+<li>数据集A波动范围大，以下算法比较合适的是 （DNN、gbdt、SVM、决策树）</li>
+<li>算法题；最长重复子串，青蛙跳台阶</li>
+</ul>
+<p>猫眼 - 一面（北京）</p>
+<p>面试时间：1h多</p>
+<blockquote>
+<p>代码题部分答案：<a target="_blank" rel="noopener" href="https://github.com/popring/demo/tree/master/interview/%E7%8C%AB%E7%9C%BC%E4%B8%80%E9%9D%A2">链接</a></p>
+</blockquote>
+<ul>
+<li><p>自我介绍</p>
+</li>
+<li><p>讲讲 vuex</p>
+</li>
+<li><p>跨域？jsonp实现原理？postMessage可以发送到服务器吗？</p>
+</li>
+<li><p>前端安全</p>
+</li>
+<li><p><code>xss</code>和 <code>csrf</code> 具体是什么情况，讲一下？如何防御？</p>
+</li>
+<li><pre><code class="js">class Foo &#123;
+  name = &#39;Foo&#39;
+    a() &#123; console.log(this.name) &#125;
+    b = function() &#123; console.log(this.name) &#125;
+    c = () =&gt; console.log(this.name)
+&#125;
+
+let f = new Foo()
+let b = &#123; name: &#39;bar&#39;, a: f.a, b: f.b, c: f.c&#125;
+b.a()
+b.b()
+b.c()
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ```js</span><br><span class="line">  // 下面代码会输出什么，如果有问题，怎么改正。最少两种方法</span><br><span class="line">  for (var i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">      console.log(i)</span><br><span class="line">    &#125;, i * 100)</span><br><span class="line">    console.log(i)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><pre><code class="js">var vue = &#123;
+  $on(event, callback) &#123;
+    // 开始敲你的代码
+  &#125;,
+  $emit(event) &#123;
+      // 这里也一样 
+  &#125;,
+&#125;
+
+// 监听
+vue.$on(&#39;msg&#39;, function (a) &#123;
+  console.log(a)
+&#125;)
+vue.$on(&#39;msg&#39;, function (a, b) &#123;
+  console.log(a, b)
+&#125;)
+// 触发
+vue.$emit(&#39;msg&#39;, 1, 2)
+vue.$emit(&#39;msg&#39;, 1)
+</code></pre>
+</li>
+<li><p>手写出栈入栈（不能使用数组）</p>
+</li>
+</ul>
+<p>有鱼智能科技 （深圳）</p>
+<p>面试时间：30min</p>
+<ul>
+<li>自我介绍</li>
+<li>上拉刷新、下拉加载 如何实现的，难度在哪</li>
+<li>如果遇到那种用户一直反复刷新的，应怎么做性能优化？防抖节流（面试官说这只是一种，还有别的，没赶上问）</li>
+<li>html 布局 垂直居中</li>
+<li>css 画一个三角形、圆形</li>
+<li>看你简历有node项目，那你说说跨域方法？CORS是怎么实现的？请求头（没说上来具体叫啥）</li>
+<li>你说跨域请求投值是 <code>*</code>，那这样可以携带cookie吗？（不能，只能设置指定的域，而且还需要<code>withCrendial</code>，前后端都需要配合）</li>
+<li>如何实现继承：原型链、构造函数、组合继承、es6 extends</li>
+<li>this指向问题</li>
+<li>es6了解哪些</li>
+<li>Promise底层如何实现？generator 怎么用？</li>
+<li>Proxy 有了解吗？</li>
+<li>webpack 有做过配置吗？本地库替换为cdn、sass、less</li>
+<li>vue computed和watch 有什么区别？</li>
+<li>vue 传值方法有哪些？父传子、子传父、兄弟组件传值、vuex、sessionStorage、localStorage</li>
+<li>sessionStorage 能跨页面使用吗？localStorage用在哪些地方？</li>
+<li>vuex 用过哪些方法？</li>
+<li>vue 可持续化组件是用的哪个？<code>keep-alive</code></li>
+<li>做过的性能优化</li>
+<li>如何设计移动端和PC端共用一套页面？媒体查询，面试官提示后更愿意听到<code>rem</code></li>
+<li>还有什么想问的</li>
+</ul>
+<p>微医（杭州）</p>
+<p>面试时间：45min</p>
+<ul>
+<li>自我介绍，包括自己所做的一些项目</li>
+<li>vue 双向数据流了解吗？（这里理解错了，<code>v-model</code> 只是语法糖）</li>
+<li>vue 数据流和 react 数据流有什么区别</li>
+<li>设计模式这块了解吗，比如观察者模式、发布&#x2F;订阅模式这些区别是什么</li>
+<li>跨域了解吗，<code>jsonp</code> 原理和缺点，CORS设置的请求头是什么？除了 <code>Access-Control-Allow-Origin</code> ，还有什么（当时思路走偏了，应该还包括 <code>Access-Control-Allow-Methods</code>、<code>xxx-Headers</code> <code>xxx-Credentials</code> 这类）</li>
+<li>聊聊 <code>options</code> 请求</li>
+<li>短时间内如果发送多次post请求，浏览器每次都会进行options请求检验吗（options 请求默认会有缓存）</li>
+<li>http缓存了解多少</li>
+<li>如果不想用到强缓存，只想用协商缓存，我要怎么设置 cache-control</li>
+<li>讲一下事件循环（这里我讲的有点问题）</li>
+<li>按照之前你讲的，浏览器是执行完微任务就回去执行宏任务，往复一直循环，那么这样是不是就阻塞了其他的渲染进程</li>
+<li>如果你了解浏览器底层相关知识，你可以从那个思路讲讲。</li>
+<li>进程和线程区别</li>
+<li>webpack 了解吗</li>
+<li>抛开一些使用层面上的，你觉得它是为了解决什么问题出来？（之前说了很多废话，但是重点就在嘴边没说出来，主要是解决模块化）</li>
+<li>你谈到了 ES6的 import 和 CommondJS require，那你知道他们除了使用层面的区别，还有什么区别</li>
+<li>这么想，如果在a模块引入了b模块，同时在b模块又引入了a模块，那么在<code>import</code>和<code>require</code>表现又分别是什么</li>
+<li>如果让你设计一个webpack你会怎么考虑</li>
+<li>反问阶段</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"># 面试题</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/17/%E6%8A%80%E6%9C%AF/go-%E5%85%A5%E9%97%A8/" rel="prev" title="go 入门">
+      <i class="fa fa-chevron-left"></i> go 入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/08/%E7%AE%97%E6%B3%95/leetcode-%E7%88%AC%E6%A5%BC%E6%A2%AF/" rel="next" title="leetcode-70.爬楼梯">
+      leetcode-70.爬楼梯 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E6%A0%A1%E6%8B%9B%E9%9D%A2%E7%BB%8F"><span class="nav-number">1.</span> <span class="nav-text">个人校招面经</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="popring"
+      src="https://avatars1.githubusercontent.com/u/31247906?s=460&v=4">
+  <p class="site-author-name" itemprop="name">popring</p>
+  <div class="site-description" itemprop="description">No description is best description.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/popring" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;popring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:koler778@gmail.com" title="E-Mail → mailto:koler778@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/277120110" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;277120110" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/10145341/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;10145341&#x2F;" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      
+      
+<div style="margin:  10px 0;">
+	<a target="_blank" rel="noopener" href="https://info.flagcounter.com/MQZk"><img src="https://s01.flagcounter.com/countxl/MQZk/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_6/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
+</div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">popring</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://popring.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://popring.github.io/2020/11/01/%E9%9D%A2%E8%AF%95/%E7%A7%8B%E6%8B%9B%E5%AE%9E%E4%B9%A0%E9%9D%A2%E7%BB%8F/";
+    this.page.identifier = "2020/11/01/面试/秋招实习面经/";
+    this.page.title = "秋招实习面经";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://popring.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
