@@ -157,9 +157,9 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  GitHub: https://github.com/popring || fab fa-github
+  # GitHub: https://github.com/popring || fab fa-github
   E-Mail: mailto:koler778@gmail.com || fa fa-envelope
-  Weibo: https://weibo.com/277120110 || fab fa-weibo
+  # Weibo: https://weibo.com/277120110 || fab fa-weibo
   #Google: https://plus.google.com/yourname || fab fa-google
   #Twitter: https://twitter.com/yourname || fab fa-twitter
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
@@ -410,8 +410,8 @@ bookmark:
 
 # `Follow me on GitHub` banner in the top-right corner.
 github_banner:
-  enable: false
-  permalink: https://github.com/yourname
+  enable: true
+  permalink: https://github.com/popring
 
 
 # ---------------------------------------------------------------
@@ -476,7 +476,7 @@ font:
 index_with_subtitle: false
 
 # Automatically add external URL with Base64 encrypt & decrypt.
-exturl: false
+exturl: true
 # If true, an icon will be attached to each external URL
 exturl_icon: true
 
