@@ -1,0 +1,6 @@
+# hexo robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://popring.github.io/sitemap.xml
+Sitemap: https://popring.github.io/baidusitemap.xml
