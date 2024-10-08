@@ -4,7 +4,7 @@
 
 # Site
 title: popring's Blog
-subtitle: '何时才能财富自由'
+subtitle: 找工作中，前端开发，有坑位的朋友推一下，base深圳，邮箱 koler778@gmail.com
 description: 'No description is best description.'
 keywords: blog popring
 author: popring
@@ -13,7 +13,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: https://popring.github.io
+url: https://popring.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
