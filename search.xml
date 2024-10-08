@@ -1029,6 +1029,110 @@
       </tags>
   </entry>
   <entry>
+    <title>C语言 第九章 结构体</title>
+    <url>/posts/1cbbe043/</url>
+    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
+<p>结构体类型，不占内存，不能保存数据；</p>
+<p>内存空间，可以保存数据</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sizeof对类型和变量均可使用</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">struct</span> stu);</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
+<p>因无类型名，无法再重新定义其他变量</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
+<p>结构体变量用 <code>.</code></p>
+<p>结构体指针变量用 <code>-&gt;</code></p>
+<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
+<p>用法与传普通变量类似，</p>
+</blockquote>
+<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
+<p>结构体指针做函数参数，可以修改原来实参的值。</p>
+<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>第二种</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> year;</span><br><span class="line">        <span class="type">int</span> month;</span><br><span class="line">        <span class="type">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
+<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="type">double</span> a,b;</span><br></pre></td></tr></table></figure>
+
+<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="left">介绍</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">malloc</td>
+<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)malloc(size)</td>
+</tr>
+<tr>
+<td align="center">calloc</td>
+<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)calloc(n,size)</td>
+</tr>
+<tr>
+<td align="center">free</td>
+<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
+<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
+</tr>
+</tbody></table>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
+<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
+<p>链表类型：单向链表，双向链表，循环链表。。。</p>
+</blockquote>
+<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTkzJUJFJUU4JUExJUE4">链表介绍<i class="fa fa-external-link-alt"></i></span></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
+<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
+<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
+<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
+<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
+<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
+<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
+<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="type">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line">SNODE *<span class="title function_">create_list</span><span class="params">(<span class="type">int</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">out_list</span><span class="params">(SNODE *h)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = new <span class="keyword">struct</span> node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
+
+<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line">delete p;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言 第八章 指针（下）</title>
     <url>/posts/eed991ba/</url>
     <content><![CDATA[<h2 id="第八章-指针（下）"><a href="#第八章-指针（下）" class="headerlink" title="第八章 指针（下）"></a>第八章 指针（下）</h2><h3 id="指针变量做函数参数"><a href="#指针变量做函数参数" class="headerlink" title="指针变量做函数参数"></a>指针变量做函数参数</h3><blockquote>
@@ -1156,110 +1260,6 @@
 <td>将ch转换为大写字母，函数返回转换后的字符</td>
 </tr>
 </tbody></table>
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言 第九章 结构体</title>
-    <url>/posts/1cbbe043/</url>
-    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
-<p>结构体类型，不占内存，不能保存数据；</p>
-<p>内存空间，可以保存数据</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>sizeof对类型和变量均可使用</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">struct</span> stu);</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
-<p>因无类型名，无法再重新定义其他变量</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
-<p>结构体变量用 <code>.</code></p>
-<p>结构体指针变量用 <code>-&gt;</code></p>
-<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
-<p>用法与传普通变量类似，</p>
-</blockquote>
-<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
-<p>结构体指针做函数参数，可以修改原来实参的值。</p>
-<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>第二种</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> year;</span><br><span class="line">        <span class="type">int</span> month;</span><br><span class="line">        <span class="type">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
-<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="type">double</span> a,b;</span><br></pre></td></tr></table></figure>
-
-<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
-<thead>
-<tr>
-<th align="center">函数名</th>
-<th align="left">介绍</th>
-<th align="left">备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">malloc</td>
-<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)malloc(size)</td>
-</tr>
-<tr>
-<td align="center">calloc</td>
-<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)calloc(n,size)</td>
-</tr>
-<tr>
-<td align="center">free</td>
-<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
-<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
-</tr>
-</tbody></table>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
-<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
-<p>链表类型：单向链表，双向链表，循环链表。。。</p>
-</blockquote>
-<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTkzJUJFJUU4JUExJUE4">链表介绍<i class="fa fa-external-link-alt"></i></span></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
-<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
-<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
-<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
-<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
-<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
-<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
-<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="type">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line">SNODE *<span class="title function_">create_list</span><span class="params">(<span class="type">int</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">out_list</span><span class="params">(SNODE *h)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = new <span class="keyword">struct</span> node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
-
-<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line">delete p;</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>C Language</category>
@@ -3642,6 +3642,70 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>axios使用总结</title>
+    <url>/posts/2058da06/</url>
+    <content><![CDATA[<h1 id="axios使用总结"><a href="#axios使用总结" class="headerlink" title="axios使用总结"></a>axios使用总结</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>推荐 <code>yarn</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn add axios</span><br></pre></td></tr></table></figure>
+
+<p>或者 使用 <code>npm</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i axios</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>可以像<code>jQuery</code>中的ajax那样使用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;/api/userlist&#x27;</span></span><br><span class="line">  <span class="attr">methods</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">  <span class="attr">dataType</span>: <span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">  <span class="attr">success</span>: <span class="title function_">funciton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  	<span class="comment">// xxx</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>但是不需要采用<code>jQuery</code>中的回调，避免产生<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29tL3M/d2Q9JUU1JTlDJUIwJUU3JThCJUIxJUU1JTlCJTlFJUU4JUIwJTgz">地狱回调<i class="fa fa-external-link-alt"></i></span>的问题，所以我们采用 <code>ES6</code> 的 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvUHJvbWlzZQ==">promise<i class="fa fa-external-link-alt"></i></span> 写法。</p>
+<p>如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">axios</span>(&#123;</span><br><span class="line">  <span class="attr">method</span>:<span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">  <span class="attr">url</span>:<span class="string">&#x27;/api/userlist&#x27;</span>,</span><br><span class="line">  <span class="attr">responseType</span>:<span class="string">&#x27;json&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">response</span>) &#123;</span><br><span class="line">  	<span class="comment">// xxx</span></span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="请求方法的别名"><a href="#请求方法的别名" class="headerlink" title="请求方法的别名"></a>请求方法的别名</h3><p>如果你发送的是 <code>get</code> 类型的请求数据，可以忽略 <code>methods</code> 参数。</p>
+<p>为了探索新的大陆，当然也是为了简（tou）洁（lan），来尝试一下新的方法。</p>
+<p>axios起了别名，可以更加方便的调用请求方法。</p>
+<p>话说，最常用的还是这两个。</p>
+<h5 id="axios-get-url-config"><a href="#axios-get-url-config" class="headerlink" title="axios.get(url[, config])"></a>axios.get(url[, config])</h5><h5 id="axios-post-url-data-config"><a href="#axios-post-url-data-config" class="headerlink" title="axios.post(url[, data[, config]])"></a>axios.post(url[, data[, config]])</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">&#x27;/api/userlist&#x27;</span>)</span><br><span class="line">	.<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span> &#123;</span><br><span class="line">  	<span class="comment">// xxx</span></span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="全局默认值-baseURL"><a href="#全局默认值-baseURL" class="headerlink" title="全局默认值 baseURL"></a>全局默认值 baseURL</h3><p>在一个项目中，请求不可能只有几个，而每个请求大多都是基于同一个地址，那么，就可以设置根URL。</p>
+<p>优点显而易见，可以避免更换服务器而导致所有的请求地址都要改变，也可以避免没必要的同时出现相同的字符串，只需写后面的接口地址即可。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这是 axios 的全局默认值，设置后其他URL也都会以这个域名为根地址</span></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">baseURL</span> = <span class="string">&#x27;https://www.api.com&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 假如设置后发送一个请求</span></span><br><span class="line">axios.<span class="title function_">get</span>(<span class="string">&#x27;/api/userlist&#x27;</span>)</span><br><span class="line">	.<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span> &#123;</span><br><span class="line">  	<span class="comment">// xxx</span></span><br><span class="line">	&#125;)</span><br><span class="line"><span class="comment">// 这个时候发送的地址就为 https://www.api.com/api/userlist</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>在很多场景中，用户登录后，需要将用户的token一起发送给后端，而每次请求都设置一边请求头，显然不符合实际。<code>axios</code> 提供了拦截器，发送前和数据返回后都可以做下处理然后继续发给服务器或者交给页面处理。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 添加请求拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">  <span class="comment">// 在发送请求之前做些什么</span></span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// 对请求错误做些什么</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 添加响应拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">  <span class="comment">// 对响应数据做点什么</span></span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// 对响应错误做点什么</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>同时这里也可以统一处理错误情况，提高了开发效率。</p>
+<h3 id="在Vue、React中使用axios"><a href="#在Vue、React中使用axios" class="headerlink" title="在Vue、React中使用axios"></a>在Vue、React中使用axios</h3><h4 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h4><p>假设已经使用 <code>vue-cli</code> 脚手架搭建出基本框架，那么加下来就可以直接挂在Vue的原型上，这样在每个页面都可以调用 <code>axios</code></p>
+<p><strong>&#x2F;src&#x2F;main.js</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// xxx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入axios</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$http</span> = axios</span><br><span class="line"></span><br><span class="line"><span class="comment">// xxx</span></span><br></pre></td></tr></table></figure>
+
+<p>在其他组件调用就可以这样</p>
+<p><strong>&#x2F;pages&#x2F;home&#x2F;home.vue</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;userinfo&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="attr">name</span>: <span class="string">&#x27;home&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">userinfo</span>: <span class="literal">null</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="attr">methods</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="title function_">getUserInfo</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="variable language_">this</span>.<span class="property">$http</span>.<span class="title function_">get</span>(<span class="string">&#x27;/api/userinfo&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">this</span>.<span class="property">userinfo</span> = res.<span class="property">data</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="React"><a href="#React" class="headerlink" title="React"></a>React</h4><p>React用法同Vue，还是采用脚手架搭建，然后在<code>/src/index.js</code>将axios绑定到<code>React</code>上</p>
+<p><strong>&#x2F;src&#x2F;index.js</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里我导入的是自己配置的axios</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;./config/axiosConfig&#x27;</span>;</span><br><span class="line"><span class="comment">// axios绑定到React</span></span><br><span class="line"><span class="title class_">React</span>.<span class="property">Component</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">axios</span> = axios;</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x2F;src&#x2F;config&#x2F;axiosConfig</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">baseURL</span> = <span class="string">&#x27;http://localhost:5000&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加请求拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">  <span class="comment">// 在发送请求之前做些什么</span></span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// 对请求错误做些什么</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加响应拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">  <span class="comment">// 对响应数据做点什么</span></span><br><span class="line">  response = response.<span class="property">data</span>;</span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// 对响应错误做点什么</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> axios;</span><br></pre></td></tr></table></figure>
+
+<p>组件中的调用</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">table</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line"></span><br><span class="line">  state = &#123;</span><br><span class="line">    <span class="attr">dataSource</span>: <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">getDataSource</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getDataSource = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">axios</span>.<span class="title function_">get</span>(<span class="string">&#x27;/api/userinfo&#x27;</span>)</span><br><span class="line">      .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">          <span class="attr">dataSource</span>: res.<span class="property">data</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> dataSource = <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">dataSource</span>;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;dataSource&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>现在的前端工程大都已经将接口统一管理了，只会在页面调用接口，然后在页面写处理的逻辑。这篇文章知识提供一个思路。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>ajax</tag>
+        <tag>axios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue父子组件生命周期</title>
     <url>/posts/77185e63/</url>
     <content><![CDATA[<p>Vue官网找了一圈没找到关于在父组件中使用子组件，生命周期是如何运行的。</p>
@@ -3766,70 +3830,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>axios使用总结</title>
-    <url>/posts/2058da06/</url>
-    <content><![CDATA[<h1 id="axios使用总结"><a href="#axios使用总结" class="headerlink" title="axios使用总结"></a>axios使用总结</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>推荐 <code>yarn</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn add axios</span><br></pre></td></tr></table></figure>
-
-<p>或者 使用 <code>npm</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i axios</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>可以像<code>jQuery</code>中的ajax那样使用</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;/api/userlist&#x27;</span></span><br><span class="line">  <span class="attr">methods</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">  <span class="attr">dataType</span>: <span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">  <span class="attr">success</span>: <span class="title function_">funciton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  	<span class="comment">// xxx</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
-
-<p>但是不需要采用<code>jQuery</code>中的回调，避免产生<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29tL3M/d2Q9JUU1JTlDJUIwJUU3JThCJUIxJUU1JTlCJTlFJUU4JUIwJTgz">地狱回调<i class="fa fa-external-link-alt"></i></span>的问题，所以我们采用 <code>ES6</code> 的 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvUHJvbWlzZQ==">promise<i class="fa fa-external-link-alt"></i></span> 写法。</p>
-<p>如下</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">axios</span>(&#123;</span><br><span class="line">  <span class="attr">method</span>:<span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">  <span class="attr">url</span>:<span class="string">&#x27;/api/userlist&#x27;</span>,</span><br><span class="line">  <span class="attr">responseType</span>:<span class="string">&#x27;json&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">response</span>) &#123;</span><br><span class="line">  	<span class="comment">// xxx</span></span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="请求方法的别名"><a href="#请求方法的别名" class="headerlink" title="请求方法的别名"></a>请求方法的别名</h3><p>如果你发送的是 <code>get</code> 类型的请求数据，可以忽略 <code>methods</code> 参数。</p>
-<p>为了探索新的大陆，当然也是为了简（tou）洁（lan），来尝试一下新的方法。</p>
-<p>axios起了别名，可以更加方便的调用请求方法。</p>
-<p>话说，最常用的还是这两个。</p>
-<h5 id="axios-get-url-config"><a href="#axios-get-url-config" class="headerlink" title="axios.get(url[, config])"></a>axios.get(url[, config])</h5><h5 id="axios-post-url-data-config"><a href="#axios-post-url-data-config" class="headerlink" title="axios.post(url[, data[, config]])"></a>axios.post(url[, data[, config]])</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">&#x27;/api/userlist&#x27;</span>)</span><br><span class="line">	.<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span> &#123;</span><br><span class="line">  	<span class="comment">// xxx</span></span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="全局默认值-baseURL"><a href="#全局默认值-baseURL" class="headerlink" title="全局默认值 baseURL"></a>全局默认值 baseURL</h3><p>在一个项目中，请求不可能只有几个，而每个请求大多都是基于同一个地址，那么，就可以设置根URL。</p>
-<p>优点显而易见，可以避免更换服务器而导致所有的请求地址都要改变，也可以避免没必要的同时出现相同的字符串，只需写后面的接口地址即可。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这是 axios 的全局默认值，设置后其他URL也都会以这个域名为根地址</span></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">baseURL</span> = <span class="string">&#x27;https://www.api.com&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 假如设置后发送一个请求</span></span><br><span class="line">axios.<span class="title function_">get</span>(<span class="string">&#x27;/api/userlist&#x27;</span>)</span><br><span class="line">	.<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span> &#123;</span><br><span class="line">  	<span class="comment">// xxx</span></span><br><span class="line">	&#125;)</span><br><span class="line"><span class="comment">// 这个时候发送的地址就为 https://www.api.com/api/userlist</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>在很多场景中，用户登录后，需要将用户的token一起发送给后端，而每次请求都设置一边请求头，显然不符合实际。<code>axios</code> 提供了拦截器，发送前和数据返回后都可以做下处理然后继续发给服务器或者交给页面处理。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 添加请求拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">  <span class="comment">// 在发送请求之前做些什么</span></span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// 对请求错误做些什么</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 添加响应拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">  <span class="comment">// 对响应数据做点什么</span></span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// 对响应错误做点什么</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>同时这里也可以统一处理错误情况，提高了开发效率。</p>
-<h3 id="在Vue、React中使用axios"><a href="#在Vue、React中使用axios" class="headerlink" title="在Vue、React中使用axios"></a>在Vue、React中使用axios</h3><h4 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h4><p>假设已经使用 <code>vue-cli</code> 脚手架搭建出基本框架，那么加下来就可以直接挂在Vue的原型上，这样在每个页面都可以调用 <code>axios</code></p>
-<p><strong>&#x2F;src&#x2F;main.js</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// xxx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入axios</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$http</span> = axios</span><br><span class="line"></span><br><span class="line"><span class="comment">// xxx</span></span><br></pre></td></tr></table></figure>
-
-<p>在其他组件调用就可以这样</p>
-<p><strong>&#x2F;pages&#x2F;home&#x2F;home.vue</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;userinfo&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="attr">name</span>: <span class="string">&#x27;home&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">userinfo</span>: <span class="literal">null</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="attr">methods</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="title function_">getUserInfo</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="variable language_">this</span>.<span class="property">$http</span>.<span class="title function_">get</span>(<span class="string">&#x27;/api/userinfo&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">this</span>.<span class="property">userinfo</span> = res.<span class="property">data</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h4 id="React"><a href="#React" class="headerlink" title="React"></a>React</h4><p>React用法同Vue，还是采用脚手架搭建，然后在<code>/src/index.js</code>将axios绑定到<code>React</code>上</p>
-<p><strong>&#x2F;src&#x2F;index.js</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里我导入的是自己配置的axios</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;./config/axiosConfig&#x27;</span>;</span><br><span class="line"><span class="comment">// axios绑定到React</span></span><br><span class="line"><span class="title class_">React</span>.<span class="property">Component</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">axios</span> = axios;</span><br></pre></td></tr></table></figure>
-
-<p><strong>&#x2F;src&#x2F;config&#x2F;axiosConfig</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">baseURL</span> = <span class="string">&#x27;http://localhost:5000&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加请求拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">  <span class="comment">// 在发送请求之前做些什么</span></span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// 对请求错误做些什么</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加响应拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">  <span class="comment">// 对响应数据做点什么</span></span><br><span class="line">  response = response.<span class="property">data</span>;</span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// 对响应错误做点什么</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> axios;</span><br></pre></td></tr></table></figure>
-
-<p>组件中的调用</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">table</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line"></span><br><span class="line">  state = &#123;</span><br><span class="line">    <span class="attr">dataSource</span>: <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">getDataSource</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getDataSource = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">axios</span>.<span class="title function_">get</span>(<span class="string">&#x27;/api/userinfo&#x27;</span>)</span><br><span class="line">      .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">          <span class="attr">dataSource</span>: res.<span class="property">data</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> dataSource = <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">dataSource</span>;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;dataSource&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>现在的前端工程大都已经将接口统一管理了，只会在页面调用接口，然后在页面写处理的逻辑。这篇文章知识提供一个思路。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>ajax</tag>
-        <tag>axios</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>em、rem和vw(vh)区别</title>
     <url>/posts/efd120c3/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CSS的<strong>单位长度</strong>分为</p>
@@ -3878,46 +3878,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>go 入门</title>
-    <url>/posts/1d79f384/</url>
-    <content><![CDATA[<span id="more"></span>
-
-
-
-<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
-<p>天朝特殊环境，不得不配置为国内的源</p>
-</blockquote>
-<p>打开终端并执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
-
-
-
-<p>macOS 或 Linux</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
-
-
-
-<p>windows</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9nb3Byb3h5LmNuLw==">Goproxy 中国<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nZncuZ28xMDEub3JnL2FydGljbGUvMTAxLmh0bWw=">Go语言101<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nby5kZXYvcmVmL3NwZWMjSW50cm9kdWN0aW9u">Go官方语言规范 - 英文<i class="fa fa-external-link-alt"></i></span>：据说看完此文档，Go基本就入门了</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nb2J5ZXhhbXBsZS1jbi5naXRodWIuaW8v">Go by Example<i class="fa fa-external-link-alt"></i></span>：通过实践入门</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nZWVrdHV0dS5jb20vcG9zdC9nZWUuaHRtbA==">7天用Go从零实现Web框架Gee教程<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
       </tags>
   </entry>
   <entry>
@@ -4470,6 +4430,46 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>go 入门</title>
+    <url>/posts/1d79f384/</url>
+    <content><![CDATA[<span id="more"></span>
+
+
+
+<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
+<p>天朝特殊环境，不得不配置为国内的源</p>
+</blockquote>
+<p>打开终端并执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+
+
+
+<p>macOS 或 Linux</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
+
+
+
+<p>windows</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9nb3Byb3h5LmNuLw==">Goproxy 中国<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nZncuZ28xMDEub3JnL2FydGljbGUvMTAxLmh0bWw=">Go语言101<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nby5kZXYvcmVmL3NwZWMjSW50cm9kdWN0aW9u">Go官方语言规范 - 英文<i class="fa fa-external-link-alt"></i></span>：据说看完此文档，Go基本就入门了</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nb2J5ZXhhbXBsZS1jbi5naXRodWIuaW8v">Go by Example<i class="fa fa-external-link-alt"></i></span>：通过实践入门</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nZWVrdHV0dS5jb20vcG9zdC9nZWUuaHRtbA==">7天用Go从零实现Web框架Gee教程<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac 使用技巧</title>
     <url>/posts/df1211e8/</url>
     <content><![CDATA[<p>快捷键</p>
@@ -4663,6 +4663,122 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>scrollTop值为0等疑难杂症</title>
+    <url>/posts/e6bf74e4/</url>
+    <content><![CDATA[<p> 自测有效果</p>
+<p>IE: <code>document.documentElement.scrollTop</code></p>
+<p>edge: <code>document.body.scrollTop</code></p>
+<p>Firefox: <code>document.documentElement.scrollTop</code></p>
+<span id="more"></span>
+
+<p><strong>IE6&#x2F;7&#x2F;8&#x2F;9&#x2F;10：</strong></p>
+<p>对于没有doctype声明的页面里可以使用 document.body.scrollTop 来获取 scrollTop高度 ；<br>对于有<code>doctype</code>声明的页面则可以使用 <code>document.documentElement.scrollTop</code> ；</p>
+<p><strong>Safari:</strong></p>
+<p>safari 比较特别，有自己获取<code>scrollTop</code>的函数 ： <code>window.pageYOffset</code> ；</p>
+<p><strong>Firefox:</strong></p>
+<p>火狐等等相对标准些的浏览器就省心多了，直接用 document.documentElement.scrollTop</p>
+<p><strong>chrome</strong></p>
+<p><code>document.body.scrollTop</code></p>
+<p>or</p>
+<p><code>document.documentElement.scrollTop</code></p>
+<p><strong>总结，一行代码解决兼容性</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sTop=<span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span>+<span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span>;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>浏览器兼容性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>react-ts 重构笔记</title>
+    <url>/posts/dffba461/</url>
+    <content><![CDATA[<p>先前的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BvcHJpbmcvb2ZvLW1zL3RyZWUvb2ZvLW1zLWpz">小黄车后台管理系统<i class="fa fa-external-link-alt"></i></span> ，开发完成后，现看来，目录过于复杂，代码冗余，对强迫症的我来说，实属看不下去了，趁着过年有时间，使用 ts 进行了重构，并在之前的基础上对 <code>react </code> 和 <code>typescript</code> 有了进一步的理解。</p>
+<p>参考了 github 的开源项目 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3llemloYW9oYW8vcmVhY3QtYWRtaW4=">react-admin<i class="fa fa-external-link-alt"></i></span>，感谢大佬的代码，给了很多灵感。</p>
+<span id="more"></span>
+
+<h2 id="create-react-app-自定义配置"><a href="#create-react-app-自定义配置" class="headerlink" title="create-react-app 自定义配置"></a><a href="%5Bhttps://ant.design/docs/react/use-with-create-react-app-cn#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE%5D(https://ant.design/docs/react/use-with-create-react-app-cn#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE)">create-react-app 自定义配置</a></h2><blockquote>
+<p>类似 <code>vue</code> 中的 <code>vue.config.js</code></p>
+</blockquote>
+<p>使用 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbWFybmV5L3JlYWN0LWFwcC1yZXdpcmVk">react-app-rewired<i class="fa fa-external-link-alt"></i></span> 进行自定义配置，需要依赖  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FyYWNrYWYvY3VzdG9taXplLWNyYQ==">customize-cra<i class="fa fa-external-link-alt"></i></span> 。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn add react-app-rewired customize-cra</span><br></pre></td></tr></table></figure>
+
+<p>修改运行配置</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* package.json */</span></span><br><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-app-rewired start&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-app-rewired build&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-app-rewired test&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;eject&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-app eject&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>项目根目录创建 <code>config-override.js</code> 修改配置</p>
+<h3 id="配置别名路径"><a href="#配置别名路径" class="headerlink" title="配置别名路径"></a>配置别名路径</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// config-override.js</span></span><br><span class="line"><span class="keyword">const</span> &#123; override, addWebpackAlias &#125; = <span class="built_in">require</span>(<span class="string">&#x27;customize-cra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title function_">override</span>(</span><br><span class="line">  <span class="title function_">addWebpackAlias</span>(&#123;</span><br><span class="line">    <span class="string">&quot;src&quot;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;./src&#x27;</span>),</span><br><span class="line">    <span class="string">&quot;components&quot;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;./src/components&#x27;</span>),</span><br><span class="line">    <span class="string">&quot;router&quot;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;./src/router&#x27;</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="tsconfig-中配置别名（alias）"><a href="#tsconfig-中配置别名（alias）" class="headerlink" title="tsconfig 中配置别名（alias）"></a><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL2RvY3MvaGFuZGJvb2svdHNjb25maWctanNvbi5odG1s">tsconfig<i class="fa fa-external-link-alt"></i></span> 中配置别名（alias）</h3><blockquote>
+<p>webpack 配置 alias后，再配置tsconfig，vscode对应提示会更加友好</p>
+</blockquote>
+<p>如果在<code>tsconfig.json</code>中定义别名、路径，项目启动后会被删除 <code>paths</code>节点</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZhY2Vib29rL2NyZWF0ZS1yZWFjdC1hcHAvaXNzdWVzLzU2NDUjaXNzdWVjb21tZW50LTQzNjYxMzc0MA==">github 大佬解决办法<i class="fa fa-external-link-alt"></i></span></p>
+<p><code>paths.json</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;compilerOptions&quot;: &#123;</span><br><span class="line">    &quot;baseUrl&quot;: &quot;.&quot;,</span><br><span class="line">    &quot;paths&quot;: &#123;</span><br><span class="line">      &quot;svg/*&quot;: [&quot;src/svg/*&quot;],</span><br><span class="line">      &quot;components/*&quot;: [&quot;src/components/*&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>in <code>tsconfig.json</code> I have</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;extends&quot;: &quot;./paths.json&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ts-的使用"><a href="#ts-的使用" class="headerlink" title="ts 的使用"></a>ts 的使用</h2><h3 id="react-模板继承-Componet的类型"><a href="#react-模板继承-Componet的类型" class="headerlink" title="react 模板继承  Componet的类型"></a>react 模板继承  Componet的类型</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Page</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span>&lt;<span class="title class_">Props</span>, state&gt; &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Page</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义对象索引"><a href="#定义对象索引" class="headerlink" title="定义对象索引"></a>定义对象索引</h3><p><span class="exturl" data-url="aHR0cHM6Ly9qa2NoYW8uZ2l0aHViLmlvL3R5cGVzY3JpcHQtYm9vay1jaGluZXNlL3R5cGluZ3MvaW5kZXhTaWduYXR1cmVzLmh0bWwjJUU3JUI0JUEyJUU1JUJDJTk1JUU3JUFEJUJFJUU1JTkwJThE">索引签名<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qa2NoYW8uZ2l0aHViLmlvL3R5cGVzY3JpcHQtYm9vay1jaGluZXNlL3R5cGluZ3MvaW5kZXhTaWduYXR1cmVzLmh0bWwjJUU0JUJEJUJGJUU3JTk0JUE4JUU0JUI4JTgwJUU3JUJCJTg0JUU2JTlDJTg5JUU5JTk5JTkwJUU3JTlBJTg0JUU1JUFEJTk3JUU3JUFDJUE2JUU0JUI4JUIyJUU1JUFEJTk3JUU5JTlEJUEyJUU5JTg3JThG">文章<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">type <span class="title class_">Index</span> = <span class="string">&#x27;success&#x27;</span> | <span class="string">&#x27;error&#x27;</span> | <span class="string">&#x27;info&#x27;</span> | <span class="string">&#x27;warning&#x27;</span> | <span class="string">&#x27;loading&#x27;</span>;</span><br><span class="line">type messageType = &#123; [k <span class="keyword">in</span> <span class="title class_">Index</span>]: string &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">(<span class="params">a: messageType</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// xxx</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="antd-使用-Form-高阶组件"><a href="#antd-使用-Form-高阶组件" class="headerlink" title="antd 使用 Form 高阶组件"></a>antd 使用 Form 高阶组件</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// BaseFormProps 为 BaseForm 所定义的Props</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Form</span>.<span class="property">create</span>&lt;<span class="title class_">BaseFormProps</span>&gt;()(<span class="title class_">BaseForm</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hooks"><a href="#Hooks" class="headerlink" title="Hooks"></a>Hooks</h2><blockquote>
+<p>普通  function 无状态，class 有状态</p>
+<p><code>Hook</code> 的出现，在不编写 class 的情况下使用 react 的其他特性。</p>
+</blockquote>
+<h3 id="State-Hook"><a href="#State-Hook" class="headerlink" title="State Hook"></a>State Hook</h3><blockquote>
+<p>简化 <code>state</code> 的使用方式</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Example</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">  	<span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(count+1)&#125;&gt;&#123;count&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Effect-Hook"><a href="#Effect-Hook" class="headerlink" title="Effect Hook"></a>Effect Hook</h3><blockquote>
+<p>useEffect 相当于 <code>react class</code> 生命周期函数的  componentDidMount，componentDidUpdate 和 componentWillUnmount  三合一版本</p>
+</blockquote>
+<p>useEffect() 内返回一个函数，用于防止内存泄漏，清除定时器、订阅外部数据源等。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Example</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  useEffect = (<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// xxx</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">clearup</span>(<span class="params"></span>)&#123; </span><br><span class="line">      <span class="comment">/*xxx*/</span> </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, [input])</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">  	<span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(count+1)&#125;&gt;&#123;count&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;useState, useEffect, useContext&#125; = <span class="title class_">React</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyContext</span> = <span class="title class_">React</span>.<span class="title function_">createContext</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Children</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> flag = <span class="title function_">useContext</span>(<span class="title class_">MyContext</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;flag&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Father</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [flag, setFlag] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">MyContext.Provider</span> <span class="attr">value</span>=<span class="string">&#123;flag&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span>=&gt;</span> setFlag(flag+1)&#125;&gt;点击+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;flag&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Children</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">MyContext.Provider</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">Father</span> /&gt;</span></span>, <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;app&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目的总结"><a href="#项目的总结" class="headerlink" title="项目的总结"></a>项目的总结</h2><p>为了路由更好的配置和管理，修改为类似 <code>vue-router</code> 的配置，遍历动态生成路由，还可进行鉴权。</p>
+<p>如果有官网，一定要去看完官网再看二手知识，毕竟大家水平残次不齐，尤为像我一样的新手无法鉴别文章是否有误，而官网的文档，就没这么多担忧了。虽然很多都是英文文档，坚持看下去，会有不一样的收获。</p>
+<p><code>Typescript</code> 刚开始用起来确实有点繁琐，不过用过一段时间，潜移默化的感觉到会对项目有更深入的了解，当然数据类型检查啥的，降低了项目的出错率，以后的代码维护也会轻松许多。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3llemloYW9oYW8vcmVhY3QtYWRtaW4=">react-admin<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9hbnQuZGVzaWduL2RvY3MvcmVhY3QvdXNlLXdpdGgtY3JlYXRlLXJlYWN0LWFwcC1jbg==">antd<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aC1oYW5zLnJlYWN0anMub3JnL2RvY3MvaG9va3MtaW50cm8uaHRtbA==">React Hook<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+        <tag>typescript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TypeScript总结</title>
+    <url>/posts/34845574/</url>
+    <content><![CDATA[<h2 id="TypeScript-相关收藏"><a href="#TypeScript-相关收藏" class="headerlink" title="TypeScript 相关收藏"></a>TypeScript 相关收藏</h2><h3 id="入门文章类"><a href="#入门文章类" class="headerlink" title="入门文章类"></a>入门文章类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90cy54Y2F0bGl1LmNvbS8=">TypeScript 入门教程<i class="fa fa-external-link-alt"></i></span>: github 10k star, author xcatliu.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvV3NsZG1rVzJvdnAtb2t4U1kzbGU5Zw==">Typescript 类型编程，从入门到通达<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uY29tL2ZyZWUtY29kZS1jYW1wL3R5cGVzY3JpcHQtY3VycnktcmFtZGEtdHlwZXMtZjc0N2U5OTc0NGFi">Learn Advanced TypeScript Types<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL3poL2NoZWF0c2hlZXRz">TypeScript Cheat Sheets<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="通关挑战类"><a href="#通关挑战类" class="headerlink" title="通关挑战类"></a>通关挑战类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90eXBlc2NyaXB0LWV4ZXJjaXNlcy5naXRodWIuaW8v">Typescript Exercises<i class="fa fa-external-link-alt"></i></span>：一共16关</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpbmRyZXNvcmh1cy90eXBlLWZlc3Q=">type-fest<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R5cGUtY2hhbGxlbmdlcy90eXBlLWNoYWxsZW5nZXMv">type-challenges<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>react+antd 项目笔记</title>
     <url>/posts/e6509c17/</url>
     <content><![CDATA[<blockquote>
@@ -4843,122 +4959,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>react-ts 重构笔记</title>
-    <url>/posts/dffba461/</url>
-    <content><![CDATA[<p>先前的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BvcHJpbmcvb2ZvLW1zL3RyZWUvb2ZvLW1zLWpz">小黄车后台管理系统<i class="fa fa-external-link-alt"></i></span> ，开发完成后，现看来，目录过于复杂，代码冗余，对强迫症的我来说，实属看不下去了，趁着过年有时间，使用 ts 进行了重构，并在之前的基础上对 <code>react </code> 和 <code>typescript</code> 有了进一步的理解。</p>
-<p>参考了 github 的开源项目 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3llemloYW9oYW8vcmVhY3QtYWRtaW4=">react-admin<i class="fa fa-external-link-alt"></i></span>，感谢大佬的代码，给了很多灵感。</p>
-<span id="more"></span>
-
-<h2 id="create-react-app-自定义配置"><a href="#create-react-app-自定义配置" class="headerlink" title="create-react-app 自定义配置"></a><a href="%5Bhttps://ant.design/docs/react/use-with-create-react-app-cn#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE%5D(https://ant.design/docs/react/use-with-create-react-app-cn#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE)">create-react-app 自定义配置</a></h2><blockquote>
-<p>类似 <code>vue</code> 中的 <code>vue.config.js</code></p>
-</blockquote>
-<p>使用 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbWFybmV5L3JlYWN0LWFwcC1yZXdpcmVk">react-app-rewired<i class="fa fa-external-link-alt"></i></span> 进行自定义配置，需要依赖  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FyYWNrYWYvY3VzdG9taXplLWNyYQ==">customize-cra<i class="fa fa-external-link-alt"></i></span> 。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn add react-app-rewired customize-cra</span><br></pre></td></tr></table></figure>
-
-<p>修改运行配置</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* package.json */</span></span><br><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-app-rewired start&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-app-rewired build&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-app-rewired test&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;eject&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-app eject&quot;</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>项目根目录创建 <code>config-override.js</code> 修改配置</p>
-<h3 id="配置别名路径"><a href="#配置别名路径" class="headerlink" title="配置别名路径"></a>配置别名路径</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// config-override.js</span></span><br><span class="line"><span class="keyword">const</span> &#123; override, addWebpackAlias &#125; = <span class="built_in">require</span>(<span class="string">&#x27;customize-cra&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title function_">override</span>(</span><br><span class="line">  <span class="title function_">addWebpackAlias</span>(&#123;</span><br><span class="line">    <span class="string">&quot;src&quot;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;./src&#x27;</span>),</span><br><span class="line">    <span class="string">&quot;components&quot;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;./src/components&#x27;</span>),</span><br><span class="line">    <span class="string">&quot;router&quot;</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;./src/router&#x27;</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h3 id="tsconfig-中配置别名（alias）"><a href="#tsconfig-中配置别名（alias）" class="headerlink" title="tsconfig 中配置别名（alias）"></a><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL2RvY3MvaGFuZGJvb2svdHNjb25maWctanNvbi5odG1s">tsconfig<i class="fa fa-external-link-alt"></i></span> 中配置别名（alias）</h3><blockquote>
-<p>webpack 配置 alias后，再配置tsconfig，vscode对应提示会更加友好</p>
-</blockquote>
-<p>如果在<code>tsconfig.json</code>中定义别名、路径，项目启动后会被删除 <code>paths</code>节点</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZhY2Vib29rL2NyZWF0ZS1yZWFjdC1hcHAvaXNzdWVzLzU2NDUjaXNzdWVjb21tZW50LTQzNjYxMzc0MA==">github 大佬解决办法<i class="fa fa-external-link-alt"></i></span></p>
-<p><code>paths.json</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;compilerOptions&quot;: &#123;</span><br><span class="line">    &quot;baseUrl&quot;: &quot;.&quot;,</span><br><span class="line">    &quot;paths&quot;: &#123;</span><br><span class="line">      &quot;svg/*&quot;: [&quot;src/svg/*&quot;],</span><br><span class="line">      &quot;components/*&quot;: [&quot;src/components/*&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>in <code>tsconfig.json</code> I have</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;extends&quot;: &quot;./paths.json&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="ts-的使用"><a href="#ts-的使用" class="headerlink" title="ts 的使用"></a>ts 的使用</h2><h3 id="react-模板继承-Componet的类型"><a href="#react-模板继承-Componet的类型" class="headerlink" title="react 模板继承  Componet的类型"></a>react 模板继承  Componet的类型</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Page</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span>&lt;<span class="title class_">Props</span>, state&gt; &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Page</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="定义对象索引"><a href="#定义对象索引" class="headerlink" title="定义对象索引"></a>定义对象索引</h3><p><span class="exturl" data-url="aHR0cHM6Ly9qa2NoYW8uZ2l0aHViLmlvL3R5cGVzY3JpcHQtYm9vay1jaGluZXNlL3R5cGluZ3MvaW5kZXhTaWduYXR1cmVzLmh0bWwjJUU3JUI0JUEyJUU1JUJDJTk1JUU3JUFEJUJFJUU1JTkwJThE">索引签名<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qa2NoYW8uZ2l0aHViLmlvL3R5cGVzY3JpcHQtYm9vay1jaGluZXNlL3R5cGluZ3MvaW5kZXhTaWduYXR1cmVzLmh0bWwjJUU0JUJEJUJGJUU3JTk0JUE4JUU0JUI4JTgwJUU3JUJCJTg0JUU2JTlDJTg5JUU5JTk5JTkwJUU3JTlBJTg0JUU1JUFEJTk3JUU3JUFDJUE2JUU0JUI4JUIyJUU1JUFEJTk3JUU5JTlEJUEyJUU5JTg3JThG">文章<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">type <span class="title class_">Index</span> = <span class="string">&#x27;success&#x27;</span> | <span class="string">&#x27;error&#x27;</span> | <span class="string">&#x27;info&#x27;</span> | <span class="string">&#x27;warning&#x27;</span> | <span class="string">&#x27;loading&#x27;</span>;</span><br><span class="line">type messageType = &#123; [k <span class="keyword">in</span> <span class="title class_">Index</span>]: string &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">(<span class="params">a: messageType</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// xxx</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="antd-使用-Form-高阶组件"><a href="#antd-使用-Form-高阶组件" class="headerlink" title="antd 使用 Form 高阶组件"></a>antd 使用 Form 高阶组件</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// BaseFormProps 为 BaseForm 所定义的Props</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Form</span>.<span class="property">create</span>&lt;<span class="title class_">BaseFormProps</span>&gt;()(<span class="title class_">BaseForm</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="Hooks"><a href="#Hooks" class="headerlink" title="Hooks"></a>Hooks</h2><blockquote>
-<p>普通  function 无状态，class 有状态</p>
-<p><code>Hook</code> 的出现，在不编写 class 的情况下使用 react 的其他特性。</p>
-</blockquote>
-<h3 id="State-Hook"><a href="#State-Hook" class="headerlink" title="State Hook"></a>State Hook</h3><blockquote>
-<p>简化 <code>state</code> 的使用方式</p>
-</blockquote>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Example</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">  	<span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(count+1)&#125;&gt;&#123;count&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Effect-Hook"><a href="#Effect-Hook" class="headerlink" title="Effect Hook"></a>Effect Hook</h3><blockquote>
-<p>useEffect 相当于 <code>react class</code> 生命周期函数的  componentDidMount，componentDidUpdate 和 componentWillUnmount  三合一版本</p>
-</blockquote>
-<p>useEffect() 内返回一个函数，用于防止内存泄漏，清除定时器、订阅外部数据源等。</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Example</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  useEffect = (<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// xxx</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">clearup</span>(<span class="params"></span>)&#123; </span><br><span class="line">      <span class="comment">/*xxx*/</span> </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, [input])</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">  	<span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(count+1)&#125;&gt;&#123;count&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;useState, useEffect, useContext&#125; = <span class="title class_">React</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyContext</span> = <span class="title class_">React</span>.<span class="title function_">createContext</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Children</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> flag = <span class="title function_">useContext</span>(<span class="title class_">MyContext</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;flag&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Father</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [flag, setFlag] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">MyContext.Provider</span> <span class="attr">value</span>=<span class="string">&#123;flag&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span>=&gt;</span> setFlag(flag+1)&#125;&gt;点击+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;flag&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Children</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">MyContext.Provider</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">Father</span> /&gt;</span></span>, <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;app&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="项目的总结"><a href="#项目的总结" class="headerlink" title="项目的总结"></a>项目的总结</h2><p>为了路由更好的配置和管理，修改为类似 <code>vue-router</code> 的配置，遍历动态生成路由，还可进行鉴权。</p>
-<p>如果有官网，一定要去看完官网再看二手知识，毕竟大家水平残次不齐，尤为像我一样的新手无法鉴别文章是否有误，而官网的文档，就没这么多担忧了。虽然很多都是英文文档，坚持看下去，会有不一样的收获。</p>
-<p><code>Typescript</code> 刚开始用起来确实有点繁琐，不过用过一段时间，潜移默化的感觉到会对项目有更深入的了解，当然数据类型检查啥的，降低了项目的出错率，以后的代码维护也会轻松许多。</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3llemloYW9oYW8vcmVhY3QtYWRtaW4=">react-admin<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9hbnQuZGVzaWduL2RvY3MvcmVhY3QvdXNlLXdpdGgtY3JlYXRlLXJlYWN0LWFwcC1jbg==">antd<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aC1oYW5zLnJlYWN0anMub3JnL2RvY3MvaG9va3MtaW50cm8uaHRtbA==">React Hook<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>react</tag>
-        <tag>typescript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>scrollTop值为0等疑难杂症</title>
-    <url>/posts/e6bf74e4/</url>
-    <content><![CDATA[<p> 自测有效果</p>
-<p>IE: <code>document.documentElement.scrollTop</code></p>
-<p>edge: <code>document.body.scrollTop</code></p>
-<p>Firefox: <code>document.documentElement.scrollTop</code></p>
-<span id="more"></span>
-
-<p><strong>IE6&#x2F;7&#x2F;8&#x2F;9&#x2F;10：</strong></p>
-<p>对于没有doctype声明的页面里可以使用 document.body.scrollTop 来获取 scrollTop高度 ；<br>对于有<code>doctype</code>声明的页面则可以使用 <code>document.documentElement.scrollTop</code> ；</p>
-<p><strong>Safari:</strong></p>
-<p>safari 比较特别，有自己获取<code>scrollTop</code>的函数 ： <code>window.pageYOffset</code> ；</p>
-<p><strong>Firefox:</strong></p>
-<p>火狐等等相对标准些的浏览器就省心多了，直接用 document.documentElement.scrollTop</p>
-<p><strong>chrome</strong></p>
-<p><code>document.body.scrollTop</code></p>
-<p>or</p>
-<p><code>document.documentElement.scrollTop</code></p>
-<p><strong>总结，一行代码解决兼容性</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sTop=<span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span>+<span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span>;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>浏览器兼容性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TypeScript总结</title>
-    <url>/posts/34845574/</url>
-    <content><![CDATA[<h2 id="TypeScript-相关收藏"><a href="#TypeScript-相关收藏" class="headerlink" title="TypeScript 相关收藏"></a>TypeScript 相关收藏</h2><h3 id="入门文章类"><a href="#入门文章类" class="headerlink" title="入门文章类"></a>入门文章类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90cy54Y2F0bGl1LmNvbS8=">TypeScript 入门教程<i class="fa fa-external-link-alt"></i></span>: github 10k star, author xcatliu.</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvV3NsZG1rVzJvdnAtb2t4U1kzbGU5Zw==">Typescript 类型编程，从入门到通达<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uY29tL2ZyZWUtY29kZS1jYW1wL3R5cGVzY3JpcHQtY3VycnktcmFtZGEtdHlwZXMtZjc0N2U5OTc0NGFi">Learn Advanced TypeScript Types<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL3poL2NoZWF0c2hlZXRz">TypeScript Cheat Sheets<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="通关挑战类"><a href="#通关挑战类" class="headerlink" title="通关挑战类"></a>通关挑战类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90eXBlc2NyaXB0LWV4ZXJjaXNlcy5naXRodWIuaW8v">Typescript Exercises<i class="fa fa-external-link-alt"></i></span>：一共16关</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpbmRyZXNvcmh1cy90eXBlLWZlc3Q=">type-fest<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R5cGUtY2hhbGxlbmdlcy90eXBlLWNoYWxsZW5nZXMv">type-challenges<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>v-if和v-show区别</title>
     <url>/posts/e9ac0758/</url>
     <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
@@ -4979,58 +4979,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vim 笔记</title>
-    <url>/posts/bceeaa0d/</url>
-    <content><![CDATA[<p><code>vim</code> 神器，依旧宝刀未老，用起来真香。</p>
-<span id="more"></span>
-
-<h2 id="i-insert-模式，可以输入文字"><a href="#i-insert-模式，可以输入文字" class="headerlink" title="i insert 模式，可以输入文字"></a><code>i</code> insert 模式，可以输入文字</h2><h2 id="v-visual-模式"><a href="#v-visual-模式" class="headerlink" title="v visual 模式"></a><code>v</code> visual 模式</h2><h2 id="nomal-模式"><a href="#nomal-模式" class="headerlink" title="nomal 模式"></a>nomal 模式</h2><blockquote>
-<p>刚打开 vim 是 <code>normal</code> 模式，可以输入指令</p>
-</blockquote>
-<h3 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h3><blockquote>
-<p>还可以配合数字使用，例如 <code>5w</code> 表示，光标移至后五个单词的位置。</p>
-</blockquote>
-<p><code>h</code> 光标左移</p>
-<p><code>l</code> 光标右移</p>
-<p><code>j</code> 光标下移</p>
-<p><code>k</code> 光标上移</p>
-<p><code>w</code> 光标移至下一单词的起始位置</p>
-<p><code>b</code> 光标移至上一单词的起始位置</p>
-<p><code>e</code> 光标移至单词的结束位置</p>
-<p><code>0</code> 跳转至当前行开始位置 </p>
-<p><code>$</code> 跳转至当前行结束位置</p>
-<p><code>%</code> 匹配括号时光标位置切换置另一位置</p>
-<p><code>gg</code> 光标切换至顶部</p>
-<p><code>G</code> 光标切换至底部</p>
-<p><code>number G</code> 光标切换至指定行起始位置(number 为待跳转至的行数，与 <code>G</code> 之间无空格)</p>
-<p><code>*</code> 向后查找当前字符</p>
-<p><code>#</code> 向前查找当前字符</p>
-<p><code>/char</code> 查找指定字符字符串(char 为待查找的字符串) </p>
-<p><code>n</code>  查找到指定字符串后，查找下一个</p>
-<p><code>N</code>  查找到指定字符串后，查找上一个</p>
-<p><code>o</code> 光标下一行插入一行，并且光标定位至下一行</p>
-<p><code>O</code> 光标上一行插入一行，并且光标定位至上一行</p>
-<p><code>x</code>  删除光标位置字符</p>
-<p><code>s char</code> 替换光标位置字符(char 为替换后字符，中间无空格)</p>
-<p><code>d command</code> 进入删除指令，结合 <code>w</code> 删除第一个单词。</p>
-<p><code>dd</code> 剪切当前行</p>
-<p><code>p</code> 粘贴</p>
-<p><code>.</code> 重复前一次操作</p>
-<p><code>:u</code> 撤回上次操作</p>
-<p><code>:set nu</code> 显示行数</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dzZGplZy92aW0tZ2Fsb3JlLXpoX2Nu">Vim 从入门到精通 PDF<i class="fa fa-external-link-alt"></i></span>： 强烈推荐</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cub3BlbnZpbS5jb20v">openvim<i class="fa fa-external-link-alt"></i></span>： vim 入门教程</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly92aW0tYWR2ZW50dXJlcy5jb20v">vim-adventures<i class="fa fa-external-link-alt"></i></span>：vim 入门游戏</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudmltb25saW5lZWRpdG9yLmNvbS8=">vimonlineeditor<i class="fa fa-external-link-alt"></i></span>：网页在线vim，本地无环境可尝试使用</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -5126,6 +5074,58 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim 笔记</title>
+    <url>/posts/bceeaa0d/</url>
+    <content><![CDATA[<p><code>vim</code> 神器，依旧宝刀未老，用起来真香。</p>
+<span id="more"></span>
+
+<h2 id="i-insert-模式，可以输入文字"><a href="#i-insert-模式，可以输入文字" class="headerlink" title="i insert 模式，可以输入文字"></a><code>i</code> insert 模式，可以输入文字</h2><h2 id="v-visual-模式"><a href="#v-visual-模式" class="headerlink" title="v visual 模式"></a><code>v</code> visual 模式</h2><h2 id="nomal-模式"><a href="#nomal-模式" class="headerlink" title="nomal 模式"></a>nomal 模式</h2><blockquote>
+<p>刚打开 vim 是 <code>normal</code> 模式，可以输入指令</p>
+</blockquote>
+<h3 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h3><blockquote>
+<p>还可以配合数字使用，例如 <code>5w</code> 表示，光标移至后五个单词的位置。</p>
+</blockquote>
+<p><code>h</code> 光标左移</p>
+<p><code>l</code> 光标右移</p>
+<p><code>j</code> 光标下移</p>
+<p><code>k</code> 光标上移</p>
+<p><code>w</code> 光标移至下一单词的起始位置</p>
+<p><code>b</code> 光标移至上一单词的起始位置</p>
+<p><code>e</code> 光标移至单词的结束位置</p>
+<p><code>0</code> 跳转至当前行开始位置 </p>
+<p><code>$</code> 跳转至当前行结束位置</p>
+<p><code>%</code> 匹配括号时光标位置切换置另一位置</p>
+<p><code>gg</code> 光标切换至顶部</p>
+<p><code>G</code> 光标切换至底部</p>
+<p><code>number G</code> 光标切换至指定行起始位置(number 为待跳转至的行数，与 <code>G</code> 之间无空格)</p>
+<p><code>*</code> 向后查找当前字符</p>
+<p><code>#</code> 向前查找当前字符</p>
+<p><code>/char</code> 查找指定字符字符串(char 为待查找的字符串) </p>
+<p><code>n</code>  查找到指定字符串后，查找下一个</p>
+<p><code>N</code>  查找到指定字符串后，查找上一个</p>
+<p><code>o</code> 光标下一行插入一行，并且光标定位至下一行</p>
+<p><code>O</code> 光标上一行插入一行，并且光标定位至上一行</p>
+<p><code>x</code>  删除光标位置字符</p>
+<p><code>s char</code> 替换光标位置字符(char 为替换后字符，中间无空格)</p>
+<p><code>d command</code> 进入删除指令，结合 <code>w</code> 删除第一个单词。</p>
+<p><code>dd</code> 剪切当前行</p>
+<p><code>p</code> 粘贴</p>
+<p><code>.</code> 重复前一次操作</p>
+<p><code>:u</code> 撤回上次操作</p>
+<p><code>:set nu</code> 显示行数</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dzZGplZy92aW0tZ2Fsb3JlLXpoX2Nu">Vim 从入门到精通 PDF<i class="fa fa-external-link-alt"></i></span>： 强烈推荐</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cub3BlbnZpbS5jb20v">openvim<i class="fa fa-external-link-alt"></i></span>： vim 入门教程</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly92aW0tYWR2ZW50dXJlcy5jb20v">vim-adventures<i class="fa fa-external-link-alt"></i></span>：vim 入门游戏</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudmltb25saW5lZWRpdG9yLmNvbS8=">vimonlineeditor<i class="fa fa-external-link-alt"></i></span>：网页在线vim，本地无环境可尝试使用</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -5440,6 +5440,73 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>vpn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>去哪儿网踩坑（Vue-cli配置和Vuex）</title>
+    <url>/posts/7a3e10c2/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20va29sZXI3NzgvcXVuYWVyd2FuZ3Rlc3Q=">去哪儿网项目链接<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Vue-cli-配置"><a href="#Vue-cli-配置" class="headerlink" title="Vue-cli 配置"></a>Vue-cli 配置</h2><h3 id="Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias"><a href="#Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias" class="headerlink" title="Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias"></a>Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias</h3><h4 id="vue-cli-2-x"><a href="#vue-cli-2-x" class="headerlink" title="vue-cli 2.x"></a>vue-cli 2.x</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>],</span><br><span class="line">    <span class="attr">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src&#x27;</span>),</span><br><span class="line">			<span class="comment">// resolve 函数文件已配置好</span></span><br><span class="line">			<span class="string">&#x27;styles&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="vue-cli-3-x"><a href="#vue-cli-3-x" class="headerlink" title="vue-cli 3.x"></a>vue-cli 3.x</h4><p>直接在项目根目录新建 <code>vue.config.js</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">resolve</span>: &#123;</span><br><span class="line">      <span class="attr">alias</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;styles&#x27;</span>: path.<span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="stylus配置别名"><a href="#stylus配置别名" class="headerlink" title="stylus配置别名"></a>stylus配置别名</h3><p>在以上配置<code>webpack别名目录</code>后，在页面引入 <code>stylus</code> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">/* 此处的~styles 指的就是 src/assets/styles */</span><br><span class="line">@import &#x27;~styles/varibles.styl&#x27;;</span><br><span class="line">...</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvSFRUUCVFNiU4QyU4MSVFNCVCOSU4NSVFOCVCRiU5RSVFNiU4RSVBNQ==">http持久链接 keep-alive 维基百科<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvYXBpLyNrZWVwLWFsaXZl">Vue官方解释<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>keep-alive 是持久化连接技术</p>
+<p>但在vue中是包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们，当组件在 <code>&lt;keep-alive&gt;</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code> 这两个生命周期钩子函数将会被对应执行。由于不会销毁，所以生命周期函数 <code>created</code>，<code>mounted</code>都不会执行第二次</p>
+</blockquote>
+<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><blockquote>
+<p>普通情况下 <strong>store</strong> 就已够用，但如果数据特别大而且特别多的时候，而且还是相互之间需要传值，这个时候就该 <strong>vuex</strong> 上场了。</p>
+<p>官方解释：</p>
+<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。</p>
+</blockquote>
+<p><img data-src="https://vuex.vuejs.org/vuex.png"></p>
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><blockquote>
+<p>相当于组件中的 data，只要挂载到Vue上，所有组件都可以访问</p>
+</blockquote>
+<p>组件中获取state</p>
+<p>第一种 简单直接，就是写起来有点麻烦</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;this.$store.state.city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9zdGF0ZS5odG1sIyVFNSVBRiVCOSVFOCVCMSVBMSVFNSVCMSU5NSVFNSVCQyU4MCVFOCVCRiU5MCVFNyVBRSU5NyVFNyVBQyVBNg==">第二种 对象展开运算符<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; mapState &#125; from &#x27;vuex&#x27;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">		...mapState([&#x27;city&#x27;])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><p><strong>优势</strong></p>
+<ul>
+<li>Action 提交的是 mutation，而不是直接变更状态。</li>
+<li>Action 可以包含任意异步操作。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">actions</span>: &#123;</span><br><span class="line">  <span class="title function_">changeCity</span>(<span class="params">context, city</span>) &#123;</span><br><span class="line">    context.<span class="title function_">commit</span>(<span class="string">&#x27;changeCityName&#x27;</span>, city)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>组件中调用 dispath 可以调用到actions内的函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$store</span>.<span class="title function_">dispatch</span>(<span class="string">&#x27;changeCity&#x27;</span>, <span class="string">&#x27;北京&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">changeCityName</span>(<span class="params">state, city</span>) &#123;</span><br><span class="line">	state.<span class="property">city</span> = city</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9tb2R1bGVzLmh0bWw=">module<i class="fa fa-external-link-alt"></i></span></h3><h2 id="异步加载组件"><a href="#异步加载组件" class="headerlink" title="异步加载组件"></a><span class="exturl" data-url="aHR0cHM6Ly9yb3V0ZXIudnVlanMub3JnL3poL2d1aWRlL2FkdmFuY2VkL2xhenktbG9hZGluZy5odG1sIyVFOCVCNyVBRiVFNyU5NCVCMSVFNiU4NyU5MiVFNSU4QSVBMCVFOCVCRCVCRA==">异步加载组件<i class="fa fa-external-link-alt"></i></span></h2><p>将原来的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Home</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>修改为异步加载，有效减少的 app.js 文件大小</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./page/home/Home.vue&#x27;</span>) &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>项目总结</tag>
       </tags>
   </entry>
   <entry>
@@ -5770,73 +5837,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>去哪儿网踩坑（Vue-cli配置和Vuex）</title>
-    <url>/posts/7a3e10c2/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20va29sZXI3NzgvcXVuYWVyd2FuZ3Rlc3Q=">去哪儿网项目链接<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Vue-cli-配置"><a href="#Vue-cli-配置" class="headerlink" title="Vue-cli 配置"></a>Vue-cli 配置</h2><h3 id="Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias"><a href="#Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias" class="headerlink" title="Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias"></a>Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias</h3><h4 id="vue-cli-2-x"><a href="#vue-cli-2-x" class="headerlink" title="vue-cli 2.x"></a>vue-cli 2.x</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>],</span><br><span class="line">    <span class="attr">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src&#x27;</span>),</span><br><span class="line">			<span class="comment">// resolve 函数文件已配置好</span></span><br><span class="line">			<span class="string">&#x27;styles&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="vue-cli-3-x"><a href="#vue-cli-3-x" class="headerlink" title="vue-cli 3.x"></a>vue-cli 3.x</h4><p>直接在项目根目录新建 <code>vue.config.js</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">resolve</span>: &#123;</span><br><span class="line">      <span class="attr">alias</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;styles&#x27;</span>: path.<span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h3 id="stylus配置别名"><a href="#stylus配置别名" class="headerlink" title="stylus配置别名"></a>stylus配置别名</h3><p>在以上配置<code>webpack别名目录</code>后，在页面引入 <code>stylus</code> 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">/* 此处的~styles 指的就是 src/assets/styles */</span><br><span class="line">@import &#x27;~styles/varibles.styl&#x27;;</span><br><span class="line">...</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvSFRUUCVFNiU4QyU4MSVFNCVCOSU4NSVFOCVCRiU5RSVFNiU4RSVBNQ==">http持久链接 keep-alive 维基百科<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvYXBpLyNrZWVwLWFsaXZl">Vue官方解释<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>keep-alive 是持久化连接技术</p>
-<p>但在vue中是包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们，当组件在 <code>&lt;keep-alive&gt;</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code> 这两个生命周期钩子函数将会被对应执行。由于不会销毁，所以生命周期函数 <code>created</code>，<code>mounted</code>都不会执行第二次</p>
-</blockquote>
-<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><blockquote>
-<p>普通情况下 <strong>store</strong> 就已够用，但如果数据特别大而且特别多的时候，而且还是相互之间需要传值，这个时候就该 <strong>vuex</strong> 上场了。</p>
-<p>官方解释：</p>
-<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。</p>
-</blockquote>
-<p><img data-src="https://vuex.vuejs.org/vuex.png"></p>
-<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><blockquote>
-<p>相当于组件中的 data，只要挂载到Vue上，所有组件都可以访问</p>
-</blockquote>
-<p>组件中获取state</p>
-<p>第一种 简单直接，就是写起来有点麻烦</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;this.$store.state.city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<p><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9zdGF0ZS5odG1sIyVFNSVBRiVCOSVFOCVCMSVBMSVFNSVCMSU5NSVFNSVCQyU4MCVFOCVCRiU5MCVFNyVBRSU5NyVFNyVBQyVBNg==">第二种 对象展开运算符<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; mapState &#125; from &#x27;vuex&#x27;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">		...mapState([&#x27;city&#x27;])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><p><strong>优势</strong></p>
-<ul>
-<li>Action 提交的是 mutation，而不是直接变更状态。</li>
-<li>Action 可以包含任意异步操作。</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">actions</span>: &#123;</span><br><span class="line">  <span class="title function_">changeCity</span>(<span class="params">context, city</span>) &#123;</span><br><span class="line">    context.<span class="title function_">commit</span>(<span class="string">&#x27;changeCityName&#x27;</span>, city)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>组件中调用 dispath 可以调用到actions内的函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$store</span>.<span class="title function_">dispatch</span>(<span class="string">&#x27;changeCity&#x27;</span>, <span class="string">&#x27;北京&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">changeCityName</span>(<span class="params">state, city</span>) &#123;</span><br><span class="line">	state.<span class="property">city</span> = city</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="module"><a href="#module" class="headerlink" title="module"></a><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9tb2R1bGVzLmh0bWw=">module<i class="fa fa-external-link-alt"></i></span></h3><h2 id="异步加载组件"><a href="#异步加载组件" class="headerlink" title="异步加载组件"></a><span class="exturl" data-url="aHR0cHM6Ly9yb3V0ZXIudnVlanMub3JnL3poL2d1aWRlL2FkdmFuY2VkL2xhenktbG9hZGluZy5odG1sIyVFOCVCNyVBRiVFNyU5NCVCMSVFNiU4NyU5MiVFNSU4QSVBMCVFOCVCRCVCRA==">异步加载组件<i class="fa fa-external-link-alt"></i></span></h2><p>将原来的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Home</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>修改为异步加载，有效减少的 app.js 文件大小</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./page/home/Home.vue&#x27;</span>) &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>项目总结</tag>
       </tags>
   </entry>
   <entry>
@@ -6187,6 +6187,35 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>get和post区别</title>
+    <url>/posts/f69ca482/</url>
+    <content><![CDATA[<ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+</ul>
+<p>额外可以聊</p>
+<ul>
+<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
+<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用骨架屏减少首屏白屏现象</title>
     <url>/posts/952634cd/</url>
     <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>用户从输入 <code>url</code> 到打开页面，经历的步骤可以参考<span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIxLzAzLzA2LyVFNyVBRSU4MCVFNSU4RCU5NSVFOCU4MSU4QS8lRTQlQkIlOEUlRTglQkUlOTMlRTUlODUlQTV1cmwlRTUlODglQjAlRTklQTElQjUlRTklOUQlQTIlRTYlOTglQkUlRTclQTQlQkElRTclQkIlOEYlRTglQkYlODclRTQlQkElODYlRTQlQkIlODAlRTQlQjklODgv">这里<i class="fa fa-external-link-alt"></i></span>。现代前端应用程序通常使用 <code>React</code>、<code>Vue</code>、<code>Angular</code>、<code>Solid</code> 等框架进行开发，这些框架统一管理工程化内容。</p>
@@ -6238,35 +6267,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>性能优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>get和post区别</title>
-    <url>/posts/f69ca482/</url>
-    <content><![CDATA[<ul>
-<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
-<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
-<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
-<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
-<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
-<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
-<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
-<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
-<li>GET参数通过URL传递，POST放在Request body中。</li>
-</ul>
-<p>额外可以聊</p>
-<ul>
-<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
-<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -6442,6 +6442,18 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>OKR</title>
+    <url>/posts/126fb5f9/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9PS1I=">https://baike.baidu.com/item/OKR<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
+        <tag>OKR</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[转]对贡献有激情，对回报有信心</title>
     <url>/posts/ee47234e/</url>
     <content><![CDATA[<blockquote>
@@ -6459,15 +6471,18 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>OKR</title>
-    <url>/posts/126fb5f9/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9PS1I=">https://baike.baidu.com/item/OKR<i class="fa fa-external-link-alt"></i></span></p>
+    <title>六色思考帽</title>
+    <url>/posts/65c3010a/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlODUlQUQlRTklQTElQjYlRTYlODAlOUQlRTglODAlODMlRTUlQjglQkQ=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
+<p>六顶思考帽，是指使用六种不同颜色的帽子代表六种不同的思维模式。任何人都有能力使用以下六种基本思维模式：</p>
+<p>白色思考帽：白色是中立而客观的。戴上白色思考帽，人们思考的是关注客观的事实和数据。<br>绿色思考帽：绿色代表茵茵芳草，象征勃勃生机。绿色思考帽寓意创造力和想象力。具有创造性思考、头脑风暴、求异思维等功能。<br>黄色思考帽：黄色代表价值与肯定。戴上黄色思考帽，人们从正面考虑问题，表达乐观的、满怀希望的、建设性的观点。<br>黑色思考帽：戴上黑色思考帽，人们可以运用否定、怀疑、质疑的看法，合乎逻辑的进行批判，尽情发表负面的意见，找出逻辑上的错误。<br>红色思考帽：红色是情感的色彩。戴上红色思考帽，人们可以表现自己的情绪，人们还可以表达直觉、感受、预感等方面的看法。<br>蓝色思考帽：蓝色思考帽负责控制和调节思维过程。负责控制各种思考帽的使用顺序，规划和管理整个思考过程，并负责做出结论。</p>
+<p>不同场合、场景下使用不同的思考帽。</p>
 ]]></content>
       <categories>
         <category>软素质</category>
       </categories>
       <tags>
-        <tag>OKR</tag>
+        <tag>思维</tag>
       </tags>
   </entry>
   <entry>
@@ -6555,138 +6570,8 @@ JavaScript 高级程序设计</p>
         <category>软素质</category>
       </categories>
       <tags>
+        <tag>思维</tag>
         <tag>优势</tag>
-        <tag>思维</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>六色思考帽</title>
-    <url>/posts/65c3010a/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlODUlQUQlRTklQTElQjYlRTYlODAlOUQlRTglODAlODMlRTUlQjglQkQ=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
-<p>六顶思考帽，是指使用六种不同颜色的帽子代表六种不同的思维模式。任何人都有能力使用以下六种基本思维模式：</p>
-<p>白色思考帽：白色是中立而客观的。戴上白色思考帽，人们思考的是关注客观的事实和数据。<br>绿色思考帽：绿色代表茵茵芳草，象征勃勃生机。绿色思考帽寓意创造力和想象力。具有创造性思考、头脑风暴、求异思维等功能。<br>黄色思考帽：黄色代表价值与肯定。戴上黄色思考帽，人们从正面考虑问题，表达乐观的、满怀希望的、建设性的观点。<br>黑色思考帽：戴上黑色思考帽，人们可以运用否定、怀疑、质疑的看法，合乎逻辑的进行批判，尽情发表负面的意见，找出逻辑上的错误。<br>红色思考帽：红色是情感的色彩。戴上红色思考帽，人们可以表现自己的情绪，人们还可以表达直觉、感受、预感等方面的看法。<br>蓝色思考帽：蓝色思考帽负责控制和调节思维过程。负责控制各种思考帽的使用顺序，规划和管理整个思考过程，并负责做出结论。</p>
-<p>不同场合、场景下使用不同的思考帽。</p>
-]]></content>
-      <categories>
-        <category>软素质</category>
-      </categories>
-      <tags>
-        <tag>思维</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>职场效率小工具</title>
-    <url>/posts/dfea4626/</url>
-    <content><![CDATA[<p>简介：</p>
-<ul>
-<li>SMART 法则-提高目标成功率的利器</li>
-<li>5W2H 分析法-缜密高效的思维方式</li>
-<li>掌握金字塔原理</li>
-<li>DISC 矩阵</li>
-<li>时间管理矩阵</li>
-<li>麦肯锡七步分析法</li>
-<li>WBS工作分析法</li>
-<li>甘特图</li>
-<li>搞笑 PDCA 循环法</li>
-<li>SWOT 分析法</li>
-<li>决策树</li>
-</ul>
-<span id="more"></span>
-
-<p>… 正文</p>
-<h3 id="SMART-法则"><a href="#SMART-法则" class="headerlink" title="SMART 法则"></a>SMART 法则</h3><p>如何设定目标</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9TTUFSVCVFNSU4RSU5RiVFNSU4OCU5OS84NTc1ODUwP2Zyb210aXRsZT1TTUFSVCZmcm9taWQ9MjIzMDg4Mw==">百度百科<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li>S&#x3D;Specific，目标必须是具体的</li>
-<li>M&#x3D;Measurable，目标必须是可以衡量的</li>
-<li>A&#x3D;Attainable，目标必须是可以达到的</li>
-<li>R&#x3D;Relevant，目标要与其他目标具有一定的相关性</li>
-<li>T&#x3D;Time-bound，目标必须具有明确的戒指期限</li>
-</ul>
-<h3 id="5W2H-分析法"><a href="#5W2H-分析法" class="headerlink" title="5W2H 分析法"></a>5W2H 分析法</h3><p>提供解决问题思路；问题分析，高效决策。</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS81VzJIJUU1JTg4JTg2JUU2JTlFJTkwJUU2JUIzJTk1P2Zyb210aXRsZT01VzJIJmZyb21pZD0xNzIwMjQ1NiZmcm9tTW9kdWxlPWxlbW1hX3NlYXJjaC1ib3g=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
-<p>（2）WHY——为什么要做？理由是什么？ - 确定工作目的<br>（1）WHAT——做什么事情？如何才能做到？ - 确定工作任务<br>（3）WHO——有谁参与？谁来完成？ - 确定负责人及参与人的角色和职责<br>（4）WHEN——什么时间开始？什么时间完成？ - 确定工作安排<br>（5）WHERE——在哪里做？ - 确定工作地点<br>（6）HOW ——要怎么做？如何实施？ - 确定具体方法<br>（7）HOW MUCH——做到什么程度？数量如何？费用如何？ - 盘点资源和数据</p>
-<h3 id="金字塔原理"><a href="#金字塔原理" class="headerlink" title="金字塔原理"></a>金字塔原理</h3><p>理清逻辑思路；先总后分思维模式。任何问题都可以归纳出一个中心论点，并由多个论据支持，如此延伸，状如金字塔。</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTklODclOTElRTUlQUQlOTclRTUlQTElOTQlRTUlOEUlOUYlRTclOTAlODYvMjk1OD9mcm9tTW9kdWxlPWxlbW1hX3NlYXJjaC1ib3g=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li>中心论点 - 结论先行</li>
-<li>多个论点 - 已上统下</li>
-<li>每个论点有多个论据 - 逻辑递进，归类分组</li>
-</ul>
-<p>先重要后次要<br>先总结后具体<br>先框架后细节<br>先结论后过程<br>先论点后论据</p>
-<h3 id="DISC-矩阵"><a href="#DISC-矩阵" class="headerlink" title="DISC 矩阵"></a>DISC 矩阵</h3><p>沟通策略，提升沟通效率；</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9ESVNDLzE1ODYyMjc=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
-<p>DISC矩阵分析模型类似于一种测评工具，目的是通过预测他人行为性格的倾向性，更好的了解他人，获得最佳沟通策略，提高沟通效率。</p>
-<p>D：Dominance属于老板型／指挥者，表现为目标明确、执行力强。不要挑战主控这类人整个沟通的欲望，显现出接纳和温和的态度，利用提供建议和暗示的方式让人更容易接受。<br>I：Influence属于社交型／影响者，表现为热爱分享、外向活泼。渴望认同和赞美；沟通前提，建立良好的社交关系，激励他们接受新主张或建议；完全对立的方式只会带来负面效果。<br>S：Steadiness属于被动型／支持者，表现为依赖和迁就。隐忍，渴望尊重和支持，给予对方帮助、安慰和指导。<br>C：Compliance属于修正型／思考者，表现为注重细节、追求卓越。工作中要拿出实际数据，证明理论无误；生活上，要有理有据不能胡编乱造不经过大脑。</p>
-<h3 id="时间管理矩阵"><a href="#时间管理矩阵" class="headerlink" title="时间管理矩阵"></a>时间管理矩阵</h3><p>时间安排规划</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTYlOTclQjYlRTklOTclQjQlRTclQUUlQTElRTclOTAlODYlRTQlQkMlOTglRTUlODUlODglRTclOUYlQTklRTklOTglQjU/ZnJvbXRpdGxlPSVFNiU5NyVCNiVFOSU5NyVCNCVFNyVBRSVBMSVFNyU5MCU4NiVFNyU5RiVBOSVFOSU5OCVCNSZmcm9taWQ9MTQ3NDc5NDgmZnJvbU1vZHVsZT1sZW1tYV9zZWFyY2gtYm94">百度百科<i class="fa fa-external-link-alt"></i></span></p>
-<p>重要且紧急：优先去做<br>重要但不紧急：有计划的去做，避免成为重要且紧急<br>紧急但不重要：交给别人做（不认同此观点）<br>不紧急不重要：尽量少做</p>
-<p>tips：推荐高效能人士的七个习惯里的时间管理方式</p>
-<h3 id="麦肯锡七步分析法"><a href="#麦肯锡七步分析法" class="headerlink" title="麦肯锡七步分析法"></a>麦肯锡七步分析法</h3><p>理清解决问题思路</p>
-<ul>
-<li>明确问题<br>拆解维度：目的、效果、效率、标准等<ul>
-<li>清晰的问题描述</li>
-<li>界定问题考虑的方向</li>
-</ul>
-</li>
-<li>分解问题<br>运用结构化图标，根据问题描述拆解成多个全面且、清晰易于操作的子议题，或是提出以事实的假设</li>
-<li>优先排序<br>需根据关键要素、重要性程度进行排序</li>
-<li>议题分析<br>根据重要问题将与其香馆的关键影响因素进行分类及分工，并制定详细地可事实计划</li>
-<li>关键因素分析，分析方法如下<ul>
-<li>因果分析: <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlOUIlQTAlRTYlOUUlOUMlRTUlODglODYlRTYlOUUlOTAvNzI1MDA4MA==">为了确定引起某一现象变化原因的分析，主要解决“为什么”的问题<i class="fa fa-external-link-alt"></i></span></li>
-<li>标杆分析: <span class="exturl" data-url="aHR0cHM6Ly93aWtpLm1iYWxpYi5jb20vd2lraS8lRTYlQTAlODclRTYlOUQlODYlRTUlODglODYlRTYlOUUlOTAlRTYlQjMlOTU=">是一个系统的、持续性的评估过程，通过不断地将企业流程与世界上居领先地位的企业相比较，以获得帮助企业改善经营绩效的信息<i class="fa fa-external-link-alt"></i></span></li>
-<li>趋势分析: <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTglQjYlOEIlRTUlOEElQkYlRTUlODglODYlRTYlOUUlOTAlRTYlQjMlOTU=">通过对有关指标的各期对基期的变化趋势的分析，从中发现问题，为追索和检查账目提供线索的一种分析方法。<i class="fa fa-external-link-alt"></i></span></li>
-<li>比例分析: <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTYlQUYlOTQlRTclOEUlODclRTUlODglODYlRTYlOUUlOTAlRTYlQjMlOTUvNzk1NTQwNA==">通过财务报表的有关指标的比率计算，分析企业财务状况和经营成果，了解企业发展前景的分析方法<i class="fa fa-external-link-alt"></i></span></li>
-<li>模型分析</li>
-</ul>
-</li>
-<li>综合确认<br>对前面的计划进行分析，优化，不断完善工作计划</li>
-<li>组织实施<ul>
-<li>让相关人员了解分析的结果与行动方案，按既定的计划进行实施</li>
-<li>对实施过程进行监督、跟踪、反馈</li>
-</ul>
-</li>
-</ul>
-<h3 id="WBS-工作分解法"><a href="#WBS-工作分解法" class="headerlink" title="WBS 工作分解法"></a>WBS 工作分解法</h3><p>Work Breakdown Structure，工作分解结构；拆解工作项目分配</p>
-<p>分解原则</p>
-<ul>
-<li>将主体项目逐步细化分解，每个人物要求分解到不能再细化为止，最底层的任务活动直接分派到个人完成。即项目→任务→工作→日常活动</li>
-</ul>
-<p>分解方式</p>
-<ul>
-<li>基于交付成果，上层一般以可交付成果为导向；下层一般为可交付成果的工作内容</li>
-<li>基于工作过程，一般是将上层按照工作流程分解，下层按照工作内容划分</li>
-</ul>
-<h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><ul>
-<li>可视化展现项目进度，还可详细区分出计划和实际活动完成情况</li>
-<li>适合小型项目，绘制项一般不超过30项，过多会导致增加阅读难度</li>
-</ul>
-<h3 id="高效-PDCA-循环法"><a href="#高效-PDCA-循环法" class="headerlink" title="高效 PDCA 循环法"></a>高效 PDCA 循环法</h3><p>Plan Do Check Act, 周而复始不断进行这四个动作，一个循环中可以解决一些问题， 未解决的问题便进入到下一次循环之中，直至问题最终解决。</p>
-<ul>
-<li>Plan (计划): 根据任务的目标和要求，制定科学的活动规划。</li>
-<li>Do (执行)：按照预定的计划、标准，根据已知的信息，设计具体的、可运作的方案和计划，实现预期目标的过程。</li>
-<li>Check (检查): 检查执行计划的实施方案和结果是否达到了目标。</li>
-<li>Act (处理): 就是对总结检查的结果进行处理，总结经验并吸取教训。</li>
-</ul>
-<h3 id="SWOT-分析法"><a href="#SWOT-分析法" class="headerlink" title="SWOT 分析法"></a>SWOT 分析法</h3><p>Strength Weakness Opportunity Threats, 态势分析法, 将研究对象(人、公司、产品)密切相关的内部优劣势和外部机会威胁进行系统分析，得出决策性结论。</p>
-<ul>
-<li>S即strength（优势），是指企业自身拥有的特长或者资源，是有竞争优势的。</li>
-<li>W即weakness（劣势），是指与竞争对手相比，做的不太好或没有竞争优势的地方。</li>
-<li>O即opportunity（机会），是指外部环境可以寻求的发展机会。</li>
-<li>T即threats（威胁），是指外部环境有可能对企业造成的不利因素。</li>
-</ul>
-<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><ul>
-<li>决策树一般是自上而下生成的，每个决策或事件(即非自然状态)都可能引出两个或多个时间，导致不同结果</li>
-<li>决策树一般由方块节点、圆形节点、方案支、概率支等组成</li>
-<li>应用决策树进行决策时，必须具备目标、方案、变量、损益和概率等条件</li>
-</ul>
-]]></content>
-      <categories>
-        <category>软素质</category>
-      </categories>
-      <tags>
-        <tag>思维</tag>
-        <tag>效率</tag>
       </tags>
   </entry>
   <entry>
@@ -6717,68 +6602,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>沟通</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>春招面经</title>
-    <url>/posts/734ea54a/</url>
-    <content><![CDATA[<blockquote>
-<p>更多面经请移步：<span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3Byb2ZpbGUvNDY0NjQ3NTg5L215RGlzY3Vzc1Bvc3Q=">https://www.nowcoder.com/profile/464647589/myDiscussPost<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h2 id="微店"><a href="#微店" class="headerlink" title="微店"></a>微店</h2><h3 id="一面电面（25min-左右）"><a href="#一面电面（25min-左右）" class="headerlink" title="一面电面（25min 左右）"></a>一面电面（25min 左右）</h3><blockquote>
-<p>面了不到半个小时，我以为凉了，，，没想到中午约二面了</p>
-</blockquote>
-<ul>
-<li>自我介绍</li>
-<li>ES 6 class 继承怎么理解</li>
-<li>深浅拷贝</li>
-<li>实现深拷贝思路</li>
-<li>如何判断函数、对象</li>
-<li>从 url 输入一个地址到页面渲染经历了什么</li>
-<li>https 建立过程</li>
-<li>浏览器如何渲染页面，渲染过程（之前这里说的不够详细）</li>
-<li>http 缓存（协商缓存少说一个，尴尬）</li>
-<li>强缓存返回 http code 是多少，协商缓存返回的 http code 是多少</li>
-<li>http 2.0 聊一下</li>
-<li>自己实现一个脚手架，你觉得需要考虑什么</li>
-<li>webpack 的 loader 和 plugin有自己写过，去了解它的原理吗</li>
-<li>总结自己，竞争前端岗位，你觉得自己有哪些优势</li>
-</ul>
-<h3 id="二面视频面（40min）"><a href="#二面视频面（40min）" class="headerlink" title="二面视频面（40min）"></a>二面视频面（40min）</h3><blockquote>
-<p>基本毫无准备，一天面两次，还是有点累的。</p>
-<p>话说面试感觉面试官怕我是过来练手的，太难了。</p>
-</blockquote>
-<ul>
-<li>自我介绍</li>
-<li>介绍目前正在做的项目，在项目中负责的部分</li>
-<li>项目中遇到的困难</li>
-<li>栈和堆有什么区别</li>
-<li>有没有深入了解过 Vue，了解的 Vue 原理有哪些</li>
-<li>从 url 输入一个地址到页面渲染经历了什么</li>
-<li>知道的 HTTP 请求头有哪些</li>
-<li>referer 知道是什么吗</li>
-<li>什么是跨域，如何解决</li>
-<li>浏览器本地缓存有什么，localStorage、sessionStorage、cookie 区别</li>
-<li>cookie 不能使用 js 获取或设置吗（上一题说区别时候，说cookie 一般只在服务端调用就被问了）</li>
-<li>cookie 有什么字段，http-only 作用是什么</li>
-<li>ts 中对 装饰器 Decorators 怎么理解</li>
-<li>垂直居中布局</li>
-<li>px、rpx、em、rem、vw&#x2F;vh 区别</li>
-<li>有没有关注新技术的发展</li>
-<li>聊一下什么是微前端（上一个问题，我提到了一嘴，就被问了）</li>
-<li>场景题，移动端一个商品搜索结果页面，如果数据过大，怎么解决？（其实这里没有 get 到面试官想问的点，所以我就大概提了下服务端渲染和分页）</li>
-<li>还能怎么解决，导致前端卡顿，怎么优化（长列表怎么优化，滑动窗口）</li>
-<li>服务端渲染是什么</li>
-<li>AST 有没有听过</li>
-<li>你觉得自己竞争有什么优缺点</li>
-<li>反问阶段</li>
-</ul>
-]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -6990,6 +6813,183 @@ vue.$emit(&#39;msg&#39;, 1)
       </categories>
       <tags>
         <tag>面试题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>春招面经</title>
+    <url>/posts/734ea54a/</url>
+    <content><![CDATA[<blockquote>
+<p>更多面经请移步：<span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3Byb2ZpbGUvNDY0NjQ3NTg5L215RGlzY3Vzc1Bvc3Q=">https://www.nowcoder.com/profile/464647589/myDiscussPost<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="微店"><a href="#微店" class="headerlink" title="微店"></a>微店</h2><h3 id="一面电面（25min-左右）"><a href="#一面电面（25min-左右）" class="headerlink" title="一面电面（25min 左右）"></a>一面电面（25min 左右）</h3><blockquote>
+<p>面了不到半个小时，我以为凉了，，，没想到中午约二面了</p>
+</blockquote>
+<ul>
+<li>自我介绍</li>
+<li>ES 6 class 继承怎么理解</li>
+<li>深浅拷贝</li>
+<li>实现深拷贝思路</li>
+<li>如何判断函数、对象</li>
+<li>从 url 输入一个地址到页面渲染经历了什么</li>
+<li>https 建立过程</li>
+<li>浏览器如何渲染页面，渲染过程（之前这里说的不够详细）</li>
+<li>http 缓存（协商缓存少说一个，尴尬）</li>
+<li>强缓存返回 http code 是多少，协商缓存返回的 http code 是多少</li>
+<li>http 2.0 聊一下</li>
+<li>自己实现一个脚手架，你觉得需要考虑什么</li>
+<li>webpack 的 loader 和 plugin有自己写过，去了解它的原理吗</li>
+<li>总结自己，竞争前端岗位，你觉得自己有哪些优势</li>
+</ul>
+<h3 id="二面视频面（40min）"><a href="#二面视频面（40min）" class="headerlink" title="二面视频面（40min）"></a>二面视频面（40min）</h3><blockquote>
+<p>基本毫无准备，一天面两次，还是有点累的。</p>
+<p>话说面试感觉面试官怕我是过来练手的，太难了。</p>
+</blockquote>
+<ul>
+<li>自我介绍</li>
+<li>介绍目前正在做的项目，在项目中负责的部分</li>
+<li>项目中遇到的困难</li>
+<li>栈和堆有什么区别</li>
+<li>有没有深入了解过 Vue，了解的 Vue 原理有哪些</li>
+<li>从 url 输入一个地址到页面渲染经历了什么</li>
+<li>知道的 HTTP 请求头有哪些</li>
+<li>referer 知道是什么吗</li>
+<li>什么是跨域，如何解决</li>
+<li>浏览器本地缓存有什么，localStorage、sessionStorage、cookie 区别</li>
+<li>cookie 不能使用 js 获取或设置吗（上一题说区别时候，说cookie 一般只在服务端调用就被问了）</li>
+<li>cookie 有什么字段，http-only 作用是什么</li>
+<li>ts 中对 装饰器 Decorators 怎么理解</li>
+<li>垂直居中布局</li>
+<li>px、rpx、em、rem、vw&#x2F;vh 区别</li>
+<li>有没有关注新技术的发展</li>
+<li>聊一下什么是微前端（上一个问题，我提到了一嘴，就被问了）</li>
+<li>场景题，移动端一个商品搜索结果页面，如果数据过大，怎么解决？（其实这里没有 get 到面试官想问的点，所以我就大概提了下服务端渲染和分页）</li>
+<li>还能怎么解决，导致前端卡顿，怎么优化（长列表怎么优化，滑动窗口）</li>
+<li>服务端渲染是什么</li>
+<li>AST 有没有听过</li>
+<li>你觉得自己竞争有什么优缺点</li>
+<li>反问阶段</li>
+</ul>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>职场效率小工具</title>
+    <url>/posts/dfea4626/</url>
+    <content><![CDATA[<p>简介：</p>
+<ul>
+<li>SMART 法则-提高目标成功率的利器</li>
+<li>5W2H 分析法-缜密高效的思维方式</li>
+<li>掌握金字塔原理</li>
+<li>DISC 矩阵</li>
+<li>时间管理矩阵</li>
+<li>麦肯锡七步分析法</li>
+<li>WBS工作分析法</li>
+<li>甘特图</li>
+<li>搞笑 PDCA 循环法</li>
+<li>SWOT 分析法</li>
+<li>决策树</li>
+</ul>
+<span id="more"></span>
+
+<p>… 正文</p>
+<h3 id="SMART-法则"><a href="#SMART-法则" class="headerlink" title="SMART 法则"></a>SMART 法则</h3><p>如何设定目标</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9TTUFSVCVFNSU4RSU5RiVFNSU4OCU5OS84NTc1ODUwP2Zyb210aXRsZT1TTUFSVCZmcm9taWQ9MjIzMDg4Mw==">百度百科<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>S&#x3D;Specific，目标必须是具体的</li>
+<li>M&#x3D;Measurable，目标必须是可以衡量的</li>
+<li>A&#x3D;Attainable，目标必须是可以达到的</li>
+<li>R&#x3D;Relevant，目标要与其他目标具有一定的相关性</li>
+<li>T&#x3D;Time-bound，目标必须具有明确的戒指期限</li>
+</ul>
+<h3 id="5W2H-分析法"><a href="#5W2H-分析法" class="headerlink" title="5W2H 分析法"></a>5W2H 分析法</h3><p>提供解决问题思路；问题分析，高效决策。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS81VzJIJUU1JTg4JTg2JUU2JTlFJTkwJUU2JUIzJTk1P2Zyb210aXRsZT01VzJIJmZyb21pZD0xNzIwMjQ1NiZmcm9tTW9kdWxlPWxlbW1hX3NlYXJjaC1ib3g=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
+<p>（2）WHY——为什么要做？理由是什么？ - 确定工作目的<br>（1）WHAT——做什么事情？如何才能做到？ - 确定工作任务<br>（3）WHO——有谁参与？谁来完成？ - 确定负责人及参与人的角色和职责<br>（4）WHEN——什么时间开始？什么时间完成？ - 确定工作安排<br>（5）WHERE——在哪里做？ - 确定工作地点<br>（6）HOW ——要怎么做？如何实施？ - 确定具体方法<br>（7）HOW MUCH——做到什么程度？数量如何？费用如何？ - 盘点资源和数据</p>
+<h3 id="金字塔原理"><a href="#金字塔原理" class="headerlink" title="金字塔原理"></a>金字塔原理</h3><p>理清逻辑思路；先总后分思维模式。任何问题都可以归纳出一个中心论点，并由多个论据支持，如此延伸，状如金字塔。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTklODclOTElRTUlQUQlOTclRTUlQTElOTQlRTUlOEUlOUYlRTclOTAlODYvMjk1OD9mcm9tTW9kdWxlPWxlbW1hX3NlYXJjaC1ib3g=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>中心论点 - 结论先行</li>
+<li>多个论点 - 已上统下</li>
+<li>每个论点有多个论据 - 逻辑递进，归类分组</li>
+</ul>
+<p>先重要后次要<br>先总结后具体<br>先框架后细节<br>先结论后过程<br>先论点后论据</p>
+<h3 id="DISC-矩阵"><a href="#DISC-矩阵" class="headerlink" title="DISC 矩阵"></a>DISC 矩阵</h3><p>沟通策略，提升沟通效率；</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9ESVNDLzE1ODYyMjc=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
+<p>DISC矩阵分析模型类似于一种测评工具，目的是通过预测他人行为性格的倾向性，更好的了解他人，获得最佳沟通策略，提高沟通效率。</p>
+<p>D：Dominance属于老板型／指挥者，表现为目标明确、执行力强。不要挑战主控这类人整个沟通的欲望，显现出接纳和温和的态度，利用提供建议和暗示的方式让人更容易接受。<br>I：Influence属于社交型／影响者，表现为热爱分享、外向活泼。渴望认同和赞美；沟通前提，建立良好的社交关系，激励他们接受新主张或建议；完全对立的方式只会带来负面效果。<br>S：Steadiness属于被动型／支持者，表现为依赖和迁就。隐忍，渴望尊重和支持，给予对方帮助、安慰和指导。<br>C：Compliance属于修正型／思考者，表现为注重细节、追求卓越。工作中要拿出实际数据，证明理论无误；生活上，要有理有据不能胡编乱造不经过大脑。</p>
+<h3 id="时间管理矩阵"><a href="#时间管理矩阵" class="headerlink" title="时间管理矩阵"></a>时间管理矩阵</h3><p>时间安排规划</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTYlOTclQjYlRTklOTclQjQlRTclQUUlQTElRTclOTAlODYlRTQlQkMlOTglRTUlODUlODglRTclOUYlQTklRTklOTglQjU/ZnJvbXRpdGxlPSVFNiU5NyVCNiVFOSU5NyVCNCVFNyVBRSVBMSVFNyU5MCU4NiVFNyU5RiVBOSVFOSU5OCVCNSZmcm9taWQ9MTQ3NDc5NDgmZnJvbU1vZHVsZT1sZW1tYV9zZWFyY2gtYm94">百度百科<i class="fa fa-external-link-alt"></i></span></p>
+<p>重要且紧急：优先去做<br>重要但不紧急：有计划的去做，避免成为重要且紧急<br>紧急但不重要：交给别人做（不认同此观点）<br>不紧急不重要：尽量少做</p>
+<p>tips：推荐高效能人士的七个习惯里的时间管理方式</p>
+<h3 id="麦肯锡七步分析法"><a href="#麦肯锡七步分析法" class="headerlink" title="麦肯锡七步分析法"></a>麦肯锡七步分析法</h3><p>理清解决问题思路</p>
+<ul>
+<li>明确问题<br>拆解维度：目的、效果、效率、标准等<ul>
+<li>清晰的问题描述</li>
+<li>界定问题考虑的方向</li>
+</ul>
+</li>
+<li>分解问题<br>运用结构化图标，根据问题描述拆解成多个全面且、清晰易于操作的子议题，或是提出以事实的假设</li>
+<li>优先排序<br>需根据关键要素、重要性程度进行排序</li>
+<li>议题分析<br>根据重要问题将与其香馆的关键影响因素进行分类及分工，并制定详细地可事实计划</li>
+<li>关键因素分析，分析方法如下<ul>
+<li>因果分析: <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlOUIlQTAlRTYlOUUlOUMlRTUlODglODYlRTYlOUUlOTAvNzI1MDA4MA==">为了确定引起某一现象变化原因的分析，主要解决“为什么”的问题<i class="fa fa-external-link-alt"></i></span></li>
+<li>标杆分析: <span class="exturl" data-url="aHR0cHM6Ly93aWtpLm1iYWxpYi5jb20vd2lraS8lRTYlQTAlODclRTYlOUQlODYlRTUlODglODYlRTYlOUUlOTAlRTYlQjMlOTU=">是一个系统的、持续性的评估过程，通过不断地将企业流程与世界上居领先地位的企业相比较，以获得帮助企业改善经营绩效的信息<i class="fa fa-external-link-alt"></i></span></li>
+<li>趋势分析: <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTglQjYlOEIlRTUlOEElQkYlRTUlODglODYlRTYlOUUlOTAlRTYlQjMlOTU=">通过对有关指标的各期对基期的变化趋势的分析，从中发现问题，为追索和检查账目提供线索的一种分析方法。<i class="fa fa-external-link-alt"></i></span></li>
+<li>比例分析: <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTYlQUYlOTQlRTclOEUlODclRTUlODglODYlRTYlOUUlOTAlRTYlQjMlOTUvNzk1NTQwNA==">通过财务报表的有关指标的比率计算，分析企业财务状况和经营成果，了解企业发展前景的分析方法<i class="fa fa-external-link-alt"></i></span></li>
+<li>模型分析</li>
+</ul>
+</li>
+<li>综合确认<br>对前面的计划进行分析，优化，不断完善工作计划</li>
+<li>组织实施<ul>
+<li>让相关人员了解分析的结果与行动方案，按既定的计划进行实施</li>
+<li>对实施过程进行监督、跟踪、反馈</li>
+</ul>
+</li>
+</ul>
+<h3 id="WBS-工作分解法"><a href="#WBS-工作分解法" class="headerlink" title="WBS 工作分解法"></a>WBS 工作分解法</h3><p>Work Breakdown Structure，工作分解结构；拆解工作项目分配</p>
+<p>分解原则</p>
+<ul>
+<li>将主体项目逐步细化分解，每个人物要求分解到不能再细化为止，最底层的任务活动直接分派到个人完成。即项目→任务→工作→日常活动</li>
+</ul>
+<p>分解方式</p>
+<ul>
+<li>基于交付成果，上层一般以可交付成果为导向；下层一般为可交付成果的工作内容</li>
+<li>基于工作过程，一般是将上层按照工作流程分解，下层按照工作内容划分</li>
+</ul>
+<h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><ul>
+<li>可视化展现项目进度，还可详细区分出计划和实际活动完成情况</li>
+<li>适合小型项目，绘制项一般不超过30项，过多会导致增加阅读难度</li>
+</ul>
+<h3 id="高效-PDCA-循环法"><a href="#高效-PDCA-循环法" class="headerlink" title="高效 PDCA 循环法"></a>高效 PDCA 循环法</h3><p>Plan Do Check Act, 周而复始不断进行这四个动作，一个循环中可以解决一些问题， 未解决的问题便进入到下一次循环之中，直至问题最终解决。</p>
+<ul>
+<li>Plan (计划): 根据任务的目标和要求，制定科学的活动规划。</li>
+<li>Do (执行)：按照预定的计划、标准，根据已知的信息，设计具体的、可运作的方案和计划，实现预期目标的过程。</li>
+<li>Check (检查): 检查执行计划的实施方案和结果是否达到了目标。</li>
+<li>Act (处理): 就是对总结检查的结果进行处理，总结经验并吸取教训。</li>
+</ul>
+<h3 id="SWOT-分析法"><a href="#SWOT-分析法" class="headerlink" title="SWOT 分析法"></a>SWOT 分析法</h3><p>Strength Weakness Opportunity Threats, 态势分析法, 将研究对象(人、公司、产品)密切相关的内部优劣势和外部机会威胁进行系统分析，得出决策性结论。</p>
+<ul>
+<li>S即strength（优势），是指企业自身拥有的特长或者资源，是有竞争优势的。</li>
+<li>W即weakness（劣势），是指与竞争对手相比，做的不太好或没有竞争优势的地方。</li>
+<li>O即opportunity（机会），是指外部环境可以寻求的发展机会。</li>
+<li>T即threats（威胁），是指外部环境有可能对企业造成的不利因素。</li>
+</ul>
+<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><ul>
+<li>决策树一般是自上而下生成的，每个决策或事件(即非自然状态)都可能引出两个或多个时间，导致不同结果</li>
+<li>决策树一般由方块节点、圆形节点、方案支、概率支等组成</li>
+<li>应用决策树进行决策时，必须具备目标、方案、变量、损益和概率等条件</li>
+</ul>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
+        <tag>思维</tag>
+        <tag>效率</tag>
       </tags>
   </entry>
 </search>
