@@ -1,8 +1,9 @@
 ---
 title: powershell 常用命令
-date: 2020-01-07 12:16:10
 tags: powershell
-categories:	技术
+categories: 技术
+abbrlink: 50e64c9a
+date: 2020-01-07 12:16:10
 ---
 
 

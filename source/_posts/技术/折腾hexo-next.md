@@ -1,10 +1,11 @@
 ---
 title: '[项目] 折腾hexo + next'
-date: 2019-02-01 11:46:47
-tags: 
-- hexo
-- 项目总结
+tags:
+  - hexo
+  - 项目总结
 categories: 技术
+abbrlink: 3dbb4ed7
+date: 2019-02-01 11:46:47
 ---
 
 - hexo 安装

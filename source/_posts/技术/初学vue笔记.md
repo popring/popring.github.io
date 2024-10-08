@@ -1,8 +1,9 @@
 ---
 title: 初学vue笔记
-date: 2019-12-27 18:13:21
 tags: Vue
 categories: 技术
+abbrlink: 2b382936
+date: 2019-12-27 18:13:21
 ---
 
 

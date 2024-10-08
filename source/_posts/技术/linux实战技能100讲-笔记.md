@@ -1,8 +1,11 @@
 ---
 title: linux实战技能100讲 笔记
-date: 2021-06-02 20:35:00
-tags: [linux, 笔记]
+tags:
+  - linux
+  - 笔记
 categories: 技术
+abbrlink: 9c9b623d
+date: 2021-06-02 20:35:00
 ---
 
 Linux入门时做的笔记， `shell` 相关笔记没有学完不全，以后有空继续学习。

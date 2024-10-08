@@ -1,10 +1,11 @@
 ---
 title: Node.js 学习笔记
-date: 2019-05-16 17:15:07
-tags: 
-- node
-- 笔记
+tags:
+  - node
+  - 笔记
 categories: 技术
+abbrlink: 20e30b1b
+date: 2019-05-16 17:15:07
 ---
 
 

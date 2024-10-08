@@ -1,8 +1,9 @@
 ---
-title: "vim 笔记"
-date: 2021-02-02 20:55:44
+title: vim 笔记
 tags: vim
 categories: 技术
+abbrlink: bceeaa0d
+date: 2021-02-02 20:55:44
 ---
 
 

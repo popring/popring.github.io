@@ -1,8 +1,11 @@
 ---
 title: https握手过程
-date: 2021-04-21 09:45:51
-tags: [http, 面试题]
+tags:
+  - http
+  - 面试题
 categories: 简单聊
+abbrlink: 1449f691
+date: 2021-04-21 09:45:51
 ---
 
 ##  概括

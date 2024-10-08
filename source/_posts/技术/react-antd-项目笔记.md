@@ -1,11 +1,12 @@
 ---
 title: react+antd 项目笔记
-date: 2020-01-26 12:19:14
 tags:
-- React
-- antd
-- 踩坑
+  - React
+  - antd
+  - 踩坑
 categories: 技术
+abbrlink: e6509c17
+date: 2020-01-26 12:19:14
 ---
 
 > **Atwood 定律**

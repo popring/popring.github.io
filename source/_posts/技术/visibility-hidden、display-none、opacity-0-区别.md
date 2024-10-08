@@ -1,8 +1,9 @@
 ---
 title: 'visibility: hidden、display: none、opacity: 0 区别'
-date: 2020-10-16 16:52:36
 tags: css
 categories: 技术
+abbrlink: 540f9cbc
+date: 2020-10-16 16:52:36
 ---
 
 ## 结论

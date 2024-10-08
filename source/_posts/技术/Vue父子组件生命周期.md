@@ -1,8 +1,9 @@
 ---
 title: Vue父子组件生命周期
-date: 2020-11-30 18:13:21
 tags: Vue
 categories: 技术
+abbrlink: '77185e63'
+date: 2020-11-30 18:13:21
 ---
 
 

@@ -1,8 +1,9 @@
 ---
 title: 入门git-代理配置篇
-date: 2020-07-27 12:48:24
 tags: git
 categories: 技术
+abbrlink: d3d2c956
+date: 2020-07-27 12:48:24
 ---
 
 

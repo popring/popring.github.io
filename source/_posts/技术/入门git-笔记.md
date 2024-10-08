@@ -1,8 +1,11 @@
 ---
 title: 入门git-笔记
-date: 2019-03-10 13:32:49
-tags: [git, 笔记]
+tags:
+  - git
+  - 笔记
 categories: 技术
+abbrlink: ab34e705
+date: 2019-03-10 13:32:49
 ---
 
 > 官方中文文档 https://git-scm.com/book/zh/v2

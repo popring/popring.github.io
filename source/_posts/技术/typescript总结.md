@@ -1,8 +1,9 @@
 ---
-title: 'TypeScript总结'
-date: 2023-12-27 10:50:40
+title: TypeScript总结
 tags: Vue
 categories: 技术
+abbrlink: '34845574'
+date: 2023-12-27 10:50:40
 ---
 
 

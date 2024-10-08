@@ -1,8 +1,11 @@
 ---
 title: mac 使用技巧
-date: 2020-08-05 09:15:10
-tags: [brew, iterm2]
+tags:
+  - brew
+  - iterm2
 categories: 技术
+abbrlink: df1211e8
+date: 2020-08-05 09:15:10
 ---
 
 快捷键

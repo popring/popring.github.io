@@ -1,8 +1,11 @@
 ---
 title: get和post区别
-date: 2021-04-21 10:22:13
-tags: [http, 面试题]
+tags:
+  - http
+  - 面试题
 categories: 简单聊
+abbrlink: f69ca482
+date: 2021-04-21 10:22:13
 ---
 
 

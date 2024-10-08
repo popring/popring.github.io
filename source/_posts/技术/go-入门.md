@@ -1,8 +1,9 @@
 ---
 title: go 入门
-date: 2020-10-17 23:07:19
 tags: Go
 categories: 技术
+abbrlink: 1d79f384
+date: 2020-10-17 23:07:19
 ---
 
 

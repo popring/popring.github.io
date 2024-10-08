@@ -1,11 +1,11 @@
 ---
 title: react-ts 重构笔记
-date: 2020-02-07 15:51:33
 tags:
-- react
-- typescript
+  - react
+  - typescript
 categories: 技术
-
+abbrlink: dffba461
+date: 2020-02-07 15:51:33
 ---
 
 先前的 [小黄车后台管理系统](https://github.com/popring/ofo-ms/tree/ofo-ms-js) ，开发完成后，现看来，目录过于复杂，代码冗余，对强迫症的我来说，实属看不下去了，趁着过年有时间，使用 ts 进行了重构，并在之前的基础上对 `react ` 和 `typescript` 有了进一步的理解。

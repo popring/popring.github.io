@@ -1,8 +1,9 @@
 ---
 title: Chrome 调试技巧
-date: 2020-01-29 17:35:04
 tags: Chrome
 categories: 技术
+abbrlink: f8120d2
+date: 2020-01-29 17:35:04
 ---
 
 > 参考 掘金小册 和 chrome 官方文档，这些东西基本都过一遍有个印象就行，需要用的时候，再看也不迟。

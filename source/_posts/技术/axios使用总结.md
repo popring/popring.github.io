@@ -1,10 +1,11 @@
 ---
 title: axios使用总结
-date: 2019-12-10 13:32:49
 tags:
-- axios
-- ajax
+  - axios
+  - ajax
 categories: 技术
+abbrlink: 2058da06
+date: 2019-12-10 13:32:49
 ---
 
 # axios使用总结

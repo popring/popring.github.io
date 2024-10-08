@@ -1,8 +1,9 @@
 ---
 title: 通过loader实现打包优化
-date: 2024-05-13 11:19:42
 tags: 性能优化
 categories: 技术
+abbrlink: bffc2e83
+date: 2024-05-13 11:19:42
 ---
 
 > 一句话总结：通过配置 `pitching-loader` 实现按需打包，实现开发模式下打包加速。
