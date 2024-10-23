@@ -11,7 +11,9 @@ categories:
 
 - 使用一个函数，可以创建组件实例
 - 将新创建的实例，挂载到 DOM 上
-- 如果有特殊场景，需要将上下文进行绑定
+- 如果有特殊场景，需要将上下文进行绑定（本文内实现的暂未绑定上下文）
+
+TODO: ant-design 在新版本实现了可以绑定上下文的 hooks，`Modal.useModal`，具体还没细看👀，后续有空再看看。
 
 
 <!-- more  -->
@@ -282,12 +284,11 @@ function App () {
 
 ```
 
-TODO: ant-design 在新版本实现了可以绑定上下文的 hooks，`Modal.useModal`，具体还没细看👀，后续有空再看看。
 
 ## 参考
 
 
-[Vue 实现参考 Vant 远吗](https://github.com/youzan/vant/blob/3d55c87d4cfcfd27895dd61e5d8f50932207cc0c/packages/vant/src/toast/function-call.tsx#L44)
+[vant 实现源码(Vue)](https://github.com/youzan/vant/blob/3d55c87d4cfcfd27895dd61e5d8f50932207cc0c/packages/vant/src/toast/function-call.tsx#L44)
 
-[React 实现参考 ant-design 源码](https://github.com/react-component/util/blob/7aaa1d88174b30d7fb9c94b41b7a34cea5fc37f3/src/React/render.ts#L48)
+[ant-design 实现源码(React)](https://github.com/react-component/util/blob/7aaa1d88174b30d7fb9c94b41b7a34cea5fc37f3/src/React/render.ts#L48)
 
