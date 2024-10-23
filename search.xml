@@ -30,8 +30,9 @@
 <ul>
 <li>使用一个函数，可以创建组件实例</li>
 <li>将新创建的实例，挂载到 DOM 上</li>
-<li>如果有特殊场景，需要将上下文进行绑定</li>
+<li>如果有特殊场景，需要将上下文进行绑定（本文内实现的暂未绑定上下文）</li>
 </ul>
+<p>TODO: ant-design 在新版本实现了可以绑定上下文的 hooks，<code>Modal.useModal</code>，具体还没细看👀，后续有空再看看。</p>
 <!-- more  -->
 
 
@@ -66,9 +67,9 @@
 </ol>
 <figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; showModal &#125; <span class="keyword">from</span> <span class="string">&#x27;./modal.ts&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CustomModal</span> <span class="keyword">from</span> <span class="string">&#x27;./CustomModal.tsx&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span> (<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleOpenModal</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> modal = <span class="title function_">showModal</span>(</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">CustomModal</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">onAfterClose</span>=<span class="string">&#123;()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">          &#123;/* 关闭后进行卸载 */&#125;</span></span><br><span class="line"><span class="language-xml">          modal.unmount();</span></span><br><span class="line"><span class="language-xml">        &#125;&#125;</span></span><br><span class="line"><span class="language-xml">      /&gt;</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleOpenModal&#125;</span>&gt;</span>打开模态框<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>TODO: ant-design 在新版本实现了可以绑定上下文的 hooks，<code>Modal.useModal</code>，具体还没细看👀，后续有空再看看。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXphbi92YW50L2Jsb2IvM2Q1NWM4N2Q0Y2ZjZmQyNzg5NWRkNjFlNWQ4ZjUwOTMyMjA3Y2MwYy9wYWNrYWdlcy92YW50L3NyYy90b2FzdC9mdW5jdGlvbi1jYWxsLnRzeCNMNDQ=">Vue 实现参考 Vant 远吗<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JlYWN0LWNvbXBvbmVudC91dGlsL2Jsb2IvN2FhYTFkODgxNzRiMzBkN2ZiOWM5NGI0MWI3YTM0Y2VhNWZjMzdmMy9zcmMvUmVhY3QvcmVuZGVyLnRzI0w0OA==">React 实现参考 ant-design 源码<i class="fa fa-external-link-alt"></i></span></p>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXphbi92YW50L2Jsb2IvM2Q1NWM4N2Q0Y2ZjZmQyNzg5NWRkNjFlNWQ4ZjUwOTMyMjA3Y2MwYy9wYWNrYWdlcy92YW50L3NyYy90b2FzdC9mdW5jdGlvbi1jYWxsLnRzeCNMNDQ=">vant 实现源码(Vue)<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JlYWN0LWNvbXBvbmVudC91dGlsL2Jsb2IvN2FhYTFkODgxNzRiMzBkN2ZiOWM5NGI0MWI3YTM0Y2VhNWZjMzdmMy9zcmMvUmVhY3QvcmVuZGVyLnRzI0w0OA==">ant-design 实现源码(React)<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <tags>
         <tag>Vue, react</tag>
