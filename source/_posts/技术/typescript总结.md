@@ -28,3 +28,4 @@ date: 2023-12-27 10:50:40
 
 [type-challenges](https://github.com/type-challenges/type-challenges/)
 
+[typehero](https://typehero.dev/)
