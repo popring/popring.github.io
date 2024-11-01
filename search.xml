@@ -4950,6 +4950,7 @@ JavaScript 高级程序设计</p>
 <h3 id="通关挑战类"><a href="#通关挑战类" class="headerlink" title="通关挑战类"></a>通关挑战类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90eXBlc2NyaXB0LWV4ZXJjaXNlcy5naXRodWIuaW8v">Typescript Exercises<i class="fa fa-external-link-alt"></i></span>：一共16关</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpbmRyZXNvcmh1cy90eXBlLWZlc3Q=">type-fest<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R5cGUtY2hhbGxlbmdlcy90eXBlLWNoYWxsZW5nZXMv">type-challenges<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly90eXBlaGVyby5kZXYv">typehero<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -6493,6 +6494,28 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>算法</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>how-to-learn-stuff-quickly</title>
+    <url>/posts/a40a7f50/</url>
+    <content><![CDATA[<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuam9zaHdjb21lYXUuY29tL2Jsb2cvaG93LXRvLWxlYXJuLXN0dWZmLXF1aWNrbHkv">https://www.joshwcomeau.com/blog/how-to-learn-stuff-quickly/<i class="fa fa-external-link-alt"></i></span></p>
+<p>Josh W. Comeau 在他的文章《How to Learn Stuff Quickly》中分享了一些关于快速学习的实用策略。其核心观点包括：</p>
+<ol>
+<li><p><strong>专注于技能的关键部分</strong>：Josh强调学习新技能时，应专注于最重要的核心技能，避免被次要或不必要的细节分散精力。通过先掌握核心内容，可以更快地获得成就感和信心。</p>
+</li>
+<li><p><strong>在真实项目中实践</strong>：他建议尽量用真实的项目去应用新知识，而非只停留在理论学习上。在实践中，学到的知识会得到巩固，理解也会更深刻。</p>
+</li>
+<li><p><strong>高效的学习资源选择</strong>：Josh提倡优先使用高质量、经过验证的学习资源，例如文档、教程、社区资源等，避免在琐碎和不完整的资源上浪费时间。</p>
+</li>
+<li><p><strong>对信息的主动回顾和巩固</strong>：通过多次重复和自我测试来加强记忆，特别是对于知识点和技能的反复实践，有助于快速加深理解和熟练度。</p>
+</li>
+<li><p><strong>及时纠正错误</strong>：在学习的过程中不断检查并修正错误，避免错误的知识被固化。Josh认为在错误中学习的过程往往比一味地追求“完美理解”更有助于快速提升。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>翻译</category>
+      </categories>
   </entry>
   <entry>
     <title>[转]对贡献有激情，对回报有信心</title>
