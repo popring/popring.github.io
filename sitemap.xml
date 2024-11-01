@@ -2,34 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://popring.cn/posts/163f6156/</loc>
-    
-    <lastmod>2024-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://popring.cn/posts/fba831b4/</loc>
-    
-    <lastmod>2024-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://popring.cn/posts/dffba461/</loc>
-    
-    <lastmod>2024-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://popring.cn/posts/e6bf74e4/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -246,6 +219,15 @@
   
   <url>
     <loc>https://popring.cn/posts/a40a7f50/</loc>
+    
+    <lastmod>2024-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://popring.cn/posts/163f6156/</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -748,6 +730,24 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://popring.cn/posts/dffba461/</loc>
+    
+    <lastmod>2024-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://popring.cn/posts/e6bf74e4/</loc>
+    
+    <lastmod>2024-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   <url>
     <loc>https://popring.cn/</loc>
@@ -1243,13 +1243,6 @@
 
   
   <url>
-    <loc>https://popring.cn/categories/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2024-11-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://popring.cn/categories/%E5%85%B6%E4%BB%96/</loc>
     <lastmod>2024-11-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -1293,6 +1286,13 @@
   
   <url>
     <loc>https://popring.cn/categories/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2024-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://popring.cn/categories/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2024-11-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -4,8 +4,11 @@
     <title>好文推荐</title>
     <url>/posts/227406a3/</url>
     <content><![CDATA[<h2 id="一些有趣的网站"><a href="#一些有趣的网站" class="headerlink" title="一些有趣的网站"></a>一些有趣的网站</h2><p><span class="exturl" data-url="aHR0cHM6Ly9za3lsaW5lLmdpdGh1Yi5jb20vcG9wcmluZy8yMDIw">Skyline<i class="fa fa-external-link-alt"></i></span> 可视化展示 <code>github</code> 提交记录</p>
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjExMjg2NS9hcnRpY2xlL2RldGFpbHMvMTAwOTc5MzYz">页面渲染大量数据的性能优化（时间分片）<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjExMjg2NS9hcnRpY2xlL2RldGFpbHMvMTAwOTc5MzYz">页面渲染大量数据的性能优化（时间分片），这篇文章对我影响很大<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE5LzA5L2dldHRpbmctc3RhcnRlZC13aXRoLWdpdGh1Yi1hY3Rpb25zLmh0bWw=">GitHub Actions 入门教程<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="软实力"><a href="#软实力" class="headerlink" title="软实力"></a>软实力</h2><p><span class="exturl" data-url="aHR0cHM6Ly9jb29sc2hlbGwuY24vYXJ0aWNsZXMvMjE1ODkuaHRtbA==">如何做一个有质量的技术分享<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p><span class="exturl" data-url="aHR0cHM6Ly9zb3VsbWFjaGluZS5naXRib29rcy5pby9zeXN0ZW0tZGVzaWduL2NvbnRlbnQvY24v">系统设计面试题精选<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xMTJIQmlNTnZ1NlRZYkRVT2ZWUmVfTVM0QS1mS2FXWXJwTWxtbnNpTU5pQS9lZGl0P3RhYj10LjAjaGVhZGluZz1oLmJtd2FjeTR5bGtzaA==">彻底击碎行为问题<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
   </entry>
   <entry>
@@ -21,16 +24,6 @@
       <tags>
         <tag>like</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>通配符（Wildcard）</title>
-    <url>/posts/163f6156/</url>
-    <content><![CDATA[<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
-<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
-]]></content>
-      <categories>
-        <category>翻译</category>
-      </categories>
   </entry>
   <entry>
     <title>魔方还原教程</title>
@@ -6522,6 +6515,16 @@ JavaScript 高级程序设计</p>
 <li><p><strong>及时纠正错误</strong>：在学习的过程中不断检查并修正错误，避免错误的知识被固化。Josh认为在错误中学习的过程往往比一味地追求“完美理解”更有助于快速提升。</p>
 </li>
 </ol>
+]]></content>
+      <categories>
+        <category>翻译</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>通配符（Wildcard）</title>
+    <url>/posts/163f6156/</url>
+    <content><![CDATA[<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
+<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
 ]]></content>
       <categories>
         <category>翻译</category>
