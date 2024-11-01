@@ -1,8 +1,9 @@
 ---
 title: 通配符（Wildcard）
+categories: 翻译
+abbrlink: 163f6156
 date: 2024-11-01 15:30:12
 tags:
-categories: 翻译
 ---
 
 原文：https://www.computerhope.com/jargon/w/wildcard.htm

@@ -1,8 +1,9 @@
 ---
 title: how-to-learn-stuff-quickly
-date: 2024-11-01 12:00:26
-tags: 
 categories: 翻译
+abbrlink: a40a7f50
+date: 2024-11-01 12:00:26
+tags:
 ---
 
 原文：https://www.joshwcomeau.com/blog/how-to-learn-stuff-quickly/

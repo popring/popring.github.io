@@ -1,7 +1,8 @@
 ---
 title: 指令示调起一个弹窗Vue和React版本（未完成版）
+tags: 'Vue, react'
+abbrlink: 51cf0c91
 date: 2024-10-22 17:34:14
-tags: Vue, react
 categories:
 ---
 
