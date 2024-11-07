@@ -3264,144 +3264,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>get和post区别</title>
-    <url>/posts/f69ca482/</url>
-    <content><![CDATA[<ul>
-<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
-<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
-<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
-<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
-<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
-<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
-<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
-<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
-<li>GET参数通过URL传递，POST放在Request body中。</li>
-</ul>
-<p>额外可以聊</p>
-<ul>
-<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
-<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>https握手过程</title>
-    <url>/posts/1449f691/</url>
-    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
-<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
-<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
-<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
-<li>服务端使用自己的私钥，对随机数进行解密。</li>
-<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
-</ul>
-<p>细节</p>
-<ul>
-<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>setTimeout为什么会有延迟</title>
-    <url>/posts/9a771de5/</url>
-    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
-<p>其中 setTimeout 有两类用法：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
-<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
-<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
-<p>其他影响 setTimout 延迟因素：</p>
-<ol>
-<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
-<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
-<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
-</ol>
-<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从输入url到页面显示经过了什么</title>
-    <url>/posts/ababab9d/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>TCP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<span id="more"></span>
-
-
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>可替换元素和不可替换元素</title>
-    <url>/posts/d6e0c31a/</url>
-    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
-<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
-<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
-<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
-<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS3 新特性</title>
     <url>/posts/6436a60f/</url>
     <content><![CDATA[<p>css3 新特性</p>
@@ -6425,6 +6287,144 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>get和post区别</title>
+    <url>/posts/f69ca482/</url>
+    <content><![CDATA[<ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+</ul>
+<p>额外可以聊</p>
+<ul>
+<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
+<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>https握手过程</title>
+    <url>/posts/1449f691/</url>
+    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
+<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
+<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
+<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
+<li>服务端使用自己的私钥，对随机数进行解密。</li>
+<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
+</ul>
+<p>细节</p>
+<ul>
+<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>setTimeout为什么会有延迟</title>
+    <url>/posts/9a771de5/</url>
+    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
+<p>其中 setTimeout 有两类用法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
+<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
+<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
+<p>其他影响 setTimout 延迟因素：</p>
+<ol>
+<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
+<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
+<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
+</ol>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/posts/ababab9d/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>TCP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
+<span id="more"></span>
+
+
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可替换元素和不可替换元素</title>
+    <url>/posts/d6e0c31a/</url>
+    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
+<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
+<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
+<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
+<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
       </tags>
   </entry>
   <entry>
