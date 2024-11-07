@@ -3264,6 +3264,144 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>get和post区别</title>
+    <url>/posts/f69ca482/</url>
+    <content><![CDATA[<ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+</ul>
+<p>额外可以聊</p>
+<ul>
+<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
+<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>https握手过程</title>
+    <url>/posts/1449f691/</url>
+    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
+<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
+<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
+<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
+<li>服务端使用自己的私钥，对随机数进行解密。</li>
+<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
+</ul>
+<p>细节</p>
+<ul>
+<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>setTimeout为什么会有延迟</title>
+    <url>/posts/9a771de5/</url>
+    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
+<p>其中 setTimeout 有两类用法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
+<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
+<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
+<p>其他影响 setTimout 延迟因素：</p>
+<ol>
+<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
+<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
+<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
+</ol>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/posts/ababab9d/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>TCP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
+<span id="more"></span>
+
+
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可替换元素和不可替换元素</title>
+    <url>/posts/d6e0c31a/</url>
+    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
+<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
+<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
+<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
+<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS3 新特性</title>
     <url>/posts/6436a60f/</url>
     <content><![CDATA[<p>css3 新特性</p>
@@ -6155,34 +6293,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>通过loader实现打包优化</title>
-    <url>/posts/bffc2e83/</url>
-    <content><![CDATA[<blockquote>
-<p>一句话总结：通过配置 <code>pitching-loader</code> 实现按需打包，实现开发模式下打包加速。</p>
-</blockquote>
-<span id="more"></span>
-
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在翻项目代码时，发现了个比较有意思的设计，总结下来。</p>
-<p>适用于当前端项目单一仓库项目比较庞大，而且还是SPA页面时，需要解决使用 <code>webpack</code> 打包会非常之缓慢问题。</p>
-<p>若前端项目页面刚好是按照业务维度划分，所以只需要按照启动时配置秩序打包指定文件夹即可。</p>
-<h2 id="解法思路"><a href="#解法思路" class="headerlink" title="解法思路"></a>解法思路</h2><p>使用 <code>webpack</code> 自定义 <code>loader</code> 过滤跳过打包文件，进而加快打包速度。</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcvYXBpL2xvYWRlcnMjcGl0Y2hpbmctbG9hZGVy">pitching-loader<i class="fa fa-external-link-alt"></i></span> 刚好可以在处理前进行判断，具体可看官方。</p>
-<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>通过 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25ldXRyaW5vanMvd2VicGFjay1jaGFpbg==">webpack-chain<i class="fa fa-external-link-alt"></i></span> 进行修改 <code>webpack</code> 配置。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在开发环境下配置一个自定义loader</span></span><br><span class="line"><span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">BUILD_ENV</span> === <span class="string">&#x27;development&#x27;</span>) &#123;</span><br><span class="line">  chain.<span class="property">module</span>.<span class="title function_">rule</span>(<span class="string">&#x27;vue&#x27;</span>).<span class="title function_">use</span>(<span class="string">&#x27;vue-loader-v15&#x27;</span>).<span class="title function_">loader</span>(<span class="built_in">require</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;./loaders/partial-loader.js&#x27;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// partial-loader.js 实现</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// SUB_APP 为当前启动需运行的项目（需打包的文件夹名）</span></span><br><span class="line"><span class="keyword">const</span> knownModule = [</span><br><span class="line">  <span class="string">&#x27;folder-a&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;folder-b&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;folder-c&#x27;</span>,</span><br><span class="line">].<span class="title function_">filter</span>(<span class="function"><span class="params">i</span> =&gt;</span> i !== process.<span class="property">env</span>.<span class="property">SUB_APP</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需排除打包的文件夹名称</span></span><br><span class="line"><span class="keyword">let</span> excluded = [...knownModule]</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isSkippedPartial</span>(<span class="params"><span class="variable language_">module</span>, resourceQuery, resourcePath</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> isForceLoad = resourceQuery &amp;&amp; resourceQuery.<span class="title function_">indexOf</span>(<span class="string">&#x27;force&#x27;</span>) &gt; -<span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> (isForceLoad) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&#x27;强制 build&#x27;</span>, resourcePath)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> includedReg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">`^((?!<span class="subst">$&#123;excluded.join(<span class="string">&#x27;|&#x27;</span>)&#125;</span>).)*$`</span>)</span><br><span class="line">  <span class="keyword">const</span> isExluded = resourcePath &amp;&amp; !resourcePath.<span class="title function_">match</span>(includedReg)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!isForceLoad &amp;&amp; isExluded) &#123;</span><br><span class="line">    <span class="keyword">let</span> requiredByRoute = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> issuer = <span class="variable language_">module</span>.<span class="property">issuer</span></span><br><span class="line">      <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">      <span class="keyword">while</span> (i &lt; <span class="number">6</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!issuer) &#123;</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (issuer.<span class="property">resource</span>.<span class="title function_">endsWith</span>(<span class="string">&#x27;routes.config.js&#x27;</span>)) &#123;</span><br><span class="line">          requiredByRoute = <span class="literal">true</span></span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        issuer = issuer.<span class="property">issuer</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">      requiredByRoute = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (requiredByRoute) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&#x27;忽略 build&#x27;</span>, resourcePath)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function"><span class="params">code</span> =&gt;</span> code</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">pitch</span> = <span class="keyword">function</span> <span class="title function_">pitch</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">isSkippedPartial</span>(<span class="variable language_">this</span>.<span class="property">_module</span>, <span class="variable language_">this</span>.<span class="property">resourceQuery</span>, <span class="variable language_">this</span>.<span class="property">resourcePath</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcvY29udHJpYnV0ZS93cml0aW5nLWEtbG9hZGVyLw==">编写 loader<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>性能优化</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>指令示调起一个弹窗Vue和React版本（未完成版）</title>
     <url>/posts/51cf0c91/</url>
     <content><![CDATA[<p>该功能在Vue、React版本实现起来思路一致。</p>
@@ -6233,6 +6343,34 @@ JavaScript 高级程序设计</p>
 ]]></content>
       <tags>
         <tag>Vue, react</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通过loader实现打包优化</title>
+    <url>/posts/bffc2e83/</url>
+    <content><![CDATA[<blockquote>
+<p>一句话总结：通过配置 <code>pitching-loader</code> 实现按需打包，实现开发模式下打包加速。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在翻项目代码时，发现了个比较有意思的设计，总结下来。</p>
+<p>适用于当前端项目单一仓库项目比较庞大，而且还是SPA页面时，需要解决使用 <code>webpack</code> 打包会非常之缓慢问题。</p>
+<p>若前端项目页面刚好是按照业务维度划分，所以只需要按照启动时配置秩序打包指定文件夹即可。</p>
+<h2 id="解法思路"><a href="#解法思路" class="headerlink" title="解法思路"></a>解法思路</h2><p>使用 <code>webpack</code> 自定义 <code>loader</code> 过滤跳过打包文件，进而加快打包速度。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcvYXBpL2xvYWRlcnMjcGl0Y2hpbmctbG9hZGVy">pitching-loader<i class="fa fa-external-link-alt"></i></span> 刚好可以在处理前进行判断，具体可看官方。</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>通过 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25ldXRyaW5vanMvd2VicGFjay1jaGFpbg==">webpack-chain<i class="fa fa-external-link-alt"></i></span> 进行修改 <code>webpack</code> 配置。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在开发环境下配置一个自定义loader</span></span><br><span class="line"><span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">BUILD_ENV</span> === <span class="string">&#x27;development&#x27;</span>) &#123;</span><br><span class="line">  chain.<span class="property">module</span>.<span class="title function_">rule</span>(<span class="string">&#x27;vue&#x27;</span>).<span class="title function_">use</span>(<span class="string">&#x27;vue-loader-v15&#x27;</span>).<span class="title function_">loader</span>(<span class="built_in">require</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;./loaders/partial-loader.js&#x27;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// partial-loader.js 实现</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// SUB_APP 为当前启动需运行的项目（需打包的文件夹名）</span></span><br><span class="line"><span class="keyword">const</span> knownModule = [</span><br><span class="line">  <span class="string">&#x27;folder-a&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;folder-b&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;folder-c&#x27;</span>,</span><br><span class="line">].<span class="title function_">filter</span>(<span class="function"><span class="params">i</span> =&gt;</span> i !== process.<span class="property">env</span>.<span class="property">SUB_APP</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需排除打包的文件夹名称</span></span><br><span class="line"><span class="keyword">let</span> excluded = [...knownModule]</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isSkippedPartial</span>(<span class="params"><span class="variable language_">module</span>, resourceQuery, resourcePath</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> isForceLoad = resourceQuery &amp;&amp; resourceQuery.<span class="title function_">indexOf</span>(<span class="string">&#x27;force&#x27;</span>) &gt; -<span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> (isForceLoad) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&#x27;强制 build&#x27;</span>, resourcePath)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> includedReg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">`^((?!<span class="subst">$&#123;excluded.join(<span class="string">&#x27;|&#x27;</span>)&#125;</span>).)*$`</span>)</span><br><span class="line">  <span class="keyword">const</span> isExluded = resourcePath &amp;&amp; !resourcePath.<span class="title function_">match</span>(includedReg)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!isForceLoad &amp;&amp; isExluded) &#123;</span><br><span class="line">    <span class="keyword">let</span> requiredByRoute = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> issuer = <span class="variable language_">module</span>.<span class="property">issuer</span></span><br><span class="line">      <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">      <span class="keyword">while</span> (i &lt; <span class="number">6</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!issuer) &#123;</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (issuer.<span class="property">resource</span>.<span class="title function_">endsWith</span>(<span class="string">&#x27;routes.config.js&#x27;</span>)) &#123;</span><br><span class="line">          requiredByRoute = <span class="literal">true</span></span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        issuer = issuer.<span class="property">issuer</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">      requiredByRoute = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (requiredByRoute) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&#x27;忽略 build&#x27;</span>, resourcePath)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function"><span class="params">code</span> =&gt;</span> code</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">pitch</span> = <span class="keyword">function</span> <span class="title function_">pitch</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">isSkippedPartial</span>(<span class="variable language_">this</span>.<span class="property">_module</span>, <span class="variable language_">this</span>.<span class="property">resourceQuery</span>, <span class="variable language_">this</span>.<span class="property">resourcePath</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcvY29udHJpYnV0ZS93cml0aW5nLWEtbG9hZGVyLw==">编写 loader<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>性能优化</tag>
       </tags>
   </entry>
   <entry>
@@ -6287,144 +6425,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>性能优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>get和post区别</title>
-    <url>/posts/f69ca482/</url>
-    <content><![CDATA[<ul>
-<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
-<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
-<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
-<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
-<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
-<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
-<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
-<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
-<li>GET参数通过URL传递，POST放在Request body中。</li>
-</ul>
-<p>额外可以聊</p>
-<ul>
-<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
-<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>https握手过程</title>
-    <url>/posts/1449f691/</url>
-    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
-<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
-<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
-<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
-<li>服务端使用自己的私钥，对随机数进行解密。</li>
-<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
-</ul>
-<p>细节</p>
-<ul>
-<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>setTimeout为什么会有延迟</title>
-    <url>/posts/9a771de5/</url>
-    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
-<p>其中 setTimeout 有两类用法：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
-<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
-<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
-<p>其他影响 setTimout 延迟因素：</p>
-<ol>
-<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
-<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
-<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
-</ol>
-<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从输入url到页面显示经过了什么</title>
-    <url>/posts/ababab9d/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>TCP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<span id="more"></span>
-
-
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>可替换元素和不可替换元素</title>
-    <url>/posts/d6e0c31a/</url>
-    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
-<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
-<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
-<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
-<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
       </tags>
   </entry>
   <entry>
@@ -6658,82 +6658,7 @@ JavaScript 高级程序设计</p>
   <entry>
     <title>职场效率小工具</title>
     <url>/posts/dfea4626/</url>
-    <content><![CDATA[<h3 id="1-目标设定与管理"><a href="#1-目标设定与管理" class="headerlink" title="1. 目标设定与管理"></a>1. 目标设定与管理</h3><ul>
-<li><p><strong>SMART 法则</strong></p>
-<ul>
-<li><strong>定义</strong>：SMART代表具体(Specific)、可衡量(Measurable)、可实现(Achievable)、相关(Relevant)、时限(Timely)。</li>
-<li><strong>使用场景</strong>：用于设定清晰、具体且可达成的目标，特别适合个人和团队在项目管理、绩效评估等领域。</li>
-</ul>
-</li>
-<li><p><strong>高效 PDCA 循环法</strong></p>
-<ul>
-<li><strong>定义</strong>：PDCA代表计划(Plan)、执行(Do)、检查(Check)、行动(Action)的循环过程。</li>
-<li><strong>使用场景</strong>：适用于持续改进和质量管理，帮助团队在实施项目时不断评估和调整。</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-思维与分析工具"><a href="#2-思维与分析工具" class="headerlink" title="2. 思维与分析工具"></a>2. 思维与分析工具</h3><ul>
-<li><p><strong>5W2H 分析法</strong></p>
-<ul>
-<li><strong>定义</strong>：5W2H指的是“什么(What)”、“为什么(Why)”、“谁(Who)”、“何时(When)”、“在哪里(Where)”和“如何(How)”、“多少(How much)”。</li>
-<li><strong>使用场景</strong>：用于项目策划、问题分析及决策制定，确保从多个角度全面考虑问题。</li>
-</ul>
-</li>
-<li><p><strong>SWOT 分析法</strong></p>
-<ul>
-<li><strong>定义</strong>：SWOT分析通过识别内部优势(Strengths)、劣势(Weaknesses)和外部机会(Opportunities)、威胁(Threats)来评估战略。</li>
-<li><strong>使用场景</strong>：适用于战略规划、市场分析和企业决策，帮助识别内外部环境影响。</li>
-</ul>
-</li>
-<li><p><strong>金字塔原理</strong></p>
-<ul>
-<li><strong>定义</strong>：一种组织思维和沟通的方法，通过将信息层次化，便于理解和传播。</li>
-<li><strong>使用场景</strong>：用于报告、演示文稿和商业沟通，帮助清晰表达复杂问题。</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-项目管理工具"><a href="#3-项目管理工具" class="headerlink" title="3. 项目管理工具"></a>3. 项目管理工具</h3><ul>
-<li><p><strong>WBS 工作分析法</strong></p>
-<ul>
-<li><strong>定义</strong>：工作分解结构(WBS)是将项目分解成更小的可管理部分。</li>
-<li><strong>使用场景</strong>：适用于项目管理，帮助团队清晰定义项目范围、任务和时间安排。</li>
-</ul>
-</li>
-<li><p><strong>甘特图</strong></p>
-<ul>
-<li><strong>定义</strong>：甘特图是以条形图的形式展示项目任务的时间安排。</li>
-<li><strong>使用场景</strong>：用于项目规划和进度管理，便于监控任务的进展和时间控制。</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-决策与优先级管理"><a href="#4-决策与优先级管理" class="headerlink" title="4. 决策与优先级管理"></a>4. 决策与优先级管理</h3><ul>
-<li><p><strong>决策树</strong></p>
-<ul>
-<li><strong>定义</strong>：通过树状结构展示不同选择及其可能的结果和收益。</li>
-<li><strong>使用场景</strong>：用于复杂决策分析，帮助评估不同方案的潜在影响。</li>
-</ul>
-</li>
-<li><p><strong>时间管理矩阵</strong></p>
-<ul>
-<li><strong>定义</strong>：基于重要性和紧急性对任务进行分类，帮助优先处理。</li>
-<li><strong>使用场景</strong>：用于个人和团队的时间管理，帮助聚焦于高优先级的任务。</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-团队与沟通分析"><a href="#5-团队与沟通分析" class="headerlink" title="5. 团队与沟通分析"></a>5. 团队与沟通分析</h3><ul>
-<li><strong>DISC 矩阵</strong><ul>
-<li><strong>定义</strong>：DISC是一种人格类型分析工具，通过四种类型（支配D、影响I、稳定S、谨慎C）分析个体行为。</li>
-<li><strong>使用场景</strong>：用于团队建设、沟通风格分析和冲突管理，帮助提高团队合作效率。</li>
-</ul>
-</li>
-</ul>
-<h3 id="6-分析与解决问题"><a href="#6-分析与解决问题" class="headerlink" title="6. 分析与解决问题"></a>6. 分析与解决问题</h3><ul>
-<li><strong>麦肯锡七步分析法</strong><ul>
-<li><strong>定义</strong>：一种结构化的分析方法，通过七个步骤帮助解决复杂问题。</li>
-<li><strong>使用场景</strong>：适用于管理咨询、项目分析和战略制定，帮助系统性解决业务问题。</li>
-</ul>
-</li>
-</ul>
+    <content><![CDATA[<p>这些工具都是我平时工作中经常用到的，可以帮助我们提高工作效率，提升工作质量。</p>
 <span id="more"></span>
 
 <h2 id="目标设定与管理"><a href="#目标设定与管理" class="headerlink" title="目标设定与管理"></a>目标设定与管理</h2><h3 id="SMART-法则"><a href="#SMART-法则" class="headerlink" title="SMART 法则"></a>SMART 法则</h3><p>如何设定目标</p>
