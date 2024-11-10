@@ -1,12 +1,12 @@
 ---
-title: how-to-learn-stuff-quickly
-categories: 翻译
+title: '[转]how-to-learn-stuff-quickly'
+categories: 转载
 abbrlink: a40a7f50
 date: 2024-11-01 12:00:26
 tags:
 ---
 
-原文：https://www.joshwcomeau.com/blog/how-to-learn-stuff-quickly/
+> 原文：[how-to-learn-stuff-quickly](https://www.joshwcomeau.com/blog/how-to-learn-stuff-quickly/)
 
 Josh W. Comeau 在他的文章《How to Learn Stuff Quickly》中分享了一些关于快速学习的实用策略。其核心观点包括：
 

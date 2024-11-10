@@ -9,6 +9,12 @@ const axios = require('axios'); // 使用 Axios 来发送 HTTP 请求
 // 定义 urls.json 的常量路径
 const URLS_FILE_PATH = path.join(hexo.base_dir, 'baidu_submit_urls.json');
 
+// 该脚本禁止在CI运行
+if (process.env.GITHUB_ACTIONS === 'true') {
+  console.log('This script is not intended to run in GitHub Actions environment.');
+  return
+}
+
 // 在 Hexo 完成生成后运行
 hexo.on('generateAfter', async function () {
   // 获取所有已发布的文章 URL
