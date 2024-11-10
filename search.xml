@@ -6731,13 +6731,14 @@ JavaScript 高级程序设计</p>
 <li>T即threats（威胁），是指外部环境有可能对企业造成的不利因素。</li>
 </ul>
 <h3 id="金字塔原理"><a href="#金字塔原理" class="headerlink" title="金字塔原理"></a>金字塔原理</h3><p>理清逻辑思路；先总后分思维模式。任何问题都可以归纳出一个中心论点，并由多个论据支持，如此延伸，状如金字塔。</p>
+<p>这篇讲解的非常清晰，可供参考，<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMURNNHkxNzdZcS8/c2hhcmVfc291cmNlPWNvcHlfd2ViJnZkX3NvdXJjZT02YTlhNTdjNTkwZTIyNzJmYTZkZmNkMzdhNThlNDE1Yg==">【庞颖】专治嘴笨，帮你更高效地思考、表达和解决问题 ｜奇葩说辩手庞颖 x 《金字塔原理》<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTklODclOTElRTUlQUQlOTclRTUlQTElOTQlRTUlOEUlOUYlRTclOTAlODYvMjk1OD9mcm9tTW9kdWxlPWxlbW1hX3NlYXJjaC1ib3g=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li>中心论点 - 结论先行</li>
-<li>多个论点 - 已上统下</li>
-<li>每个论点有多个论据 - 逻辑递进，归类分组</li>
-</ul>
-<p>先重要后次要<br>先总结后具体<br>先框架后细节<br>先结论后过程<br>先论点后论据</p>
+<p>一、结论先行，以上统下：<br>先说结论，再说理由，每个理由在双击展开，上一层是下一层的总结和归纳，下一层是对上一层具体的展开的解释；</p>
+<p>二、归纳分组：<br>表达的事物内容用第一第二第三罗列，这是最容易记得方法；</p>
+<p>三、逻辑统一：<br>分“线性逻辑”和“平行逻辑”两者不能混用，线性逻辑让人感觉重复啰嗦，还不可与平性逻辑共同使用，“平行逻辑”是更精简，更容易被听懂接受的方法；</p>
+<p>四、提炼更高的洞见：<br>从上面第二点的归纳分组延伸，找到事物之间的顺序关系，总结共性，发现更多的问题；</p>
+<p>五、结构化拆解分题，MECE(Mutually Exclusive Collectively Exhaustive) 结构性解决：<br>把总体拆分成部分且部分之间不重合，帮我们更加有结构性系统性的分析问题找出解决问题</p>
+<p>整体拆分成部分，之间是不重合的。<br>部分整合起来，是一个整体。</p>
 <h2 id="项目管理工具"><a href="#项目管理工具" class="headerlink" title="项目管理工具"></a>项目管理工具</h2><h3 id="WBS-工作分解法"><a href="#WBS-工作分解法" class="headerlink" title="WBS 工作分解法"></a>WBS 工作分解法</h3><p>Work Breakdown Structure，工作分解结构；拆解工作项目分配</p>
 <p>分解原则</p>
 <ul>
