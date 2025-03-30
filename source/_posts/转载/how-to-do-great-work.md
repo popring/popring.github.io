@@ -1,5 +1,5 @@
 ---
-title: '[转]how-to-do-great-work'
+title: '[转] how-to-do-great-work'
 categories: 转载
 abbrlink: 415c86c1
 date: 2024-11-10 18:18:34
