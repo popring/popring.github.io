@@ -1274,123 +1274,6 @@
       </tags>
   </entry>
   <entry>
-    <title>备战校招第一天</title>
-    <url>/posts/6dc31817/</url>
-    <content><![CDATA[<ol>
-<li>BFC（块格式化上下文）</li>
-<li>首页白屏</li>
-<li>函数柯里化</li>
-<li>bind、apply、call</li>
-<li>如果阻塞了JS中的主线程会发生什么情况</li>
-<li>浏览器和Node 事件循环机制区别</li>
-</ol>
-<hr>
-<span id="more"></span>
-
-<h3 id="BFC（块格式化上下文）"><a href="#BFC（块格式化上下文）" class="headerlink" title="BFC（块格式化上下文）"></a>BFC（块格式化上下文）</h3><p>常见的定位方案分为三种：普通流、浮动、绝对定位。</p>
-<p><strong>块格式化上下文（Block Formatting Context，BFC）</strong> 是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。而这里的 <code>BFC</code> 属于属于普通流，相当于具有 <code>BFC</code> 特性的元素可以看作一个独立的容器，无论容器内部的元素怎么调整，都不会影响到外部的元素。</p>
-<p>下列情况会创建BFC：</p>
-<ul>
-<li>根元素(<code>&lt;html&gt;</code>)</li>
-<li>浮动元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"><code>float</code></a> 不是 <code>none</code>）</li>
-<li>绝对定位元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position"><code>position</code></a> 为 <code>absolute</code> 或 <code>fixed</code>）</li>
-<li>行内块元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>inline-block</code>）</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow"><code>overflow</code></a> 值不为 <code>visible</code> 的块元素</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 值为 <code>flow-root</code> 的元素</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/contain"><code>contain</code></a> 值为 <code>layout</code>、<code>content</code>或 paint 的元素</li>
-<li>弹性元素（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a>为 <code>flex</code> 或 <code>inline-flex</code>元素的直接子元素）</li>
-<li>网格元素（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a>为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）</li>
-<li>…</li>
-</ul>
-<p><strong>案例</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;border: 1px solid #000;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 45%; height: 300px; background-color: red; float: left;&quot;</span>&gt;</span>123<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 45%; height: 300px; background-color: blue; float: right;&quot;</span>&gt;</span>456<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这几行代码，如果直接运行会在网页上按照我们的预期显示出来两个色块，但仔细看下，会看出父元素的高度不正常，父元素看起来向空容器一样。原因在于子元素采用浮动，而浮动流不属于普通流，是独立定位的。</p>
-<p>解决方法，按照上述规则，使用一个合适的方法，来进行创建BFC，从而告诉浏览器 <code>”我的最外层div需要创建BFC，按照常规方式渲染“</code>。</p>
-<p>例如：在最外层 <code>div</code> 添加样式 <code>float: left</code>（上述规则指出只要 <code>float</code> 不为 <code>none</code> 即可创建BFC ） ,  当然如果觉得 float 不够优雅，还可以使用 <code>overflow: hidden;</code> 。（通常情况下，我们可能会使用伪元素添加 <code>clear:both;</code> 占位来清除浮动，从而使最外层 div 恢复正常）。</p>
-<p>详情请看，请看<span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMDkvMDQvZmxvYXRfY2xlYXJpbmcuaHRtbA==">阮老师的文章<i class="fa fa-external-link-alt"></i></span>。</p>
-<p>还有<strong>经典问题 <code>margin</code> 重叠问题</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: <span class="number">#f55</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background</span>: <span class="number">#fcc</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">line-height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Haha<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hehe<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>运行之后就会发现 两个 p标签 <code>margin</code> 发生重叠（同一个BFC内，两盒子垂直，就会发生 <code>margin</code> 塌陷重叠，而<code>margin</code> 值会以最大的为主。）</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200624115734.png" alt="image-20200624115733942"></p>
-<p>解决方法：</p>
-<ol>
-<li>将 margin 换为 padding</li>
-<li>利用 <code>BFC</code> ，在 p 外层添加个一层 div，并在新添加的元素上添加样式（overflow: hidden;），创建新的BFC，这样两个p标签不属于同一个BFC，则自然不会再发生 margin 重叠问题。</li>
-</ol>
-<h3 id="首页白屏"><a href="#首页白屏" class="headerlink" title="首页白屏"></a>首页白屏</h3><p>现在多数都使用的为Vue、React和Angular三大框架其中之一，但它们有个共同的特点，均为 JS 驱动，所以在 JS 解析前，网页处于空白页，什么都不显示，这就是我们所说的白屏。</p>
-<p>解决方法</p>
-<ol>
-<li>SSR，服务端渲染，有明显的好处，对SEO友好，还可以加快网页打开速度。</li>
-<li>预渲染，插件 <code>prerender-spa-plugin</code>，编译阶段就将对应的页面渲染好，但是是没有数据的</li>
-<li>骨架图，数据还未加载出来时，但会显示出网页的大致骨架，相对友好。</li>
-</ol>
-<h3 id="函数柯里化"><a href="#函数柯里化" class="headerlink" title="函数柯里化"></a>函数柯里化</h3><p>柯里化，是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">curry</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = fn.<span class="property">length</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">bindFn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">arguments</span>.<span class="property">length</span> &lt; len) &#123;</span><br><span class="line">      <span class="keyword">return</span> bindFn.<span class="title function_">bind</span>(<span class="literal">null</span>, ...<span class="variable language_">arguments</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> fn.<span class="title function_">call</span>(<span class="literal">null</span>, ...<span class="variable language_">arguments</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a + b)</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原版</span></span><br><span class="line"><span class="title function_">add</span>(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">// 柯里化后</span></span><br><span class="line"><span class="keyword">var</span> curryAdd = <span class="title function_">curry</span>(add)</span><br><span class="line"><span class="title function_">curryAdd</span>(<span class="number">1</span>)(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="bind、apply和call"><a href="#bind、apply和call" class="headerlink" title="bind、apply和call"></a><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvRnVuY3Rpb24vYmluZA==">bind<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvRnVuY3Rpb24vYXBwbHk=">apply<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvRnVuY3Rpb24vY2FsbA==">call<i class="fa fa-external-link-alt"></i></span></h3><p><strong>func.bind(thisArg[, arg1[, arg2[, …]]])</strong></p>
-<p>调用函数后，返回绑定 <code>this</code> 之后的函数（以下为mdn文档中的案例），并不会执行</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable language_">module</span> = &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="number">42</span>,</span><br><span class="line">  <span class="attr">getX</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">x</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> unboundGetX = <span class="variable language_">module</span>.<span class="property">getX</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unboundGetX</span>()); <span class="comment">// 直接调用，this指向全局</span></span><br><span class="line"><span class="comment">// expected output: undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> boundGetX = unboundGetX.<span class="title function_">bind</span>(<span class="variable language_">module</span>); <span class="comment">// 绑定this为module，this指向moudle</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">boundGetX</span>());</span><br><span class="line"><span class="comment">// expected output: 42</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>func.apply(thisArg, [argsArray])</strong></p>
-<p><code>apply</code> 接受一个<strong>参数数组</strong> ，并会执行此函数，如果没有传递参数（或传入 <code>null</code> 、 <code>undefined</code>）则默认指向 <code>window</code> </p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> max = <span class="title class_">Math</span>.<span class="property">max</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, numbers);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(max);</span><br><span class="line"><span class="comment">// expected output: 7</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> min = <span class="title class_">Math</span>.<span class="property">min</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, numbers);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(min);</span><br><span class="line"><span class="comment">// expected output: 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>function.call(thisArg, arg1, arg2, …)</strong></p>
-<p> <code>call</code> 接受的是一个<strong>参数列表</strong> ，并会执行此函数，如果没有传递参数（或传入 <code>null</code> 、 <code>undefined</code>）则默认指向 <code>window </code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Product</span>(<span class="params">name, price</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">price</span> = price;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Food</span>(<span class="params">name, price</span>) &#123;</span><br><span class="line">  <span class="comment">// 将Product的this指向为Food，并传入参数</span></span><br><span class="line">  <span class="title class_">Product</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, name, price);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">category</span> = <span class="string">&#x27;food&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title class_">Food</span>(<span class="string">&#x27;cheese&#x27;</span>, <span class="number">5</span>).<span class="property">name</span>);</span><br><span class="line"><span class="comment">// expected output: &quot;cheese&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。"><a href="#如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。" class="headerlink" title="如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。"></a>如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>))</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>首先，执行第一行，将 <code>setTimeout</code> 添加到宏任务队列</li>
-<li>其次，执行第二行，然后进入死循环，页面卡死</li>
-<li>同步代码都没有执行完，自然是不会执行宏任务队列中的任务</li>
-</ul>
-<h3 id="浏览器和Node-事件循环机制区别"><a href="#浏览器和Node-事件循环机制区别" class="headerlink" title="浏览器和Node 事件循环机制区别"></a>浏览器和Node 事件循环机制区别</h3><p>浏览器和Node 环境下，microtask 任务队列的执行时机不同</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;start&#x27;</span>)</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children2&#x27;</span>)</span><br><span class="line">        <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children2-1&#x27;</span>)&#125;)</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children3&#x27;</span>)</span><br><span class="line">        <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children3-1&#x27;</span>)&#125;)</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">    <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children1&#x27;</span>)&#125;)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;end&#x27;</span>) </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上代码在node11以下版本的执行结果，执行完一个阶段的所有任务。</span></span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// children1</span></span><br><span class="line"><span class="comment">// children2</span></span><br><span class="line"><span class="comment">// children3</span></span><br><span class="line"><span class="comment">// children2-1</span></span><br><span class="line"><span class="comment">// children3-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上代码在node11及浏览器的执行结果(顺序执行宏任务和微任务)</span></span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// children1</span></span><br><span class="line"><span class="comment">// children2</span></span><br><span class="line"><span class="comment">// children2-1</span></span><br><span class="line"><span class="comment">// children3</span></span><br><span class="line"><span class="comment">// children3-1</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="Node完整循环机制"><a href="#Node完整循环机制" class="headerlink" title="Node完整循环机制"></a>Node完整循环机制</h4><blockquote>
-<p>引用官方解释文字和图片</p>
-</blockquote>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200706184516.png" alt="image-20200706184509079"></p>
-<h5 id="阶段概述"><a href="#阶段概述" class="headerlink" title="阶段概述"></a>阶段概述</h5><p><strong>定时器</strong>：本阶段执行已经被 setTimeout() 和 setInterval() 的调度回调函数。<br><strong>待定回调</strong>：执行延迟到下一个循环迭代的 I&#x2F;O 回调。<br><strong>idle, prepare</strong>：仅系统内部使用。<br><strong>轮询</strong>：检索新的 I&#x2F;O 事件;执行与 I&#x2F;O 相关的回调（几乎所有情况下，除了关闭的回调函数，那些由计时器和 setImmediate() 调度的之外），其余情况 node 将在适当的时候在此阻塞。<br><strong>检测</strong>：setImmediate() 回调函数在这里执行。<br><strong>关闭的回调函数</strong>：一些关闭的回调函数，如：socket.on(‘close’, …)。</p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>BFC</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvR3VpZGUvQ1NTL0Jsb2NrX2Zvcm1hdHRpbmdfY29udGV4dA==">https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMDkvMDQvZmxvYXRfY2xlYXJpbmcuaHRtbA==">http://www.ruanyifeng.com/blog/2009/04/float_clearing.html<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uaW0vZW50cnkvNTljMzcxM2E1MTg4MjUzOTZmNGY2OTY5">https://juejin.im/entry/59c3713a518825396f4f6969<i class="fa fa-external-link-alt"></i></span></p>
-<p>面经</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL2Rpc2N1c3MvMTc3NDgy">https://www.nowcoder.com/discuss/177482<i class="fa fa-external-link-alt"></i></span></p>
-<p>浏览器和Node循环机制区别</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmFuY2VkLUZyb250ZW5kL0RhaWx5LUludGVydmlldy1RdWVzdGlvbi9pc3N1ZXMvMjYjaXNzdWVjb21tZW50LTQ2OTE4ODUwMQ==">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/26#issuecomment-469188501<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uaW0vcG9zdC81YzMzN2FlMDZmYjlhMDQ5YmM0Y2QyMTgjaGVhZGluZy0w">https://juejin.im/post/5c337ae06fb9a049bc4cd218#heading-0<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL3poLWNuL2RvY3MvZ3VpZGVzL2V2ZW50LWxvb3AtdGltZXJzLWFuZC1uZXh0dGljay8=">https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>BFC</tag>
-        <tag>函数柯里化</tag>
-        <tag>JavaScript</tag>
-        <tag>js编程题</tag>
-        <tag>事件循环机制</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>备战校招第十天</title>
     <url>/posts/77e29b21/</url>
     <content><![CDATA[<ul>
@@ -1571,6 +1454,123 @@
         <tag>渲染机制</tag>
         <tag>性能</tag>
         <tag>监控</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>备战校招第一天</title>
+    <url>/posts/6dc31817/</url>
+    <content><![CDATA[<ol>
+<li>BFC（块格式化上下文）</li>
+<li>首页白屏</li>
+<li>函数柯里化</li>
+<li>bind、apply、call</li>
+<li>如果阻塞了JS中的主线程会发生什么情况</li>
+<li>浏览器和Node 事件循环机制区别</li>
+</ol>
+<hr>
+<span id="more"></span>
+
+<h3 id="BFC（块格式化上下文）"><a href="#BFC（块格式化上下文）" class="headerlink" title="BFC（块格式化上下文）"></a>BFC（块格式化上下文）</h3><p>常见的定位方案分为三种：普通流、浮动、绝对定位。</p>
+<p><strong>块格式化上下文（Block Formatting Context，BFC）</strong> 是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。而这里的 <code>BFC</code> 属于属于普通流，相当于具有 <code>BFC</code> 特性的元素可以看作一个独立的容器，无论容器内部的元素怎么调整，都不会影响到外部的元素。</p>
+<p>下列情况会创建BFC：</p>
+<ul>
+<li>根元素(<code>&lt;html&gt;</code>)</li>
+<li>浮动元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"><code>float</code></a> 不是 <code>none</code>）</li>
+<li>绝对定位元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position"><code>position</code></a> 为 <code>absolute</code> 或 <code>fixed</code>）</li>
+<li>行内块元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>inline-block</code>）</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow"><code>overflow</code></a> 值不为 <code>visible</code> 的块元素</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 值为 <code>flow-root</code> 的元素</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/contain"><code>contain</code></a> 值为 <code>layout</code>、<code>content</code>或 paint 的元素</li>
+<li>弹性元素（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a>为 <code>flex</code> 或 <code>inline-flex</code>元素的直接子元素）</li>
+<li>网格元素（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a>为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）</li>
+<li>…</li>
+</ul>
+<p><strong>案例</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;border: 1px solid #000;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 45%; height: 300px; background-color: red; float: left;&quot;</span>&gt;</span>123<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 45%; height: 300px; background-color: blue; float: right;&quot;</span>&gt;</span>456<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这几行代码，如果直接运行会在网页上按照我们的预期显示出来两个色块，但仔细看下，会看出父元素的高度不正常，父元素看起来向空容器一样。原因在于子元素采用浮动，而浮动流不属于普通流，是独立定位的。</p>
+<p>解决方法，按照上述规则，使用一个合适的方法，来进行创建BFC，从而告诉浏览器 <code>”我的最外层div需要创建BFC，按照常规方式渲染“</code>。</p>
+<p>例如：在最外层 <code>div</code> 添加样式 <code>float: left</code>（上述规则指出只要 <code>float</code> 不为 <code>none</code> 即可创建BFC ） ,  当然如果觉得 float 不够优雅，还可以使用 <code>overflow: hidden;</code> 。（通常情况下，我们可能会使用伪元素添加 <code>clear:both;</code> 占位来清除浮动，从而使最外层 div 恢复正常）。</p>
+<p>详情请看，请看<span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMDkvMDQvZmxvYXRfY2xlYXJpbmcuaHRtbA==">阮老师的文章<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>还有<strong>经典问题 <code>margin</code> 重叠问题</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">      <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">float</span>: left;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: <span class="number">#f55</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background</span>: <span class="number">#fcc</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">line-height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">      &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Haha<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hehe<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行之后就会发现 两个 p标签 <code>margin</code> 发生重叠（同一个BFC内，两盒子垂直，就会发生 <code>margin</code> 塌陷重叠，而<code>margin</code> 值会以最大的为主。）</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200624115734.png" alt="image-20200624115733942"></p>
+<p>解决方法：</p>
+<ol>
+<li>将 margin 换为 padding</li>
+<li>利用 <code>BFC</code> ，在 p 外层添加个一层 div，并在新添加的元素上添加样式（overflow: hidden;），创建新的BFC，这样两个p标签不属于同一个BFC，则自然不会再发生 margin 重叠问题。</li>
+</ol>
+<h3 id="首页白屏"><a href="#首页白屏" class="headerlink" title="首页白屏"></a>首页白屏</h3><p>现在多数都使用的为Vue、React和Angular三大框架其中之一，但它们有个共同的特点，均为 JS 驱动，所以在 JS 解析前，网页处于空白页，什么都不显示，这就是我们所说的白屏。</p>
+<p>解决方法</p>
+<ol>
+<li>SSR，服务端渲染，有明显的好处，对SEO友好，还可以加快网页打开速度。</li>
+<li>预渲染，插件 <code>prerender-spa-plugin</code>，编译阶段就将对应的页面渲染好，但是是没有数据的</li>
+<li>骨架图，数据还未加载出来时，但会显示出网页的大致骨架，相对友好。</li>
+</ol>
+<h3 id="函数柯里化"><a href="#函数柯里化" class="headerlink" title="函数柯里化"></a>函数柯里化</h3><p>柯里化，是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">curry</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = fn.<span class="property">length</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">bindFn</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">arguments</span>.<span class="property">length</span> &lt; len) &#123;</span><br><span class="line">      <span class="keyword">return</span> bindFn.<span class="title function_">bind</span>(<span class="literal">null</span>, ...<span class="variable language_">arguments</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> fn.<span class="title function_">call</span>(<span class="literal">null</span>, ...<span class="variable language_">arguments</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a + b)</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原版</span></span><br><span class="line"><span class="title function_">add</span>(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">// 柯里化后</span></span><br><span class="line"><span class="keyword">var</span> curryAdd = <span class="title function_">curry</span>(add)</span><br><span class="line"><span class="title function_">curryAdd</span>(<span class="number">1</span>)(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="bind、apply和call"><a href="#bind、apply和call" class="headerlink" title="bind、apply和call"></a><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvRnVuY3Rpb24vYmluZA==">bind<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvRnVuY3Rpb24vYXBwbHk=">apply<i class="fa fa-external-link-alt"></i></span>和<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvRnVuY3Rpb24vY2FsbA==">call<i class="fa fa-external-link-alt"></i></span></h3><p><strong>func.bind(thisArg[, arg1[, arg2[, …]]])</strong></p>
+<p>调用函数后，返回绑定 <code>this</code> 之后的函数（以下为mdn文档中的案例），并不会执行</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable language_">module</span> = &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="number">42</span>,</span><br><span class="line">  <span class="attr">getX</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">x</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> unboundGetX = <span class="variable language_">module</span>.<span class="property">getX</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unboundGetX</span>()); <span class="comment">// 直接调用，this指向全局</span></span><br><span class="line"><span class="comment">// expected output: undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> boundGetX = unboundGetX.<span class="title function_">bind</span>(<span class="variable language_">module</span>); <span class="comment">// 绑定this为module，this指向moudle</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">boundGetX</span>());</span><br><span class="line"><span class="comment">// expected output: 42</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>func.apply(thisArg, [argsArray])</strong></p>
+<p><code>apply</code> 接受一个<strong>参数数组</strong> ，并会执行此函数，如果没有传递参数（或传入 <code>null</code> 、 <code>undefined</code>）则默认指向 <code>window</code> </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> max = <span class="title class_">Math</span>.<span class="property">max</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, numbers);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(max);</span><br><span class="line"><span class="comment">// expected output: 7</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> min = <span class="title class_">Math</span>.<span class="property">min</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, numbers);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(min);</span><br><span class="line"><span class="comment">// expected output: 2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>function.call(thisArg, arg1, arg2, …)</strong></p>
+<p> <code>call</code> 接受的是一个<strong>参数列表</strong> ，并会执行此函数，如果没有传递参数（或传入 <code>null</code> 、 <code>undefined</code>）则默认指向 <code>window </code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Product</span>(<span class="params">name, price</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">price</span> = price;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Food</span>(<span class="params">name, price</span>) &#123;</span><br><span class="line">  <span class="comment">// 将Product的this指向为Food，并传入参数</span></span><br><span class="line">  <span class="title class_">Product</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, name, price);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">category</span> = <span class="string">&#x27;food&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span> <span class="title class_">Food</span>(<span class="string">&#x27;cheese&#x27;</span>, <span class="number">5</span>).<span class="property">name</span>);</span><br><span class="line"><span class="comment">// expected output: &quot;cheese&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。"><a href="#如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。" class="headerlink" title="如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。"></a>如果阻塞了JS中的主线程会发生什么情况，就是下面的代码。</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello world&quot;</span>))</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>首先，执行第一行，将 <code>setTimeout</code> 添加到宏任务队列</li>
+<li>其次，执行第二行，然后进入死循环，页面卡死</li>
+<li>同步代码都没有执行完，自然是不会执行宏任务队列中的任务</li>
+</ul>
+<h3 id="浏览器和Node-事件循环机制区别"><a href="#浏览器和Node-事件循环机制区别" class="headerlink" title="浏览器和Node 事件循环机制区别"></a>浏览器和Node 事件循环机制区别</h3><p>浏览器和Node 环境下，microtask 任务队列的执行时机不同</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;start&#x27;</span>)</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children2&#x27;</span>)</span><br><span class="line">        <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children2-1&#x27;</span>)&#125;)</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children3&#x27;</span>)</span><br><span class="line">        <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children3-1&#x27;</span>)&#125;)</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">    <span class="title class_">Promise</span>.<span class="title function_">resolve</span>().<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;children1&#x27;</span>)&#125;)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;end&#x27;</span>) </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上代码在node11以下版本的执行结果，执行完一个阶段的所有任务。</span></span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// children1</span></span><br><span class="line"><span class="comment">// children2</span></span><br><span class="line"><span class="comment">// children3</span></span><br><span class="line"><span class="comment">// children2-1</span></span><br><span class="line"><span class="comment">// children3-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上代码在node11及浏览器的执行结果(顺序执行宏任务和微任务)</span></span><br><span class="line"><span class="comment">// start</span></span><br><span class="line"><span class="comment">// end</span></span><br><span class="line"><span class="comment">// children1</span></span><br><span class="line"><span class="comment">// children2</span></span><br><span class="line"><span class="comment">// children2-1</span></span><br><span class="line"><span class="comment">// children3</span></span><br><span class="line"><span class="comment">// children3-1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Node完整循环机制"><a href="#Node完整循环机制" class="headerlink" title="Node完整循环机制"></a>Node完整循环机制</h4><blockquote>
+<p>引用官方解释文字和图片</p>
+</blockquote>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200706184516.png" alt="image-20200706184509079"></p>
+<h5 id="阶段概述"><a href="#阶段概述" class="headerlink" title="阶段概述"></a>阶段概述</h5><p><strong>定时器</strong>：本阶段执行已经被 setTimeout() 和 setInterval() 的调度回调函数。<br><strong>待定回调</strong>：执行延迟到下一个循环迭代的 I&#x2F;O 回调。<br><strong>idle, prepare</strong>：仅系统内部使用。<br><strong>轮询</strong>：检索新的 I&#x2F;O 事件;执行与 I&#x2F;O 相关的回调（几乎所有情况下，除了关闭的回调函数，那些由计时器和 setImmediate() 调度的之外），其余情况 node 将在适当的时候在此阻塞。<br><strong>检测</strong>：setImmediate() 回调函数在这里执行。<br><strong>关闭的回调函数</strong>：一些关闭的回调函数，如：socket.on(‘close’, …)。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>BFC</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvR3VpZGUvQ1NTL0Jsb2NrX2Zvcm1hdHRpbmdfY29udGV4dA==">https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMDkvMDQvZmxvYXRfY2xlYXJpbmcuaHRtbA==">http://www.ruanyifeng.com/blog/2009/04/float_clearing.html<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uaW0vZW50cnkvNTljMzcxM2E1MTg4MjUzOTZmNGY2OTY5">https://juejin.im/entry/59c3713a518825396f4f6969<i class="fa fa-external-link-alt"></i></span></p>
+<p>面经</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL2Rpc2N1c3MvMTc3NDgy">https://www.nowcoder.com/discuss/177482<i class="fa fa-external-link-alt"></i></span></p>
+<p>浏览器和Node循环机制区别</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmFuY2VkLUZyb250ZW5kL0RhaWx5LUludGVydmlldy1RdWVzdGlvbi9pc3N1ZXMvMjYjaXNzdWVjb21tZW50LTQ2OTE4ODUwMQ==">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/26#issuecomment-469188501<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uaW0vcG9zdC81YzMzN2FlMDZmYjlhMDQ5YmM0Y2QyMTgjaGVhZGluZy0w">https://juejin.im/post/5c337ae06fb9a049bc4cd218#heading-0<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL3poLWNuL2RvY3MvZ3VpZGVzL2V2ZW50LWxvb3AtdGltZXJzLWFuZC1uZXh0dGljay8=">https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>BFC</tag>
+        <tag>函数柯里化</tag>
+        <tag>JavaScript</tag>
+        <tag>js编程题</tag>
+        <tag>事件循环机制</tag>
       </tags>
   </entry>
   <entry>
@@ -2807,6 +2807,53 @@
       </categories>
   </entry>
   <entry>
+    <title>2022年度总结</title>
+    <url>/posts/622a5765/</url>
+    <content><![CDATA[<h1 id="2022年度总结"><a href="#2022年度总结" class="headerlink" title="2022年度总结"></a>2022年度总结</h1><blockquote>
+<p>Now I have come to the crossroads in my life, I always knew what the right path was.<br>Without exception, I knew, but I never took it.<br>You know why?<br>It was too damn hard.<br>如今我走到了人生十字路口，我知道哪条路是对的，毫无例外，我就知道，但我从不走，为什么？因为tm的太苦了。<br>—出自《闻香识女人》电影末尾 <code>Al Pacino</code> 的演讲，全文演讲堪称经典，推荐去看原片。</p>
+</blockquote>
+<span id="more"></span>
+
+
+
+<p>在写这篇总结之前，把之前写的全部都回顾了一遍，却仍然不知道这篇该如何落笔，发现并不是没有什么可写，而是没有什么让我印象特别深刻的东西。</p>
+<p>这一年，</p>
+<p>感觉自己的自控力下降了，</p>
+<p>生活作息也越来越不规律，</p>
+<p>缺少了那种对于生活的热情和向往，</p>
+<p>如果不是因为还有工作，每天肯定是活的浑浑噩噩。</p>
+<p>脑子里想法千千万，付出实际行动的不足一两个。</p>
+<p>回想当初刚毕业的自己，像当初一样充满迷茫，又缺少了当初的对未来的激情。</p>
+<p>有时又觉得人还是知道的越少越好，傻傻的活着，没有任何烦恼。</p>
+<h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>以下这两个理论无论是对我的生活还是工作，都有很大的帮助，推荐一下。</p>
+<h3 id="时间管理理论"><a href="#时间管理理论" class="headerlink" title="时间管理理论"></a>时间管理理论</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWhhbnMvJUU2JTk3JUI2JUU5JTk3JUI0JUU3JUFFJUExJUU3JTkwJTg2">时间管理<i class="fa fa-external-link-alt"></i></span>并不是要把所有事情做完，而是更有效的运用时间。时间管理的目的除了要决定该做些什么事情之外，另一个很重要的目的也是决定什么事情不应该做；时间管理不是完全的掌控，而是降低变动性。时间管理最重要的功能是透过事先的规划，做为一种提醒与指引。</p>
+<h4 id="第一代时间管理：备忘时代"><a href="#第一代时间管理：备忘时代" class="headerlink" title="第一代时间管理：备忘时代"></a>第一代时间管理：备忘时代</h4><p>强调使用便笺和备忘录，一项一项完成，确保不会有事情遗漏。</p>
+<h4 id="第二代时间管理：计划时代"><a href="#第二代时间管理：计划时代" class="headerlink" title="第二代时间管理：计划时代"></a>第二代时间管理：计划时代</h4><p>使用日程计划表来安排时间，今日以及对未来的规划。</p>
+<h4 id="第三代时间管理：效率时代"><a href="#第三代时间管理：效率时代" class="headerlink" title="第三代时间管理：效率时代"></a>第三代时间管理：效率时代</h4><p>将事情根据优先级进行安排，根据事情的轻重缓急成都进行设定短、中、长期目标，并对其进行拆分颗粒化到每天，甚至于每个时间段。</p>
+<h4 id="第四代时间管理：价值时代"><a href="#第四代时间管理：价值时代" class="headerlink" title="第四代时间管理：价值时代"></a>第四代时间管理：价值时代</h4><p>将重心放在维持产出和产能的平衡上。</p>
+<p>比较经典的就是下面的这个四象限图，把事情分为四类：重要紧急的，重要不紧急，不重要紧急，不重要不紧急的，合理的安排时间让我们把精力放在关注重要不紧急的事情上，这样就可以避免重要紧急的事情变多，从而带来的时间压迫感，实现未雨绸缪。</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/202302190217282.webp" alt="艾森豪威尔法则和费曼技巧- 知乎"></p>
+<h3 id="费曼学习法"><a href="#费曼学习法" class="headerlink" title="费曼学习法"></a>费曼学习法</h3><p>费曼学习法可以简化为四个单词：Concept （概念）、Teach （教给别人）、Review （评价）、Simplify （简化）。</p>
+<p>四个步骤</p>
+<p>第一步：想象把它教给一个小孩子，用小孩子能听懂的语句和概念解释</p>
+<p>第二步：回顾，将刚才卡壳或解释不出来的地方进行去原材料回顾，认识到的自己的知识边界。</p>
+<p>第三步：将语言条理化简化，用自己的话语解释出来。</p>
+<p>第四步：传授，检测是否学会最简单的方法就是将它传授与另一人。</p>
+<h2 id="NEW-FLAG"><a href="#NEW-FLAG" class="headerlink" title="NEW FLAG"></a>NEW FLAG</h2><p>2023年，这一年，我觉得自己需要静下心来做一些事了，不再求做多的事，而是要让自己做一些有意义且值得做的事。</p>
+<h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><p>这一年，计划中安排上了三本书：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8xMDEzMjA4Lw==">如何阅读一本书<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8yNjg5NTk5My8=">刻意练习<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC81MzI1NjE4Lw==">高效能人士的七个习惯<i class="fa fa-external-link-alt"></i></span></p>
+<p>前两本更多的是希望可以养成一种习惯，看一本书可以知道自己在看什么，想学习一个新技能，如何可以有效的练习并进行学习。</p>
+<p>最后一本则是更加注重自我管理，当时第一次接触看这本书时，里面的内容令我大受震撼，真的是感觉在和一位学者进行交流，这一定是让我做出改变并能不断提升自我的那本书，<strong>强烈推荐！！！</strong></p>
+<h3 id="练字"><a href="#练字" class="headerlink" title="练字"></a>练字</h3><p>最近去办护照，需要手动签字，发现自己写的字很丑，才知道自己很久没有手写过字了，今年要把练字也要提上日程了。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>随遇而安</p>
+]]></content>
+      <categories>
+        <category>年度总结</category>
+      </categories>
+  </entry>
+  <entry>
     <title>2021年度总结</title>
     <url>/posts/dfe03bab/</url>
     <content><![CDATA[<h1 id="2021年度总结"><a href="#2021年度总结" class="headerlink" title="2021年度总结"></a>2021年度总结</h1><p>这是在我入职后，一位同事机缘巧合下送给我的一句话。</p>
@@ -2951,53 +2998,6 @@ JavaScript 高级程序设计</p>
 </ul>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>年度总结</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>2022年度总结</title>
-    <url>/posts/622a5765/</url>
-    <content><![CDATA[<h1 id="2022年度总结"><a href="#2022年度总结" class="headerlink" title="2022年度总结"></a>2022年度总结</h1><blockquote>
-<p>Now I have come to the crossroads in my life, I always knew what the right path was.<br>Without exception, I knew, but I never took it.<br>You know why?<br>It was too damn hard.<br>如今我走到了人生十字路口，我知道哪条路是对的，毫无例外，我就知道，但我从不走，为什么？因为tm的太苦了。<br>—出自《闻香识女人》电影末尾 <code>Al Pacino</code> 的演讲，全文演讲堪称经典，推荐去看原片。</p>
-</blockquote>
-<span id="more"></span>
-
-
-
-<p>在写这篇总结之前，把之前写的全部都回顾了一遍，却仍然不知道这篇该如何落笔，发现并不是没有什么可写，而是没有什么让我印象特别深刻的东西。</p>
-<p>这一年，</p>
-<p>感觉自己的自控力下降了，</p>
-<p>生活作息也越来越不规律，</p>
-<p>缺少了那种对于生活的热情和向往，</p>
-<p>如果不是因为还有工作，每天肯定是活的浑浑噩噩。</p>
-<p>脑子里想法千千万，付出实际行动的不足一两个。</p>
-<p>回想当初刚毕业的自己，像当初一样充满迷茫，又缺少了当初的对未来的激情。</p>
-<p>有时又觉得人还是知道的越少越好，傻傻的活着，没有任何烦恼。</p>
-<h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>以下这两个理论无论是对我的生活还是工作，都有很大的帮助，推荐一下。</p>
-<h3 id="时间管理理论"><a href="#时间管理理论" class="headerlink" title="时间管理理论"></a>时间管理理论</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWhhbnMvJUU2JTk3JUI2JUU5JTk3JUI0JUU3JUFFJUExJUU3JTkwJTg2">时间管理<i class="fa fa-external-link-alt"></i></span>并不是要把所有事情做完，而是更有效的运用时间。时间管理的目的除了要决定该做些什么事情之外，另一个很重要的目的也是决定什么事情不应该做；时间管理不是完全的掌控，而是降低变动性。时间管理最重要的功能是透过事先的规划，做为一种提醒与指引。</p>
-<h4 id="第一代时间管理：备忘时代"><a href="#第一代时间管理：备忘时代" class="headerlink" title="第一代时间管理：备忘时代"></a>第一代时间管理：备忘时代</h4><p>强调使用便笺和备忘录，一项一项完成，确保不会有事情遗漏。</p>
-<h4 id="第二代时间管理：计划时代"><a href="#第二代时间管理：计划时代" class="headerlink" title="第二代时间管理：计划时代"></a>第二代时间管理：计划时代</h4><p>使用日程计划表来安排时间，今日以及对未来的规划。</p>
-<h4 id="第三代时间管理：效率时代"><a href="#第三代时间管理：效率时代" class="headerlink" title="第三代时间管理：效率时代"></a>第三代时间管理：效率时代</h4><p>将事情根据优先级进行安排，根据事情的轻重缓急成都进行设定短、中、长期目标，并对其进行拆分颗粒化到每天，甚至于每个时间段。</p>
-<h4 id="第四代时间管理：价值时代"><a href="#第四代时间管理：价值时代" class="headerlink" title="第四代时间管理：价值时代"></a>第四代时间管理：价值时代</h4><p>将重心放在维持产出和产能的平衡上。</p>
-<p>比较经典的就是下面的这个四象限图，把事情分为四类：重要紧急的，重要不紧急，不重要紧急，不重要不紧急的，合理的安排时间让我们把精力放在关注重要不紧急的事情上，这样就可以避免重要紧急的事情变多，从而带来的时间压迫感，实现未雨绸缪。</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/202302190217282.webp" alt="艾森豪威尔法则和费曼技巧- 知乎"></p>
-<h3 id="费曼学习法"><a href="#费曼学习法" class="headerlink" title="费曼学习法"></a>费曼学习法</h3><p>费曼学习法可以简化为四个单词：Concept （概念）、Teach （教给别人）、Review （评价）、Simplify （简化）。</p>
-<p>四个步骤</p>
-<p>第一步：想象把它教给一个小孩子，用小孩子能听懂的语句和概念解释</p>
-<p>第二步：回顾，将刚才卡壳或解释不出来的地方进行去原材料回顾，认识到的自己的知识边界。</p>
-<p>第三步：将语言条理化简化，用自己的话语解释出来。</p>
-<p>第四步：传授，检测是否学会最简单的方法就是将它传授与另一人。</p>
-<h2 id="NEW-FLAG"><a href="#NEW-FLAG" class="headerlink" title="NEW FLAG"></a>NEW FLAG</h2><p>2023年，这一年，我觉得自己需要静下心来做一些事了，不再求做多的事，而是要让自己做一些有意义且值得做的事。</p>
-<h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><p>这一年，计划中安排上了三本书：</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8xMDEzMjA4Lw==">如何阅读一本书<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8yNjg5NTk5My8=">刻意练习<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC81MzI1NjE4Lw==">高效能人士的七个习惯<i class="fa fa-external-link-alt"></i></span></p>
-<p>前两本更多的是希望可以养成一种习惯，看一本书可以知道自己在看什么，想学习一个新技能，如何可以有效的练习并进行学习。</p>
-<p>最后一本则是更加注重自我管理，当时第一次接触看这本书时，里面的内容令我大受震撼，真的是感觉在和一位学者进行交流，这一定是让我做出改变并能不断提升自我的那本书，<strong>强烈推荐！！！</strong></p>
-<h3 id="练字"><a href="#练字" class="headerlink" title="练字"></a>练字</h3><p>最近去办护照，需要手动签字，发现自己写的字很丑，才知道自己很久没有手写过字了，今年要把练字也要提上日程了。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>随遇而安</p>
 ]]></content>
       <categories>
         <category>年度总结</category>
@@ -3271,6 +3271,207 @@ JavaScript 高级程序设计</p>
         <tag>ajax</tag>
         <tag>XMLHttpRequest</tag>
         <tag>fetch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>get和post区别</title>
+    <url>/posts/f69ca482/</url>
+    <content><![CDATA[<ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+</ul>
+<p>额外可以聊</p>
+<ul>
+<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
+<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>https握手过程</title>
+    <url>/posts/1449f691/</url>
+    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
+<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
+<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
+<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
+<li>服务端使用自己的私钥，对随机数进行解密。</li>
+<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
+</ul>
+<p>细节</p>
+<ul>
+<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>setTimeout为什么会有延迟</title>
+    <url>/posts/9a771de5/</url>
+    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
+<p>其中 setTimeout 有两类用法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
+<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
+<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
+<p>其他影响 setTimout 延迟因素：</p>
+<ol>
+<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
+<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
+<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
+</ol>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/posts/ababab9d/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>TCP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
+<span id="more"></span>
+
+
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可替换元素和不可替换元素</title>
+    <url>/posts/d6e0c31a/</url>
+    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
+<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
+<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
+<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
+<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-70.爬楼梯</title>
+    <url>/posts/3a506125/</url>
+    <content><![CDATA[<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p>注意：给定 n 是一个正整数。</p>
+<p>示例 1：</p>
+<p>输入： 2<br>输出： 2<br>解释： 有两种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶</li>
+<li>2 阶<br>示例 2：</li>
+</ol>
+<p>输入： 3<br>输出： 3<br>解释： 有三种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶 + 1 阶</li>
+<li>1 阶 + 2 阶</li>
+<li>2 阶 + 1 阶</li>
+</ol>
+<p>来源：力扣（LeetCode）<br>链接：<span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY2xpbWJpbmctc3RhaXJz">https://leetcode-cn.com/problems/climbing-stairs<i class="fa fa-external-link-alt"></i></span><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<hr>
+<span id="more"></span>
+
+
+
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><blockquote>
+<p>实测，这个会超时</p>
+<p>时间复杂度：O(n^2)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">3</span>) <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">climbStairs</span>(n-<span class="number">1</span>) + <span class="title function_">climbStairs</span>(n-<span class="number">2</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="递归缓存（记忆化递归）"><a href="#递归缓存（记忆化递归）" class="headerlink" title="递归缓存（记忆化递归）"></a>递归缓存（记忆化递归）</h2><blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 递归缓存</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params</span> &#123;<span class="type">Array</span>&#125; steps </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairsMemo = <span class="keyword">function</span> (<span class="params">steps, n</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (steps[n] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> steps[n]</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        steps[n] = n</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        steps[n] = <span class="title function_">climbStairsMemo</span>(steps, n - <span class="number">1</span>) + <span class="title function_">climbStairsMemo</span>(steps, n - <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> steps = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">climbStairsMemo</span>(steps, n)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> steps = []</span><br><span class="line">    steps[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    steps[<span class="number">2</span>] = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        steps[i] = steps[i-<span class="number">1</span>] + steps[i-<span class="number">2</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="动态规划优化版（斐波那契数列）"><a href="#动态规划优化版（斐波那契数列）" class="headerlink" title="动态规划优化版（斐波那契数列）"></a>动态规划优化版（斐波那契数列）</h2><blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(1)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> first = <span class="number">1</span>, second = <span class="number">2</span>, res = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>) <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        res = first + second</span><br><span class="line">        first = second</span><br><span class="line">        second = res</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -4475,6 +4676,23 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>powershell 常用命令</title>
+    <url>/posts/50e64c9a/</url>
+    <content><![CDATA[<p>开启管理员模式</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
+
+<p>删除文件夹</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>powershell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac 使用技巧</title>
     <url>/posts/df1211e8/</url>
     <content><![CDATA[<p>快捷键</p>
@@ -4648,23 +4866,6 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>brew</tag>
         <tag>iterm2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>powershell 常用命令</title>
-    <url>/posts/50e64c9a/</url>
-    <content><![CDATA[<p>开启管理员模式</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
-
-<p>删除文件夹</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>powershell</tag>
       </tags>
   </entry>
   <entry>
@@ -6246,35 +6447,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>get和post区别</title>
-    <url>/posts/f69ca482/</url>
-    <content><![CDATA[<ul>
-<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
-<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
-<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
-<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
-<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
-<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
-<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
-<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
-<li>GET参数通过URL传递，POST放在Request body中。</li>
-</ul>
-<p>额外可以聊</p>
-<ul>
-<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
-<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用骨架屏减少首屏白屏现象</title>
     <url>/posts/952634cd/</url>
     <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>用户从输入 <code>url</code> 到打开页面，经历的步骤可以参考<span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIxLzAzLzA2LyVFNyVBRSU4MCVFNSU4RCU5NSVFOCU4MSU4QS8lRTQlQkIlOEUlRTglQkUlOTMlRTUlODUlQTV1cmwlRTUlODglQjAlRTklQTElQjUlRTklOUQlQTIlRTYlOTglQkUlRTclQTQlQkElRTclQkIlOEYlRTglQkYlODclRTQlQkElODYlRTQlQkIlODAlRTQlQjklODgv">这里<i class="fa fa-external-link-alt"></i></span>。现代前端应用程序通常使用 <code>React</code>、<code>Vue</code>、<code>Angular</code>、<code>Solid</code> 等框架进行开发，这些框架统一管理工程化内容。</p>
@@ -6338,178 +6510,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>https握手过程</title>
-    <url>/posts/1449f691/</url>
-    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
-<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
-<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
-<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
-<li>服务端使用自己的私钥，对随机数进行解密。</li>
-<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
-</ul>
-<p>细节</p>
-<ul>
-<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>setTimeout为什么会有延迟</title>
-    <url>/posts/9a771de5/</url>
-    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
-<p>其中 setTimeout 有两类用法：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
-<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
-<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
-<p>其他影响 setTimout 延迟因素：</p>
-<ol>
-<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
-<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
-<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
-</ol>
-<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从输入url到页面显示经过了什么</title>
-    <url>/posts/ababab9d/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>TCP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<span id="more"></span>
-
-
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>可替换元素和不可替换元素</title>
-    <url>/posts/d6e0c31a/</url>
-    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
-<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
-<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
-<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
-<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-70.爬楼梯</title>
-    <url>/posts/3a506125/</url>
-    <content><![CDATA[<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
-<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
-<p>注意：给定 n 是一个正整数。</p>
-<p>示例 1：</p>
-<p>输入： 2<br>输出： 2<br>解释： 有两种方法可以爬到楼顶。</p>
-<ol>
-<li>1 阶 + 1 阶</li>
-<li>2 阶<br>示例 2：</li>
-</ol>
-<p>输入： 3<br>输出： 3<br>解释： 有三种方法可以爬到楼顶。</p>
-<ol>
-<li>1 阶 + 1 阶 + 1 阶</li>
-<li>1 阶 + 2 阶</li>
-<li>2 阶 + 1 阶</li>
-</ol>
-<p>来源：力扣（LeetCode）<br>链接：<span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY2xpbWJpbmctc3RhaXJz">https://leetcode-cn.com/problems/climbing-stairs<i class="fa fa-external-link-alt"></i></span><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<hr>
-<span id="more"></span>
-
-
-
-<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><blockquote>
-<p>实测，这个会超时</p>
-<p>时间复杂度：O(n^2)</p>
-<p>空间复杂度：O(n)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">3</span>) <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">climbStairs</span>(n-<span class="number">1</span>) + <span class="title function_">climbStairs</span>(n-<span class="number">2</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="递归缓存（记忆化递归）"><a href="#递归缓存（记忆化递归）" class="headerlink" title="递归缓存（记忆化递归）"></a>递归缓存（记忆化递归）</h2><blockquote>
-<p>时间复杂度：O(n)</p>
-<p>空间复杂度：O(n)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 递归缓存</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params</span> &#123;<span class="type">Array</span>&#125; steps </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairsMemo = <span class="keyword">function</span> (<span class="params">steps, n</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (steps[n] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> steps[n]</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n === <span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">        steps[n] = n</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        steps[n] = <span class="title function_">climbStairsMemo</span>(steps, n - <span class="number">1</span>) + <span class="title function_">climbStairsMemo</span>(steps, n - <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> steps = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">climbStairsMemo</span>(steps, n)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><blockquote>
-<p>时间复杂度：O(n)</p>
-<p>空间复杂度：O(n)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> steps = []</span><br><span class="line">    steps[<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    steps[<span class="number">2</span>] = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        steps[i] = steps[i-<span class="number">1</span>] + steps[i-<span class="number">2</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps[n]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="动态规划优化版（斐波那契数列）"><a href="#动态规划优化版（斐波那契数列）" class="headerlink" title="动态规划优化版（斐波那契数列）"></a>动态规划优化版（斐波那契数列）</h2><blockquote>
-<p>时间复杂度：O(n)</p>
-<p>空间复杂度：O(1)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> climbStairs = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> first = <span class="number">1</span>, second = <span class="number">2</span>, res = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>) <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        res = first + second</span><br><span class="line">        first = second</span><br><span class="line">        second = res</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>蛤蟆先生去看心理医生</title>
     <url>/posts/b3c57b13/</url>
     <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8zNTE0Mzc5MC8=">蛤蟆先生去看心理医生-豆瓣<i class="fa fa-external-link-alt"></i></span></p>
@@ -6529,7 +6529,7 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>[转]how-to-do-great-work</title>
+    <title>[转] how-to-do-great-work</title>
     <url>/posts/415c86c1/</url>
     <content><![CDATA[<blockquote>
 <p>原文：<span class="exturl" data-url="aHR0cHM6Ly9wYXVsZ3JhaGFtLmNvbS9ncmVhdHdvcmsuaHRtbA==">How to Do Great Work<i class="fa fa-external-link-alt"></i></span></p>
@@ -6549,31 +6549,72 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>[转]how-to-learn-stuff-quickly</title>
+    <title>[转] how-to-learn-stuff-quickly</title>
     <url>/posts/a40a7f50/</url>
     <content><![CDATA[<blockquote>
 <p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuam9zaHdjb21lYXUuY29tL2Jsb2cvaG93LXRvLWxlYXJuLXN0dWZmLXF1aWNrbHkv">how-to-learn-stuff-quickly<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<p>Josh W. Comeau 在他的文章《How to Learn Stuff Quickly》中分享了一些关于快速学习的实用策略。其核心观点包括：</p>
+<p><strong>总结文章《How to Learn Stuff Quickly》（如何快速学习）</strong>  </p>
+<p>这篇文章由 Josh W. Comeau 撰写，探讨了如何高效学习新知识，尤其是技术类内容。作者分享了自己的学习方法，并提供了一些实用技巧，帮助读者更快掌握复杂概念。  </p>
+<hr>
+<h3 id="文章主要内容梳理"><a href="#文章主要内容梳理" class="headerlink" title="文章主要内容梳理"></a><strong>文章主要内容梳理</strong></h3><h4 id="1-传统学习-vs-高效学习"><a href="#1-传统学习-vs-高效学习" class="headerlink" title="1. 传统学习 vs. 高效学习"></a><strong>1. 传统学习 vs. 高效学习</strong></h4><p>作者认为，传统的学习方法（如阅读文档、看教程）效率不高，容易导致被动学习。他提倡<strong>主动学习</strong>，即通过实际应用和刻意练习来加深理解。  </p>
+<hr>
+<h4 id="2-关键学习方法"><a href="#2-关键学习方法" class="headerlink" title="2. 关键学习方法"></a><strong>2. 关键学习方法</strong></h4><p>Josh 介绍了几个核心的学习策略，以提高学习速度和效果：  </p>
+<p><strong>（1）基于项目的学习（Project-Based Learning）</strong>  </p>
+<ul>
+<li>直接动手做项目，逼迫自己在实践中学习。  </li>
+<li>通过解决实际问题，更快掌握知识点，而不是仅仅阅读或观看教程。  </li>
+<li>举例：如果学习 React，应该尝试自己构建一个小型应用，而不是只看官方文档。</li>
+</ul>
+<p><strong>（2）自我解释（The Feynman Technique）</strong>  </p>
+<ul>
+<li>费曼学习法：用自己的话解释概念，直到能够清晰、简洁地表述。  </li>
+<li>通过写博客、录制视频或教别人来巩固知识。  </li>
+<li>避免“假性学习”（看似懂了但无法真正应用）。</li>
+</ul>
+<p><strong>（3）学习的分层结构（Layered Learning）</strong>  </p>
+<ul>
+<li>先掌握基础概念，不追求一开始就精通所有细节。  </li>
+<li>例如，在学习新技术时，先了解核心功能，然后再深入学习优化和高级用法。  </li>
+<li>逐步建立知识体系，避免信息过载。</li>
+</ul>
+<hr>
+<h4 id="3-避免常见的学习陷阱"><a href="#3-避免常见的学习陷阱" class="headerlink" title="3. 避免常见的学习陷阱"></a><strong>3. 避免常见的学习陷阱</strong></h4><p><strong>（1）过度依赖教程（Tutorial Hell）</strong>  </p>
+<ul>
+<li>一直跟着教程走，导致无法独立解决问题。  </li>
+<li>解决方案：尝试摆脱教程，自行实现功能，即使遇到困难也不要立刻依赖外部答案。</li>
+</ul>
+<p><strong>（2）害怕犯错（Fear of Failure）</strong>  </p>
+<ul>
+<li>过于害怕犯错会阻碍学习。错误本身是学习的一部分，遇到问题时，应该主动调试、查找解决方案。</li>
+</ul>
+<p><strong>（3）过度优化（Premature Optimization）</strong>  </p>
+<ul>
+<li>一开始不必追求完美，先把基本功能实现，再逐步优化。</li>
+</ul>
+<hr>
+<h4 id="4-具体应用举例"><a href="#4-具体应用举例" class="headerlink" title="4. 具体应用举例"></a><strong>4. 具体应用举例</strong></h4><p>Josh 用自己的经验说明这些方法的有效性，例如：  </p>
+<ul>
+<li>他在学习新技术时，通常会在几小时内搭建一个小项目，而不是先读完所有文档。  </li>
+<li>他发现用<strong>博客文章</strong>记录自己的学习过程，对理解和记忆帮助很大。</li>
+</ul>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>Josh W. Comeau 提倡<strong>主动、实践导向的学习方法</strong>，而不是被动吸收知识。他的核心建议包括：  </p>
 <ol>
-<li><p><strong>专注于技能的关键部分</strong>：Josh强调学习新技能时，应专注于最重要的核心技能，避免被次要或不必要的细节分散精力。通过先掌握核心内容，可以更快地获得成就感和信心。</p>
-</li>
-<li><p><strong>在真实项目中实践</strong>：他建议尽量用真实的项目去应用新知识，而非只停留在理论学习上。在实践中，学到的知识会得到巩固，理解也会更深刻。</p>
-</li>
-<li><p><strong>高效的学习资源选择</strong>：Josh提倡优先使用高质量、经过验证的学习资源，例如文档、教程、社区资源等，避免在琐碎和不完整的资源上浪费时间。</p>
-</li>
-<li><p><strong>对信息的主动回顾和巩固</strong>：通过多次重复和自我测试来加强记忆，特别是对于知识点和技能的反复实践，有助于快速加深理解和熟练度。</p>
-</li>
-<li><p><strong>及时纠正错误</strong>：在学习的过程中不断检查并修正错误，避免错误的知识被固化。Josh认为在错误中学习的过程往往比一味地追求“完美理解”更有助于快速提升。</p>
-</li>
+<li><strong>动手做项目</strong>，从实践中学习，而不是单纯看教程。  </li>
+<li><strong>费曼学习法</strong>，通过教别人或自我解释来加深理解。  </li>
+<li><strong>分层学习</strong>，先掌握核心概念，再逐步深入。  </li>
+<li><strong>避免依赖教程</strong>，尽早独立尝试解决问题。  </li>
+<li><strong>允许自己犯错</strong>，通过错误学习，而不是追求完美。</li>
 </ol>
+<p>如果想快速学习新技术或概念，最好的方法是<strong>尽快开始动手做项目，并在过程中不断调整和优化自己的理解</strong>。</p>
 ]]></content>
       <categories>
         <category>转载</category>
       </categories>
   </entry>
   <entry>
-    <title>[转]对贡献有激情，对回报有信心</title>
+    <title>[转] 对贡献有激情，对回报有信心</title>
     <url>/posts/ee47234e/</url>
     <content><![CDATA[<blockquote>
 <p>本文摘录自是一位前辈的Blog</p>
@@ -6584,18 +6625,6 @@ JavaScript 高级程序设计</p>
 <p><strong>网站的贡献和回报</strong><br>网站如何提供给用户更多的价值，这就是贡献；如何提高访问量，这是回报。<br>我个人的体会是，回报这个东西，就像一个电闸。当你把手摸上去的话，就像摸到了高压电一样，瞬间就会感觉的迷茫，压力，并看到投机取巧的办法看起来很有吸引力，就会像一个商人一样买卖流量。但如果把手抽回来，不去碰那一个电闸，感觉立刻好了很多，开始思考比如如何帮助用户，如何给予更多，贡献更多。世界于是又回到了鸟语花香，海阔天空的状态。<br>彻底想明白自己努力到底是为了贡献了，还是为了回报，是是否可以持久的，优秀的做好一件事情的关键。</p>
 <p><strong>对贡献有激情的时候，还要对回报有信心</strong><br>和对贡献的激情同等重要的是，对回报的信心，而不是置之不理。历史上成功的企业和个人，不但做出了巨大的贡献，也取得了与之相应的巨额的报酬，以及电影明星般的盛名。并不是每一个对贡献有激情的人都做得到这一点。<br>比如历史上有一个伟大的发明家（或许是最伟大的发明家之一），却鲜为人知。他就是Nikola Tesla。他发现或者开发了一系列伟大创新的基础技术，从无线电信号传输，到交流电，从特斯拉变压器到X光，荧光灯直到现代电网。他和爱迪生一起工作，却相比之下，却回报寥寥。不但老年穷困潦倒，也很少有人听说过他。1943年，这位为人类迎来电力时代的天才去世的时候，身边只有几只他捡来的病鸽子。<br>这是一个对贡献的激情却没有回报的例子。John Battelle在最近一本新书《The Search》里面就提到，Google的创始人Page就是一个深受这个故事感染的年轻人。Page说“Nikola是个伟大的发明家，但他没有取得他应该取得的成就。我喜欢发明，但同时也希望改变世界。我希望能把我的发明带到人们的手里，这样他们就可以使用我的发明，因为只有这才是真正重要的”。在发明了PageRank算法以后，到底是按照学术传统分享自己的成果，还是像商业公司一样保护自己的知识产权，是两个创办者在1997年夏天最大的问题。<br>当然，结果证明了，他们可以在像Tesla一样贡献的同时，用一种方式，来保证自己的回报。这种把贡献转换为回报方法给了他们信心，可以更专注的在贡献部分。</p>
 <p><strong>回报是贡献的影子</strong><br>回报是贡献影子。我是说，如果安排得得当的话。<br>当一个人奔向太阳的时候，影子会跟着你。<br>当他追随影子的时候，他将远离太阳，远离光明，最终失去影子。</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>[转]通配符（Wildcard）</title>
-    <url>/posts/163f6156/</url>
-    <content><![CDATA[<blockquote>
-<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
 ]]></content>
       <categories>
         <category>转载</category>
@@ -6663,6 +6692,18 @@ JavaScript 高级程序设计</p>
 <p>　　这个分支的开花结果，得到的成就，可以说无愧于先人，可以传诸后世矣！</p>
 <p>　　几十年来，我希望这些科研工作也能够在祖国落地生根。在我名下毕业的博士生已经超过70名，其中大部分是华裔学者，他们不少已经回到中国，在各院校发热发光。</p>
 <p>　　在国家的大力支持下，我们在清华大学成立了求真书院，期望在未来10年，能培养出一大批中国数学领军人才，使中国基础科学得以自强于世界，不负国人的厚望！</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>[转] 通配符（Wildcard）</title>
+    <url>/posts/163f6156/</url>
+    <content><![CDATA[<blockquote>
+<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
 ]]></content>
       <categories>
         <category>转载</category>
