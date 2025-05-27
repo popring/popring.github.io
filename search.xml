@@ -1391,118 +1391,6 @@
       </tags>
   </entry>
   <entry>
-    <title>备战校招第十一天</title>
-    <url>/posts/63411c4f/</url>
-    <content><![CDATA[<ul>
-<li><p><code>Object.keys</code> 和 <code>for...in</code> 区别</p>
-</li>
-<li><p>异步编程的几种方式</p>
-</li>
-<li><p><code>load</code> 事件 和 <code>DOMContentLoaded</code> 事件区别</p>
-</li>
-<li><p>箭头函数</p>
-</li>
-<li><p><code>for...of</code> 和<code>for...in</code></p>
-</li>
-</ul>
-<hr>
-<span id="more"></span>
-
-
-
-<h2 id="Object-keys-和-for-in-区别"><a href="#Object-keys-和-for-in-区别" class="headerlink" title="Object.keys 和 for...in 区别"></a><code>Object.keys</code> 和 <code>for...in</code> 区别</h2><p><code>Object.keys</code> 不能遍历原型上的属性</p>
-<p><code>for...in</code>  可遍历原型链上的可枚举属性</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hobbies</span> = [<span class="string">&quot;eat&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="comment">// 不遍历原型上的属性</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(p)); <span class="comment">// [ &#x27;name&#x27;, &#x27;age&#x27; ]</span></span><br><span class="line"><span class="comment">// 可遍历原型链上的可枚举属性</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">in</span> p) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(item); <span class="comment">// name age hobbies</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="异步编程的几种方式"><a href="#异步编程的几种方式" class="headerlink" title="异步编程的几种方式"></a>异步编程的几种方式</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><blockquote>
-<p>比如：setTimeout、setInterval等</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;cb&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h3><blockquote>
-<p>在dom中常用的 addEventListener</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>)</span><br><span class="line">btn.<span class="title function_">addEventListener</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;btn 被点击&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><blockquote>
-<p>ES6 中新增特性，<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvUHJvbWlzZQ==">详情<i class="fa fa-external-link-alt"></i></span> </p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">ms = <span class="number">0</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="title function_">resolve</span>()</span><br><span class="line">    &#125;, ms)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line"><span class="title function_">delay</span>(<span class="number">1000</span>).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h3 id="async-await"><a href="#async-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h3><blockquote>
-<p>promise 的语法糖，将 <code>promise</code> 的代码稍作修改，得到以下代码</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">ms = <span class="number">0</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="title function_">resolve</span>()</span><br><span class="line">    &#125;, ms)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">callBack</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="keyword">await</span> <span class="title function_">delay</span>(<span class="number">1000</span>)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line"><span class="title function_">callBack</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><h2 id="load-事件-和-DOMContentLoaded-事件区别"><a href="#load-事件-和-DOMContentLoaded-事件区别" class="headerlink" title="load 事件 和 DOMContentLoaded 事件区别"></a><code>load</code> 事件 和 <code>DOMContentLoaded</code> 事件区别</h2><h3 id="load-事件"><a href="#load-事件" class="headerlink" title="load 事件"></a><code>load</code> 事件</h3><blockquote>
-<p>下面代码具有相同含义，只是写法不同，具体查看文章，备战校招第九天 - DOM事件类 - DOM事件级别</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page is fully loaded&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 大家可能更熟这种写法</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page is fully loaded&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>当整个页面所依赖的资源（样式表、图片、子框架等）加载完毕触发 <code>load</code> 事件。</p>
-<h3 id="DOMContentLoaded-事件"><a href="#DOMContentLoaded-事件" class="headerlink" title="DOMContentLoaded 事件"></a><code>DOMContentLoaded</code> 事件</h3><blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;DOMContentLoaded&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`window.addEventListener(&quot;DOMContentLoaded&quot;) 事件`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>当初始的HTML文档完全加载和解析完成，无需等待图片等资源加载完毕，就可以触发 <code>DOMContetnLoaded</code> 事件。注意：**<code>DOMContentLoaded</code>** 事件必须等待其所属script之前的样式表加载解析完成才会触发。</p>
-<h3 id="顺序"><a href="#顺序" class="headerlink" title="顺序"></a>顺序</h3><ul>
-<li><code>DOMContentLoaded</code> 优先执行</li>
-<li><code>load</code> ，而<code>load</code>事件中的 <code>window.onload</code> 和 <code>window.addEventListener(&quot;load&quot;)</code> 两种写法，则是代码中哪个靠前，哪个先执行（按照顺序执行）</li>
-</ul>
-<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>箭头函数相比函数表达式更加简洁，并且没有<code>自己的this</code>、<code>constructor</code>、<code>arguments</code>、<code>super</code>或<code>new.target</code>。主要适用在一些需要匿名函数的地方，且不需要用到构造函数。</p>
-<h3 id="写法简洁"><a href="#写法简洁" class="headerlink" title="写法简洁"></a>写法简洁</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1. 简单写法</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">a</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;arrow function&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 如果只需要一个参数，则可以省略圆括号</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">b</span> = (<span class="params">arg1</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> arg1 + <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 若函数体内只有一句代码，还可以省略花括号</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">c</span> = (<span class="params">arg1, arg2</span>) =&gt; arg1 + arg2;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 剩下的都是按照这几种进行组合的方式，聪明的你一定知道如何做，想确定自己的想法，可以去参考下阮一峰老师的ES6入门书，链接在文章末尾</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如若需要一行代码返回对象，需要用圆括号包起来，防止产生歧义致使没有产生理想的结果</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">d</span> = (<span class="params"></span>) =&gt; (&#123;<span class="attr">a</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>没有自己的 this 指向，但在定义时就确定了this指向，而<code>function</code> 只有在运行时才会确定this指向。</li>
-<li>如果使用 call、apply、bind 调用，只能传递参数，第一个参数<code>this</code>则会忽略。</li>
-<li>没有构造函数，所以不能使用 new 来创建实例，否则会抛出一个异常（提示没有构造函数）。</li>
-<li>没有 prototype 属性。</li>
-<li>不可以使用<code>yield</code>命令，因此箭头函数不能用作 Generator 函数。</li>
-<li>没有 arguements 对象，可以用 es6 rest参数 代替。</li>
-</ol>
-<h2 id="for-of-和for-in"><a href="#for-of-和for-in" class="headerlink" title="for...of 和for...in"></a><code>for...of</code> 和<code>for...in</code></h2><h3 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h3><ul>
-<li><p>可迭代数组、类数组、String、Map、Set、arguements、DOM 集合等</p>
-</li>
-<li><p>如果数组过大，执行效率低于传统for循环(<code>for(let i=0; i&lt;arr.length; i++)</code>)</p>
-</li>
-<li><p>不会迭代原型上的属性。</p>
-</li>
-<li><p>遍历对象需要可以和 <code>Object.entries()</code>结合使用。</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">22</span>,</span><br><span class="line">  <span class="attr">c</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="attr">d</span>: <span class="number">44</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, value] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>(obj)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;key :&gt;&gt; &quot;</span>, key);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;value :&gt;&gt; &quot;</span>, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="for…in"><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h3><blockquote>
-<p><strong><code>for...in</code>语句</strong>以任意顺序遍历一个对象的除<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3ltYm9s">Symbol<i class="fa fa-external-link-alt"></i></span>以外的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9FbnVtZXJhYmlsaXR5X2FuZF9vd25lcnNoaXBfb2ZfcHJvcGVydGllcw==">可枚举<i class="fa fa-external-link-alt"></i></span>属性。for…in迭代是无序的。</p>
-<p><strong>提示：</strong><code>for...in</code>不应该用于迭代一个 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Array"><code>Array</code></a>，其中索引顺序很重要。</p>
-</blockquote>
-<p>注意</p>
-<ul>
-<li><code>for..in</code> 会迭代原型上的可迭代属性，如若只需迭代自身属性，可以使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames"><code>getOwnPropertyNames()</code></a> 或 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>hasOwnProperty()</code></a> 来确定属性是否为自身的属性。</li>
-<li>如果使用 <code>for...in</code> 迭代数组，效率远低于 <code>for...of</code></li>
-</ul>
-<h3 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h3><p>无论是<code>for...in</code>还是<code>for...of</code>语句都是迭代一些东西。它们之间的主要区别在于它们的迭代方式。</p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in"><code>for...in</code></a> 语句以任意顺序迭代对象的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9FbnVtZXJhYmlsaXR5X2FuZF9vd25lcnNoaXBfb2ZfcHJvcGVydGllcw==">可枚举属性<i class="fa fa-external-link-alt"></i></span>。</p>
-<p><code>for...of</code> 语句遍历<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9HdWlkZS9JdGVyYXRvcnNfYW5kX0dlbmVyYXRvcnMjSXRlcmFibGVz">可迭代对象<i class="fa fa-external-link-alt"></i></span>定义要迭代的数据。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9lczYucnVhbnlpZmVuZy5jb20vI2RvY3MvZnVuY3Rpb24jJUU3JUFFJUFEJUU1JUE0JUI0JUU1JTg3JUJEJUU2JTk1JUIw">阮一峰老师的ES6入门<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>备战校招第十天</title>
     <url>/posts/77e29b21/</url>
     <content><![CDATA[<ul>
@@ -1683,6 +1571,118 @@
         <tag>渲染机制</tag>
         <tag>性能</tag>
         <tag>监控</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>备战校招第十一天</title>
+    <url>/posts/63411c4f/</url>
+    <content><![CDATA[<ul>
+<li><p><code>Object.keys</code> 和 <code>for...in</code> 区别</p>
+</li>
+<li><p>异步编程的几种方式</p>
+</li>
+<li><p><code>load</code> 事件 和 <code>DOMContentLoaded</code> 事件区别</p>
+</li>
+<li><p>箭头函数</p>
+</li>
+<li><p><code>for...of</code> 和<code>for...in</code></p>
+</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+
+
+<h2 id="Object-keys-和-for-in-区别"><a href="#Object-keys-和-for-in-区别" class="headerlink" title="Object.keys 和 for...in 区别"></a><code>Object.keys</code> 和 <code>for...in</code> 区别</h2><p><code>Object.keys</code> 不能遍历原型上的属性</p>
+<p><code>for...in</code>  可遍历原型链上的可枚举属性</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hobbies</span> = [<span class="string">&quot;eat&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line"><span class="comment">// 不遍历原型上的属性</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(p)); <span class="comment">// [ &#x27;name&#x27;, &#x27;age&#x27; ]</span></span><br><span class="line"><span class="comment">// 可遍历原型链上的可枚举属性</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">in</span> p) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(item); <span class="comment">// name age hobbies</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="异步编程的几种方式"><a href="#异步编程的几种方式" class="headerlink" title="异步编程的几种方式"></a>异步编程的几种方式</h2><h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><blockquote>
+<p>比如：setTimeout、setInterval等</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;cb&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h3><blockquote>
+<p>在dom中常用的 addEventListener</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>)</span><br><span class="line">btn.<span class="title function_">addEventListener</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;btn 被点击&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><blockquote>
+<p>ES6 中新增特性，<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvUHJvbWlzZQ==">详情<i class="fa fa-external-link-alt"></i></span> </p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">ms = <span class="number">0</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="title function_">resolve</span>()</span><br><span class="line">    &#125;, ms)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line"><span class="title function_">delay</span>(<span class="number">1000</span>).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h3 id="async-await"><a href="#async-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h3><blockquote>
+<p>promise 的语法糖，将 <code>promise</code> 的代码稍作修改，得到以下代码</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">ms = <span class="number">0</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="title function_">resolve</span>()</span><br><span class="line">    &#125;, ms)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">callBack</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="keyword">await</span> <span class="title function_">delay</span>(<span class="number">1000</span>)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line"><span class="title function_">callBack</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><h2 id="load-事件-和-DOMContentLoaded-事件区别"><a href="#load-事件-和-DOMContentLoaded-事件区别" class="headerlink" title="load 事件 和 DOMContentLoaded 事件区别"></a><code>load</code> 事件 和 <code>DOMContentLoaded</code> 事件区别</h2><h3 id="load-事件"><a href="#load-事件" class="headerlink" title="load 事件"></a><code>load</code> 事件</h3><blockquote>
+<p>下面代码具有相同含义，只是写法不同，具体查看文章，备战校招第九天 - DOM事件类 - DOM事件级别</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page is fully loaded&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 大家可能更熟这种写法</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;page is fully loaded&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>当整个页面所依赖的资源（样式表、图片、子框架等）加载完毕触发 <code>load</code> 事件。</p>
+<h3 id="DOMContentLoaded-事件"><a href="#DOMContentLoaded-事件" class="headerlink" title="DOMContentLoaded 事件"></a><code>DOMContentLoaded</code> 事件</h3><blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;DOMContentLoaded&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`window.addEventListener(&quot;DOMContentLoaded&quot;) 事件`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>当初始的HTML文档完全加载和解析完成，无需等待图片等资源加载完毕，就可以触发 <code>DOMContetnLoaded</code> 事件。注意：**<code>DOMContentLoaded</code>** 事件必须等待其所属script之前的样式表加载解析完成才会触发。</p>
+<h3 id="顺序"><a href="#顺序" class="headerlink" title="顺序"></a>顺序</h3><ul>
+<li><code>DOMContentLoaded</code> 优先执行</li>
+<li><code>load</code> ，而<code>load</code>事件中的 <code>window.onload</code> 和 <code>window.addEventListener(&quot;load&quot;)</code> 两种写法，则是代码中哪个靠前，哪个先执行（按照顺序执行）</li>
+</ul>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>箭头函数相比函数表达式更加简洁，并且没有<code>自己的this</code>、<code>constructor</code>、<code>arguments</code>、<code>super</code>或<code>new.target</code>。主要适用在一些需要匿名函数的地方，且不需要用到构造函数。</p>
+<h3 id="写法简洁"><a href="#写法简洁" class="headerlink" title="写法简洁"></a>写法简洁</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1. 简单写法</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">a</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;arrow function&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 如果只需要一个参数，则可以省略圆括号</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">b</span> = (<span class="params">arg1</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> arg1 + <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 若函数体内只有一句代码，还可以省略花括号</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">c</span> = (<span class="params">arg1, arg2</span>) =&gt; arg1 + arg2;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 剩下的都是按照这几种进行组合的方式，聪明的你一定知道如何做，想确定自己的想法，可以去参考下阮一峰老师的ES6入门书，链接在文章末尾</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如若需要一行代码返回对象，需要用圆括号包起来，防止产生歧义致使没有产生理想的结果</span></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">d</span> = (<span class="params"></span>) =&gt; (&#123;<span class="attr">a</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>没有自己的 this 指向，但在定义时就确定了this指向，而<code>function</code> 只有在运行时才会确定this指向。</li>
+<li>如果使用 call、apply、bind 调用，只能传递参数，第一个参数<code>this</code>则会忽略。</li>
+<li>没有构造函数，所以不能使用 new 来创建实例，否则会抛出一个异常（提示没有构造函数）。</li>
+<li>没有 prototype 属性。</li>
+<li>不可以使用<code>yield</code>命令，因此箭头函数不能用作 Generator 函数。</li>
+<li>没有 arguements 对象，可以用 es6 rest参数 代替。</li>
+</ol>
+<h2 id="for-of-和for-in"><a href="#for-of-和for-in" class="headerlink" title="for...of 和for...in"></a><code>for...of</code> 和<code>for...in</code></h2><h3 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h3><ul>
+<li><p>可迭代数组、类数组、String、Map、Set、arguements、DOM 集合等</p>
+</li>
+<li><p>如果数组过大，执行效率低于传统for循环(<code>for(let i=0; i&lt;arr.length; i++)</code>)</p>
+</li>
+<li><p>不会迭代原型上的属性。</p>
+</li>
+<li><p>遍历对象需要可以和 <code>Object.entries()</code>结合使用。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">22</span>,</span><br><span class="line">  <span class="attr">c</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="attr">d</span>: <span class="number">44</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, value] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>(obj)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;key :&gt;&gt; &quot;</span>, key);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;value :&gt;&gt; &quot;</span>, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="for…in"><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h3><blockquote>
+<p><strong><code>for...in</code>语句</strong>以任意顺序遍历一个对象的除<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3ltYm9s">Symbol<i class="fa fa-external-link-alt"></i></span>以外的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9FbnVtZXJhYmlsaXR5X2FuZF9vd25lcnNoaXBfb2ZfcHJvcGVydGllcw==">可枚举<i class="fa fa-external-link-alt"></i></span>属性。for…in迭代是无序的。</p>
+<p><strong>提示：</strong><code>for...in</code>不应该用于迭代一个 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Array"><code>Array</code></a>，其中索引顺序很重要。</p>
+</blockquote>
+<p>注意</p>
+<ul>
+<li><code>for..in</code> 会迭代原型上的可迭代属性，如若只需迭代自身属性，可以使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames"><code>getOwnPropertyNames()</code></a> 或 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>hasOwnProperty()</code></a> 来确定属性是否为自身的属性。</li>
+<li>如果使用 <code>for...in</code> 迭代数组，效率远低于 <code>for...of</code></li>
+</ul>
+<h3 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h3><p>无论是<code>for...in</code>还是<code>for...of</code>语句都是迭代一些东西。它们之间的主要区别在于它们的迭代方式。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in"><code>for...in</code></a> 语句以任意顺序迭代对象的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9FbnVtZXJhYmlsaXR5X2FuZF9vd25lcnNoaXBfb2ZfcHJvcGVydGllcw==">可枚举属性<i class="fa fa-external-link-alt"></i></span>。</p>
+<p><code>for...of</code> 语句遍历<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9HdWlkZS9JdGVyYXRvcnNfYW5kX0dlbmVyYXRvcnMjSXRlcmFibGVz">可迭代对象<i class="fa fa-external-link-alt"></i></span>定义要迭代的数据。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9lczYucnVhbnlpZmVuZy5jb20vI2RvY3MvZnVuY3Rpb24jJUU3JUFFJUFEJUU1JUE0JUI0JUU1JTg3JUJEJUU2JTk1JUIw">阮一峰老师的ES6入门<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4946,6 +4946,129 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>SEO 相关</title>
+    <url>/posts/e092deb0/</url>
+    <content><![CDATA[<p><code>ahrefs</code> 的 <code>SEO</code> 系列文章讲的挺好，推荐</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9haHJlZnMuY29tL2Jsb2cvaG93LWRvLXNlYXJjaC1lbmdpbmVzLXdvcmsv">https://ahrefs.com/blog/how-do-search-engines-work/<i class="fa fa-external-link-alt"></i></span></p>
+<hr>
+<h2 id="一、搜索引擎工作机制（理解原理）"><a href="#一、搜索引擎工作机制（理解原理）" class="headerlink" title="一、搜索引擎工作机制（理解原理）"></a>一、搜索引擎工作机制（理解原理）</h2><h3 id="1-搜索引擎的三大核心流程"><a href="#1-搜索引擎的三大核心流程" class="headerlink" title="1. 搜索引擎的三大核心流程"></a>1. 搜索引擎的三大核心流程</h3><ul>
+<li><strong>抓取（Crawl）</strong>：爬虫程序访问网页并下载内容。</li>
+<li><strong>索引（Index）</strong>：处理并存储网页信息，加入搜索索引库。</li>
+<li><strong>排序（Rank）</strong>：依据算法决定结果的展示顺序。</li>
+</ul>
+<p>✅ 实践建议：</p>
+<ul>
+<li>使用 <code>robots.txt</code> 控制抓取权限。</li>
+<li>提交网站地图到 Google Search Console（GSC）。</li>
+<li>检查是否有被 noindex 阻止索引的页面。</li>
+</ul>
+<hr>
+<h2 id="二、网站抓取与索引优化"><a href="#二、网站抓取与索引优化" class="headerlink" title="二、网站抓取与索引优化"></a>二、网站抓取与索引优化</h2><h3 id="1-确保页面可被抓取"><a href="#1-确保页面可被抓取" class="headerlink" title="1. 确保页面可被抓取"></a>1. 确保页面可被抓取</h3><ul>
+<li>正确配置 robots.txt，不屏蔽重要路径。</li>
+<li>使用站内链接和 XML sitemap 引导搜索引擎发现页面。</li>
+</ul>
+<h3 id="2-页面可渲染"><a href="#2-页面可渲染" class="headerlink" title="2. 页面可渲染"></a>2. 页面可渲染</h3><ul>
+<li>避免关键内容依赖 JS 异步加载。</li>
+<li>使用服务端渲染（SSR）或预渲染（prerender）技术提升可见性。</li>
+</ul>
+<p>✅ 检查工具：</p>
+<ul>
+<li>Google Search Console &gt; URL 检查。</li>
+<li>Screaming Frog 或 Ahrefs 抓取报告。</li>
+</ul>
+<hr>
+<h2 id="三、关键词研究（流量来源基础）"><a href="#三、关键词研究（流量来源基础）" class="headerlink" title="三、关键词研究（流量来源基础）"></a>三、关键词研究（流量来源基础）</h2><h3 id="1-关键词选择策略"><a href="#1-关键词选择策略" class="headerlink" title="1. 关键词选择策略"></a>1. 关键词选择策略</h3><ul>
+<li><p>确保关键词具有：</p>
+<ul>
+<li>足够的搜索量（Search Volume）；</li>
+<li>明确的搜索意图；</li>
+<li>适中的竞争度（Keyword Difficulty）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-工具推荐"><a href="#2-工具推荐" class="headerlink" title="2. 工具推荐"></a>2. 工具推荐</h3><ul>
+<li>Ahrefs、Google Keyword Planner、Ubersuggest。</li>
+</ul>
+<p>✅ 实践操作：</p>
+<ul>
+<li>建立关键词清单，分组标记意图（信息型、导航型、交易型）。</li>
+<li>针对每个关键词创建单独目标页面。</li>
+</ul>
+<hr>
+<h2 id="四、页面内容优化（On-page-SEO）"><a href="#四、页面内容优化（On-page-SEO）" class="headerlink" title="四、页面内容优化（On-page SEO）"></a>四、页面内容优化（On-page SEO）</h2><h3 id="1-内容结构优化"><a href="#1-内容结构优化" class="headerlink" title="1. 内容结构优化"></a>1. 内容结构优化</h3><ul>
+<li>H1 仅出现一次，准确概括页面主题。</li>
+<li>合理使用 H2&#x2F;H3 拓展子主题，帮助机器理解内容结构。</li>
+</ul>
+<h3 id="2-内容匹配用户意图"><a href="#2-内容匹配用户意图" class="headerlink" title="2. 内容匹配用户意图"></a>2. 内容匹配用户意图</h3><ul>
+<li>分析 SERP 排名前10内容，确认目标用户意图。</li>
+<li>回答用户常见问题、提供明确的解决方案。</li>
+</ul>
+<h3 id="3-多媒体和辅助元素"><a href="#3-多媒体和辅助元素" class="headerlink" title="3. 多媒体和辅助元素"></a>3. 多媒体和辅助元素</h3><ul>
+<li>添加图片并设置描述性文件名和 alt 属性。</li>
+<li>使用列表、表格、引用等提升可读性。</li>
+</ul>
+<p>✅ 检查清单：</p>
+<ul>
+<li>页面是否包含目标关键词？</li>
+<li>是否满足 E-E-A-T（经验、专业性、权威性、可信度）？</li>
+</ul>
+<hr>
+<h2 id="五、URL、标题与元标签优化"><a href="#五、URL、标题与元标签优化" class="headerlink" title="五、URL、标题与元标签优化"></a>五、URL、标题与元标签优化</h2><h3 id="1-URL-优化"><a href="#1-URL-优化" class="headerlink" title="1. URL 优化"></a>1. URL 优化</h3><ul>
+<li>简短、有意义、包含关键词，例如 <code>/best-running-shoes</code>。</li>
+<li>避免动态参数、无意义数字。</li>
+</ul>
+<h3 id="2-Title-与-Meta-Description"><a href="#2-Title-与-Meta-Description" class="headerlink" title="2. Title 与 Meta Description"></a>2. Title 与 Meta Description</h3><ul>
+<li>Title 控制在 55–60 字符，包含关键词、吸引点击。</li>
+<li>Description 用于吸引点击，概述页面内容。</li>
+</ul>
+<p>✅ 工具推荐：</p>
+<ul>
+<li>Yoast SEO（WordPress 插件）</li>
+<li>Ahrefs &gt; Site Audit &gt; On-page issues</li>
+</ul>
+<hr>
+<h2 id="六、技术-SEO-核心要点"><a href="#六、技术-SEO-核心要点" class="headerlink" title="六、技术 SEO 核心要点"></a>六、技术 SEO 核心要点</h2><h3 id="1-网站结构清晰"><a href="#1-网站结构清晰" class="headerlink" title="1. 网站结构清晰"></a>1. 网站结构清晰</h3><ul>
+<li>使用面包屑导航和内部链接构建清晰路径。</li>
+<li>控制页面层级，重要页面不超过 3 层。</li>
+</ul>
+<h3 id="2-页面加载性能"><a href="#2-页面加载性能" class="headerlink" title="2. 页面加载性能"></a>2. 页面加载性能</h3><ul>
+<li>图片压缩、启用缓存、使用 CDN。</li>
+<li>检查 Core Web Vitals 指标（LCP、CLS、FID）。</li>
+</ul>
+<h3 id="3-移动适配与-HTTPS"><a href="#3-移动适配与-HTTPS" class="headerlink" title="3. 移动适配与 HTTPS"></a>3. 移动适配与 HTTPS</h3><ul>
+<li>实现响应式设计，移动设备体验良好。</li>
+<li>网站使用 HTTPS，SSL 证书配置正确。</li>
+</ul>
+<p>✅ 实践工具：</p>
+<ul>
+<li>PageSpeed Insights &#x2F; Lighthouse</li>
+<li>Mobile-Friendly Test</li>
+<li>Ahrefs &gt; Site Audit 报告</li>
+</ul>
+<hr>
+<h2 id="七、用户行为与搜索个性化因素"><a href="#七、用户行为与搜索个性化因素" class="headerlink" title="七、用户行为与搜索个性化因素"></a>七、用户行为与搜索个性化因素</h2><ul>
+<li>搜索引擎会基于用户位置、设备、历史行为对结果排序。</li>
+<li>需结合用户画像进行内容、关键词、页面设计的差异化适配。</li>
+</ul>
+<p>✅ 小结建议：</p>
+<ul>
+<li>针对本地关键词做专页（如 “北京健身房推荐”）。</li>
+<li>针对移动用户优化 CTA 按钮、加载速度与可读性。</li>
+</ul>
+<hr>
+<h2 id="🔚-结语：推荐实施路径"><a href="#🔚-结语：推荐实施路径" class="headerlink" title="🔚 结语：推荐实施路径"></a>🔚 结语：推荐实施路径</h2><ol>
+<li><strong>诊断</strong>：用 GSC、Ahrefs 做抓取与内容审核。</li>
+<li><strong>关键词规划</strong>：提取目标关键词 + 构建内容地图。</li>
+<li><strong>页面重构</strong>：优化结构、内容、URL、Meta 标签。</li>
+<li><strong>技术增强</strong>：提速、改错、强化移动体验。</li>
+<li><strong>持续监测</strong>：通过 GSC + Ahrefs 观察流量、排名、点击率变化。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>TypeScript总结</title>
     <url>/posts/34845574/</url>
     <content><![CDATA[<h2 id="TypeScript-相关收藏"><a href="#TypeScript-相关收藏" class="headerlink" title="TypeScript 相关收藏"></a>TypeScript 相关收藏</h2><h3 id="入门文章类"><a href="#入门文章类" class="headerlink" title="入门文章类"></a>入门文章类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90cy54Y2F0bGl1LmNvbS8=">TypeScript 入门教程<i class="fa fa-external-link-alt"></i></span>: github 10k star, author xcatliu.</p>
@@ -4985,58 +5108,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vim 笔记</title>
-    <url>/posts/bceeaa0d/</url>
-    <content><![CDATA[<p><code>vim</code> 神器，依旧宝刀未老，用起来真香。</p>
-<span id="more"></span>
-
-<h2 id="i-insert-模式，可以输入文字"><a href="#i-insert-模式，可以输入文字" class="headerlink" title="i insert 模式，可以输入文字"></a><code>i</code> insert 模式，可以输入文字</h2><h2 id="v-visual-模式"><a href="#v-visual-模式" class="headerlink" title="v visual 模式"></a><code>v</code> visual 模式</h2><h2 id="nomal-模式"><a href="#nomal-模式" class="headerlink" title="nomal 模式"></a>nomal 模式</h2><blockquote>
-<p>刚打开 vim 是 <code>normal</code> 模式，可以输入指令</p>
-</blockquote>
-<h3 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h3><blockquote>
-<p>还可以配合数字使用，例如 <code>5w</code> 表示，光标移至后五个单词的位置。</p>
-</blockquote>
-<p><code>h</code> 光标左移</p>
-<p><code>l</code> 光标右移</p>
-<p><code>j</code> 光标下移</p>
-<p><code>k</code> 光标上移</p>
-<p><code>w</code> 光标移至下一单词的起始位置</p>
-<p><code>b</code> 光标移至上一单词的起始位置</p>
-<p><code>e</code> 光标移至单词的结束位置</p>
-<p><code>0</code> 跳转至当前行开始位置 </p>
-<p><code>$</code> 跳转至当前行结束位置</p>
-<p><code>%</code> 匹配括号时光标位置切换置另一位置</p>
-<p><code>gg</code> 光标切换至顶部</p>
-<p><code>G</code> 光标切换至底部</p>
-<p><code>number G</code> 光标切换至指定行起始位置(number 为待跳转至的行数，与 <code>G</code> 之间无空格)</p>
-<p><code>*</code> 向后查找当前字符</p>
-<p><code>#</code> 向前查找当前字符</p>
-<p><code>/char</code> 查找指定字符字符串(char 为待查找的字符串) </p>
-<p><code>n</code>  查找到指定字符串后，查找下一个</p>
-<p><code>N</code>  查找到指定字符串后，查找上一个</p>
-<p><code>o</code> 光标下一行插入一行，并且光标定位至下一行</p>
-<p><code>O</code> 光标上一行插入一行，并且光标定位至上一行</p>
-<p><code>x</code>  删除光标位置字符</p>
-<p><code>s char</code> 替换光标位置字符(char 为替换后字符，中间无空格)</p>
-<p><code>d command</code> 进入删除指令，结合 <code>w</code> 删除第一个单词。</p>
-<p><code>dd</code> 剪切当前行</p>
-<p><code>p</code> 粘贴</p>
-<p><code>.</code> 重复前一次操作</p>
-<p><code>:u</code> 撤回上次操作</p>
-<p><code>:set nu</code> 显示行数</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dzZGplZy92aW0tZ2Fsb3JlLXpoX2Nu">Vim 从入门到精通 PDF<i class="fa fa-external-link-alt"></i></span>： 强烈推荐</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cub3BlbnZpbS5jb20v">openvim<i class="fa fa-external-link-alt"></i></span>： vim 入门教程</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly92aW0tYWR2ZW50dXJlcy5jb20v">vim-adventures<i class="fa fa-external-link-alt"></i></span>：vim 入门游戏</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudmltb25saW5lZWRpdG9yLmNvbS8=">vimonlineeditor<i class="fa fa-external-link-alt"></i></span>：网页在线vim，本地无环境可尝试使用</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -5132,6 +5203,58 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim 笔记</title>
+    <url>/posts/bceeaa0d/</url>
+    <content><![CDATA[<p><code>vim</code> 神器，依旧宝刀未老，用起来真香。</p>
+<span id="more"></span>
+
+<h2 id="i-insert-模式，可以输入文字"><a href="#i-insert-模式，可以输入文字" class="headerlink" title="i insert 模式，可以输入文字"></a><code>i</code> insert 模式，可以输入文字</h2><h2 id="v-visual-模式"><a href="#v-visual-模式" class="headerlink" title="v visual 模式"></a><code>v</code> visual 模式</h2><h2 id="nomal-模式"><a href="#nomal-模式" class="headerlink" title="nomal 模式"></a>nomal 模式</h2><blockquote>
+<p>刚打开 vim 是 <code>normal</code> 模式，可以输入指令</p>
+</blockquote>
+<h3 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h3><blockquote>
+<p>还可以配合数字使用，例如 <code>5w</code> 表示，光标移至后五个单词的位置。</p>
+</blockquote>
+<p><code>h</code> 光标左移</p>
+<p><code>l</code> 光标右移</p>
+<p><code>j</code> 光标下移</p>
+<p><code>k</code> 光标上移</p>
+<p><code>w</code> 光标移至下一单词的起始位置</p>
+<p><code>b</code> 光标移至上一单词的起始位置</p>
+<p><code>e</code> 光标移至单词的结束位置</p>
+<p><code>0</code> 跳转至当前行开始位置 </p>
+<p><code>$</code> 跳转至当前行结束位置</p>
+<p><code>%</code> 匹配括号时光标位置切换置另一位置</p>
+<p><code>gg</code> 光标切换至顶部</p>
+<p><code>G</code> 光标切换至底部</p>
+<p><code>number G</code> 光标切换至指定行起始位置(number 为待跳转至的行数，与 <code>G</code> 之间无空格)</p>
+<p><code>*</code> 向后查找当前字符</p>
+<p><code>#</code> 向前查找当前字符</p>
+<p><code>/char</code> 查找指定字符字符串(char 为待查找的字符串) </p>
+<p><code>n</code>  查找到指定字符串后，查找下一个</p>
+<p><code>N</code>  查找到指定字符串后，查找上一个</p>
+<p><code>o</code> 光标下一行插入一行，并且光标定位至下一行</p>
+<p><code>O</code> 光标上一行插入一行，并且光标定位至上一行</p>
+<p><code>x</code>  删除光标位置字符</p>
+<p><code>s char</code> 替换光标位置字符(char 为替换后字符，中间无空格)</p>
+<p><code>d command</code> 进入删除指令，结合 <code>w</code> 删除第一个单词。</p>
+<p><code>dd</code> 剪切当前行</p>
+<p><code>p</code> 粘贴</p>
+<p><code>.</code> 重复前一次操作</p>
+<p><code>:u</code> 撤回上次操作</p>
+<p><code>:set nu</code> 显示行数</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dzZGplZy92aW0tZ2Fsb3JlLXpoX2Nu">Vim 从入门到精通 PDF<i class="fa fa-external-link-alt"></i></span>： 强烈推荐</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cub3BlbnZpbS5jb20v">openvim<i class="fa fa-external-link-alt"></i></span>： vim 入门教程</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly92aW0tYWR2ZW50dXJlcy5jb20v">vim-adventures<i class="fa fa-external-link-alt"></i></span>：vim 入门游戏</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudmltb25saW5lZWRpdG9yLmNvbS8=">vimonlineeditor<i class="fa fa-external-link-alt"></i></span>：网页在线vim，本地无环境可尝试使用</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -5779,6 +5902,73 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>去哪儿网踩坑（Vue-cli配置和Vuex）</title>
+    <url>/posts/7a3e10c2/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20va29sZXI3NzgvcXVuYWVyd2FuZ3Rlc3Q=">去哪儿网项目链接<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Vue-cli-配置"><a href="#Vue-cli-配置" class="headerlink" title="Vue-cli 配置"></a>Vue-cli 配置</h2><h3 id="Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias"><a href="#Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias" class="headerlink" title="Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias"></a>Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias</h3><h4 id="vue-cli-2-x"><a href="#vue-cli-2-x" class="headerlink" title="vue-cli 2.x"></a>vue-cli 2.x</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>],</span><br><span class="line">    <span class="attr">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src&#x27;</span>),</span><br><span class="line">			<span class="comment">// resolve 函数文件已配置好</span></span><br><span class="line">			<span class="string">&#x27;styles&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="vue-cli-3-x"><a href="#vue-cli-3-x" class="headerlink" title="vue-cli 3.x"></a>vue-cli 3.x</h4><p>直接在项目根目录新建 <code>vue.config.js</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">resolve</span>: &#123;</span><br><span class="line">      <span class="attr">alias</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;styles&#x27;</span>: path.<span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="stylus配置别名"><a href="#stylus配置别名" class="headerlink" title="stylus配置别名"></a>stylus配置别名</h3><p>在以上配置<code>webpack别名目录</code>后，在页面引入 <code>stylus</code> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">/* 此处的~styles 指的就是 src/assets/styles */</span><br><span class="line">@import &#x27;~styles/varibles.styl&#x27;;</span><br><span class="line">...</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvSFRUUCVFNiU4QyU4MSVFNCVCOSU4NSVFOCVCRiU5RSVFNiU4RSVBNQ==">http持久链接 keep-alive 维基百科<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvYXBpLyNrZWVwLWFsaXZl">Vue官方解释<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>keep-alive 是持久化连接技术</p>
+<p>但在vue中是包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们，当组件在 <code>&lt;keep-alive&gt;</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code> 这两个生命周期钩子函数将会被对应执行。由于不会销毁，所以生命周期函数 <code>created</code>，<code>mounted</code>都不会执行第二次</p>
+</blockquote>
+<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><blockquote>
+<p>普通情况下 <strong>store</strong> 就已够用，但如果数据特别大而且特别多的时候，而且还是相互之间需要传值，这个时候就该 <strong>vuex</strong> 上场了。</p>
+<p>官方解释：</p>
+<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。</p>
+</blockquote>
+<p><img data-src="https://vuex.vuejs.org/vuex.png"></p>
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><blockquote>
+<p>相当于组件中的 data，只要挂载到Vue上，所有组件都可以访问</p>
+</blockquote>
+<p>组件中获取state</p>
+<p>第一种 简单直接，就是写起来有点麻烦</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;this.$store.state.city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9zdGF0ZS5odG1sIyVFNSVBRiVCOSVFOCVCMSVBMSVFNSVCMSU5NSVFNSVCQyU4MCVFOCVCRiU5MCVFNyVBRSU5NyVFNyVBQyVBNg==">第二种 对象展开运算符<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; mapState &#125; from &#x27;vuex&#x27;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">		...mapState([&#x27;city&#x27;])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><p><strong>优势</strong></p>
+<ul>
+<li>Action 提交的是 mutation，而不是直接变更状态。</li>
+<li>Action 可以包含任意异步操作。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">actions</span>: &#123;</span><br><span class="line">  <span class="title function_">changeCity</span>(<span class="params">context, city</span>) &#123;</span><br><span class="line">    context.<span class="title function_">commit</span>(<span class="string">&#x27;changeCityName&#x27;</span>, city)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>组件中调用 dispath 可以调用到actions内的函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$store</span>.<span class="title function_">dispatch</span>(<span class="string">&#x27;changeCity&#x27;</span>, <span class="string">&#x27;北京&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">changeCityName</span>(<span class="params">state, city</span>) &#123;</span><br><span class="line">	state.<span class="property">city</span> = city</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9tb2R1bGVzLmh0bWw=">module<i class="fa fa-external-link-alt"></i></span></h3><h2 id="异步加载组件"><a href="#异步加载组件" class="headerlink" title="异步加载组件"></a><span class="exturl" data-url="aHR0cHM6Ly9yb3V0ZXIudnVlanMub3JnL3poL2d1aWRlL2FkdmFuY2VkL2xhenktbG9hZGluZy5odG1sIyVFOCVCNyVBRiVFNyU5NCVCMSVFNiU4NyU5MiVFNSU4QSVBMCVFOCVCRCVCRA==">异步加载组件<i class="fa fa-external-link-alt"></i></span></h2><p>将原来的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Home</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>修改为异步加载，有效减少的 app.js 文件大小</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./page/home/Home.vue&#x27;</span>) &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>项目总结</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>同一时间按钮多次点击发送无效数据解决方案</title>
     <url>/posts/e59c7c62/</url>
     <content><![CDATA[<p>问题描述</p>
@@ -5845,73 +6035,6 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>踩坑</tag>
         <tag>dom</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>去哪儿网踩坑（Vue-cli配置和Vuex）</title>
-    <url>/posts/7a3e10c2/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20va29sZXI3NzgvcXVuYWVyd2FuZ3Rlc3Q=">去哪儿网项目链接<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Vue-cli-配置"><a href="#Vue-cli-配置" class="headerlink" title="Vue-cli 配置"></a>Vue-cli 配置</h2><h3 id="Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias"><a href="#Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias" class="headerlink" title="Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias"></a>Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias</h3><h4 id="vue-cli-2-x"><a href="#vue-cli-2-x" class="headerlink" title="vue-cli 2.x"></a>vue-cli 2.x</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>],</span><br><span class="line">    <span class="attr">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src&#x27;</span>),</span><br><span class="line">			<span class="comment">// resolve 函数文件已配置好</span></span><br><span class="line">			<span class="string">&#x27;styles&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="vue-cli-3-x"><a href="#vue-cli-3-x" class="headerlink" title="vue-cli 3.x"></a>vue-cli 3.x</h4><p>直接在项目根目录新建 <code>vue.config.js</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">resolve</span>: &#123;</span><br><span class="line">      <span class="attr">alias</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;styles&#x27;</span>: path.<span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h3 id="stylus配置别名"><a href="#stylus配置别名" class="headerlink" title="stylus配置别名"></a>stylus配置别名</h3><p>在以上配置<code>webpack别名目录</code>后，在页面引入 <code>stylus</code> 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">/* 此处的~styles 指的就是 src/assets/styles */</span><br><span class="line">@import &#x27;~styles/varibles.styl&#x27;;</span><br><span class="line">...</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvSFRUUCVFNiU4QyU4MSVFNCVCOSU4NSVFOCVCRiU5RSVFNiU4RSVBNQ==">http持久链接 keep-alive 维基百科<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvYXBpLyNrZWVwLWFsaXZl">Vue官方解释<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>keep-alive 是持久化连接技术</p>
-<p>但在vue中是包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们，当组件在 <code>&lt;keep-alive&gt;</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code> 这两个生命周期钩子函数将会被对应执行。由于不会销毁，所以生命周期函数 <code>created</code>，<code>mounted</code>都不会执行第二次</p>
-</blockquote>
-<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><blockquote>
-<p>普通情况下 <strong>store</strong> 就已够用，但如果数据特别大而且特别多的时候，而且还是相互之间需要传值，这个时候就该 <strong>vuex</strong> 上场了。</p>
-<p>官方解释：</p>
-<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。</p>
-</blockquote>
-<p><img data-src="https://vuex.vuejs.org/vuex.png"></p>
-<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><blockquote>
-<p>相当于组件中的 data，只要挂载到Vue上，所有组件都可以访问</p>
-</blockquote>
-<p>组件中获取state</p>
-<p>第一种 简单直接，就是写起来有点麻烦</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;this.$store.state.city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<p><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9zdGF0ZS5odG1sIyVFNSVBRiVCOSVFOCVCMSVBMSVFNSVCMSU5NSVFNSVCQyU4MCVFOCVCRiU5MCVFNyVBRSU5NyVFNyVBQyVBNg==">第二种 对象展开运算符<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; mapState &#125; from &#x27;vuex&#x27;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">		...mapState([&#x27;city&#x27;])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><p><strong>优势</strong></p>
-<ul>
-<li>Action 提交的是 mutation，而不是直接变更状态。</li>
-<li>Action 可以包含任意异步操作。</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">actions</span>: &#123;</span><br><span class="line">  <span class="title function_">changeCity</span>(<span class="params">context, city</span>) &#123;</span><br><span class="line">    context.<span class="title function_">commit</span>(<span class="string">&#x27;changeCityName&#x27;</span>, city)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>组件中调用 dispath 可以调用到actions内的函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$store</span>.<span class="title function_">dispatch</span>(<span class="string">&#x27;changeCity&#x27;</span>, <span class="string">&#x27;北京&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">changeCityName</span>(<span class="params">state, city</span>) &#123;</span><br><span class="line">	state.<span class="property">city</span> = city</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="module"><a href="#module" class="headerlink" title="module"></a><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9tb2R1bGVzLmh0bWw=">module<i class="fa fa-external-link-alt"></i></span></h3><h2 id="异步加载组件"><a href="#异步加载组件" class="headerlink" title="异步加载组件"></a><span class="exturl" data-url="aHR0cHM6Ly9yb3V0ZXIudnVlanMub3JnL3poL2d1aWRlL2FkdmFuY2VkL2xhenktbG9hZGluZy5odG1sIyVFOCVCNyVBRiVFNyU5NCVCMSVFNiU4NyU5MiVFNSU4QSVBMCVFOCVCRCVCRA==">异步加载组件<i class="fa fa-external-link-alt"></i></span></h2><p>将原来的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Home</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>修改为异步加载，有效减少的 app.js 文件大小</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./page/home/Home.vue&#x27;</span>) &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>项目总结</tag>
       </tags>
   </entry>
   <entry>
@@ -6510,6 +6633,25 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>蛤蟆先生去看心理医生</title>
+    <url>/posts/b3c57b13/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8zNTE0Mzc5MC8=">蛤蟆先生去看心理医生-豆瓣<i class="fa fa-external-link-alt"></i></span></p>
+<p>《蛤蟆先生去看心理医生》的作者 罗伯特·戴博德 核心观点是：</p>
+<p>心理治疗是帮助自我觉察的过程：心理治疗可以帮助我们深入探索自己，理解深藏在内心的痛苦、焦虑、愤怒等情绪，并从根源上找到它们的来源。自我觉察是心理成长的第一步，它有助于找到并释放内心的负担，获得内在的自由。</p>
+<p>每个人的问题源自早期经验和内在冲突：每个人的情绪问题通常与早期生活经历及个人性格密切相关。蛤蟆先生的问题正是来源于过去的创伤和性格中未被解决的矛盾，书中的心理咨询过程揭示了如何识别和化解这些根源性冲突。</p>
+<p>自我接纳和宽容至关重要：心理健康的重要标志是接纳不完美的自己，并在宽容自己的基础上逐步改善。当我们不再批判自己，能温柔对待自己的情绪时，才真正具备改变的能力。</p>
+<p>改变需要时间和耐心：心理成长是一个循序渐进的过程，不能急于求成。蛤蟆先生通过多次的咨询和反复的探索，才逐渐理解了自己并产生了改变。心理疗愈和成长往往需要长时间的努力和陪伴。</p>
+<p>勇敢面对自己是迈向内心平和的关键：蛤蟆先生在治疗中面对内心的阴影、恐惧和过往的痛苦，这一过程中充满挑战，但它让他重获平和和力量。书强调，只有当人敢于直视内心的真实情绪时，才能获得真正的解脱。</p>
+<p>总结<br>罗伯特·戴博德通过这本书强调，自我觉察、接纳自己、勇敢面对内心世界 是获得心理健康和成长的核心。在心理治疗的帮助下，人们可以找到化解内心冲突的方法，并学会与自己和解。这种心理转变不仅帮助个人成长，还能带来更为平和和丰富的生活。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>心理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[转] how-to-do-great-work</title>
     <url>/posts/415c86c1/</url>
     <content><![CDATA[<blockquote>
@@ -6528,25 +6670,6 @@ JavaScript 高级程序设计</p>
       <categories>
         <category>转载</category>
       </categories>
-  </entry>
-  <entry>
-    <title>蛤蟆先生去看心理医生</title>
-    <url>/posts/b3c57b13/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8zNTE0Mzc5MC8=">蛤蟆先生去看心理医生-豆瓣<i class="fa fa-external-link-alt"></i></span></p>
-<p>《蛤蟆先生去看心理医生》的作者 罗伯特·戴博德 核心观点是：</p>
-<p>心理治疗是帮助自我觉察的过程：心理治疗可以帮助我们深入探索自己，理解深藏在内心的痛苦、焦虑、愤怒等情绪，并从根源上找到它们的来源。自我觉察是心理成长的第一步，它有助于找到并释放内心的负担，获得内在的自由。</p>
-<p>每个人的问题源自早期经验和内在冲突：每个人的情绪问题通常与早期生活经历及个人性格密切相关。蛤蟆先生的问题正是来源于过去的创伤和性格中未被解决的矛盾，书中的心理咨询过程揭示了如何识别和化解这些根源性冲突。</p>
-<p>自我接纳和宽容至关重要：心理健康的重要标志是接纳不完美的自己，并在宽容自己的基础上逐步改善。当我们不再批判自己，能温柔对待自己的情绪时，才真正具备改变的能力。</p>
-<p>改变需要时间和耐心：心理成长是一个循序渐进的过程，不能急于求成。蛤蟆先生通过多次的咨询和反复的探索，才逐渐理解了自己并产生了改变。心理疗愈和成长往往需要长时间的努力和陪伴。</p>
-<p>勇敢面对自己是迈向内心平和的关键：蛤蟆先生在治疗中面对内心的阴影、恐惧和过往的痛苦，这一过程中充满挑战，但它让他重获平和和力量。书强调，只有当人敢于直视内心的真实情绪时，才能获得真正的解脱。</p>
-<p>总结<br>罗伯特·戴博德通过这本书强调，自我觉察、接纳自己、勇敢面对内心世界 是获得心理健康和成长的核心。在心理治疗的帮助下，人们可以找到化解内心冲突的方法，并学会与自己和解。这种心理转变不仅帮助个人成长，还能带来更为平和和丰富的生活。</p>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>心理</tag>
-      </tags>
   </entry>
   <entry>
     <title>[转] how-to-learn-stuff-quickly</title>
@@ -6770,18 +6893,6 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>[转] 通配符（Wildcard）</title>
-    <url>/posts/163f6156/</url>
-    <content><![CDATA[<blockquote>
-<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
     <title>OKR</title>
     <url>/posts/126fb5f9/</url>
     <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9PS1I=">https://baike.baidu.com/item/OKR<i class="fa fa-external-link-alt"></i></span></p>
@@ -6792,6 +6903,18 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>OKR</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>[转] 通配符（Wildcard）</title>
+    <url>/posts/163f6156/</url>
+    <content><![CDATA[<blockquote>
+<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
   </entry>
   <entry>
     <title>优势管理</title>
