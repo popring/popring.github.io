@@ -45,11 +45,11 @@
   "https://popring.cn/posts/6a147e65/": true,
   "https://popring.cn/posts/d3d2c956/": true,
   "https://popring.cn/posts/6737d091/": true,
-  "https://popring.cn/posts/7a3e10c2/": false,
-  "https://popring.cn/posts/e59c7c62/": false,
-  "https://popring.cn/posts/2b382936/": false,
-  "https://popring.cn/posts/471fc36d/": false,
-  "https://popring.cn/posts/e5ee95a5/": false,
+  "https://popring.cn/posts/7a3e10c2/": true,
+  "https://popring.cn/posts/e59c7c62/": true,
+  "https://popring.cn/posts/2b382936/": true,
+  "https://popring.cn/posts/471fc36d/": true,
+  "https://popring.cn/posts/e5ee95a5/": true,
   "https://popring.cn/posts/3dbb4ed7/": false,
   "https://popring.cn/posts/bffc2e83/": false,
   "https://popring.cn/posts/51cf0c91/": false,
@@ -81,5 +81,6 @@
   "https://popring.cn/posts/415c86c1/": false,
   "https://popring.cn/posts/54c0a81a/": false,
   "https://popring.cn/posts/7b67faab/": false,
-  "https://popring.cn/posts/52aeb676/": false
+  "https://popring.cn/posts/52aeb676/": false,
+  "https://popring.cn/posts/e092deb0/": false
 }
