@@ -8,9 +8,13 @@ tags:
 
 `ahrefs` 的 `SEO` 系列文章讲的挺好，推荐
 
-https://ahrefs.com/blog/how-do-search-engines-work/
+英文：https://ahrefs.com/blog/how-do-search-engines-work/
 
----
+中文：https://ahrefs.com/blog/zh/how-do-search-engines-work/
+
+google 文档：https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=zh-cn
+
+<!-- more -->
 
 ## 一、搜索引擎工作机制（理解原理）
 
