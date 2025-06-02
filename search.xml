@@ -1034,110 +1034,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C语言 第九章 结构体</title>
-    <url>/posts/1cbbe043/</url>
-    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
-<p>结构体类型，不占内存，不能保存数据；</p>
-<p>内存空间，可以保存数据</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>sizeof对类型和变量均可使用</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">struct</span> stu);</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
-<p>因无类型名，无法再重新定义其他变量</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
-<p>结构体变量用 <code>.</code></p>
-<p>结构体指针变量用 <code>-&gt;</code></p>
-<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
-<p>用法与传普通变量类似，</p>
-</blockquote>
-<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
-<p>结构体指针做函数参数，可以修改原来实参的值。</p>
-<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>第二种</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> year;</span><br><span class="line">        <span class="type">int</span> month;</span><br><span class="line">        <span class="type">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
-<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="type">double</span> a,b;</span><br></pre></td></tr></table></figure>
-
-<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
-<thead>
-<tr>
-<th align="center">函数名</th>
-<th align="left">介绍</th>
-<th align="left">备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">malloc</td>
-<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)malloc(size)</td>
-</tr>
-<tr>
-<td align="center">calloc</td>
-<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)calloc(n,size)</td>
-</tr>
-<tr>
-<td align="center">free</td>
-<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
-<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
-</tr>
-</tbody></table>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
-<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
-<p>链表类型：单向链表，双向链表，循环链表。。。</p>
-</blockquote>
-<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTkzJUJFJUU4JUExJUE4">链表介绍<i class="fa fa-external-link-alt"></i></span></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
-<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
-<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
-<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
-<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
-<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
-<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
-<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="type">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line">SNODE *<span class="title function_">create_list</span><span class="params">(<span class="type">int</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">out_list</span><span class="params">(SNODE *h)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = new <span class="keyword">struct</span> node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
-
-<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line">delete p;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C语言 第八章 指针（下）</title>
     <url>/posts/eed991ba/</url>
     <content><![CDATA[<h2 id="第八章-指针（下）"><a href="#第八章-指针（下）" class="headerlink" title="第八章 指针（下）"></a>第八章 指针（下）</h2><h3 id="指针变量做函数参数"><a href="#指针变量做函数参数" class="headerlink" title="指针变量做函数参数"></a>指针变量做函数参数</h3><blockquote>
@@ -1265,6 +1161,110 @@
 <td>将ch转换为大写字母，函数返回转换后的字符</td>
 </tr>
 </tbody></table>
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言 第九章 结构体</title>
+    <url>/posts/1cbbe043/</url>
+    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
+<p>结构体类型，不占内存，不能保存数据；</p>
+<p>内存空间，可以保存数据</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sizeof对类型和变量均可使用</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">struct</span> stu);</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
+<p>因无类型名，无法再重新定义其他变量</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
+<p>结构体变量用 <code>.</code></p>
+<p>结构体指针变量用 <code>-&gt;</code></p>
+<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
+<p>用法与传普通变量类似，</p>
+</blockquote>
+<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
+<p>结构体指针做函数参数，可以修改原来实参的值。</p>
+<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>第二种</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> year;</span><br><span class="line">        <span class="type">int</span> month;</span><br><span class="line">        <span class="type">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
+<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="type">double</span> a,b;</span><br></pre></td></tr></table></figure>
+
+<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="left">介绍</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">malloc</td>
+<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)malloc(size)</td>
+</tr>
+<tr>
+<td align="center">calloc</td>
+<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)calloc(n,size)</td>
+</tr>
+<tr>
+<td align="center">free</td>
+<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
+<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
+</tr>
+</tbody></table>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
+<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
+<p>链表类型：单向链表，双向链表，循环链表。。。</p>
+</blockquote>
+<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTkzJUJFJUU4JUExJUE4">链表介绍<i class="fa fa-external-link-alt"></i></span></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
+<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
+<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
+<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
+<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
+<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
+<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
+<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="type">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line">SNODE *<span class="title function_">create_list</span><span class="params">(<span class="type">int</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">out_list</span><span class="params">(SNODE *h)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = new <span class="keyword">struct</span> node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
+
+<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line">delete p;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>C Language</category>
@@ -1747,156 +1747,6 @@
       </tags>
   </entry>
   <entry>
-    <title>备战校招第二天</title>
-    <url>/posts/5dd5f4cf/</url>
-    <content><![CDATA[<ol>
-<li>css 盒模型</li>
-<li>css 布局方式</li>
-<li>跨域</li>
-<li>前端安全（XSS、CSRF）</li>
-<li>防抖和节流</li>
-</ol>
-<hr>
-
-<span id="more"></span>
-
-<h3 id="css-盒模型"><a href="#css-盒模型" class="headerlink" title="css 盒模型"></a>css 盒模型</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width，height） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : content-box;</span><br><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width - border - padding） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : border-box;</span><br></pre></td></tr></table></figure>
-
-<p><strong>content-box</strong></p>
-<p>尺寸计算公式：</p>
-<p><code>width</code> &#x3D; 内容的宽度</p>
-<p><code>height</code> &#x3D; 内容的高度</p>
-<p>宽度和高度的计算值都不包含内容的边框（border）和内边距（padding）。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: content-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105733.png" alt="image-20200625105733283"></p>
-<p>实际内容区域为 <code>100px</code> ，边框为 <code>1px</code> </p>
-<p><strong>border-box</strong></p>
-<p>尺寸计算公式：</p>
-<p><em><code>width</code> &#x3D; border + padding + 内容的宽度</em></p>
-<p><em><code>height</code> &#x3D; border + padding + 内容的高度</em></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: border-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105910.png" alt="image-20200625105909902"></p>
-<p>实际内容区域为 <code>98px</code> ，上下边框各为 <code>1px</code> </p>
-<h3 id="css-布局方式"><a href="#css-布局方式" class="headerlink" title="css 布局方式"></a>css 布局方式</h3><p><strong>改变布局的常见属性</strong> </p>
-<ul>
-<li><p>display: flex; table; grid;</p>
-</li>
-<li><p>float</p>
-</li>
-<li><p>position</p>
-</li>
-</ul>
-<p><strong>常见布局</strong></p>
-<ul>
-<li><p>正常布局流</p>
-<p>浏览器默认的 <code>html</code> 布局方式</p>
-</li>
-<li><p>弹性布局（flex）</p>
-<p><strong>介绍</strong>：弹性盒子布局，用于创建横向或纵向的一维页面布局，等分划分。</p>
-<p><strong>使用</strong>：只需将父元素设置为 <code>display: flex;</code> 就可以按照 <code>flex</code> 布局。（设置flex布局后，子元素的 <code>float</code>、<code>clear</code>  、<code>vertical-align</code> 属性都会失效）</p>
-</li>
-<li><p>网格布局（grid）</p>
-<p><strong>介绍</strong>：Grid布局被设计用于同时在两个维度上把元素按行和列排列整齐，二维布局。</p>
-<p><strong>使用</strong>：父元素设置 <code>display: grid;</code> 也可以设置为行内元素 <code>display: inline-grid;</code></p>
-</li>
-<li><p>浮动布局（float）</p>
-<p>浮动布局，利用 <code>float</code> 属性进行左右浮动。</p>
-</li>
-<li><p>定位布局（position）</p>
-<p>静态定位、相对定位、绝对定位、固定定位、粘性定位（相对定位和固定定位的混合，设置 <code>top</code> 值之后，元素以决定定位的方式显示位置，直到 <code>viewport</code> 视口回滚到阈值之下，以固定定位方式显示，显示 top 所指的值之处。）</p>
-</li>
-<li><p>表格</p>
-<p>现在很少使用 <code>table</code> 进行布局，但显示表格数据你没有选择。</p>
-</li>
-<li><p>多列布局</p>
-<p>简单的进行多列布局，<code>columns</code> 设置列数，<code>column-width</code> 设置列宽。</p>
-</li>
-</ul>
-<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>同源策略（协议、域名、端口相同），防止信息被恶意利用。</p>
-<ul>
-<li><p>jsonp</p>
-<p>利用 <code>script</code> 标签可以跨域特性，但只支持 <code>GET</code> 请求，且需要服务端进行配合，于是就有了下面代码（通常规范为 url 最后params规定 <code>callback=回调函数名</code>）</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">var</span> sc = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">      sc.<span class="title function_">setAttribute</span>(</span><br><span class="line">        <span class="string">&#x27;src&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://suggest.taobao.com/sug?code=utf-8&amp;q=%E5%8D%AB%E8%A1%A3&amp;callback=cb&#x27;</span></span><br><span class="line">      )</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(sc)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">function</span> <span class="title function_">cb</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">      &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>代码执行后，将 <code>script</code> 标签添加到网页内，会去自动请求地址，服务器配合后会返回</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">cb</span>(&#123;<span class="string">&quot;result&quot;</span>:[[<span class="string">&quot;卫衣女&quot;</span>,<span class="string">&quot;183618.0781806928&quot;</span>],[<span class="string">&quot;卫衣男&quot;</span>,<span class="string">&quot;88788.9164616466&quot;</span>],[<span class="string">&quot;卫衣女春秋薄款&quot;</span>,<span class="string">&quot;31281.50912988837&quot;</span>],[<span class="string">&quot;卫衣女宽松韩版&quot;</span>,<span class="string">&quot;108819.03279878093&quot;</span>]...]&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>页面会将请求后的代码进行执行，于是会调用 <code>cb</code> 函数，就可以进行对数据为所欲为了，哈哈哈。</p>
-</li>
-<li><p>CORS（跨域资源共享）</p>
-<p>CORS请求分为两类，简单请求和非简单请求（也称为复杂请求）</p>
-<p><strong>简单请求</strong></p>
-<p>服务端设置 <code>Access-Control-Allow-Origin</code> 值为请求头的 <code>origin</code> 的值或者 <code>*</code>，指定域名或者接受所有域名。</p>
-<p>服务端<code>Access-Control-Allow-Credentials</code> 设置为 <code>true</code>，请求时将 <code>cookie</code> 添加到请求中，一起发送给服务器。本地ajax请求也要将 <code>withCredentials</code> 设置为 <code>true</code>。（注意：如果要发送 cookie，必须指定 <code>Access-Control-Allow-Origin</code> 具体值，不能为 <code>*</code>。）</p>
-<p><strong>非简单请求</strong></p>
-<p>在请求前会发送一个“预检”请求，<code>OPTIONS</code>请求</p>
-<p>比如</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://api.alice.com/cors&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;PUT&#x27;</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X-Custom-Header&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
-
-<p>发送 <code>PUT</code> 请求，会先发送一个预检请求，内容如下</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">OPTIONS</span> <span class="string">/cors</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://api.bob.com // 请求域</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span><span class="punctuation">: </span>PUT // 请求方法</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span><span class="punctuation">: </span>X-Custom-Header // 请求头信息</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.alice.com</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0...</span><br></pre></td></tr></table></figure>
-
-<p>服务端如果确认，返回如下信息</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>http://api.bob.com // 允许跨域地址</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span><span class="punctuation">: </span>GET, POST, PUT // 允许跨域方法</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span><span class="punctuation">: </span>X-Custom-Header // 支持首部列表</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Encoding</span><span class="punctuation">: </span>gzip</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line"><span class="attribute">Keep-Alive</span><span class="punctuation">: </span>timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/plain</span><br></pre></td></tr></table></figure>
-
-<p>服务端如果否定了，返回一个正常的HTTP响应即可，但不包含跨域相关信息（此时，会触发<code>ajax</code>的 <code>onerror</code> 错误回调）</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://api.alice.com.</span><br><span class="line">Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h3><ul>
-<li><p>XSS（Cross-site scripting）</p>
-<p>首先推荐一个 <code>XSS</code> 训练平台，链接在这里：<span class="exturl" data-url="aHR0cDovL3Byb21wdC5tbC8w">prompt<i class="fa fa-external-link-alt"></i></span></p>
-<p>全称为跨站脚本攻击，一共分为三类</p>
-<ul>
-<li>存储型 XSS，一般出现在可输入的文本框中，例如留言板、评论、个人资料等地方，将恶意脚本存储到服务器上，当浏览器进行数据请求时，脚本会返回给用户并执行。</li>
-<li>反射性 XSS，一般出现在URL参数中，需要点击恶意代码的链接才可以出发。</li>
-<li>基于DOM的XSS，通过脚本动态修改页面，不与服务端进行交互，代码可见，获取数据并在本地执行。</li>
-</ul>
-</li>
-<li><p>CSRF（cross-site request forgery）</p>
-<p>跨站请求伪造，恶意请求提交。</p>
-<p>攻击者往往不会获取 <code>cookie</code> 信息，只会利用本机信息进行恶意操作。登录受信任网站A，访问危险网站B。</p>
-<p>防御方法</p>
-<ul>
-<li>令牌同步模式：当用户发送请求前，服务端生成唯一令牌，发送数据时携带该令牌，在服务端进行校验。</li>
-<li>检查Referer字段：确定改请求来源是否安全</li>
-<li>添加校验token：恶意请求不会自动添加token，也无法获取，服务端进行校验，就可以排除可疑请求。</li>
-</ul>
-</li>
-</ul>
-<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><p><strong>防抖（debounce）</strong></p>
-<p>高频事件在 n 秒内只执行一次，如果 n 秒内事件再次触发，则重新计算时间。</p>
-<p>下列代码，没有防抖前，每次用户输入都会触发事件，防抖后，只有在 500ms 内没有进行输入才会执行事件。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> id=<span class="string">&quot;inp&quot;</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">let</span> timeout = <span class="literal">null</span> <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="built_in">clearTimeout</span>(timeout) <span class="comment">// 每当用户输入的时候把前一个 setTimeout clear 掉</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          timeout = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="comment">// 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          &#125;, <span class="number">500</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;防抖成功&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">var</span> inp = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;inp&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      inp.<span class="title function_">addEventListener</span>(<span class="string">&#x27;input&#x27;</span>, <span class="title function_">debounce</span>(sayHi)) <span class="comment">// 防抖</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p><strong>节流（throttle）</strong></p>
-<p>降低高频事件的触发次数。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> canRun = <span class="literal">true</span>; <span class="comment">// 通过闭包保存一个标记</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!canRun) <span class="keyword">return</span>; <span class="comment">// 在函数开头判断标记是否为true，不为true则return</span></span><br><span class="line">    canRun = <span class="literal">false</span>; <span class="comment">// 立即设置为false</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 将外部传入的函数的执行放在setTimeout中</span></span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      <span class="comment">// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span></span><br><span class="line">      canRun = <span class="literal">true</span>;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">target</span>.<span class="property">innerWidth</span>, e.<span class="property">target</span>.<span class="property">innerHeight</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;resize&#x27;</span>, <span class="title function_">throttle</span>(sayHi));</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>盒模型</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2JveC1zaXppbmc=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing<i class="fa fa-external-link-alt"></i></span></p>
-<p>跨域</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTE0NTM2NA==">https://segmentfault.com/a/1190000011145364<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE2LzA0L2NvcnMuaHRtbA==">https://www.ruanyifeng.com/blog/2016/04/cors.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>防抖和节流</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmFuY2VkLUZyb250ZW5kL0RhaWx5LUludGVydmlldy1RdWVzdGlvbi9pc3N1ZXMvNQ==">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>安全</tag>
-        <tag>盒模型</tag>
-        <tag>布局</tag>
-        <tag>跨域</tag>
-        <tag>防抖</tag>
-        <tag>节流</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>备战校招第三天</title>
     <url>/posts/10cb579d/</url>
     <content><![CDATA[<ol>
@@ -2047,6 +1897,156 @@
         <tag>布局</tag>
         <tag>闭包</tag>
         <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>备战校招第二天</title>
+    <url>/posts/5dd5f4cf/</url>
+    <content><![CDATA[<ol>
+<li>css 盒模型</li>
+<li>css 布局方式</li>
+<li>跨域</li>
+<li>前端安全（XSS、CSRF）</li>
+<li>防抖和节流</li>
+</ol>
+<hr>
+
+<span id="more"></span>
+
+<h3 id="css-盒模型"><a href="#css-盒模型" class="headerlink" title="css 盒模型"></a>css 盒模型</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width，height） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : content-box;</span><br><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width - border - padding） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : border-box;</span><br></pre></td></tr></table></figure>
+
+<p><strong>content-box</strong></p>
+<p>尺寸计算公式：</p>
+<p><code>width</code> &#x3D; 内容的宽度</p>
+<p><code>height</code> &#x3D; 内容的高度</p>
+<p>宽度和高度的计算值都不包含内容的边框（border）和内边距（padding）。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: content-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105733.png" alt="image-20200625105733283"></p>
+<p>实际内容区域为 <code>100px</code> ，边框为 <code>1px</code> </p>
+<p><strong>border-box</strong></p>
+<p>尺寸计算公式：</p>
+<p><em><code>width</code> &#x3D; border + padding + 内容的宽度</em></p>
+<p><em><code>height</code> &#x3D; border + padding + 内容的高度</em></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: border-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105910.png" alt="image-20200625105909902"></p>
+<p>实际内容区域为 <code>98px</code> ，上下边框各为 <code>1px</code> </p>
+<h3 id="css-布局方式"><a href="#css-布局方式" class="headerlink" title="css 布局方式"></a>css 布局方式</h3><p><strong>改变布局的常见属性</strong> </p>
+<ul>
+<li><p>display: flex; table; grid;</p>
+</li>
+<li><p>float</p>
+</li>
+<li><p>position</p>
+</li>
+</ul>
+<p><strong>常见布局</strong></p>
+<ul>
+<li><p>正常布局流</p>
+<p>浏览器默认的 <code>html</code> 布局方式</p>
+</li>
+<li><p>弹性布局（flex）</p>
+<p><strong>介绍</strong>：弹性盒子布局，用于创建横向或纵向的一维页面布局，等分划分。</p>
+<p><strong>使用</strong>：只需将父元素设置为 <code>display: flex;</code> 就可以按照 <code>flex</code> 布局。（设置flex布局后，子元素的 <code>float</code>、<code>clear</code>  、<code>vertical-align</code> 属性都会失效）</p>
+</li>
+<li><p>网格布局（grid）</p>
+<p><strong>介绍</strong>：Grid布局被设计用于同时在两个维度上把元素按行和列排列整齐，二维布局。</p>
+<p><strong>使用</strong>：父元素设置 <code>display: grid;</code> 也可以设置为行内元素 <code>display: inline-grid;</code></p>
+</li>
+<li><p>浮动布局（float）</p>
+<p>浮动布局，利用 <code>float</code> 属性进行左右浮动。</p>
+</li>
+<li><p>定位布局（position）</p>
+<p>静态定位、相对定位、绝对定位、固定定位、粘性定位（相对定位和固定定位的混合，设置 <code>top</code> 值之后，元素以决定定位的方式显示位置，直到 <code>viewport</code> 视口回滚到阈值之下，以固定定位方式显示，显示 top 所指的值之处。）</p>
+</li>
+<li><p>表格</p>
+<p>现在很少使用 <code>table</code> 进行布局，但显示表格数据你没有选择。</p>
+</li>
+<li><p>多列布局</p>
+<p>简单的进行多列布局，<code>columns</code> 设置列数，<code>column-width</code> 设置列宽。</p>
+</li>
+</ul>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>同源策略（协议、域名、端口相同），防止信息被恶意利用。</p>
+<ul>
+<li><p>jsonp</p>
+<p>利用 <code>script</code> 标签可以跨域特性，但只支持 <code>GET</code> 请求，且需要服务端进行配合，于是就有了下面代码（通常规范为 url 最后params规定 <code>callback=回调函数名</code>）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">var</span> sc = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">      sc.<span class="title function_">setAttribute</span>(</span><br><span class="line">        <span class="string">&#x27;src&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://suggest.taobao.com/sug?code=utf-8&amp;q=%E5%8D%AB%E8%A1%A3&amp;callback=cb&#x27;</span></span><br><span class="line">      )</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(sc)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">function</span> <span class="title function_">cb</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">      &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>代码执行后，将 <code>script</code> 标签添加到网页内，会去自动请求地址，服务器配合后会返回</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">cb</span>(&#123;<span class="string">&quot;result&quot;</span>:[[<span class="string">&quot;卫衣女&quot;</span>,<span class="string">&quot;183618.0781806928&quot;</span>],[<span class="string">&quot;卫衣男&quot;</span>,<span class="string">&quot;88788.9164616466&quot;</span>],[<span class="string">&quot;卫衣女春秋薄款&quot;</span>,<span class="string">&quot;31281.50912988837&quot;</span>],[<span class="string">&quot;卫衣女宽松韩版&quot;</span>,<span class="string">&quot;108819.03279878093&quot;</span>]...]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>页面会将请求后的代码进行执行，于是会调用 <code>cb</code> 函数，就可以进行对数据为所欲为了，哈哈哈。</p>
+</li>
+<li><p>CORS（跨域资源共享）</p>
+<p>CORS请求分为两类，简单请求和非简单请求（也称为复杂请求）</p>
+<p><strong>简单请求</strong></p>
+<p>服务端设置 <code>Access-Control-Allow-Origin</code> 值为请求头的 <code>origin</code> 的值或者 <code>*</code>，指定域名或者接受所有域名。</p>
+<p>服务端<code>Access-Control-Allow-Credentials</code> 设置为 <code>true</code>，请求时将 <code>cookie</code> 添加到请求中，一起发送给服务器。本地ajax请求也要将 <code>withCredentials</code> 设置为 <code>true</code>。（注意：如果要发送 cookie，必须指定 <code>Access-Control-Allow-Origin</code> 具体值，不能为 <code>*</code>。）</p>
+<p><strong>非简单请求</strong></p>
+<p>在请求前会发送一个“预检”请求，<code>OPTIONS</code>请求</p>
+<p>比如</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://api.alice.com/cors&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;PUT&#x27;</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X-Custom-Header&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+
+<p>发送 <code>PUT</code> 请求，会先发送一个预检请求，内容如下</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">OPTIONS</span> <span class="string">/cors</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://api.bob.com // 请求域</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span><span class="punctuation">: </span>PUT // 请求方法</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span><span class="punctuation">: </span>X-Custom-Header // 请求头信息</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.alice.com</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0...</span><br></pre></td></tr></table></figure>
+
+<p>服务端如果确认，返回如下信息</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>http://api.bob.com // 允许跨域地址</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span><span class="punctuation">: </span>GET, POST, PUT // 允许跨域方法</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span><span class="punctuation">: </span>X-Custom-Header // 支持首部列表</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Encoding</span><span class="punctuation">: </span>gzip</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line"><span class="attribute">Keep-Alive</span><span class="punctuation">: </span>timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/plain</span><br></pre></td></tr></table></figure>
+
+<p>服务端如果否定了，返回一个正常的HTTP响应即可，但不包含跨域相关信息（此时，会触发<code>ajax</code>的 <code>onerror</code> 错误回调）</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://api.alice.com.</span><br><span class="line">Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h3><ul>
+<li><p>XSS（Cross-site scripting）</p>
+<p>首先推荐一个 <code>XSS</code> 训练平台，链接在这里：<span class="exturl" data-url="aHR0cDovL3Byb21wdC5tbC8w">prompt<i class="fa fa-external-link-alt"></i></span></p>
+<p>全称为跨站脚本攻击，一共分为三类</p>
+<ul>
+<li>存储型 XSS，一般出现在可输入的文本框中，例如留言板、评论、个人资料等地方，将恶意脚本存储到服务器上，当浏览器进行数据请求时，脚本会返回给用户并执行。</li>
+<li>反射性 XSS，一般出现在URL参数中，需要点击恶意代码的链接才可以出发。</li>
+<li>基于DOM的XSS，通过脚本动态修改页面，不与服务端进行交互，代码可见，获取数据并在本地执行。</li>
+</ul>
+</li>
+<li><p>CSRF（cross-site request forgery）</p>
+<p>跨站请求伪造，恶意请求提交。</p>
+<p>攻击者往往不会获取 <code>cookie</code> 信息，只会利用本机信息进行恶意操作。登录受信任网站A，访问危险网站B。</p>
+<p>防御方法</p>
+<ul>
+<li>令牌同步模式：当用户发送请求前，服务端生成唯一令牌，发送数据时携带该令牌，在服务端进行校验。</li>
+<li>检查Referer字段：确定改请求来源是否安全</li>
+<li>添加校验token：恶意请求不会自动添加token，也无法获取，服务端进行校验，就可以排除可疑请求。</li>
+</ul>
+</li>
+</ul>
+<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><p><strong>防抖（debounce）</strong></p>
+<p>高频事件在 n 秒内只执行一次，如果 n 秒内事件再次触发，则重新计算时间。</p>
+<p>下列代码，没有防抖前，每次用户输入都会触发事件，防抖后，只有在 500ms 内没有进行输入才会执行事件。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> id=<span class="string">&quot;inp&quot;</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">let</span> timeout = <span class="literal">null</span> <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="built_in">clearTimeout</span>(timeout) <span class="comment">// 每当用户输入的时候把前一个 setTimeout clear 掉</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          timeout = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="comment">// 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          &#125;, <span class="number">500</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;防抖成功&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">var</span> inp = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;inp&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      inp.<span class="title function_">addEventListener</span>(<span class="string">&#x27;input&#x27;</span>, <span class="title function_">debounce</span>(sayHi)) <span class="comment">// 防抖</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>节流（throttle）</strong></p>
+<p>降低高频事件的触发次数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> canRun = <span class="literal">true</span>; <span class="comment">// 通过闭包保存一个标记</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!canRun) <span class="keyword">return</span>; <span class="comment">// 在函数开头判断标记是否为true，不为true则return</span></span><br><span class="line">    canRun = <span class="literal">false</span>; <span class="comment">// 立即设置为false</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 将外部传入的函数的执行放在setTimeout中</span></span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      <span class="comment">// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span></span><br><span class="line">      canRun = <span class="literal">true</span>;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">target</span>.<span class="property">innerWidth</span>, e.<span class="property">target</span>.<span class="property">innerHeight</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;resize&#x27;</span>, <span class="title function_">throttle</span>(sayHi));</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>盒模型</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2JveC1zaXppbmc=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing<i class="fa fa-external-link-alt"></i></span></p>
+<p>跨域</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTE0NTM2NA==">https://segmentfault.com/a/1190000011145364<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE2LzA0L2NvcnMuaHRtbA==">https://www.ruanyifeng.com/blog/2016/04/cors.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>防抖和节流</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmFuY2VkLUZyb250ZW5kL0RhaWx5LUludGVydmlldy1RdWVzdGlvbi9pc3N1ZXMvNQ==">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>安全</tag>
+        <tag>布局</tag>
+        <tag>盒模型</tag>
+        <tag>跨域</tag>
+        <tag>防抖</tag>
+        <tag>节流</tag>
       </tags>
   </entry>
   <entry>
@@ -3298,6 +3298,57 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
+    <title>3D/threejs 入门</title>
+    <url>/posts/dda1bd91/</url>
+    <content><![CDATA[<h2 id="专业名词"><a href="#专业名词" class="headerlink" title="专业名词"></a>专业名词</h2><ul>
+<li>Geometry：几何体，描述物体的形状</li>
+<li>Material：材质，描述物体的外观</li>
+<li>Mesh：网格，几何体和材质的组合</li>
+<li>Scene：场景，包含所有要渲染的物体</li>
+<li>Camera：相机，用于观察场景</li>
+<li>Renderer：渲染器，将场景渲染到屏幕上</li>
+<li>Light：光源，用于照亮场景</li>
+<li>Animation：动画，用于给物体添加动画</li>
+<li>Group：组，用于将多个物体组合在一起，可以设置组的整体属性</li>
+<li>Texture：纹理，用于给物体添加纹理</li>
+<li>Shader：着色器，用于给物体添加着色</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>创建 <code>Geometry</code> 和 <code>Material</code>，加入到 <code>Mesh</code> 中</li>
+<li>创建 <code>Light</code> 光源</li>
+<li>创建 <code>Scene</code> 场景，将 <code>Mesh</code> 和 <code>Light</code> 加入到 <code>Scene</code> 中</li>
+<li>创建 <code>Camera</code> 相机</li>
+<li>创建 <code>Renderer</code> 渲染器，将 <code>Scene</code> 和 <code>Camera</code> 渲染到屏幕上</li>
+<li>创建 <code>OrbitControls</code> 控制相机（传入 <code>Camera</code> 和 <code>Renderer</code>），用于控制相机的位置和角度</li>
+</ol>
+<h2 id="JavaScript-module-技巧"><a href="#JavaScript-module-技巧" class="headerlink" title="JavaScript module 技巧"></a>JavaScript module 技巧</h2><ul>
+<li>import link 导入</li>
+<li>importmap 导入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSFRNTC9SZWZlcmVuY2UvRWxlbWVudHMvc2NyaXB0L3R5cGUvaW1wb3J0bWFw">importmap - MDN<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过链接导入 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> * <span class="keyword">as</span> <span class="variable constant_">THREE</span> <span class="keyword">from</span> <span class="string">&quot;https://esm.sh/three@0.174.0/build/three.module.js&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通过 importmap 导入 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;importmap&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="string">&quot;imports&quot;</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="string">&quot;three&quot;</span>: <span class="string">&quot;https://esm.sh/three@0.174.0/build/three.module.js&quot;</span></span></span><br><span class="line"><span class="language-javascript">      &#125;   </span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">import</span> * <span class="keyword">as</span> <span class="variable constant_">THREE</span> <span class="keyword">from</span> <span class="string">&quot;three&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable constant_">THREE</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可视化控制"><a href="#可视化控制" class="headerlink" title="可视化控制"></a>可视化控制</h2><p>可以通过 <code>dat-gui</code> &#x2F; <code>lil-gui</code> 来可视化控制参数，从而实现交互式效果。</p>
+<p><code>dat-gui</code> 已经不再维护了， star <code>7.6k</code><br><code>lil-gui</code> 内置在 <code>three.js</code> 中, star <code>1.3k</code></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9saWwtZ3VpLmdlb3JnZWFsd2F5cy5jb20v">lil-gui doc<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dlb3JnZWFsd2F5cy9saWwtZ3Vp">lil-gui github<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhdGFhcnRzL2RhdC5ndWk=">dat-gui github<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="视锥体和相机"><a href="#视锥体和相机" class="headerlink" title="视锥体和相机"></a>视锥体和相机</h2><p>通过创建 <code>CameraHelper</code> 来实现模拟相机视锥体，可视化相机角度，并通过 GUI 来实时控制 <code>PerspectiveCamera</code> 的 <code>fov</code>、 <code>aspect</code> 、<code>near</code>、<code>far</code> 参数。</p>
+<p><code>fov</code>: 可视角度，离物体的远近，默认 <code>50</code><br><code>aspect</code>: 宽高比，通常是浏览器窗口的宽高比 <code>window.innerWidth / window.innerHeight</code>，默认 <code>1</code><br><code>near</code>: 近截面，通常是 <code>0.1</code>，默认 <code>0.1</code><br><code>far</code>: 远截面，通常是 <code>1000</code>，默认 <code>1000</code></p>
+<h2 id="几何体"><a href="#几何体" class="headerlink" title="几何体"></a>几何体</h2><p>3D 物体都是有顶点构成的三角形网格模型，所有几何体都是由一堆三角形构成的。</p>
+<p>如我们正常看到的三角形，是会有 3 个顶点；正方形则是由两个三角形构成的，有 6 个顶点。</p>
+<p>可以通过 <code>BufferGeometry</code> 创建自定义集合体；</p>
+<p>比如这里我们创建一个正方形，有 6 个顶点，每个顶点有 3 个坐标，所以需要 18 个数字。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> vertices = <span class="keyword">new</span> <span class="title class_">Float32Array</span>([</span><br><span class="line">    <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">100</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">100</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">100</span>, <span class="number">100</span>, <span class="number">0</span></span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> attributes = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">BufferAttribute</span>(vertices, <span class="number">3</span>);</span><br><span class="line">geometry.<span class="property">attributes</span>.<span class="property">position</span> = attributes;</span><br></pre></td></tr></table></figure>
+
+<p>有可以看出其实有一些数据是重复的 <code>Three.js</code> 提供了优化顶点存储的方案：存储一份不重复的顶点数据，然后存储一份顶点索引就可以了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> vertices = <span class="keyword">new</span> <span class="title class_">Float32Array</span>([</span><br><span class="line">    <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">100</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 0, 100, 0,</span></span><br><span class="line">    <span class="comment">// 100, 0, 0,</span></span><br><span class="line">    <span class="number">100</span>, <span class="number">100</span>, <span class="number">0</span></span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> attributes = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">BufferAttribute</span>(vertices, <span class="number">3</span>);</span><br><span class="line">geometry.<span class="property">attributes</span>.<span class="property">position</span> = attributes;</span><br><span class="line"><span class="keyword">const</span> indices = <span class="keyword">new</span> <span class="title class_">Uint16Array</span>([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>]);</span><br><span class="line">geometry.<span class="property">index</span> = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">BufferAttribute</span>(indices, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>CSS3 新特性</title>
     <url>/posts/6436a60f/</url>
     <content><![CDATA[<p>css3 新特性</p>
@@ -3394,6 +3445,41 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>Chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS中的substr和subString还有slice的区别</title>
+    <url>/posts/ce57b9e9/</url>
+    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
+<p>注意：</p>
+<p><code>substr</code> 官方不推荐不使用</p>
+<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+<span id="more"></span>
+
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cg==">String.prototype.substr()<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cmluZw==">String,prototype.substring()<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3NsaWNl">String.prototype.slice()<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+</blockquote>
+<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
+<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
+<p><code>length </code> 可选，提取字符的长度</p>
+</blockquote>
+<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
+<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
+<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
+</blockquote>
+<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
+<p><code>beginSlice</code>索引开始，提取字符串</p>
+<p><code>endSlice</code>，可选，索引结束提取字符串</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substr</span>(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substring</span>(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">slice</span>(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -3633,41 +3719,6 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>node</tag>
         <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS中的substr和subString还有slice的区别</title>
-    <url>/posts/ce57b9e9/</url>
-    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
-<p>注意：</p>
-<p><code>substr</code> 官方不推荐不使用</p>
-<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
-<span id="more"></span>
-
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cg==">String.prototype.substr()<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cmluZw==">String,prototype.substring()<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3NsaWNl">String.prototype.slice()<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
-</blockquote>
-<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
-<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
-<p><code>length </code> 可选，提取字符的长度</p>
-</blockquote>
-<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
-<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
-<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
-</blockquote>
-<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
-<p><code>beginSlice</code>索引开始，提取字符串</p>
-<p><code>endSlice</code>，可选，索引结束提取字符串</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substr</span>(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substring</span>(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">slice</span>(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -6341,31 +6392,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>https握手过程</title>
-    <url>/posts/1449f691/</url>
-    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
-<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
-<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
-<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
-<li>服务端使用自己的私钥，对随机数进行解密。</li>
-<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
-</ul>
-<p>细节</p>
-<ul>
-<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>get和post区别</title>
     <url>/posts/f69ca482/</url>
     <content><![CDATA[<ul>
@@ -6385,6 +6411,31 @@ JavaScript 高级程序设计</p>
 <li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
 </ul>
 <p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>https握手过程</title>
+    <url>/posts/1449f691/</url>
+    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
+<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
+<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
+<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
+<li>服务端使用自己的私钥，对随机数进行解密。</li>
+<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
+</ul>
+<p>细节</p>
+<ul>
+<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
         <category>简单聊</category>
@@ -6447,6 +6498,36 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/posts/ababab9d/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>TCP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
+<span id="more"></span>
+
+
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
       </tags>
   </entry>
   <entry>
@@ -6542,36 +6623,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从输入url到页面显示经过了什么</title>
-    <url>/posts/ababab9d/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>TCP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<span id="more"></span>
-
-
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
       </tags>
   </entry>
   <entry>
@@ -6699,71 +6750,6 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>[转] how-to-learn-stuff-quickly</title>
-    <url>/posts/a40a7f50/</url>
-    <content><![CDATA[<blockquote>
-<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuam9zaHdjb21lYXUuY29tL2Jsb2cvaG93LXRvLWxlYXJuLXN0dWZmLXF1aWNrbHkv">how-to-learn-stuff-quickly<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p><strong>总结文章《How to Learn Stuff Quickly》（如何快速学习）</strong>  </p>
-<p>这篇文章由 Josh W. Comeau 撰写，探讨了如何高效学习新知识，尤其是技术类内容。作者分享了自己的学习方法，并提供了一些实用技巧，帮助读者更快掌握复杂概念。  </p>
-<hr>
-<h3 id="文章主要内容梳理"><a href="#文章主要内容梳理" class="headerlink" title="文章主要内容梳理"></a><strong>文章主要内容梳理</strong></h3><h4 id="1-传统学习-vs-高效学习"><a href="#1-传统学习-vs-高效学习" class="headerlink" title="1. 传统学习 vs. 高效学习"></a><strong>1. 传统学习 vs. 高效学习</strong></h4><p>作者认为，传统的学习方法（如阅读文档、看教程）效率不高，容易导致被动学习。他提倡<strong>主动学习</strong>，即通过实际应用和刻意练习来加深理解。  </p>
-<hr>
-<h4 id="2-关键学习方法"><a href="#2-关键学习方法" class="headerlink" title="2. 关键学习方法"></a><strong>2. 关键学习方法</strong></h4><p>Josh 介绍了几个核心的学习策略，以提高学习速度和效果：  </p>
-<p><strong>（1）基于项目的学习（Project-Based Learning）</strong>  </p>
-<ul>
-<li>直接动手做项目，逼迫自己在实践中学习。  </li>
-<li>通过解决实际问题，更快掌握知识点，而不是仅仅阅读或观看教程。  </li>
-<li>举例：如果学习 React，应该尝试自己构建一个小型应用，而不是只看官方文档。</li>
-</ul>
-<p><strong>（2）自我解释（The Feynman Technique）</strong>  </p>
-<ul>
-<li>费曼学习法：用自己的话解释概念，直到能够清晰、简洁地表述。  </li>
-<li>通过写博客、录制视频或教别人来巩固知识。  </li>
-<li>避免“假性学习”（看似懂了但无法真正应用）。</li>
-</ul>
-<p><strong>（3）学习的分层结构（Layered Learning）</strong>  </p>
-<ul>
-<li>先掌握基础概念，不追求一开始就精通所有细节。  </li>
-<li>例如，在学习新技术时，先了解核心功能，然后再深入学习优化和高级用法。  </li>
-<li>逐步建立知识体系，避免信息过载。</li>
-</ul>
-<hr>
-<h4 id="3-避免常见的学习陷阱"><a href="#3-避免常见的学习陷阱" class="headerlink" title="3. 避免常见的学习陷阱"></a><strong>3. 避免常见的学习陷阱</strong></h4><p><strong>（1）过度依赖教程（Tutorial Hell）</strong>  </p>
-<ul>
-<li>一直跟着教程走，导致无法独立解决问题。  </li>
-<li>解决方案：尝试摆脱教程，自行实现功能，即使遇到困难也不要立刻依赖外部答案。</li>
-</ul>
-<p><strong>（2）害怕犯错（Fear of Failure）</strong>  </p>
-<ul>
-<li>过于害怕犯错会阻碍学习。错误本身是学习的一部分，遇到问题时，应该主动调试、查找解决方案。</li>
-</ul>
-<p><strong>（3）过度优化（Premature Optimization）</strong>  </p>
-<ul>
-<li>一开始不必追求完美，先把基本功能实现，再逐步优化。</li>
-</ul>
-<hr>
-<h4 id="4-具体应用举例"><a href="#4-具体应用举例" class="headerlink" title="4. 具体应用举例"></a><strong>4. 具体应用举例</strong></h4><p>Josh 用自己的经验说明这些方法的有效性，例如：  </p>
-<ul>
-<li>他在学习新技术时，通常会在几小时内搭建一个小项目，而不是先读完所有文档。  </li>
-<li>他发现用<strong>博客文章</strong>记录自己的学习过程，对理解和记忆帮助很大。</li>
-</ul>
-<hr>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>Josh W. Comeau 提倡<strong>主动、实践导向的学习方法</strong>，而不是被动吸收知识。他的核心建议包括：  </p>
-<ol>
-<li><strong>动手做项目</strong>，从实践中学习，而不是单纯看教程。  </li>
-<li><strong>费曼学习法</strong>，通过教别人或自我解释来加深理解。  </li>
-<li><strong>分层学习</strong>，先掌握核心概念，再逐步深入。  </li>
-<li><strong>避免依赖教程</strong>，尽早独立尝试解决问题。  </li>
-<li><strong>允许自己犯错</strong>，通过错误学习，而不是追求完美。</li>
-</ol>
-<p>如果想快速学习新技术或概念，最好的方法是<strong>尽快开始动手做项目，并在过程中不断调整和优化自己的理解</strong>。</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
     <title>[转] The best way to get unstuck</title>
     <url>/posts/52aeb676/</url>
     <content><![CDATA[<blockquote>
@@ -6830,6 +6816,71 @@ JavaScript 高级程序设计</p>
 <li><strong>寻求外部视角</strong>，让他人的反馈帮助自己发现盲点。</li>
 </ol>
 <p>这篇文章的核心观点是：<strong>思维卡住时，最好的办法不是硬想，而是换个方式思考</strong>。</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>[转] how-to-learn-stuff-quickly</title>
+    <url>/posts/a40a7f50/</url>
+    <content><![CDATA[<blockquote>
+<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuam9zaHdjb21lYXUuY29tL2Jsb2cvaG93LXRvLWxlYXJuLXN0dWZmLXF1aWNrbHkv">how-to-learn-stuff-quickly<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><strong>总结文章《How to Learn Stuff Quickly》（如何快速学习）</strong>  </p>
+<p>这篇文章由 Josh W. Comeau 撰写，探讨了如何高效学习新知识，尤其是技术类内容。作者分享了自己的学习方法，并提供了一些实用技巧，帮助读者更快掌握复杂概念。  </p>
+<hr>
+<h3 id="文章主要内容梳理"><a href="#文章主要内容梳理" class="headerlink" title="文章主要内容梳理"></a><strong>文章主要内容梳理</strong></h3><h4 id="1-传统学习-vs-高效学习"><a href="#1-传统学习-vs-高效学习" class="headerlink" title="1. 传统学习 vs. 高效学习"></a><strong>1. 传统学习 vs. 高效学习</strong></h4><p>作者认为，传统的学习方法（如阅读文档、看教程）效率不高，容易导致被动学习。他提倡<strong>主动学习</strong>，即通过实际应用和刻意练习来加深理解。  </p>
+<hr>
+<h4 id="2-关键学习方法"><a href="#2-关键学习方法" class="headerlink" title="2. 关键学习方法"></a><strong>2. 关键学习方法</strong></h4><p>Josh 介绍了几个核心的学习策略，以提高学习速度和效果：  </p>
+<p><strong>（1）基于项目的学习（Project-Based Learning）</strong>  </p>
+<ul>
+<li>直接动手做项目，逼迫自己在实践中学习。  </li>
+<li>通过解决实际问题，更快掌握知识点，而不是仅仅阅读或观看教程。  </li>
+<li>举例：如果学习 React，应该尝试自己构建一个小型应用，而不是只看官方文档。</li>
+</ul>
+<p><strong>（2）自我解释（The Feynman Technique）</strong>  </p>
+<ul>
+<li>费曼学习法：用自己的话解释概念，直到能够清晰、简洁地表述。  </li>
+<li>通过写博客、录制视频或教别人来巩固知识。  </li>
+<li>避免“假性学习”（看似懂了但无法真正应用）。</li>
+</ul>
+<p><strong>（3）学习的分层结构（Layered Learning）</strong>  </p>
+<ul>
+<li>先掌握基础概念，不追求一开始就精通所有细节。  </li>
+<li>例如，在学习新技术时，先了解核心功能，然后再深入学习优化和高级用法。  </li>
+<li>逐步建立知识体系，避免信息过载。</li>
+</ul>
+<hr>
+<h4 id="3-避免常见的学习陷阱"><a href="#3-避免常见的学习陷阱" class="headerlink" title="3. 避免常见的学习陷阱"></a><strong>3. 避免常见的学习陷阱</strong></h4><p><strong>（1）过度依赖教程（Tutorial Hell）</strong>  </p>
+<ul>
+<li>一直跟着教程走，导致无法独立解决问题。  </li>
+<li>解决方案：尝试摆脱教程，自行实现功能，即使遇到困难也不要立刻依赖外部答案。</li>
+</ul>
+<p><strong>（2）害怕犯错（Fear of Failure）</strong>  </p>
+<ul>
+<li>过于害怕犯错会阻碍学习。错误本身是学习的一部分，遇到问题时，应该主动调试、查找解决方案。</li>
+</ul>
+<p><strong>（3）过度优化（Premature Optimization）</strong>  </p>
+<ul>
+<li>一开始不必追求完美，先把基本功能实现，再逐步优化。</li>
+</ul>
+<hr>
+<h4 id="4-具体应用举例"><a href="#4-具体应用举例" class="headerlink" title="4. 具体应用举例"></a><strong>4. 具体应用举例</strong></h4><p>Josh 用自己的经验说明这些方法的有效性，例如：  </p>
+<ul>
+<li>他在学习新技术时，通常会在几小时内搭建一个小项目，而不是先读完所有文档。  </li>
+<li>他发现用<strong>博客文章</strong>记录自己的学习过程，对理解和记忆帮助很大。</li>
+</ul>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>Josh W. Comeau 提倡<strong>主动、实践导向的学习方法</strong>，而不是被动吸收知识。他的核心建议包括：  </p>
+<ol>
+<li><strong>动手做项目</strong>，从实践中学习，而不是单纯看教程。  </li>
+<li><strong>费曼学习法</strong>，通过教别人或自我解释来加深理解。  </li>
+<li><strong>分层学习</strong>，先掌握核心概念，再逐步深入。  </li>
+<li><strong>避免依赖教程</strong>，尽早独立尝试解决问题。  </li>
+<li><strong>允许自己犯错</strong>，通过错误学习，而不是追求完美。</li>
+</ol>
+<p>如果想快速学习新技术或概念，最好的方法是<strong>尽快开始动手做项目，并在过程中不断调整和优化自己的理解</strong>。</p>
 ]]></content>
       <categories>
         <category>转载</category>
