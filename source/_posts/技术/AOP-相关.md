@@ -8,6 +8,8 @@ categories: 技术
 
 关键词： AOP, DI, IoC
 
+<!-- more -->
+
 ## 名词概念
 
 
