@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>读书笔记</title>
+    <url>/posts/7b67faab/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="2025-年读书笔记"><a href="#2025-年读书笔记" class="headerlink" title="2025 年读书笔记"></a>2025 年读书笔记</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi9xYXJ4ZzA4c3VnZ2MwbGdv">增长黑客<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi9wcG9ncGV1ZTBhYmEzbHd1">认知觉醒<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi91cjUxMmNrZ3hnOGF1eXM5">GTD方法<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+  </entry>
+  <entry>
     <title>好文推荐</title>
     <url>/posts/227406a3/</url>
     <content><![CDATA[<span id="more"></span>
@@ -15,16 +25,6 @@
 <h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjExMjg2NS9hcnRpY2xlL2RldGFpbHMvMTAwOTc5MzYz">页面渲染大量数据的性能优化（时间分片），这篇文章对我影响很大<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p><span class="exturl" data-url="aHR0cHM6Ly9zb3VsbWFjaGluZS5naXRib29rcy5pby9zeXN0ZW0tZGVzaWduL2NvbnRlbnQvY24v">系统设计面试题精选<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xMTJIQmlNTnZ1NlRZYkRVT2ZWUmVfTVM0QS1mS2FXWXJwTWxtbnNpTU5pQS9lZGl0P3RhYj10LjAjaGVhZGluZz1oLmJtd2FjeTR5bGtzaA==">彻底击碎行为问题<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>读书笔记</title>
-    <url>/posts/7b67faab/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="2025-年读书笔记"><a href="#2025-年读书笔记" class="headerlink" title="2025 年读书笔记"></a>2025 年读书笔记</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi9xYXJ4ZzA4c3VnZ2MwbGdv">增长黑客<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi9wcG9ncGV1ZTBhYmEzbHd1">认知觉醒<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi91cjUxMmNrZ3hnOGF1eXM5">GTD方法<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
   </entry>
   <entry>
@@ -199,137 +199,6 @@
 <td>feof</td>
 <td>判断读文件是否已越过了文件末尾</td>
 <td>if (feof(fp) )   …</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言 第三章 顺序结构</title>
-    <url>/posts/f561d345/</url>
-    <content><![CDATA[<h2 id="第三章-顺序结构"><a href="#第三章-顺序结构" class="headerlink" title="第三章 顺序结构"></a>第三章 顺序结构</h2><blockquote>
-<p>You only get one shot, do not miss your chance to blow.</p>
-<p>你只有一发子弹，不要错过引爆全场的机会。</p>
-</blockquote>
-<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 大括号是程序块的分界符，后不跟分号(;)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每条语句后要加分号，语句也可以也在同一行，但要用分号分割</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><blockquote>
-<p>C语言程序的 <code>输入/输出</code> 都要通过<strong>库函数</strong>完成</p>
-<p>库函数，就是“仓库“里的函数</p>
-<p>在C语言要使用“库函数”，首先要用 <code>#include</code> 将一些文件包含到程序中，文件后缀一般为 <code>.h</code> ，称为头文件。</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// 或者是</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdio.h&quot;</span></span></span><br></pre></td></tr></table></figure>
-
-<h4 id="putchar"><a href="#putchar" class="headerlink" title="putchar()"></a>putchar()</h4><blockquote>
-<p>单字符输出</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">putchar</span>(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="getchar"><a href="#getchar" class="headerlink" title="getchar()"></a>getchar()</h4><blockquote>
-<p>单字符输入</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">getchar();</span><br></pre></td></tr></table></figure>
-
-<h4 id="printf"><a href="#printf" class="headerlink" title="printf()"></a>printf()</h4><blockquote>
-<p>格式输出函数</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>格式字符串控全体，</p>
-<p>数据替换百分比<code>(%)</code></p>
-<p>字符c，正数d</p>
-<p>小数f，指数e</p>
-<p>欧<code>(o)</code>八叉<code>(x)</code>六<code>u</code>无号</p>
-<p>字符串<code>s</code>要牢记</p>
-<p>间数全宽点小数</p>
-<p>负号表示左对齐</p>
-</blockquote>
-<h4 id="scanf"><a href="#scanf" class="headerlink" title="scanf()"></a>scanf()</h4><blockquote>
-<p>格式输入函数</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;格式控制字符串&quot;</span>, 变量<span class="number">1</span>的地址, 变量<span class="number">2</span>的地址, ...)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> main</span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> a,b,c;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;input a,b,c\n&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;a=%d, b=%d, c=%d&quot;</span>, a, b, c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>scanf, 键盘输入</p>
-<p>后为地址，不能输出。</p>
-<p>间数宽度，%c全读。</p>
-<p>非格式符，麻烦用户。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th><strong>函数</strong></th>
-<th><strong>功能</strong></th>
-<th><strong>用法举例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>sqrt(x)</td>
-<td>求x的算术平方根，x≥0</td>
-<td>sqrt(2)</td>
-</tr>
-<tr>
-<td>abs(x)</td>
-<td>求x（整数）的绝对值</td>
-<td>abs(-5)</td>
-</tr>
-<tr>
-<td>fabs(x)</td>
-<td>求x（实数）的绝对值</td>
-<td>fabs(-2.5)</td>
-</tr>
-<tr>
-<td>log(x)</td>
-<td>求自然对数ln(x)</td>
-<td>log(2)</td>
-</tr>
-<tr>
-<td>exp(x)</td>
-<td>求ex的值</td>
-<td>exp(2)</td>
-</tr>
-<tr>
-<td>pow(x,y)</td>
-<td>求xy的值，注意x^y是“按位异或”不是求xy</td>
-<td>pow(2, 3)</td>
-</tr>
-<tr>
-<td>sin(x)</td>
-<td>求x的正弦值，x单位为弧度</td>
-<td>sin(30*3.14&#x2F;180)</td>
-</tr>
-<tr>
-<td>cos(x)</td>
-<td>求x的余弦值，x单位为弧度</td>
-<td>cos(3.14)</td>
-</tr>
-<tr>
-<td>tan(x)</td>
-<td>求x的正切值，x单位为弧度</td>
-<td>tan(1.3)</td>
-</tr>
-<tr>
-<td>asin(x)</td>
-<td>求sin-1(x)的值（弧度），-1≤x≤1</td>
-<td>asin(1)</td>
-</tr>
-<tr>
-<td>acos(x)</td>
-<td>求cos-1(x)的值（弧度），-1≤x≤1</td>
-<td>acos(0)</td>
-</tr>
-<tr>
-<td>atan(x)</td>
-<td>求tan-1(x)的值（弧度）</td>
-<td>atan(-82.24)</td>
 </tr>
 </tbody></table>
 ]]></content>
@@ -608,6 +477,137 @@
 </blockquote>
 <h3 id="Visual-Stdio-快捷键"><a href="#Visual-Stdio-快捷键" class="headerlink" title="Visual Stdio 快捷键"></a>Visual Stdio 快捷键</h3><p>注释: Ctrl + K, Ctrl + C</p>
 <p>取消注释：Ctrl + K , Ctrl + U</p>
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言 第三章 顺序结构</title>
+    <url>/posts/f561d345/</url>
+    <content><![CDATA[<h2 id="第三章-顺序结构"><a href="#第三章-顺序结构" class="headerlink" title="第三章 顺序结构"></a>第三章 顺序结构</h2><blockquote>
+<p>You only get one shot, do not miss your chance to blow.</p>
+<p>你只有一发子弹，不要错过引爆全场的机会。</p>
+</blockquote>
+<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 大括号是程序块的分界符，后不跟分号(;)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每条语句后要加分号，语句也可以也在同一行，但要用分号分割</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><blockquote>
+<p>C语言程序的 <code>输入/输出</code> 都要通过<strong>库函数</strong>完成</p>
+<p>库函数，就是“仓库“里的函数</p>
+<p>在C语言要使用“库函数”，首先要用 <code>#include</code> 将一些文件包含到程序中，文件后缀一般为 <code>.h</code> ，称为头文件。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// 或者是</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdio.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="putchar"><a href="#putchar" class="headerlink" title="putchar()"></a>putchar()</h4><blockquote>
+<p>单字符输出</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">putchar</span>(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="getchar"><a href="#getchar" class="headerlink" title="getchar()"></a>getchar()</h4><blockquote>
+<p>单字符输入</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">getchar();</span><br></pre></td></tr></table></figure>
+
+<h4 id="printf"><a href="#printf" class="headerlink" title="printf()"></a>printf()</h4><blockquote>
+<p>格式输出函数</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>格式字符串控全体，</p>
+<p>数据替换百分比<code>(%)</code></p>
+<p>字符c，正数d</p>
+<p>小数f，指数e</p>
+<p>欧<code>(o)</code>八叉<code>(x)</code>六<code>u</code>无号</p>
+<p>字符串<code>s</code>要牢记</p>
+<p>间数全宽点小数</p>
+<p>负号表示左对齐</p>
+</blockquote>
+<h4 id="scanf"><a href="#scanf" class="headerlink" title="scanf()"></a>scanf()</h4><blockquote>
+<p>格式输入函数</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;格式控制字符串&quot;</span>, 变量<span class="number">1</span>的地址, 变量<span class="number">2</span>的地址, ...)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> main</span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> a,b,c;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;input a,b,c\n&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;a=%d, b=%d, c=%d&quot;</span>, a, b, c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>scanf, 键盘输入</p>
+<p>后为地址，不能输出。</p>
+<p>间数宽度，%c全读。</p>
+<p>非格式符，麻烦用户。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>函数</strong></th>
+<th><strong>功能</strong></th>
+<th><strong>用法举例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sqrt(x)</td>
+<td>求x的算术平方根，x≥0</td>
+<td>sqrt(2)</td>
+</tr>
+<tr>
+<td>abs(x)</td>
+<td>求x（整数）的绝对值</td>
+<td>abs(-5)</td>
+</tr>
+<tr>
+<td>fabs(x)</td>
+<td>求x（实数）的绝对值</td>
+<td>fabs(-2.5)</td>
+</tr>
+<tr>
+<td>log(x)</td>
+<td>求自然对数ln(x)</td>
+<td>log(2)</td>
+</tr>
+<tr>
+<td>exp(x)</td>
+<td>求ex的值</td>
+<td>exp(2)</td>
+</tr>
+<tr>
+<td>pow(x,y)</td>
+<td>求xy的值，注意x^y是“按位异或”不是求xy</td>
+<td>pow(2, 3)</td>
+</tr>
+<tr>
+<td>sin(x)</td>
+<td>求x的正弦值，x单位为弧度</td>
+<td>sin(30*3.14&#x2F;180)</td>
+</tr>
+<tr>
+<td>cos(x)</td>
+<td>求x的余弦值，x单位为弧度</td>
+<td>cos(3.14)</td>
+</tr>
+<tr>
+<td>tan(x)</td>
+<td>求x的正切值，x单位为弧度</td>
+<td>tan(1.3)</td>
+</tr>
+<tr>
+<td>asin(x)</td>
+<td>求sin-1(x)的值（弧度），-1≤x≤1</td>
+<td>asin(1)</td>
+</tr>
+<tr>
+<td>acos(x)</td>
+<td>求cos-1(x)的值（弧度），-1≤x≤1</td>
+<td>acos(0)</td>
+</tr>
+<tr>
+<td>atan(x)</td>
+<td>求tan-1(x)的值（弧度）</td>
+<td>atan(-82.24)</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>C Language</category>
@@ -1034,6 +1034,110 @@
       </tags>
   </entry>
   <entry>
+    <title>C语言 第九章 结构体</title>
+    <url>/posts/1cbbe043/</url>
+    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
+<p>结构体类型，不占内存，不能保存数据；</p>
+<p>内存空间，可以保存数据</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sizeof对类型和变量均可使用</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">struct</span> stu);</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
+<p>因无类型名，无法再重新定义其他变量</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
+<p>结构体变量用 <code>.</code></p>
+<p>结构体指针变量用 <code>-&gt;</code></p>
+<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
+<p>用法与传普通变量类似，</p>
+</blockquote>
+<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
+<p>结构体指针做函数参数，可以修改原来实参的值。</p>
+<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>第二种</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> year;</span><br><span class="line">        <span class="type">int</span> month;</span><br><span class="line">        <span class="type">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
+<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="type">double</span> a,b;</span><br></pre></td></tr></table></figure>
+
+<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="left">介绍</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">malloc</td>
+<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)malloc(size)</td>
+</tr>
+<tr>
+<td align="center">calloc</td>
+<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)calloc(n,size)</td>
+</tr>
+<tr>
+<td align="center">free</td>
+<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
+<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
+</tr>
+</tbody></table>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
+<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
+<p>链表类型：单向链表，双向链表，循环链表。。。</p>
+</blockquote>
+<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTkzJUJFJUU4JUExJUE4">链表介绍<i class="fa fa-external-link-alt"></i></span></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
+<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
+<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
+<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
+<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
+<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
+<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
+<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="type">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line">SNODE *<span class="title function_">create_list</span><span class="params">(<span class="type">int</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">out_list</span><span class="params">(SNODE *h)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = new <span class="keyword">struct</span> node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
+
+<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line">delete p;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言 第八章 指针（下）</title>
     <url>/posts/eed991ba/</url>
     <content><![CDATA[<h2 id="第八章-指针（下）"><a href="#第八章-指针（下）" class="headerlink" title="第八章 指针（下）"></a>第八章 指针（下）</h2><h3 id="指针变量做函数参数"><a href="#指针变量做函数参数" class="headerlink" title="指针变量做函数参数"></a>指针变量做函数参数</h3><blockquote>
@@ -1161,110 +1265,6 @@
 <td>将ch转换为大写字母，函数返回转换后的字符</td>
 </tr>
 </tbody></table>
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言 第九章 结构体</title>
-    <url>/posts/1cbbe043/</url>
-    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
-<p>结构体类型，不占内存，不能保存数据；</p>
-<p>内存空间，可以保存数据</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>sizeof对类型和变量均可使用</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">struct</span> stu);</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
-<p>因无类型名，无法再重新定义其他变量</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
-<p>结构体变量用 <code>.</code></p>
-<p>结构体指针变量用 <code>-&gt;</code></p>
-<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
-<p>用法与传普通变量类似，</p>
-</blockquote>
-<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
-<p>结构体指针做函数参数，可以修改原来实参的值。</p>
-<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>第二种</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> year;</span><br><span class="line">        <span class="type">int</span> month;</span><br><span class="line">        <span class="type">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
-<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="type">double</span> a,b;</span><br></pre></td></tr></table></figure>
-
-<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
-<thead>
-<tr>
-<th align="center">函数名</th>
-<th align="left">介绍</th>
-<th align="left">备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">malloc</td>
-<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)malloc(size)</td>
-</tr>
-<tr>
-<td align="center">calloc</td>
-<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)calloc(n,size)</td>
-</tr>
-<tr>
-<td align="center">free</td>
-<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
-<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
-</tr>
-</tbody></table>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
-<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
-<p>链表类型：单向链表，双向链表，循环链表。。。</p>
-</blockquote>
-<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTkzJUJFJUU4JUExJUE4">链表介绍<i class="fa fa-external-link-alt"></i></span></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
-<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
-<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
-<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
-<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
-<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
-<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
-<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="type">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line">SNODE *<span class="title function_">create_list</span><span class="params">(<span class="type">int</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">out_list</span><span class="params">(SNODE *h)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = new <span class="keyword">struct</span> node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
-
-<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line">delete p;</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>C Language</category>
@@ -3397,41 +3397,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>JS中的substr和subString还有slice的区别</title>
-    <url>/posts/ce57b9e9/</url>
-    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
-<p>注意：</p>
-<p><code>substr</code> 官方不推荐不使用</p>
-<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
-<span id="more"></span>
-
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cg==">String.prototype.substr()<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cmluZw==">String,prototype.substring()<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3NsaWNl">String.prototype.slice()<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
-</blockquote>
-<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
-<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
-<p><code>length </code> 可选，提取字符的长度</p>
-</blockquote>
-<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
-<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
-<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
-</blockquote>
-<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
-<p><code>beginSlice</code>索引开始，提取字符串</p>
-<p><code>endSlice</code>，可选，索引结束提取字符串</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substr</span>(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substring</span>(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">slice</span>(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Node.js 学习笔记</title>
     <url>/posts/20e30b1b/</url>
     <content><![CDATA[<p>早期在学习 <code>node</code> 时候，做的笔记。</p>
@@ -3671,6 +3636,41 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>JS中的substr和subString还有slice的区别</title>
+    <url>/posts/ce57b9e9/</url>
+    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
+<p>注意：</p>
+<p><code>substr</code> 官方不推荐不使用</p>
+<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+<span id="more"></span>
+
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cg==">String.prototype.substr()<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cmluZw==">String,prototype.substring()<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3NsaWNl">String.prototype.slice()<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+</blockquote>
+<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
+<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
+<p><code>length </code> 可选，提取字符的长度</p>
+</blockquote>
+<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
+<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
+<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
+</blockquote>
+<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
+<p><code>beginSlice</code>索引开始，提取字符串</p>
+<p><code>endSlice</code>，可选，索引结束提取字符串</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substr</span>(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substring</span>(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">slice</span>(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue父子组件生命周期</title>
     <url>/posts/77185e63/</url>
     <content><![CDATA[<p>Vue官网找了一圈没找到关于在父组件中使用子组件，生命周期是如何运行的。</p>
@@ -3856,57 +3856,6 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>ajax</tag>
         <tag>axios</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>em、rem和vw(vh)区别</title>
-    <url>/posts/efd120c3/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CSS的<strong>单位长度</strong>分为</p>
-<ul>
-<li>绝对长度单位</li>
-<li>相对长度单位</li>
-</ul>
-<p>其中</p>
-<p>绝对长度单位分为 <code>cm</code>（厘米）, <code>mm</code>（毫米）, <code>in</code>（英寸）. <code>pt</code>（点）, <code>px</code>（像素）</p>
-<p>相对长度单位分为 <code>em</code>（父元素字体大小）, <code>rem</code>（根元素字体大小）, <code>vw</code>（视窗宽度）, <code>vh</code>（视窗高度）</p>
-<p>大家都喜欢只对比 <code>em</code> 和 <code>rem</code> ，但 <code>vw</code> <code>vh</code> 也是属于绝对长度，并且也比较常用，所以这里我放在一起对比了。</p>
-<span id="more"></span>
-
-<h2 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h2><p><code>vw</code> 和 <code>vh</code> 都是展现的为视窗的高度，也就是页面显示内容的总高度，分为 100 份</p>
-<blockquote>
-<p>假如你的页面显示宽度为 1920，那么当你设置你的元素为 <code>10vw</code> ，那么当前元素的宽度则为 192。</p>
-</blockquote>
-<p><strong>example</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>111<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css">	</span></span><br><span class="line"><span class="language-css">		* &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-id">#fa</span> &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">100vw</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;fa&quot;</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200328163110.png"></p>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p><code>em</code> ，<strong>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</strong></p>
-<p><a href="#show-you-code">代码</a></p>
-<p><strong>如果不定义元素自身字体大小，默认继承父节点字体大小</strong></p>
-<blockquote>
-<p>当父元素的字体设置为 <code>20px</code>，那么当前子元素的 <code>1em</code> 的值可以认为是 <code>20px</code> ，则可以得出 子元素设置宽度为 <code>5em</code> 可以换算成 <code>100px</code> </p>
-</blockquote>
-<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p><code>rem</code> 和 <code>em</code> 他们不光像亲兄弟，因为他们的使用方法也很像。</p>
-<p><code>rem</code> 这里的 <code>r</code> 指的是 <code>root</code> ，连起来就是 <code>root em</code>。此时你应该可以理解了吧。</p>
-<p><code>rem</code> 是根据根节点元素的字体大小来定义的，这里的根节点通常指的是标签为 <code>html</code> 的元素。</p>
-<h2 id="show-you-code"><a href="#show-you-code" class="headerlink" title="show you code"></a>show you code</h2><iframe height="318" style="width: 100%;" scrolling="no" title="abOPEaE" src="https://codepen.io/popring/embed/abOPEaE?height=318&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/popring/pen/abOPEaE'>abOPEaE</a> by HarryHao
-  (<a href='https://codepen.io/popring'>@popring</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-
-
-<p>以上代码的 <code>fa</code> 代表父节点， <code>ch</code> 代表子节点</p>
-<p>根节点字体大小 <code>10px</code>，子节点（#ch）宽度为 <code>2rem</code>，转换后为 <code>20px</code></p>
-<p>父节点字体大小 <code>20px</code> ，子节点（#ch2）宽度为 <code>2em</code> ，转换后为 <code>40px</code></p>
-<p>父节点字体大小 <code>20px</code> ，子节点（#ch3）字体大小为 <code>15px</code>， 子节点（#ch3） 宽度为 <code>2em</code> ，转换后为 <code>30px</code></p>
-<p>Ending.</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -5115,29 +5064,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>v-if和v-show区别</title>
-    <url>/posts/e9ac0758/</url>
-    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
-<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
-<p>当条件变化时该指令触发过渡效果。</p>
-<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
-<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
-<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
-<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
-<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
-<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
-</ul>
-<p>关联文章：</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIwLzEwLzE2L2Nzcy92aXNpYmlsaXR5LWhpZGRlbiVFMyU4MCU4MWRpc3BsYXktbm9uZSVFMyU4MCU4MW9wYWNpdHktMC0lRTUlOEMlQkElRTUlODglQUIv">visibility: hidden、display: none、opacity: 0 区别<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vim 笔记</title>
     <url>/posts/bceeaa0d/</url>
     <content><![CDATA[<p><code>vim</code> 神器，依旧宝刀未老，用起来真香。</p>
@@ -5187,101 +5113,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>visibility: hidden、display: none、opacity: 0 区别</title>
-    <url>/posts/540f9cbc/</url>
-    <content><![CDATA[<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>做了以下的实验，可以得出结论，</p>
-<ul>
-<li><code>visibility: hidden;</code> 只是在视觉上隐藏，但没有影响布局，但绑定的事件也无法触发。</li>
-<li><code>display:none;</code> 元素被彻底隐藏，在页面上完全不显示，不占位，无宽高</li>
-<li><code>opacity: 0;</code> 只会修改元素透明度，并不影响布局及事件触发。</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="样式属性"><a href="#样式属性" class="headerlink" title="样式属性"></a>样式属性</h2><h3 id="visibility"><a href="#visibility" class="headerlink" title="visibility"></a>visibility</h3><blockquote>
-<p>控制 显示&#x2F;隐藏 元素，不会影响布局。</p>
-</blockquote>
-<ul>
-<li><code>visible</code> 元素正常显示</li>
-<li><code>hidden</code> 隐藏元素，但不影响布局。<strong>子元素设置为 <code>visible</code> 则子元素仍然可见</strong></li>
-<li><code>collapse</code> 用于隐藏表格的行、列。</li>
-</ul>
-<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><blockquote>
-<p>官网介绍了很多类型，并且分为六大类，具体请看 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">MDN<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li><code>display-outside </code> </li>
-<li><code>display-inside</code> </li>
-<li><code>display-listitem</code> </li>
-<li><code>display-internal</code></li>
-<li><code>display-legacy</code></li>
-<li><code>display-box</code></li>
-</ul>
-</blockquote>
-<p>这里就介绍一下常用的几个</p>
-<ul>
-<li><code>block</code> 将元素设置为块级元素</li>
-<li><code>inline</code> 将元素设置为行内元素</li>
-<li><code>inline-block</code> 将元素设置为行内块元素</li>
-<li><code>table</code> 表格样式</li>
-<li><code>flex</code> 弹性布局</li>
-<li><code>grid</code> 网格布局</li>
-<li><code>none</code> 使元素不显示（后代元素也将隐藏），不占位，切换则会影响布局。</li>
-</ul>
-<h3 id="opacity"><a href="#opacity" class="headerlink" title="opacity"></a>opacity</h3><blockquote>
-<p>更改元素的透明度（使用opacity属性，当属性值不为1时，会把元素放置在一个新的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvR3VpZGUvQ1NTL1VuZGVyc3RhbmRpbmdfel9pbmRleC9UaGVfc3RhY2tpbmdfY29udGV4dA==">层叠上下文<i class="fa fa-external-link-alt"></i></span>中。）</p>
-</blockquote>
-<ul>
-<li><code>number值</code> 此值应为 <code>0.0 ~ 1.0</code> 之间</li>
-</ul>
-<h2 id="三个样式隐藏的区别"><a href="#三个样式隐藏的区别" class="headerlink" title="三个样式隐藏的区别"></a>三个样式隐藏的区别</h2><p>原始代码</p>
-<blockquote>
-<p>在 box 外层加了一个 div 添加边框，更加可以直观的看出各个样式的区别。</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016225256.png" alt="image-20201016225251216"></p>
-<h3 id="页面展示效果"><a href="#页面展示效果" class="headerlink" title="页面展示效果"></a>页面展示效果</h3><blockquote>
-<p>根据以上代码进行修改，将每个 box 添加以上三种的隐藏样式后效果</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: skyblue;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016230147.png" alt="image-20201016225828692"></p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016233415.png" alt="image-20201016233414985"></p>
-<p>可以看出，只有 <code>display: none;</code> 没有宽度了（尝试添加高度之后仍然没有显示出来）。而剩下的 <code>visibility: hidden;</code> <code>opacity: 0;</code> 仍然会占据位置（从外层 div 的边框线就可以看出来）。</p>
-<h3 id="性能区别"><a href="#性能区别" class="headerlink" title="性能区别"></a>性能区别</h3><blockquote>
-<p>以下<strong>切换样式</strong>指的就是样式从显示到隐藏或从隐藏到显示。</p>
-<p>比如： </p>
-<p>visibility: hidden; -&gt; visibility: visible;</p>
-<p>opacity: 0; -&gt; opacity: 1;</p>
-<p>display: block; -&gt; display: none;</p>
-</blockquote>
-<p>根据上述 页面展示效果 可以看出，<code>visibility: hidden;</code> <code>opacity: 0;</code> 只会对元素进行隐藏，并不会改变页面布局，所以如果<strong>切换样式</strong>只会造成<strong>页面重绘（repaint）</strong>并不会回流。</p>
-<p>而如果是修改 <code>display</code> 属性的话，则会影响布局，<strong>造成页面回流（reflow），同时也会造成重绘（repaint）</strong>。</p>
-<h3 id="点击效果"><a href="#点击效果" class="headerlink" title="点击效果"></a>点击效果</h3><blockquote>
-<p>根据以上代码，进行改造，添加 js 代码，用来监听点击事件，点击输出当前被点击元素的类名</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">visibility</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> box = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">`box<span class="subst">$&#123;i&#125;</span>`</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">      box.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">className</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>然后依次进行点击（第二个盒子因为完全隐藏，所以点击不到）</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016232532.png" alt="image-20201016232532906"></p>
-<p>看点击结果只有最后一个盒子被点击到。</p>
-<p>小结</p>
-<ul>
-<li><code>visibility: hidden;</code> <code>display:none;</code>无法被点击</li>
-<li><code>opacity: 0;</code> 可被点击</li>
-</ul>
-<p><a href="#%E7%BB%93%E8%AE%BA">结论在开头</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04=">MDN<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -6459,6 +6290,82 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>em、rem和vw(vh)区别</title>
+    <url>/posts/efd120c3/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CSS的<strong>单位长度</strong>分为</p>
+<ul>
+<li>绝对长度单位</li>
+<li>相对长度单位</li>
+</ul>
+<p>其中</p>
+<p>绝对长度单位分为 <code>cm</code>（厘米）, <code>mm</code>（毫米）, <code>in</code>（英寸）. <code>pt</code>（点）, <code>px</code>（像素）</p>
+<p>相对长度单位分为 <code>em</code>（父元素字体大小）, <code>rem</code>（根元素字体大小）, <code>vw</code>（视窗宽度）, <code>vh</code>（视窗高度）</p>
+<p>大家都喜欢只对比 <code>em</code> 和 <code>rem</code> ，但 <code>vw</code> <code>vh</code> 也是属于绝对长度，并且也比较常用，所以这里我放在一起对比了。</p>
+<span id="more"></span>
+
+<h2 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h2><p><code>vw</code> 和 <code>vh</code> 都是展现的为视窗的高度，也就是页面显示内容的总高度，分为 100 份</p>
+<blockquote>
+<p>假如你的页面显示宽度为 1920，那么当你设置你的元素为 <code>10vw</code> ，那么当前元素的宽度则为 192。</p>
+</blockquote>
+<p><strong>example</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>111<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css">	</span></span><br><span class="line"><span class="language-css">		* &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-id">#fa</span> &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">100vw</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;fa&quot;</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200328163110.png"></p>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p><code>em</code> ，<strong>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</strong></p>
+<p><a href="#show-you-code">代码</a></p>
+<p><strong>如果不定义元素自身字体大小，默认继承父节点字体大小</strong></p>
+<blockquote>
+<p>当父元素的字体设置为 <code>20px</code>，那么当前子元素的 <code>1em</code> 的值可以认为是 <code>20px</code> ，则可以得出 子元素设置宽度为 <code>5em</code> 可以换算成 <code>100px</code> </p>
+</blockquote>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p><code>rem</code> 和 <code>em</code> 他们不光像亲兄弟，因为他们的使用方法也很像。</p>
+<p><code>rem</code> 这里的 <code>r</code> 指的是 <code>root</code> ，连起来就是 <code>root em</code>。此时你应该可以理解了吧。</p>
+<p><code>rem</code> 是根据根节点元素的字体大小来定义的，这里的根节点通常指的是标签为 <code>html</code> 的元素。</p>
+<h2 id="show-you-code"><a href="#show-you-code" class="headerlink" title="show you code"></a>show you code</h2><iframe height="318" style="width: 100%;" scrolling="no" title="abOPEaE" src="https://codepen.io/popring/embed/abOPEaE?height=318&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/popring/pen/abOPEaE'>abOPEaE</a> by HarryHao
+  (<a href='https://codepen.io/popring'>@popring</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+
+
+<p>以上代码的 <code>fa</code> 代表父节点， <code>ch</code> 代表子节点</p>
+<p>根节点字体大小 <code>10px</code>，子节点（#ch）宽度为 <code>2rem</code>，转换后为 <code>20px</code></p>
+<p>父节点字体大小 <code>20px</code> ，子节点（#ch2）宽度为 <code>2em</code> ，转换后为 <code>40px</code></p>
+<p>父节点字体大小 <code>20px</code> ，子节点（#ch3）字体大小为 <code>15px</code>， 子节点（#ch3） 宽度为 <code>2em</code> ，转换后为 <code>30px</code></p>
+<p>Ending.</p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>https握手过程</title>
+    <url>/posts/1449f691/</url>
+    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
+<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
+<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
+<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
+<li>服务端使用自己的私钥，对随机数进行解密。</li>
+<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
+</ul>
+<p>细节</p>
+<ul>
+<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>get和post区别</title>
     <url>/posts/f69ca482/</url>
     <content><![CDATA[<ul>
@@ -6478,31 +6385,6 @@ JavaScript 高级程序设计</p>
 <li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
 </ul>
 <p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>https握手过程</title>
-    <url>/posts/1449f691/</url>
-    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
-<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
-<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
-<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
-<li>服务端使用自己的私钥，对随机数进行解密。</li>
-<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
-</ul>
-<p>细节</p>
-<ul>
-<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
         <category>简单聊</category>
@@ -6545,6 +6427,124 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>v-if和v-show区别</title>
+    <url>/posts/e9ac0758/</url>
+    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
+<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
+<p>当条件变化时该指令触发过渡效果。</p>
+<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
+<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
+<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
+<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
+<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
+<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
+</ul>
+<p>关联文章：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIwLzEwLzE2L2Nzcy92aXNpYmlsaXR5LWhpZGRlbiVFMyU4MCU4MWRpc3BsYXktbm9uZSVFMyU4MCU4MW9wYWNpdHktMC0lRTUlOEMlQkElRTUlODglQUIv">visibility: hidden、display: none、opacity: 0 区别<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>visibility: hidden、display: none、opacity: 0 区别</title>
+    <url>/posts/540f9cbc/</url>
+    <content><![CDATA[<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>做了以下的实验，可以得出结论，</p>
+<ul>
+<li><code>visibility: hidden;</code> 只是在视觉上隐藏，但没有影响布局，但绑定的事件也无法触发。</li>
+<li><code>display:none;</code> 元素被彻底隐藏，在页面上完全不显示，不占位，无宽高</li>
+<li><code>opacity: 0;</code> 只会修改元素透明度，并不影响布局及事件触发。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="样式属性"><a href="#样式属性" class="headerlink" title="样式属性"></a>样式属性</h2><h3 id="visibility"><a href="#visibility" class="headerlink" title="visibility"></a>visibility</h3><blockquote>
+<p>控制 显示&#x2F;隐藏 元素，不会影响布局。</p>
+</blockquote>
+<ul>
+<li><code>visible</code> 元素正常显示</li>
+<li><code>hidden</code> 隐藏元素，但不影响布局。<strong>子元素设置为 <code>visible</code> 则子元素仍然可见</strong></li>
+<li><code>collapse</code> 用于隐藏表格的行、列。</li>
+</ul>
+<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><blockquote>
+<p>官网介绍了很多类型，并且分为六大类，具体请看 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">MDN<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><code>display-outside </code> </li>
+<li><code>display-inside</code> </li>
+<li><code>display-listitem</code> </li>
+<li><code>display-internal</code></li>
+<li><code>display-legacy</code></li>
+<li><code>display-box</code></li>
+</ul>
+</blockquote>
+<p>这里就介绍一下常用的几个</p>
+<ul>
+<li><code>block</code> 将元素设置为块级元素</li>
+<li><code>inline</code> 将元素设置为行内元素</li>
+<li><code>inline-block</code> 将元素设置为行内块元素</li>
+<li><code>table</code> 表格样式</li>
+<li><code>flex</code> 弹性布局</li>
+<li><code>grid</code> 网格布局</li>
+<li><code>none</code> 使元素不显示（后代元素也将隐藏），不占位，切换则会影响布局。</li>
+</ul>
+<h3 id="opacity"><a href="#opacity" class="headerlink" title="opacity"></a>opacity</h3><blockquote>
+<p>更改元素的透明度（使用opacity属性，当属性值不为1时，会把元素放置在一个新的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvR3VpZGUvQ1NTL1VuZGVyc3RhbmRpbmdfel9pbmRleC9UaGVfc3RhY2tpbmdfY29udGV4dA==">层叠上下文<i class="fa fa-external-link-alt"></i></span>中。）</p>
+</blockquote>
+<ul>
+<li><code>number值</code> 此值应为 <code>0.0 ~ 1.0</code> 之间</li>
+</ul>
+<h2 id="三个样式隐藏的区别"><a href="#三个样式隐藏的区别" class="headerlink" title="三个样式隐藏的区别"></a>三个样式隐藏的区别</h2><p>原始代码</p>
+<blockquote>
+<p>在 box 外层加了一个 div 添加边框，更加可以直观的看出各个样式的区别。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016225256.png" alt="image-20201016225251216"></p>
+<h3 id="页面展示效果"><a href="#页面展示效果" class="headerlink" title="页面展示效果"></a>页面展示效果</h3><blockquote>
+<p>根据以上代码进行修改，将每个 box 添加以上三种的隐藏样式后效果</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: skyblue;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016230147.png" alt="image-20201016225828692"></p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016233415.png" alt="image-20201016233414985"></p>
+<p>可以看出，只有 <code>display: none;</code> 没有宽度了（尝试添加高度之后仍然没有显示出来）。而剩下的 <code>visibility: hidden;</code> <code>opacity: 0;</code> 仍然会占据位置（从外层 div 的边框线就可以看出来）。</p>
+<h3 id="性能区别"><a href="#性能区别" class="headerlink" title="性能区别"></a>性能区别</h3><blockquote>
+<p>以下<strong>切换样式</strong>指的就是样式从显示到隐藏或从隐藏到显示。</p>
+<p>比如： </p>
+<p>visibility: hidden; -&gt; visibility: visible;</p>
+<p>opacity: 0; -&gt; opacity: 1;</p>
+<p>display: block; -&gt; display: none;</p>
+</blockquote>
+<p>根据上述 页面展示效果 可以看出，<code>visibility: hidden;</code> <code>opacity: 0;</code> 只会对元素进行隐藏，并不会改变页面布局，所以如果<strong>切换样式</strong>只会造成<strong>页面重绘（repaint）</strong>并不会回流。</p>
+<p>而如果是修改 <code>display</code> 属性的话，则会影响布局，<strong>造成页面回流（reflow），同时也会造成重绘（repaint）</strong>。</p>
+<h3 id="点击效果"><a href="#点击效果" class="headerlink" title="点击效果"></a>点击效果</h3><blockquote>
+<p>根据以上代码，进行改造，添加 js 代码，用来监听点击事件，点击输出当前被点击元素的类名</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">visibility</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> box = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">`box<span class="subst">$&#123;i&#125;</span>`</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">      box.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">className</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后依次进行点击（第二个盒子因为完全隐藏，所以点击不到）</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016232532.png" alt="image-20201016232532906"></p>
+<p>看点击结果只有最后一个盒子被点击到。</p>
+<p>小结</p>
+<ul>
+<li><code>visibility: hidden;</code> <code>display:none;</code>无法被点击</li>
+<li><code>opacity: 0;</code> 可被点击</li>
+</ul>
+<p><a href="#%E7%BB%93%E8%AE%BA">结论在开头</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04=">MDN<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从输入url到页面显示经过了什么</title>
     <url>/posts/ababab9d/</url>
     <content><![CDATA[<p>大致分为以下几个过程</p>
@@ -6572,6 +6572,28 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>面试题</tag>
         <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可替换元素和不可替换元素</title>
+    <url>/posts/d6e0c31a/</url>
+    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
+<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
+<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
+<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
+<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
       </tags>
   </entry>
   <entry>
@@ -6638,28 +6660,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>可替换元素和不可替换元素</title>
-    <url>/posts/d6e0c31a/</url>
-    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
-<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
-<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
-<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
-<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>蛤蟆先生去看心理医生</title>
     <url>/posts/b3c57b13/</url>
     <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9ib29rLmRvdWJhbi5jb20vc3ViamVjdC8zNTE0Mzc5MC8=">蛤蟆先生去看心理医生-豆瓣<i class="fa fa-external-link-alt"></i></span></p>
@@ -6677,6 +6677,26 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>心理</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>[转] how-to-do-great-work</title>
+    <url>/posts/415c86c1/</url>
+    <content><![CDATA[<blockquote>
+<p>原文：<span class="exturl" data-url="aHR0cHM6Ly9wYXVsZ3JhaGFtLmNvbS9ncmVhdHdvcmsuaHRtbA==">How to Do Great Work<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>Paul Graham 在《How to Do Great Work》这篇文章中探讨了如何创造出卓越的工作。他提出了一些关键理念，旨在帮助读者理解成就伟大工作的核心因素。以下是文章中的主要观点及其分析：</p>
+<h3 id="1-好奇心是成功的动力"><a href="#1-好奇心是成功的动力" class="headerlink" title="1. 好奇心是成功的动力"></a>1. <strong>好奇心是成功的动力</strong></h3><p>Graham 强调了好奇心在创造伟大作品中的重要性。他认为，好奇心驱动我们去探索未知、发掘新思路。它不仅是创意的源泉，也是持续创新的内在动力。通过培养好奇心，我们可以发现更多的机会，甚至打破常规思维的限制。</p>
+<h3 id="2-勇于创造，数量有时决定质量"><a href="#2-勇于创造，数量有时决定质量" class="headerlink" title="2. 勇于创造，数量有时决定质量"></a>2. <strong>勇于创造，数量有时决定质量</strong></h3><p>Graham 鼓励人们不应过于追求完美，而是应当专注于大量的创造工作。虽然其中的作品不必每一件都达到完美，但通过大量创作，最终会积累出更多有价值的成果。许多伟大的创作往往源自反复实践和不断尝试。</p>
+<h3 id="3-做自己感兴趣的事"><a href="#3-做自己感兴趣的事" class="headerlink" title="3. 做自己感兴趣的事"></a>3. <strong>做自己感兴趣的事</strong></h3><p>Graham 认为，伟大的作品往往来自于我们对某个事物的真正兴趣。只有当我们全身心投入自己感兴趣的工作时，才能体现出真正的热情和专注力。兴趣是驱动力，也是保证创造力持续输出的基础。</p>
+<h3 id="4-敢于冒险，不惧失败"><a href="#4-敢于冒险，不惧失败" class="headerlink" title="4. 敢于冒险，不惧失败"></a>4. <strong>敢于冒险，不惧失败</strong></h3><p>伟大的工作往往伴随着风险与挑战。很多时候，追随自己的兴趣会让我们走上一条布满障碍的路，但正是这些挑战塑造了最终的成果。Graham 提出，要勇敢面对拒绝和失败，迎难而上，因为这些经历会促使我们成长。</p>
+<h3 id="5-寻找优秀的同伴"><a href="#5-寻找优秀的同伴" class="headerlink" title="5. 寻找优秀的同伴"></a>5. <strong>寻找优秀的同伴</strong></h3><p>Graham 强调，和优秀的人合作能够显著提升自己的工作水平。周围的人对你的影响是巨大的，他们能为你提供灵感和支持，帮助你在创造过程中走得更远。因此，寻找并与优秀的同伴合作，是成功的重要因素。</p>
+<h3 id="6-想得大，但从小做起"><a href="#6-想得大，但从小做起" class="headerlink" title="6. 想得大，但从小做起"></a>6. <strong>想得大，但从小做起</strong></h3><p>Graham 提到，虽然要有宏伟的目标，但更重要的是从小处着手。很多伟大的想法和项目，往往是从简单、实际的小目标开始的。逐步积累经验并且在过程中发现新的机会，最终才能实现更大的突破。</p>
+<h3 id="7-坚持和耐心是成功的关键"><a href="#7-坚持和耐心是成功的关键" class="headerlink" title="7. 坚持和耐心是成功的关键"></a>7. <strong>坚持和耐心是成功的关键</strong></h3><p>最后，Graham 强调，伟大的作品不会一蹴而就。成功需要时间和耐心。在遇到挫折时，我们需要保持坚持不懈的态度，并从失败中吸取教训。只有通过不断努力，才能迎来成功的曙光。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>Graham 的文章提供了一种如何做伟大工作的框架，强调好奇心、热情、冒险精神、同伴合作等多个因素的综合作用。他的观点适用于各个领域，尤其是在面对创作或创新任务时，能够为我们提供有价值的指导。这些思想不仅帮助我们理解成就伟大作品的路径，也启发我们在日常工作中如何提高自己的效率和成果。</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
   </entry>
   <entry>
     <title>[转] how-to-learn-stuff-quickly</title>
@@ -6738,26 +6758,6 @@ JavaScript 高级程序设计</p>
 <li><strong>允许自己犯错</strong>，通过错误学习，而不是追求完美。</li>
 </ol>
 <p>如果想快速学习新技术或概念，最好的方法是<strong>尽快开始动手做项目，并在过程中不断调整和优化自己的理解</strong>。</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>[转] how-to-do-great-work</title>
-    <url>/posts/415c86c1/</url>
-    <content><![CDATA[<blockquote>
-<p>原文：<span class="exturl" data-url="aHR0cHM6Ly9wYXVsZ3JhaGFtLmNvbS9ncmVhdHdvcmsuaHRtbA==">How to Do Great Work<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>Paul Graham 在《How to Do Great Work》这篇文章中探讨了如何创造出卓越的工作。他提出了一些关键理念，旨在帮助读者理解成就伟大工作的核心因素。以下是文章中的主要观点及其分析：</p>
-<h3 id="1-好奇心是成功的动力"><a href="#1-好奇心是成功的动力" class="headerlink" title="1. 好奇心是成功的动力"></a>1. <strong>好奇心是成功的动力</strong></h3><p>Graham 强调了好奇心在创造伟大作品中的重要性。他认为，好奇心驱动我们去探索未知、发掘新思路。它不仅是创意的源泉，也是持续创新的内在动力。通过培养好奇心，我们可以发现更多的机会，甚至打破常规思维的限制。</p>
-<h3 id="2-勇于创造，数量有时决定质量"><a href="#2-勇于创造，数量有时决定质量" class="headerlink" title="2. 勇于创造，数量有时决定质量"></a>2. <strong>勇于创造，数量有时决定质量</strong></h3><p>Graham 鼓励人们不应过于追求完美，而是应当专注于大量的创造工作。虽然其中的作品不必每一件都达到完美，但通过大量创作，最终会积累出更多有价值的成果。许多伟大的创作往往源自反复实践和不断尝试。</p>
-<h3 id="3-做自己感兴趣的事"><a href="#3-做自己感兴趣的事" class="headerlink" title="3. 做自己感兴趣的事"></a>3. <strong>做自己感兴趣的事</strong></h3><p>Graham 认为，伟大的作品往往来自于我们对某个事物的真正兴趣。只有当我们全身心投入自己感兴趣的工作时，才能体现出真正的热情和专注力。兴趣是驱动力，也是保证创造力持续输出的基础。</p>
-<h3 id="4-敢于冒险，不惧失败"><a href="#4-敢于冒险，不惧失败" class="headerlink" title="4. 敢于冒险，不惧失败"></a>4. <strong>敢于冒险，不惧失败</strong></h3><p>伟大的工作往往伴随着风险与挑战。很多时候，追随自己的兴趣会让我们走上一条布满障碍的路，但正是这些挑战塑造了最终的成果。Graham 提出，要勇敢面对拒绝和失败，迎难而上，因为这些经历会促使我们成长。</p>
-<h3 id="5-寻找优秀的同伴"><a href="#5-寻找优秀的同伴" class="headerlink" title="5. 寻找优秀的同伴"></a>5. <strong>寻找优秀的同伴</strong></h3><p>Graham 强调，和优秀的人合作能够显著提升自己的工作水平。周围的人对你的影响是巨大的，他们能为你提供灵感和支持，帮助你在创造过程中走得更远。因此，寻找并与优秀的同伴合作，是成功的重要因素。</p>
-<h3 id="6-想得大，但从小做起"><a href="#6-想得大，但从小做起" class="headerlink" title="6. 想得大，但从小做起"></a>6. <strong>想得大，但从小做起</strong></h3><p>Graham 提到，虽然要有宏伟的目标，但更重要的是从小处着手。很多伟大的想法和项目，往往是从简单、实际的小目标开始的。逐步积累经验并且在过程中发现新的机会，最终才能实现更大的突破。</p>
-<h3 id="7-坚持和耐心是成功的关键"><a href="#7-坚持和耐心是成功的关键" class="headerlink" title="7. 坚持和耐心是成功的关键"></a>7. <strong>坚持和耐心是成功的关键</strong></h3><p>最后，Graham 强调，伟大的作品不会一蹴而就。成功需要时间和耐心。在遇到挫折时，我们需要保持坚持不懈的态度，并从失败中吸取教训。只有通过不断努力，才能迎来成功的曙光。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>Graham 的文章提供了一种如何做伟大工作的框架，强调好奇心、热情、冒险精神、同伴合作等多个因素的综合作用。他的观点适用于各个领域，尤其是在面对创作或创新任务时，能够为我们提供有价值的指导。这些思想不仅帮助我们理解成就伟大作品的路径，也启发我们在日常工作中如何提高自己的效率和成果。</p>
 ]]></content>
       <categories>
         <category>转载</category>
