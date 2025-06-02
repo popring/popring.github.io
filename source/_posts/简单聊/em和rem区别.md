@@ -1,7 +1,7 @@
 ---
 title: em、rem和vw(vh)区别
 tags: css
-categories: 技术
+categories: 简单聊
 abbrlink: efd120c3
 date: 2020-03-28 15:58:01
 ---

@@ -1,7 +1,7 @@
 ---
 title: v-if和v-show区别
 tags: Vue
-categories: 技术
+categories: 简单聊
 abbrlink: e9ac0758
 date: 2020-10-17 21:59:20
 ---
