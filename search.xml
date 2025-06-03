@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>读书笔记</title>
-    <url>/posts/7b67faab/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="2025-年读书笔记"><a href="#2025-年读书笔记" class="headerlink" title="2025 年读书笔记"></a>2025 年读书笔记</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi9xYXJ4ZzA4c3VnZ2MwbGdv">增长黑客<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi9wcG9ncGV1ZTBhYmEzbHd1">认知觉醒<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi91cjUxMmNrZ3hnOGF1eXM5">GTD方法<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-  </entry>
-  <entry>
     <title>好文推荐</title>
     <url>/posts/227406a3/</url>
     <content><![CDATA[<span id="more"></span>
@@ -25,6 +15,16 @@
 <h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjExMjg2NS9hcnRpY2xlL2RldGFpbHMvMTAwOTc5MzYz">页面渲染大量数据的性能优化（时间分片），这篇文章对我影响很大<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p><span class="exturl" data-url="aHR0cHM6Ly9zb3VsbWFjaGluZS5naXRib29rcy5pby9zeXN0ZW0tZGVzaWduL2NvbnRlbnQvY24v">系统设计面试题精选<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xMTJIQmlNTnZ1NlRZYkRVT2ZWUmVfTVM0QS1mS2FXWXJwTWxtbnNpTU5pQS9lZGl0P3RhYj10LjAjaGVhZGluZz1oLmJtd2FjeTR5bGtzaA==">彻底击碎行为问题<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>读书笔记</title>
+    <url>/posts/7b67faab/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="2025-年读书笔记"><a href="#2025-年读书笔记" class="headerlink" title="2025 年读书笔记"></a>2025 年读书笔记</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi9xYXJ4ZzA4c3VnZ2MwbGdv">增长黑客<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi9wcG9ncGV1ZTBhYmEzbHd1">认知觉醒<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2RhY2hvdS1wZzlndS9ncm93dGgtcGxhbi91cjUxMmNrZ3hnOGF1eXM5">GTD方法<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
   </entry>
   <entry>
@@ -1747,6 +1747,156 @@
       </tags>
   </entry>
   <entry>
+    <title>备战校招第二天</title>
+    <url>/posts/5dd5f4cf/</url>
+    <content><![CDATA[<ol>
+<li>css 盒模型</li>
+<li>css 布局方式</li>
+<li>跨域</li>
+<li>前端安全（XSS、CSRF）</li>
+<li>防抖和节流</li>
+</ol>
+<hr>
+
+<span id="more"></span>
+
+<h3 id="css-盒模型"><a href="#css-盒模型" class="headerlink" title="css 盒模型"></a>css 盒模型</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width，height） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : content-box;</span><br><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width - border - padding） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : border-box;</span><br></pre></td></tr></table></figure>
+
+<p><strong>content-box</strong></p>
+<p>尺寸计算公式：</p>
+<p><code>width</code> &#x3D; 内容的宽度</p>
+<p><code>height</code> &#x3D; 内容的高度</p>
+<p>宽度和高度的计算值都不包含内容的边框（border）和内边距（padding）。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: content-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105733.png" alt="image-20200625105733283"></p>
+<p>实际内容区域为 <code>100px</code> ，边框为 <code>1px</code> </p>
+<p><strong>border-box</strong></p>
+<p>尺寸计算公式：</p>
+<p><em><code>width</code> &#x3D; border + padding + 内容的宽度</em></p>
+<p><em><code>height</code> &#x3D; border + padding + 内容的高度</em></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: border-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105910.png" alt="image-20200625105909902"></p>
+<p>实际内容区域为 <code>98px</code> ，上下边框各为 <code>1px</code> </p>
+<h3 id="css-布局方式"><a href="#css-布局方式" class="headerlink" title="css 布局方式"></a>css 布局方式</h3><p><strong>改变布局的常见属性</strong> </p>
+<ul>
+<li><p>display: flex; table; grid;</p>
+</li>
+<li><p>float</p>
+</li>
+<li><p>position</p>
+</li>
+</ul>
+<p><strong>常见布局</strong></p>
+<ul>
+<li><p>正常布局流</p>
+<p>浏览器默认的 <code>html</code> 布局方式</p>
+</li>
+<li><p>弹性布局（flex）</p>
+<p><strong>介绍</strong>：弹性盒子布局，用于创建横向或纵向的一维页面布局，等分划分。</p>
+<p><strong>使用</strong>：只需将父元素设置为 <code>display: flex;</code> 就可以按照 <code>flex</code> 布局。（设置flex布局后，子元素的 <code>float</code>、<code>clear</code>  、<code>vertical-align</code> 属性都会失效）</p>
+</li>
+<li><p>网格布局（grid）</p>
+<p><strong>介绍</strong>：Grid布局被设计用于同时在两个维度上把元素按行和列排列整齐，二维布局。</p>
+<p><strong>使用</strong>：父元素设置 <code>display: grid;</code> 也可以设置为行内元素 <code>display: inline-grid;</code></p>
+</li>
+<li><p>浮动布局（float）</p>
+<p>浮动布局，利用 <code>float</code> 属性进行左右浮动。</p>
+</li>
+<li><p>定位布局（position）</p>
+<p>静态定位、相对定位、绝对定位、固定定位、粘性定位（相对定位和固定定位的混合，设置 <code>top</code> 值之后，元素以决定定位的方式显示位置，直到 <code>viewport</code> 视口回滚到阈值之下，以固定定位方式显示，显示 top 所指的值之处。）</p>
+</li>
+<li><p>表格</p>
+<p>现在很少使用 <code>table</code> 进行布局，但显示表格数据你没有选择。</p>
+</li>
+<li><p>多列布局</p>
+<p>简单的进行多列布局，<code>columns</code> 设置列数，<code>column-width</code> 设置列宽。</p>
+</li>
+</ul>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>同源策略（协议、域名、端口相同），防止信息被恶意利用。</p>
+<ul>
+<li><p>jsonp</p>
+<p>利用 <code>script</code> 标签可以跨域特性，但只支持 <code>GET</code> 请求，且需要服务端进行配合，于是就有了下面代码（通常规范为 url 最后params规定 <code>callback=回调函数名</code>）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">var</span> sc = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">      sc.<span class="title function_">setAttribute</span>(</span><br><span class="line">        <span class="string">&#x27;src&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://suggest.taobao.com/sug?code=utf-8&amp;q=%E5%8D%AB%E8%A1%A3&amp;callback=cb&#x27;</span></span><br><span class="line">      )</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(sc)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">function</span> <span class="title function_">cb</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">      &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>代码执行后，将 <code>script</code> 标签添加到网页内，会去自动请求地址，服务器配合后会返回</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">cb</span>(&#123;<span class="string">&quot;result&quot;</span>:[[<span class="string">&quot;卫衣女&quot;</span>,<span class="string">&quot;183618.0781806928&quot;</span>],[<span class="string">&quot;卫衣男&quot;</span>,<span class="string">&quot;88788.9164616466&quot;</span>],[<span class="string">&quot;卫衣女春秋薄款&quot;</span>,<span class="string">&quot;31281.50912988837&quot;</span>],[<span class="string">&quot;卫衣女宽松韩版&quot;</span>,<span class="string">&quot;108819.03279878093&quot;</span>]...]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>页面会将请求后的代码进行执行，于是会调用 <code>cb</code> 函数，就可以进行对数据为所欲为了，哈哈哈。</p>
+</li>
+<li><p>CORS（跨域资源共享）</p>
+<p>CORS请求分为两类，简单请求和非简单请求（也称为复杂请求）</p>
+<p><strong>简单请求</strong></p>
+<p>服务端设置 <code>Access-Control-Allow-Origin</code> 值为请求头的 <code>origin</code> 的值或者 <code>*</code>，指定域名或者接受所有域名。</p>
+<p>服务端<code>Access-Control-Allow-Credentials</code> 设置为 <code>true</code>，请求时将 <code>cookie</code> 添加到请求中，一起发送给服务器。本地ajax请求也要将 <code>withCredentials</code> 设置为 <code>true</code>。（注意：如果要发送 cookie，必须指定 <code>Access-Control-Allow-Origin</code> 具体值，不能为 <code>*</code>。）</p>
+<p><strong>非简单请求</strong></p>
+<p>在请求前会发送一个“预检”请求，<code>OPTIONS</code>请求</p>
+<p>比如</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://api.alice.com/cors&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;PUT&#x27;</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X-Custom-Header&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+
+<p>发送 <code>PUT</code> 请求，会先发送一个预检请求，内容如下</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">OPTIONS</span> <span class="string">/cors</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://api.bob.com // 请求域</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span><span class="punctuation">: </span>PUT // 请求方法</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span><span class="punctuation">: </span>X-Custom-Header // 请求头信息</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.alice.com</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0...</span><br></pre></td></tr></table></figure>
+
+<p>服务端如果确认，返回如下信息</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>http://api.bob.com // 允许跨域地址</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span><span class="punctuation">: </span>GET, POST, PUT // 允许跨域方法</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span><span class="punctuation">: </span>X-Custom-Header // 支持首部列表</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Encoding</span><span class="punctuation">: </span>gzip</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line"><span class="attribute">Keep-Alive</span><span class="punctuation">: </span>timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/plain</span><br></pre></td></tr></table></figure>
+
+<p>服务端如果否定了，返回一个正常的HTTP响应即可，但不包含跨域相关信息（此时，会触发<code>ajax</code>的 <code>onerror</code> 错误回调）</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://api.alice.com.</span><br><span class="line">Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h3><ul>
+<li><p>XSS（Cross-site scripting）</p>
+<p>首先推荐一个 <code>XSS</code> 训练平台，链接在这里：<span class="exturl" data-url="aHR0cDovL3Byb21wdC5tbC8w">prompt<i class="fa fa-external-link-alt"></i></span></p>
+<p>全称为跨站脚本攻击，一共分为三类</p>
+<ul>
+<li>存储型 XSS，一般出现在可输入的文本框中，例如留言板、评论、个人资料等地方，将恶意脚本存储到服务器上，当浏览器进行数据请求时，脚本会返回给用户并执行。</li>
+<li>反射性 XSS，一般出现在URL参数中，需要点击恶意代码的链接才可以出发。</li>
+<li>基于DOM的XSS，通过脚本动态修改页面，不与服务端进行交互，代码可见，获取数据并在本地执行。</li>
+</ul>
+</li>
+<li><p>CSRF（cross-site request forgery）</p>
+<p>跨站请求伪造，恶意请求提交。</p>
+<p>攻击者往往不会获取 <code>cookie</code> 信息，只会利用本机信息进行恶意操作。登录受信任网站A，访问危险网站B。</p>
+<p>防御方法</p>
+<ul>
+<li>令牌同步模式：当用户发送请求前，服务端生成唯一令牌，发送数据时携带该令牌，在服务端进行校验。</li>
+<li>检查Referer字段：确定改请求来源是否安全</li>
+<li>添加校验token：恶意请求不会自动添加token，也无法获取，服务端进行校验，就可以排除可疑请求。</li>
+</ul>
+</li>
+</ul>
+<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><p><strong>防抖（debounce）</strong></p>
+<p>高频事件在 n 秒内只执行一次，如果 n 秒内事件再次触发，则重新计算时间。</p>
+<p>下列代码，没有防抖前，每次用户输入都会触发事件，防抖后，只有在 500ms 内没有进行输入才会执行事件。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> id=<span class="string">&quot;inp&quot;</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">let</span> timeout = <span class="literal">null</span> <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="built_in">clearTimeout</span>(timeout) <span class="comment">// 每当用户输入的时候把前一个 setTimeout clear 掉</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          timeout = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="comment">// 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          &#125;, <span class="number">500</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;防抖成功&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">var</span> inp = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;inp&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      inp.<span class="title function_">addEventListener</span>(<span class="string">&#x27;input&#x27;</span>, <span class="title function_">debounce</span>(sayHi)) <span class="comment">// 防抖</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>节流（throttle）</strong></p>
+<p>降低高频事件的触发次数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> canRun = <span class="literal">true</span>; <span class="comment">// 通过闭包保存一个标记</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!canRun) <span class="keyword">return</span>; <span class="comment">// 在函数开头判断标记是否为true，不为true则return</span></span><br><span class="line">    canRun = <span class="literal">false</span>; <span class="comment">// 立即设置为false</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 将外部传入的函数的执行放在setTimeout中</span></span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      <span class="comment">// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span></span><br><span class="line">      canRun = <span class="literal">true</span>;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">target</span>.<span class="property">innerWidth</span>, e.<span class="property">target</span>.<span class="property">innerHeight</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;resize&#x27;</span>, <span class="title function_">throttle</span>(sayHi));</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>盒模型</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2JveC1zaXppbmc=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing<i class="fa fa-external-link-alt"></i></span></p>
+<p>跨域</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTE0NTM2NA==">https://segmentfault.com/a/1190000011145364<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE2LzA0L2NvcnMuaHRtbA==">https://www.ruanyifeng.com/blog/2016/04/cors.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>防抖和节流</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmFuY2VkLUZyb250ZW5kL0RhaWx5LUludGVydmlldy1RdWVzdGlvbi9pc3N1ZXMvNQ==">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>安全</tag>
+        <tag>盒模型</tag>
+        <tag>布局</tag>
+        <tag>跨域</tag>
+        <tag>防抖</tag>
+        <tag>节流</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备战校招第三天</title>
     <url>/posts/10cb579d/</url>
     <content><![CDATA[<ol>
@@ -1897,156 +2047,6 @@
         <tag>布局</tag>
         <tag>闭包</tag>
         <tag>缓存</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>备战校招第二天</title>
-    <url>/posts/5dd5f4cf/</url>
-    <content><![CDATA[<ol>
-<li>css 盒模型</li>
-<li>css 布局方式</li>
-<li>跨域</li>
-<li>前端安全（XSS、CSRF）</li>
-<li>防抖和节流</li>
-</ol>
-<hr>
-
-<span id="more"></span>
-
-<h3 id="css-盒模型"><a href="#css-盒模型" class="headerlink" title="css 盒模型"></a>css 盒模型</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width，height） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : content-box;</span><br><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width - border - padding） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : border-box;</span><br></pre></td></tr></table></figure>
-
-<p><strong>content-box</strong></p>
-<p>尺寸计算公式：</p>
-<p><code>width</code> &#x3D; 内容的宽度</p>
-<p><code>height</code> &#x3D; 内容的高度</p>
-<p>宽度和高度的计算值都不包含内容的边框（border）和内边距（padding）。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: content-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105733.png" alt="image-20200625105733283"></p>
-<p>实际内容区域为 <code>100px</code> ，边框为 <code>1px</code> </p>
-<p><strong>border-box</strong></p>
-<p>尺寸计算公式：</p>
-<p><em><code>width</code> &#x3D; border + padding + 内容的宽度</em></p>
-<p><em><code>height</code> &#x3D; border + padding + 内容的高度</em></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: border-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105910.png" alt="image-20200625105909902"></p>
-<p>实际内容区域为 <code>98px</code> ，上下边框各为 <code>1px</code> </p>
-<h3 id="css-布局方式"><a href="#css-布局方式" class="headerlink" title="css 布局方式"></a>css 布局方式</h3><p><strong>改变布局的常见属性</strong> </p>
-<ul>
-<li><p>display: flex; table; grid;</p>
-</li>
-<li><p>float</p>
-</li>
-<li><p>position</p>
-</li>
-</ul>
-<p><strong>常见布局</strong></p>
-<ul>
-<li><p>正常布局流</p>
-<p>浏览器默认的 <code>html</code> 布局方式</p>
-</li>
-<li><p>弹性布局（flex）</p>
-<p><strong>介绍</strong>：弹性盒子布局，用于创建横向或纵向的一维页面布局，等分划分。</p>
-<p><strong>使用</strong>：只需将父元素设置为 <code>display: flex;</code> 就可以按照 <code>flex</code> 布局。（设置flex布局后，子元素的 <code>float</code>、<code>clear</code>  、<code>vertical-align</code> 属性都会失效）</p>
-</li>
-<li><p>网格布局（grid）</p>
-<p><strong>介绍</strong>：Grid布局被设计用于同时在两个维度上把元素按行和列排列整齐，二维布局。</p>
-<p><strong>使用</strong>：父元素设置 <code>display: grid;</code> 也可以设置为行内元素 <code>display: inline-grid;</code></p>
-</li>
-<li><p>浮动布局（float）</p>
-<p>浮动布局，利用 <code>float</code> 属性进行左右浮动。</p>
-</li>
-<li><p>定位布局（position）</p>
-<p>静态定位、相对定位、绝对定位、固定定位、粘性定位（相对定位和固定定位的混合，设置 <code>top</code> 值之后，元素以决定定位的方式显示位置，直到 <code>viewport</code> 视口回滚到阈值之下，以固定定位方式显示，显示 top 所指的值之处。）</p>
-</li>
-<li><p>表格</p>
-<p>现在很少使用 <code>table</code> 进行布局，但显示表格数据你没有选择。</p>
-</li>
-<li><p>多列布局</p>
-<p>简单的进行多列布局，<code>columns</code> 设置列数，<code>column-width</code> 设置列宽。</p>
-</li>
-</ul>
-<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>同源策略（协议、域名、端口相同），防止信息被恶意利用。</p>
-<ul>
-<li><p>jsonp</p>
-<p>利用 <code>script</code> 标签可以跨域特性，但只支持 <code>GET</code> 请求，且需要服务端进行配合，于是就有了下面代码（通常规范为 url 最后params规定 <code>callback=回调函数名</code>）</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">var</span> sc = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">      sc.<span class="title function_">setAttribute</span>(</span><br><span class="line">        <span class="string">&#x27;src&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://suggest.taobao.com/sug?code=utf-8&amp;q=%E5%8D%AB%E8%A1%A3&amp;callback=cb&#x27;</span></span><br><span class="line">      )</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(sc)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">function</span> <span class="title function_">cb</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">      &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>代码执行后，将 <code>script</code> 标签添加到网页内，会去自动请求地址，服务器配合后会返回</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">cb</span>(&#123;<span class="string">&quot;result&quot;</span>:[[<span class="string">&quot;卫衣女&quot;</span>,<span class="string">&quot;183618.0781806928&quot;</span>],[<span class="string">&quot;卫衣男&quot;</span>,<span class="string">&quot;88788.9164616466&quot;</span>],[<span class="string">&quot;卫衣女春秋薄款&quot;</span>,<span class="string">&quot;31281.50912988837&quot;</span>],[<span class="string">&quot;卫衣女宽松韩版&quot;</span>,<span class="string">&quot;108819.03279878093&quot;</span>]...]&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>页面会将请求后的代码进行执行，于是会调用 <code>cb</code> 函数，就可以进行对数据为所欲为了，哈哈哈。</p>
-</li>
-<li><p>CORS（跨域资源共享）</p>
-<p>CORS请求分为两类，简单请求和非简单请求（也称为复杂请求）</p>
-<p><strong>简单请求</strong></p>
-<p>服务端设置 <code>Access-Control-Allow-Origin</code> 值为请求头的 <code>origin</code> 的值或者 <code>*</code>，指定域名或者接受所有域名。</p>
-<p>服务端<code>Access-Control-Allow-Credentials</code> 设置为 <code>true</code>，请求时将 <code>cookie</code> 添加到请求中，一起发送给服务器。本地ajax请求也要将 <code>withCredentials</code> 设置为 <code>true</code>。（注意：如果要发送 cookie，必须指定 <code>Access-Control-Allow-Origin</code> 具体值，不能为 <code>*</code>。）</p>
-<p><strong>非简单请求</strong></p>
-<p>在请求前会发送一个“预检”请求，<code>OPTIONS</code>请求</p>
-<p>比如</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://api.alice.com/cors&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;PUT&#x27;</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X-Custom-Header&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
-
-<p>发送 <code>PUT</code> 请求，会先发送一个预检请求，内容如下</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">OPTIONS</span> <span class="string">/cors</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://api.bob.com // 请求域</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span><span class="punctuation">: </span>PUT // 请求方法</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span><span class="punctuation">: </span>X-Custom-Header // 请求头信息</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.alice.com</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0...</span><br></pre></td></tr></table></figure>
-
-<p>服务端如果确认，返回如下信息</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>http://api.bob.com // 允许跨域地址</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span><span class="punctuation">: </span>GET, POST, PUT // 允许跨域方法</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span><span class="punctuation">: </span>X-Custom-Header // 支持首部列表</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Encoding</span><span class="punctuation">: </span>gzip</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line"><span class="attribute">Keep-Alive</span><span class="punctuation">: </span>timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/plain</span><br></pre></td></tr></table></figure>
-
-<p>服务端如果否定了，返回一个正常的HTTP响应即可，但不包含跨域相关信息（此时，会触发<code>ajax</code>的 <code>onerror</code> 错误回调）</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://api.alice.com.</span><br><span class="line">Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h3><ul>
-<li><p>XSS（Cross-site scripting）</p>
-<p>首先推荐一个 <code>XSS</code> 训练平台，链接在这里：<span class="exturl" data-url="aHR0cDovL3Byb21wdC5tbC8w">prompt<i class="fa fa-external-link-alt"></i></span></p>
-<p>全称为跨站脚本攻击，一共分为三类</p>
-<ul>
-<li>存储型 XSS，一般出现在可输入的文本框中，例如留言板、评论、个人资料等地方，将恶意脚本存储到服务器上，当浏览器进行数据请求时，脚本会返回给用户并执行。</li>
-<li>反射性 XSS，一般出现在URL参数中，需要点击恶意代码的链接才可以出发。</li>
-<li>基于DOM的XSS，通过脚本动态修改页面，不与服务端进行交互，代码可见，获取数据并在本地执行。</li>
-</ul>
-</li>
-<li><p>CSRF（cross-site request forgery）</p>
-<p>跨站请求伪造，恶意请求提交。</p>
-<p>攻击者往往不会获取 <code>cookie</code> 信息，只会利用本机信息进行恶意操作。登录受信任网站A，访问危险网站B。</p>
-<p>防御方法</p>
-<ul>
-<li>令牌同步模式：当用户发送请求前，服务端生成唯一令牌，发送数据时携带该令牌，在服务端进行校验。</li>
-<li>检查Referer字段：确定改请求来源是否安全</li>
-<li>添加校验token：恶意请求不会自动添加token，也无法获取，服务端进行校验，就可以排除可疑请求。</li>
-</ul>
-</li>
-</ul>
-<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><p><strong>防抖（debounce）</strong></p>
-<p>高频事件在 n 秒内只执行一次，如果 n 秒内事件再次触发，则重新计算时间。</p>
-<p>下列代码，没有防抖前，每次用户输入都会触发事件，防抖后，只有在 500ms 内没有进行输入才会执行事件。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> id=<span class="string">&quot;inp&quot;</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">let</span> timeout = <span class="literal">null</span> <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="built_in">clearTimeout</span>(timeout) <span class="comment">// 每当用户输入的时候把前一个 setTimeout clear 掉</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          timeout = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="comment">// 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          &#125;, <span class="number">500</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;防抖成功&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">var</span> inp = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;inp&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      inp.<span class="title function_">addEventListener</span>(<span class="string">&#x27;input&#x27;</span>, <span class="title function_">debounce</span>(sayHi)) <span class="comment">// 防抖</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p><strong>节流（throttle）</strong></p>
-<p>降低高频事件的触发次数。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> canRun = <span class="literal">true</span>; <span class="comment">// 通过闭包保存一个标记</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!canRun) <span class="keyword">return</span>; <span class="comment">// 在函数开头判断标记是否为true，不为true则return</span></span><br><span class="line">    canRun = <span class="literal">false</span>; <span class="comment">// 立即设置为false</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 将外部传入的函数的执行放在setTimeout中</span></span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      <span class="comment">// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span></span><br><span class="line">      canRun = <span class="literal">true</span>;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">target</span>.<span class="property">innerWidth</span>, e.<span class="property">target</span>.<span class="property">innerHeight</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;resize&#x27;</span>, <span class="title function_">throttle</span>(sayHi));</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>盒模型</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2JveC1zaXppbmc=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing<i class="fa fa-external-link-alt"></i></span></p>
-<p>跨域</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTE0NTM2NA==">https://segmentfault.com/a/1190000011145364<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE2LzA0L2NvcnMuaHRtbA==">https://www.ruanyifeng.com/blog/2016/04/cors.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>防抖和节流</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmFuY2VkLUZyb250ZW5kL0RhaWx5LUludGVydmlldy1RdWVzdGlvbi9pc3N1ZXMvNQ==">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>安全</tag>
-        <tag>布局</tag>
-        <tag>盒模型</tag>
-        <tag>跨域</tag>
-        <tag>防抖</tag>
-        <tag>节流</tag>
       </tags>
   </entry>
   <entry>
@@ -3274,30 +3274,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>AOP 相关</title>
-    <url>/posts/326cfd21/</url>
-    <content><![CDATA[<p>关键词： AOP, DI, IoC</p>
-<span id="more"></span>
-
-<h2 id="名词概念"><a href="#名词概念" class="headerlink" title="名词概念"></a>名词概念</h2><p>AOP：<code>Aspect-Oriented Programming</code> 面向切面编程，是一种编程范式，旨在通过分离横切关注点来实现（如日志、性能监控、安全检查等功能），提高系统模块化和可维护性。相比之下或许 OOP（面向对象编程） 可能会耳熟。</p>
-<p>DI：<code>Dependency Injection</code> 依赖注入，是一种软件设计模式，用于实现对象之间的解耦。它通过将对象的依赖（如服务、组件或资源）在创建时注入，而不是由对象自己直接创建或寻找依赖，从而提高代码的可测试性、可扩展性和灵活性。简单来说，依赖注入让对象不直接负责依赖的获取，而是由外部系统提供这些依赖。</p>
-<p>IoC：<code>Inversion of Control</code> 控制反转，是一种设计原则或架构模式，主要通过将对象的创建和依赖关系管理交由外部容器（如依赖注入容器）实现，从而降低模块之间的耦合度。它实现了对象控制权的“反转”——由框架或容器负责控制对象的生命周期和依赖，开发人员只需专注于业务逻辑。</p>
-<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>IoC是基础，提供对象的生命周期管理和依赖管理。<br>它为依赖注入提供了环境，确保对象的创建和依赖关系是由容器控制。</p>
-<p>DI是实现IoC的手段，注入依赖以实现松耦合。<br>通过DI，应用中的对象不再自行创建依赖，而是由容器在实例化时注入所需的依赖。</p>
-<p>AOP通常依赖于IoC和DI，借助容器在运行时动态管理和应用切面。<br>AOP框架（如Spring AOP）通常集成在依赖注入容器中，利用动态代理或字节码增强，在对象被创建后，通过容器自动应用切面。</p>
-<h2 id="JavaScript-AOP-实现"><a href="#JavaScript-AOP-实现" class="headerlink" title="JavaScript AOP 实现"></a>JavaScript AOP 实现</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29wZW5zdW1pL2Rp">opensumi&#x2F;di<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2N1am9qcy9tZWxk">meld<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTlEJUEyJUU1JTkwJTkxJUU1JTg4JTg3JUU5JTlEJUEyJUU3JTlBJTg0JUU3JUE4JThCJUU1JUJBJThGJUU4JUFFJUJFJUU4JUFFJUEx">AOP WIKI<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9vcGVuc3VtaS5jb20vemgvZG9jcy9kZXZlbG9wL2Jhc2ljLWRlc2lnbi9kZXBlbmRlbmNlLWluamVjdG9y">OpenSumi 依赖注入<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzODM4MTcyODM5OTQz">JavaScript中AOP的应用<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3RuaWNob2xhcy5kZXYvbm90ZXMvYXNwZWN0LW9yaWVudGVkLXByb2dyYW1taW5nLWluLWphdmFzY3JpcHQ=">Aspect-Oriented Programming in JavaScript - ctnicholas.dev<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmJpdHNyYy5pby9hc3BlY3Qtb3JpZW50ZWQtcHJvZ3JhbW1pbmctaW4tamF2YXNjcmlwdC1jNGNiNDNmNmJmY2M=">Aspect-Oriented Programming in JavaScript - bitsrc.io<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-  </entry>
-  <entry>
     <title>3D/threejs 入门</title>
     <url>/posts/dda1bd91/</url>
     <content><![CDATA[<h2 id="专业名词"><a href="#专业名词" class="headerlink" title="专业名词"></a>专业名词</h2><ul>
@@ -3341,8 +3317,32 @@ JavaScript 高级程序设计</p>
 <p>有可以看出其实有一些数据是重复的 <code>Three.js</code> 提供了优化顶点存储的方案：存储一份不重复的顶点数据，然后存储一份顶点索引就可以了。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> vertices = <span class="keyword">new</span> <span class="title class_">Float32Array</span>([</span><br><span class="line">    <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">100</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">    <span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 0, 100, 0,</span></span><br><span class="line">    <span class="comment">// 100, 0, 0,</span></span><br><span class="line">    <span class="number">100</span>, <span class="number">100</span>, <span class="number">0</span></span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> attributes = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">BufferAttribute</span>(vertices, <span class="number">3</span>);</span><br><span class="line">geometry.<span class="property">attributes</span>.<span class="property">position</span> = attributes;</span><br><span class="line"><span class="keyword">const</span> indices = <span class="keyword">new</span> <span class="title class_">Uint16Array</span>([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>]);</span><br><span class="line">geometry.<span class="property">index</span> = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">BufferAttribute</span>(indices, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
+<h2 id="噪声"><a href="#噪声" class="headerlink" title="噪声"></a>噪声</h2><p>噪声函数可以生成随机值，用于生成随机形状。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubnBtanMuY29tL3BhY2thZ2Uvc2ltcGxleC1ub2lzZQ==">SimplexNoise<i class="fa fa-external-link-alt"></i></span> 是 <code>three.js</code> 中的一种噪声函数，用于生成随机值。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>AOP 相关</title>
+    <url>/posts/326cfd21/</url>
+    <content><![CDATA[<p>关键词： AOP, DI, IoC</p>
+<span id="more"></span>
 
-
+<h2 id="名词概念"><a href="#名词概念" class="headerlink" title="名词概念"></a>名词概念</h2><p>AOP：<code>Aspect-Oriented Programming</code> 面向切面编程，是一种编程范式，旨在通过分离横切关注点来实现（如日志、性能监控、安全检查等功能），提高系统模块化和可维护性。相比之下或许 OOP（面向对象编程） 可能会耳熟。</p>
+<p>DI：<code>Dependency Injection</code> 依赖注入，是一种软件设计模式，用于实现对象之间的解耦。它通过将对象的依赖（如服务、组件或资源）在创建时注入，而不是由对象自己直接创建或寻找依赖，从而提高代码的可测试性、可扩展性和灵活性。简单来说，依赖注入让对象不直接负责依赖的获取，而是由外部系统提供这些依赖。</p>
+<p>IoC：<code>Inversion of Control</code> 控制反转，是一种设计原则或架构模式，主要通过将对象的创建和依赖关系管理交由外部容器（如依赖注入容器）实现，从而降低模块之间的耦合度。它实现了对象控制权的“反转”——由框架或容器负责控制对象的生命周期和依赖，开发人员只需专注于业务逻辑。</p>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>IoC是基础，提供对象的生命周期管理和依赖管理。<br>它为依赖注入提供了环境，确保对象的创建和依赖关系是由容器控制。</p>
+<p>DI是实现IoC的手段，注入依赖以实现松耦合。<br>通过DI，应用中的对象不再自行创建依赖，而是由容器在实例化时注入所需的依赖。</p>
+<p>AOP通常依赖于IoC和DI，借助容器在运行时动态管理和应用切面。<br>AOP框架（如Spring AOP）通常集成在依赖注入容器中，利用动态代理或字节码增强，在对象被创建后，通过容器自动应用切面。</p>
+<h2 id="JavaScript-AOP-实现"><a href="#JavaScript-AOP-实现" class="headerlink" title="JavaScript AOP 实现"></a>JavaScript AOP 实现</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29wZW5zdW1pL2Rp">opensumi&#x2F;di<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2N1am9qcy9tZWxk">meld<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTlEJUEyJUU1JTkwJTkxJUU1JTg4JTg3JUU5JTlEJUEyJUU3JTlBJTg0JUU3JUE4JThCJUU1JUJBJThGJUU4JUFFJUJFJUU4JUFFJUEx">AOP WIKI<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vcGVuc3VtaS5jb20vemgvZG9jcy9kZXZlbG9wL2Jhc2ljLWRlc2lnbi9kZXBlbmRlbmNlLWluamVjdG9y">OpenSumi 依赖注入<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzODM4MTcyODM5OTQz">JavaScript中AOP的应用<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3RuaWNob2xhcy5kZXYvbm90ZXMvYXNwZWN0LW9yaWVudGVkLXByb2dyYW1taW5nLWluLWphdmFzY3JpcHQ=">Aspect-Oriented Programming in JavaScript - ctnicholas.dev<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmJpdHNyYy5pby9hc3BlY3Qtb3JpZW50ZWQtcHJvZ3JhbW1pbmctaW4tamF2YXNjcmlwdC1jNGNiNDNmNmJmY2M=">Aspect-Oriented Programming in JavaScript - bitsrc.io<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -6017,6 +6017,64 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
+    <title>[项目] 折腾hexo + next</title>
+    <url>/posts/3dbb4ed7/</url>
+    <content><![CDATA[<ul>
+<li><p>hexo 安装</p>
+</li>
+<li><p>使用 Next 主题</p>
+</li>
+<li><p>创建页面</p>
+</li>
+<li><p>本文无亮点，观看需谨慎。</p>
+</li>
+<li><p>最后想说，先去翻翻官方文档，再看第三方的，毕竟，官方的才正宗。</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="下载安装hexo"><a href="#下载安装hexo" class="headerlink" title="下载安装hexo"></a><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuLw==">下载安装hexo<i class="fa fa-external-link-alt"></i></span></h2><p>这一步没什么难度，就像官网所说的一样</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>一行命令解决，当然，首先你要安装上node.js</p>
+<p>然后就是创建文件夹，安装 <code>hexo</code> 依赖，运行，这样你的博客就搭建起来了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>然后就是自定义自己网站的标题，作者。。。</p>
+<p>统一在 <code>_config.yml</code> 文件内。详情信息，请翻官方文档。</p>
+<h3 id="hexo-命令"><a href="#hexo-命令" class="headerlink" title="hexo 命令"></a><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3MvY29tbWFuZHM=">hexo 命令<i class="fa fa-external-link-alt"></i></span></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">hexo init blog </span><br><span class="line"><span class="comment"># 开启 heox 服务器</span></span><br><span class="line">hexo s || hexo server</span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">hexo g || hexo generate</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Next-主题"><a href="#Next-主题" class="headerlink" title="Next 主题"></a><span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20v">Next 主题<i class="fa fa-external-link-alt"></i></span></h2><p>在刚开始用主题的时候，各种不熟悉，导致怎么都不会用，后来渐渐的对<code>Next</code> 有了新的认知，不仅美观，而且还优雅，功能还有一大堆。最主要的是还有官方文档说明。</p>
+<h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
+
+<p>并将主题放在 <code>hexo</code> 下的<code>/themes</code> 文件夹中。</p>
+<p>接下来修改 <code>hexo</code> 根目录下的 <code>_config.yml</code> 文件中的 <code>theme</code> 修改为主题名 </p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115435.jpg"></p>
+<h2 id="创建页面"><a href="#创建页面" class="headerlink" title="创建页面"></a>创建页面</h2><h3 id="添加-标签-页面"><a href="#添加-标签-页面" class="headerlink" title="添加 [标签] 页面"></a>添加 [标签] 页面</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加-分类-页面"><a href="#添加-分类-页面" class="headerlink" title="添加 [分类] 页面"></a>添加 [分类] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加-关于-页面"><a href="#添加-关于-页面" class="headerlink" title="添加 [关于] 页面"></a>添加 [关于] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
+
+<p>关于 <code>md</code> 文件位置： <code>blog/source/about/index.md</code></p>
+<p>修改内容，即可修改 关于 页面内容。</p>
+<blockquote>
+<p>tips: 标签和分类页面的 <code>md</code> 文件 修改无效果，页面是自动生成的。</p>
+</blockquote>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="开启服务器"><a href="#开启服务器" class="headerlink" title="开启服务器"></a>开启服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s || hexo server</span><br><span class="line">	-s <span class="comment"># 启动静态页面</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>项目总结</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小程序 and wepy</title>
     <url>/posts/e5ee95a5/</url>
     <content><![CDATA[<h2 id="Mini-Program-Notes"><a href="#Mini-Program-Notes" class="headerlink" title="Mini Program Notes"></a>Mini Program Notes</h2><h3 id="尺寸单位-rpx和px"><a href="#尺寸单位-rpx和px" class="headerlink" title="尺寸单位 - rpx和px"></a>尺寸单位 - rpx和px</h3><ul>
@@ -6136,64 +6194,6 @@ JavaScript 高级程序设计</p>
         <tag>项目总结</tag>
         <tag>微信</tag>
         <tag>wepy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[项目] 折腾hexo + next</title>
-    <url>/posts/3dbb4ed7/</url>
-    <content><![CDATA[<ul>
-<li><p>hexo 安装</p>
-</li>
-<li><p>使用 Next 主题</p>
-</li>
-<li><p>创建页面</p>
-</li>
-<li><p>本文无亮点，观看需谨慎。</p>
-</li>
-<li><p>最后想说，先去翻翻官方文档，再看第三方的，毕竟，官方的才正宗。</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="下载安装hexo"><a href="#下载安装hexo" class="headerlink" title="下载安装hexo"></a><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuLw==">下载安装hexo<i class="fa fa-external-link-alt"></i></span></h2><p>这一步没什么难度，就像官网所说的一样</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
-<p>一行命令解决，当然，首先你要安装上node.js</p>
-<p>然后就是创建文件夹，安装 <code>hexo</code> 依赖，运行，这样你的博客就搭建起来了。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>然后就是自定义自己网站的标题，作者。。。</p>
-<p>统一在 <code>_config.yml</code> 文件内。详情信息，请翻官方文档。</p>
-<h3 id="hexo-命令"><a href="#hexo-命令" class="headerlink" title="hexo 命令"></a><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3MvY29tbWFuZHM=">hexo 命令<i class="fa fa-external-link-alt"></i></span></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">hexo init blog </span><br><span class="line"><span class="comment"># 开启 heox 服务器</span></span><br><span class="line">hexo s || hexo server</span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">hexo g || hexo generate</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Next-主题"><a href="#Next-主题" class="headerlink" title="Next 主题"></a><span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20v">Next 主题<i class="fa fa-external-link-alt"></i></span></h2><p>在刚开始用主题的时候，各种不熟悉，导致怎么都不会用，后来渐渐的对<code>Next</code> 有了新的认知，不仅美观，而且还优雅，功能还有一大堆。最主要的是还有官方文档说明。</p>
-<h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
-
-<p>并将主题放在 <code>hexo</code> 下的<code>/themes</code> 文件夹中。</p>
-<p>接下来修改 <code>hexo</code> 根目录下的 <code>_config.yml</code> 文件中的 <code>theme</code> 修改为主题名 </p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115435.jpg"></p>
-<h2 id="创建页面"><a href="#创建页面" class="headerlink" title="创建页面"></a>创建页面</h2><h3 id="添加-标签-页面"><a href="#添加-标签-页面" class="headerlink" title="添加 [标签] 页面"></a>添加 [标签] 页面</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加-分类-页面"><a href="#添加-分类-页面" class="headerlink" title="添加 [分类] 页面"></a>添加 [分类] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加-关于-页面"><a href="#添加-关于-页面" class="headerlink" title="添加 [关于] 页面"></a>添加 [关于] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
-
-<p>关于 <code>md</code> 文件位置： <code>blog/source/about/index.md</code></p>
-<p>修改内容，即可修改 关于 页面内容。</p>
-<blockquote>
-<p>tips: 标签和分类页面的 <code>md</code> 文件 修改无效果，页面是自动生成的。</p>
-</blockquote>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="开启服务器"><a href="#开启服务器" class="headerlink" title="开启服务器"></a>开启服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s || hexo server</span><br><span class="line">	-s <span class="comment"># 启动静态页面</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>项目总结</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -6501,36 +6501,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>从输入url到页面显示经过了什么</title>
-    <url>/posts/ababab9d/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>TCP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<span id="more"></span>
-
-
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>visibility: hidden、display: none、opacity: 0 区别</title>
     <url>/posts/540f9cbc/</url>
     <content><![CDATA[<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>做了以下的实验，可以得出结论，</p>
@@ -6623,6 +6593,36 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/posts/ababab9d/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>TCP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
+<span id="more"></span>
+
+
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
       </tags>
   </entry>
   <entry>
@@ -6750,6 +6750,71 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
+    <title>[转] how-to-learn-stuff-quickly</title>
+    <url>/posts/a40a7f50/</url>
+    <content><![CDATA[<blockquote>
+<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuam9zaHdjb21lYXUuY29tL2Jsb2cvaG93LXRvLWxlYXJuLXN0dWZmLXF1aWNrbHkv">how-to-learn-stuff-quickly<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><strong>总结文章《How to Learn Stuff Quickly》（如何快速学习）</strong>  </p>
+<p>这篇文章由 Josh W. Comeau 撰写，探讨了如何高效学习新知识，尤其是技术类内容。作者分享了自己的学习方法，并提供了一些实用技巧，帮助读者更快掌握复杂概念。  </p>
+<hr>
+<h3 id="文章主要内容梳理"><a href="#文章主要内容梳理" class="headerlink" title="文章主要内容梳理"></a><strong>文章主要内容梳理</strong></h3><h4 id="1-传统学习-vs-高效学习"><a href="#1-传统学习-vs-高效学习" class="headerlink" title="1. 传统学习 vs. 高效学习"></a><strong>1. 传统学习 vs. 高效学习</strong></h4><p>作者认为，传统的学习方法（如阅读文档、看教程）效率不高，容易导致被动学习。他提倡<strong>主动学习</strong>，即通过实际应用和刻意练习来加深理解。  </p>
+<hr>
+<h4 id="2-关键学习方法"><a href="#2-关键学习方法" class="headerlink" title="2. 关键学习方法"></a><strong>2. 关键学习方法</strong></h4><p>Josh 介绍了几个核心的学习策略，以提高学习速度和效果：  </p>
+<p><strong>（1）基于项目的学习（Project-Based Learning）</strong>  </p>
+<ul>
+<li>直接动手做项目，逼迫自己在实践中学习。  </li>
+<li>通过解决实际问题，更快掌握知识点，而不是仅仅阅读或观看教程。  </li>
+<li>举例：如果学习 React，应该尝试自己构建一个小型应用，而不是只看官方文档。</li>
+</ul>
+<p><strong>（2）自我解释（The Feynman Technique）</strong>  </p>
+<ul>
+<li>费曼学习法：用自己的话解释概念，直到能够清晰、简洁地表述。  </li>
+<li>通过写博客、录制视频或教别人来巩固知识。  </li>
+<li>避免“假性学习”（看似懂了但无法真正应用）。</li>
+</ul>
+<p><strong>（3）学习的分层结构（Layered Learning）</strong>  </p>
+<ul>
+<li>先掌握基础概念，不追求一开始就精通所有细节。  </li>
+<li>例如，在学习新技术时，先了解核心功能，然后再深入学习优化和高级用法。  </li>
+<li>逐步建立知识体系，避免信息过载。</li>
+</ul>
+<hr>
+<h4 id="3-避免常见的学习陷阱"><a href="#3-避免常见的学习陷阱" class="headerlink" title="3. 避免常见的学习陷阱"></a><strong>3. 避免常见的学习陷阱</strong></h4><p><strong>（1）过度依赖教程（Tutorial Hell）</strong>  </p>
+<ul>
+<li>一直跟着教程走，导致无法独立解决问题。  </li>
+<li>解决方案：尝试摆脱教程，自行实现功能，即使遇到困难也不要立刻依赖外部答案。</li>
+</ul>
+<p><strong>（2）害怕犯错（Fear of Failure）</strong>  </p>
+<ul>
+<li>过于害怕犯错会阻碍学习。错误本身是学习的一部分，遇到问题时，应该主动调试、查找解决方案。</li>
+</ul>
+<p><strong>（3）过度优化（Premature Optimization）</strong>  </p>
+<ul>
+<li>一开始不必追求完美，先把基本功能实现，再逐步优化。</li>
+</ul>
+<hr>
+<h4 id="4-具体应用举例"><a href="#4-具体应用举例" class="headerlink" title="4. 具体应用举例"></a><strong>4. 具体应用举例</strong></h4><p>Josh 用自己的经验说明这些方法的有效性，例如：  </p>
+<ul>
+<li>他在学习新技术时，通常会在几小时内搭建一个小项目，而不是先读完所有文档。  </li>
+<li>他发现用<strong>博客文章</strong>记录自己的学习过程，对理解和记忆帮助很大。</li>
+</ul>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>Josh W. Comeau 提倡<strong>主动、实践导向的学习方法</strong>，而不是被动吸收知识。他的核心建议包括：  </p>
+<ol>
+<li><strong>动手做项目</strong>，从实践中学习，而不是单纯看教程。  </li>
+<li><strong>费曼学习法</strong>，通过教别人或自我解释来加深理解。  </li>
+<li><strong>分层学习</strong>，先掌握核心概念，再逐步深入。  </li>
+<li><strong>避免依赖教程</strong>，尽早独立尝试解决问题。  </li>
+<li><strong>允许自己犯错</strong>，通过错误学习，而不是追求完美。</li>
+</ol>
+<p>如果想快速学习新技术或概念，最好的方法是<strong>尽快开始动手做项目，并在过程中不断调整和优化自己的理解</strong>。</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+  </entry>
+  <entry>
     <title>[转] The best way to get unstuck</title>
     <url>/posts/52aeb676/</url>
     <content><![CDATA[<blockquote>
@@ -6822,71 +6887,6 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>[转] how-to-learn-stuff-quickly</title>
-    <url>/posts/a40a7f50/</url>
-    <content><![CDATA[<blockquote>
-<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuam9zaHdjb21lYXUuY29tL2Jsb2cvaG93LXRvLWxlYXJuLXN0dWZmLXF1aWNrbHkv">how-to-learn-stuff-quickly<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p><strong>总结文章《How to Learn Stuff Quickly》（如何快速学习）</strong>  </p>
-<p>这篇文章由 Josh W. Comeau 撰写，探讨了如何高效学习新知识，尤其是技术类内容。作者分享了自己的学习方法，并提供了一些实用技巧，帮助读者更快掌握复杂概念。  </p>
-<hr>
-<h3 id="文章主要内容梳理"><a href="#文章主要内容梳理" class="headerlink" title="文章主要内容梳理"></a><strong>文章主要内容梳理</strong></h3><h4 id="1-传统学习-vs-高效学习"><a href="#1-传统学习-vs-高效学习" class="headerlink" title="1. 传统学习 vs. 高效学习"></a><strong>1. 传统学习 vs. 高效学习</strong></h4><p>作者认为，传统的学习方法（如阅读文档、看教程）效率不高，容易导致被动学习。他提倡<strong>主动学习</strong>，即通过实际应用和刻意练习来加深理解。  </p>
-<hr>
-<h4 id="2-关键学习方法"><a href="#2-关键学习方法" class="headerlink" title="2. 关键学习方法"></a><strong>2. 关键学习方法</strong></h4><p>Josh 介绍了几个核心的学习策略，以提高学习速度和效果：  </p>
-<p><strong>（1）基于项目的学习（Project-Based Learning）</strong>  </p>
-<ul>
-<li>直接动手做项目，逼迫自己在实践中学习。  </li>
-<li>通过解决实际问题，更快掌握知识点，而不是仅仅阅读或观看教程。  </li>
-<li>举例：如果学习 React，应该尝试自己构建一个小型应用，而不是只看官方文档。</li>
-</ul>
-<p><strong>（2）自我解释（The Feynman Technique）</strong>  </p>
-<ul>
-<li>费曼学习法：用自己的话解释概念，直到能够清晰、简洁地表述。  </li>
-<li>通过写博客、录制视频或教别人来巩固知识。  </li>
-<li>避免“假性学习”（看似懂了但无法真正应用）。</li>
-</ul>
-<p><strong>（3）学习的分层结构（Layered Learning）</strong>  </p>
-<ul>
-<li>先掌握基础概念，不追求一开始就精通所有细节。  </li>
-<li>例如，在学习新技术时，先了解核心功能，然后再深入学习优化和高级用法。  </li>
-<li>逐步建立知识体系，避免信息过载。</li>
-</ul>
-<hr>
-<h4 id="3-避免常见的学习陷阱"><a href="#3-避免常见的学习陷阱" class="headerlink" title="3. 避免常见的学习陷阱"></a><strong>3. 避免常见的学习陷阱</strong></h4><p><strong>（1）过度依赖教程（Tutorial Hell）</strong>  </p>
-<ul>
-<li>一直跟着教程走，导致无法独立解决问题。  </li>
-<li>解决方案：尝试摆脱教程，自行实现功能，即使遇到困难也不要立刻依赖外部答案。</li>
-</ul>
-<p><strong>（2）害怕犯错（Fear of Failure）</strong>  </p>
-<ul>
-<li>过于害怕犯错会阻碍学习。错误本身是学习的一部分，遇到问题时，应该主动调试、查找解决方案。</li>
-</ul>
-<p><strong>（3）过度优化（Premature Optimization）</strong>  </p>
-<ul>
-<li>一开始不必追求完美，先把基本功能实现，再逐步优化。</li>
-</ul>
-<hr>
-<h4 id="4-具体应用举例"><a href="#4-具体应用举例" class="headerlink" title="4. 具体应用举例"></a><strong>4. 具体应用举例</strong></h4><p>Josh 用自己的经验说明这些方法的有效性，例如：  </p>
-<ul>
-<li>他在学习新技术时，通常会在几小时内搭建一个小项目，而不是先读完所有文档。  </li>
-<li>他发现用<strong>博客文章</strong>记录自己的学习过程，对理解和记忆帮助很大。</li>
-</ul>
-<hr>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>Josh W. Comeau 提倡<strong>主动、实践导向的学习方法</strong>，而不是被动吸收知识。他的核心建议包括：  </p>
-<ol>
-<li><strong>动手做项目</strong>，从实践中学习，而不是单纯看教程。  </li>
-<li><strong>费曼学习法</strong>，通过教别人或自我解释来加深理解。  </li>
-<li><strong>分层学习</strong>，先掌握核心概念，再逐步深入。  </li>
-<li><strong>避免依赖教程</strong>，尽早独立尝试解决问题。  </li>
-<li><strong>允许自己犯错</strong>，通过错误学习，而不是追求完美。</li>
-</ol>
-<p>如果想快速学习新技术或概念，最好的方法是<strong>尽快开始动手做项目，并在过程中不断调整和优化自己的理解</strong>。</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
     <title>[转] 对贡献有激情，对回报有信心</title>
     <url>/posts/ee47234e/</url>
     <content><![CDATA[<blockquote>
@@ -6898,6 +6898,18 @@ JavaScript 高级程序设计</p>
 <p><strong>网站的贡献和回报</strong><br>网站如何提供给用户更多的价值，这就是贡献；如何提高访问量，这是回报。<br>我个人的体会是，回报这个东西，就像一个电闸。当你把手摸上去的话，就像摸到了高压电一样，瞬间就会感觉的迷茫，压力，并看到投机取巧的办法看起来很有吸引力，就会像一个商人一样买卖流量。但如果把手抽回来，不去碰那一个电闸，感觉立刻好了很多，开始思考比如如何帮助用户，如何给予更多，贡献更多。世界于是又回到了鸟语花香，海阔天空的状态。<br>彻底想明白自己努力到底是为了贡献了，还是为了回报，是是否可以持久的，优秀的做好一件事情的关键。</p>
 <p><strong>对贡献有激情的时候，还要对回报有信心</strong><br>和对贡献的激情同等重要的是，对回报的信心，而不是置之不理。历史上成功的企业和个人，不但做出了巨大的贡献，也取得了与之相应的巨额的报酬，以及电影明星般的盛名。并不是每一个对贡献有激情的人都做得到这一点。<br>比如历史上有一个伟大的发明家（或许是最伟大的发明家之一），却鲜为人知。他就是Nikola Tesla。他发现或者开发了一系列伟大创新的基础技术，从无线电信号传输，到交流电，从特斯拉变压器到X光，荧光灯直到现代电网。他和爱迪生一起工作，却相比之下，却回报寥寥。不但老年穷困潦倒，也很少有人听说过他。1943年，这位为人类迎来电力时代的天才去世的时候，身边只有几只他捡来的病鸽子。<br>这是一个对贡献的激情却没有回报的例子。John Battelle在最近一本新书《The Search》里面就提到，Google的创始人Page就是一个深受这个故事感染的年轻人。Page说“Nikola是个伟大的发明家，但他没有取得他应该取得的成就。我喜欢发明，但同时也希望改变世界。我希望能把我的发明带到人们的手里，这样他们就可以使用我的发明，因为只有这才是真正重要的”。在发明了PageRank算法以后，到底是按照学术传统分享自己的成果，还是像商业公司一样保护自己的知识产权，是两个创办者在1997年夏天最大的问题。<br>当然，结果证明了，他们可以在像Tesla一样贡献的同时，用一种方式，来保证自己的回报。这种把贡献转换为回报方法给了他们信心，可以更专注的在贡献部分。</p>
 <p><strong>回报是贡献的影子</strong><br>回报是贡献影子。我是说，如果安排得得当的话。<br>当一个人奔向太阳的时候，影子会跟着你。<br>当他追随影子的时候，他将远离太阳，远离光明，最终失去影子。</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>[转] 通配符（Wildcard）</title>
+    <url>/posts/163f6156/</url>
+    <content><![CDATA[<blockquote>
+<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
 ]]></content>
       <categories>
         <category>转载</category>
@@ -6965,18 +6977,6 @@ JavaScript 高级程序设计</p>
 <p>　　这个分支的开花结果，得到的成就，可以说无愧于先人，可以传诸后世矣！</p>
 <p>　　几十年来，我希望这些科研工作也能够在祖国落地生根。在我名下毕业的博士生已经超过70名，其中大部分是华裔学者，他们不少已经回到中国，在各院校发热发光。</p>
 <p>　　在国家的大力支持下，我们在清华大学成立了求真书院，期望在未来10年，能培养出一大批中国数学领军人才，使中国基础科学得以自强于世界，不负国人的厚望！</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>[转] 通配符（Wildcard）</title>
-    <url>/posts/163f6156/</url>
-    <content><![CDATA[<blockquote>
-<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
 ]]></content>
       <categories>
         <category>转载</category>
