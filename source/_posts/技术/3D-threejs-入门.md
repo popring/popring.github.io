@@ -122,5 +122,9 @@ const indices = new Uint16Array([0, 1, 2, 2, 1, 3]);
 geometry.index = new THREE.BufferAttribute(indices, 1);
 ```
 
+## 噪声
 
+噪声函数可以生成随机值，用于生成随机形状。
+
+[SimplexNoise](https://www.npmjs.com/package/simplex-noise) 是 `three.js` 中的一种噪声函数，用于生成随机值。
 
