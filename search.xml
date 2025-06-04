@@ -1034,6 +1034,110 @@
       </tags>
   </entry>
   <entry>
+    <title>C语言 第九章 结构体</title>
+    <url>/posts/1cbbe043/</url>
+    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
+<p>结构体类型，不占内存，不能保存数据；</p>
+<p>内存空间，可以保存数据</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sizeof对类型和变量均可使用</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">struct</span> stu);</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
+<p>因无类型名，无法再重新定义其他变量</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
+<p>结构体变量用 <code>.</code></p>
+<p>结构体指针变量用 <code>-&gt;</code></p>
+<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
+<p>用法与传普通变量类似，</p>
+</blockquote>
+<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
+<p>结构体指针做函数参数，可以修改原来实参的值。</p>
+<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>第二种</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> year;</span><br><span class="line">        <span class="type">int</span> month;</span><br><span class="line">        <span class="type">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
+<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="type">double</span> a,b;</span><br></pre></td></tr></table></figure>
+
+<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="left">介绍</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">malloc</td>
+<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)malloc(size)</td>
+</tr>
+<tr>
+<td align="center">calloc</td>
+<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
+<td align="left">(类型说明符*)calloc(n,size)</td>
+</tr>
+<tr>
+<td align="center">free</td>
+<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
+<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
+</tr>
+</tbody></table>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
+<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
+<p>链表类型：单向链表，双向链表，循环链表。。。</p>
+</blockquote>
+<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTkzJUJFJUU4JUExJUE4">链表介绍<i class="fa fa-external-link-alt"></i></span></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
+<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
+<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
+<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
+<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
+<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
+<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
+</blockquote>
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
+<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="type">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line">SNODE *<span class="title function_">create_list</span><span class="params">(<span class="type">int</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">out_list</span><span class="params">(SNODE *h)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = new <span class="keyword">struct</span> node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
+
+<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line">delete p;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言 第八章 指针（下）</title>
     <url>/posts/eed991ba/</url>
     <content><![CDATA[<h2 id="第八章-指针（下）"><a href="#第八章-指针（下）" class="headerlink" title="第八章 指针（下）"></a>第八章 指针（下）</h2><h3 id="指针变量做函数参数"><a href="#指针变量做函数参数" class="headerlink" title="指针变量做函数参数"></a>指针变量做函数参数</h3><blockquote>
@@ -1161,110 +1265,6 @@
 <td>将ch转换为大写字母，函数返回转换后的字符</td>
 </tr>
 </tbody></table>
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言 第九章 结构体</title>
-    <url>/posts/1cbbe043/</url>
-    <content><![CDATA[<h2 id="第九章-结构体"><a href="#第九章-结构体" class="headerlink" title="第九章 结构体"></a>第九章 结构体</h2><h3 id="自定义类型-–-结构体"><a href="#自定义类型-–-结构体" class="headerlink" title="自定义类型 – 结构体"></a>自定义类型 – 结构体</h3><blockquote>
-<p>结构体类型，不占内存，不能保存数据；</p>
-<p>内存空间，可以保存数据</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>sizeof对类型和变量均可使用</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(boy1);</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">struct</span> stu);</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的定义方式"><a href="#结构体类型变量的定义方式" class="headerlink" title="结构体类型变量的定义方式"></a>结构体类型变量的定义方式</h3><h4 id="先定义类型，再定义变量"><a href="#先定义类型，再定义变量" class="headerlink" title="先定义类型，再定义变量"></a>先定义类型，再定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时，定义变量"><a href="#定义类型的同时，定义变量" class="headerlink" title="定义类型的同时，定义变量"></a>定义类型的同时，定义变量</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy3</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="定义类型的同时定义变量，但省略类型名"><a href="#定义类型的同时定义变量，但省略类型名" class="headerlink" title="定义类型的同时定义变量，但省略类型名"></a>定义类型的同时定义变量，但省略类型名</h4><blockquote>
-<p>因无类型名，无法再重新定义其他变量</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;boy1, boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型变量的初始化"><a href="#结构体类型变量的初始化" class="headerlink" title="结构体类型变量的初始化"></a>结构体类型变量的初始化</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>,<span class="title">boy2</span> =</span> &#123;<span class="number">1001</span>, <span class="string">&quot;zhao&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以整体赋值，直接将boy2的值直接赋给boy1</span></span><br><span class="line">boy1 = boy2;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型的数组"><a href="#结构体类型的数组" class="headerlink" title="结构体类型的数组"></a>结构体类型的数组</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">ss</span>[3];</span></span><br><span class="line"></span><br><span class="line">ss[<span class="number">0</span>].num = <span class="number">1001</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(ss[<span class="number">1</span>].name, <span class="string">&quot;Qian&quot;</span>);</span><br><span class="line">ss[<span class="number">2</span>].score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构指针变量"><a href="#结构指针变量" class="headerlink" title="结构指针变量"></a>结构指针变量</h3><blockquote>
-<p>结构体变量用 <code>.</code></p>
-<p>结构体指针变量用 <code>-&gt;</code></p>
-<p>(<code>*</code>结构体指针变量)用<code>.</code></p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">boy1</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span>;</span></span><br><span class="line">p=&amp;boy1;</span><br><span class="line"></span><br><span class="line">p -&gt; num=<span class="number">100</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.num=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="built_in">strcpy</span>(boy1.name, <span class="string">&quot;Zhang&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此处()不可省略，点和-&gt;的优先级都最该(与括号相当)</span></span><br><span class="line">(*p).score=<span class="number">92.0</span>;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">boy1.score=<span class="number">92.0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体类型数据做函数参数"><a href="#结构体类型数据做函数参数" class="headerlink" title="结构体类型数据做函数参数"></a>结构体类型数据做函数参数</h3><blockquote>
-<p>用法与传普通变量类似，</p>
-</blockquote>
-<p>结构体类型变量做函数参数，不会改变原来的实参的值。</p>
-<p>结构体指针做函数参数，可以修改原来实参的值。</p>
-<h3 id="结构体类型的嵌套"><a href="#结构体类型的嵌套" class="headerlink" title="结构体类型的嵌套"></a>结构体类型的嵌套</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span></span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>第二种</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">10</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> year;</span><br><span class="line">        <span class="type">int</span> month;</span><br><span class="line">        <span class="type">int</span> day;</span><br><span class="line">    &#125; birthday;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="类型定义语句typedef"><a href="#类型定义语句typedef" class="headerlink" title="类型定义语句typedef"></a>类型定义语句<code>typedef</code></h3><blockquote>
-<p>为类型起“绰号”，并不产生新的数据类型，只是给已有的类型增加新名</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> real;</span><br><span class="line"></span><br><span class="line">real a,b;</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="type">double</span> a,b;</span><br></pre></td></tr></table></figure>
-
-<h3 id="C语言常用内存管理库函数（包含stdlib-h）"><a href="#C语言常用内存管理库函数（包含stdlib-h）" class="headerlink" title="C语言常用内存管理库函数（包含stdlib.h）"></a>C语言常用内存管理库函数（包含<code>stdlib.h</code>）</h3><table>
-<thead>
-<tr>
-<th align="center">函数名</th>
-<th align="left">介绍</th>
-<th align="left">备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">malloc</td>
-<td align="left">分配1块长度为size字节的连续内存空间（不清零），函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)malloc(size)</td>
-</tr>
-<tr>
-<td align="center">calloc</td>
-<td align="left">分配n块、每块长度为size字节的连续内存空间（共size×n字节），并将该空间中的内容全部清零，函数返回该空间的首地址；如分配失败函数返回0</td>
-<td align="left">(类型说明符*)calloc(n,size)</td>
-</tr>
-<tr>
-<td align="center">free</td>
-<td align="left">释放ptr所指向的一块内存空间，ptr是由malloc或calloc函数所分配空间的地址，即是这两个函数的返回值（或类型转换后的返回值）</td>
-<td align="left">free(ptr)（ptr为任意基类型的指针）</td>
-</tr>
-</tbody></table>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><blockquote>
-<p>以链接方式存储的线性表，链表各元素的逻辑结构与存储结构一般不一致。</p>
-<p>链表类型：单向链表，双向链表，循环链表。。。</p>
-</blockquote>
-<h4 id="链表介绍"><a href="#链表介绍" class="headerlink" title="链表介绍"></a><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTkzJUJFJUU4JUExJUE4">链表介绍<i class="fa fa-external-link-alt"></i></span></h4><h5 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h5><blockquote>
-<p>一个单向链表的节点分为两个部分，第一部分保存或者显示节点的相关信息，第二部分存储下一个节点的地址。单向链表只向一个方向遍历。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/612px-Singly-linked-list.svg.png" alt="单向链表"></p>
-<p>链表的一种，特点是链表的链接方向是单向的，对链表的访问要通过顺序读取从头部开始；列表有节点构成，head指针指向第一个称为表头节点，而终止于最后一个指向NULL的指针。</p>
-<h5 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h5><blockquote>
-<p>比单向链表多一个的是，双向链表每个节点有两个链接，一个指向前一个节点，而另一个指向下一个节点，当为最后一个节点时，指向空值或空列表。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/915px-Doubly-linked-list.svg.png" alt="双向链表"></p>
-<h5 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h5><blockquote>
-<p>在一个循环链表中，首节点和末节点被连接在一起。这种方式，单向和双向都可实现。</p>
-</blockquote>
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Circularly-linked-list.svg/525px-Circularly-linked-list.svg.png" alt="循环链表"></p>
-<h4 id="链表的创建与输出"><a href="#链表的创建与输出" class="headerlink" title="链表的创建与输出"></a>链表的创建与输出</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">// 数据</span></span><br><span class="line">	<span class="type">int</span> score;</span><br><span class="line">    <span class="comment">// 指向下一个链表的指针</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> *<span class="title">next</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义结构体类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">nodelist</span> <span class="title">SNODE</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建链表</span></span><br><span class="line">SNODE *<span class="title function_">create_list</span><span class="params">(<span class="type">int</span> data)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *head=<span class="literal">NULL</span>, *node=<span class="literal">NULL</span>, *end=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">	head = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">	end = head;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;data; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		node = (SNODE *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(SNODE));</span><br><span class="line">		node-&gt;score = i;</span><br><span class="line">		end-&gt;next = node;</span><br><span class="line">		end = node;</span><br><span class="line">	&#125;</span><br><span class="line">	end-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出链表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">out_list</span><span class="params">(SNODE *h)</span></span><br><span class="line">&#123;</span><br><span class="line">	SNODE *p;</span><br><span class="line">	p = h-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(p)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p-&gt;score);</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> data = <span class="number">3</span>;</span><br><span class="line">	SNODE *head;</span><br><span class="line">	head = create_list(data);</span><br><span class="line">	out_list(head);</span><br><span class="line">    </span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h4><h5 id="节点的插入"><a href="#节点的插入" class="headerlink" title="节点的插入"></a>节点的插入</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p = new <span class="keyword">struct</span> node;</span><br><span class="line">p-&gt;data = <span class="number">95.5</span>;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">q-&gt;next = p;</span><br></pre></td></tr></table></figure>
-
-<h5 id="节点的删除"><a href="#节点的删除" class="headerlink" title="节点的删除"></a>节点的删除</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">q-&gt;next = p-&gt;next;</span><br><span class="line">delete p;</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>C Language</category>
@@ -3277,17 +3277,30 @@ JavaScript 高级程序设计</p>
     <title>3D/threejs 入门</title>
     <url>/posts/dda1bd91/</url>
     <content><![CDATA[<h2 id="专业名词"><a href="#专业名词" class="headerlink" title="专业名词"></a>专业名词</h2><ul>
-<li>Geometry：几何体，描述物体的形状</li>
-<li>Material：材质，描述物体的外观</li>
-<li>Mesh：网格，几何体和材质的组合</li>
-<li>Scene：场景，包含所有要渲染的物体</li>
-<li>Camera：相机，用于观察场景</li>
-<li>Renderer：渲染器，将场景渲染到屏幕上</li>
-<li>Light：光源，用于照亮场景</li>
-<li>Animation：动画，用于给物体添加动画</li>
-<li>Group：组，用于将多个物体组合在一起，可以设置组的整体属性</li>
-<li>Texture：纹理，用于给物体添加纹理</li>
-<li>Shader：着色器，用于给物体添加着色</li>
+<li><p>Geometry：几何体，描述物体的形状</p>
+</li>
+<li><p>Material：材质，描述物体的外观</p>
+</li>
+<li><p>Mesh：网格，几何体和材质的组合</p>
+</li>
+<li><p>Scene：场景，包含所有要渲染的物体</p>
+</li>
+<li><p>Camera：相机，用于观察场景</p>
+</li>
+<li><p>Renderer：渲染器，将场景渲染到屏幕上</p>
+</li>
+<li><p>Light：光源，用于照亮场景</p>
+</li>
+<li><p>Animation：动画，用于给物体添加动画</p>
+</li>
+<li><p>Group：组，用于将多个物体组合在一起，可以设置组的整体属性</p>
+</li>
+<li><p>Texture：纹理，用于给物体添加纹理</p>
+</li>
+<li><p>Shader：着色器，用于给物体添加着色</p>
+</li>
+<li><p>uv: 纹理坐标，用于描述纹理在物体上的位置</p>
+</li>
 </ul>
 <h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
 <li>创建 <code>Geometry</code> 和 <code>Material</code>，加入到 <code>Mesh</code> 中</li>
@@ -3319,6 +3332,10 @@ JavaScript 高级程序设计</p>
 
 <h2 id="噪声"><a href="#噪声" class="headerlink" title="噪声"></a>噪声</h2><p>噪声函数可以生成随机值，用于生成随机形状。</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly93d3cubnBtanMuY29tL3BhY2thZ2Uvc2ltcGxleC1ub2lzZQ==">SimplexNoise<i class="fa fa-external-link-alt"></i></span> 是 <code>three.js</code> 中的一种噪声函数，用于生成随机值。</p>
+<h2 id="uv"><a href="#uv" class="headerlink" title="uv"></a>uv</h2><p>UV 坐标是纹理坐标，用于描述纹理在物体上的位置。</p>
+<p>texture.offset 可以让纹理贴图偏移一段距离，相当于改变了 uv 坐标，所以修改 texture.offset 的动画也叫做 uv 动画。</p>
+<p>还可以结合 texture.wrapT、textrue.wrapS 来实现纹理的重复。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> loader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">TextureLoader</span>();</span><br><span class="line"><span class="keyword">const</span> texture = loader.<span class="title function_">load</span>(<span class="string">&#x27;./texture.png&#x27;</span>);</span><br><span class="line">texture.<span class="property">wrapS</span> = <span class="variable constant_">THREE</span>.<span class="property">RepeatWrapping</span>;</span><br><span class="line">texture.<span class="property">wrapT</span> = <span class="variable constant_">THREE</span>.<span class="property">RepeatWrapping</span>;</span><br><span class="line">texture.<span class="property">offset</span>.<span class="property">x</span> = <span class="number">0.5</span>; <span class="comment">// 水平偏移</span></span><br><span class="line">texture.<span class="property">offset</span>.<span class="property">y</span> = <span class="number">0.5</span>; <span class="comment">// 垂直偏移</span></span><br><span class="line">texture.<span class="property">repeat</span>.<span class="property">x</span> = <span class="number">2</span>; <span class="comment">// 水平重复</span></span><br><span class="line">texture.<span class="property">repeat</span>.<span class="property">y</span> = <span class="number">2</span>; <span class="comment">// 垂直重复</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -3380,6 +3397,41 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS中的substr和subString还有slice的区别</title>
+    <url>/posts/ce57b9e9/</url>
+    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
+<p>注意：</p>
+<p><code>substr</code> 官方不推荐不使用</p>
+<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+<span id="more"></span>
+
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cg==">String.prototype.substr()<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cmluZw==">String,prototype.substring()<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3NsaWNl">String.prototype.slice()<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+</blockquote>
+<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
+<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
+<p><code>length </code> 可选，提取字符的长度</p>
+</blockquote>
+<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
+<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
+<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
+</blockquote>
+<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
+<p><code>beginSlice</code>索引开始，提取字符串</p>
+<p><code>endSlice</code>，可选，索引结束提取字符串</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substr</span>(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substring</span>(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">slice</span>(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -3448,38 +3500,127 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>JS中的substr和subString还有slice的区别</title>
-    <url>/posts/ce57b9e9/</url>
-    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
-<p>注意：</p>
-<p><code>substr</code> 官方不推荐不使用</p>
-<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+    <title>Vue父子组件生命周期</title>
+    <url>/posts/77185e63/</url>
+    <content><![CDATA[<p>Vue官网找了一圈没找到关于在父组件中使用子组件，生命周期是如何运行的。</p>
+<p>先说结论</p>
+<ul>
+<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
+<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
+<li>父组件  <code>mounted</code></li>
+</ul>
+<p>若使用 props 进行父子组件传值（若只进行自身组件数据进行维护，只会执行自身组件的生命周期函数）</p>
+<ul>
+<li>父组件 <code>beforeUpdate</code></li>
+<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
+<li>父组件 <code>updated</code></li>
+</ul>
+<p>销毁阶段</p>
+<ul>
+<li>父组件 <code>beforeDestory</code></li>
+<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
+<li>父组件  <code>destoryed</code></li>
+</ul>
 <span id="more"></span>
 
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cg==">String.prototype.substr()<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cmluZw==">String,prototype.substring()<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3NsaWNl">String.prototype.slice()<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>当在父组件中，使用子组件，那么父子组件的生命周期是如何进行的？</p>
+<h2 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h2><p>首先，来回顾下Vue生命周期，以下为<span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvZ3VpZGUvaW5zdGFuY2UuaHRtbCMlRTUlQUUlOUUlRTQlQkUlOEIlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYlRTklOTIlQTklRTUlQUQlOTA=">官方文档中的生命周期图<i class="fa fa-external-link-alt"></i></span></p>
+<p><img data-src="https://cn.vuejs.org/images/lifecycle.png" alt="Vue 实例生命周期"></p>
+<p>这里只列出了结论，没有进行实践，如需详情查看，请点击<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTM4MTkwNg==">详解vue生命周期<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="beforeCreate-created"><a href="#beforeCreate-created" class="headerlink" title="beforeCreate - created"></a>beforeCreate - created</h3><p>这两个阶段主要是<strong>初始化事件、进行数据检测</strong>，但此时还没有 <code>el</code> 选项。	</p>
+<h3 id="created-beforeMount"><a href="#created-beforeMount" class="headerlink" title="created - beforeMount"></a>created - beforeMount</h3><p>首先判断是否有无 <code>el</code> 选项，</p>
+<ul>
+<li>若有则继续编译</li>
+<li>若没有 <code>el</code> 选项则会停止编译，意味着生命周期结束，直接调用 <code>vm.$mount(el)</code>。</li>
+</ul>
+<p>紧接着继续判断有无 <code>template</code> 选项，</p>
+<ul>
+<li>若有则会将 <code>template</code> 编译为 <code>render</code> 函数，</li>
+<li>若无，则会引用外部 <code>html</code> 作为模板编译。</li>
+<li>其中 <code>new Vue</code> 中还有一个选项 <code>render</code>，以 <code>createElement</code> 作为参数进行渲染操作。</li>
+</ul>
+<p>经过实验，渲染优先级如下</p>
+<p><code>render</code> &gt; <code>template</code> &gt; <code>外部 html</code></p>
+<h3 id="beforeMount-mounted"><a href="#beforeMount-mounted" class="headerlink" title="beforeMount - mounted"></a>beforeMount - mounted</h3><p>给示例对象添加 <code>$el</code> 选项，并替换掉挂载到 <code>dom</code> 对象。</p>
+<h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><p>将页面中的填充位，用数据进行替换。（例如：<code>&lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</code> 替换后 <code>&lt;div&gt;Hello World&lt;/div&gt;</code>）</p>
+<h3 id="beforeUpdate-updated"><a href="#beforeUpdate-updated" class="headerlink" title="beforeUpdate - updated"></a>beforeUpdate - updated</h3><p>当组件内的 <code>data</code> 属性发生变化时，会执行这两个生命周期（<code>beforeUpdate</code>和 <code>updated</code>），</p>
+<h3 id="beforeDestory-destoryed"><a href="#beforeDestory-destoryed" class="headerlink" title="beforeDestory - destoryed"></a>beforeDestory - destoryed</h3><p><strong>beforeDestroy</strong>钩子函数在实例销毁之前调用。在这一步，实例仍然完全可用。<br><strong>destroyed</strong>钩子函数在Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</p>
+<h2 id="构建代码"><a href="#构建代码" class="headerlink" title="构建代码"></a>构建代码</h2><p>回到原题，Vue 父子组件生命周期是如何执行的。</p>
+<p>首先需要构建一个父子组件的结构，代码如下，可以在线访问 <span class="exturl" data-url="aHR0cHM6Ly9jb2Rlc2FuZGJveC5pby9zL2xhdWdoaW5nLWZpZWxkLXNtOWdtP2ZpbGU9L3NyYy9jb21wb25lbnRzL0ZhdGhlci52dWU6MC05OTg=">codesandbox<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="父组件代码"><a href="#父组件代码" class="headerlink" title="父组件代码"></a>父组件代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;router-link to=&quot;/&quot;&gt;HomePage&lt;/router-link&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;/div&gt;</span><br><span class="line">    &lt;button @click=&quot;handleClick&quot;&gt;更新父组件data数据&lt;/button&gt;</span><br><span class="line">    &lt;Son :val=&quot;type&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Son from &quot;./Son&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Father&quot;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Son,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Father&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type = &quot;Father Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Father created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Father mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Father updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Father destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="子组件代码"><a href="#子组件代码" class="headerlink" title="子组件代码"></a>子组件代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; val &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;/div&gt;</span><br><span class="line">    &lt;button @click=&quot;handleClick&quot;&gt;子组件数据更新&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Son&quot;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    val: String,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Son&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type = &quot;Son Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Son created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Son mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Son updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Son destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="首次进入"><a href="#首次进入" class="headerlink" title="首次进入"></a>首次进入</h3><blockquote>
+<p>运行效果，点击页面中 Father 进入组件</p>
+</blockquote>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129113333.png" alt="image-20201129113325929" style="zoom:50%;" />
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">This is Father beforeCreate </span><br><span class="line">This is Father created </span><br><span class="line">This is Father beforeMount </span><br><span class="line">This is Son beforeCreate </span><br><span class="line">This is Son created </span><br><span class="line">This is Son beforeMount </span><br><span class="line">This is Son mounted </span><br><span class="line">This is Father mounted </span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以看出首先进入</p>
+<ul>
+<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
+<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
+<li>父组件  <code>mounted</code></li>
+</ul>
+<p>其实这个也不难理解，刚开始没经过思考的我，认为是先执行完父组件生命周期，才会执行子组件生命周期。再次翻看官方文档之后，理解 vue 设计思路和一些理念，就可以理解生命周期为什么这么执行了。</p>
+<p>在进入父组件时候，首先肯定需要进行初始化事件、数据，然后进入挂载的阶段，当在挂载过程中，又发现子组件，自然而然的需要先把子组件挂载上去才可以继续进行父组件的生命周期，于是就形成了上面的这种景象。</p>
+<h3 id="数据更新阶段"><a href="#数据更新阶段" class="headerlink" title="数据更新阶段"></a>数据更新阶段</h3><blockquote>
+<p>点击更新子组件数据，就会看到只会在自己组件的更新周期函数</p>
+</blockquote>
+<p>此时，父子组件各自维护自己的 data 值，并没有进行父组件传值操作。</p>
+<p>更新父组件 data 值后，并不会影响到子组件的 beforeUpdate、updated</p>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115024.png" alt="image-20201129115023984" style="zoom: 50%;" />
+
+
+
+<p>子组件更新自身数据也是一样</p>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115134.png" alt="image-20201129115134288" style="zoom:50%;" />
+
+
+
+<p>那么如果使用 <code>props</code>传递到子组件中，那么生命周期又会如何执行。</p>
 <blockquote>
-<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+<p>点击更新父组件data 数据，此时父组件的数据已经通过 props 形式传入子组件</p>
 </blockquote>
-<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
-<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
-<p><code>length </code> 可选，提取字符的长度</p>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129122619.png" alt="image-20201129122619463" style="zoom:50%;" />
+
+
+
+<p>不出所料，生命周期函数</p>
+<ul>
+<li>父组件 <code>beforeUpdate</code></li>
+<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
+<li>父组件 <code>updated</code></li>
+</ul>
+<h3 id="销毁阶段"><a href="#销毁阶段" class="headerlink" title="销毁阶段"></a>销毁阶段</h3><blockquote>
+<p>点击页面中的 HomePage 返回主页，就会触发销毁阶段。</p>
 </blockquote>
-<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
-<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
-<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
-</blockquote>
-<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
-<p><code>beginSlice</code>索引开始，提取字符串</p>
-<p><code>endSlice</code>，可选，索引结束提取字符串</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substr</span>(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substring</span>(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">slice</span>(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
+<p>其实也是一样的思路，就还没做实验，盲猜都应该是</p>
+<ul>
+<li>父组件 <code>beforeDestory</code></li>
+<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
+<li>父组件  <code>destoryed</code></li>
+</ul>
+<p>经过试验证明后，也确实是这样</p>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129114216.png" alt="image-20201129114216299" style="zoom:50%;" />
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTM4MTkwNg==">https://segmentfault.com/a/1190000011381906<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -3719,130 +3860,6 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>node</tag>
         <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue父子组件生命周期</title>
-    <url>/posts/77185e63/</url>
-    <content><![CDATA[<p>Vue官网找了一圈没找到关于在父组件中使用子组件，生命周期是如何运行的。</p>
-<p>先说结论</p>
-<ul>
-<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
-<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
-<li>父组件  <code>mounted</code></li>
-</ul>
-<p>若使用 props 进行父子组件传值（若只进行自身组件数据进行维护，只会执行自身组件的生命周期函数）</p>
-<ul>
-<li>父组件 <code>beforeUpdate</code></li>
-<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
-<li>父组件 <code>updated</code></li>
-</ul>
-<p>销毁阶段</p>
-<ul>
-<li>父组件 <code>beforeDestory</code></li>
-<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
-<li>父组件  <code>destoryed</code></li>
-</ul>
-<span id="more"></span>
-
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>当在父组件中，使用子组件，那么父子组件的生命周期是如何进行的？</p>
-<h2 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h2><p>首先，来回顾下Vue生命周期，以下为<span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvZ3VpZGUvaW5zdGFuY2UuaHRtbCMlRTUlQUUlOUUlRTQlQkUlOEIlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYlRTklOTIlQTklRTUlQUQlOTA=">官方文档中的生命周期图<i class="fa fa-external-link-alt"></i></span></p>
-<p><img data-src="https://cn.vuejs.org/images/lifecycle.png" alt="Vue 实例生命周期"></p>
-<p>这里只列出了结论，没有进行实践，如需详情查看，请点击<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTM4MTkwNg==">详解vue生命周期<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="beforeCreate-created"><a href="#beforeCreate-created" class="headerlink" title="beforeCreate - created"></a>beforeCreate - created</h3><p>这两个阶段主要是<strong>初始化事件、进行数据检测</strong>，但此时还没有 <code>el</code> 选项。	</p>
-<h3 id="created-beforeMount"><a href="#created-beforeMount" class="headerlink" title="created - beforeMount"></a>created - beforeMount</h3><p>首先判断是否有无 <code>el</code> 选项，</p>
-<ul>
-<li>若有则继续编译</li>
-<li>若没有 <code>el</code> 选项则会停止编译，意味着生命周期结束，直接调用 <code>vm.$mount(el)</code>。</li>
-</ul>
-<p>紧接着继续判断有无 <code>template</code> 选项，</p>
-<ul>
-<li>若有则会将 <code>template</code> 编译为 <code>render</code> 函数，</li>
-<li>若无，则会引用外部 <code>html</code> 作为模板编译。</li>
-<li>其中 <code>new Vue</code> 中还有一个选项 <code>render</code>，以 <code>createElement</code> 作为参数进行渲染操作。</li>
-</ul>
-<p>经过实验，渲染优先级如下</p>
-<p><code>render</code> &gt; <code>template</code> &gt; <code>外部 html</code></p>
-<h3 id="beforeMount-mounted"><a href="#beforeMount-mounted" class="headerlink" title="beforeMount - mounted"></a>beforeMount - mounted</h3><p>给示例对象添加 <code>$el</code> 选项，并替换掉挂载到 <code>dom</code> 对象。</p>
-<h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><p>将页面中的填充位，用数据进行替换。（例如：<code>&lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</code> 替换后 <code>&lt;div&gt;Hello World&lt;/div&gt;</code>）</p>
-<h3 id="beforeUpdate-updated"><a href="#beforeUpdate-updated" class="headerlink" title="beforeUpdate - updated"></a>beforeUpdate - updated</h3><p>当组件内的 <code>data</code> 属性发生变化时，会执行这两个生命周期（<code>beforeUpdate</code>和 <code>updated</code>），</p>
-<h3 id="beforeDestory-destoryed"><a href="#beforeDestory-destoryed" class="headerlink" title="beforeDestory - destoryed"></a>beforeDestory - destoryed</h3><p><strong>beforeDestroy</strong>钩子函数在实例销毁之前调用。在这一步，实例仍然完全可用。<br><strong>destroyed</strong>钩子函数在Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</p>
-<h2 id="构建代码"><a href="#构建代码" class="headerlink" title="构建代码"></a>构建代码</h2><p>回到原题，Vue 父子组件生命周期是如何执行的。</p>
-<p>首先需要构建一个父子组件的结构，代码如下，可以在线访问 <span class="exturl" data-url="aHR0cHM6Ly9jb2Rlc2FuZGJveC5pby9zL2xhdWdoaW5nLWZpZWxkLXNtOWdtP2ZpbGU9L3NyYy9jb21wb25lbnRzL0ZhdGhlci52dWU6MC05OTg=">codesandbox<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="父组件代码"><a href="#父组件代码" class="headerlink" title="父组件代码"></a>父组件代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;router-link to=&quot;/&quot;&gt;HomePage&lt;/router-link&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;/div&gt;</span><br><span class="line">    &lt;button @click=&quot;handleClick&quot;&gt;更新父组件data数据&lt;/button&gt;</span><br><span class="line">    &lt;Son :val=&quot;type&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Son from &quot;./Son&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Father&quot;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Son,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Father&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type = &quot;Father Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Father created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Father mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Father updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Father destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="子组件代码"><a href="#子组件代码" class="headerlink" title="子组件代码"></a>子组件代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; val &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;/div&gt;</span><br><span class="line">    &lt;button @click=&quot;handleClick&quot;&gt;子组件数据更新&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Son&quot;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    val: String,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Son&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type = &quot;Son Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Son created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Son mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Son updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Son destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="首次进入"><a href="#首次进入" class="headerlink" title="首次进入"></a>首次进入</h3><blockquote>
-<p>运行效果，点击页面中 Father 进入组件</p>
-</blockquote>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129113333.png" alt="image-20201129113325929" style="zoom:50%;" />
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">This is Father beforeCreate </span><br><span class="line">This is Father created </span><br><span class="line">This is Father beforeMount </span><br><span class="line">This is Son beforeCreate </span><br><span class="line">This is Son created </span><br><span class="line">This is Son beforeMount </span><br><span class="line">This is Son mounted </span><br><span class="line">This is Father mounted </span><br></pre></td></tr></table></figure>
-
-
-
-<p>可以看出首先进入</p>
-<ul>
-<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
-<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
-<li>父组件  <code>mounted</code></li>
-</ul>
-<p>其实这个也不难理解，刚开始没经过思考的我，认为是先执行完父组件生命周期，才会执行子组件生命周期。再次翻看官方文档之后，理解 vue 设计思路和一些理念，就可以理解生命周期为什么这么执行了。</p>
-<p>在进入父组件时候，首先肯定需要进行初始化事件、数据，然后进入挂载的阶段，当在挂载过程中，又发现子组件，自然而然的需要先把子组件挂载上去才可以继续进行父组件的生命周期，于是就形成了上面的这种景象。</p>
-<h3 id="数据更新阶段"><a href="#数据更新阶段" class="headerlink" title="数据更新阶段"></a>数据更新阶段</h3><blockquote>
-<p>点击更新子组件数据，就会看到只会在自己组件的更新周期函数</p>
-</blockquote>
-<p>此时，父子组件各自维护自己的 data 值，并没有进行父组件传值操作。</p>
-<p>更新父组件 data 值后，并不会影响到子组件的 beforeUpdate、updated</p>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115024.png" alt="image-20201129115023984" style="zoom: 50%;" />
-
-
-
-<p>子组件更新自身数据也是一样</p>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115134.png" alt="image-20201129115134288" style="zoom:50%;" />
-
-
-
-<p>那么如果使用 <code>props</code>传递到子组件中，那么生命周期又会如何执行。</p>
-<blockquote>
-<p>点击更新父组件data 数据，此时父组件的数据已经通过 props 形式传入子组件</p>
-</blockquote>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129122619.png" alt="image-20201129122619463" style="zoom:50%;" />
-
-
-
-<p>不出所料，生命周期函数</p>
-<ul>
-<li>父组件 <code>beforeUpdate</code></li>
-<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
-<li>父组件 <code>updated</code></li>
-</ul>
-<h3 id="销毁阶段"><a href="#销毁阶段" class="headerlink" title="销毁阶段"></a>销毁阶段</h3><blockquote>
-<p>点击页面中的 HomePage 返回主页，就会触发销毁阶段。</p>
-</blockquote>
-<p>其实也是一样的思路，就还没做实验，盲猜都应该是</p>
-<ul>
-<li>父组件 <code>beforeDestory</code></li>
-<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
-<li>父组件  <code>destoryed</code></li>
-</ul>
-<p>经过试验证明后，也确实是这样</p>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129114216.png" alt="image-20201129114216299" style="zoom:50%;" />
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTM4MTkwNg==">https://segmentfault.com/a/1190000011381906<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -4675,23 +4692,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>powershell 常用命令</title>
-    <url>/posts/50e64c9a/</url>
-    <content><![CDATA[<p>开启管理员模式</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
-
-<p>删除文件夹</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>powershell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>react+antd 项目笔记</title>
     <url>/posts/e6509c17/</url>
     <content><![CDATA[<blockquote>
@@ -4869,6 +4869,23 @@ JavaScript 高级程序设计</p>
         <tag>React</tag>
         <tag>antd</tag>
         <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>powershell 常用命令</title>
+    <url>/posts/50e64c9a/</url>
+    <content><![CDATA[<p>开启管理员模式</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
+
+<p>删除文件夹</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>powershell</tag>
       </tags>
   </entry>
   <entry>
@@ -5337,6 +5354,54 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>入门git-代理配置篇</title>
+    <url>/posts/d3d2c956/</url>
+    <content><![CDATA[<p>配置个信息</p>
+<p>连接github</p>
+<p>配置git代理：http、https、ssh</p>
+<hr>
+<span id="more"></span>
+
+<h2 id="配置个人信息"><a href="#配置个人信息" class="headerlink" title="配置个人信息"></a>配置个人信息</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置用户名</span></span><br><span class="line">git config --global user.name <span class="string">&quot;your name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置邮箱</span></span><br><span class="line">git config --global user.email <span class="string">&quot;xx@emial.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="连接github"><a href="#连接github" class="headerlink" title="连接github"></a>连接github</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成key在 ～/.ssh/id_rsa.pub 公匙</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xx@email.com&quot;</span></span><br><span class="line"><span class="comment"># 一路回车，知道本程序结束</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在 github 点击个人头像，进入 settings。</p>
+<p>选择 SSH and GPL keys。</p>
+<p>New SSH Key，显示需要添加 title、key。</p>
+<p>title 随意，key为本地的公匙（<code>～/.ssh/id_rsa.pub </code>）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试是否添加成功</span></span><br><span class="line">～/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line">Hi xxx! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access. #出现词句话，说明设置成功。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="配置-git-http代理"><a href="#配置-git-http代理" class="headerlink" title="配置 git http代理"></a>配置 git http代理</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 具体端口号，修改为自己本地代理配置</span></span><br><span class="line"></span><br><span class="line">git config --global http.proxy socks://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line">git config --global https.proxy socks://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 取消代理</span></span><br><span class="line"></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line"></span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="配置-git-ssh-代理"><a href="#配置-git-ssh-代理" class="headerlink" title="配置 git ssh 代理"></a>配置 git ssh 代理</h2><p>修改<code>~/.ssh/config</code> （如不存在自行创建）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 必须是 github.com</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   <span class="comment"># 走 HTTP 代理</span></span><br><span class="line">   <span class="comment"># ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=8080</span></span><br><span class="line">   <span class="comment"># 走 socks5 代理（如 Shadowsocks）</span></span><br><span class="line">   <span class="comment"># ProxyCommand nc -v -x 127.0.0.1:1080 %h %p</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="解决中文文件名乱码"><a href="#解决中文文件名乱码" class="headerlink" title="解决中文文件名乱码"></a>解决中文文件名乱码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config core.quotepath <span class="literal">false</span>  --global</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXN0LmdpdGh1Yi5jb20vY2h1eWlrLzAyZDBkMzdhNDllZGMxNjI1NDY0NDEwOTJlZmFlNmEx">https://gist.github.com/chuyik/02d0d37a49edc162546441092efae6a1<i class="fa fa-external-link-alt"></i></span></p>
+<p>乱码 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYW5sYW5tZy9hcnRpY2xlL2RldGFpbHMvNDk4NjI3Nzk=">https://blog.csdn.net/zhanlanmg/article/details/49862779<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>入门git-笔记2</title>
     <url>/posts/6a147e65/</url>
     <content><![CDATA[<blockquote>
@@ -5405,54 +5470,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>笔记</tag>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>入门git-代理配置篇</title>
-    <url>/posts/d3d2c956/</url>
-    <content><![CDATA[<p>配置个信息</p>
-<p>连接github</p>
-<p>配置git代理：http、https、ssh</p>
-<hr>
-<span id="more"></span>
-
-<h2 id="配置个人信息"><a href="#配置个人信息" class="headerlink" title="配置个人信息"></a>配置个人信息</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置用户名</span></span><br><span class="line">git config --global user.name <span class="string">&quot;your name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置邮箱</span></span><br><span class="line">git config --global user.email <span class="string">&quot;xx@emial.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="连接github"><a href="#连接github" class="headerlink" title="连接github"></a>连接github</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成key在 ～/.ssh/id_rsa.pub 公匙</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xx@email.com&quot;</span></span><br><span class="line"><span class="comment"># 一路回车，知道本程序结束</span></span><br></pre></td></tr></table></figure>
-
-<p>然后在 github 点击个人头像，进入 settings。</p>
-<p>选择 SSH and GPL keys。</p>
-<p>New SSH Key，显示需要添加 title、key。</p>
-<p>title 随意，key为本地的公匙（<code>～/.ssh/id_rsa.pub </code>）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试是否添加成功</span></span><br><span class="line">～/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line">Hi xxx! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access. #出现词句话，说明设置成功。</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="配置-git-http代理"><a href="#配置-git-http代理" class="headerlink" title="配置 git http代理"></a>配置 git http代理</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 具体端口号，修改为自己本地代理配置</span></span><br><span class="line"></span><br><span class="line">git config --global http.proxy socks://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line">git config --global https.proxy socks://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 取消代理</span></span><br><span class="line"></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line"></span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="配置-git-ssh-代理"><a href="#配置-git-ssh-代理" class="headerlink" title="配置 git ssh 代理"></a>配置 git ssh 代理</h2><p>修改<code>~/.ssh/config</code> （如不存在自行创建）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 必须是 github.com</span></span><br><span class="line">Host github.com</span><br><span class="line">   HostName github.com</span><br><span class="line">   User git</span><br><span class="line">   <span class="comment"># 走 HTTP 代理</span></span><br><span class="line">   <span class="comment"># ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=8080</span></span><br><span class="line">   <span class="comment"># 走 socks5 代理（如 Shadowsocks）</span></span><br><span class="line">   <span class="comment"># ProxyCommand nc -v -x 127.0.0.1:1080 %h %p</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="解决中文文件名乱码"><a href="#解决中文文件名乱码" class="headerlink" title="解决中文文件名乱码"></a>解决中文文件名乱码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config core.quotepath <span class="literal">false</span>  --global</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXN0LmdpdGh1Yi5jb20vY2h1eWlrLzAyZDBkMzdhNDllZGMxNjI1NDY0NDEwOTJlZmFlNmEx">https://gist.github.com/chuyik/02d0d37a49edc162546441092efae6a1<i class="fa fa-external-link-alt"></i></span></p>
-<p>乱码 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYW5sYW5tZy9hcnRpY2xlL2RldGFpbHMvNDk4NjI3Nzk=">https://blog.csdn.net/zhanlanmg/article/details/49862779<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
         <tag>git</tag>
       </tags>
   </entry>
@@ -6017,64 +6034,6 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>[项目] 折腾hexo + next</title>
-    <url>/posts/3dbb4ed7/</url>
-    <content><![CDATA[<ul>
-<li><p>hexo 安装</p>
-</li>
-<li><p>使用 Next 主题</p>
-</li>
-<li><p>创建页面</p>
-</li>
-<li><p>本文无亮点，观看需谨慎。</p>
-</li>
-<li><p>最后想说，先去翻翻官方文档，再看第三方的，毕竟，官方的才正宗。</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="下载安装hexo"><a href="#下载安装hexo" class="headerlink" title="下载安装hexo"></a><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuLw==">下载安装hexo<i class="fa fa-external-link-alt"></i></span></h2><p>这一步没什么难度，就像官网所说的一样</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
-<p>一行命令解决，当然，首先你要安装上node.js</p>
-<p>然后就是创建文件夹，安装 <code>hexo</code> 依赖，运行，这样你的博客就搭建起来了。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>然后就是自定义自己网站的标题，作者。。。</p>
-<p>统一在 <code>_config.yml</code> 文件内。详情信息，请翻官方文档。</p>
-<h3 id="hexo-命令"><a href="#hexo-命令" class="headerlink" title="hexo 命令"></a><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3MvY29tbWFuZHM=">hexo 命令<i class="fa fa-external-link-alt"></i></span></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">hexo init blog </span><br><span class="line"><span class="comment"># 开启 heox 服务器</span></span><br><span class="line">hexo s || hexo server</span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">hexo g || hexo generate</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Next-主题"><a href="#Next-主题" class="headerlink" title="Next 主题"></a><span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20v">Next 主题<i class="fa fa-external-link-alt"></i></span></h2><p>在刚开始用主题的时候，各种不熟悉，导致怎么都不会用，后来渐渐的对<code>Next</code> 有了新的认知，不仅美观，而且还优雅，功能还有一大堆。最主要的是还有官方文档说明。</p>
-<h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
-
-<p>并将主题放在 <code>hexo</code> 下的<code>/themes</code> 文件夹中。</p>
-<p>接下来修改 <code>hexo</code> 根目录下的 <code>_config.yml</code> 文件中的 <code>theme</code> 修改为主题名 </p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115435.jpg"></p>
-<h2 id="创建页面"><a href="#创建页面" class="headerlink" title="创建页面"></a>创建页面</h2><h3 id="添加-标签-页面"><a href="#添加-标签-页面" class="headerlink" title="添加 [标签] 页面"></a>添加 [标签] 页面</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加-分类-页面"><a href="#添加-分类-页面" class="headerlink" title="添加 [分类] 页面"></a>添加 [分类] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加-关于-页面"><a href="#添加-关于-页面" class="headerlink" title="添加 [关于] 页面"></a>添加 [关于] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
-
-<p>关于 <code>md</code> 文件位置： <code>blog/source/about/index.md</code></p>
-<p>修改内容，即可修改 关于 页面内容。</p>
-<blockquote>
-<p>tips: 标签和分类页面的 <code>md</code> 文件 修改无效果，页面是自动生成的。</p>
-</blockquote>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="开启服务器"><a href="#开启服务器" class="headerlink" title="开启服务器"></a>开启服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s || hexo server</span><br><span class="line">	-s <span class="comment"># 启动静态页面</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>项目总结</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>小程序 and wepy</title>
     <url>/posts/e5ee95a5/</url>
     <content><![CDATA[<h2 id="Mini-Program-Notes"><a href="#Mini-Program-Notes" class="headerlink" title="Mini Program Notes"></a>Mini Program Notes</h2><h3 id="尺寸单位-rpx和px"><a href="#尺寸单位-rpx和px" class="headerlink" title="尺寸单位 - rpx和px"></a>尺寸单位 - rpx和px</h3><ul>
@@ -6194,6 +6153,64 @@ JavaScript 高级程序设计</p>
         <tag>项目总结</tag>
         <tag>微信</tag>
         <tag>wepy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[项目] 折腾hexo + next</title>
+    <url>/posts/3dbb4ed7/</url>
+    <content><![CDATA[<ul>
+<li><p>hexo 安装</p>
+</li>
+<li><p>使用 Next 主题</p>
+</li>
+<li><p>创建页面</p>
+</li>
+<li><p>本文无亮点，观看需谨慎。</p>
+</li>
+<li><p>最后想说，先去翻翻官方文档，再看第三方的，毕竟，官方的才正宗。</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="下载安装hexo"><a href="#下载安装hexo" class="headerlink" title="下载安装hexo"></a><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuLw==">下载安装hexo<i class="fa fa-external-link-alt"></i></span></h2><p>这一步没什么难度，就像官网所说的一样</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>一行命令解决，当然，首先你要安装上node.js</p>
+<p>然后就是创建文件夹，安装 <code>hexo</code> 依赖，运行，这样你的博客就搭建起来了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>然后就是自定义自己网站的标题，作者。。。</p>
+<p>统一在 <code>_config.yml</code> 文件内。详情信息，请翻官方文档。</p>
+<h3 id="hexo-命令"><a href="#hexo-命令" class="headerlink" title="hexo 命令"></a><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3MvY29tbWFuZHM=">hexo 命令<i class="fa fa-external-link-alt"></i></span></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">hexo init blog </span><br><span class="line"><span class="comment"># 开启 heox 服务器</span></span><br><span class="line">hexo s || hexo server</span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">hexo g || hexo generate</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Next-主题"><a href="#Next-主题" class="headerlink" title="Next 主题"></a><span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20v">Next 主题<i class="fa fa-external-link-alt"></i></span></h2><p>在刚开始用主题的时候，各种不熟悉，导致怎么都不会用，后来渐渐的对<code>Next</code> 有了新的认知，不仅美观，而且还优雅，功能还有一大堆。最主要的是还有官方文档说明。</p>
+<h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
+
+<p>并将主题放在 <code>hexo</code> 下的<code>/themes</code> 文件夹中。</p>
+<p>接下来修改 <code>hexo</code> 根目录下的 <code>_config.yml</code> 文件中的 <code>theme</code> 修改为主题名 </p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115435.jpg"></p>
+<h2 id="创建页面"><a href="#创建页面" class="headerlink" title="创建页面"></a>创建页面</h2><h3 id="添加-标签-页面"><a href="#添加-标签-页面" class="headerlink" title="添加 [标签] 页面"></a>添加 [标签] 页面</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加-分类-页面"><a href="#添加-分类-页面" class="headerlink" title="添加 [分类] 页面"></a>添加 [分类] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加-关于-页面"><a href="#添加-关于-页面" class="headerlink" title="添加 [关于] 页面"></a>添加 [关于] 页面</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
+
+<p>关于 <code>md</code> 文件位置： <code>blog/source/about/index.md</code></p>
+<p>修改内容，即可修改 关于 页面内容。</p>
+<blockquote>
+<p>tips: 标签和分类页面的 <code>md</code> 文件 修改无效果，页面是自动生成的。</p>
+</blockquote>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="开启服务器"><a href="#开启服务器" class="headerlink" title="开启服务器"></a>开启服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s || hexo server</span><br><span class="line">	-s <span class="comment"># 启动静态页面</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>项目总结</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -6904,18 +6921,6 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>[转] 通配符（Wildcard）</title>
-    <url>/posts/163f6156/</url>
-    <content><![CDATA[<blockquote>
-<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
     <title>我的几何人生-丘成桐</title>
     <url>/posts/54c0a81a/</url>
     <content><![CDATA[<blockquote>
@@ -6983,6 +6988,18 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
+    <title>[转] 通配符（Wildcard）</title>
+    <url>/posts/163f6156/</url>
+    <content><![CDATA[<blockquote>
+<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+  </entry>
+  <entry>
     <title>OKR</title>
     <url>/posts/126fb5f9/</url>
     <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9PS1I=">https://baike.baidu.com/item/OKR<i class="fa fa-external-link-alt"></i></span></p>
@@ -6992,6 +7009,21 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>OKR</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>六色思考帽</title>
+    <url>/posts/65c3010a/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlODUlQUQlRTklQTElQjYlRTYlODAlOUQlRTglODAlODMlRTUlQjglQkQ=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
+<p>六顶思考帽，是指使用六种不同颜色的帽子代表六种不同的思维模式。任何人都有能力使用以下六种基本思维模式：</p>
+<p>白色思考帽：白色是中立而客观的。戴上白色思考帽，人们思考的是关注客观的事实和数据。<br>绿色思考帽：绿色代表茵茵芳草，象征勃勃生机。绿色思考帽寓意创造力和想象力。具有创造性思考、头脑风暴、求异思维等功能。<br>黄色思考帽：黄色代表价值与肯定。戴上黄色思考帽，人们从正面考虑问题，表达乐观的、满怀希望的、建设性的观点。<br>黑色思考帽：戴上黑色思考帽，人们可以运用否定、怀疑、质疑的看法，合乎逻辑的进行批判，尽情发表负面的意见，找出逻辑上的错误。<br>红色思考帽：红色是情感的色彩。戴上红色思考帽，人们可以表现自己的情绪，人们还可以表达直觉、感受、预感等方面的看法。<br>蓝色思考帽：蓝色思考帽负责控制和调节思维过程。负责控制各种思考帽的使用顺序，规划和管理整个思考过程，并负责做出结论。</p>
+<p>不同场合、场景下使用不同的思考帽。</p>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
+        <tag>思维</tag>
       </tags>
   </entry>
   <entry>
@@ -7079,23 +7111,38 @@ JavaScript 高级程序设计</p>
         <category>软素质</category>
       </categories>
       <tags>
-        <tag>优势</tag>
         <tag>思维</tag>
+        <tag>优势</tag>
       </tags>
   </entry>
   <entry>
-    <title>六色思考帽</title>
-    <url>/posts/65c3010a/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlODUlQUQlRTklQTElQjYlRTYlODAlOUQlRTglODAlODMlRTUlQjglQkQ=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
-<p>六顶思考帽，是指使用六种不同颜色的帽子代表六种不同的思维模式。任何人都有能力使用以下六种基本思维模式：</p>
-<p>白色思考帽：白色是中立而客观的。戴上白色思考帽，人们思考的是关注客观的事实和数据。<br>绿色思考帽：绿色代表茵茵芳草，象征勃勃生机。绿色思考帽寓意创造力和想象力。具有创造性思考、头脑风暴、求异思维等功能。<br>黄色思考帽：黄色代表价值与肯定。戴上黄色思考帽，人们从正面考虑问题，表达乐观的、满怀希望的、建设性的观点。<br>黑色思考帽：戴上黑色思考帽，人们可以运用否定、怀疑、质疑的看法，合乎逻辑的进行批判，尽情发表负面的意见，找出逻辑上的错误。<br>红色思考帽：红色是情感的色彩。戴上红色思考帽，人们可以表现自己的情绪，人们还可以表达直觉、感受、预感等方面的看法。<br>蓝色思考帽：蓝色思考帽负责控制和调节思维过程。负责控制各种思考帽的使用顺序，规划和管理整个思考过程，并负责做出结论。</p>
-<p>不同场合、场景下使用不同的思考帽。</p>
+    <title>初入职场小白需掌握</title>
+    <url>/posts/728b077a/</url>
+    <content><![CDATA[<h2 id="锦囊妙计"><a href="#锦囊妙计" class="headerlink" title="锦囊妙计"></a>锦囊妙计</h2><h3 id="锦囊一"><a href="#锦囊一" class="headerlink" title="锦囊一"></a>锦囊一</h3><ul>
+<li>互惠原则：长期的关系基于互惠，而非短期利益</li>
+<li>心里相容：尊重差异，互为对方所接受与认同</li>
+<li>自我了解：了解自我特点及不足，发挥长处</li>
+<li>差异化沟通：基于 <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9ESVNDLzE1ODYyMjc=">DISC<i class="fa fa-external-link-alt"></i></span> 风格的差异化沟通</li>
+</ul>
+<h3 id="锦囊二"><a href="#锦囊二" class="headerlink" title="锦囊二"></a>锦囊二</h3><ul>
+<li>真诚至上：基于双方的尊重、信任和关心</li>
+<li>化繁为简：工作沟通要用 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZG91YmFuLmNvbS9ub3RlLzczMDM4OTA0Ny8/X2k9NzM1Nzg5M2gyWWJQT28sNzM3NDg4M2gyWWJQT28=">PREP<i class="fa fa-external-link-alt"></i></span> 归纳法</li>
+<li>数据为王：数字时代让数据说话</li>
+<li>价值共创：沟通有没有打动对方？痛点或痒点</li>
+<li>合适渠道：书面与口头组合</li>
+</ul>
+<h3 id="锦囊三"><a href="#锦囊三" class="headerlink" title="锦囊三"></a>锦囊三</h3><ul>
+<li>认知清晰：为什么要做？如何可以做成？目的比目标更重要</li>
+<li>问题解决：防火重于救火，行动为了达成而不是打卡</li>
+<li>行动力量：保持成事所需的高水准行动不打折</li>
+<li>价值制胜：工作的价值取绝于解决问题的难度</li>
+</ul>
 ]]></content>
       <categories>
         <category>软素质</category>
       </categories>
       <tags>
-        <tag>思维</tag>
+        <tag>沟通</tag>
       </tags>
   </entry>
   <entry>
@@ -7198,36 +7245,6 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>思维</tag>
         <tag>效率</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>初入职场小白需掌握</title>
-    <url>/posts/728b077a/</url>
-    <content><![CDATA[<h2 id="锦囊妙计"><a href="#锦囊妙计" class="headerlink" title="锦囊妙计"></a>锦囊妙计</h2><h3 id="锦囊一"><a href="#锦囊一" class="headerlink" title="锦囊一"></a>锦囊一</h3><ul>
-<li>互惠原则：长期的关系基于互惠，而非短期利益</li>
-<li>心里相容：尊重差异，互为对方所接受与认同</li>
-<li>自我了解：了解自我特点及不足，发挥长处</li>
-<li>差异化沟通：基于 <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9ESVNDLzE1ODYyMjc=">DISC<i class="fa fa-external-link-alt"></i></span> 风格的差异化沟通</li>
-</ul>
-<h3 id="锦囊二"><a href="#锦囊二" class="headerlink" title="锦囊二"></a>锦囊二</h3><ul>
-<li>真诚至上：基于双方的尊重、信任和关心</li>
-<li>化繁为简：工作沟通要用 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZG91YmFuLmNvbS9ub3RlLzczMDM4OTA0Ny8/X2k9NzM1Nzg5M2gyWWJQT28sNzM3NDg4M2gyWWJQT28=">PREP<i class="fa fa-external-link-alt"></i></span> 归纳法</li>
-<li>数据为王：数字时代让数据说话</li>
-<li>价值共创：沟通有没有打动对方？痛点或痒点</li>
-<li>合适渠道：书面与口头组合</li>
-</ul>
-<h3 id="锦囊三"><a href="#锦囊三" class="headerlink" title="锦囊三"></a>锦囊三</h3><ul>
-<li>认知清晰：为什么要做？如何可以做成？目的比目标更重要</li>
-<li>问题解决：防火重于救火，行动为了达成而不是打卡</li>
-<li>行动力量：保持成事所需的高水准行动不打折</li>
-<li>价值制胜：工作的价值取绝于解决问题的难度</li>
-</ul>
-]]></content>
-      <categories>
-        <category>软素质</category>
-      </categories>
-      <tags>
-        <tag>沟通</tag>
       </tags>
   </entry>
   <entry>
