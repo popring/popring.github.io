@@ -20,6 +20,8 @@ tags:
 - Texture：纹理，用于给物体添加纹理
 - Shader：着色器，用于给物体添加着色
 
+- uv: 纹理坐标，用于描述纹理在物体上的位置
+
 ## 步骤
 
 1. 创建 `Geometry` 和 `Material`，加入到 `Mesh` 中
@@ -128,3 +130,21 @@ geometry.index = new THREE.BufferAttribute(indices, 1);
 
 [SimplexNoise](https://www.npmjs.com/package/simplex-noise) 是 `three.js` 中的一种噪声函数，用于生成随机值。
 
+## uv
+
+UV 坐标是纹理坐标，用于描述纹理在物体上的位置。
+
+texture.offset 可以让纹理贴图偏移一段距离，相当于改变了 uv 坐标，所以修改 texture.offset 的动画也叫做 uv 动画。
+
+还可以结合 texture.wrapT、textrue.wrapS 来实现纹理的重复。
+
+```js
+const loader = new THREE.TextureLoader();
+const texture = loader.load('./texture.png');
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.offset.x = 0.5; // 水平偏移
+texture.offset.y = 0.5; // 垂直偏移
+texture.repeat.x = 2; // 水平重复
+texture.repeat.y = 2; // 垂直重复
+```
