@@ -2425,49 +2425,6 @@
       </tags>
   </entry>
   <entry>
-    <title>备战校招第八天</title>
-    <url>/posts/881d9fba/</url>
-    <content><![CDATA[<ul>
-<li><code>display:none</code> 和 <code>visibilty: hidden</code> 区别</li>
-</ul>
-<hr>
-<span id="more"></span>
-
-
-
-<h2 id="display-none-和-visibility-hidden-区别"><a href="#display-none-和-visibility-hidden-区别" class="headerlink" title="display:none 和 visibility: hidden 区别"></a><code>display:none</code> 和 <code>visibility: hidden</code> 区别</h2><p>代码</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;visibility: hidden;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;display: none;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>显示如下</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730115508.png" alt="image-20200730115503519"></p>
-<p>可以看出</p>
-<ul>
-<li><p>占据位置</p>
-<p>visibility 隐藏元素而不更改文档的布局，相当于此元素变成透明。</p>
-<p>display 直接将元素完全隐藏（就好像这个元素不存在一样）。</p>
-</li>
-<li><p>属性继承</p>
-<p>visibility 是继承属性，<strong>要注意若将其子元素设为 <code>visibility: visible</code>，则该子元素依然可见。</strong></p>
-<p>display 若父元素设置为 <code>none</code> ，子元素也随之隐藏。</p>
-</li>
-<li><p>页面修改相关值后，是否会重新渲染</p>
-<p>visibility 不会重新渲染，</p>
-<p>display 会重新渲染</p>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/display<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL3Zpc2liaWxpdHk=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>备战校招第九天</title>
     <url>/posts/f2d0bee5/</url>
     <content><![CDATA[<ul>
@@ -2692,6 +2649,49 @@
         <tag>js</tag>
         <tag>盒模型</tag>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>备战校招第八天</title>
+    <url>/posts/881d9fba/</url>
+    <content><![CDATA[<ul>
+<li><code>display:none</code> 和 <code>visibilty: hidden</code> 区别</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+
+
+<h2 id="display-none-和-visibility-hidden-区别"><a href="#display-none-和-visibility-hidden-区别" class="headerlink" title="display:none 和 visibility: hidden 区别"></a><code>display:none</code> 和 <code>visibility: hidden</code> 区别</h2><p>代码</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;visibility: hidden;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;display: none;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>显示如下</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730115508.png" alt="image-20200730115503519"></p>
+<p>可以看出</p>
+<ul>
+<li><p>占据位置</p>
+<p>visibility 隐藏元素而不更改文档的布局，相当于此元素变成透明。</p>
+<p>display 直接将元素完全隐藏（就好像这个元素不存在一样）。</p>
+</li>
+<li><p>属性继承</p>
+<p>visibility 是继承属性，<strong>要注意若将其子元素设为 <code>visibility: visible</code>，则该子元素依然可见。</strong></p>
+<p>display 若父元素设置为 <code>none</code> ，子元素也随之隐藏。</p>
+</li>
+<li><p>页面修改相关值后，是否会重新渲染</p>
+<p>visibility 不会重新渲染，</p>
+<p>display 会重新渲染</p>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/display<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL3Zpc2liaWxpdHk=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
       </tags>
   </entry>
   <entry>
