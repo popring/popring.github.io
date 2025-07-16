@@ -1,5 +1,5 @@
 ---
-title: SEO 相关
+title: SEO 优化
 categories: 技术
 abbrlink: e092deb0
 date: 2025-05-27 22:55:44
@@ -15,6 +15,26 @@ tags:
 google 文档：https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=zh-cn
 
 <!-- more -->
+
+常用网站：
+
+[Google Search Console](https://search.google.com/search-console/welcome?hl=zh-cn)：Google 官方的 `SEO` 工具
+
+[百度站长平台](https://ziyuan.baidu.com/property/index)：百度官方的 `SEO` 工具，可以查看网站的 `SEO` 状态，关键词排名，竞争对手等。
+
+[Bing Webmasters](https://www.bing.com/webmasters/searchperf)：Bing 官方的 `SEO` 工具，可以查看网站的 `SEO` 状态，关键词排名，竞争对手等。
+
+
+[aitdk](https://aitdk.com/zh)： 插件，可以查看网站的 `SEO` 状态，有一些小工具也可以生成更适合的 SEO 标题和描述等。
+
+[Google Analytics](https://analytics.google.com/analytics/web/)： 查看网站的流量来源，用户行为等。
+
+[Ahrefs](https://ahrefs.com/)： 查看网站的 `SEO` 状态，关键词排名，竞争对手等，也有一些免费的小工具，比如 `Site Audit` 可以查看网站的 `SEO` 状态，`Keyword Explorer` 可以查看关键词排名，竞争对手等。
+
+[Semrush](https://zh.semrush.com/projects/)：比 `Ahrefs` 更全面，但是需要付费。
+
+
+以下是总结的 `ahrefs` 的 `SEO` 系列文章，有兴趣的可以看看。
 
 ## 一、搜索引擎工作机制（理解原理）
 
