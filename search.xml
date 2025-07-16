@@ -2361,6 +2361,49 @@
       </tags>
   </entry>
   <entry>
+    <title>备战校招第八天</title>
+    <url>/posts/881d9fba/</url>
+    <content><![CDATA[<ul>
+<li><code>display:none</code> 和 <code>visibilty: hidden</code> 区别</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+
+
+<h2 id="display-none-和-visibility-hidden-区别"><a href="#display-none-和-visibility-hidden-区别" class="headerlink" title="display:none 和 visibility: hidden 区别"></a><code>display:none</code> 和 <code>visibility: hidden</code> 区别</h2><p>代码</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;visibility: hidden;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;display: none;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>显示如下</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730115508.png" alt="image-20200730115503519"></p>
+<p>可以看出</p>
+<ul>
+<li><p>占据位置</p>
+<p>visibility 隐藏元素而不更改文档的布局，相当于此元素变成透明。</p>
+<p>display 直接将元素完全隐藏（就好像这个元素不存在一样）。</p>
+</li>
+<li><p>属性继承</p>
+<p>visibility 是继承属性，<strong>要注意若将其子元素设为 <code>visibility: visible</code>，则该子元素依然可见。</strong></p>
+<p>display 若父元素设置为 <code>none</code> ，子元素也随之隐藏。</p>
+</li>
+<li><p>页面修改相关值后，是否会重新渲染</p>
+<p>visibility 不会重新渲染，</p>
+<p>display 会重新渲染</p>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/display<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL3Zpc2liaWxpdHk=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备战校招第七天</title>
     <url>/posts/7f76b7f9/</url>
     <content><![CDATA[<ul>
@@ -2649,49 +2692,6 @@
         <tag>js</tag>
         <tag>盒模型</tag>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>备战校招第八天</title>
-    <url>/posts/881d9fba/</url>
-    <content><![CDATA[<ul>
-<li><code>display:none</code> 和 <code>visibilty: hidden</code> 区别</li>
-</ul>
-<hr>
-<span id="more"></span>
-
-
-
-<h2 id="display-none-和-visibility-hidden-区别"><a href="#display-none-和-visibility-hidden-区别" class="headerlink" title="display:none 和 visibility: hidden 区别"></a><code>display:none</code> 和 <code>visibility: hidden</code> 区别</h2><p>代码</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;visibility: hidden;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第一个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;display: none;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>第二个ul<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>显示如下</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730115508.png" alt="image-20200730115503519"></p>
-<p>可以看出</p>
-<ul>
-<li><p>占据位置</p>
-<p>visibility 隐藏元素而不更改文档的布局，相当于此元素变成透明。</p>
-<p>display 直接将元素完全隐藏（就好像这个元素不存在一样）。</p>
-</li>
-<li><p>属性继承</p>
-<p>visibility 是继承属性，<strong>要注意若将其子元素设为 <code>visibility: visible</code>，则该子元素依然可见。</strong></p>
-<p>display 若父元素设置为 <code>none</code> ，子元素也随之隐藏。</p>
-</li>
-<li><p>页面修改相关值后，是否会重新渲染</p>
-<p>visibility 不会重新渲染，</p>
-<p>display 会重新渲染</p>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/display<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL3Zpc2liaWxpdHk=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -4692,23 +4692,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>powershell 常用命令</title>
-    <url>/posts/50e64c9a/</url>
-    <content><![CDATA[<p>开启管理员模式</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
-
-<p>删除文件夹</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>powershell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>react+antd 项目笔记</title>
     <url>/posts/e6509c17/</url>
     <content><![CDATA[<blockquote>
@@ -4889,6 +4872,23 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>powershell 常用命令</title>
+    <url>/posts/50e64c9a/</url>
+    <content><![CDATA[<p>开启管理员模式</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
+
+<p>删除文件夹</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>powershell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>react-ts 重构笔记</title>
     <url>/posts/dffba461/</url>
     <content><![CDATA[<p>先前的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BvcHJpbmcvb2ZvLW1zL3RyZWUvb2ZvLW1zLWpz">小黄车后台管理系统<i class="fa fa-external-link-alt"></i></span> ，开发完成后，现看来，目录过于复杂，代码冗余，对强迫症的我来说，实属看不下去了，趁着过年有时间，使用 ts 进行了重构，并在之前的基础上对 <code>react </code> 和 <code>typescript</code> 有了进一步的理解。</p>
@@ -4959,35 +4959,7 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>scrollTop值为0等疑难杂症</title>
-    <url>/posts/e6bf74e4/</url>
-    <content><![CDATA[<p> 自测有效果</p>
-<p>IE: <code>document.documentElement.scrollTop</code></p>
-<p>edge: <code>document.body.scrollTop</code></p>
-<p>Firefox: <code>document.documentElement.scrollTop</code></p>
-<span id="more"></span>
-
-<p><strong>IE6&#x2F;7&#x2F;8&#x2F;9&#x2F;10：</strong></p>
-<p>对于没有doctype声明的页面里可以使用 document.body.scrollTop 来获取 scrollTop高度 ；<br>对于有<code>doctype</code>声明的页面则可以使用 <code>document.documentElement.scrollTop</code> ；</p>
-<p><strong>Safari:</strong></p>
-<p>safari 比较特别，有自己获取<code>scrollTop</code>的函数 ： <code>window.pageYOffset</code> ；</p>
-<p><strong>Firefox:</strong></p>
-<p>火狐等等相对标准些的浏览器就省心多了，直接用 document.documentElement.scrollTop</p>
-<p><strong>chrome</strong></p>
-<p><code>document.body.scrollTop</code></p>
-<p>or</p>
-<p><code>document.documentElement.scrollTop</code></p>
-<p><strong>总结，一行代码解决兼容性</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sTop=<span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span>+<span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span>;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>浏览器兼容性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SEO 相关</title>
+    <title>SEO 优化</title>
     <url>/posts/e092deb0/</url>
     <content><![CDATA[<p><code>ahrefs</code> 的 <code>SEO</code> 系列文章讲的挺好，推荐</p>
 <p>英文：<span class="exturl" data-url="aHR0cHM6Ly9haHJlZnMuY29tL2Jsb2cvaG93LWRvLXNlYXJjaC1lbmdpbmVzLXdvcmsv">https://ahrefs.com/blog/how-do-search-engines-work/<i class="fa fa-external-link-alt"></i></span></p>
@@ -4995,6 +4967,15 @@ JavaScript 高级程序设计</p>
 <p>google 文档：<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmdvb2dsZS5jb20vc2VhcmNoL2RvY3MvZnVuZGFtZW50YWxzL3Nlby1zdGFydGVyLWd1aWRlP2hsPXpoLWNu">https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=zh-cn<i class="fa fa-external-link-alt"></i></span></p>
 <span id="more"></span>
 
+<p>常用网站：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zZWFyY2guZ29vZ2xlLmNvbS9zZWFyY2gtY29uc29sZS93ZWxjb21lP2hsPXpoLWNu">Google Search Console<i class="fa fa-external-link-alt"></i></span>：Google 官方的 <code>SEO</code> 工具</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aXl1YW4uYmFpZHUuY29tL3Byb3BlcnR5L2luZGV4">百度站长平台<i class="fa fa-external-link-alt"></i></span>：百度官方的 <code>SEO</code> 工具，可以查看网站的 <code>SEO</code> 状态，关键词排名，竞争对手等。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluZy5jb20vd2VibWFzdGVycy9zZWFyY2hwZXJm">Bing Webmasters<i class="fa fa-external-link-alt"></i></span>：Bing 官方的 <code>SEO</code> 工具，可以查看网站的 <code>SEO</code> 状态，关键词排名，竞争对手等。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9haXRkay5jb20vemg=">aitdk<i class="fa fa-external-link-alt"></i></span>： 插件，可以查看网站的 <code>SEO</code> 状态，有一些小工具也可以生成更适合的 SEO 标题和描述等。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9hbmFseXRpY3MuZ29vZ2xlLmNvbS9hbmFseXRpY3Mvd2ViLw==">Google Analytics<i class="fa fa-external-link-alt"></i></span>： 查看网站的流量来源，用户行为等。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9haHJlZnMuY29tLw==">Ahrefs<i class="fa fa-external-link-alt"></i></span>： 查看网站的 <code>SEO</code> 状态，关键词排名，竞争对手等，也有一些免费的小工具，比如 <code>Site Audit</code> 可以查看网站的 <code>SEO</code> 状态，<code>Keyword Explorer</code> 可以查看关键词排名，竞争对手等。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aC5zZW1ydXNoLmNvbS9wcm9qZWN0cy8=">Semrush<i class="fa fa-external-link-alt"></i></span>：比 <code>Ahrefs</code> 更全面，但是需要付费。</p>
+<p>以下是总结的 <code>ahrefs</code> 的 <code>SEO</code> 系列文章，有兴趣的可以看看。</p>
 <h2 id="一、搜索引擎工作机制（理解原理）"><a href="#一、搜索引擎工作机制（理解原理）" class="headerlink" title="一、搜索引擎工作机制（理解原理）"></a>一、搜索引擎工作机制（理解原理）</h2><h3 id="1-搜索引擎的三大核心流程"><a href="#1-搜索引擎的三大核心流程" class="headerlink" title="1. 搜索引擎的三大核心流程"></a>1. 搜索引擎的三大核心流程</h3><ul>
 <li><strong>抓取（Crawl）</strong>：爬虫程序访问网页并下载内容。</li>
 <li><strong>索引（Index）</strong>：处理并存储网页信息，加入搜索索引库。</li>
@@ -5111,6 +5092,34 @@ JavaScript 高级程序设计</p>
       <categories>
         <category>技术</category>
       </categories>
+  </entry>
+  <entry>
+    <title>scrollTop值为0等疑难杂症</title>
+    <url>/posts/e6bf74e4/</url>
+    <content><![CDATA[<p> 自测有效果</p>
+<p>IE: <code>document.documentElement.scrollTop</code></p>
+<p>edge: <code>document.body.scrollTop</code></p>
+<p>Firefox: <code>document.documentElement.scrollTop</code></p>
+<span id="more"></span>
+
+<p><strong>IE6&#x2F;7&#x2F;8&#x2F;9&#x2F;10：</strong></p>
+<p>对于没有doctype声明的页面里可以使用 document.body.scrollTop 来获取 scrollTop高度 ；<br>对于有<code>doctype</code>声明的页面则可以使用 <code>document.documentElement.scrollTop</code> ；</p>
+<p><strong>Safari:</strong></p>
+<p>safari 比较特别，有自己获取<code>scrollTop</code>的函数 ： <code>window.pageYOffset</code> ；</p>
+<p><strong>Firefox:</strong></p>
+<p>火狐等等相对标准些的浏览器就省心多了，直接用 document.documentElement.scrollTop</p>
+<p><strong>chrome</strong></p>
+<p><code>document.body.scrollTop</code></p>
+<p>or</p>
+<p><code>document.documentElement.scrollTop</code></p>
+<p><strong>总结，一行代码解决兼容性</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sTop=<span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span>+<span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span>;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>浏览器兼容性</tag>
+      </tags>
   </entry>
   <entry>
     <title>TypeScript总结</title>
@@ -6214,6 +6223,34 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>通过loader实现打包优化</title>
+    <url>/posts/bffc2e83/</url>
+    <content><![CDATA[<blockquote>
+<p>一句话总结：通过配置 <code>pitching-loader</code> 实现按需打包，实现开发模式下打包加速。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在翻项目代码时，发现了个比较有意思的设计，总结下来。</p>
+<p>适用于当前端项目单一仓库项目比较庞大，而且还是SPA页面时，需要解决使用 <code>webpack</code> 打包会非常之缓慢问题。</p>
+<p>若前端项目页面刚好是按照业务维度划分，所以只需要按照启动时配置秩序打包指定文件夹即可。</p>
+<h2 id="解法思路"><a href="#解法思路" class="headerlink" title="解法思路"></a>解法思路</h2><p>使用 <code>webpack</code> 自定义 <code>loader</code> 过滤跳过打包文件，进而加快打包速度。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcvYXBpL2xvYWRlcnMjcGl0Y2hpbmctbG9hZGVy">pitching-loader<i class="fa fa-external-link-alt"></i></span> 刚好可以在处理前进行判断，具体可看官方。</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>通过 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25ldXRyaW5vanMvd2VicGFjay1jaGFpbg==">webpack-chain<i class="fa fa-external-link-alt"></i></span> 进行修改 <code>webpack</code> 配置。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在开发环境下配置一个自定义loader</span></span><br><span class="line"><span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">BUILD_ENV</span> === <span class="string">&#x27;development&#x27;</span>) &#123;</span><br><span class="line">  chain.<span class="property">module</span>.<span class="title function_">rule</span>(<span class="string">&#x27;vue&#x27;</span>).<span class="title function_">use</span>(<span class="string">&#x27;vue-loader-v15&#x27;</span>).<span class="title function_">loader</span>(<span class="built_in">require</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;./loaders/partial-loader.js&#x27;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// partial-loader.js 实现</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// SUB_APP 为当前启动需运行的项目（需打包的文件夹名）</span></span><br><span class="line"><span class="keyword">const</span> knownModule = [</span><br><span class="line">  <span class="string">&#x27;folder-a&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;folder-b&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;folder-c&#x27;</span>,</span><br><span class="line">].<span class="title function_">filter</span>(<span class="function"><span class="params">i</span> =&gt;</span> i !== process.<span class="property">env</span>.<span class="property">SUB_APP</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需排除打包的文件夹名称</span></span><br><span class="line"><span class="keyword">let</span> excluded = [...knownModule]</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isSkippedPartial</span>(<span class="params"><span class="variable language_">module</span>, resourceQuery, resourcePath</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> isForceLoad = resourceQuery &amp;&amp; resourceQuery.<span class="title function_">indexOf</span>(<span class="string">&#x27;force&#x27;</span>) &gt; -<span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> (isForceLoad) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&#x27;强制 build&#x27;</span>, resourcePath)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> includedReg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">`^((?!<span class="subst">$&#123;excluded.join(<span class="string">&#x27;|&#x27;</span>)&#125;</span>).)*$`</span>)</span><br><span class="line">  <span class="keyword">const</span> isExluded = resourcePath &amp;&amp; !resourcePath.<span class="title function_">match</span>(includedReg)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!isForceLoad &amp;&amp; isExluded) &#123;</span><br><span class="line">    <span class="keyword">let</span> requiredByRoute = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> issuer = <span class="variable language_">module</span>.<span class="property">issuer</span></span><br><span class="line">      <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">      <span class="keyword">while</span> (i &lt; <span class="number">6</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!issuer) &#123;</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (issuer.<span class="property">resource</span>.<span class="title function_">endsWith</span>(<span class="string">&#x27;routes.config.js&#x27;</span>)) &#123;</span><br><span class="line">          requiredByRoute = <span class="literal">true</span></span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        issuer = issuer.<span class="property">issuer</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">      requiredByRoute = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (requiredByRoute) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&#x27;忽略 build&#x27;</span>, resourcePath)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function"><span class="params">code</span> =&gt;</span> code</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">pitch</span> = <span class="keyword">function</span> <span class="title function_">pitch</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">isSkippedPartial</span>(<span class="variable language_">this</span>.<span class="property">_module</span>, <span class="variable language_">this</span>.<span class="property">resourceQuery</span>, <span class="variable language_">this</span>.<span class="property">resourcePath</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcvY29udHJpYnV0ZS93cml0aW5nLWEtbG9hZGVyLw==">编写 loader<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>指令示调起一个弹窗Vue和React版本（未完成版）</title>
     <url>/posts/51cf0c91/</url>
     <content><![CDATA[<p>该功能在Vue、React版本实现起来思路一致。</p>
@@ -6264,34 +6301,6 @@ JavaScript 高级程序设计</p>
 ]]></content>
       <tags>
         <tag>Vue, react</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>通过loader实现打包优化</title>
-    <url>/posts/bffc2e83/</url>
-    <content><![CDATA[<blockquote>
-<p>一句话总结：通过配置 <code>pitching-loader</code> 实现按需打包，实现开发模式下打包加速。</p>
-</blockquote>
-<span id="more"></span>
-
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在翻项目代码时，发现了个比较有意思的设计，总结下来。</p>
-<p>适用于当前端项目单一仓库项目比较庞大，而且还是SPA页面时，需要解决使用 <code>webpack</code> 打包会非常之缓慢问题。</p>
-<p>若前端项目页面刚好是按照业务维度划分，所以只需要按照启动时配置秩序打包指定文件夹即可。</p>
-<h2 id="解法思路"><a href="#解法思路" class="headerlink" title="解法思路"></a>解法思路</h2><p>使用 <code>webpack</code> 自定义 <code>loader</code> 过滤跳过打包文件，进而加快打包速度。</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcvYXBpL2xvYWRlcnMjcGl0Y2hpbmctbG9hZGVy">pitching-loader<i class="fa fa-external-link-alt"></i></span> 刚好可以在处理前进行判断，具体可看官方。</p>
-<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>通过 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25ldXRyaW5vanMvd2VicGFjay1jaGFpbg==">webpack-chain<i class="fa fa-external-link-alt"></i></span> 进行修改 <code>webpack</code> 配置。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在开发环境下配置一个自定义loader</span></span><br><span class="line"><span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">BUILD_ENV</span> === <span class="string">&#x27;development&#x27;</span>) &#123;</span><br><span class="line">  chain.<span class="property">module</span>.<span class="title function_">rule</span>(<span class="string">&#x27;vue&#x27;</span>).<span class="title function_">use</span>(<span class="string">&#x27;vue-loader-v15&#x27;</span>).<span class="title function_">loader</span>(<span class="built_in">require</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;./loaders/partial-loader.js&#x27;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// partial-loader.js 实现</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// SUB_APP 为当前启动需运行的项目（需打包的文件夹名）</span></span><br><span class="line"><span class="keyword">const</span> knownModule = [</span><br><span class="line">  <span class="string">&#x27;folder-a&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;folder-b&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;folder-c&#x27;</span>,</span><br><span class="line">].<span class="title function_">filter</span>(<span class="function"><span class="params">i</span> =&gt;</span> i !== process.<span class="property">env</span>.<span class="property">SUB_APP</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需排除打包的文件夹名称</span></span><br><span class="line"><span class="keyword">let</span> excluded = [...knownModule]</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isSkippedPartial</span>(<span class="params"><span class="variable language_">module</span>, resourceQuery, resourcePath</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> isForceLoad = resourceQuery &amp;&amp; resourceQuery.<span class="title function_">indexOf</span>(<span class="string">&#x27;force&#x27;</span>) &gt; -<span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span> (isForceLoad) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&#x27;强制 build&#x27;</span>, resourcePath)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> includedReg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">`^((?!<span class="subst">$&#123;excluded.join(<span class="string">&#x27;|&#x27;</span>)&#125;</span>).)*$`</span>)</span><br><span class="line">  <span class="keyword">const</span> isExluded = resourcePath &amp;&amp; !resourcePath.<span class="title function_">match</span>(includedReg)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!isForceLoad &amp;&amp; isExluded) &#123;</span><br><span class="line">    <span class="keyword">let</span> requiredByRoute = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> issuer = <span class="variable language_">module</span>.<span class="property">issuer</span></span><br><span class="line">      <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">      <span class="keyword">while</span> (i &lt; <span class="number">6</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!issuer) &#123;</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (issuer.<span class="property">resource</span>.<span class="title function_">endsWith</span>(<span class="string">&#x27;routes.config.js&#x27;</span>)) &#123;</span><br><span class="line">          requiredByRoute = <span class="literal">true</span></span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        issuer = issuer.<span class="property">issuer</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">      requiredByRoute = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (requiredByRoute) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&#x27;忽略 build&#x27;</span>, resourcePath)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function"><span class="params">code</span> =&gt;</span> code</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">pitch</span> = <span class="keyword">function</span> <span class="title function_">pitch</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">isSkippedPartial</span>(<span class="variable language_">this</span>.<span class="property">_module</span>, <span class="variable language_">this</span>.<span class="property">resourceQuery</span>, <span class="variable language_">this</span>.<span class="property">resourcePath</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcvY29udHJpYnV0ZS93cml0aW5nLWEtbG9hZGVyLw==">编写 loader<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>性能优化</tag>
       </tags>
   </entry>
   <entry>
