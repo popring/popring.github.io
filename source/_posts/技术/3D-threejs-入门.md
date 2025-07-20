@@ -6,6 +6,58 @@ date: 2025-06-02 12:23:59
 tags:
 ---
 
+<!-- more -->
+
+[course: threejs-journey](https://threejs-journey.com/)
+
+## 动画
+
+使用相同的时间间隔来更新动画，可以保证动画的流畅性。
+
+方法一：
+
+```js
+let time = Date.now()
+
+const tick = () => {
+    const currentTime = Date.now()
+    const deltaTime = currentTime - time
+    time = currentTime
+
+    mesh.rotation.y += 0.001 * deltaTime
+    renderer.render(scene, camera)
+    window.requestAnimationFrame(tick)
+}
+
+tick()
+```
+
+方法二：
+
+```js
+const clock = new THREE.Clock()
+
+const tick = () => {
+    const elapsedTime = clock.getElapsedTime()
+    mesh.rotation.y = 0.001 * elapsedTime
+    renderer.render(scene, camera)
+    window.requestAnimationFrame(tick)
+}
+
+tick()
+```
+
+## 动画库
+
+- [gsap](https://greensock.com/gsap/)
+- [tween.js](https://github.com/tweenjs/tween.js/)
+
+
+
+---
+
+[zxg_神说要有光小册子](https://juejin.cn/book/7481132169944498226)
+
 ## 专业名词
 
 - Geometry：几何体，描述物体的形状
@@ -19,18 +71,7 @@ tags:
 - Group：组，用于将多个物体组合在一起，可以设置组的整体属性
 - Texture：纹理，用于给物体添加纹理
 - Shader：着色器，用于给物体添加着色
-
 - uv: 纹理坐标，用于描述纹理在物体上的位置
-
-## 步骤
-
-1. 创建 `Geometry` 和 `Material`，加入到 `Mesh` 中
-2. 创建 `Light` 光源
-3. 创建 `Scene` 场景，将 `Mesh` 和 `Light` 加入到 `Scene` 中
-4. 创建 `Camera` 相机
-5. 创建 `Renderer` 渲染器，将 `Scene` 和 `Camera` 渲染到屏幕上
-6. 创建 `OrbitControls` 控制相机（传入 `Camera` 和 `Renderer`），用于控制相机的位置和角度
-
 
 
 ## JavaScript module 技巧
@@ -58,6 +99,17 @@ import * as THREE from "https://esm.sh/three@0.174.0/build/three.module.js";
     console.log(THREE);
 </script>
 ```
+
+
+## 步骤
+
+1. 创建 `Geometry` 和 `Material`，加入到 `Mesh` 中
+2. 创建 `Light` 光源
+3. 创建 `Scene` 场景，将 `Mesh` 和 `Light` 加入到 `Scene` 中
+4. 创建 `Camera` 相机
+5. 创建 `Renderer` 渲染器，将 `Scene` 和 `Camera` 渲染到屏幕上
+6. 创建 `OrbitControls` 控制相机（传入 `Camera` 和 `Renderer`），用于控制相机的位置和角度
+
 
 ## 可视化控制
 
