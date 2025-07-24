@@ -52,6 +52,23 @@ tick()
 - [gsap](https://greensock.com/gsap/)
 - [tween.js](https://github.com/tweenjs/tween.js/)
 
+## debugUI
+
+- [dat.GUI](https://github.com/dataarts/dat.gui)
+- [lil-gui](https://github.com/georgealways/lil-gui)
+- [control-panel](https://github.com/freeman-lab/control-panel)
+- [ControlKit](https://github.com/automat/controlkit.js)
+- [Uil](https://github.com/lo-th/uil)
+- [Tweakpane](https://tweakpane.github.io/docs/)
+- [Guify](https://github.com/colejd/guify)
+- [Oui](https://github.com/wearekuva/oui)
+
+## find texture website
+
+- [poliigon.com](https://poliigon.com/)
+- [3dtextures.me](https://3dtextures.me/)
+- [arroway-textures.ch](https://www.arroway-textures.ch/)
+
 
 
 ---
