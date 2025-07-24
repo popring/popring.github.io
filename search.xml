@@ -1686,6 +1686,67 @@
       </tags>
   </entry>
   <entry>
+    <title>备战校招第十二天</title>
+    <url>/posts/5357f097/</url>
+    <content><![CDATA[<ul>
+<li>RESTful API</li>
+<li>Vue 双向数据绑定原理</li>
+<li>元素的 margin&#x2F;padding 的百分比值 是基于父元素的宽度</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+
+
+<h2 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h2><h3 id="出现原因"><a href="#出现原因" class="headerlink" title="出现原因"></a>出现原因</h3><p>前后端分离，而前端设备又有很多，需要一种统一的机制，来进行规范。</p>
+<h3 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h3><ul>
+<li><code>API</code> 放于专用域名，或主域名下的二级路径</li>
+<li>版本号也要放于网址中</li>
+<li>每个网址代表一个资源（<code>Resource</code>），所以网址中只能包括名词，若表示集合应为复数</li>
+<li><code>HTTP</code> 动词<ul>
+<li>GET（SELECT）：从服务器取出资源（一项或多项）。</li>
+<li>POST（CREATE）：在服务器新建一个资源。</li>
+<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。</li>
+<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。</li>
+<li>DELETE（DELETE）：从服务器删除资源。</li>
+<li>HEAD：获取资源的元数据。</li>
+<li>OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。</li>
+</ul>
+</li>
+<li>根据提供参数，筛选返回结果，两种可选提供方式<ul>
+<li>params 参数，例如：<code>/api/animals/monkey</code></li>
+<li>query 参数，例如：<code>/api/animals/?animal=monkey</code></li>
+</ul>
+</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSFRUUC9TdGF0dXM=">状态码<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><ul>
+<li>Hypermedia API，返回结果中提供链接，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。</li>
+<li>服务器返回的交互数据格式应为 <code>json</code> ，避免使用 <code>XML</code></li>
+</ul>
+<h2 id="Vue-双向数据绑定原理"><a href="#Vue-双向数据绑定原理" class="headerlink" title="Vue 双向数据绑定原理"></a>Vue 双向数据绑定原理</h2><ul>
+<li>首先需要将数据变得可检测状态，使用函数 <code>Object.defineProperty</code> 进行 <code>Observe</code></li>
+<li><code>Object.defineProperty</code> 中最后一个参数中有两个特殊的属性，分别是 <code>set</code> 和 <code>get</code>，在<code>get</code> 中收集依赖，<code>set</code> 中通知更新</li>
+<li>并为每一个数据都建立一个依赖管理器 <code>Dep</code></li>
+<li>谁用到数据谁就是依赖，就为谁创建一个 <code>Watcher</code></li>
+<li>为每一个依赖创建一个 <code>Watcher</code> 实例，当数据发生变化，通知 <code>Watcher</code> 实例，由 <code>Watcher</code> 实例去做真实的更新操作</li>
+</ul>
+<p><img data-src="https://vue-js.com/learn-vue/assets/img/3.0b99330d.jpg" alt="具体步骤看图"></p>
+<h2 id="子元素的-margin-padding-的百分比值-是基于父元素的宽度"><a href="#子元素的-margin-padding-的百分比值-是基于父元素的宽度" class="headerlink" title="子元素的 margin&#x2F;padding 的百分比值 是基于父元素的宽度"></a>子元素的 margin&#x2F;padding 的百分比值 是基于父元素的宽度</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>resetful <span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMTQvMDUvcmVzdGZ1bF9hcGkuaHRtbA==">http://www.ruanyifeng.com/blog/2014/05/restful_api.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>Vue 双向数据绑定原理</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly92dWUtanMuY29tL2xlYXJuLXZ1ZS9yZWFjdGl2ZS9vYmplY3QuaHRtbCNfMS0lRTUlODklOEQlRTglQTglODA=">https://vue-js.com/learn-vue/reactive/object.html#_1-%E5%89%8D%E8%A8%80<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tZXNzaWFoaGguZ2l0aHViLmlvL2Jsb2cvZnJvbnRlbmQvdnVlLmh0bWwjdnVlJUU1JThGJThDJUU1JTkwJTkxJUU3JUJCJTkxJUU1JUFFJTlBJUU3JTlBJTg0JUU1JThFJTlGJUU3JTkwJTg2">https://messiahhh.github.io/blog/frontend/vue.html#vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E7%9A%84%E5%8E%9F%E7%90%86<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备战校招第二天</title>
     <url>/posts/5dd5f4cf/</url>
     <content><![CDATA[<ol>
@@ -1836,67 +1897,6 @@
       </tags>
   </entry>
   <entry>
-    <title>备战校招第十二天</title>
-    <url>/posts/5357f097/</url>
-    <content><![CDATA[<ul>
-<li>RESTful API</li>
-<li>Vue 双向数据绑定原理</li>
-<li>元素的 margin&#x2F;padding 的百分比值 是基于父元素的宽度</li>
-</ul>
-<hr>
-<span id="more"></span>
-
-
-
-<h2 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h2><h3 id="出现原因"><a href="#出现原因" class="headerlink" title="出现原因"></a>出现原因</h3><p>前后端分离，而前端设备又有很多，需要一种统一的机制，来进行规范。</p>
-<h3 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h3><ul>
-<li><code>API</code> 放于专用域名，或主域名下的二级路径</li>
-<li>版本号也要放于网址中</li>
-<li>每个网址代表一个资源（<code>Resource</code>），所以网址中只能包括名词，若表示集合应为复数</li>
-<li><code>HTTP</code> 动词<ul>
-<li>GET（SELECT）：从服务器取出资源（一项或多项）。</li>
-<li>POST（CREATE）：在服务器新建一个资源。</li>
-<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。</li>
-<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。</li>
-<li>DELETE（DELETE）：从服务器删除资源。</li>
-<li>HEAD：获取资源的元数据。</li>
-<li>OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。</li>
-</ul>
-</li>
-<li>根据提供参数，筛选返回结果，两种可选提供方式<ul>
-<li>params 参数，例如：<code>/api/animals/monkey</code></li>
-<li>query 参数，例如：<code>/api/animals/?animal=monkey</code></li>
-</ul>
-</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSFRUUC9TdGF0dXM=">状态码<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><ul>
-<li>Hypermedia API，返回结果中提供链接，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。</li>
-<li>服务器返回的交互数据格式应为 <code>json</code> ，避免使用 <code>XML</code></li>
-</ul>
-<h2 id="Vue-双向数据绑定原理"><a href="#Vue-双向数据绑定原理" class="headerlink" title="Vue 双向数据绑定原理"></a>Vue 双向数据绑定原理</h2><ul>
-<li>首先需要将数据变得可检测状态，使用函数 <code>Object.defineProperty</code> 进行 <code>Observe</code></li>
-<li><code>Object.defineProperty</code> 中最后一个参数中有两个特殊的属性，分别是 <code>set</code> 和 <code>get</code>，在<code>get</code> 中收集依赖，<code>set</code> 中通知更新</li>
-<li>并为每一个数据都建立一个依赖管理器 <code>Dep</code></li>
-<li>谁用到数据谁就是依赖，就为谁创建一个 <code>Watcher</code></li>
-<li>为每一个依赖创建一个 <code>Watcher</code> 实例，当数据发生变化，通知 <code>Watcher</code> 实例，由 <code>Watcher</code> 实例去做真实的更新操作</li>
-</ul>
-<p><img data-src="https://vue-js.com/learn-vue/assets/img/3.0b99330d.jpg" alt="具体步骤看图"></p>
-<h2 id="子元素的-margin-padding-的百分比值-是基于父元素的宽度"><a href="#子元素的-margin-padding-的百分比值-是基于父元素的宽度" class="headerlink" title="子元素的 margin&#x2F;padding 的百分比值 是基于父元素的宽度"></a>子元素的 margin&#x2F;padding 的百分比值 是基于父元素的宽度</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>resetful <span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMTQvMDUvcmVzdGZ1bF9hcGkuaHRtbA==">http://www.ruanyifeng.com/blog/2014/05/restful_api.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>Vue 双向数据绑定原理</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly92dWUtanMuY29tL2xlYXJuLXZ1ZS9yZWFjdGl2ZS9vYmplY3QuaHRtbCNfMS0lRTUlODklOEQlRTglQTglODA=">https://vue-js.com/learn-vue/reactive/object.html#_1-%E5%89%8D%E8%A8%80<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tZXNzaWFoaGguZ2l0aHViLmlvL2Jsb2cvZnJvbnRlbmQvdnVlLmh0bWwjdnVlJUU1JThGJThDJUU1JTkwJTkxJUU3JUJCJTkxJUU1JUFFJTlBJUU3JTlBJTg0JUU1JThFJTlGJUU3JTkwJTg2">https://messiahhh.github.io/blog/frontend/vue.html#vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E7%9A%84%E5%8E%9F%E7%90%86<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>备战校招第三天</title>
     <url>/posts/10cb579d/</url>
     <content><![CDATA[<ol>
@@ -2043,8 +2043,8 @@
       </categories>
       <tags>
         <tag>性能</tag>
-        <tag>布局</tag>
         <tag>http</tag>
+        <tag>布局</tag>
         <tag>闭包</tag>
         <tag>缓存</tag>
       </tags>
@@ -2695,48 +2695,6 @@
       </tags>
   </entry>
   <entry>
-    <title>2020年度总结</title>
-    <url>/posts/276e22e/</url>
-    <content><![CDATA[<p>写这篇文章的时候，已经在2021年的七月份了，也是拖延了半年才终才想起来。</p>
-<span id="more"></span>
-
-
-
-<h1 id="2020年度总结"><a href="#2020年度总结" class="headerlink" title="2020年度总结"></a>2020年度总结</h1><blockquote>
-<p>有些事情不是看到希望才会去坚持，而是坚持了才会看到希望。</p>
-</blockquote>
-<h2 id="github提交记录"><a href="#github提交记录" class="headerlink" title="github提交记录"></a>github提交记录</h2><blockquote>
-<p>主要还是在写毕设的项目，前端Vue+ElementUI，后端Express+Sequelize+MySQL</p>
-</blockquote>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702204903.png" alt="image-20210702204856883"></p>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>上半年因为疫情原因，就出了很多表情包，是蛮有趣的。🐶</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702213713.jpg" alt="mmexport1579599860300"></p>
-<p>也看到很多博主科普真假口罩，很不幸我就高价买过口罩，，</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702213849.png" alt="mask"></p>
-<h3 id="实习"><a href="#实习" class="headerlink" title="实习"></a>实习</h3><p>开学后，由于学校有课就没有抓住秋招，到了十月份学校的课程才结束，而那会儿秋招基本快已经结束，我才开始投简历。</p>
-<p>不出意外，投了很多简历石沉大海（当然一部分也是简历的原因）。</p>
-<p>知道大公司没戏之后，就投了几家小公司（说实话当然看着同学一个一个都出去实习，自己还是有点着急的）。</p>
-<p>最后我去了厦门。</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702222937.jpg" alt="P10223-143934"></p>
-<p>当时的老板还是比较认可我的，也给了我一些比较艰巨的任务，说实话我都不知道我怎么扛下来的，，作为实习生的我第一次接到大活，还是有点小慌，好在最后也做完了，没啥大问题。</p>
-<p>在实习这段时间自己也沉淀了很多东西，为后来的春招打下了基础，很多东西也都是写项目时候遇到真真实实存在的问题。当然对 <code>Vue</code> 全家桶的使用也越来越熟练，为了方便些业务，自己封装了几个组件、Vue的指令之类的，还有将 <code>ElementUI</code> 魔改（以后要维护这些代码的兄弟受苦了）。</p>
-<p>同时也是在厦门的这段时间，看到的大圣老师的早起打卡，渐渐的养成了早睡早起的习惯。晚上下班回家后，真的的没有经历去学习啥的，但早上却是一天的开始，读书学习精力很充沛，有时候不想看书就早起锻炼一下活动活动身体。</p>
-<h3 id="读书"><a href="#读书" class="headerlink" title="读书"></a>读书</h3><p>两个月时间把 <code>深入浅出Nodejs</code> 和 <code>白帽子讲Web攻防</code> 看完了，当然这两本书也只是看完第一遍了，很多东西只停留在了表面理解，还需后续的多刷几遍来加深理解。</p>
-<p>这一年，还看了两篇传记 <code>阿迅</code>、<code>平均分</code>，光鲜亮丽的面前，都是背后经过了不为人知的心酸。其中阿迅有一段写的很好，就摘抄出来了。</p>
-<blockquote>
-<p>曾经历了背叛，才知道忠诚的价值；曾直面了磨难，才激起奋斗的意志；曾被嘲笑损贬，才清楚尊重的意义；曾被四面围困，才倾听内心的声音；曾被病痛折磨，才领悟健康的攸关；曾感受了孤独，才珍惜真爱的陪伴；曾遭遇了绝望，才明白梦想的力量；曾经历了生死，才懂得因果的必然。</p>
-</blockquote>
-<h3 id="照片"><a href="#照片" class="headerlink" title="照片"></a>照片</h3><p>随手拍的几张不错的，就丢出来了。</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702225811.jpg" alt="P01120-060921"></p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702225821.jpg" alt="P01108-172257"></p>
-<h3 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h3><p>今年在技术上或许没啥好总结的，更多的是在原来技术上进行的一种熟练。</p>
-<p>遇到的问题也有输出成文章。（争取早日将文章补完😂）</p>
-]]></content>
-      <categories>
-        <category>年度总结</category>
-      </categories>
-  </entry>
-  <entry>
     <title>2019年度总结</title>
     <url>/posts/f982cd1d/</url>
     <content><![CDATA[<p>新的一年，应继续保持学习，计划</p>
@@ -2801,6 +2759,48 @@
 </ul>
 <hr>
 <p>来还愿，除了 深度学习 <code>vue</code> ，其他计划都圆满完成</p>
+]]></content>
+      <categories>
+        <category>年度总结</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>2020年度总结</title>
+    <url>/posts/276e22e/</url>
+    <content><![CDATA[<p>写这篇文章的时候，已经在2021年的七月份了，也是拖延了半年才终才想起来。</p>
+<span id="more"></span>
+
+
+
+<h1 id="2020年度总结"><a href="#2020年度总结" class="headerlink" title="2020年度总结"></a>2020年度总结</h1><blockquote>
+<p>有些事情不是看到希望才会去坚持，而是坚持了才会看到希望。</p>
+</blockquote>
+<h2 id="github提交记录"><a href="#github提交记录" class="headerlink" title="github提交记录"></a>github提交记录</h2><blockquote>
+<p>主要还是在写毕设的项目，前端Vue+ElementUI，后端Express+Sequelize+MySQL</p>
+</blockquote>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702204903.png" alt="image-20210702204856883"></p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>上半年因为疫情原因，就出了很多表情包，是蛮有趣的。🐶</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702213713.jpg" alt="mmexport1579599860300"></p>
+<p>也看到很多博主科普真假口罩，很不幸我就高价买过口罩，，</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702213849.png" alt="mask"></p>
+<h3 id="实习"><a href="#实习" class="headerlink" title="实习"></a>实习</h3><p>开学后，由于学校有课就没有抓住秋招，到了十月份学校的课程才结束，而那会儿秋招基本快已经结束，我才开始投简历。</p>
+<p>不出意外，投了很多简历石沉大海（当然一部分也是简历的原因）。</p>
+<p>知道大公司没戏之后，就投了几家小公司（说实话当然看着同学一个一个都出去实习，自己还是有点着急的）。</p>
+<p>最后我去了厦门。</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702222937.jpg" alt="P10223-143934"></p>
+<p>当时的老板还是比较认可我的，也给了我一些比较艰巨的任务，说实话我都不知道我怎么扛下来的，，作为实习生的我第一次接到大活，还是有点小慌，好在最后也做完了，没啥大问题。</p>
+<p>在实习这段时间自己也沉淀了很多东西，为后来的春招打下了基础，很多东西也都是写项目时候遇到真真实实存在的问题。当然对 <code>Vue</code> 全家桶的使用也越来越熟练，为了方便些业务，自己封装了几个组件、Vue的指令之类的，还有将 <code>ElementUI</code> 魔改（以后要维护这些代码的兄弟受苦了）。</p>
+<p>同时也是在厦门的这段时间，看到的大圣老师的早起打卡，渐渐的养成了早睡早起的习惯。晚上下班回家后，真的的没有经历去学习啥的，但早上却是一天的开始，读书学习精力很充沛，有时候不想看书就早起锻炼一下活动活动身体。</p>
+<h3 id="读书"><a href="#读书" class="headerlink" title="读书"></a>读书</h3><p>两个月时间把 <code>深入浅出Nodejs</code> 和 <code>白帽子讲Web攻防</code> 看完了，当然这两本书也只是看完第一遍了，很多东西只停留在了表面理解，还需后续的多刷几遍来加深理解。</p>
+<p>这一年，还看了两篇传记 <code>阿迅</code>、<code>平均分</code>，光鲜亮丽的面前，都是背后经过了不为人知的心酸。其中阿迅有一段写的很好，就摘抄出来了。</p>
+<blockquote>
+<p>曾经历了背叛，才知道忠诚的价值；曾直面了磨难，才激起奋斗的意志；曾被嘲笑损贬，才清楚尊重的意义；曾被四面围困，才倾听内心的声音；曾被病痛折磨，才领悟健康的攸关；曾感受了孤独，才珍惜真爱的陪伴；曾遭遇了绝望，才明白梦想的力量；曾经历了生死，才懂得因果的必然。</p>
+</blockquote>
+<h3 id="照片"><a href="#照片" class="headerlink" title="照片"></a>照片</h3><p>随手拍的几张不错的，就丢出来了。</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702225811.jpg" alt="P01120-060921"></p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20210702225821.jpg" alt="P01108-172257"></p>
+<h3 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h3><p>今年在技术上或许没啥好总结的，更多的是在原来技术上进行的一种熟练。</p>
+<p>遇到的问题也有输出成文章。（争取早日将文章补完😂）</p>
 ]]></content>
       <categories>
         <category>年度总结</category>
@@ -3274,28 +3274,311 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>AOP 相关</title>
-    <url>/posts/326cfd21/</url>
-    <content><![CDATA[<p>关键词： AOP, DI, IoC</p>
+    <title>em、rem和vw(vh)区别</title>
+    <url>/posts/efd120c3/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CSS的<strong>单位长度</strong>分为</p>
+<ul>
+<li>绝对长度单位</li>
+<li>相对长度单位</li>
+</ul>
+<p>其中</p>
+<p>绝对长度单位分为 <code>cm</code>（厘米）, <code>mm</code>（毫米）, <code>in</code>（英寸）. <code>pt</code>（点）, <code>px</code>（像素）</p>
+<p>相对长度单位分为 <code>em</code>（父元素字体大小）, <code>rem</code>（根元素字体大小）, <code>vw</code>（视窗宽度）, <code>vh</code>（视窗高度）</p>
+<p>大家都喜欢只对比 <code>em</code> 和 <code>rem</code> ，但 <code>vw</code> <code>vh</code> 也是属于绝对长度，并且也比较常用，所以这里我放在一起对比了。</p>
 <span id="more"></span>
 
-<h2 id="名词概念"><a href="#名词概念" class="headerlink" title="名词概念"></a>名词概念</h2><p>AOP：<code>Aspect-Oriented Programming</code> 面向切面编程，是一种编程范式，旨在通过分离横切关注点来实现（如日志、性能监控、安全检查等功能），提高系统模块化和可维护性。相比之下或许 OOP（面向对象编程） 可能会耳熟。</p>
-<p>DI：<code>Dependency Injection</code> 依赖注入，是一种软件设计模式，用于实现对象之间的解耦。它通过将对象的依赖（如服务、组件或资源）在创建时注入，而不是由对象自己直接创建或寻找依赖，从而提高代码的可测试性、可扩展性和灵活性。简单来说，依赖注入让对象不直接负责依赖的获取，而是由外部系统提供这些依赖。</p>
-<p>IoC：<code>Inversion of Control</code> 控制反转，是一种设计原则或架构模式，主要通过将对象的创建和依赖关系管理交由外部容器（如依赖注入容器）实现，从而降低模块之间的耦合度。它实现了对象控制权的“反转”——由框架或容器负责控制对象的生命周期和依赖，开发人员只需专注于业务逻辑。</p>
-<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>IoC是基础，提供对象的生命周期管理和依赖管理。<br>它为依赖注入提供了环境，确保对象的创建和依赖关系是由容器控制。</p>
-<p>DI是实现IoC的手段，注入依赖以实现松耦合。<br>通过DI，应用中的对象不再自行创建依赖，而是由容器在实例化时注入所需的依赖。</p>
-<p>AOP通常依赖于IoC和DI，借助容器在运行时动态管理和应用切面。<br>AOP框架（如Spring AOP）通常集成在依赖注入容器中，利用动态代理或字节码增强，在对象被创建后，通过容器自动应用切面。</p>
-<h2 id="JavaScript-AOP-实现"><a href="#JavaScript-AOP-实现" class="headerlink" title="JavaScript AOP 实现"></a>JavaScript AOP 实现</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29wZW5zdW1pL2Rp">opensumi&#x2F;di<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2N1am9qcy9tZWxk">meld<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTlEJUEyJUU1JTkwJTkxJUU1JTg4JTg3JUU5JTlEJUEyJUU3JTlBJTg0JUU3JUE4JThCJUU1JUJBJThGJUU4JUFFJUJFJUU4JUFFJUEx">AOP WIKI<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9vcGVuc3VtaS5jb20vemgvZG9jcy9kZXZlbG9wL2Jhc2ljLWRlc2lnbi9kZXBlbmRlbmNlLWluamVjdG9y">OpenSumi 依赖注入<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzODM4MTcyODM5OTQz">JavaScript中AOP的应用<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3RuaWNob2xhcy5kZXYvbm90ZXMvYXNwZWN0LW9yaWVudGVkLXByb2dyYW1taW5nLWluLWphdmFzY3JpcHQ=">Aspect-Oriented Programming in JavaScript - ctnicholas.dev<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmJpdHNyYy5pby9hc3BlY3Qtb3JpZW50ZWQtcHJvZ3JhbW1pbmctaW4tamF2YXNjcmlwdC1jNGNiNDNmNmJmY2M=">Aspect-Oriented Programming in JavaScript - bitsrc.io<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h2><p><code>vw</code> 和 <code>vh</code> 都是展现的为视窗的高度，也就是页面显示内容的总高度，分为 100 份</p>
+<blockquote>
+<p>假如你的页面显示宽度为 1920，那么当你设置你的元素为 <code>10vw</code> ，那么当前元素的宽度则为 192。</p>
+</blockquote>
+<p><strong>example</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>111<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css">	</span></span><br><span class="line"><span class="language-css">		* &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-id">#fa</span> &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">100vw</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;fa&quot;</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200328163110.png"></p>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p><code>em</code> ，<strong>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</strong></p>
+<p><a href="#show-you-code">代码</a></p>
+<p><strong>如果不定义元素自身字体大小，默认继承父节点字体大小</strong></p>
+<blockquote>
+<p>当父元素的字体设置为 <code>20px</code>，那么当前子元素的 <code>1em</code> 的值可以认为是 <code>20px</code> ，则可以得出 子元素设置宽度为 <code>5em</code> 可以换算成 <code>100px</code> </p>
+</blockquote>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p><code>rem</code> 和 <code>em</code> 他们不光像亲兄弟，因为他们的使用方法也很像。</p>
+<p><code>rem</code> 这里的 <code>r</code> 指的是 <code>root</code> ，连起来就是 <code>root em</code>。此时你应该可以理解了吧。</p>
+<p><code>rem</code> 是根据根节点元素的字体大小来定义的，这里的根节点通常指的是标签为 <code>html</code> 的元素。</p>
+<h2 id="show-you-code"><a href="#show-you-code" class="headerlink" title="show you code"></a>show you code</h2><iframe height="318" style="width: 100%;" scrolling="no" title="abOPEaE" src="https://codepen.io/popring/embed/abOPEaE?height=318&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/popring/pen/abOPEaE'>abOPEaE</a> by HarryHao
+  (<a href='https://codepen.io/popring'>@popring</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+
+
+<p>以上代码的 <code>fa</code> 代表父节点， <code>ch</code> 代表子节点</p>
+<p>根节点字体大小 <code>10px</code>，子节点（#ch）宽度为 <code>2rem</code>，转换后为 <code>20px</code></p>
+<p>父节点字体大小 <code>20px</code> ，子节点（#ch2）宽度为 <code>2em</code> ，转换后为 <code>40px</code></p>
+<p>父节点字体大小 <code>20px</code> ，子节点（#ch3）字体大小为 <code>15px</code>， 子节点（#ch3） 宽度为 <code>2em</code> ，转换后为 <code>30px</code></p>
+<p>Ending.</p>
 ]]></content>
       <categories>
-        <category>技术</category>
+        <category>简单聊</category>
       </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>get和post区别</title>
+    <url>/posts/f69ca482/</url>
+    <content><![CDATA[<ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+</ul>
+<p>额外可以聊</p>
+<ul>
+<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
+<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>https握手过程</title>
+    <url>/posts/1449f691/</url>
+    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
+<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
+<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
+<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
+<li>服务端使用自己的私钥，对随机数进行解密。</li>
+<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
+</ul>
+<p>细节</p>
+<ul>
+<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>v-if和v-show区别</title>
+    <url>/posts/e9ac0758/</url>
+    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
+<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
+<p>当条件变化时该指令触发过渡效果。</p>
+<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
+<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
+<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
+<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
+<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
+<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
+</ul>
+<p>关联文章：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIwLzEwLzE2L2Nzcy92aXNpYmlsaXR5LWhpZGRlbiVFMyU4MCU4MWRpc3BsYXktbm9uZSVFMyU4MCU4MW9wYWNpdHktMC0lRTUlOEMlQkElRTUlODglQUIv">visibility: hidden、display: none、opacity: 0 区别<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>setTimeout为什么会有延迟</title>
+    <url>/posts/9a771de5/</url>
+    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
+<p>其中 setTimeout 有两类用法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
+<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
+<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
+<p>其他影响 setTimout 延迟因素：</p>
+<ol>
+<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
+<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
+<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
+</ol>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>visibility: hidden、display: none、opacity: 0 区别</title>
+    <url>/posts/540f9cbc/</url>
+    <content><![CDATA[<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>做了以下的实验，可以得出结论，</p>
+<ul>
+<li><code>visibility: hidden;</code> 只是在视觉上隐藏，但没有影响布局，但绑定的事件也无法触发。</li>
+<li><code>display:none;</code> 元素被彻底隐藏，在页面上完全不显示，不占位，无宽高</li>
+<li><code>opacity: 0;</code> 只会修改元素透明度，并不影响布局及事件触发。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="样式属性"><a href="#样式属性" class="headerlink" title="样式属性"></a>样式属性</h2><h3 id="visibility"><a href="#visibility" class="headerlink" title="visibility"></a>visibility</h3><blockquote>
+<p>控制 显示&#x2F;隐藏 元素，不会影响布局。</p>
+</blockquote>
+<ul>
+<li><code>visible</code> 元素正常显示</li>
+<li><code>hidden</code> 隐藏元素，但不影响布局。<strong>子元素设置为 <code>visible</code> 则子元素仍然可见</strong></li>
+<li><code>collapse</code> 用于隐藏表格的行、列。</li>
+</ul>
+<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><blockquote>
+<p>官网介绍了很多类型，并且分为六大类，具体请看 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">MDN<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><code>display-outside </code> </li>
+<li><code>display-inside</code> </li>
+<li><code>display-listitem</code> </li>
+<li><code>display-internal</code></li>
+<li><code>display-legacy</code></li>
+<li><code>display-box</code></li>
+</ul>
+</blockquote>
+<p>这里就介绍一下常用的几个</p>
+<ul>
+<li><code>block</code> 将元素设置为块级元素</li>
+<li><code>inline</code> 将元素设置为行内元素</li>
+<li><code>inline-block</code> 将元素设置为行内块元素</li>
+<li><code>table</code> 表格样式</li>
+<li><code>flex</code> 弹性布局</li>
+<li><code>grid</code> 网格布局</li>
+<li><code>none</code> 使元素不显示（后代元素也将隐藏），不占位，切换则会影响布局。</li>
+</ul>
+<h3 id="opacity"><a href="#opacity" class="headerlink" title="opacity"></a>opacity</h3><blockquote>
+<p>更改元素的透明度（使用opacity属性，当属性值不为1时，会把元素放置在一个新的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvR3VpZGUvQ1NTL1VuZGVyc3RhbmRpbmdfel9pbmRleC9UaGVfc3RhY2tpbmdfY29udGV4dA==">层叠上下文<i class="fa fa-external-link-alt"></i></span>中。）</p>
+</blockquote>
+<ul>
+<li><code>number值</code> 此值应为 <code>0.0 ~ 1.0</code> 之间</li>
+</ul>
+<h2 id="三个样式隐藏的区别"><a href="#三个样式隐藏的区别" class="headerlink" title="三个样式隐藏的区别"></a>三个样式隐藏的区别</h2><p>原始代码</p>
+<blockquote>
+<p>在 box 外层加了一个 div 添加边框，更加可以直观的看出各个样式的区别。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016225256.png" alt="image-20201016225251216"></p>
+<h3 id="页面展示效果"><a href="#页面展示效果" class="headerlink" title="页面展示效果"></a>页面展示效果</h3><blockquote>
+<p>根据以上代码进行修改，将每个 box 添加以上三种的隐藏样式后效果</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: skyblue;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016230147.png" alt="image-20201016225828692"></p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016233415.png" alt="image-20201016233414985"></p>
+<p>可以看出，只有 <code>display: none;</code> 没有宽度了（尝试添加高度之后仍然没有显示出来）。而剩下的 <code>visibility: hidden;</code> <code>opacity: 0;</code> 仍然会占据位置（从外层 div 的边框线就可以看出来）。</p>
+<h3 id="性能区别"><a href="#性能区别" class="headerlink" title="性能区别"></a>性能区别</h3><blockquote>
+<p>以下<strong>切换样式</strong>指的就是样式从显示到隐藏或从隐藏到显示。</p>
+<p>比如： </p>
+<p>visibility: hidden; -&gt; visibility: visible;</p>
+<p>opacity: 0; -&gt; opacity: 1;</p>
+<p>display: block; -&gt; display: none;</p>
+</blockquote>
+<p>根据上述 页面展示效果 可以看出，<code>visibility: hidden;</code> <code>opacity: 0;</code> 只会对元素进行隐藏，并不会改变页面布局，所以如果<strong>切换样式</strong>只会造成<strong>页面重绘（repaint）</strong>并不会回流。</p>
+<p>而如果是修改 <code>display</code> 属性的话，则会影响布局，<strong>造成页面回流（reflow），同时也会造成重绘（repaint）</strong>。</p>
+<h3 id="点击效果"><a href="#点击效果" class="headerlink" title="点击效果"></a>点击效果</h3><blockquote>
+<p>根据以上代码，进行改造，添加 js 代码，用来监听点击事件，点击输出当前被点击元素的类名</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">visibility</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> box = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">`box<span class="subst">$&#123;i&#125;</span>`</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">      box.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">className</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后依次进行点击（第二个盒子因为完全隐藏，所以点击不到）</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016232532.png" alt="image-20201016232532906"></p>
+<p>看点击结果只有最后一个盒子被点击到。</p>
+<p>小结</p>
+<ul>
+<li><code>visibility: hidden;</code> <code>display:none;</code>无法被点击</li>
+<li><code>opacity: 0;</code> 可被点击</li>
+</ul>
+<p><a href="#%E7%BB%93%E8%AE%BA">结论在开头</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04=">MDN<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/posts/ababab9d/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>TCP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
+<span id="more"></span>
+
+
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可替换元素和不可替换元素</title>
+    <url>/posts/d6e0c31a/</url>
+    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
+<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
+<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
+<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
+<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+      </tags>
   </entry>
   <entry>
     <title>3D/threejs 入门</title>
@@ -3313,6 +3596,21 @@ JavaScript 高级程序设计</p>
 <h2 id="动画库"><a href="#动画库" class="headerlink" title="动画库"></a>动画库</h2><ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9ncmVlbnNvY2suY29tL2dzYXAv">gsap<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R3ZWVuanMvdHdlZW4uanMv">tween.js<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="debugUI"><a href="#debugUI" class="headerlink" title="debugUI"></a>debugUI</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhdGFhcnRzL2RhdC5ndWk=">dat.GUI<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dlb3JnZWFsd2F5cy9saWwtZ3Vp">lil-gui<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVtYW4tbGFiL2NvbnRyb2wtcGFuZWw=">control-panel<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2F1dG9tYXQvY29udHJvbGtpdC5qcw==">ControlKit<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xvLXRoL3VpbA==">Uil<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90d2Vha3BhbmUuZ2l0aHViLmlvL2RvY3Mv">Tweakpane<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvbGVqZC9ndWlmeQ==">Guify<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dlYXJla3V2YS9vdWk=">Oui<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="find-texture-website"><a href="#find-texture-website" class="headerlink" title="find texture website"></a>find texture website</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wb2xpaWdvbi5jb20v">poliigon.com<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly8zZHRleHR1cmVzLm1lLw==">3dtextures.me<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYXJyb3dheS10ZXh0dXJlcy5jaC8=">arroway-textures.ch<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <hr>
 <p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vYm9vay83NDgxMTMyMTY5OTQ0NDk4MjI2">zxg_神说要有光小册子<i class="fa fa-external-link-alt"></i></span></p>
@@ -3365,6 +3663,30 @@ JavaScript 高级程序设计</p>
 <p>texture.offset 可以让纹理贴图偏移一段距离，相当于改变了 uv 坐标，所以修改 texture.offset 的动画也叫做 uv 动画。</p>
 <p>还可以结合 texture.wrapT、textrue.wrapS 来实现纹理的重复。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> loader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">TextureLoader</span>();</span><br><span class="line"><span class="keyword">const</span> texture = loader.<span class="title function_">load</span>(<span class="string">&#x27;./texture.png&#x27;</span>);</span><br><span class="line">texture.<span class="property">wrapS</span> = <span class="variable constant_">THREE</span>.<span class="property">RepeatWrapping</span>;</span><br><span class="line">texture.<span class="property">wrapT</span> = <span class="variable constant_">THREE</span>.<span class="property">RepeatWrapping</span>;</span><br><span class="line">texture.<span class="property">offset</span>.<span class="property">x</span> = <span class="number">0.5</span>; <span class="comment">// 水平偏移</span></span><br><span class="line">texture.<span class="property">offset</span>.<span class="property">y</span> = <span class="number">0.5</span>; <span class="comment">// 垂直偏移</span></span><br><span class="line">texture.<span class="property">repeat</span>.<span class="property">x</span> = <span class="number">2</span>; <span class="comment">// 水平重复</span></span><br><span class="line">texture.<span class="property">repeat</span>.<span class="property">y</span> = <span class="number">2</span>; <span class="comment">// 垂直重复</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>AOP 相关</title>
+    <url>/posts/326cfd21/</url>
+    <content><![CDATA[<p>关键词： AOP, DI, IoC</p>
+<span id="more"></span>
+
+<h2 id="名词概念"><a href="#名词概念" class="headerlink" title="名词概念"></a>名词概念</h2><p>AOP：<code>Aspect-Oriented Programming</code> 面向切面编程，是一种编程范式，旨在通过分离横切关注点来实现（如日志、性能监控、安全检查等功能），提高系统模块化和可维护性。相比之下或许 OOP（面向对象编程） 可能会耳熟。</p>
+<p>DI：<code>Dependency Injection</code> 依赖注入，是一种软件设计模式，用于实现对象之间的解耦。它通过将对象的依赖（如服务、组件或资源）在创建时注入，而不是由对象自己直接创建或寻找依赖，从而提高代码的可测试性、可扩展性和灵活性。简单来说，依赖注入让对象不直接负责依赖的获取，而是由外部系统提供这些依赖。</p>
+<p>IoC：<code>Inversion of Control</code> 控制反转，是一种设计原则或架构模式，主要通过将对象的创建和依赖关系管理交由外部容器（如依赖注入容器）实现，从而降低模块之间的耦合度。它实现了对象控制权的“反转”——由框架或容器负责控制对象的生命周期和依赖，开发人员只需专注于业务逻辑。</p>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>IoC是基础，提供对象的生命周期管理和依赖管理。<br>它为依赖注入提供了环境，确保对象的创建和依赖关系是由容器控制。</p>
+<p>DI是实现IoC的手段，注入依赖以实现松耦合。<br>通过DI，应用中的对象不再自行创建依赖，而是由容器在实例化时注入所需的依赖。</p>
+<p>AOP通常依赖于IoC和DI，借助容器在运行时动态管理和应用切面。<br>AOP框架（如Spring AOP）通常集成在依赖注入容器中，利用动态代理或字节码增强，在对象被创建后，通过容器自动应用切面。</p>
+<h2 id="JavaScript-AOP-实现"><a href="#JavaScript-AOP-实现" class="headerlink" title="JavaScript AOP 实现"></a>JavaScript AOP 实现</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29wZW5zdW1pL2Rp">opensumi&#x2F;di<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2N1am9qcy9tZWxk">meld<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU5JTlEJUEyJUU1JTkwJTkxJUU1JTg4JTg3JUU5JTlEJUEyJUU3JTlBJTg0JUU3JUE4JThCJUU1JUJBJThGJUU4JUFFJUJFJUU4JUFFJUEx">AOP WIKI<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vcGVuc3VtaS5jb20vemgvZG9jcy9kZXZlbG9wL2Jhc2ljLWRlc2lnbi9kZXBlbmRlbmNlLWluamVjdG9y">OpenSumi 依赖注入<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzODM4MTcyODM5OTQz">JavaScript中AOP的应用<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3RuaWNob2xhcy5kZXYvbm90ZXMvYXNwZWN0LW9yaWVudGVkLXByb2dyYW1taW5nLWluLWphdmFzY3JpcHQ=">Aspect-Oriented Programming in JavaScript - ctnicholas.dev<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmJpdHNyYy5pby9hc3BlY3Qtb3JpZW50ZWQtcHJvZ3JhbW1pbmctaW4tamF2YXNjcmlwdC1jNGNiNDNmNmJmY2M=">Aspect-Oriented Programming in JavaScript - bitsrc.io<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -3502,130 +3824,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue父子组件生命周期</title>
-    <url>/posts/77185e63/</url>
-    <content><![CDATA[<p>Vue官网找了一圈没找到关于在父组件中使用子组件，生命周期是如何运行的。</p>
-<p>先说结论</p>
-<ul>
-<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
-<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
-<li>父组件  <code>mounted</code></li>
-</ul>
-<p>若使用 props 进行父子组件传值（若只进行自身组件数据进行维护，只会执行自身组件的生命周期函数）</p>
-<ul>
-<li>父组件 <code>beforeUpdate</code></li>
-<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
-<li>父组件 <code>updated</code></li>
-</ul>
-<p>销毁阶段</p>
-<ul>
-<li>父组件 <code>beforeDestory</code></li>
-<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
-<li>父组件  <code>destoryed</code></li>
-</ul>
-<span id="more"></span>
-
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>当在父组件中，使用子组件，那么父子组件的生命周期是如何进行的？</p>
-<h2 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h2><p>首先，来回顾下Vue生命周期，以下为<span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvZ3VpZGUvaW5zdGFuY2UuaHRtbCMlRTUlQUUlOUUlRTQlQkUlOEIlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYlRTklOTIlQTklRTUlQUQlOTA=">官方文档中的生命周期图<i class="fa fa-external-link-alt"></i></span></p>
-<p><img data-src="https://cn.vuejs.org/images/lifecycle.png" alt="Vue 实例生命周期"></p>
-<p>这里只列出了结论，没有进行实践，如需详情查看，请点击<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTM4MTkwNg==">详解vue生命周期<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="beforeCreate-created"><a href="#beforeCreate-created" class="headerlink" title="beforeCreate - created"></a>beforeCreate - created</h3><p>这两个阶段主要是<strong>初始化事件、进行数据检测</strong>，但此时还没有 <code>el</code> 选项。	</p>
-<h3 id="created-beforeMount"><a href="#created-beforeMount" class="headerlink" title="created - beforeMount"></a>created - beforeMount</h3><p>首先判断是否有无 <code>el</code> 选项，</p>
-<ul>
-<li>若有则继续编译</li>
-<li>若没有 <code>el</code> 选项则会停止编译，意味着生命周期结束，直接调用 <code>vm.$mount(el)</code>。</li>
-</ul>
-<p>紧接着继续判断有无 <code>template</code> 选项，</p>
-<ul>
-<li>若有则会将 <code>template</code> 编译为 <code>render</code> 函数，</li>
-<li>若无，则会引用外部 <code>html</code> 作为模板编译。</li>
-<li>其中 <code>new Vue</code> 中还有一个选项 <code>render</code>，以 <code>createElement</code> 作为参数进行渲染操作。</li>
-</ul>
-<p>经过实验，渲染优先级如下</p>
-<p><code>render</code> &gt; <code>template</code> &gt; <code>外部 html</code></p>
-<h3 id="beforeMount-mounted"><a href="#beforeMount-mounted" class="headerlink" title="beforeMount - mounted"></a>beforeMount - mounted</h3><p>给示例对象添加 <code>$el</code> 选项，并替换掉挂载到 <code>dom</code> 对象。</p>
-<h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><p>将页面中的填充位，用数据进行替换。（例如：<code>&lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</code> 替换后 <code>&lt;div&gt;Hello World&lt;/div&gt;</code>）</p>
-<h3 id="beforeUpdate-updated"><a href="#beforeUpdate-updated" class="headerlink" title="beforeUpdate - updated"></a>beforeUpdate - updated</h3><p>当组件内的 <code>data</code> 属性发生变化时，会执行这两个生命周期（<code>beforeUpdate</code>和 <code>updated</code>），</p>
-<h3 id="beforeDestory-destoryed"><a href="#beforeDestory-destoryed" class="headerlink" title="beforeDestory - destoryed"></a>beforeDestory - destoryed</h3><p><strong>beforeDestroy</strong>钩子函数在实例销毁之前调用。在这一步，实例仍然完全可用。<br><strong>destroyed</strong>钩子函数在Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</p>
-<h2 id="构建代码"><a href="#构建代码" class="headerlink" title="构建代码"></a>构建代码</h2><p>回到原题，Vue 父子组件生命周期是如何执行的。</p>
-<p>首先需要构建一个父子组件的结构，代码如下，可以在线访问 <span class="exturl" data-url="aHR0cHM6Ly9jb2Rlc2FuZGJveC5pby9zL2xhdWdoaW5nLWZpZWxkLXNtOWdtP2ZpbGU9L3NyYy9jb21wb25lbnRzL0ZhdGhlci52dWU6MC05OTg=">codesandbox<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="父组件代码"><a href="#父组件代码" class="headerlink" title="父组件代码"></a>父组件代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;router-link to=&quot;/&quot;&gt;HomePage&lt;/router-link&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;/div&gt;</span><br><span class="line">    &lt;button @click=&quot;handleClick&quot;&gt;更新父组件data数据&lt;/button&gt;</span><br><span class="line">    &lt;Son :val=&quot;type&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Son from &quot;./Son&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Father&quot;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Son,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Father&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type = &quot;Father Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Father created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Father mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Father updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Father destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="子组件代码"><a href="#子组件代码" class="headerlink" title="子组件代码"></a>子组件代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; val &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;/div&gt;</span><br><span class="line">    &lt;button @click=&quot;handleClick&quot;&gt;子组件数据更新&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Son&quot;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    val: String,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Son&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type = &quot;Son Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Son created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Son mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Son updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Son destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="首次进入"><a href="#首次进入" class="headerlink" title="首次进入"></a>首次进入</h3><blockquote>
-<p>运行效果，点击页面中 Father 进入组件</p>
-</blockquote>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129113333.png" alt="image-20201129113325929" style="zoom:50%;" />
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">This is Father beforeCreate </span><br><span class="line">This is Father created </span><br><span class="line">This is Father beforeMount </span><br><span class="line">This is Son beforeCreate </span><br><span class="line">This is Son created </span><br><span class="line">This is Son beforeMount </span><br><span class="line">This is Son mounted </span><br><span class="line">This is Father mounted </span><br></pre></td></tr></table></figure>
-
-
-
-<p>可以看出首先进入</p>
-<ul>
-<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
-<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
-<li>父组件  <code>mounted</code></li>
-</ul>
-<p>其实这个也不难理解，刚开始没经过思考的我，认为是先执行完父组件生命周期，才会执行子组件生命周期。再次翻看官方文档之后，理解 vue 设计思路和一些理念，就可以理解生命周期为什么这么执行了。</p>
-<p>在进入父组件时候，首先肯定需要进行初始化事件、数据，然后进入挂载的阶段，当在挂载过程中，又发现子组件，自然而然的需要先把子组件挂载上去才可以继续进行父组件的生命周期，于是就形成了上面的这种景象。</p>
-<h3 id="数据更新阶段"><a href="#数据更新阶段" class="headerlink" title="数据更新阶段"></a>数据更新阶段</h3><blockquote>
-<p>点击更新子组件数据，就会看到只会在自己组件的更新周期函数</p>
-</blockquote>
-<p>此时，父子组件各自维护自己的 data 值，并没有进行父组件传值操作。</p>
-<p>更新父组件 data 值后，并不会影响到子组件的 beforeUpdate、updated</p>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115024.png" alt="image-20201129115023984" style="zoom: 50%;" />
-
-
-
-<p>子组件更新自身数据也是一样</p>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115134.png" alt="image-20201129115134288" style="zoom:50%;" />
-
-
-
-<p>那么如果使用 <code>props</code>传递到子组件中，那么生命周期又会如何执行。</p>
-<blockquote>
-<p>点击更新父组件data 数据，此时父组件的数据已经通过 props 形式传入子组件</p>
-</blockquote>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129122619.png" alt="image-20201129122619463" style="zoom:50%;" />
-
-
-
-<p>不出所料，生命周期函数</p>
-<ul>
-<li>父组件 <code>beforeUpdate</code></li>
-<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
-<li>父组件 <code>updated</code></li>
-</ul>
-<h3 id="销毁阶段"><a href="#销毁阶段" class="headerlink" title="销毁阶段"></a>销毁阶段</h3><blockquote>
-<p>点击页面中的 HomePage 返回主页，就会触发销毁阶段。</p>
-</blockquote>
-<p>其实也是一样的思路，就还没做实验，盲猜都应该是</p>
-<ul>
-<li>父组件 <code>beforeDestory</code></li>
-<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
-<li>父组件  <code>destoryed</code></li>
-</ul>
-<p>经过试验证明后，也确实是这样</p>
-<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129114216.png" alt="image-20201129114216299" style="zoom:50%;" />
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTM4MTkwNg==">https://segmentfault.com/a/1190000011381906<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -3868,6 +4066,130 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>Vue父子组件生命周期</title>
+    <url>/posts/77185e63/</url>
+    <content><![CDATA[<p>Vue官网找了一圈没找到关于在父组件中使用子组件，生命周期是如何运行的。</p>
+<p>先说结论</p>
+<ul>
+<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
+<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
+<li>父组件  <code>mounted</code></li>
+</ul>
+<p>若使用 props 进行父子组件传值（若只进行自身组件数据进行维护，只会执行自身组件的生命周期函数）</p>
+<ul>
+<li>父组件 <code>beforeUpdate</code></li>
+<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
+<li>父组件 <code>updated</code></li>
+</ul>
+<p>销毁阶段</p>
+<ul>
+<li>父组件 <code>beforeDestory</code></li>
+<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
+<li>父组件  <code>destoryed</code></li>
+</ul>
+<span id="more"></span>
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>当在父组件中，使用子组件，那么父子组件的生命周期是如何进行的？</p>
+<h2 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h2><p>首先，来回顾下Vue生命周期，以下为<span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvZ3VpZGUvaW5zdGFuY2UuaHRtbCMlRTUlQUUlOUUlRTQlQkUlOEIlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYlRTklOTIlQTklRTUlQUQlOTA=">官方文档中的生命周期图<i class="fa fa-external-link-alt"></i></span></p>
+<p><img data-src="https://cn.vuejs.org/images/lifecycle.png" alt="Vue 实例生命周期"></p>
+<p>这里只列出了结论，没有进行实践，如需详情查看，请点击<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTM4MTkwNg==">详解vue生命周期<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="beforeCreate-created"><a href="#beforeCreate-created" class="headerlink" title="beforeCreate - created"></a>beforeCreate - created</h3><p>这两个阶段主要是<strong>初始化事件、进行数据检测</strong>，但此时还没有 <code>el</code> 选项。	</p>
+<h3 id="created-beforeMount"><a href="#created-beforeMount" class="headerlink" title="created - beforeMount"></a>created - beforeMount</h3><p>首先判断是否有无 <code>el</code> 选项，</p>
+<ul>
+<li>若有则继续编译</li>
+<li>若没有 <code>el</code> 选项则会停止编译，意味着生命周期结束，直接调用 <code>vm.$mount(el)</code>。</li>
+</ul>
+<p>紧接着继续判断有无 <code>template</code> 选项，</p>
+<ul>
+<li>若有则会将 <code>template</code> 编译为 <code>render</code> 函数，</li>
+<li>若无，则会引用外部 <code>html</code> 作为模板编译。</li>
+<li>其中 <code>new Vue</code> 中还有一个选项 <code>render</code>，以 <code>createElement</code> 作为参数进行渲染操作。</li>
+</ul>
+<p>经过实验，渲染优先级如下</p>
+<p><code>render</code> &gt; <code>template</code> &gt; <code>外部 html</code></p>
+<h3 id="beforeMount-mounted"><a href="#beforeMount-mounted" class="headerlink" title="beforeMount - mounted"></a>beforeMount - mounted</h3><p>给示例对象添加 <code>$el</code> 选项，并替换掉挂载到 <code>dom</code> 对象。</p>
+<h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><p>将页面中的填充位，用数据进行替换。（例如：<code>&lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</code> 替换后 <code>&lt;div&gt;Hello World&lt;/div&gt;</code>）</p>
+<h3 id="beforeUpdate-updated"><a href="#beforeUpdate-updated" class="headerlink" title="beforeUpdate - updated"></a>beforeUpdate - updated</h3><p>当组件内的 <code>data</code> 属性发生变化时，会执行这两个生命周期（<code>beforeUpdate</code>和 <code>updated</code>），</p>
+<h3 id="beforeDestory-destoryed"><a href="#beforeDestory-destoryed" class="headerlink" title="beforeDestory - destoryed"></a>beforeDestory - destoryed</h3><p><strong>beforeDestroy</strong>钩子函数在实例销毁之前调用。在这一步，实例仍然完全可用。<br><strong>destroyed</strong>钩子函数在Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</p>
+<h2 id="构建代码"><a href="#构建代码" class="headerlink" title="构建代码"></a>构建代码</h2><p>回到原题，Vue 父子组件生命周期是如何执行的。</p>
+<p>首先需要构建一个父子组件的结构，代码如下，可以在线访问 <span class="exturl" data-url="aHR0cHM6Ly9jb2Rlc2FuZGJveC5pby9zL2xhdWdoaW5nLWZpZWxkLXNtOWdtP2ZpbGU9L3NyYy9jb21wb25lbnRzL0ZhdGhlci52dWU6MC05OTg=">codesandbox<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="父组件代码"><a href="#父组件代码" class="headerlink" title="父组件代码"></a>父组件代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;router-link to=&quot;/&quot;&gt;HomePage&lt;/router-link&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;/div&gt;</span><br><span class="line">    &lt;button @click=&quot;handleClick&quot;&gt;更新父组件data数据&lt;/button&gt;</span><br><span class="line">    &lt;Son :val=&quot;type&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import Son from &quot;./Son&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Father&quot;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Son,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Father&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type = &quot;Father Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Father created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Father mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Father updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Father beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Father destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="子组件代码"><a href="#子组件代码" class="headerlink" title="子组件代码"></a>子组件代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; val &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;This is &#123;&#123; type &#125;&#125; componet&lt;/div&gt;</span><br><span class="line">    &lt;button @click=&quot;handleClick&quot;&gt;子组件数据更新&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Son&quot;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    val: String,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;Son&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.type = &quot;Son Update&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeCreate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(&quot;This is Son created&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeMount&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    console.log(&quot;This is Son mounted&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeUpdate&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    console.log(&quot;This is Son updated&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    console.log(&quot;This is Son beforeDestroy&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    console.log(&quot;This is Son destroyed&quot;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="首次进入"><a href="#首次进入" class="headerlink" title="首次进入"></a>首次进入</h3><blockquote>
+<p>运行效果，点击页面中 Father 进入组件</p>
+</blockquote>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129113333.png" alt="image-20201129113325929" style="zoom:50%;" />
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">This is Father beforeCreate </span><br><span class="line">This is Father created </span><br><span class="line">This is Father beforeMount </span><br><span class="line">This is Son beforeCreate </span><br><span class="line">This is Son created </span><br><span class="line">This is Son beforeMount </span><br><span class="line">This is Son mounted </span><br><span class="line">This is Father mounted </span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以看出首先进入</p>
+<ul>
+<li>父组件  <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code></li>
+<li>子组件 <code>beforeCreated</code>、<code>created</code>、<code>beforeMount</code> 、<code>mounted</code></li>
+<li>父组件  <code>mounted</code></li>
+</ul>
+<p>其实这个也不难理解，刚开始没经过思考的我，认为是先执行完父组件生命周期，才会执行子组件生命周期。再次翻看官方文档之后，理解 vue 设计思路和一些理念，就可以理解生命周期为什么这么执行了。</p>
+<p>在进入父组件时候，首先肯定需要进行初始化事件、数据，然后进入挂载的阶段，当在挂载过程中，又发现子组件，自然而然的需要先把子组件挂载上去才可以继续进行父组件的生命周期，于是就形成了上面的这种景象。</p>
+<h3 id="数据更新阶段"><a href="#数据更新阶段" class="headerlink" title="数据更新阶段"></a>数据更新阶段</h3><blockquote>
+<p>点击更新子组件数据，就会看到只会在自己组件的更新周期函数</p>
+</blockquote>
+<p>此时，父子组件各自维护自己的 data 值，并没有进行父组件传值操作。</p>
+<p>更新父组件 data 值后，并不会影响到子组件的 beforeUpdate、updated</p>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115024.png" alt="image-20201129115023984" style="zoom: 50%;" />
+
+
+
+<p>子组件更新自身数据也是一样</p>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129115134.png" alt="image-20201129115134288" style="zoom:50%;" />
+
+
+
+<p>那么如果使用 <code>props</code>传递到子组件中，那么生命周期又会如何执行。</p>
+<blockquote>
+<p>点击更新父组件data 数据，此时父组件的数据已经通过 props 形式传入子组件</p>
+</blockquote>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129122619.png" alt="image-20201129122619463" style="zoom:50%;" />
+
+
+
+<p>不出所料，生命周期函数</p>
+<ul>
+<li>父组件 <code>beforeUpdate</code></li>
+<li>子组件 <code>beforeUpdate</code>、<code>updated</code></li>
+<li>父组件 <code>updated</code></li>
+</ul>
+<h3 id="销毁阶段"><a href="#销毁阶段" class="headerlink" title="销毁阶段"></a>销毁阶段</h3><blockquote>
+<p>点击页面中的 HomePage 返回主页，就会触发销毁阶段。</p>
+</blockquote>
+<p>其实也是一样的思路，就还没做实验，盲猜都应该是</p>
+<ul>
+<li>父组件 <code>beforeDestory</code></li>
+<li>子组件 <code>beforeDestory</code>、 <code>destoryed</code></li>
+<li>父组件  <code>destoryed</code></li>
+</ul>
+<p>经过试验证明后，也确实是这样</p>
+<img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201129114216.png" alt="image-20201129114216299" style="zoom:50%;" />
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTM4MTkwNg==">https://segmentfault.com/a/1190000011381906<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>axios使用总结</title>
     <url>/posts/2058da06/</url>
     <content><![CDATA[<h1 id="axios使用总结"><a href="#axios使用总结" class="headerlink" title="axios使用总结"></a>axios使用总结</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>推荐 <code>yarn</code></p>
@@ -3969,182 +4291,6 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac 使用技巧</title>
-    <url>/posts/df1211e8/</url>
-    <content><![CDATA[<p>快捷键</p>
-<ul>
-<li>brew</li>
-<li>iterm2</li>
-<li>mac</li>
-</ul>
-<hr>
-<span id="more"></span>
-
-
-
-<h2 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h2><blockquote>
-<p>mac 下软件管理工具，类似node的npm，python的pip，，，</p>
-</blockquote>
-<h3 id="安装-node-v12"><a href="#安装-node-v12" class="headerlink" title="安装 node-v12"></a>安装 <code>node-v12</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install node@12</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装-iterm2"><a href="#安装-iterm2" class="headerlink" title="安装 iterm2"></a>安装 <code>iterm2</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzIyNjI0ODk4L2Fuc3dlci8yMjc4MjE0NA==">引用<i class="fa fa-external-link-alt"></i></span></p>
-<p><code>brew install </code> ，前者是是从下载源码解压然后 .&#x2F;configure &amp;&amp; make install ，同时会包含相关依存库。并自动配置好各种环境变量，而且易于卸载。</p>
-<p> <code>brew cask install</code> ，是已经编译好的包，只需要下载解压放在统一的目录中（&#x2F;opt&#x2F;homebrew-cask&#x2F;Caskroom）</p>
-</blockquote>
-<h3 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew search node</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="brew-services"><a href="#brew-services" class="headerlink" title="brew services"></a>brew services</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[<span class="built_in">sudo</span>] brew services [list]:</span><br><span class="line">		列出当前用户的所有服务。</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services run (formula|--all):</span><br><span class="line">		运行没有注册启动的服务。</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services start (formula|--all):</span><br><span class="line">		启动服务</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services stop (formula|--all):</span><br><span class="line">    关闭服务</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services restart (formula|--all):</span><br><span class="line">    重启服务</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services cleanup:</span><br><span class="line">    移除所有未使用的服务。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="iterm2快捷键"><a href="#iterm2快捷键" class="headerlink" title="iterm2快捷键"></a>iterm2快捷键</h2><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Control + U</td>
-<td>清空当前行</td>
-</tr>
-<tr>
-<td>Control + Y</td>
-<td>恢复当前行</td>
-</tr>
-<tr>
-<td>Control + A</td>
-<td>光标置于当前行首</td>
-</tr>
-<tr>
-<td>Control + E</td>
-<td>光标置于当前行尾</td>
-</tr>
-<tr>
-<td>Control + W</td>
-<td>删除光标前的内容</td>
-</tr>
-<tr>
-<td>Control + K</td>
-<td>删除光标后的内容</td>
-</tr>
-<tr>
-<td>CMD + T</td>
-<td>打开一个新窗口</td>
-</tr>
-<tr>
-<td>CMD + W</td>
-<td>关闭当前窗口</td>
-</tr>
-</tbody></table>
-<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><blockquote>
-<p>只整理了个人常用的快捷键，其他还请查看文档。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>:q</td>
-<td>退出</td>
-</tr>
-<tr>
-<td>:q!</td>
-<td>忽略更改退出</td>
-</tr>
-<tr>
-<td>:wq</td>
-<td>保存退出</td>
-</tr>
-<tr>
-<td>A</td>
-<td>在光标所在行尾开始插入</td>
-</tr>
-<tr>
-<td>I</td>
-<td>在光标所在行头开始插入</td>
-</tr>
-<tr>
-<td>dd</td>
-<td>删除当前行</td>
-</tr>
-<tr>
-<td>u</td>
-<td>撤销修改</td>
-</tr>
-<tr>
-<td>ctrl+R</td>
-<td>重做</td>
-</tr>
-<tr>
-<td>上下左右</td>
-<td>k,j,h,l</td>
-</tr>
-<tr>
-<td>0,  <code>&lt;Home&gt;</code></td>
-<td>行首</td>
-</tr>
-<tr>
-<td>$, <code>&lt;End&gt;</code></td>
-<td>行尾</td>
-</tr>
-<tr>
-<td>i</td>
-<td>输入模式</td>
-</tr>
-<tr>
-<td>yy</td>
-<td>复制当前行</td>
-</tr>
-<tr>
-<td>p</td>
-<td>粘贴</td>
-</tr>
-<tr>
-<td>:set nu</td>
-<td>显示行号</td>
-</tr>
-</tbody></table>
-<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Control + command + D</td>
-<td>查询</td>
-</tr>
-<tr>
-<td>command + Q</td>
-<td>退出当前软件</td>
-</tr>
-<tr>
-<td>command + Shift + .</td>
-<td>显示&#x2F;隐藏 隐藏文件</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>brew</tag>
-        <tag>iterm2</tag>
       </tags>
   </entry>
   <entry>
@@ -4697,6 +4843,182 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>mac 使用技巧</title>
+    <url>/posts/df1211e8/</url>
+    <content><![CDATA[<p>快捷键</p>
+<ul>
+<li>brew</li>
+<li>iterm2</li>
+<li>mac</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+
+
+<h2 id="brew"><a href="#brew" class="headerlink" title="brew"></a>brew</h2><blockquote>
+<p>mac 下软件管理工具，类似node的npm，python的pip，，，</p>
+</blockquote>
+<h3 id="安装-node-v12"><a href="#安装-node-v12" class="headerlink" title="安装 node-v12"></a>安装 <code>node-v12</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install node@12</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-iterm2"><a href="#安装-iterm2" class="headerlink" title="安装 iterm2"></a>安装 <code>iterm2</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzIyNjI0ODk4L2Fuc3dlci8yMjc4MjE0NA==">引用<i class="fa fa-external-link-alt"></i></span></p>
+<p><code>brew install </code> ，前者是是从下载源码解压然后 .&#x2F;configure &amp;&amp; make install ，同时会包含相关依存库。并自动配置好各种环境变量，而且易于卸载。</p>
+<p> <code>brew cask install</code> ，是已经编译好的包，只需要下载解压放在统一的目录中（&#x2F;opt&#x2F;homebrew-cask&#x2F;Caskroom）</p>
+</blockquote>
+<h3 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew search node</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="brew-services"><a href="#brew-services" class="headerlink" title="brew services"></a>brew services</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[<span class="built_in">sudo</span>] brew services [list]:</span><br><span class="line">		列出当前用户的所有服务。</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services run (formula|--all):</span><br><span class="line">		运行没有注册启动的服务。</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services start (formula|--all):</span><br><span class="line">		启动服务</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services stop (formula|--all):</span><br><span class="line">    关闭服务</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services restart (formula|--all):</span><br><span class="line">    重启服务</span><br><span class="line"></span><br><span class="line">[<span class="built_in">sudo</span>] brew services cleanup:</span><br><span class="line">    移除所有未使用的服务。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="iterm2快捷键"><a href="#iterm2快捷键" class="headerlink" title="iterm2快捷键"></a>iterm2快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Control + U</td>
+<td>清空当前行</td>
+</tr>
+<tr>
+<td>Control + Y</td>
+<td>恢复当前行</td>
+</tr>
+<tr>
+<td>Control + A</td>
+<td>光标置于当前行首</td>
+</tr>
+<tr>
+<td>Control + E</td>
+<td>光标置于当前行尾</td>
+</tr>
+<tr>
+<td>Control + W</td>
+<td>删除光标前的内容</td>
+</tr>
+<tr>
+<td>Control + K</td>
+<td>删除光标后的内容</td>
+</tr>
+<tr>
+<td>CMD + T</td>
+<td>打开一个新窗口</td>
+</tr>
+<tr>
+<td>CMD + W</td>
+<td>关闭当前窗口</td>
+</tr>
+</tbody></table>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><blockquote>
+<p>只整理了个人常用的快捷键，其他还请查看文档。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:q</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>忽略更改退出</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>保存退出</td>
+</tr>
+<tr>
+<td>A</td>
+<td>在光标所在行尾开始插入</td>
+</tr>
+<tr>
+<td>I</td>
+<td>在光标所在行头开始插入</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销修改</td>
+</tr>
+<tr>
+<td>ctrl+R</td>
+<td>重做</td>
+</tr>
+<tr>
+<td>上下左右</td>
+<td>k,j,h,l</td>
+</tr>
+<tr>
+<td>0,  <code>&lt;Home&gt;</code></td>
+<td>行首</td>
+</tr>
+<tr>
+<td>$, <code>&lt;End&gt;</code></td>
+<td>行尾</td>
+</tr>
+<tr>
+<td>i</td>
+<td>输入模式</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制当前行</td>
+</tr>
+<tr>
+<td>p</td>
+<td>粘贴</td>
+</tr>
+<tr>
+<td>:set nu</td>
+<td>显示行号</td>
+</tr>
+</tbody></table>
+<h2 id="mac快捷键"><a href="#mac快捷键" class="headerlink" title="mac快捷键"></a>mac快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Control + command + D</td>
+<td>查询</td>
+</tr>
+<tr>
+<td>command + Q</td>
+<td>退出当前软件</td>
+</tr>
+<tr>
+<td>command + Shift + .</td>
+<td>显示&#x2F;隐藏 隐藏文件</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>brew</tag>
+        <tag>iterm2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>powershell 常用命令</title>
     <url>/posts/50e64c9a/</url>
     <content><![CDATA[<p>开启管理员模式</p>
@@ -4992,25 +5314,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>TypeScript总结</title>
-    <url>/posts/34845574/</url>
-    <content><![CDATA[<h2 id="TypeScript-相关收藏"><a href="#TypeScript-相关收藏" class="headerlink" title="TypeScript 相关收藏"></a>TypeScript 相关收藏</h2><h3 id="入门文章类"><a href="#入门文章类" class="headerlink" title="入门文章类"></a>入门文章类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90cy54Y2F0bGl1LmNvbS8=">TypeScript 入门教程<i class="fa fa-external-link-alt"></i></span>: github 10k star, author xcatliu.</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvV3NsZG1rVzJvdnAtb2t4U1kzbGU5Zw==">Typescript 类型编程，从入门到通达<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uY29tL2ZyZWUtY29kZS1jYW1wL3R5cGVzY3JpcHQtY3VycnktcmFtZGEtdHlwZXMtZjc0N2U5OTc0NGFi">Learn Advanced TypeScript Types<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL3poL2NoZWF0c2hlZXRz">TypeScript Cheat Sheets<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="通关挑战类"><a href="#通关挑战类" class="headerlink" title="通关挑战类"></a>通关挑战类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90eXBlc2NyaXB0LWV4ZXJjaXNlcy5naXRodWIuaW8v">Typescript Exercises<i class="fa fa-external-link-alt"></i></span>：一共16关</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpbmRyZXNvcmh1cy90eXBlLWZlc3Q=">type-fest<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R5cGUtY2hhbGxlbmdlcy90eXBlLWNoYWxsZW5nZXMv">type-challenges<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly90eXBlaGVyby5kZXYv">typehero<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SEO 优化</title>
     <url>/posts/e092deb0/</url>
     <content><![CDATA[<p><code>ahrefs</code> 的 <code>SEO</code> 系列文章讲的挺好，推荐</p>
@@ -5144,6 +5447,25 @@ JavaScript 高级程序设计</p>
       <categories>
         <category>技术</category>
       </categories>
+  </entry>
+  <entry>
+    <title>TypeScript总结</title>
+    <url>/posts/34845574/</url>
+    <content><![CDATA[<h2 id="TypeScript-相关收藏"><a href="#TypeScript-相关收藏" class="headerlink" title="TypeScript 相关收藏"></a>TypeScript 相关收藏</h2><h3 id="入门文章类"><a href="#入门文章类" class="headerlink" title="入门文章类"></a>入门文章类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90cy54Y2F0bGl1LmNvbS8=">TypeScript 入门教程<i class="fa fa-external-link-alt"></i></span>: github 10k star, author xcatliu.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvV3NsZG1rVzJvdnAtb2t4U1kzbGU5Zw==">Typescript 类型编程，从入门到通达<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uY29tL2ZyZWUtY29kZS1jYW1wL3R5cGVzY3JpcHQtY3VycnktcmFtZGEtdHlwZXMtZjc0N2U5OTc0NGFi">Learn Advanced TypeScript Types<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL3poL2NoZWF0c2hlZXRz">TypeScript Cheat Sheets<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="通关挑战类"><a href="#通关挑战类" class="headerlink" title="通关挑战类"></a>通关挑战类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90eXBlc2NyaXB0LWV4ZXJjaXNlcy5naXRodWIuaW8v">Typescript Exercises<i class="fa fa-external-link-alt"></i></span>：一共16关</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpbmRyZXNvcmh1cy90eXBlLWZlc3Q=">type-fest<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R5cGUtY2hhbGxlbmdlcy90eXBlLWNoYWxsZW5nZXMv">type-challenges<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly90eXBlaGVyby5kZXYv">typehero<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
   </entry>
   <entry>
     <title>vim 笔记</title>
@@ -5512,73 +5834,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>去哪儿网踩坑（Vue-cli配置和Vuex）</title>
-    <url>/posts/7a3e10c2/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20va29sZXI3NzgvcXVuYWVyd2FuZ3Rlc3Q=">去哪儿网项目链接<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Vue-cli-配置"><a href="#Vue-cli-配置" class="headerlink" title="Vue-cli 配置"></a>Vue-cli 配置</h2><h3 id="Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias"><a href="#Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias" class="headerlink" title="Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias"></a>Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias</h3><h4 id="vue-cli-2-x"><a href="#vue-cli-2-x" class="headerlink" title="vue-cli 2.x"></a>vue-cli 2.x</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>],</span><br><span class="line">    <span class="attr">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src&#x27;</span>),</span><br><span class="line">			<span class="comment">// resolve 函数文件已配置好</span></span><br><span class="line">			<span class="string">&#x27;styles&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="vue-cli-3-x"><a href="#vue-cli-3-x" class="headerlink" title="vue-cli 3.x"></a>vue-cli 3.x</h4><p>直接在项目根目录新建 <code>vue.config.js</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">resolve</span>: &#123;</span><br><span class="line">      <span class="attr">alias</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;styles&#x27;</span>: path.<span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h3 id="stylus配置别名"><a href="#stylus配置别名" class="headerlink" title="stylus配置别名"></a>stylus配置别名</h3><p>在以上配置<code>webpack别名目录</code>后，在页面引入 <code>stylus</code> 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">/* 此处的~styles 指的就是 src/assets/styles */</span><br><span class="line">@import &#x27;~styles/varibles.styl&#x27;;</span><br><span class="line">...</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvSFRUUCVFNiU4QyU4MSVFNCVCOSU4NSVFOCVCRiU5RSVFNiU4RSVBNQ==">http持久链接 keep-alive 维基百科<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvYXBpLyNrZWVwLWFsaXZl">Vue官方解释<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>keep-alive 是持久化连接技术</p>
-<p>但在vue中是包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们，当组件在 <code>&lt;keep-alive&gt;</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code> 这两个生命周期钩子函数将会被对应执行。由于不会销毁，所以生命周期函数 <code>created</code>，<code>mounted</code>都不会执行第二次</p>
-</blockquote>
-<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><blockquote>
-<p>普通情况下 <strong>store</strong> 就已够用，但如果数据特别大而且特别多的时候，而且还是相互之间需要传值，这个时候就该 <strong>vuex</strong> 上场了。</p>
-<p>官方解释：</p>
-<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。</p>
-</blockquote>
-<p><img data-src="https://vuex.vuejs.org/vuex.png"></p>
-<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><blockquote>
-<p>相当于组件中的 data，只要挂载到Vue上，所有组件都可以访问</p>
-</blockquote>
-<p>组件中获取state</p>
-<p>第一种 简单直接，就是写起来有点麻烦</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;this.$store.state.city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<p><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9zdGF0ZS5odG1sIyVFNSVBRiVCOSVFOCVCMSVBMSVFNSVCMSU5NSVFNSVCQyU4MCVFOCVCRiU5MCVFNyVBRSU5NyVFNyVBQyVBNg==">第二种 对象展开运算符<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; mapState &#125; from &#x27;vuex&#x27;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">		...mapState([&#x27;city&#x27;])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><p><strong>优势</strong></p>
-<ul>
-<li>Action 提交的是 mutation，而不是直接变更状态。</li>
-<li>Action 可以包含任意异步操作。</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">actions</span>: &#123;</span><br><span class="line">  <span class="title function_">changeCity</span>(<span class="params">context, city</span>) &#123;</span><br><span class="line">    context.<span class="title function_">commit</span>(<span class="string">&#x27;changeCityName&#x27;</span>, city)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>组件中调用 dispath 可以调用到actions内的函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$store</span>.<span class="title function_">dispatch</span>(<span class="string">&#x27;changeCity&#x27;</span>, <span class="string">&#x27;北京&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">changeCityName</span>(<span class="params">state, city</span>) &#123;</span><br><span class="line">	state.<span class="property">city</span> = city</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="module"><a href="#module" class="headerlink" title="module"></a><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9tb2R1bGVzLmh0bWw=">module<i class="fa fa-external-link-alt"></i></span></h3><h2 id="异步加载组件"><a href="#异步加载组件" class="headerlink" title="异步加载组件"></a><span class="exturl" data-url="aHR0cHM6Ly9yb3V0ZXIudnVlanMub3JnL3poL2d1aWRlL2FkdmFuY2VkL2xhenktbG9hZGluZy5odG1sIyVFOCVCNyVBRiVFNyU5NCVCMSVFNiU4NyU5MiVFNSU4QSVBMCVFOCVCRCVCRA==">异步加载组件<i class="fa fa-external-link-alt"></i></span></h2><p>将原来的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Home</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>修改为异步加载，有效减少的 app.js 文件大小</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./page/home/Home.vue&#x27;</span>) &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>项目总结</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>初学vue笔记</title>
     <url>/posts/2b382936/</url>
     <content><![CDATA[<p>大致为一下几个方面</p>
@@ -5906,6 +6161,73 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>去哪儿网踩坑（Vue-cli配置和Vuex）</title>
+    <url>/posts/7a3e10c2/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20va29sZXI3NzgvcXVuYWVyd2FuZ3Rlc3Q=">去哪儿网项目链接<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Vue-cli-配置"><a href="#Vue-cli-配置" class="headerlink" title="Vue-cli 配置"></a>Vue-cli 配置</h2><h3 id="Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias"><a href="#Vue-cli-2-x-和-Vue-cli-3-x-配置webpack别名目录-alias" class="headerlink" title="Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias"></a>Vue-cli 2.x 和 Vue-cli 3.x 配置webpack别名目录 alias</h3><h4 id="vue-cli-2-x"><a href="#vue-cli-2-x" class="headerlink" title="vue-cli 2.x"></a>vue-cli 2.x</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&#x27;.js&#x27;</span>, <span class="string">&#x27;.vue&#x27;</span>, <span class="string">&#x27;.json&#x27;</span>],</span><br><span class="line">    <span class="attr">alias</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue$&#x27;</span>: <span class="string">&#x27;vue/dist/vue.esm.js&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;@&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src&#x27;</span>),</span><br><span class="line">			<span class="comment">// resolve 函数文件已配置好</span></span><br><span class="line">			<span class="string">&#x27;styles&#x27;</span>: <span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="vue-cli-3-x"><a href="#vue-cli-3-x" class="headerlink" title="vue-cli 3.x"></a>vue-cli 3.x</h4><p>直接在项目根目录新建 <code>vue.config.js</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">resolve</span>: &#123;</span><br><span class="line">      <span class="attr">alias</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;styles&#x27;</span>: path.<span class="title function_">resolve</span>(<span class="string">&#x27;src/assets/styles&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="stylus配置别名"><a href="#stylus配置别名" class="headerlink" title="stylus配置别名"></a>stylus配置别名</h3><p>在以上配置<code>webpack别名目录</code>后，在页面引入 <code>stylus</code> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">/* 此处的~styles 指的就是 src/assets/styles */</span><br><span class="line">@import &#x27;~styles/varibles.styl&#x27;;</span><br><span class="line">...</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h3><p><span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvSFRUUCVFNiU4QyU4MSVFNCVCOSU4NSVFOCVCRiU5RSVFNiU4RSVBNQ==">http持久链接 keep-alive 维基百科<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvYXBpLyNrZWVwLWFsaXZl">Vue官方解释<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>keep-alive 是持久化连接技术</p>
+<p>但在vue中是包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们，当组件在 <code>&lt;keep-alive&gt;</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code> 这两个生命周期钩子函数将会被对应执行。由于不会销毁，所以生命周期函数 <code>created</code>，<code>mounted</code>都不会执行第二次</p>
+</blockquote>
+<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><blockquote>
+<p>普通情况下 <strong>store</strong> 就已够用，但如果数据特别大而且特别多的时候，而且还是相互之间需要传值，这个时候就该 <strong>vuex</strong> 上场了。</p>
+<p>官方解释：</p>
+<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。</p>
+</blockquote>
+<p><img data-src="https://vuex.vuejs.org/vuex.png"></p>
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><blockquote>
+<p>相当于组件中的 data，只要挂载到Vue上，所有组件都可以访问</p>
+</blockquote>
+<p>组件中获取state</p>
+<p>第一种 简单直接，就是写起来有点麻烦</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;this.$store.state.city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9zdGF0ZS5odG1sIyVFNSVBRiVCOSVFOCVCMSVBMSVFNSVCMSU5NSVFNSVCQyU4MCVFOCVCRiU5MCVFNyVBRSU5NyVFNyVBQyVBNg==">第二种 对象展开运算符<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;city&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; mapState &#125; from &#x27;vuex&#x27;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">		...mapState([&#x27;city&#x27;])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><p><strong>优势</strong></p>
+<ul>
+<li>Action 提交的是 mutation，而不是直接变更状态。</li>
+<li>Action 可以包含任意异步操作。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">actions</span>: &#123;</span><br><span class="line">  <span class="title function_">changeCity</span>(<span class="params">context, city</span>) &#123;</span><br><span class="line">    context.<span class="title function_">commit</span>(<span class="string">&#x27;changeCityName&#x27;</span>, city)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>组件中调用 dispath 可以调用到actions内的函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$store</span>.<span class="title function_">dispatch</span>(<span class="string">&#x27;changeCity&#x27;</span>, <span class="string">&#x27;北京&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">changeCityName</span>(<span class="params">state, city</span>) &#123;</span><br><span class="line">	state.<span class="property">city</span> = city</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a><span class="exturl" data-url="aHR0cHM6Ly92dWV4LnZ1ZWpzLm9yZy96aC9ndWlkZS9tb2R1bGVzLmh0bWw=">module<i class="fa fa-external-link-alt"></i></span></h3><h2 id="异步加载组件"><a href="#异步加载组件" class="headerlink" title="异步加载组件"></a><span class="exturl" data-url="aHR0cHM6Ly9yb3V0ZXIudnVlanMub3JnL3poL2d1aWRlL2FkdmFuY2VkL2xhenktbG9hZGluZy5odG1sIyVFOCVCNyVBRiVFNyU5NCVCMSVFNiU4NyU5MiVFNSU4QSVBMCVFOCVCRCVCRA==">异步加载组件<i class="fa fa-external-link-alt"></i></span></h2><p>将原来的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Home</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>修改为异步加载，有效减少的 app.js 文件大小</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span> <span class="string">&#x27;./page/home/Home.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./page/home/Home.vue&#x27;</span>) &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>项目总结</tag>
       </tags>
   </entry>
   <entry>
@@ -6372,313 +6694,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>em、rem和vw(vh)区别</title>
-    <url>/posts/efd120c3/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CSS的<strong>单位长度</strong>分为</p>
-<ul>
-<li>绝对长度单位</li>
-<li>相对长度单位</li>
-</ul>
-<p>其中</p>
-<p>绝对长度单位分为 <code>cm</code>（厘米）, <code>mm</code>（毫米）, <code>in</code>（英寸）. <code>pt</code>（点）, <code>px</code>（像素）</p>
-<p>相对长度单位分为 <code>em</code>（父元素字体大小）, <code>rem</code>（根元素字体大小）, <code>vw</code>（视窗宽度）, <code>vh</code>（视窗高度）</p>
-<p>大家都喜欢只对比 <code>em</code> 和 <code>rem</code> ，但 <code>vw</code> <code>vh</code> 也是属于绝对长度，并且也比较常用，所以这里我放在一起对比了。</p>
-<span id="more"></span>
-
-<h2 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h2><p><code>vw</code> 和 <code>vh</code> 都是展现的为视窗的高度，也就是页面显示内容的总高度，分为 100 份</p>
-<blockquote>
-<p>假如你的页面显示宽度为 1920，那么当你设置你的元素为 <code>10vw</code> ，那么当前元素的宽度则为 192。</p>
-</blockquote>
-<p><strong>example</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>111<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css">	</span></span><br><span class="line"><span class="language-css">		* &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-id">#fa</span> &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">100vw</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;fa&quot;</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200328163110.png"></p>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p><code>em</code> ，<strong>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</strong></p>
-<p><a href="#show-you-code">代码</a></p>
-<p><strong>如果不定义元素自身字体大小，默认继承父节点字体大小</strong></p>
-<blockquote>
-<p>当父元素的字体设置为 <code>20px</code>，那么当前子元素的 <code>1em</code> 的值可以认为是 <code>20px</code> ，则可以得出 子元素设置宽度为 <code>5em</code> 可以换算成 <code>100px</code> </p>
-</blockquote>
-<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p><code>rem</code> 和 <code>em</code> 他们不光像亲兄弟，因为他们的使用方法也很像。</p>
-<p><code>rem</code> 这里的 <code>r</code> 指的是 <code>root</code> ，连起来就是 <code>root em</code>。此时你应该可以理解了吧。</p>
-<p><code>rem</code> 是根据根节点元素的字体大小来定义的，这里的根节点通常指的是标签为 <code>html</code> 的元素。</p>
-<h2 id="show-you-code"><a href="#show-you-code" class="headerlink" title="show you code"></a>show you code</h2><iframe height="318" style="width: 100%;" scrolling="no" title="abOPEaE" src="https://codepen.io/popring/embed/abOPEaE?height=318&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/popring/pen/abOPEaE'>abOPEaE</a> by HarryHao
-  (<a href='https://codepen.io/popring'>@popring</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-
-
-<p>以上代码的 <code>fa</code> 代表父节点， <code>ch</code> 代表子节点</p>
-<p>根节点字体大小 <code>10px</code>，子节点（#ch）宽度为 <code>2rem</code>，转换后为 <code>20px</code></p>
-<p>父节点字体大小 <code>20px</code> ，子节点（#ch2）宽度为 <code>2em</code> ，转换后为 <code>40px</code></p>
-<p>父节点字体大小 <code>20px</code> ，子节点（#ch3）字体大小为 <code>15px</code>， 子节点（#ch3） 宽度为 <code>2em</code> ，转换后为 <code>30px</code></p>
-<p>Ending.</p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>get和post区别</title>
-    <url>/posts/f69ca482/</url>
-    <content><![CDATA[<ul>
-<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
-<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
-<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
-<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
-<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
-<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
-<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
-<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
-<li>GET参数通过URL传递，POST放在Request body中。</li>
-</ul>
-<p>额外可以聊</p>
-<ul>
-<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
-<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>https握手过程</title>
-    <url>/posts/1449f691/</url>
-    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
-<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
-<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
-<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
-<li>服务端使用自己的私钥，对随机数进行解密。</li>
-<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
-</ul>
-<p>细节</p>
-<ul>
-<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>setTimeout为什么会有延迟</title>
-    <url>/posts/9a771de5/</url>
-    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
-<p>其中 setTimeout 有两类用法：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
-<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
-<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
-<p>其他影响 setTimout 延迟因素：</p>
-<ol>
-<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
-<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
-<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
-</ol>
-<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>v-if和v-show区别</title>
-    <url>/posts/e9ac0758/</url>
-    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
-<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
-<p>当条件变化时该指令触发过渡效果。</p>
-<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
-<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
-<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
-<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
-<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
-<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
-</ul>
-<p>关联文章：</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIwLzEwLzE2L2Nzcy92aXNpYmlsaXR5LWhpZGRlbiVFMyU4MCU4MWRpc3BsYXktbm9uZSVFMyU4MCU4MW9wYWNpdHktMC0lRTUlOEMlQkElRTUlODglQUIv">visibility: hidden、display: none、opacity: 0 区别<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从输入url到页面显示经过了什么</title>
-    <url>/posts/ababab9d/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>TCP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<span id="more"></span>
-
-
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>visibility: hidden、display: none、opacity: 0 区别</title>
-    <url>/posts/540f9cbc/</url>
-    <content><![CDATA[<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>做了以下的实验，可以得出结论，</p>
-<ul>
-<li><code>visibility: hidden;</code> 只是在视觉上隐藏，但没有影响布局，但绑定的事件也无法触发。</li>
-<li><code>display:none;</code> 元素被彻底隐藏，在页面上完全不显示，不占位，无宽高</li>
-<li><code>opacity: 0;</code> 只会修改元素透明度，并不影响布局及事件触发。</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="样式属性"><a href="#样式属性" class="headerlink" title="样式属性"></a>样式属性</h2><h3 id="visibility"><a href="#visibility" class="headerlink" title="visibility"></a>visibility</h3><blockquote>
-<p>控制 显示&#x2F;隐藏 元素，不会影响布局。</p>
-</blockquote>
-<ul>
-<li><code>visible</code> 元素正常显示</li>
-<li><code>hidden</code> 隐藏元素，但不影响布局。<strong>子元素设置为 <code>visible</code> 则子元素仍然可见</strong></li>
-<li><code>collapse</code> 用于隐藏表格的行、列。</li>
-</ul>
-<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><blockquote>
-<p>官网介绍了很多类型，并且分为六大类，具体请看 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">MDN<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li><code>display-outside </code> </li>
-<li><code>display-inside</code> </li>
-<li><code>display-listitem</code> </li>
-<li><code>display-internal</code></li>
-<li><code>display-legacy</code></li>
-<li><code>display-box</code></li>
-</ul>
-</blockquote>
-<p>这里就介绍一下常用的几个</p>
-<ul>
-<li><code>block</code> 将元素设置为块级元素</li>
-<li><code>inline</code> 将元素设置为行内元素</li>
-<li><code>inline-block</code> 将元素设置为行内块元素</li>
-<li><code>table</code> 表格样式</li>
-<li><code>flex</code> 弹性布局</li>
-<li><code>grid</code> 网格布局</li>
-<li><code>none</code> 使元素不显示（后代元素也将隐藏），不占位，切换则会影响布局。</li>
-</ul>
-<h3 id="opacity"><a href="#opacity" class="headerlink" title="opacity"></a>opacity</h3><blockquote>
-<p>更改元素的透明度（使用opacity属性，当属性值不为1时，会把元素放置在一个新的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvR3VpZGUvQ1NTL1VuZGVyc3RhbmRpbmdfel9pbmRleC9UaGVfc3RhY2tpbmdfY29udGV4dA==">层叠上下文<i class="fa fa-external-link-alt"></i></span>中。）</p>
-</blockquote>
-<ul>
-<li><code>number值</code> 此值应为 <code>0.0 ~ 1.0</code> 之间</li>
-</ul>
-<h2 id="三个样式隐藏的区别"><a href="#三个样式隐藏的区别" class="headerlink" title="三个样式隐藏的区别"></a>三个样式隐藏的区别</h2><p>原始代码</p>
-<blockquote>
-<p>在 box 外层加了一个 div 添加边框，更加可以直观的看出各个样式的区别。</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016225256.png" alt="image-20201016225251216"></p>
-<h3 id="页面展示效果"><a href="#页面展示效果" class="headerlink" title="页面展示效果"></a>页面展示效果</h3><blockquote>
-<p>根据以上代码进行修改，将每个 box 添加以上三种的隐藏样式后效果</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: skyblue;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016230147.png" alt="image-20201016225828692"></p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016233415.png" alt="image-20201016233414985"></p>
-<p>可以看出，只有 <code>display: none;</code> 没有宽度了（尝试添加高度之后仍然没有显示出来）。而剩下的 <code>visibility: hidden;</code> <code>opacity: 0;</code> 仍然会占据位置（从外层 div 的边框线就可以看出来）。</p>
-<h3 id="性能区别"><a href="#性能区别" class="headerlink" title="性能区别"></a>性能区别</h3><blockquote>
-<p>以下<strong>切换样式</strong>指的就是样式从显示到隐藏或从隐藏到显示。</p>
-<p>比如： </p>
-<p>visibility: hidden; -&gt; visibility: visible;</p>
-<p>opacity: 0; -&gt; opacity: 1;</p>
-<p>display: block; -&gt; display: none;</p>
-</blockquote>
-<p>根据上述 页面展示效果 可以看出，<code>visibility: hidden;</code> <code>opacity: 0;</code> 只会对元素进行隐藏，并不会改变页面布局，所以如果<strong>切换样式</strong>只会造成<strong>页面重绘（repaint）</strong>并不会回流。</p>
-<p>而如果是修改 <code>display</code> 属性的话，则会影响布局，<strong>造成页面回流（reflow），同时也会造成重绘（repaint）</strong>。</p>
-<h3 id="点击效果"><a href="#点击效果" class="headerlink" title="点击效果"></a>点击效果</h3><blockquote>
-<p>根据以上代码，进行改造，添加 js 代码，用来监听点击事件，点击输出当前被点击元素的类名</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">visibility</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> box = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">`box<span class="subst">$&#123;i&#125;</span>`</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">      box.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">className</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>然后依次进行点击（第二个盒子因为完全隐藏，所以点击不到）</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016232532.png" alt="image-20201016232532906"></p>
-<p>看点击结果只有最后一个盒子被点击到。</p>
-<p>小结</p>
-<ul>
-<li><code>visibility: hidden;</code> <code>display:none;</code>无法被点击</li>
-<li><code>opacity: 0;</code> 可被点击</li>
-</ul>
-<p><a href="#%E7%BB%93%E8%AE%BA">结论在开头</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04=">MDN<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>可替换元素和不可替换元素</title>
-    <url>/posts/d6e0c31a/</url>
-    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
-<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
-<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
-<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
-<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-70.爬楼梯</title>
     <url>/posts/3a506125/</url>
     <content><![CDATA[<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
@@ -6918,18 +6933,6 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>[转] 通配符（Wildcard）</title>
-    <url>/posts/163f6156/</url>
-    <content><![CDATA[<blockquote>
-<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
     <title>[转] 对贡献有激情，对回报有信心</title>
     <url>/posts/ee47234e/</url>
     <content><![CDATA[<blockquote>
@@ -6945,18 +6948,6 @@ JavaScript 高级程序设计</p>
       <categories>
         <category>转载</category>
       </categories>
-  </entry>
-  <entry>
-    <title>OKR</title>
-    <url>/posts/126fb5f9/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9PS1I=">https://baike.baidu.com/item/OKR<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>软素质</category>
-      </categories>
-      <tags>
-        <tag>OKR</tag>
-      </tags>
   </entry>
   <entry>
     <title>我的几何人生-丘成桐</title>
@@ -7024,6 +7015,30 @@ JavaScript 高级程序设计</p>
       <categories>
         <category>转载</category>
       </categories>
+  </entry>
+  <entry>
+    <title>[转] 通配符（Wildcard）</title>
+    <url>/posts/163f6156/</url>
+    <content><![CDATA[<blockquote>
+<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>OKR</title>
+    <url>/posts/126fb5f9/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9PS1I=">https://baike.baidu.com/item/OKR<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
+        <tag>OKR</tag>
+      </tags>
   </entry>
   <entry>
     <title>优势管理</title>
@@ -7130,36 +7145,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>初入职场小白需掌握</title>
-    <url>/posts/728b077a/</url>
-    <content><![CDATA[<h2 id="锦囊妙计"><a href="#锦囊妙计" class="headerlink" title="锦囊妙计"></a>锦囊妙计</h2><h3 id="锦囊一"><a href="#锦囊一" class="headerlink" title="锦囊一"></a>锦囊一</h3><ul>
-<li>互惠原则：长期的关系基于互惠，而非短期利益</li>
-<li>心里相容：尊重差异，互为对方所接受与认同</li>
-<li>自我了解：了解自我特点及不足，发挥长处</li>
-<li>差异化沟通：基于 <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9ESVNDLzE1ODYyMjc=">DISC<i class="fa fa-external-link-alt"></i></span> 风格的差异化沟通</li>
-</ul>
-<h3 id="锦囊二"><a href="#锦囊二" class="headerlink" title="锦囊二"></a>锦囊二</h3><ul>
-<li>真诚至上：基于双方的尊重、信任和关心</li>
-<li>化繁为简：工作沟通要用 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZG91YmFuLmNvbS9ub3RlLzczMDM4OTA0Ny8/X2k9NzM1Nzg5M2gyWWJQT28sNzM3NDg4M2gyWWJQT28=">PREP<i class="fa fa-external-link-alt"></i></span> 归纳法</li>
-<li>数据为王：数字时代让数据说话</li>
-<li>价值共创：沟通有没有打动对方？痛点或痒点</li>
-<li>合适渠道：书面与口头组合</li>
-</ul>
-<h3 id="锦囊三"><a href="#锦囊三" class="headerlink" title="锦囊三"></a>锦囊三</h3><ul>
-<li>认知清晰：为什么要做？如何可以做成？目的比目标更重要</li>
-<li>问题解决：防火重于救火，行动为了达成而不是打卡</li>
-<li>行动力量：保持成事所需的高水准行动不打折</li>
-<li>价值制胜：工作的价值取绝于解决问题的难度</li>
-</ul>
-]]></content>
-      <categories>
-        <category>软素质</category>
-      </categories>
-      <tags>
-        <tag>沟通</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>职场效率小工具</title>
     <url>/posts/dfea4626/</url>
     <content><![CDATA[<p>这些工具都是我平时工作中经常用到的，可以帮助我们提高工作效率，提升工作质量。</p>
@@ -7259,6 +7244,36 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>思维</tag>
         <tag>效率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初入职场小白需掌握</title>
+    <url>/posts/728b077a/</url>
+    <content><![CDATA[<h2 id="锦囊妙计"><a href="#锦囊妙计" class="headerlink" title="锦囊妙计"></a>锦囊妙计</h2><h3 id="锦囊一"><a href="#锦囊一" class="headerlink" title="锦囊一"></a>锦囊一</h3><ul>
+<li>互惠原则：长期的关系基于互惠，而非短期利益</li>
+<li>心里相容：尊重差异，互为对方所接受与认同</li>
+<li>自我了解：了解自我特点及不足，发挥长处</li>
+<li>差异化沟通：基于 <span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS9ESVNDLzE1ODYyMjc=">DISC<i class="fa fa-external-link-alt"></i></span> 风格的差异化沟通</li>
+</ul>
+<h3 id="锦囊二"><a href="#锦囊二" class="headerlink" title="锦囊二"></a>锦囊二</h3><ul>
+<li>真诚至上：基于双方的尊重、信任和关心</li>
+<li>化繁为简：工作沟通要用 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZG91YmFuLmNvbS9ub3RlLzczMDM4OTA0Ny8/X2k9NzM1Nzg5M2gyWWJQT28sNzM3NDg4M2gyWWJQT28=">PREP<i class="fa fa-external-link-alt"></i></span> 归纳法</li>
+<li>数据为王：数字时代让数据说话</li>
+<li>价值共创：沟通有没有打动对方？痛点或痒点</li>
+<li>合适渠道：书面与口头组合</li>
+</ul>
+<h3 id="锦囊三"><a href="#锦囊三" class="headerlink" title="锦囊三"></a>锦囊三</h3><ul>
+<li>认知清晰：为什么要做？如何可以做成？目的比目标更重要</li>
+<li>问题解决：防火重于救火，行动为了达成而不是打卡</li>
+<li>行动力量：保持成事所需的高水准行动不打折</li>
+<li>价值制胜：工作的价值取绝于解决问题的难度</li>
+</ul>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
+        <tag>沟通</tag>
       </tags>
   </entry>
   <entry>
