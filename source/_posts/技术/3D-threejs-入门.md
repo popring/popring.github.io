@@ -8,72 +8,15 @@ tags:
 
 <!-- more -->
 
-[course: threejs-journey](https://threejs-journey.com/)
+## 3D 相关课程/文章
 
-## 动画
-
-使用相同的时间间隔来更新动画，可以保证动画的流畅性。
-
-方法一：
-
-```js
-let time = Date.now()
-
-const tick = () => {
-    const currentTime = Date.now()
-    const deltaTime = currentTime - time
-    time = currentTime
-
-    mesh.rotation.y += 0.001 * deltaTime
-    renderer.render(scene, camera)
-    window.requestAnimationFrame(tick)
-}
-
-tick()
-```
-
-方法二：
-
-```js
-const clock = new THREE.Clock()
-
-const tick = () => {
-    const elapsedTime = clock.getElapsedTime()
-    mesh.rotation.y = 0.001 * elapsedTime
-    renderer.render(scene, camera)
-    window.requestAnimationFrame(tick)
-}
-
-tick()
-```
-
-## 动画库
-
-- [gsap](https://greensock.com/gsap/)
-- [tween.js](https://github.com/tweenjs/tween.js/)
-
-## debugUI
-
-- [dat.GUI](https://github.com/dataarts/dat.gui)
-- [lil-gui](https://github.com/georgealways/lil-gui)
-- [control-panel](https://github.com/freeman-lab/control-panel)
-- [ControlKit](https://github.com/automat/controlkit.js)
-- [Uil](https://github.com/lo-th/uil)
-- [Tweakpane](https://tweakpane.github.io/docs/)
-- [Guify](https://github.com/colejd/guify)
-- [Oui](https://github.com/wearekuva/oui)
-
-## find texture website
-
-- [poliigon.com](https://poliigon.com/)
-- [3dtextures.me](https://3dtextures.me/)
-- [arroway-textures.ch](https://www.arroway-textures.ch/)
-
-
+- [course: threejs-journey](https://threejs-journey.com/)
+- [book: discoverthreejs](https://discoverthreejs.com/zh/book/introduction/about-the-book/)
+- [book: zxg_神说要有光 threejs 小册子](https://juejin.cn/book/7481132169944498226?enter_from=course_center&utm_source=course_center)
+- [article: 3d-modeling-basics-for-developers](https://daily.dev/blog/3d-modeling-basics-for-developers)
+- [doc: 官方入门文档](https://threejs.org/manual/#zh/fundamentals)
 
 ---
-
-[zxg_神说要有光小册子](https://juejin.cn/book/7481132169944498226)
 
 ## 专业名词
 
@@ -135,9 +78,14 @@ import * as THREE from "https://esm.sh/three@0.174.0/build/three.module.js";
 `dat-gui` 已经不再维护了， star `7.6k`
 `lil-gui` 内置在 `three.js` 中, star `1.3k`
 
-[lil-gui doc](https://lil-gui.georgealways.com/)
-[lil-gui github](https://github.com/georgealways/lil-gui)
-[dat-gui github](https://github.com/dataarts/dat.gui)
+- [dat.GUI](https://github.com/dataarts/dat.gui)
+- [lil-gui](https://github.com/georgealways/lil-gui)
+- [control-panel](https://github.com/freeman-lab/control-panel)
+- [ControlKit](https://github.com/automat/controlkit.js)
+- [Uil](https://github.com/lo-th/uil)
+- [Tweakpane](https://tweakpane.github.io/docs/)
+- [Guify](https://github.com/colejd/guify)
+- [Oui](https://github.com/wearekuva/oui)
 
 ## 视锥体和相机
 
@@ -217,3 +165,51 @@ texture.offset.y = 0.5; // 垂直偏移
 texture.repeat.x = 2; // 水平重复
 texture.repeat.y = 2; // 垂直重复
 ```
+
+## 动画
+
+使用相同的时间间隔来更新动画，可以保证动画的流畅性。
+
+方法一：
+
+```js
+let time = Date.now()
+
+const tick = () => {
+    const currentTime = Date.now()
+    const deltaTime = currentTime - time
+    time = currentTime
+
+    mesh.rotation.y += 0.001 * deltaTime
+    renderer.render(scene, camera)
+    window.requestAnimationFrame(tick)
+}
+
+tick()
+```
+
+方法二：
+
+```js
+const clock = new THREE.Clock()
+
+const tick = () => {
+    const elapsedTime = clock.getElapsedTime()
+    mesh.rotation.y = 0.001 * elapsedTime
+    renderer.render(scene, camera)
+    window.requestAnimationFrame(tick)
+}
+
+tick()
+```
+
+## 动画库
+
+- [gsap](https://greensock.com/gsap/)
+- [tween.js](https://github.com/tweenjs/tween.js/)
+
+## find texture website
+
+- [poliigon.com](https://poliigon.com/)
+- [3dtextures.me](https://3dtextures.me/)
+- [arroway-textures.ch](https://www.arroway-textures.ch/)
