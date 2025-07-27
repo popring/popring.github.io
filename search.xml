@@ -3274,346 +3274,18 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>em、rem和vw(vh)区别</title>
-    <url>/posts/efd120c3/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CSS的<strong>单位长度</strong>分为</p>
-<ul>
-<li>绝对长度单位</li>
-<li>相对长度单位</li>
-</ul>
-<p>其中</p>
-<p>绝对长度单位分为 <code>cm</code>（厘米）, <code>mm</code>（毫米）, <code>in</code>（英寸）. <code>pt</code>（点）, <code>px</code>（像素）</p>
-<p>相对长度单位分为 <code>em</code>（父元素字体大小）, <code>rem</code>（根元素字体大小）, <code>vw</code>（视窗宽度）, <code>vh</code>（视窗高度）</p>
-<p>大家都喜欢只对比 <code>em</code> 和 <code>rem</code> ，但 <code>vw</code> <code>vh</code> 也是属于绝对长度，并且也比较常用，所以这里我放在一起对比了。</p>
-<span id="more"></span>
-
-<h2 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h2><p><code>vw</code> 和 <code>vh</code> 都是展现的为视窗的高度，也就是页面显示内容的总高度，分为 100 份</p>
-<blockquote>
-<p>假如你的页面显示宽度为 1920，那么当你设置你的元素为 <code>10vw</code> ，那么当前元素的宽度则为 192。</p>
-</blockquote>
-<p><strong>example</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>111<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css">	</span></span><br><span class="line"><span class="language-css">		* &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-id">#fa</span> &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">100vw</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;fa&quot;</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200328163110.png"></p>
-<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p><code>em</code> ，<strong>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</strong></p>
-<p><a href="#show-you-code">代码</a></p>
-<p><strong>如果不定义元素自身字体大小，默认继承父节点字体大小</strong></p>
-<blockquote>
-<p>当父元素的字体设置为 <code>20px</code>，那么当前子元素的 <code>1em</code> 的值可以认为是 <code>20px</code> ，则可以得出 子元素设置宽度为 <code>5em</code> 可以换算成 <code>100px</code> </p>
-</blockquote>
-<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p><code>rem</code> 和 <code>em</code> 他们不光像亲兄弟，因为他们的使用方法也很像。</p>
-<p><code>rem</code> 这里的 <code>r</code> 指的是 <code>root</code> ，连起来就是 <code>root em</code>。此时你应该可以理解了吧。</p>
-<p><code>rem</code> 是根据根节点元素的字体大小来定义的，这里的根节点通常指的是标签为 <code>html</code> 的元素。</p>
-<h2 id="show-you-code"><a href="#show-you-code" class="headerlink" title="show you code"></a>show you code</h2><iframe height="318" style="width: 100%;" scrolling="no" title="abOPEaE" src="https://codepen.io/popring/embed/abOPEaE?height=318&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/popring/pen/abOPEaE'>abOPEaE</a> by HarryHao
-  (<a href='https://codepen.io/popring'>@popring</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-
-
-<p>以上代码的 <code>fa</code> 代表父节点， <code>ch</code> 代表子节点</p>
-<p>根节点字体大小 <code>10px</code>，子节点（#ch）宽度为 <code>2rem</code>，转换后为 <code>20px</code></p>
-<p>父节点字体大小 <code>20px</code> ，子节点（#ch2）宽度为 <code>2em</code> ，转换后为 <code>40px</code></p>
-<p>父节点字体大小 <code>20px</code> ，子节点（#ch3）字体大小为 <code>15px</code>， 子节点（#ch3） 宽度为 <code>2em</code> ，转换后为 <code>30px</code></p>
-<p>Ending.</p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>get和post区别</title>
-    <url>/posts/f69ca482/</url>
-    <content><![CDATA[<ul>
-<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
-<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
-<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
-<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
-<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
-<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
-<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
-<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
-<li>GET参数通过URL传递，POST放在Request body中。</li>
-</ul>
-<p>额外可以聊</p>
-<ul>
-<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
-<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>https握手过程</title>
-    <url>/posts/1449f691/</url>
-    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
-<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
-<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
-<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
-<li>服务端使用自己的私钥，对随机数进行解密。</li>
-<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
-</ul>
-<p>细节</p>
-<ul>
-<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>v-if和v-show区别</title>
-    <url>/posts/e9ac0758/</url>
-    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
-<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
-<p>当条件变化时该指令触发过渡效果。</p>
-<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
-<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
-<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
-<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
-<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
-<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
-</ul>
-<p>关联文章：</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIwLzEwLzE2L2Nzcy92aXNpYmlsaXR5LWhpZGRlbiVFMyU4MCU4MWRpc3BsYXktbm9uZSVFMyU4MCU4MW9wYWNpdHktMC0lRTUlOEMlQkElRTUlODglQUIv">visibility: hidden、display: none、opacity: 0 区别<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>setTimeout为什么会有延迟</title>
-    <url>/posts/9a771de5/</url>
-    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
-<p>其中 setTimeout 有两类用法：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
-<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
-<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
-<p>其他影响 setTimout 延迟因素：</p>
-<ol>
-<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
-<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
-<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
-</ol>
-<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>visibility: hidden、display: none、opacity: 0 区别</title>
-    <url>/posts/540f9cbc/</url>
-    <content><![CDATA[<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>做了以下的实验，可以得出结论，</p>
-<ul>
-<li><code>visibility: hidden;</code> 只是在视觉上隐藏，但没有影响布局，但绑定的事件也无法触发。</li>
-<li><code>display:none;</code> 元素被彻底隐藏，在页面上完全不显示，不占位，无宽高</li>
-<li><code>opacity: 0;</code> 只会修改元素透明度，并不影响布局及事件触发。</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="样式属性"><a href="#样式属性" class="headerlink" title="样式属性"></a>样式属性</h2><h3 id="visibility"><a href="#visibility" class="headerlink" title="visibility"></a>visibility</h3><blockquote>
-<p>控制 显示&#x2F;隐藏 元素，不会影响布局。</p>
-</blockquote>
-<ul>
-<li><code>visible</code> 元素正常显示</li>
-<li><code>hidden</code> 隐藏元素，但不影响布局。<strong>子元素设置为 <code>visible</code> 则子元素仍然可见</strong></li>
-<li><code>collapse</code> 用于隐藏表格的行、列。</li>
-</ul>
-<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><blockquote>
-<p>官网介绍了很多类型，并且分为六大类，具体请看 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">MDN<i class="fa fa-external-link-alt"></i></span></p>
-<ul>
-<li><code>display-outside </code> </li>
-<li><code>display-inside</code> </li>
-<li><code>display-listitem</code> </li>
-<li><code>display-internal</code></li>
-<li><code>display-legacy</code></li>
-<li><code>display-box</code></li>
-</ul>
-</blockquote>
-<p>这里就介绍一下常用的几个</p>
-<ul>
-<li><code>block</code> 将元素设置为块级元素</li>
-<li><code>inline</code> 将元素设置为行内元素</li>
-<li><code>inline-block</code> 将元素设置为行内块元素</li>
-<li><code>table</code> 表格样式</li>
-<li><code>flex</code> 弹性布局</li>
-<li><code>grid</code> 网格布局</li>
-<li><code>none</code> 使元素不显示（后代元素也将隐藏），不占位，切换则会影响布局。</li>
-</ul>
-<h3 id="opacity"><a href="#opacity" class="headerlink" title="opacity"></a>opacity</h3><blockquote>
-<p>更改元素的透明度（使用opacity属性，当属性值不为1时，会把元素放置在一个新的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvR3VpZGUvQ1NTL1VuZGVyc3RhbmRpbmdfel9pbmRleC9UaGVfc3RhY2tpbmdfY29udGV4dA==">层叠上下文<i class="fa fa-external-link-alt"></i></span>中。）</p>
-</blockquote>
-<ul>
-<li><code>number值</code> 此值应为 <code>0.0 ~ 1.0</code> 之间</li>
-</ul>
-<h2 id="三个样式隐藏的区别"><a href="#三个样式隐藏的区别" class="headerlink" title="三个样式隐藏的区别"></a>三个样式隐藏的区别</h2><p>原始代码</p>
-<blockquote>
-<p>在 box 外层加了一个 div 添加边框，更加可以直观的看出各个样式的区别。</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016225256.png" alt="image-20201016225251216"></p>
-<h3 id="页面展示效果"><a href="#页面展示效果" class="headerlink" title="页面展示效果"></a>页面展示效果</h3><blockquote>
-<p>根据以上代码进行修改，将每个 box 添加以上三种的隐藏样式后效果</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: skyblue;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016230147.png" alt="image-20201016225828692"></p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016233415.png" alt="image-20201016233414985"></p>
-<p>可以看出，只有 <code>display: none;</code> 没有宽度了（尝试添加高度之后仍然没有显示出来）。而剩下的 <code>visibility: hidden;</code> <code>opacity: 0;</code> 仍然会占据位置（从外层 div 的边框线就可以看出来）。</p>
-<h3 id="性能区别"><a href="#性能区别" class="headerlink" title="性能区别"></a>性能区别</h3><blockquote>
-<p>以下<strong>切换样式</strong>指的就是样式从显示到隐藏或从隐藏到显示。</p>
-<p>比如： </p>
-<p>visibility: hidden; -&gt; visibility: visible;</p>
-<p>opacity: 0; -&gt; opacity: 1;</p>
-<p>display: block; -&gt; display: none;</p>
-</blockquote>
-<p>根据上述 页面展示效果 可以看出，<code>visibility: hidden;</code> <code>opacity: 0;</code> 只会对元素进行隐藏，并不会改变页面布局，所以如果<strong>切换样式</strong>只会造成<strong>页面重绘（repaint）</strong>并不会回流。</p>
-<p>而如果是修改 <code>display</code> 属性的话，则会影响布局，<strong>造成页面回流（reflow），同时也会造成重绘（repaint）</strong>。</p>
-<h3 id="点击效果"><a href="#点击效果" class="headerlink" title="点击效果"></a>点击效果</h3><blockquote>
-<p>根据以上代码，进行改造，添加 js 代码，用来监听点击事件，点击输出当前被点击元素的类名</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">visibility</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> box = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">`box<span class="subst">$&#123;i&#125;</span>`</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">      box.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">className</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>然后依次进行点击（第二个盒子因为完全隐藏，所以点击不到）</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016232532.png" alt="image-20201016232532906"></p>
-<p>看点击结果只有最后一个盒子被点击到。</p>
-<p>小结</p>
-<ul>
-<li><code>visibility: hidden;</code> <code>display:none;</code>无法被点击</li>
-<li><code>opacity: 0;</code> 可被点击</li>
-</ul>
-<p><a href="#%E7%BB%93%E8%AE%BA">结论在开头</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04=">MDN<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从输入url到页面显示经过了什么</title>
-    <url>/posts/ababab9d/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>TCP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<span id="more"></span>
-
-
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>可替换元素和不可替换元素</title>
-    <url>/posts/d6e0c31a/</url>
-    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
-<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
-<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
-<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
-<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>3D/threejs 入门</title>
     <url>/posts/dda1bd91/</url>
     <content><![CDATA[<span id="more"></span>
 
-<p><span class="exturl" data-url="aHR0cHM6Ly90aHJlZWpzLWpvdXJuZXkuY29tLw==">course: threejs-journey<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>使用相同的时间间隔来更新动画，可以保证动画的流畅性。</p>
-<p>方法一：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> time = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">tick</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> currentTime = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">    <span class="keyword">const</span> deltaTime = currentTime - time</span><br><span class="line">    time = currentTime</span><br><span class="line"></span><br><span class="line">    mesh.<span class="property">rotation</span>.<span class="property">y</span> += <span class="number">0.001</span> * deltaTime</span><br><span class="line">    renderer.<span class="title function_">render</span>(scene, camera)</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(tick)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">tick</span>()</span><br></pre></td></tr></table></figure>
-
-<p>方法二：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> clock = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">Clock</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">tick</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> elapsedTime = clock.<span class="title function_">getElapsedTime</span>()</span><br><span class="line">    mesh.<span class="property">rotation</span>.<span class="property">y</span> = <span class="number">0.001</span> * elapsedTime</span><br><span class="line">    renderer.<span class="title function_">render</span>(scene, camera)</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(tick)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">tick</span>()</span><br></pre></td></tr></table></figure>
-
-<h2 id="动画库"><a href="#动画库" class="headerlink" title="动画库"></a>动画库</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ncmVlbnNvY2suY29tL2dzYXAv">gsap<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R3ZWVuanMvdHdlZW4uanMv">tween.js<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="debugUI"><a href="#debugUI" class="headerlink" title="debugUI"></a>debugUI</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhdGFhcnRzL2RhdC5ndWk=">dat.GUI<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dlb3JnZWFsd2F5cy9saWwtZ3Vp">lil-gui<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVtYW4tbGFiL2NvbnRyb2wtcGFuZWw=">control-panel<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2F1dG9tYXQvY29udHJvbGtpdC5qcw==">ControlKit<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xvLXRoL3VpbA==">Uil<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly90d2Vha3BhbmUuZ2l0aHViLmlvL2RvY3Mv">Tweakpane<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvbGVqZC9ndWlmeQ==">Guify<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dlYXJla3V2YS9vdWk=">Oui<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="find-texture-website"><a href="#find-texture-website" class="headerlink" title="find texture website"></a>find texture website</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9wb2xpaWdvbi5jb20v">poliigon.com<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly8zZHRleHR1cmVzLm1lLw==">3dtextures.me<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYXJyb3dheS10ZXh0dXJlcy5jaC8=">arroway-textures.ch<i class="fa fa-external-link-alt"></i></span></li>
+<h2 id="3D-相关课程-文章"><a href="#3D-相关课程-文章" class="headerlink" title="3D 相关课程&#x2F;文章"></a>3D 相关课程&#x2F;文章</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aHJlZWpzLWpvdXJuZXkuY29tLw==">course: threejs-journey<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kaXNjb3ZlcnRocmVlanMuY29tL3poL2Jvb2svaW50cm9kdWN0aW9uL2Fib3V0LXRoZS1ib29rLw==">book: discoverthreejs<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vYm9vay83NDgxMTMyMTY5OTQ0NDk4MjI2P2VudGVyX2Zyb209Y291cnNlX2NlbnRlciZ1dG1fc291cmNlPWNvdXJzZV9jZW50ZXI=">book: zxg_神说要有光 threejs 小册子<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kYWlseS5kZXYvYmxvZy8zZC1tb2RlbGluZy1iYXNpY3MtZm9yLWRldmVsb3BlcnM=">article: 3d-modeling-basics-for-developers<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aHJlZWpzLm9yZy9tYW51YWwvI3poL2Z1bmRhbWVudGFscw==">doc: 官方入门文档<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <hr>
-<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vYm9vay83NDgxMTMyMTY5OTQ0NDk4MjI2">zxg_神说要有光小册子<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="专业名词"><a href="#专业名词" class="headerlink" title="专业名词"></a>专业名词</h2><ul>
 <li>Geometry：几何体，描述物体的形状</li>
 <li>Material：材质，描述物体的外观</li>
@@ -3645,7 +3317,16 @@ JavaScript 高级程序设计</p>
 </ol>
 <h2 id="可视化控制"><a href="#可视化控制" class="headerlink" title="可视化控制"></a>可视化控制</h2><p>可以通过 <code>dat-gui</code> &#x2F; <code>lil-gui</code> 来可视化控制参数，从而实现交互式效果。</p>
 <p><code>dat-gui</code> 已经不再维护了， star <code>7.6k</code><br><code>lil-gui</code> 内置在 <code>three.js</code> 中, star <code>1.3k</code></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9saWwtZ3VpLmdlb3JnZWFsd2F5cy5jb20v">lil-gui doc<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dlb3JnZWFsd2F5cy9saWwtZ3Vp">lil-gui github<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhdGFhcnRzL2RhdC5ndWk=">dat-gui github<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhdGFhcnRzL2RhdC5ndWk=">dat.GUI<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dlb3JnZWFsd2F5cy9saWwtZ3Vp">lil-gui<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyZWVtYW4tbGFiL2NvbnRyb2wtcGFuZWw=">control-panel<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2F1dG9tYXQvY29udHJvbGtpdC5qcw==">ControlKit<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xvLXRoL3VpbA==">Uil<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90d2Vha3BhbmUuZ2l0aHViLmlvL2RvY3Mv">Tweakpane<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvbGVqZC9ndWlmeQ==">Guify<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dlYXJla3V2YS9vdWk=">Oui<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
 <h2 id="视锥体和相机"><a href="#视锥体和相机" class="headerlink" title="视锥体和相机"></a>视锥体和相机</h2><p>通过创建 <code>CameraHelper</code> 来实现模拟相机视锥体，可视化相机角度，并通过 GUI 来实时控制 <code>PerspectiveCamera</code> 的 <code>fov</code>、 <code>aspect</code> 、<code>near</code>、<code>far</code> 参数。</p>
 <p><code>fov</code>: 可视角度，离物体的远近，默认 <code>50</code><br><code>aspect</code>: 宽高比，通常是浏览器窗口的宽高比 <code>window.innerWidth / window.innerHeight</code>，默认 <code>1</code><br><code>near</code>: 近截面，通常是 <code>0.1</code>，默认 <code>0.1</code><br><code>far</code>: 远截面，通常是 <code>1000</code>，默认 <code>1000</code></p>
 <h2 id="几何体"><a href="#几何体" class="headerlink" title="几何体"></a>几何体</h2><p>3D 物体都是有顶点构成的三角形网格模型，所有几何体都是由一堆三角形构成的。</p>
@@ -3663,6 +3344,23 @@ JavaScript 高级程序设计</p>
 <p>texture.offset 可以让纹理贴图偏移一段距离，相当于改变了 uv 坐标，所以修改 texture.offset 的动画也叫做 uv 动画。</p>
 <p>还可以结合 texture.wrapT、textrue.wrapS 来实现纹理的重复。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> loader = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">TextureLoader</span>();</span><br><span class="line"><span class="keyword">const</span> texture = loader.<span class="title function_">load</span>(<span class="string">&#x27;./texture.png&#x27;</span>);</span><br><span class="line">texture.<span class="property">wrapS</span> = <span class="variable constant_">THREE</span>.<span class="property">RepeatWrapping</span>;</span><br><span class="line">texture.<span class="property">wrapT</span> = <span class="variable constant_">THREE</span>.<span class="property">RepeatWrapping</span>;</span><br><span class="line">texture.<span class="property">offset</span>.<span class="property">x</span> = <span class="number">0.5</span>; <span class="comment">// 水平偏移</span></span><br><span class="line">texture.<span class="property">offset</span>.<span class="property">y</span> = <span class="number">0.5</span>; <span class="comment">// 垂直偏移</span></span><br><span class="line">texture.<span class="property">repeat</span>.<span class="property">x</span> = <span class="number">2</span>; <span class="comment">// 水平重复</span></span><br><span class="line">texture.<span class="property">repeat</span>.<span class="property">y</span> = <span class="number">2</span>; <span class="comment">// 垂直重复</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>使用相同的时间间隔来更新动画，可以保证动画的流畅性。</p>
+<p>方法一：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> time = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">tick</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> currentTime = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">    <span class="keyword">const</span> deltaTime = currentTime - time</span><br><span class="line">    time = currentTime</span><br><span class="line"></span><br><span class="line">    mesh.<span class="property">rotation</span>.<span class="property">y</span> += <span class="number">0.001</span> * deltaTime</span><br><span class="line">    renderer.<span class="title function_">render</span>(scene, camera)</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(tick)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">tick</span>()</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> clock = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">Clock</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">tick</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> elapsedTime = clock.<span class="title function_">getElapsedTime</span>()</span><br><span class="line">    mesh.<span class="property">rotation</span>.<span class="property">y</span> = <span class="number">0.001</span> * elapsedTime</span><br><span class="line">    renderer.<span class="title function_">render</span>(scene, camera)</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(tick)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">tick</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="动画库"><a href="#动画库" class="headerlink" title="动画库"></a>动画库</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ncmVlbnNvY2suY29tL2dzYXAv">gsap<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R3ZWVuanMvdHdlZW4uanMv">tween.js<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="find-texture-website"><a href="#find-texture-website" class="headerlink" title="find texture website"></a>find texture website</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wb2xpaWdvbi5jb20v">poliigon.com<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly8zZHRleHR1cmVzLm1lLw==">3dtextures.me<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYXJyb3dheS10ZXh0dXJlcy5jaC8=">arroway-textures.ch<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -6691,6 +6389,313 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>em、rem和vw(vh)区别</title>
+    <url>/posts/efd120c3/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CSS的<strong>单位长度</strong>分为</p>
+<ul>
+<li>绝对长度单位</li>
+<li>相对长度单位</li>
+</ul>
+<p>其中</p>
+<p>绝对长度单位分为 <code>cm</code>（厘米）, <code>mm</code>（毫米）, <code>in</code>（英寸）. <code>pt</code>（点）, <code>px</code>（像素）</p>
+<p>相对长度单位分为 <code>em</code>（父元素字体大小）, <code>rem</code>（根元素字体大小）, <code>vw</code>（视窗宽度）, <code>vh</code>（视窗高度）</p>
+<p>大家都喜欢只对比 <code>em</code> 和 <code>rem</code> ，但 <code>vw</code> <code>vh</code> 也是属于绝对长度，并且也比较常用，所以这里我放在一起对比了。</p>
+<span id="more"></span>
+
+<h2 id="vw-和-vh"><a href="#vw-和-vh" class="headerlink" title="vw 和 vh"></a><code>vw</code> 和 <code>vh</code></h2><p><code>vw</code> 和 <code>vh</code> 都是展现的为视窗的高度，也就是页面显示内容的总高度，分为 100 份</p>
+<blockquote>
+<p>假如你的页面显示宽度为 1920，那么当你设置你的元素为 <code>10vw</code> ，那么当前元素的宽度则为 192。</p>
+</blockquote>
+<p><strong>example</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>111<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css">	</span></span><br><span class="line"><span class="language-css">		* &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">		<span class="selector-id">#fa</span> &#123;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">width</span>: <span class="number">100vw</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">			<span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">		&#125;</span></span><br><span class="line"><span class="language-css">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;fa&quot;</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200328163110.png"></p>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p><code>em</code> ，<strong>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</strong></p>
+<p><a href="#show-you-code">代码</a></p>
+<p><strong>如果不定义元素自身字体大小，默认继承父节点字体大小</strong></p>
+<blockquote>
+<p>当父元素的字体设置为 <code>20px</code>，那么当前子元素的 <code>1em</code> 的值可以认为是 <code>20px</code> ，则可以得出 子元素设置宽度为 <code>5em</code> 可以换算成 <code>100px</code> </p>
+</blockquote>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><p><code>rem</code> 和 <code>em</code> 他们不光像亲兄弟，因为他们的使用方法也很像。</p>
+<p><code>rem</code> 这里的 <code>r</code> 指的是 <code>root</code> ，连起来就是 <code>root em</code>。此时你应该可以理解了吧。</p>
+<p><code>rem</code> 是根据根节点元素的字体大小来定义的，这里的根节点通常指的是标签为 <code>html</code> 的元素。</p>
+<h2 id="show-you-code"><a href="#show-you-code" class="headerlink" title="show you code"></a>show you code</h2><iframe height="318" style="width: 100%;" scrolling="no" title="abOPEaE" src="https://codepen.io/popring/embed/abOPEaE?height=318&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/popring/pen/abOPEaE'>abOPEaE</a> by HarryHao
+  (<a href='https://codepen.io/popring'>@popring</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+
+
+<p>以上代码的 <code>fa</code> 代表父节点， <code>ch</code> 代表子节点</p>
+<p>根节点字体大小 <code>10px</code>，子节点（#ch）宽度为 <code>2rem</code>，转换后为 <code>20px</code></p>
+<p>父节点字体大小 <code>20px</code> ，子节点（#ch2）宽度为 <code>2em</code> ，转换后为 <code>40px</code></p>
+<p>父节点字体大小 <code>20px</code> ，子节点（#ch3）字体大小为 <code>15px</code>， 子节点（#ch3） 宽度为 <code>2em</code> ，转换后为 <code>30px</code></p>
+<p>Ending.</p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>get和post区别</title>
+    <url>/posts/f69ca482/</url>
+    <content><![CDATA[<ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+</ul>
+<p>额外可以聊</p>
+<ul>
+<li>GET 的body中也可以放数据，但是由于规范中不建议，所以大多数浏览器也没有处理，也就导致不会接收到 GET请求中body的数据</li>
+<li>URL限制长度，在http statue code（状态码）中 415 就是URL Too Long。本身协议没有限制长度，但浏览器会有限制，太长了也不方便后端、爬虫处理。</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI4NTg2NzkxL2Fuc3dlci83NjczMTYxNzI=">GET 和 POST 到底有什么区别？ - 大宽宽的回答 - 知乎<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>https握手过程</title>
+    <url>/posts/1449f691/</url>
+    <content><![CDATA[<h2 id="概括"><a href="#概括" class="headerlink" title="概括"></a>概括</h2><ul>
+<li>客户端发起连接，提供协议版本号、随机数<code>(Client random)</code>、支持加密方法</li>
+<li>服务端收到后，确认双方的加密方法，然后生成随机数<code>(Server random)</code>，以及自己的数字证书，发送给客户端</li>
+<li>客户端收到后，确认数字证书是否有效，然后生成新的随机数<code>(Premaster secret)</code>，使用数字证书加密这个随机数，发送给服务端。</li>
+<li>服务端使用自己的私钥，对随机数进行解密。</li>
+<li>此时服务端和客户端就可以根据前面约定的加密方法进行通信，使用前面生成的三个随机数生成 **对话秘钥(session key)**，用来加密接下来的整个对话过程</li>
+</ul>
+<p>细节</p>
+<ul>
+<li>数字证书的加密和解密过程是属于<strong>非对称加密</strong>，在之后使用对话秘钥加密的方式是对称加密</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzA5L2lsbHVzdHJhdGlvbi1zc2wuaHRtbA==">图解SSL&#x2F;TLS协议<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE0LzAyL3NzbF90bHMuaHRtbA==">SSL&#x2F;TLS协议运行机制的概述<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>setTimeout为什么会有延迟</title>
+    <url>/posts/9a771de5/</url>
+    <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
+<p>其中 setTimeout 有两类用法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 本用法不推荐，code 为字符串，在定时器到期后会进行编译执行code字符串，delay为定时时间 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(code, delay)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* functionRef 定时器到期后的回调函数；delay 定时时间；...params 作为参数传递给回调函数 */</span></span><br><span class="line"><span class="built_in">setTimeout</span>(functionRef, delay, param1, param2)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>setTimeout</code> 返回值为一个正整数类型的 <code>timeoutID</code> ，可使用 <code>clearTimeout</code> 进行取消定时器。</p>
+<h3 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h3><p>为什么 setTimeout 会有 4ms 的延迟呢？</p>
+<p>实际上题目不完全对，并不完全是会有 4ms 延迟。正如 <span class="exturl" data-url="aHR0cHM6Ly9odG1sLnNwZWMud2hhdHdnLm9yZy9tdWx0aXBhZ2UvdGltZXJzLWFuZC11c2VyLXByb21wdHMuaHRtbCN0aW1lcnM=">HTML 标准<i class="fa fa-external-link-alt"></i></span>中规定的那样，一旦对 <code>setTimeout</code> 的嵌套调用被安排了 5 次，浏览器将强制执行 4 毫秒的最小超时。</p>
+<p>其他影响 setTimout 延迟因素：</p>
+<ol>
+<li>并发任务： 在浏览器中，存在多个任务需要处理，如用户交互、DOM 更新、网络请求等。这些任务会占用浏览器的资源和处理能力。当设置一个 setTimeout 的延迟时间时，浏览器可能会优先处理其他任务，导致 setTimeout 的回调函数的执行被推迟。</li>
+<li>执行上下文的切换： 当定时器到期时，浏览器需要切换执行上下文来调用 setTimeout 的回调函数。这个上下文切换可能会引入一定的延迟。浏览器需要在当前任务完成后，选择合适的时机执行回调函数。</li>
+<li>系统和硬件因素： 系统负载、设备性能以及浏览器实现的差异等因素也会影响 setTimeout 回调函数的执行时间。不同的浏览器和设备可能有不同的延迟表现。</li>
+</ol>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">MDN setTimeout<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ2Njg3NTkwNjE2MTM3NzQy">为什么 setTimeout 有最小时延 4ms ?<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qb2hucmVzaWcuY29tL2Jsb2cvaG93LWphdmFzY3JpcHQtdGltZXJzLXdvcmsv">How JavaScript Timers Work<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>v-if和v-show区别</title>
+    <url>/posts/e9ac0758/</url>
+    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
+<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
+<p>当条件变化时该指令触发过渡效果。</p>
+<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
+<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
+<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
+<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
+<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
+<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
+</ul>
+<p>关联文章：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIwLzEwLzE2L2Nzcy92aXNpYmlsaXR5LWhpZGRlbiVFMyU4MCU4MWRpc3BsYXktbm9uZSVFMyU4MCU4MW9wYWNpdHktMC0lRTUlOEMlQkElRTUlODglQUIv">visibility: hidden、display: none、opacity: 0 区别<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>visibility: hidden、display: none、opacity: 0 区别</title>
+    <url>/posts/540f9cbc/</url>
+    <content><![CDATA[<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>做了以下的实验，可以得出结论，</p>
+<ul>
+<li><code>visibility: hidden;</code> 只是在视觉上隐藏，但没有影响布局，但绑定的事件也无法触发。</li>
+<li><code>display:none;</code> 元素被彻底隐藏，在页面上完全不显示，不占位，无宽高</li>
+<li><code>opacity: 0;</code> 只会修改元素透明度，并不影响布局及事件触发。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="样式属性"><a href="#样式属性" class="headerlink" title="样式属性"></a>样式属性</h2><h3 id="visibility"><a href="#visibility" class="headerlink" title="visibility"></a>visibility</h3><blockquote>
+<p>控制 显示&#x2F;隐藏 元素，不会影响布局。</p>
+</blockquote>
+<ul>
+<li><code>visible</code> 元素正常显示</li>
+<li><code>hidden</code> 隐藏元素，但不影响布局。<strong>子元素设置为 <code>visible</code> 则子元素仍然可见</strong></li>
+<li><code>collapse</code> 用于隐藏表格的行、列。</li>
+</ul>
+<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><blockquote>
+<p>官网介绍了很多类型，并且分为六大类，具体请看 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2Rpc3BsYXk=">MDN<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><code>display-outside </code> </li>
+<li><code>display-inside</code> </li>
+<li><code>display-listitem</code> </li>
+<li><code>display-internal</code></li>
+<li><code>display-legacy</code></li>
+<li><code>display-box</code></li>
+</ul>
+</blockquote>
+<p>这里就介绍一下常用的几个</p>
+<ul>
+<li><code>block</code> 将元素设置为块级元素</li>
+<li><code>inline</code> 将元素设置为行内元素</li>
+<li><code>inline-block</code> 将元素设置为行内块元素</li>
+<li><code>table</code> 表格样式</li>
+<li><code>flex</code> 弹性布局</li>
+<li><code>grid</code> 网格布局</li>
+<li><code>none</code> 使元素不显示（后代元素也将隐藏），不占位，切换则会影响布局。</li>
+</ul>
+<h3 id="opacity"><a href="#opacity" class="headerlink" title="opacity"></a>opacity</h3><blockquote>
+<p>更改元素的透明度（使用opacity属性，当属性值不为1时，会把元素放置在一个新的<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvR3VpZGUvQ1NTL1VuZGVyc3RhbmRpbmdfel9pbmRleC9UaGVfc3RhY2tpbmdfY29udGV4dA==">层叠上下文<i class="fa fa-external-link-alt"></i></span>中。）</p>
+</blockquote>
+<ul>
+<li><code>number值</code> 此值应为 <code>0.0 ~ 1.0</code> 之间</li>
+</ul>
+<h2 id="三个样式隐藏的区别"><a href="#三个样式隐藏的区别" class="headerlink" title="三个样式隐藏的区别"></a>三个样式隐藏的区别</h2><p>原始代码</p>
+<blockquote>
+<p>在 box 外层加了一个 div 添加边框，更加可以直观的看出各个样式的区别。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016225256.png" alt="image-20201016225251216"></p>
+<h3 id="页面展示效果"><a href="#页面展示效果" class="headerlink" title="页面展示效果"></a>页面展示效果</h3><blockquote>
+<p>根据以上代码进行修改，将每个 box 添加以上三种的隐藏样式后效果</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: skyblue;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016230147.png" alt="image-20201016225828692"></p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016233415.png" alt="image-20201016233414985"></p>
+<p>可以看出，只有 <code>display: none;</code> 没有宽度了（尝试添加高度之后仍然没有显示出来）。而剩下的 <code>visibility: hidden;</code> <code>opacity: 0;</code> 仍然会占据位置（从外层 div 的边框线就可以看出来）。</p>
+<h3 id="性能区别"><a href="#性能区别" class="headerlink" title="性能区别"></a>性能区别</h3><blockquote>
+<p>以下<strong>切换样式</strong>指的就是样式从显示到隐藏或从隐藏到显示。</p>
+<p>比如： </p>
+<p>visibility: hidden; -&gt; visibility: visible;</p>
+<p>opacity: 0; -&gt; opacity: 1;</p>
+<p>display: block; -&gt; display: none;</p>
+</blockquote>
+<p>根据上述 页面展示效果 可以看出，<code>visibility: hidden;</code> <code>opacity: 0;</code> 只会对元素进行隐藏，并不会改变页面布局，所以如果<strong>切换样式</strong>只会造成<strong>页面重绘（repaint）</strong>并不会回流。</p>
+<p>而如果是修改 <code>display</code> 属性的话，则会影响布局，<strong>造成页面回流（reflow），同时也会造成重绘（repaint）</strong>。</p>
+<h3 id="点击效果"><a href="#点击效果" class="headerlink" title="点击效果"></a>点击效果</h3><blockquote>
+<p>根据以上代码，进行改造，添加 js 代码，用来监听点击事件，点击输出当前被点击元素的类名</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.wrap</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">visibility</span>: hidden;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: yellow;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: skyblue;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> box = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">`box<span class="subst">$&#123;i&#125;</span>`</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">      box.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">className</span>);</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后依次进行点击（第二个盒子因为完全隐藏，所以点击不到）</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201016232532.png" alt="image-20201016232532906"></p>
+<p>看点击结果只有最后一个盒子被点击到。</p>
+<p>小结</p>
+<ul>
+<li><code>visibility: hidden;</code> <code>display:none;</code>无法被点击</li>
+<li><code>opacity: 0;</code> 可被点击</li>
+</ul>
+<p><a href="#%E7%BB%93%E8%AE%BA">结论在开头</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04=">MDN<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/posts/ababab9d/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>TCP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
+<span id="more"></span>
+
+
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可替换元素和不可替换元素</title>
+    <url>/posts/d6e0c31a/</url>
+    <content><![CDATA[<h2 id="可替换元素（置换元素）"><a href="#可替换元素（置换元素）" class="headerlink" title="可替换元素（置换元素）"></a>可替换元素（置换元素）</h2><p>浏览器根据元素的标签和属性，来决定元素的具体显示内容。 </p>
+<p>例如：浏览器会根据 <code>&lt;img&gt;</code> 标签的src属性的值来读取图片信息并显示出来，而如果查看(x)html代码，则看不到图片的实际内容；<code>&lt;input&gt;</code> 标签的type属性来决定是显示输入框，还是单选按钮等。 (x)html中的<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;object&gt;</code>  都是置换元素。这些元素往往没有实际的内容，即是一个空元素。 </p>
+<p>置换元素在其显示中生成了框，这也就是有的内联元素能够设置宽高的原因。</p>
+<h2 id="不可替换元素（非置换元素）"><a href="#不可替换元素（非置换元素）" class="headerlink" title="不可替换元素（非置换元素）"></a>不可替换元素（非置换元素）</h2><p>(x)html 的大多数元素是不可替换元素，即其内容直接表现给用户端（如浏览器）。 </p>
+<p>例如：标签<label>是一个非置换元素，文字label中的内容”将全被显示。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>label中的内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubm93Y29kZXIuY29tL3F1ZXN0aW9uVGVybWluYWwvNDgwYTU5MWM1MWU4NDgxNjljMzFkZTI2YzYzOWU0ZDE=">牛客题目<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL1JlcGxhY2VkX2VsZW1lbnQ=">mdn 可替换元素<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
       </tags>
   </entry>
   <entry>
