@@ -15,6 +15,7 @@ tags:
 - [book: zxg_神说要有光 threejs 小册子](https://juejin.cn/book/7481132169944498226?enter_from=course_center&utm_source=course_center)
 - [article: 3d-modeling-basics-for-developers](https://daily.dev/blog/3d-modeling-basics-for-developers)
 - [doc: 官方入门文档](https://threejs.org/manual/#zh/fundamentals)
+- [All 109 Examples from my book on Three.js for Three.js version r63](https://www.smartjava.org/content/all-109-examples-my-book-threejs-threejs-version-r63/)
 
 ---
 
