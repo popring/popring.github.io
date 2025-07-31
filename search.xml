@@ -59,157 +59,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C语言 第十章 文件操作</title>
-    <url>/posts/7f0409e3/</url>
-    <content><![CDATA[<h2 id="第十章-文件操作"><a href="#第十章-文件操作" class="headerlink" title="第十章 文件操作"></a>第十章 文件操作</h2><h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><h4 id="文本文件"><a href="#文本文件" class="headerlink" title="文本文件"></a>文本文件</h4><p>也称ASCII码文件，每字符占一个字节存储，每字节保存的是字符的ASCII码。可用文本编辑器打开查看，例如<code>.txt</code>、代码源程序<code>.c</code>、等等</p>
-<h4 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h4><p>以二进制编码的形式保存，例如可执行文件（<code>.exe</code>）、位图文件(<code>.bmp</code>)、word文件(<code>.docx</code>)等都属于二进制文件。这种文件不能用文本编辑器打开查看，强行打开会乱码，无法读懂。</p>
-<p><strong>优点</strong>：</p>
-<p>“全部看作二进制”，输入输出的开始和结束由程序控制而不受换行、空格等字符的限制；比文本文件一般体积小，节省存储空间。</p>
-<h3 id="文件的读写"><a href="#文件的读写" class="headerlink" title="文件的读写"></a>文件的读写</h3><h4 id="文件操作步骤"><a href="#文件操作步骤" class="headerlink" title="文件操作步骤"></a>文件操作步骤</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义文件指针</span></span><br><span class="line">FILE *fp;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开文件（使文件指针关联文件）</span></span><br><span class="line">fp = fopen(文件名，打开方式);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读写文件</span></span><br><span class="line"><span class="comment">// 通过调用系统库函数读写文件，函数中都需要一个文件指针参数fp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭文件（断开文件指针和文件的关联）</span></span><br><span class="line">fclose(fp);</span><br></pre></td></tr></table></figure>
-
-<h4 id="向文件写入字符串"><a href="#向文件写入字符串" class="headerlink" title="向文件写入字符串"></a>向文件写入字符串</h4><blockquote>
-<p>如果文件事先已经存在，则会被删除重；如不存在，则直接新建。</p>
-<p><code>fprintf()</code>为写入文件</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    fp = fopen(<span class="string">&quot;file.txt&quot;</span>,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="built_in">fprintf</span>(fp, <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    fclose(fp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="fopen-char-filename-char-mode"><a href="#fopen-char-filename-char-mode" class="headerlink" title="fopen(char *filename, char *mode)"></a><code>fopen(char *filename, char *mode)</code></h4><p><code>filename</code>：要打开的文件名称</p>
-<p><code>mode</code>：文件访问模式</p>
-<table>
-<thead>
-<tr>
-<th>mode</th>
-<th>introduce</th>
-<th>remark</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>r</code></td>
-<td>允许读文件（<code>read</code>）</td>
-<td>文件必须存在，否则出错</td>
-</tr>
-<tr>
-<td><code>w</code></td>
-<td>允许覆盖写文件(<code>write</code>)</td>
-<td>文件必须被新建（如文件已存在会删除源文件，然后新建）</td>
-</tr>
-<tr>
-<td><code>a</code></td>
-<td>允许追加写文件（<code>append</code>）</td>
-<td>文件不存在时才新建，否则只在源文件末尾添加数据</td>
-</tr>
-<tr>
-<td><code>+</code></td>
-<td>即允许读也允许写文件</td>
-<td></td>
-</tr>
-<tr>
-<td><code>b</code></td>
-<td>以二进制格式打开文件（<code>binary</code>）</td>
-<td></td>
-</tr>
-<tr>
-<td><code>t</code></td>
-<td>以文本格式打开文件（<code>text</code>）</td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id="C语言常用文本文件读写函数"><a href="#C语言常用文本文件读写函数" class="headerlink" title="C语言常用文本文件读写函数"></a>C语言常用文本文件读写函数</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>功能</th>
-<th>用法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>fgetc或getc</td>
-<td>从当前位置指针处读取文件中的一个字符（1个字符占1个字节），读取后，读写位置指针自动后移1字节</td>
-<td>字符变量&#x3D;fgetc(fp);</td>
-</tr>
-<tr>
-<td>fputc或putc</td>
-<td>在当前位置指针处向文件中写入一个字符（1个字符占1个字节），写入后，读写位置指针自动后移1字节</td>
-<td>fputc(字符, fp);</td>
-</tr>
-<tr>
-<td>fgets</td>
-<td>读取文件中的一个字符串，读写位置指针自动后移</td>
-<td>fgets(字符数组名,   n, fp);</td>
-</tr>
-<tr>
-<td>fputs</td>
-<td>在当前位置指针处向文件中写入一个字符串（不写入’\0’字符，最后也不自动加’\n’）；写入后，位置指针自动后移该字符串长度的字节。</td>
-<td>fputs(字符串首地址,   fp);</td>
-</tr>
-<tr>
-<td>fscanf</td>
-<td>从当前位置指针处按格式读取文件中的多个数据，类似于scanf，只不过不是从键盘输入，而是从文件中读取；读取后，位置指针自动后移</td>
-<td>fscanf(fp,   “格式控制字符串”,   变量1的地址, 变量2的地址, …);</td>
-</tr>
-<tr>
-<td>fprintf</td>
-<td>在当前位置指针处按格式向文件中写入多个数据，类似于printf，只不过不是显示到屏幕上，而是写入到文件中；写入后，位置指针自动后移</td>
-<td>fprintf(fp,   “格式控制字符串”,   数据1, 数据2, …);</td>
-</tr>
-</tbody></table>
-<h3 id="C语言常用二进制文件读写函数"><a href="#C语言常用二进制文件读写函数" class="headerlink" title="C语言常用二进制文件读写函数"></a>C语言常用二进制文件读写函数</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>功能</th>
-<th>用法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>fread</td>
-<td>从当前位置指针处读取文件中的一批字节，这批字节由count个数据块、每数据块长size个字节组成，共size*count个字节。所读取的字节存入参数buffer地址开始的一段内存空间。读取后，文件位置指针跟随后移实际读取的字节数。函数返回实际读取的数据块数（如读到文件尾或出错，实际读取的数据块数可能小于count）</td>
-<td>fread(buffer, size, count, fp);</td>
-</tr>
-<tr>
-<td>fwrite</td>
-<td>在当前位置指针处向文件中写入一批字节，这批字节位于内存中参数buffer地址开始的一段内存空间，由count个数据块、每数据块长size个字节组成，共size*count个字节。写入后，文件位置指针跟随后移实际写入的字节数。函数返回实际写入的数据块数（如写入出错，实际写入的数据块数可能小于count）</td>
-<td>fwrite(buffer, size, count, fp);</td>
-</tr>
-</tbody></table>
-<h3 id="C语言常用文件位置指针定位库函数"><a href="#C语言常用文件位置指针定位库函数" class="headerlink" title="C语言常用文件位置指针定位库函数"></a>C语言常用文件位置指针定位库函数</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>功能</th>
-<th>用法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>rewind</td>
-<td>把文件位置指针移到文件开头</td>
-<td>rewind(fp);</td>
-</tr>
-<tr>
-<td>fseek</td>
-<td>把文件位置指针从ori开始的位置，向文件尾部(n&gt;0时)或文件首部(n&lt;0时)移动n个字节。ori可有3种取值：   0、1、2分别表示从文件首、当前位置和文件尾开始移动，   0、1、2也可分别写为符号常量SEEK_SET、SEEK_CUR、SEEK_END</td>
-<td>fseek(fp, n, ori);    一般n为long型，常量加字母后缀L(l)</td>
-</tr>
-<tr>
-<td>ftell</td>
-<td>若执行成功，函数返回当前文件位置指针的位置（文件中第一个字节的位置为0）；若执行失败，函数返回-1</td>
-<td>n &#x3D; ftell(fp);</td>
-</tr>
-<tr>
-<td>feof</td>
-<td>判断读文件是否已越过了文件末尾</td>
-<td>if (feof(fp) )   …</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C语言 第二章 数据类型和运算符</title>
     <url>/posts/d46dda9b/</url>
     <content><![CDATA[<h2 id="第一章-概述"><a href="#第一章-概述" class="headerlink" title="第一章 概述"></a>第一章 概述</h2><blockquote>
@@ -477,6 +326,157 @@
 </blockquote>
 <h3 id="Visual-Stdio-快捷键"><a href="#Visual-Stdio-快捷键" class="headerlink" title="Visual Stdio 快捷键"></a>Visual Stdio 快捷键</h3><p>注释: Ctrl + K, Ctrl + C</p>
 <p>取消注释：Ctrl + K , Ctrl + U</p>
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言 第十章 文件操作</title>
+    <url>/posts/7f0409e3/</url>
+    <content><![CDATA[<h2 id="第十章-文件操作"><a href="#第十章-文件操作" class="headerlink" title="第十章 文件操作"></a>第十章 文件操作</h2><h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><h4 id="文本文件"><a href="#文本文件" class="headerlink" title="文本文件"></a>文本文件</h4><p>也称ASCII码文件，每字符占一个字节存储，每字节保存的是字符的ASCII码。可用文本编辑器打开查看，例如<code>.txt</code>、代码源程序<code>.c</code>、等等</p>
+<h4 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h4><p>以二进制编码的形式保存，例如可执行文件（<code>.exe</code>）、位图文件(<code>.bmp</code>)、word文件(<code>.docx</code>)等都属于二进制文件。这种文件不能用文本编辑器打开查看，强行打开会乱码，无法读懂。</p>
+<p><strong>优点</strong>：</p>
+<p>“全部看作二进制”，输入输出的开始和结束由程序控制而不受换行、空格等字符的限制；比文本文件一般体积小，节省存储空间。</p>
+<h3 id="文件的读写"><a href="#文件的读写" class="headerlink" title="文件的读写"></a>文件的读写</h3><h4 id="文件操作步骤"><a href="#文件操作步骤" class="headerlink" title="文件操作步骤"></a>文件操作步骤</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义文件指针</span></span><br><span class="line">FILE *fp;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开文件（使文件指针关联文件）</span></span><br><span class="line">fp = fopen(文件名，打开方式);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读写文件</span></span><br><span class="line"><span class="comment">// 通过调用系统库函数读写文件，函数中都需要一个文件指针参数fp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭文件（断开文件指针和文件的关联）</span></span><br><span class="line">fclose(fp);</span><br></pre></td></tr></table></figure>
+
+<h4 id="向文件写入字符串"><a href="#向文件写入字符串" class="headerlink" title="向文件写入字符串"></a>向文件写入字符串</h4><blockquote>
+<p>如果文件事先已经存在，则会被删除重；如不存在，则直接新建。</p>
+<p><code>fprintf()</code>为写入文件</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    fp = fopen(<span class="string">&quot;file.txt&quot;</span>,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="built_in">fprintf</span>(fp, <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    fclose(fp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="fopen-char-filename-char-mode"><a href="#fopen-char-filename-char-mode" class="headerlink" title="fopen(char *filename, char *mode)"></a><code>fopen(char *filename, char *mode)</code></h4><p><code>filename</code>：要打开的文件名称</p>
+<p><code>mode</code>：文件访问模式</p>
+<table>
+<thead>
+<tr>
+<th>mode</th>
+<th>introduce</th>
+<th>remark</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>r</code></td>
+<td>允许读文件（<code>read</code>）</td>
+<td>文件必须存在，否则出错</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>允许覆盖写文件(<code>write</code>)</td>
+<td>文件必须被新建（如文件已存在会删除源文件，然后新建）</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>允许追加写文件（<code>append</code>）</td>
+<td>文件不存在时才新建，否则只在源文件末尾添加数据</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>即允许读也允许写文件</td>
+<td></td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>以二进制格式打开文件（<code>binary</code>）</td>
+<td></td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>以文本格式打开文件（<code>text</code>）</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="C语言常用文本文件读写函数"><a href="#C语言常用文本文件读写函数" class="headerlink" title="C语言常用文本文件读写函数"></a>C语言常用文本文件读写函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fgetc或getc</td>
+<td>从当前位置指针处读取文件中的一个字符（1个字符占1个字节），读取后，读写位置指针自动后移1字节</td>
+<td>字符变量&#x3D;fgetc(fp);</td>
+</tr>
+<tr>
+<td>fputc或putc</td>
+<td>在当前位置指针处向文件中写入一个字符（1个字符占1个字节），写入后，读写位置指针自动后移1字节</td>
+<td>fputc(字符, fp);</td>
+</tr>
+<tr>
+<td>fgets</td>
+<td>读取文件中的一个字符串，读写位置指针自动后移</td>
+<td>fgets(字符数组名,   n, fp);</td>
+</tr>
+<tr>
+<td>fputs</td>
+<td>在当前位置指针处向文件中写入一个字符串（不写入’\0’字符，最后也不自动加’\n’）；写入后，位置指针自动后移该字符串长度的字节。</td>
+<td>fputs(字符串首地址,   fp);</td>
+</tr>
+<tr>
+<td>fscanf</td>
+<td>从当前位置指针处按格式读取文件中的多个数据，类似于scanf，只不过不是从键盘输入，而是从文件中读取；读取后，位置指针自动后移</td>
+<td>fscanf(fp,   “格式控制字符串”,   变量1的地址, 变量2的地址, …);</td>
+</tr>
+<tr>
+<td>fprintf</td>
+<td>在当前位置指针处按格式向文件中写入多个数据，类似于printf，只不过不是显示到屏幕上，而是写入到文件中；写入后，位置指针自动后移</td>
+<td>fprintf(fp,   “格式控制字符串”,   数据1, 数据2, …);</td>
+</tr>
+</tbody></table>
+<h3 id="C语言常用二进制文件读写函数"><a href="#C语言常用二进制文件读写函数" class="headerlink" title="C语言常用二进制文件读写函数"></a>C语言常用二进制文件读写函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fread</td>
+<td>从当前位置指针处读取文件中的一批字节，这批字节由count个数据块、每数据块长size个字节组成，共size*count个字节。所读取的字节存入参数buffer地址开始的一段内存空间。读取后，文件位置指针跟随后移实际读取的字节数。函数返回实际读取的数据块数（如读到文件尾或出错，实际读取的数据块数可能小于count）</td>
+<td>fread(buffer, size, count, fp);</td>
+</tr>
+<tr>
+<td>fwrite</td>
+<td>在当前位置指针处向文件中写入一批字节，这批字节位于内存中参数buffer地址开始的一段内存空间，由count个数据块、每数据块长size个字节组成，共size*count个字节。写入后，文件位置指针跟随后移实际写入的字节数。函数返回实际写入的数据块数（如写入出错，实际写入的数据块数可能小于count）</td>
+<td>fwrite(buffer, size, count, fp);</td>
+</tr>
+</tbody></table>
+<h3 id="C语言常用文件位置指针定位库函数"><a href="#C语言常用文件位置指针定位库函数" class="headerlink" title="C语言常用文件位置指针定位库函数"></a>C语言常用文件位置指针定位库函数</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rewind</td>
+<td>把文件位置指针移到文件开头</td>
+<td>rewind(fp);</td>
+</tr>
+<tr>
+<td>fseek</td>
+<td>把文件位置指针从ori开始的位置，向文件尾部(n&gt;0时)或文件首部(n&lt;0时)移动n个字节。ori可有3种取值：   0、1、2分别表示从文件首、当前位置和文件尾开始移动，   0、1、2也可分别写为符号常量SEEK_SET、SEEK_CUR、SEEK_END</td>
+<td>fseek(fp, n, ori);    一般n为long型，常量加字母后缀L(l)</td>
+</tr>
+<tr>
+<td>ftell</td>
+<td>若执行成功，函数返回当前文件位置指针的位置（文件中第一个字节的位置为0）；若执行失败，函数返回-1</td>
+<td>n &#x3D; ftell(fp);</td>
+</tr>
+<tr>
+<td>feof</td>
+<td>判断读文件是否已越过了文件末尾</td>
+<td>if (feof(fp) )   …</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>C Language</category>
@@ -1897,107 +1897,6 @@
       </tags>
   </entry>
   <entry>
-    <title>备战校招第四天</title>
-    <url>/posts/a7e64ef8/</url>
-    <content><![CDATA[<ol>
-<li>为什么css放头部，script放底部</li>
-<li><code>@import</code> 的使用方式</li>
-<li>flex-shrink</li>
-<li>a.x &#x3D; a &#x3D; {n:2} 问题</li>
-<li>let 和 var 编程题</li>
-</ol>
-<hr>
-<span id="more"></span>
-
-<h3 id="为什么css放头部，script放底部"><a href="#为什么css放头部，script放底部" class="headerlink" title="为什么css放头部，script放底部"></a>为什么css放头部，script放底部</h3><p>mdn官方解释</p>
-<blockquote>
-<p><strong>注：</strong>我们将 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script"><code>script</code></a> 放在HTML文件的底部附近的原因是浏览器会按照代码在文件中的顺序加载 HTML。如果先加载的 JavaScript 期望修改其下方的 HTML，那么它可能由于 HTML 尚未被加载而失效。因此，将 JavaScript 代码放在 HTML页面的底部附近通常是最好的策略。</p>
-</blockquote>
-<p>CSS 不会阻塞 DOM 的解析，但会阻塞 DOM 渲染。<br>JS 阻塞 DOM 解析，但浏览器会”偷看”DOM，预先下载相关资源。<br>浏览器遇到 <code> &lt;script&gt;</code> 且没有defer或async属性的 标签时，会触发页面渲染，因而如果前面CSS资源尚未加载完毕时，浏览器会等待它加载完毕在执行脚本。</p>
-<h3 id="import-的使用方式"><a href="#import-的使用方式" class="headerlink" title="@import 的使用方式"></a><code>@import</code> 的使用方式</h3><blockquote>
-<p> <code>@import</code> 会导致重新重新创建一个<code>http</code> 链接，性能有所下降，所以不建议使用。</p>
-</blockquote>
-<ul>
-<li><p>link属于html标签，而@import是css提供的。</p>
-</li>
-<li><p>页面被加载时，link会同时被加载，而@import引用的css会等到页面加载结束后加载。</p>
-</li>
-<li><p>link是html标签，因此没有兼容性，而@import只有IE5以上才能识别。</p>
-</li>
-<li><p>link方式样式的权重高于@import的。</p>
-</li>
-</ul>
-<p><strong>注意</strong></p>
-<ul>
-<li><strong>import规则一定要先于除了@charset的其他任何CSS规则</strong>，相当于 <code>@import</code> 必须处于当前样式表中最开始的位置</li>
-</ul>
-<p><strong>&#x2F;css&#x2F;style.css</strong></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&quot;./style2.css&quot;</span>;</span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: sandybrown;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>&#x2F;css&#x2F;style2.css</strong></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: skyblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: gold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/style.css&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>自动忽略后两个请求（vscode 插件的额外请求），可以看出 加载 style.css 后，又会加载 style2.css</p>
-</blockquote>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200628073105.png" alt="http请求数"></p>
-<h3 id="对于如下代码，-box1、-box2、-box3、-box4从顶到底的层叠顺序是？"><a href="#对于如下代码，-box1、-box2、-box3、-box4从顶到底的层叠顺序是？" class="headerlink" title="对于如下代码，.box1、.box2、.box3、.box4从顶到底的层叠顺序是？"></a>对于如下代码，.box1、.box2、.box3、.box4从顶到底的层叠顺序是？</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box1&quot;</span>&gt;</span></span><br><span class="line">  box1 relative</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box2&quot;</span>&gt;</span></span><br><span class="line">    box2 &gt; box2 absolute</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box3&quot;</span>&gt;</span></span><br><span class="line">  box3 absolute</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box4&quot;</span>&gt;</span></span><br><span class="line">    .box3 &gt; box4  relative</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  * &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">z-index</span>: <span class="number">4</span>; </span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">left</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">z-index</span>: <span class="number">3</span>; </span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: blue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">z-index</span>: <span class="number">2</span>; </span></span><br><span class="line"><span class="language-css">    <span class="attribute">top</span>: <span class="number">130px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">left</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: yellow;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box4</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">z-index</span>: <span class="number">5</span>; </span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: pink;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>正确顺序：2、1、4、3</strong></p>
-<p><strong>解析</strong></p>
-<ul>
-<li><p>首先看 <code>box1</code> 与 <code>box2</code> ，两元素为父子元素，子元素层级默认高于父元素（尽管本例中设置 <code>z-index</code> 值 父元素大于子元素）</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200628112808.png"></p>
-</li>
-<li><p>其次， <code>box3</code> 和 <code>box4</code> 也一样</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200628112924.png" alt="image-20200628112924359">、</p>
-</li>
-<li><p>接着比较 <code>box1</code> 和 <code>box3</code> 两兄弟元素 <code>box1</code>的 <code>z-index</code> 值大于 <code>box3</code> 所以在上层，而子元素也随着父级的层级进行排列</p>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200628120158.png" alt="image-20200628120158373"></p>
-</li>
-<li><p>本文讲的不够详细，仅供参考</p>
-</li>
-</ul>
-<h3 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h3><blockquote>
-<p>前辈探索：</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAyMzAzMjM3OCNjb21tZW50LWFyZWE=">https://segmentfault.com/q/1010000023032378#comment-area<i class="fa fa-external-link-alt"></i></span></p>
-<p>非官方文档解释：</p>
-<p><span class="exturl" data-url="aHR0cDovL2Nzcy5jdWlzaGlmZW5nLmNuL2ZsZXguaHRtbA==">http://css.cuishifeng.cn/flex.html<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>父元素设置 <code>display: flex;</code> ，若子元素溢出，则根据规则计算平均分配每个元素缩放比例。</p>
-<p>计算方式是先求所有item <code>flex-shrink * flex-basis(width)</code> 之和,</p>
-<h3 id="a-x-a-n-2-问题"><a href="#a-x-a-n-2-问题" class="headerlink" title="a.x &#x3D; a &#x3D; {n:2} 问题"></a>a.x &#x3D; a &#x3D; {n:2} 问题</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123; <span class="attr">n</span>: <span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line">a.<span class="property">x</span> = a = &#123; <span class="attr">n</span>: <span class="number">2</span> &#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">x</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b.<span class="property">x</span>)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 前辈探索：</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly95YW5oYWlqaW5nLmNvbS9qYXZhc2NyaXB0LzIwMTIvMDQvMDUvamF2YXNjcmlwdC1jb250aW51b3VzLWFzc2lnbm1lbnQtb3BlcmF0b3Iv">https://yanhaijing.com/javascript/2012/04/05/javascript-continuous-assignment-operator/<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h3 id="let-和-var-编程题"><a href="#let-和-var-编程题" class="headerlink" title="let 和 var 编程题"></a>let 和 var 编程题</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">5</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">8</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">9</span>,</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">7</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">a</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">bar</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">b</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="title function_">foo</span>()) 					<span class="comment">// 6</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">foo</span>.<span class="title function_">call</span>())			<span class="comment">// undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="title function_">bar</span>())					<span class="comment">// 8</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">foo</span>.<span class="title function_">call</span>(&#123; <span class="attr">a</span>: <span class="number">2</span> &#125;))		<span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不可以删除</span></span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">b</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">b</span>)</span><br></pre></td></tr></table></figure>
-
-<p>注意</p>
-<ul>
-<li><p>var 有全局作用域提升特性，全局定义的 <code>var</code> 变量会自动绑定到 window 上，但 let 定义的变量则不可以</p>
-</li>
-<li><p>全局对象 <code>window</code>只读，不可修改，还有，不可以用 <code> delete</code> 语法删除全局对象 <code>window</code> 其中的属性</p>
-</li>
-<li><p>全局定义函数，也会绑定到window上</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>js编程题</tag>
-        <tag>css编程题</tag>
-        <tag>flex</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>备战校招第三天</title>
     <url>/posts/10cb579d/</url>
     <content><![CDATA[<ol>
@@ -2148,6 +2047,107 @@
         <tag>布局</tag>
         <tag>闭包</tag>
         <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>备战校招第四天</title>
+    <url>/posts/a7e64ef8/</url>
+    <content><![CDATA[<ol>
+<li>为什么css放头部，script放底部</li>
+<li><code>@import</code> 的使用方式</li>
+<li>flex-shrink</li>
+<li>a.x &#x3D; a &#x3D; {n:2} 问题</li>
+<li>let 和 var 编程题</li>
+</ol>
+<hr>
+<span id="more"></span>
+
+<h3 id="为什么css放头部，script放底部"><a href="#为什么css放头部，script放底部" class="headerlink" title="为什么css放头部，script放底部"></a>为什么css放头部，script放底部</h3><p>mdn官方解释</p>
+<blockquote>
+<p><strong>注：</strong>我们将 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script"><code>script</code></a> 放在HTML文件的底部附近的原因是浏览器会按照代码在文件中的顺序加载 HTML。如果先加载的 JavaScript 期望修改其下方的 HTML，那么它可能由于 HTML 尚未被加载而失效。因此，将 JavaScript 代码放在 HTML页面的底部附近通常是最好的策略。</p>
+</blockquote>
+<p>CSS 不会阻塞 DOM 的解析，但会阻塞 DOM 渲染。<br>JS 阻塞 DOM 解析，但浏览器会”偷看”DOM，预先下载相关资源。<br>浏览器遇到 <code> &lt;script&gt;</code> 且没有defer或async属性的 标签时，会触发页面渲染，因而如果前面CSS资源尚未加载完毕时，浏览器会等待它加载完毕在执行脚本。</p>
+<h3 id="import-的使用方式"><a href="#import-的使用方式" class="headerlink" title="@import 的使用方式"></a><code>@import</code> 的使用方式</h3><blockquote>
+<p> <code>@import</code> 会导致重新重新创建一个<code>http</code> 链接，性能有所下降，所以不建议使用。</p>
+</blockquote>
+<ul>
+<li><p>link属于html标签，而@import是css提供的。</p>
+</li>
+<li><p>页面被加载时，link会同时被加载，而@import引用的css会等到页面加载结束后加载。</p>
+</li>
+<li><p>link是html标签，因此没有兼容性，而@import只有IE5以上才能识别。</p>
+</li>
+<li><p>link方式样式的权重高于@import的。</p>
+</li>
+</ul>
+<p><strong>注意</strong></p>
+<ul>
+<li><strong>import规则一定要先于除了@charset的其他任何CSS规则</strong>，相当于 <code>@import</code> 必须处于当前样式表中最开始的位置</li>
+</ul>
+<p><strong>&#x2F;css&#x2F;style.css</strong></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&quot;./style2.css&quot;</span>;</span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: sandybrown;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x2F;css&#x2F;style2.css</strong></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: skyblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: gold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/style.css&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>自动忽略后两个请求（vscode 插件的额外请求），可以看出 加载 style.css 后，又会加载 style2.css</p>
+</blockquote>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200628073105.png" alt="http请求数"></p>
+<h3 id="对于如下代码，-box1、-box2、-box3、-box4从顶到底的层叠顺序是？"><a href="#对于如下代码，-box1、-box2、-box3、-box4从顶到底的层叠顺序是？" class="headerlink" title="对于如下代码，.box1、.box2、.box3、.box4从顶到底的层叠顺序是？"></a>对于如下代码，.box1、.box2、.box3、.box4从顶到底的层叠顺序是？</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box1&quot;</span>&gt;</span></span><br><span class="line">  box1 relative</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box2&quot;</span>&gt;</span></span><br><span class="line">    box2 &gt; box2 absolute</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box3&quot;</span>&gt;</span></span><br><span class="line">  box3 absolute</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box box4&quot;</span>&gt;</span></span><br><span class="line">    .box3 &gt; box4  relative</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  * &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">z-index</span>: <span class="number">4</span>; </span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">left</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">z-index</span>: <span class="number">3</span>; </span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: blue;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box3</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">z-index</span>: <span class="number">2</span>; </span></span><br><span class="line"><span class="language-css">    <span class="attribute">top</span>: <span class="number">130px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">left</span>: <span class="number">60px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: yellow;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.box4</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">z-index</span>: <span class="number">5</span>; </span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: pink;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>正确顺序：2、1、4、3</strong></p>
+<p><strong>解析</strong></p>
+<ul>
+<li><p>首先看 <code>box1</code> 与 <code>box2</code> ，两元素为父子元素，子元素层级默认高于父元素（尽管本例中设置 <code>z-index</code> 值 父元素大于子元素）</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200628112808.png"></p>
+</li>
+<li><p>其次， <code>box3</code> 和 <code>box4</code> 也一样</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200628112924.png" alt="image-20200628112924359">、</p>
+</li>
+<li><p>接着比较 <code>box1</code> 和 <code>box3</code> 两兄弟元素 <code>box1</code>的 <code>z-index</code> 值大于 <code>box3</code> 所以在上层，而子元素也随着父级的层级进行排列</p>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200628120158.png" alt="image-20200628120158373"></p>
+</li>
+<li><p>本文讲的不够详细，仅供参考</p>
+</li>
+</ul>
+<h3 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h3><blockquote>
+<p>前辈探索：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAyMzAzMjM3OCNjb21tZW50LWFyZWE=">https://segmentfault.com/q/1010000023032378#comment-area<i class="fa fa-external-link-alt"></i></span></p>
+<p>非官方文档解释：</p>
+<p><span class="exturl" data-url="aHR0cDovL2Nzcy5jdWlzaGlmZW5nLmNuL2ZsZXguaHRtbA==">http://css.cuishifeng.cn/flex.html<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>父元素设置 <code>display: flex;</code> ，若子元素溢出，则根据规则计算平均分配每个元素缩放比例。</p>
+<p>计算方式是先求所有item <code>flex-shrink * flex-basis(width)</code> 之和,</p>
+<h3 id="a-x-a-n-2-问题"><a href="#a-x-a-n-2-问题" class="headerlink" title="a.x &#x3D; a &#x3D; {n:2} 问题"></a>a.x &#x3D; a &#x3D; {n:2} 问题</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123; <span class="attr">n</span>: <span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line">a.<span class="property">x</span> = a = &#123; <span class="attr">n</span>: <span class="number">2</span> &#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">x</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b.<span class="property">x</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 前辈探索：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly95YW5oYWlqaW5nLmNvbS9qYXZhc2NyaXB0LzIwMTIvMDQvMDUvamF2YXNjcmlwdC1jb250aW51b3VzLWFzc2lnbm1lbnQtb3BlcmF0b3Iv">https://yanhaijing.com/javascript/2012/04/05/javascript-continuous-assignment-operator/<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h3 id="let-和-var-编程题"><a href="#let-和-var-编程题" class="headerlink" title="let 和 var 编程题"></a>let 和 var 编程题</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">5</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">8</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">9</span>,</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">7</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">a</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">bar</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">b</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="title function_">foo</span>()) 					<span class="comment">// 6</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">foo</span>.<span class="title function_">call</span>())			<span class="comment">// undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="title function_">bar</span>())					<span class="comment">// 8</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">foo</span>.<span class="title function_">call</span>(&#123; <span class="attr">a</span>: <span class="number">2</span> &#125;))		<span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不可以删除</span></span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">b</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>.<span class="property">b</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注意</p>
+<ul>
+<li><p>var 有全局作用域提升特性，全局定义的 <code>var</code> 变量会自动绑定到 window 上，但 let 定义的变量则不可以</p>
+</li>
+<li><p>全局对象 <code>window</code>只读，不可修改，还有，不可以用 <code> delete</code> 语法删除全局对象 <code>window</code> 其中的属性</p>
+</li>
+<li><p>全局定义函数，也会绑定到window上</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>js编程题</tag>
+        <tag>css编程题</tag>
+        <tag>flex</tag>
       </tags>
   </entry>
   <entry>
@@ -6553,36 +6553,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>从输入url到页面显示经过了什么</title>
-    <url>/posts/ababab9d/</url>
-    <content><![CDATA[<p>大致分为以下几个过程</p>
-<ul>
-<li>URL 解析</li>
-<li>DNS 解析</li>
-<li>TCP 握手</li>
-<li>检查是否有缓存</li>
-<li>构建 DOM 树，解析 html</li>
-<li>构建 CSSOM</li>
-<li>执行 JavaScript 代码</li>
-<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
-<li>根据渲染树对每个节点布局在正确位置</li>
-<li>对每个元素进行绘制</li>
-</ul>
-<span id="more"></span>
-
-
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
-        <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>visibility: hidden、display: none、opacity: 0 区别</title>
     <url>/posts/540f9cbc/</url>
     <content><![CDATA[<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>做了以下的实验，可以得出结论，</p>
@@ -6675,6 +6645,36 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从输入url到页面显示经过了什么</title>
+    <url>/posts/ababab9d/</url>
+    <content><![CDATA[<p>大致分为以下几个过程</p>
+<ul>
+<li>URL 解析</li>
+<li>DNS 解析</li>
+<li>TCP 握手</li>
+<li>检查是否有缓存</li>
+<li>构建 DOM 树，解析 html</li>
+<li>构建 CSSOM</li>
+<li>执行 JavaScript 代码</li>
+<li>构建渲染树：根据 DOM 树和 CSSOM 生成渲染树</li>
+<li>根据渲染树对每个节点布局在正确位置</li>
+<li>对每个元素进行绘制</li>
+</ul>
+<span id="more"></span>
+
+
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20201003104407.png"></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+        <tag>浏览器</tag>
       </tags>
   </entry>
   <entry>
@@ -6939,6 +6939,23 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
+    <title>[转] 对贡献有激情，对回报有信心</title>
+    <url>/posts/ee47234e/</url>
+    <content><![CDATA[<blockquote>
+<p>本文摘录自是一位前辈的Blog</p>
+</blockquote>
+<p>一般的生意人，都在反复评估，自己的贡献和回报的关系。如果贡献大于回报，就说是吃亏了。贡献小于回报，就说占了便宜。<br>而我看到的伟大的公司，或者成功的生意人，发现他们有一种惊人的相似之处，总结出来，就是：<br>对贡献有激情，对回报有信心。</p>
+<p><strong>贡献和回报</strong><br>打个比方，一个作家，可以关注自己写的稿子的质量（就是自己的贡献），也可以关注自己的稿酬。<br>只对自己稿酬感兴趣的，却不关心如何提高自己写的文章的质量，他会是一个越来越失败的作家。相反的，如果把所有激情投入提高自己的文章质量，而不关心稿酬的话，他才可能成为伟大的作家。<br>有“理想”的公司，都是贡献真诚的感兴趣的公司。微软的任何产品，都在看怎样提高生产率；Google的两个创始人关心的是如何更好的组织世界的信息；皮埃尔关心让世界的任何人都有可能在互联网上实现交易，而爱迪生关心的是给人类光明。。。</p>
+<p><strong>回报和坚持</strong><br>如果一件事情是为了回报，这件事情很难持久。这和一个人的毅力无关。<br>当一个人还没有真正意识到自己做这件事情的意义的时候，常常会为了显而易见的回报来坚持做一些事情。但很少有事情可以让你立刻看到回报，于是会选择放弃。放弃，多半不是因为无法坚持而放弃，而是因为感觉到自己做这件事失去了意义，所以放弃。<br>写blog就是这样。如果只是很希望别人来看，来评论，就会一天访问十次自己的blog，看一看有没有人回复。不久就会精疲力尽，而且会发现，自己的努力并不会直接换来多少人回复（像我每天一篇写了第四个年头了，也不会有多少回复的）。这时，就会怀疑自己做这件事情的意义，于是就不写了。不用埋怨自己的毅力，这件事本来和毅力毫无关系。<br>而凡是能坚持的blogger，要么是把blog写给自己的，意识到每天的记录是帮助自己来整理思路，为了自己生活得更好，要么是为了兴趣，写BLOG仅仅是为了帮助别人，只关心分享，而不关心评论或者浏览量的。无论什么样的动机，只要能看到自己的努力是为了贡献，而不是回报，就会坚持。<br>只有对贡献有激情，不在乎回报的时候，你才能坚持做一件事情，就像伟大的公司因为有一个贡献的理念，才可以持久的保持激情，在取得巨大的成功以后，接着日复一日的寻找更大的贡献。<br>需要说明回报，绝不仅仅是钱，它可以是各种你追求的东西，甚至仅仅是一个指标。比如，锻炼身体，身体健康就是回报。如果不享受锻炼的过程，而是苦巴巴的咬着牙，说只要我坚持，就一定会身体好。。。八成，这种坚持不会超过一个月。这就是为了回报而坚持的例子。减肥不成功，不用怀疑自己的毅力。当你对一种新的生活方式本身没有兴趣而只是为了这种方式带来的回报来勒紧裤腰带不吃东西，又怎能让你长期的坚持？</p>
+<p><strong>网站的贡献和回报</strong><br>网站如何提供给用户更多的价值，这就是贡献；如何提高访问量，这是回报。<br>我个人的体会是，回报这个东西，就像一个电闸。当你把手摸上去的话，就像摸到了高压电一样，瞬间就会感觉的迷茫，压力，并看到投机取巧的办法看起来很有吸引力，就会像一个商人一样买卖流量。但如果把手抽回来，不去碰那一个电闸，感觉立刻好了很多，开始思考比如如何帮助用户，如何给予更多，贡献更多。世界于是又回到了鸟语花香，海阔天空的状态。<br>彻底想明白自己努力到底是为了贡献了，还是为了回报，是是否可以持久的，优秀的做好一件事情的关键。</p>
+<p><strong>对贡献有激情的时候，还要对回报有信心</strong><br>和对贡献的激情同等重要的是，对回报的信心，而不是置之不理。历史上成功的企业和个人，不但做出了巨大的贡献，也取得了与之相应的巨额的报酬，以及电影明星般的盛名。并不是每一个对贡献有激情的人都做得到这一点。<br>比如历史上有一个伟大的发明家（或许是最伟大的发明家之一），却鲜为人知。他就是Nikola Tesla。他发现或者开发了一系列伟大创新的基础技术，从无线电信号传输，到交流电，从特斯拉变压器到X光，荧光灯直到现代电网。他和爱迪生一起工作，却相比之下，却回报寥寥。不但老年穷困潦倒，也很少有人听说过他。1943年，这位为人类迎来电力时代的天才去世的时候，身边只有几只他捡来的病鸽子。<br>这是一个对贡献的激情却没有回报的例子。John Battelle在最近一本新书《The Search》里面就提到，Google的创始人Page就是一个深受这个故事感染的年轻人。Page说“Nikola是个伟大的发明家，但他没有取得他应该取得的成就。我喜欢发明，但同时也希望改变世界。我希望能把我的发明带到人们的手里，这样他们就可以使用我的发明，因为只有这才是真正重要的”。在发明了PageRank算法以后，到底是按照学术传统分享自己的成果，还是像商业公司一样保护自己的知识产权，是两个创办者在1997年夏天最大的问题。<br>当然，结果证明了，他们可以在像Tesla一样贡献的同时，用一种方式，来保证自己的回报。这种把贡献转换为回报方法给了他们信心，可以更专注的在贡献部分。</p>
+<p><strong>回报是贡献的影子</strong><br>回报是贡献影子。我是说，如果安排得得当的话。<br>当一个人奔向太阳的时候，影子会跟着你。<br>当他追随影子的时候，他将远离太阳，远离光明，最终失去影子。</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+  </entry>
+  <entry>
     <title>我的几何人生-丘成桐</title>
     <url>/posts/54c0a81a/</url>
     <content><![CDATA[<blockquote>
@@ -7006,17 +7023,12 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>[转] 对贡献有激情，对回报有信心</title>
-    <url>/posts/ee47234e/</url>
+    <title>[转] 通配符（Wildcard）</title>
+    <url>/posts/163f6156/</url>
     <content><![CDATA[<blockquote>
-<p>本文摘录自是一位前辈的Blog</p>
+<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<p>一般的生意人，都在反复评估，自己的贡献和回报的关系。如果贡献大于回报，就说是吃亏了。贡献小于回报，就说占了便宜。<br>而我看到的伟大的公司，或者成功的生意人，发现他们有一种惊人的相似之处，总结出来，就是：<br>对贡献有激情，对回报有信心。</p>
-<p><strong>贡献和回报</strong><br>打个比方，一个作家，可以关注自己写的稿子的质量（就是自己的贡献），也可以关注自己的稿酬。<br>只对自己稿酬感兴趣的，却不关心如何提高自己写的文章的质量，他会是一个越来越失败的作家。相反的，如果把所有激情投入提高自己的文章质量，而不关心稿酬的话，他才可能成为伟大的作家。<br>有“理想”的公司，都是贡献真诚的感兴趣的公司。微软的任何产品，都在看怎样提高生产率；Google的两个创始人关心的是如何更好的组织世界的信息；皮埃尔关心让世界的任何人都有可能在互联网上实现交易，而爱迪生关心的是给人类光明。。。</p>
-<p><strong>回报和坚持</strong><br>如果一件事情是为了回报，这件事情很难持久。这和一个人的毅力无关。<br>当一个人还没有真正意识到自己做这件事情的意义的时候，常常会为了显而易见的回报来坚持做一些事情。但很少有事情可以让你立刻看到回报，于是会选择放弃。放弃，多半不是因为无法坚持而放弃，而是因为感觉到自己做这件事失去了意义，所以放弃。<br>写blog就是这样。如果只是很希望别人来看，来评论，就会一天访问十次自己的blog，看一看有没有人回复。不久就会精疲力尽，而且会发现，自己的努力并不会直接换来多少人回复（像我每天一篇写了第四个年头了，也不会有多少回复的）。这时，就会怀疑自己做这件事情的意义，于是就不写了。不用埋怨自己的毅力，这件事本来和毅力毫无关系。<br>而凡是能坚持的blogger，要么是把blog写给自己的，意识到每天的记录是帮助自己来整理思路，为了自己生活得更好，要么是为了兴趣，写BLOG仅仅是为了帮助别人，只关心分享，而不关心评论或者浏览量的。无论什么样的动机，只要能看到自己的努力是为了贡献，而不是回报，就会坚持。<br>只有对贡献有激情，不在乎回报的时候，你才能坚持做一件事情，就像伟大的公司因为有一个贡献的理念，才可以持久的保持激情，在取得巨大的成功以后，接着日复一日的寻找更大的贡献。<br>需要说明回报，绝不仅仅是钱，它可以是各种你追求的东西，甚至仅仅是一个指标。比如，锻炼身体，身体健康就是回报。如果不享受锻炼的过程，而是苦巴巴的咬着牙，说只要我坚持，就一定会身体好。。。八成，这种坚持不会超过一个月。这就是为了回报而坚持的例子。减肥不成功，不用怀疑自己的毅力。当你对一种新的生活方式本身没有兴趣而只是为了这种方式带来的回报来勒紧裤腰带不吃东西，又怎能让你长期的坚持？</p>
-<p><strong>网站的贡献和回报</strong><br>网站如何提供给用户更多的价值，这就是贡献；如何提高访问量，这是回报。<br>我个人的体会是，回报这个东西，就像一个电闸。当你把手摸上去的话，就像摸到了高压电一样，瞬间就会感觉的迷茫，压力，并看到投机取巧的办法看起来很有吸引力，就会像一个商人一样买卖流量。但如果把手抽回来，不去碰那一个电闸，感觉立刻好了很多，开始思考比如如何帮助用户，如何给予更多，贡献更多。世界于是又回到了鸟语花香，海阔天空的状态。<br>彻底想明白自己努力到底是为了贡献了，还是为了回报，是是否可以持久的，优秀的做好一件事情的关键。</p>
-<p><strong>对贡献有激情的时候，还要对回报有信心</strong><br>和对贡献的激情同等重要的是，对回报的信心，而不是置之不理。历史上成功的企业和个人，不但做出了巨大的贡献，也取得了与之相应的巨额的报酬，以及电影明星般的盛名。并不是每一个对贡献有激情的人都做得到这一点。<br>比如历史上有一个伟大的发明家（或许是最伟大的发明家之一），却鲜为人知。他就是Nikola Tesla。他发现或者开发了一系列伟大创新的基础技术，从无线电信号传输，到交流电，从特斯拉变压器到X光，荧光灯直到现代电网。他和爱迪生一起工作，却相比之下，却回报寥寥。不但老年穷困潦倒，也很少有人听说过他。1943年，这位为人类迎来电力时代的天才去世的时候，身边只有几只他捡来的病鸽子。<br>这是一个对贡献的激情却没有回报的例子。John Battelle在最近一本新书《The Search》里面就提到，Google的创始人Page就是一个深受这个故事感染的年轻人。Page说“Nikola是个伟大的发明家，但他没有取得他应该取得的成就。我喜欢发明，但同时也希望改变世界。我希望能把我的发明带到人们的手里，这样他们就可以使用我的发明，因为只有这才是真正重要的”。在发明了PageRank算法以后，到底是按照学术传统分享自己的成果，还是像商业公司一样保护自己的知识产权，是两个创办者在1997年夏天最大的问题。<br>当然，结果证明了，他们可以在像Tesla一样贡献的同时，用一种方式，来保证自己的回报。这种把贡献转换为回报方法给了他们信心，可以更专注的在贡献部分。</p>
-<p><strong>回报是贡献的影子</strong><br>回报是贡献影子。我是说，如果安排得得当的话。<br>当一个人奔向太阳的时候，影子会跟着你。<br>当他追随影子的时候，他将远离太阳，远离光明，最终失去影子。</p>
+<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
 ]]></content>
       <categories>
         <category>转载</category>
@@ -7033,18 +7045,6 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>OKR</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>[转] 通配符（Wildcard）</title>
-    <url>/posts/163f6156/</url>
-    <content><![CDATA[<blockquote>
-<p>原文：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY29tcHV0ZXJob3BlLmNvbS9qYXJnb24vdy93aWxkY2FyZC5odG0=">https://www.computerhope.com/jargon/w/wildcard.htm<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>文章讲解了通配符（wildcard）的概念及其在计算机和搜索中的应用。通配符是一种特殊字符，用于替代一个或多个字符，使用户能够进行模糊搜索或匹配多个文件。常见的通配符包括星号（*）和问号（?），分别表示任意数量的字符和单个字符。文章还讨论了不同环境中通配符的具体使用方法和场景。</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
   </entry>
   <entry>
     <title>优势管理</title>
