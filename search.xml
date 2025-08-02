@@ -486,6 +486,39 @@
       </tags>
   </entry>
   <entry>
+    <title>C语言 第四章 选择结构</title>
+    <url>/posts/4e7f3559/</url>
+    <content><![CDATA[<h2 id="第四章-选择机构"><a href="#第四章-选择机构" class="headerlink" title="第四章 选择机构"></a>第四章 选择机构</h2><blockquote>
+<p>Everthing ending is just a new beginning.</p>
+<p>每次结束都是新的开始</p>
+</blockquote>
+<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&lt; &gt; &lt;= &gt;= == !=</span><br></pre></td></tr></table></figure>
+
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&amp;&amp;	逻辑与（且）</span><br><span class="line">	两者都为真时结果才为真有一个为假，结果为假</span><br><span class="line">||	逻辑或</span><br><span class="line">	有一个为真，结果为真</span><br><span class="line">	两者都为假时，结果才为假</span><br><span class="line">!	逻辑或</span><br><span class="line">	运算量为真时，结果为假</span><br><span class="line">	运算量为假时，结果为真</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1为真 0为假</span></span><br><span class="line"><span class="number">5</span> &gt; <span class="number">0</span>	<span class="number">1</span></span><br><span class="line"><span class="number">5</span> &lt; <span class="number">3</span>	<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 优先级 从高到低</span></span><br><span class="line"><span class="number">0.</span> ()</span><br><span class="line"><span class="number">1.</span> 逻辑非(!) ++ -- ~ -</span><br><span class="line"><span class="number">2.</span> 算术运算</span><br><span class="line">	* / % + -</span><br><span class="line">    &lt;&lt; &gt;&gt; [左右移]</span><br><span class="line"><span class="number">3.</span> 关系运算</span><br><span class="line">	&lt; &lt;= &gt; &gt;= </span><br><span class="line">    == !=</span><br><span class="line"><span class="number">4.</span> &amp;&amp; 和 ||</span><br><span class="line">    &amp;&amp; 优先级大于 ||</span><br><span class="line"><span class="number">5.</span> 条件 ? :</span><br><span class="line"><span class="number">6.</span> 赋值运算 += -= *= ...</span><br><span class="line"><span class="number">7.</span> 逗号</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> &amp;&amp; <span class="number">3</span>;</span><br><span class="line"><span class="comment">// 表达式的值为 1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">?	三目运算符</span><br><span class="line">表达式<span class="number">1</span> ? 表达式<span class="number">2</span> : 表达式<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 表达式值为非0，执行语句；0不执行语句</span></span><br><span class="line"><span class="keyword">if</span>(表达式)</span><br><span class="line">&#123;</span><br><span class="line"> 	<span class="comment">// 执行语句   </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// if 单语句要注意（if后无大括号），只能跟一条语句</span></span><br><span class="line"><span class="keyword">if</span>(a&gt;<span class="number">2</span>) a = <span class="number">3</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="交换两个变量的值"><a href="#交换两个变量的值" class="headerlink" title="交换两个变量的值"></a>交换两个变量的值</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">t = a;</span><br><span class="line">a = b;</span><br><span class="line">b = t;</span><br></pre></td></tr></table></figure>
+
+<h3 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(表达式)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> 表达式<span class="number">1</span>:</span><br><span class="line">        语句<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> 表达式<span class="number">2</span>:</span><br><span class="line">        语句<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        语句n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>C Language</category>
+      </categories>
+      <tags>
+        <tag>Learning Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言 第三章 顺序结构</title>
     <url>/posts/f561d345/</url>
     <content><![CDATA[<h2 id="第三章-顺序结构"><a href="#第三章-顺序结构" class="headerlink" title="第三章 顺序结构"></a>第三章 顺序结构</h2><blockquote>
@@ -608,39 +641,6 @@
 <td>atan(-82.24)</td>
 </tr>
 </tbody></table>
-]]></content>
-      <categories>
-        <category>C Language</category>
-      </categories>
-      <tags>
-        <tag>Learning Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言 第四章 选择结构</title>
-    <url>/posts/4e7f3559/</url>
-    <content><![CDATA[<h2 id="第四章-选择机构"><a href="#第四章-选择机构" class="headerlink" title="第四章 选择机构"></a>第四章 选择机构</h2><blockquote>
-<p>Everthing ending is just a new beginning.</p>
-<p>每次结束都是新的开始</p>
-</blockquote>
-<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&lt; &gt; &lt;= &gt;= == !=</span><br></pre></td></tr></table></figure>
-
-<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">&amp;&amp;	逻辑与（且）</span><br><span class="line">	两者都为真时结果才为真有一个为假，结果为假</span><br><span class="line">||	逻辑或</span><br><span class="line">	有一个为真，结果为真</span><br><span class="line">	两者都为假时，结果才为假</span><br><span class="line">!	逻辑或</span><br><span class="line">	运算量为真时，结果为假</span><br><span class="line">	运算量为假时，结果为真</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1为真 0为假</span></span><br><span class="line"><span class="number">5</span> &gt; <span class="number">0</span>	<span class="number">1</span></span><br><span class="line"><span class="number">5</span> &lt; <span class="number">3</span>	<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 优先级 从高到低</span></span><br><span class="line"><span class="number">0.</span> ()</span><br><span class="line"><span class="number">1.</span> 逻辑非(!) ++ -- ~ -</span><br><span class="line"><span class="number">2.</span> 算术运算</span><br><span class="line">	* / % + -</span><br><span class="line">    &lt;&lt; &gt;&gt; [左右移]</span><br><span class="line"><span class="number">3.</span> 关系运算</span><br><span class="line">	&lt; &lt;= &gt; &gt;= </span><br><span class="line">    == !=</span><br><span class="line"><span class="number">4.</span> &amp;&amp; 和 ||</span><br><span class="line">    &amp;&amp; 优先级大于 ||</span><br><span class="line"><span class="number">5.</span> 条件 ? :</span><br><span class="line"><span class="number">6.</span> 赋值运算 += -= *= ...</span><br><span class="line"><span class="number">7.</span> 逗号</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">5</span> &amp;&amp; <span class="number">3</span>;</span><br><span class="line"><span class="comment">// 表达式的值为 1</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">?	三目运算符</span><br><span class="line">表达式<span class="number">1</span> ? 表达式<span class="number">2</span> : 表达式<span class="number">3</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 表达式值为非0，执行语句；0不执行语句</span></span><br><span class="line"><span class="keyword">if</span>(表达式)</span><br><span class="line">&#123;</span><br><span class="line"> 	<span class="comment">// 执行语句   </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// if 单语句要注意（if后无大括号），只能跟一条语句</span></span><br><span class="line"><span class="keyword">if</span>(a&gt;<span class="number">2</span>) a = <span class="number">3</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="交换两个变量的值"><a href="#交换两个变量的值" class="headerlink" title="交换两个变量的值"></a>交换两个变量的值</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">t = a;</span><br><span class="line">a = b;</span><br><span class="line">b = t;</span><br></pre></td></tr></table></figure>
-
-<h3 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span>(表达式)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> 表达式<span class="number">1</span>:</span><br><span class="line">        语句<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> 表达式<span class="number">2</span>:</span><br><span class="line">        语句<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        语句n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>C Language</category>
@@ -1747,156 +1747,6 @@
       </tags>
   </entry>
   <entry>
-    <title>备战校招第二天</title>
-    <url>/posts/5dd5f4cf/</url>
-    <content><![CDATA[<ol>
-<li>css 盒模型</li>
-<li>css 布局方式</li>
-<li>跨域</li>
-<li>前端安全（XSS、CSRF）</li>
-<li>防抖和节流</li>
-</ol>
-<hr>
-
-<span id="more"></span>
-
-<h3 id="css-盒模型"><a href="#css-盒模型" class="headerlink" title="css 盒模型"></a>css 盒模型</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width，height） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : content-box;</span><br><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width - border - padding） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : border-box;</span><br></pre></td></tr></table></figure>
-
-<p><strong>content-box</strong></p>
-<p>尺寸计算公式：</p>
-<p><code>width</code> &#x3D; 内容的宽度</p>
-<p><code>height</code> &#x3D; 内容的高度</p>
-<p>宽度和高度的计算值都不包含内容的边框（border）和内边距（padding）。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: content-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105733.png" alt="image-20200625105733283"></p>
-<p>实际内容区域为 <code>100px</code> ，边框为 <code>1px</code> </p>
-<p><strong>border-box</strong></p>
-<p>尺寸计算公式：</p>
-<p><em><code>width</code> &#x3D; border + padding + 内容的宽度</em></p>
-<p><em><code>height</code> &#x3D; border + padding + 内容的高度</em></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: border-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105910.png" alt="image-20200625105909902"></p>
-<p>实际内容区域为 <code>98px</code> ，上下边框各为 <code>1px</code> </p>
-<h3 id="css-布局方式"><a href="#css-布局方式" class="headerlink" title="css 布局方式"></a>css 布局方式</h3><p><strong>改变布局的常见属性</strong> </p>
-<ul>
-<li><p>display: flex; table; grid;</p>
-</li>
-<li><p>float</p>
-</li>
-<li><p>position</p>
-</li>
-</ul>
-<p><strong>常见布局</strong></p>
-<ul>
-<li><p>正常布局流</p>
-<p>浏览器默认的 <code>html</code> 布局方式</p>
-</li>
-<li><p>弹性布局（flex）</p>
-<p><strong>介绍</strong>：弹性盒子布局，用于创建横向或纵向的一维页面布局，等分划分。</p>
-<p><strong>使用</strong>：只需将父元素设置为 <code>display: flex;</code> 就可以按照 <code>flex</code> 布局。（设置flex布局后，子元素的 <code>float</code>、<code>clear</code>  、<code>vertical-align</code> 属性都会失效）</p>
-</li>
-<li><p>网格布局（grid）</p>
-<p><strong>介绍</strong>：Grid布局被设计用于同时在两个维度上把元素按行和列排列整齐，二维布局。</p>
-<p><strong>使用</strong>：父元素设置 <code>display: grid;</code> 也可以设置为行内元素 <code>display: inline-grid;</code></p>
-</li>
-<li><p>浮动布局（float）</p>
-<p>浮动布局，利用 <code>float</code> 属性进行左右浮动。</p>
-</li>
-<li><p>定位布局（position）</p>
-<p>静态定位、相对定位、绝对定位、固定定位、粘性定位（相对定位和固定定位的混合，设置 <code>top</code> 值之后，元素以决定定位的方式显示位置，直到 <code>viewport</code> 视口回滚到阈值之下，以固定定位方式显示，显示 top 所指的值之处。）</p>
-</li>
-<li><p>表格</p>
-<p>现在很少使用 <code>table</code> 进行布局，但显示表格数据你没有选择。</p>
-</li>
-<li><p>多列布局</p>
-<p>简单的进行多列布局，<code>columns</code> 设置列数，<code>column-width</code> 设置列宽。</p>
-</li>
-</ul>
-<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>同源策略（协议、域名、端口相同），防止信息被恶意利用。</p>
-<ul>
-<li><p>jsonp</p>
-<p>利用 <code>script</code> 标签可以跨域特性，但只支持 <code>GET</code> 请求，且需要服务端进行配合，于是就有了下面代码（通常规范为 url 最后params规定 <code>callback=回调函数名</code>）</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">var</span> sc = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">      sc.<span class="title function_">setAttribute</span>(</span><br><span class="line">        <span class="string">&#x27;src&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://suggest.taobao.com/sug?code=utf-8&amp;q=%E5%8D%AB%E8%A1%A3&amp;callback=cb&#x27;</span></span><br><span class="line">      )</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(sc)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">function</span> <span class="title function_">cb</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">      &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>代码执行后，将 <code>script</code> 标签添加到网页内，会去自动请求地址，服务器配合后会返回</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">cb</span>(&#123;<span class="string">&quot;result&quot;</span>:[[<span class="string">&quot;卫衣女&quot;</span>,<span class="string">&quot;183618.0781806928&quot;</span>],[<span class="string">&quot;卫衣男&quot;</span>,<span class="string">&quot;88788.9164616466&quot;</span>],[<span class="string">&quot;卫衣女春秋薄款&quot;</span>,<span class="string">&quot;31281.50912988837&quot;</span>],[<span class="string">&quot;卫衣女宽松韩版&quot;</span>,<span class="string">&quot;108819.03279878093&quot;</span>]...]&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>页面会将请求后的代码进行执行，于是会调用 <code>cb</code> 函数，就可以进行对数据为所欲为了，哈哈哈。</p>
-</li>
-<li><p>CORS（跨域资源共享）</p>
-<p>CORS请求分为两类，简单请求和非简单请求（也称为复杂请求）</p>
-<p><strong>简单请求</strong></p>
-<p>服务端设置 <code>Access-Control-Allow-Origin</code> 值为请求头的 <code>origin</code> 的值或者 <code>*</code>，指定域名或者接受所有域名。</p>
-<p>服务端<code>Access-Control-Allow-Credentials</code> 设置为 <code>true</code>，请求时将 <code>cookie</code> 添加到请求中，一起发送给服务器。本地ajax请求也要将 <code>withCredentials</code> 设置为 <code>true</code>。（注意：如果要发送 cookie，必须指定 <code>Access-Control-Allow-Origin</code> 具体值，不能为 <code>*</code>。）</p>
-<p><strong>非简单请求</strong></p>
-<p>在请求前会发送一个“预检”请求，<code>OPTIONS</code>请求</p>
-<p>比如</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://api.alice.com/cors&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;PUT&#x27;</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X-Custom-Header&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
-
-<p>发送 <code>PUT</code> 请求，会先发送一个预检请求，内容如下</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">OPTIONS</span> <span class="string">/cors</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://api.bob.com // 请求域</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span><span class="punctuation">: </span>PUT // 请求方法</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span><span class="punctuation">: </span>X-Custom-Header // 请求头信息</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.alice.com</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0...</span><br></pre></td></tr></table></figure>
-
-<p>服务端如果确认，返回如下信息</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>http://api.bob.com // 允许跨域地址</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span><span class="punctuation">: </span>GET, POST, PUT // 允许跨域方法</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span><span class="punctuation">: </span>X-Custom-Header // 支持首部列表</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Encoding</span><span class="punctuation">: </span>gzip</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line"><span class="attribute">Keep-Alive</span><span class="punctuation">: </span>timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/plain</span><br></pre></td></tr></table></figure>
-
-<p>服务端如果否定了，返回一个正常的HTTP响应即可，但不包含跨域相关信息（此时，会触发<code>ajax</code>的 <code>onerror</code> 错误回调）</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://api.alice.com.</span><br><span class="line">Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h3><ul>
-<li><p>XSS（Cross-site scripting）</p>
-<p>首先推荐一个 <code>XSS</code> 训练平台，链接在这里：<span class="exturl" data-url="aHR0cDovL3Byb21wdC5tbC8w">prompt<i class="fa fa-external-link-alt"></i></span></p>
-<p>全称为跨站脚本攻击，一共分为三类</p>
-<ul>
-<li>存储型 XSS，一般出现在可输入的文本框中，例如留言板、评论、个人资料等地方，将恶意脚本存储到服务器上，当浏览器进行数据请求时，脚本会返回给用户并执行。</li>
-<li>反射性 XSS，一般出现在URL参数中，需要点击恶意代码的链接才可以出发。</li>
-<li>基于DOM的XSS，通过脚本动态修改页面，不与服务端进行交互，代码可见，获取数据并在本地执行。</li>
-</ul>
-</li>
-<li><p>CSRF（cross-site request forgery）</p>
-<p>跨站请求伪造，恶意请求提交。</p>
-<p>攻击者往往不会获取 <code>cookie</code> 信息，只会利用本机信息进行恶意操作。登录受信任网站A，访问危险网站B。</p>
-<p>防御方法</p>
-<ul>
-<li>令牌同步模式：当用户发送请求前，服务端生成唯一令牌，发送数据时携带该令牌，在服务端进行校验。</li>
-<li>检查Referer字段：确定改请求来源是否安全</li>
-<li>添加校验token：恶意请求不会自动添加token，也无法获取，服务端进行校验，就可以排除可疑请求。</li>
-</ul>
-</li>
-</ul>
-<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><p><strong>防抖（debounce）</strong></p>
-<p>高频事件在 n 秒内只执行一次，如果 n 秒内事件再次触发，则重新计算时间。</p>
-<p>下列代码，没有防抖前，每次用户输入都会触发事件，防抖后，只有在 500ms 内没有进行输入才会执行事件。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> id=<span class="string">&quot;inp&quot;</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">let</span> timeout = <span class="literal">null</span> <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="built_in">clearTimeout</span>(timeout) <span class="comment">// 每当用户输入的时候把前一个 setTimeout clear 掉</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          timeout = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="comment">// 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          &#125;, <span class="number">500</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;防抖成功&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">var</span> inp = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;inp&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      inp.<span class="title function_">addEventListener</span>(<span class="string">&#x27;input&#x27;</span>, <span class="title function_">debounce</span>(sayHi)) <span class="comment">// 防抖</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p><strong>节流（throttle）</strong></p>
-<p>降低高频事件的触发次数。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> canRun = <span class="literal">true</span>; <span class="comment">// 通过闭包保存一个标记</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!canRun) <span class="keyword">return</span>; <span class="comment">// 在函数开头判断标记是否为true，不为true则return</span></span><br><span class="line">    canRun = <span class="literal">false</span>; <span class="comment">// 立即设置为false</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 将外部传入的函数的执行放在setTimeout中</span></span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      <span class="comment">// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span></span><br><span class="line">      canRun = <span class="literal">true</span>;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">target</span>.<span class="property">innerWidth</span>, e.<span class="property">target</span>.<span class="property">innerHeight</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;resize&#x27;</span>, <span class="title function_">throttle</span>(sayHi));</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>盒模型</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2JveC1zaXppbmc=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing<i class="fa fa-external-link-alt"></i></span></p>
-<p>跨域</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTE0NTM2NA==">https://segmentfault.com/a/1190000011145364<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE2LzA0L2NvcnMuaHRtbA==">https://www.ruanyifeng.com/blog/2016/04/cors.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>防抖和节流</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmFuY2VkLUZyb250ZW5kL0RhaWx5LUludGVydmlldy1RdWVzdGlvbi9pc3N1ZXMvNQ==">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>备战</category>
-      </categories>
-      <tags>
-        <tag>安全</tag>
-        <tag>盒模型</tag>
-        <tag>布局</tag>
-        <tag>跨域</tag>
-        <tag>防抖</tag>
-        <tag>节流</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>备战校招第三天</title>
     <url>/posts/10cb579d/</url>
     <content><![CDATA[<ol>
@@ -2047,6 +1897,156 @@
         <tag>布局</tag>
         <tag>闭包</tag>
         <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>备战校招第二天</title>
+    <url>/posts/5dd5f4cf/</url>
+    <content><![CDATA[<ol>
+<li>css 盒模型</li>
+<li>css 布局方式</li>
+<li>跨域</li>
+<li>前端安全（XSS、CSRF）</li>
+<li>防抖和节流</li>
+</ol>
+<hr>
+
+<span id="more"></span>
+
+<h3 id="css-盒模型"><a href="#css-盒模型" class="headerlink" title="css 盒模型"></a>css 盒模型</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width，height） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : content-box;</span><br><span class="line"><span class="comment">/* 默认值，实际内容宽高度计算方式（width - border - padding） */</span></span><br><span class="line"><span class="attribute">box-sizing</span> : border-box;</span><br></pre></td></tr></table></figure>
+
+<p><strong>content-box</strong></p>
+<p>尺寸计算公式：</p>
+<p><code>width</code> &#x3D; 内容的宽度</p>
+<p><code>height</code> &#x3D; 内容的高度</p>
+<p>宽度和高度的计算值都不包含内容的边框（border）和内边距（padding）。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: content-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105733.png" alt="image-20200625105733283"></p>
+<p>实际内容区域为 <code>100px</code> ，边框为 <code>1px</code> </p>
+<p><strong>border-box</strong></p>
+<p>尺寸计算公式：</p>
+<p><em><code>width</code> &#x3D; border + padding + 内容的宽度</em></p>
+<p><em><code>height</code> &#x3D; border + padding + 内容的高度</em></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    width: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    height: 100px;</span></span></span><br><span class="line"><span class="string"><span class="tag">    background-color: blue;</span></span></span><br><span class="line"><span class="string"><span class="tag">    border: 1px solid red;</span></span></span><br><span class="line"><span class="string"><span class="tag">    box-sizing: border-box;</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105910.png" alt="image-20200625105909902"></p>
+<p>实际内容区域为 <code>98px</code> ，上下边框各为 <code>1px</code> </p>
+<h3 id="css-布局方式"><a href="#css-布局方式" class="headerlink" title="css 布局方式"></a>css 布局方式</h3><p><strong>改变布局的常见属性</strong> </p>
+<ul>
+<li><p>display: flex; table; grid;</p>
+</li>
+<li><p>float</p>
+</li>
+<li><p>position</p>
+</li>
+</ul>
+<p><strong>常见布局</strong></p>
+<ul>
+<li><p>正常布局流</p>
+<p>浏览器默认的 <code>html</code> 布局方式</p>
+</li>
+<li><p>弹性布局（flex）</p>
+<p><strong>介绍</strong>：弹性盒子布局，用于创建横向或纵向的一维页面布局，等分划分。</p>
+<p><strong>使用</strong>：只需将父元素设置为 <code>display: flex;</code> 就可以按照 <code>flex</code> 布局。（设置flex布局后，子元素的 <code>float</code>、<code>clear</code>  、<code>vertical-align</code> 属性都会失效）</p>
+</li>
+<li><p>网格布局（grid）</p>
+<p><strong>介绍</strong>：Grid布局被设计用于同时在两个维度上把元素按行和列排列整齐，二维布局。</p>
+<p><strong>使用</strong>：父元素设置 <code>display: grid;</code> 也可以设置为行内元素 <code>display: inline-grid;</code></p>
+</li>
+<li><p>浮动布局（float）</p>
+<p>浮动布局，利用 <code>float</code> 属性进行左右浮动。</p>
+</li>
+<li><p>定位布局（position）</p>
+<p>静态定位、相对定位、绝对定位、固定定位、粘性定位（相对定位和固定定位的混合，设置 <code>top</code> 值之后，元素以决定定位的方式显示位置，直到 <code>viewport</code> 视口回滚到阈值之下，以固定定位方式显示，显示 top 所指的值之处。）</p>
+</li>
+<li><p>表格</p>
+<p>现在很少使用 <code>table</code> 进行布局，但显示表格数据你没有选择。</p>
+</li>
+<li><p>多列布局</p>
+<p>简单的进行多列布局，<code>columns</code> 设置列数，<code>column-width</code> 设置列宽。</p>
+</li>
+</ul>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>同源策略（协议、域名、端口相同），防止信息被恶意利用。</p>
+<ul>
+<li><p>jsonp</p>
+<p>利用 <code>script</code> 标签可以跨域特性，但只支持 <code>GET</code> 请求，且需要服务端进行配合，于是就有了下面代码（通常规范为 url 最后params规定 <code>callback=回调函数名</code>）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">var</span> sc = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">      sc.<span class="title function_">setAttribute</span>(</span><br><span class="line">        <span class="string">&#x27;src&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://suggest.taobao.com/sug?code=utf-8&amp;q=%E5%8D%AB%E8%A1%A3&amp;callback=cb&#x27;</span></span><br><span class="line">      )</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(sc)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">function</span> <span class="title function_">cb</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">      &#125;</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>代码执行后，将 <code>script</code> 标签添加到网页内，会去自动请求地址，服务器配合后会返回</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">cb</span>(&#123;<span class="string">&quot;result&quot;</span>:[[<span class="string">&quot;卫衣女&quot;</span>,<span class="string">&quot;183618.0781806928&quot;</span>],[<span class="string">&quot;卫衣男&quot;</span>,<span class="string">&quot;88788.9164616466&quot;</span>],[<span class="string">&quot;卫衣女春秋薄款&quot;</span>,<span class="string">&quot;31281.50912988837&quot;</span>],[<span class="string">&quot;卫衣女宽松韩版&quot;</span>,<span class="string">&quot;108819.03279878093&quot;</span>]...]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>页面会将请求后的代码进行执行，于是会调用 <code>cb</code> 函数，就可以进行对数据为所欲为了，哈哈哈。</p>
+</li>
+<li><p>CORS（跨域资源共享）</p>
+<p>CORS请求分为两类，简单请求和非简单请求（也称为复杂请求）</p>
+<p><strong>简单请求</strong></p>
+<p>服务端设置 <code>Access-Control-Allow-Origin</code> 值为请求头的 <code>origin</code> 的值或者 <code>*</code>，指定域名或者接受所有域名。</p>
+<p>服务端<code>Access-Control-Allow-Credentials</code> 设置为 <code>true</code>，请求时将 <code>cookie</code> 添加到请求中，一起发送给服务器。本地ajax请求也要将 <code>withCredentials</code> 设置为 <code>true</code>。（注意：如果要发送 cookie，必须指定 <code>Access-Control-Allow-Origin</code> 具体值，不能为 <code>*</code>。）</p>
+<p><strong>非简单请求</strong></p>
+<p>在请求前会发送一个“预检”请求，<code>OPTIONS</code>请求</p>
+<p>比如</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://api.alice.com/cors&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;PUT&#x27;</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X-Custom-Header&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+
+<p>发送 <code>PUT</code> 请求，会先发送一个预检请求，内容如下</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">OPTIONS</span> <span class="string">/cors</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://api.bob.com // 请求域</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span><span class="punctuation">: </span>PUT // 请求方法</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span><span class="punctuation">: </span>X-Custom-Header // 请求头信息</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.alice.com</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0...</span><br></pre></td></tr></table></figure>
+
+<p>服务端如果确认，返回如下信息</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Mon, 01 Dec 2008 01:15:39 GMT</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache/2.0.61 (Unix)</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>http://api.bob.com // 允许跨域地址</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span><span class="punctuation">: </span>GET, POST, PUT // 允许跨域方法</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span><span class="punctuation">: </span>X-Custom-Header // 支持首部列表</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Encoding</span><span class="punctuation">: </span>gzip</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line"><span class="attribute">Keep-Alive</span><span class="punctuation">: </span>timeout=2, max=100</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/plain</span><br></pre></td></tr></table></figure>
+
+<p>服务端如果否定了，返回一个正常的HTTP响应即可，但不包含跨域相关信息（此时，会触发<code>ajax</code>的 <code>onerror</code> 错误回调）</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">XMLHttpRequest cannot load http://api.alice.com.</span><br><span class="line">Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="前端安全"><a href="#前端安全" class="headerlink" title="前端安全"></a>前端安全</h3><ul>
+<li><p>XSS（Cross-site scripting）</p>
+<p>首先推荐一个 <code>XSS</code> 训练平台，链接在这里：<span class="exturl" data-url="aHR0cDovL3Byb21wdC5tbC8w">prompt<i class="fa fa-external-link-alt"></i></span></p>
+<p>全称为跨站脚本攻击，一共分为三类</p>
+<ul>
+<li>存储型 XSS，一般出现在可输入的文本框中，例如留言板、评论、个人资料等地方，将恶意脚本存储到服务器上，当浏览器进行数据请求时，脚本会返回给用户并执行。</li>
+<li>反射性 XSS，一般出现在URL参数中，需要点击恶意代码的链接才可以出发。</li>
+<li>基于DOM的XSS，通过脚本动态修改页面，不与服务端进行交互，代码可见，获取数据并在本地执行。</li>
+</ul>
+</li>
+<li><p>CSRF（cross-site request forgery）</p>
+<p>跨站请求伪造，恶意请求提交。</p>
+<p>攻击者往往不会获取 <code>cookie</code> 信息，只会利用本机信息进行恶意操作。登录受信任网站A，访问危险网站B。</p>
+<p>防御方法</p>
+<ul>
+<li>令牌同步模式：当用户发送请求前，服务端生成唯一令牌，发送数据时携带该令牌，在服务端进行校验。</li>
+<li>检查Referer字段：确定改请求来源是否安全</li>
+<li>添加校验token：恶意请求不会自动添加token，也无法获取，服务端进行校验，就可以排除可疑请求。</li>
+</ul>
+</li>
+</ul>
+<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><p><strong>防抖（debounce）</strong></p>
+<p>高频事件在 n 秒内只执行一次，如果 n 秒内事件再次触发，则重新计算时间。</p>
+<p>下列代码，没有防抖前，每次用户输入都会触发事件，防抖后，只有在 500ms 内没有进行输入才会执行事件。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> id=<span class="string">&quot;inp&quot;</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">let</span> timeout = <span class="literal">null</span> <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="built_in">clearTimeout</span>(timeout) <span class="comment">// 每当用户输入的时候把前一个 setTimeout clear 掉</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          timeout = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="comment">// 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          &#125;, <span class="number">500</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;防抖成功&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">var</span> inp = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;inp&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      inp.<span class="title function_">addEventListener</span>(<span class="string">&#x27;input&#x27;</span>, <span class="title function_">debounce</span>(sayHi)) <span class="comment">// 防抖</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>节流（throttle）</strong></p>
+<p>降低高频事件的触发次数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> canRun = <span class="literal">true</span>; <span class="comment">// 通过闭包保存一个标记</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!canRun) <span class="keyword">return</span>; <span class="comment">// 在函数开头判断标记是否为true，不为true则return</span></span><br><span class="line">    canRun = <span class="literal">false</span>; <span class="comment">// 立即设置为false</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 将外部传入的函数的执行放在setTimeout中</span></span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      <span class="comment">// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span></span><br><span class="line">      canRun = <span class="literal">true</span>;</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">target</span>.<span class="property">innerWidth</span>, e.<span class="property">target</span>.<span class="property">innerHeight</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;resize&#x27;</span>, <span class="title function_">throttle</span>(sayHi));</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>盒模型</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQ1NTL2JveC1zaXppbmc=">https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing<i class="fa fa-external-link-alt"></i></span></p>
+<p>跨域</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMTE0NTM2NA==">https://segmentfault.com/a/1190000011145364<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVhbnlpZmVuZy5jb20vYmxvZy8yMDE2LzA0L2NvcnMuaHRtbA==">https://www.ruanyifeng.com/blog/2016/04/cors.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>防抖和节流</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FkdmFuY2VkLUZyb250ZW5kL0RhaWx5LUludGVydmlldy1RdWVzdGlvbi9pc3N1ZXMvNQ==">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>备战</category>
+      </categories>
+      <tags>
+        <tag>安全</tag>
+        <tag>布局</tag>
+        <tag>盒模型</tag>
+        <tag>跨域</tag>
+        <tag>防抖</tag>
+        <tag>节流</tag>
       </tags>
   </entry>
   <entry>
@@ -2468,6 +2468,76 @@
       </tags>
   </entry>
   <entry>
+    <title>2019年度总结</title>
+    <url>/posts/f982cd1d/</url>
+    <content><![CDATA[<p>新的一年，应继续保持学习，计划</p>
+<ul>
+<li><code>vue</code> 深入学习，之前还是学习的不够深入</li>
+<li><code>TypeScript</code> 也应该入手了，都 <code>0202</code> 年了，总不能还不会 <code>ts</code> 吧</li>
+<li>走进后端，<code>koa</code>, <code>eggjs</code> 等学一个</li>
+<li>不挂科</li>
+<li>不挂科</li>
+<li>不挂科</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="2019年度总结"><a href="#2019年度总结" class="headerlink" title="2019年度总结"></a>2019年度总结</h1><blockquote>
+<p>吾日三省吾身，今年又是菜鸡的一年</p>
+</blockquote>
+<h2 id="github-提交记录"><a href="#github-提交记录" class="headerlink" title="github 提交记录"></a>github 提交记录</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BvcHJpbmc/dGFiPW92ZXJ2aWV3JmZyb209MjAxOS0xMi0wMSZ0bz0yMDE5LTEyLTMx">github<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>删除了一些仓库，响应的提交记录也被移除了</p>
+</blockquote>
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200107130123.png"></p>
+<h2 id="技术总结"><a href="#技术总结" class="headerlink" title="技术总结"></a>技术总结</h2><p>由于上半年都在公司实习和准备考试，所以新学的知识不多，主要集中在下半年。</p>
+<p>不过还是遇到些问题（主要原因是当时的知识不成体系，有点杂乱）</p>
+<ul>
+<li>箭头函数</li>
+</ul>
+<p>当时在chrome中使用箭头函数调试，一点问题都没有，但在 <code>iOS</code> 中怎么先显示不出来。</p>
+<p>经过多次排查，才发现，<code>iOS</code> 版本不够高，底层 <code>webkit</code> 内核版本自然也不高，所以不支持箭头函数。</p>
+<p>这也算是兼容性问题，都怪我当时年少无知。。。</p>
+<ul>
+<li>微信网页 下拉刷新问题</li>
+</ul>
+<p>代码就不贴了，正常情况下微信网页内下拉会显示当前网址的域名等信息。</p>
+<p>所以我们实现下拉刷新就不能以常规的方式实现了，在全局内容的最外层加一个 <code>div</code>，每次滚动都是值滚动内层的 <code>div</code>，如果到了顶部，仍继续下拉，则可以执行下拉刷新操作。当时用的是 <code>jquery-weui</code> ，<span class="exturl" data-url="aHR0cDovL3d3dy5qcXdldWkuY24vZXh0ZW5kcyNwdWxsLXRvLXJlZnJlc2glRUYlQkMlOEMlRTQlQjklOEIlRTUlODklOEQlRTQlQjklOUYlRTclOTQlQTg=">http://www.jqweui.cn/extends#pull-to-refresh，之前也用<i class="fa fa-external-link-alt"></i></span> <code>swiper</code> 做过类似功能。</p>
+<ul>
+<li>获取表单的值</li>
+</ul>
+<p>记得当时的我用 <code>jQuery</code> ，傻傻的每次获取表单值的时候，都是傻傻的用 <code>$(&#39;#xx&#39;).value()</code>，然后一个页面写了五六个（心疼以后维护我代码的小伙伴）。直到又来偶然看到一篇文章，一行代码获取表单值，我惊了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&quot;#form&quot;</span>).<span class="title function_">serialize</span>(); <span class="comment">// 序列化为字符串</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;#form&quot;</span>).<span class="title function_">serializeArray</span>(); <span class="comment">// 序列化为数组</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后就是今年下半年</p>
+<ul>
+<li><p>vue 做了一个类似 去哪儿网，这个项目唯一的特色就是城市选择列表，可以滑动右边的字母，左边城市列表也会调到响应的字母，<code>better-scroll</code> 插件实现。</p>
+<p>滚动原理</p>
+<p><img data-src="http://static.galileo.xiaojukeji.com/static/tms/shield/scroll-4.png"></p>
+</li>
+<li><p>小黄车后台管理系统，使用 <code>react</code> 全家桶，大致了解下 <code>react</code> 生态圈，主要是<code>react</code>, <code>react-router</code>, <code>redux</code>, <code>ant-design</code>，顺带了解了下 <code>Echarts</code> 绘图（主要是 <code>d3.js</code> 中文学习资料太少，英文看起来慢，目前还停留在画个简单的柱形图）。</p>
+<p><code>react</code> 全家桶用过之后，感觉很类似 <code>vue</code>，不过又与<code>vue</code>不同，<code>react</code> 体现的更加开放，更加注重原生<code>js</code>，所以意味这你要封装很多的组件，也意味着代码水平决定了你的组件的健壮度。而 <code>vue</code> 相对于新手来说就友好很多了，很多常用的功能官方都已经封装好了，上手很快。所以 <code>vue</code> 更适合快速开发项目，而 <code>react</code> 更加适合大项目。</p>
+<p>就最近遇到的问题，<code>vue-router</code> 中内置了 <code>beforeEach</code> 路由守卫功能，而 <code>react</code> 中则需要自己写，引用作者的话 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1JlYWN0VHJhaW5pbmcvcmVhY3Qtcm91dGVyL2lzc3Vlcy80OTYyI2lzc3VlY29tbWVudC0zNTU1NzI2MjI=">You can do this from within your render function. JSX doesn’t need an API for this because it’s more flexible.<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+<h2 id="新年新气象"><a href="#新年新气象" class="headerlink" title="新年新气象"></a>新年新气象</h2><p>新的一年，应继续保持学习，计划</p>
+<ul>
+<li><code>vue</code> 深入学习，之前还是学习的不够深入</li>
+<li><code>TypeScript</code> 也应该入手了，都 <code>0202</code> 年了，总不能还不会 <code>ts</code> 吧</li>
+<li>走进后端，<code>koa</code>, <code>eggjs</code> 等学一个</li>
+<li>不挂科</li>
+<li>不挂科</li>
+<li>不挂科</li>
+</ul>
+<hr>
+<p>来还愿，除了 深度学习 <code>vue</code> ，其他计划都圆满完成</p>
+]]></content>
+      <categories>
+        <category>年度总结</category>
+      </categories>
+  </entry>
+  <entry>
     <title>备战校招第九天</title>
     <url>/posts/f2d0bee5/</url>
     <content><![CDATA[<ul>
@@ -2693,76 +2763,6 @@
         <tag>盒模型</tag>
         <tag>css</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>2019年度总结</title>
-    <url>/posts/f982cd1d/</url>
-    <content><![CDATA[<p>新的一年，应继续保持学习，计划</p>
-<ul>
-<li><code>vue</code> 深入学习，之前还是学习的不够深入</li>
-<li><code>TypeScript</code> 也应该入手了，都 <code>0202</code> 年了，总不能还不会 <code>ts</code> 吧</li>
-<li>走进后端，<code>koa</code>, <code>eggjs</code> 等学一个</li>
-<li>不挂科</li>
-<li>不挂科</li>
-<li>不挂科</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="2019年度总结"><a href="#2019年度总结" class="headerlink" title="2019年度总结"></a>2019年度总结</h1><blockquote>
-<p>吾日三省吾身，今年又是菜鸡的一年</p>
-</blockquote>
-<h2 id="github-提交记录"><a href="#github-提交记录" class="headerlink" title="github 提交记录"></a>github 提交记录</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BvcHJpbmc/dGFiPW92ZXJ2aWV3JmZyb209MjAxOS0xMi0wMSZ0bz0yMDE5LTEyLTMx">github<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>删除了一些仓库，响应的提交记录也被移除了</p>
-</blockquote>
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200107130123.png"></p>
-<h2 id="技术总结"><a href="#技术总结" class="headerlink" title="技术总结"></a>技术总结</h2><p>由于上半年都在公司实习和准备考试，所以新学的知识不多，主要集中在下半年。</p>
-<p>不过还是遇到些问题（主要原因是当时的知识不成体系，有点杂乱）</p>
-<ul>
-<li>箭头函数</li>
-</ul>
-<p>当时在chrome中使用箭头函数调试，一点问题都没有，但在 <code>iOS</code> 中怎么先显示不出来。</p>
-<p>经过多次排查，才发现，<code>iOS</code> 版本不够高，底层 <code>webkit</code> 内核版本自然也不高，所以不支持箭头函数。</p>
-<p>这也算是兼容性问题，都怪我当时年少无知。。。</p>
-<ul>
-<li>微信网页 下拉刷新问题</li>
-</ul>
-<p>代码就不贴了，正常情况下微信网页内下拉会显示当前网址的域名等信息。</p>
-<p>所以我们实现下拉刷新就不能以常规的方式实现了，在全局内容的最外层加一个 <code>div</code>，每次滚动都是值滚动内层的 <code>div</code>，如果到了顶部，仍继续下拉，则可以执行下拉刷新操作。当时用的是 <code>jquery-weui</code> ，<span class="exturl" data-url="aHR0cDovL3d3dy5qcXdldWkuY24vZXh0ZW5kcyNwdWxsLXRvLXJlZnJlc2glRUYlQkMlOEMlRTQlQjklOEIlRTUlODklOEQlRTQlQjklOUYlRTclOTQlQTg=">http://www.jqweui.cn/extends#pull-to-refresh，之前也用<i class="fa fa-external-link-alt"></i></span> <code>swiper</code> 做过类似功能。</p>
-<ul>
-<li>获取表单的值</li>
-</ul>
-<p>记得当时的我用 <code>jQuery</code> ，傻傻的每次获取表单值的时候，都是傻傻的用 <code>$(&#39;#xx&#39;).value()</code>，然后一个页面写了五六个（心疼以后维护我代码的小伙伴）。直到又来偶然看到一篇文章，一行代码获取表单值，我惊了。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&quot;#form&quot;</span>).<span class="title function_">serialize</span>(); <span class="comment">// 序列化为字符串</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;#form&quot;</span>).<span class="title function_">serializeArray</span>(); <span class="comment">// 序列化为数组</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>然后就是今年下半年</p>
-<ul>
-<li><p>vue 做了一个类似 去哪儿网，这个项目唯一的特色就是城市选择列表，可以滑动右边的字母，左边城市列表也会调到响应的字母，<code>better-scroll</code> 插件实现。</p>
-<p>滚动原理</p>
-<p><img data-src="http://static.galileo.xiaojukeji.com/static/tms/shield/scroll-4.png"></p>
-</li>
-<li><p>小黄车后台管理系统，使用 <code>react</code> 全家桶，大致了解下 <code>react</code> 生态圈，主要是<code>react</code>, <code>react-router</code>, <code>redux</code>, <code>ant-design</code>，顺带了解了下 <code>Echarts</code> 绘图（主要是 <code>d3.js</code> 中文学习资料太少，英文看起来慢，目前还停留在画个简单的柱形图）。</p>
-<p><code>react</code> 全家桶用过之后，感觉很类似 <code>vue</code>，不过又与<code>vue</code>不同，<code>react</code> 体现的更加开放，更加注重原生<code>js</code>，所以意味这你要封装很多的组件，也意味着代码水平决定了你的组件的健壮度。而 <code>vue</code> 相对于新手来说就友好很多了，很多常用的功能官方都已经封装好了，上手很快。所以 <code>vue</code> 更适合快速开发项目，而 <code>react</code> 更加适合大项目。</p>
-<p>就最近遇到的问题，<code>vue-router</code> 中内置了 <code>beforeEach</code> 路由守卫功能，而 <code>react</code> 中则需要自己写，引用作者的话 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1JlYWN0VHJhaW5pbmcvcmVhY3Qtcm91dGVyL2lzc3Vlcy80OTYyI2lzc3VlY29tbWVudC0zNTU1NzI2MjI=">You can do this from within your render function. JSX doesn’t need an API for this because it’s more flexible.<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-<h2 id="新年新气象"><a href="#新年新气象" class="headerlink" title="新年新气象"></a>新年新气象</h2><p>新的一年，应继续保持学习，计划</p>
-<ul>
-<li><code>vue</code> 深入学习，之前还是学习的不够深入</li>
-<li><code>TypeScript</code> 也应该入手了，都 <code>0202</code> 年了，总不能还不会 <code>ts</code> 吧</li>
-<li>走进后端，<code>koa</code>, <code>eggjs</code> 等学一个</li>
-<li>不挂科</li>
-<li>不挂科</li>
-<li>不挂科</li>
-</ul>
-<hr>
-<p>来还愿，除了 深度学习 <code>vue</code> ，其他计划都圆满完成</p>
-]]></content>
-      <categories>
-        <category>年度总结</category>
-      </categories>
   </entry>
   <entry>
     <title>2020年度总结</title>
@@ -3275,7 +3275,7 @@ JavaScript 高级程序设计</p>
   </entry>
   <entry>
     <title>3D/threejs 入门</title>
-    <url>/posts/dda1bd91/</url>
+    <url>/posts/3d-threejs-tutorial/</url>
     <content><![CDATA[<h2 id="3D-相关课程-文章"><a href="#3D-相关课程-文章" class="headerlink" title="3D 相关课程&#x2F;文章"></a>3D 相关课程&#x2F;文章</h2><ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly90aHJlZWpzLWpvdXJuZXkuY29tLw==">course: threejs-journey<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9kaXNjb3ZlcnRocmVlanMuY29tL3poL2Jvb2svaW50cm9kdWN0aW9uL2Fib3V0LXRoZS1ib29rLw==">book: discoverthreejs<i class="fa fa-external-link-alt"></i></span></li>
@@ -3390,40 +3390,6 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>CSS3 新特性</title>
-    <url>/posts/6436a60f/</url>
-    <content><![CDATA[<p>css3 新特性</p>
-<ul>
-<li>scroll-behavior</li>
-<li>clip-path</li>
-<li>background-clip</li>
-<li>::selection</li>
-<li>::placeholder</li>
-</ul>
-<span id="more"></span>
-
-
-
-<h2 id="锚点滚动更加丝滑"><a href="#锚点滚动更加丝滑" class="headerlink" title="锚点滚动更加丝滑"></a>锚点滚动更加丝滑</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  scroll-behavior: smooth;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="剪切可视区域图片"><a href="#剪切可视区域图片" class="headerlink" title="剪切可视区域图片"></a>剪切可视区域图片</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">clip-path</span>: <span class="built_in">circle</span>(<span class="number">40%</span>); //圆形显示</span><br><span class="line">  <span class="attribute">clip-path</span>: <span class="built_in">ellipse</span>(<span class="number">130px</span> <span class="number">140px</span> at <span class="number">10%</span> <span class="number">20%</span>); // 椭圆</span><br><span class="line">  <span class="attribute">clip-path</span>: <span class="built_in">polygon</span>(<span class="number">50%</span> <span class="number">0</span>, <span class="number">100%</span> <span class="number">50%</span>, <span class="number">50%</span> <span class="number">100%</span>, <span class="number">0</span> <span class="number">50%</span>); // 多边形</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="元素背景延伸到边框"><a href="#元素背景延伸到边框" class="headerlink" title="元素背景延伸到边框"></a>元素背景延伸到边框</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-clip</span>: border-box;  // 包括边框</span><br><span class="line">  <span class="attribute">background-clip</span>: padding-box;</span><br><span class="line">  <span class="attribute">background-clip</span>: content-box;	// 内容</span><br><span class="line">  </span><br><span class="line">  // 试验API，不建议使用</span><br><span class="line">  <span class="attribute">background-clip</span>: text;</span><br><span class="line">  -webkit-<span class="attribute">background-clip</span>: text;</span><br><span class="line">  <span class="attribute">color</span>: transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="选中文本样式"><a href="#选中文本样式" class="headerlink" title="选中文本样式"></a>选中文本样式</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">::selection</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">238</span>, <span class="number">99</span>, <span class="number">82</span>,<span class="number">1</span>);</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="自定义输入框placeholder"><a href="#自定义输入框placeholder" class="headerlink" title="自定义输入框placeholder"></a>自定义输入框placeholder</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span> &#123; </span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">800</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#d27054</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">::placeholder</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">300</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><span class="exturl" data-url="aHR0cHM6Ly9wb2x5cGFuZS5hcHAvY3NzLXNwZWNpZmljaXR5LWNhbGN1bGF0b3I=">css 优先级计算<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Chrome 调试技巧</title>
     <url>/posts/f8120d2/</url>
     <content><![CDATA[<blockquote>
@@ -3489,38 +3455,37 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>JS中的substr和subString还有slice的区别</title>
-    <url>/posts/ce57b9e9/</url>
-    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
-<p>注意：</p>
-<p><code>substr</code> 官方不推荐不使用</p>
-<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+    <title>CSS3 新特性</title>
+    <url>/posts/6436a60f/</url>
+    <content><![CDATA[<p>css3 新特性</p>
+<ul>
+<li>scroll-behavior</li>
+<li>clip-path</li>
+<li>background-clip</li>
+<li>::selection</li>
+<li>::placeholder</li>
+</ul>
 <span id="more"></span>
 
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cg==">String.prototype.substr()<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cmluZw==">String,prototype.substring()<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3NsaWNl">String.prototype.slice()<i class="fa fa-external-link-alt"></i></span></p>
-<blockquote>
-<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
-</blockquote>
-<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
-<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
-<p><code>length </code> 可选，提取字符的长度</p>
-</blockquote>
-<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
-<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
-<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
-</blockquote>
-<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
-<p><code>beginSlice</code>索引开始，提取字符串</p>
-<p><code>endSlice</code>，可选，索引结束提取字符串</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substr</span>(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substring</span>(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">slice</span>(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
+
+
+<h2 id="锚点滚动更加丝滑"><a href="#锚点滚动更加丝滑" class="headerlink" title="锚点滚动更加丝滑"></a>锚点滚动更加丝滑</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  scroll-behavior: smooth;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="剪切可视区域图片"><a href="#剪切可视区域图片" class="headerlink" title="剪切可视区域图片"></a>剪切可视区域图片</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">clip-path</span>: <span class="built_in">circle</span>(<span class="number">40%</span>); //圆形显示</span><br><span class="line">  <span class="attribute">clip-path</span>: <span class="built_in">ellipse</span>(<span class="number">130px</span> <span class="number">140px</span> at <span class="number">10%</span> <span class="number">20%</span>); // 椭圆</span><br><span class="line">  <span class="attribute">clip-path</span>: <span class="built_in">polygon</span>(<span class="number">50%</span> <span class="number">0</span>, <span class="number">100%</span> <span class="number">50%</span>, <span class="number">50%</span> <span class="number">100%</span>, <span class="number">0</span> <span class="number">50%</span>); // 多边形</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="元素背景延伸到边框"><a href="#元素背景延伸到边框" class="headerlink" title="元素背景延伸到边框"></a>元素背景延伸到边框</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-clip</span>: border-box;  // 包括边框</span><br><span class="line">  <span class="attribute">background-clip</span>: padding-box;</span><br><span class="line">  <span class="attribute">background-clip</span>: content-box;	// 内容</span><br><span class="line">  </span><br><span class="line">  // 试验API，不建议使用</span><br><span class="line">  <span class="attribute">background-clip</span>: text;</span><br><span class="line">  -webkit-<span class="attribute">background-clip</span>: text;</span><br><span class="line">  <span class="attribute">color</span>: transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="选中文本样式"><a href="#选中文本样式" class="headerlink" title="选中文本样式"></a>选中文本样式</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">::selection</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">238</span>, <span class="number">99</span>, <span class="number">82</span>,<span class="number">1</span>);</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义输入框placeholder"><a href="#自定义输入框placeholder" class="headerlink" title="自定义输入框placeholder"></a>自定义输入框placeholder</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">input</span> &#123; </span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">800</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#d27054</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">::placeholder</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">300</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><span class="exturl" data-url="aHR0cHM6Ly9wb2x5cGFuZS5hcHAvY3NzLXNwZWNpZmljaXR5LWNhbGN1bGF0b3I=">css 优先级计算<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -3760,6 +3725,41 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>node</tag>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS中的substr和subString还有slice的区别</title>
+    <url>/posts/ce57b9e9/</url>
+    <content><![CDATA[<p>区别就是一个长一个短。皮一下，很开心。</p>
+<p>注意：</p>
+<p><code>substr</code> 官方不推荐不使用</p>
+<p><code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+<span id="more"></span>
+
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cg==">String.prototype.substr()<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3N1YnN0cmluZw==">String,prototype.substring()<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvU3RyaW5nL3NsaWNl">String.prototype.slice()<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>注意：<code>substring</code>是全小写，没有按照驼峰命名法来。方法都是不改变原字符串，调用方法后返回一个新字符串。</p>
+</blockquote>
+<h3 id="str-substr-start-length"><a href="#str-substr-start-length" class="headerlink" title="str.substr(start[, length])"></a>str.substr(start[, length])</h3><blockquote>
+<p><code>start</code> 开始提取字符的位置，如果<code>start</code>为负值，则为<code>strLength + start</code></p>
+<p><code>length </code> 可选，提取字符的长度</p>
+</blockquote>
+<h3 id="str-substring-indexStart-indexEnd"><a href="#str-substring-indexStart-indexEnd" class="headerlink" title="str.substring(indexStart[, indexEnd])"></a>str.substring(indexStart[, indexEnd])</h3><blockquote>
+<p><code>indexStart</code>需要截取的第一个字符的索引，该字符作为返回的字符串的首字母。</p>
+<p><code>indexEnd</code>可选，返回字符串结尾的位置，当前位置的字符不会返回。</p>
+</blockquote>
+<h3 id="str-slice-beginSlice-endSlice"><a href="#str-slice-beginSlice-endSlice" class="headerlink" title="str.slice(beginSlice[, endSlice])"></a>str.slice(beginSlice[, endSlice])</h3><blockquote>
+<p><code>beginSlice</code>索引开始，提取字符串</p>
+<p><code>endSlice</code>，可选，索引结束提取字符串</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 Hello</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substr</span>(<span class="number">0</span>,<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 World</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">substring</span>(<span class="number">6</span>,<span class="number">11</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 lo</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str.<span class="title function_">slice</span>(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -4716,23 +4716,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>powershell 常用命令</title>
-    <url>/posts/50e64c9a/</url>
-    <content><![CDATA[<p>开启管理员模式</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
-
-<p>删除文件夹</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>powershell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>react+antd 项目笔记</title>
     <url>/posts/e6509c17/</url>
     <content><![CDATA[<blockquote>
@@ -4913,6 +4896,23 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>powershell 常用命令</title>
+    <url>/posts/50e64c9a/</url>
+    <content><![CDATA[<p>开启管理员模式</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
+
+<p>删除文件夹</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>powershell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>react-ts 重构笔记</title>
     <url>/posts/dffba461/</url>
     <content><![CDATA[<p>先前的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BvcHJpbmcvb2ZvLW1zL3RyZWUvb2ZvLW1zLWpz">小黄车后台管理系统<i class="fa fa-external-link-alt"></i></span> ，开发完成后，现看来，目录过于复杂，代码冗余，对强迫症的我来说，实属看不下去了，趁着过年有时间，使用 ts 进行了重构，并在之前的基础上对 <code>react </code> 和 <code>typescript</code> 有了进一步的理解。</p>
@@ -5008,6 +5008,25 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>浏览器兼容性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TypeScript总结</title>
+    <url>/posts/34845574/</url>
+    <content><![CDATA[<h2 id="TypeScript-相关收藏"><a href="#TypeScript-相关收藏" class="headerlink" title="TypeScript 相关收藏"></a>TypeScript 相关收藏</h2><h3 id="入门文章类"><a href="#入门文章类" class="headerlink" title="入门文章类"></a>入门文章类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90cy54Y2F0bGl1LmNvbS8=">TypeScript 入门教程<i class="fa fa-external-link-alt"></i></span>: github 10k star, author xcatliu.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvV3NsZG1rVzJvdnAtb2t4U1kzbGU5Zw==">Typescript 类型编程，从入门到通达<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uY29tL2ZyZWUtY29kZS1jYW1wL3R5cGVzY3JpcHQtY3VycnktcmFtZGEtdHlwZXMtZjc0N2U5OTc0NGFi">Learn Advanced TypeScript Types<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL3poL2NoZWF0c2hlZXRz">TypeScript Cheat Sheets<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="通关挑战类"><a href="#通关挑战类" class="headerlink" title="通关挑战类"></a>通关挑战类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90eXBlc2NyaXB0LWV4ZXJjaXNlcy5naXRodWIuaW8v">Typescript Exercises<i class="fa fa-external-link-alt"></i></span>：一共16关</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpbmRyZXNvcmh1cy90eXBlLWZlc3Q=">type-fest<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R5cGUtY2hhbGxlbmdlcy90eXBlLWNoYWxsZW5nZXMv">type-challenges<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly90eXBlaGVyby5kZXYv">typehero<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -5146,25 +5165,6 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
-    <title>TypeScript总结</title>
-    <url>/posts/34845574/</url>
-    <content><![CDATA[<h2 id="TypeScript-相关收藏"><a href="#TypeScript-相关收藏" class="headerlink" title="TypeScript 相关收藏"></a>TypeScript 相关收藏</h2><h3 id="入门文章类"><a href="#入门文章类" class="headerlink" title="入门文章类"></a>入门文章类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90cy54Y2F0bGl1LmNvbS8=">TypeScript 入门教程<i class="fa fa-external-link-alt"></i></span>: github 10k star, author xcatliu.</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3MvV3NsZG1rVzJvdnAtb2t4U1kzbGU5Zw==">Typescript 类型编程，从入门到通达<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uY29tL2ZyZWUtY29kZS1jYW1wL3R5cGVzY3JpcHQtY3VycnktcmFtZGEtdHlwZXMtZjc0N2U5OTc0NGFi">Learn Advanced TypeScript Types<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL3poL2NoZWF0c2hlZXRz">TypeScript Cheat Sheets<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="通关挑战类"><a href="#通关挑战类" class="headerlink" title="通关挑战类"></a>通关挑战类</h3><p><span class="exturl" data-url="aHR0cHM6Ly90eXBlc2NyaXB0LWV4ZXJjaXNlcy5naXRodWIuaW8v">Typescript Exercises<i class="fa fa-external-link-alt"></i></span>：一共16关</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpbmRyZXNvcmh1cy90eXBlLWZlc3Q=">type-fest<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R5cGUtY2hhbGxlbmdlcy90eXBlLWNoYWxsZW5nZXMv">type-challenges<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly90eXBlaGVyby5kZXYv">typehero<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vim 笔记</title>
     <url>/posts/bceeaa0d/</url>
     <content><![CDATA[<p><code>vim</code> 神器，依旧宝刀未老，用起来真香。</p>
@@ -5214,6 +5214,78 @@ JavaScript 高级程序设计</p>
       </categories>
       <tags>
         <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>入门git-笔记2</title>
+    <url>/posts/6a147e65/</url>
+    <content><![CDATA[<blockquote>
+<p>官方中文文档 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL3poL3Yy">https://git-scm.com/book/zh/v2<i class="fa fa-external-link-alt"></i></span></p>
+<p>推荐学习 <code>git</code> 小游戏 <span class="exturl" data-url="aHR0cHM6Ly9sZWFybmdpdGJyYW5jaGluZy5qcy5vcmcv">https://learngitbranching.js.org/<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>git 系列命令</p>
+<p>温馨提示：文章内有大图，谨慎浏览</p>
+<hr>
+<span id="more"></span>
+
+<p>当你本地想建立一个本地仓库(repo)，并与远程仓库进行同步时</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化</span></span><br><span class="line"><span class="built_in">mkdir</span> repo</span><br><span class="line"><span class="built_in">cd</span> repo</span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加文件操作。。。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交到本地仓库</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;commit description&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来，连接远程仓库(如果在github或gitee创建个空仓库时，它会提醒你如何将本地仓库和远程仓库连接，username体寒为你账号的用户名,xxx为你的仓库名)</span></span><br><span class="line">git remote add origin git@github.com:username/xxx.git</span><br><span class="line"><span class="comment"># 将本地变更提交到远程仓库，后续还需要提交只需要运行 git push 即可</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:popring/xxx.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 常用，将所有变更添加到缓存区</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可添加指定文件或指定类型文件</span></span><br><span class="line">git add README.md</span><br><span class="line">git add *.md</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 常用，将缓存区的文件提交到本地仓库</span></span><br><span class="line">git commit -m <span class="string">&quot;commit description&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一次性提交本地修改或删除文件，无论它们是否添加到了缓存区（新增文件不会被提交到仓库）</span></span><br><span class="line"> git commit -a -m <span class="string">&quot;commit description&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 常用，将本地仓库 master 分支提交至远程仓库 master 分支</span></span><br><span class="line">git push origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地仓库 foo 分支 提交至远程仓库 master</span></span><br><span class="line">git push origin foo:master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 甚至还有高级用法，将本地仓库（ foo 分支的前一个提交） 提交至远程仓库 master</span></span><br><span class="line">git push origin foo^:master</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建 foo 分支</span></span><br><span class="line">git branch foo</span><br><span class="line"><span class="comment"># 创建并切换到 foo 分支</span></span><br><span class="line">git checkout -b foo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 foo 分支</span></span><br><span class="line">git branch -d foo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除远程 foo 分支</span></span><br><span class="line">git push origin --delete foo</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取远程仓库所有最新代码</span></span><br><span class="line">git fetch --all</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并两个分支</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前所在分支为 foo，执行以下命令后，会将foo和bar分支进行合并，并生成一个新的提交</span></span><br><span class="line">git merge bar</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 相当于 git fetch + git merge</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每次提交前记得与远程仓库进行同步</span></span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line"><span class="comment"># 首先本地创建一个foo分支，从远程仓库 master 分支下载提交记录，合并到 foo（，然后在与本地的分支进行合并，再次生成提交）</span></span><br><span class="line">git pull origin master:foo</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除本地文件，并添加到暂存区</span></span><br><span class="line">git <span class="built_in">rm</span> a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line"><span class="built_in">rm</span> a.txt</span><br><span class="line">git add a.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 与git rebase 类似，不过这个命令可以自定义选择的提交记录进行复制到指定位置，rebase只能将指定分支前的提交记录复制到指定位置</span></span><br><span class="line">git cherry-pick c2 c4</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200704094158.gif"></p>
+<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 变基操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前在 bar分支，执行如下命令会将 foo 分支前的操作（ foo与bar 的共同父节点除外 ）都复制到 bar 分支之后</span></span><br><span class="line">git rebase foo</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 撤销变更</span></span><br><span class="line">git reset [<span class="built_in">hash</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看历史提交记录</span></span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一行显示，显示简要信息</span></span><br><span class="line">git <span class="built_in">log</span> --onelien</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="rebase和merge"><a href="#rebase和merge" class="headerlink" title="rebase和merge"></a>rebase和merge</h3><hr>
+<blockquote>
+<p>引用自：<span class="exturl" data-url="aHR0cHM6Ly9sZWFybmdpdGJyYW5jaGluZy5qcy5vcmcvP2xvY2FsZT16aF9DTg==">https://learngitbranching.js.org/?locale=zh_CN<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>以下是关于 rebase 的优缺点：</p>
+<p>优点:</p>
+<ul>
+<li>Rebase 使你的提交树变得很干净, 所有的提交都在一条线上</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>Rebase 修改了提交树的历史</li>
+</ul>
+<p>比如, 提交 C1 可以被 rebase 到 C3 之后。这看起来 C1 中的工作是在 C3 之后进行的，但实际上是在 C3 之前。</p>
+<p>一些开发人员喜欢保留提交历史，因此更偏爱 merge。而其他人（比如我自己）可能更喜欢干净的提交树，于是偏爱 rebase。</p>
+<hr>
+<h3 id="git-config-–list-–show-origin"><a href="#git-config-–list-–show-origin" class="headerlink" title="git config –list –show-origin"></a>git config –list –show-origin</h3><p>展示当前个人git配置</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -5377,78 +5449,6 @@ JavaScript 高级程序设计</p>
 <ul>
 <li>会得到远程仓储相同的数据,如果多次执行会覆盖本地内容。</li>
 </ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>入门git-笔记2</title>
-    <url>/posts/6a147e65/</url>
-    <content><![CDATA[<blockquote>
-<p>官方中文文档 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL3poL3Yy">https://git-scm.com/book/zh/v2<i class="fa fa-external-link-alt"></i></span></p>
-<p>推荐学习 <code>git</code> 小游戏 <span class="exturl" data-url="aHR0cHM6Ly9sZWFybmdpdGJyYW5jaGluZy5qcy5vcmcv">https://learngitbranching.js.org/<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>git 系列命令</p>
-<p>温馨提示：文章内有大图，谨慎浏览</p>
-<hr>
-<span id="more"></span>
-
-<p>当你本地想建立一个本地仓库(repo)，并与远程仓库进行同步时</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化</span></span><br><span class="line"><span class="built_in">mkdir</span> repo</span><br><span class="line"><span class="built_in">cd</span> repo</span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加文件操作。。。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交到本地仓库</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;commit description&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来，连接远程仓库(如果在github或gitee创建个空仓库时，它会提醒你如何将本地仓库和远程仓库连接，username体寒为你账号的用户名,xxx为你的仓库名)</span></span><br><span class="line">git remote add origin git@github.com:username/xxx.git</span><br><span class="line"><span class="comment"># 将本地变更提交到远程仓库，后续还需要提交只需要运行 git push 即可</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:popring/xxx.git</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 常用，将所有变更添加到缓存区</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可添加指定文件或指定类型文件</span></span><br><span class="line">git add README.md</span><br><span class="line">git add *.md</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 常用，将缓存区的文件提交到本地仓库</span></span><br><span class="line">git commit -m <span class="string">&quot;commit description&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一次性提交本地修改或删除文件，无论它们是否添加到了缓存区（新增文件不会被提交到仓库）</span></span><br><span class="line"> git commit -a -m <span class="string">&quot;commit description&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 常用，将本地仓库 master 分支提交至远程仓库 master 分支</span></span><br><span class="line">git push origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地仓库 foo 分支 提交至远程仓库 master</span></span><br><span class="line">git push origin foo:master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 甚至还有高级用法，将本地仓库（ foo 分支的前一个提交） 提交至远程仓库 master</span></span><br><span class="line">git push origin foo^:master</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建 foo 分支</span></span><br><span class="line">git branch foo</span><br><span class="line"><span class="comment"># 创建并切换到 foo 分支</span></span><br><span class="line">git checkout -b foo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 foo 分支</span></span><br><span class="line">git branch -d foo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除远程 foo 分支</span></span><br><span class="line">git push origin --delete foo</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取远程仓库所有最新代码</span></span><br><span class="line">git fetch --all</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并两个分支</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前所在分支为 foo，执行以下命令后，会将foo和bar分支进行合并，并生成一个新的提交</span></span><br><span class="line">git merge bar</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 相当于 git fetch + git merge</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每次提交前记得与远程仓库进行同步</span></span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line"><span class="comment"># 首先本地创建一个foo分支，从远程仓库 master 分支下载提交记录，合并到 foo（，然后在与本地的分支进行合并，再次生成提交）</span></span><br><span class="line">git pull origin master:foo</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除本地文件，并添加到暂存区</span></span><br><span class="line">git <span class="built_in">rm</span> a.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line"><span class="built_in">rm</span> a.txt</span><br><span class="line">git add a.txt</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 与git rebase 类似，不过这个命令可以自定义选择的提交记录进行复制到指定位置，rebase只能将指定分支前的提交记录复制到指定位置</span></span><br><span class="line">git cherry-pick c2 c4</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200704094158.gif"></p>
-<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 变基操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前在 bar分支，执行如下命令会将 foo 分支前的操作（ foo与bar 的共同父节点除外 ）都复制到 bar 分支之后</span></span><br><span class="line">git rebase foo</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 撤销变更</span></span><br><span class="line">git reset [<span class="built_in">hash</span>]</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看历史提交记录</span></span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一行显示，显示简要信息</span></span><br><span class="line">git <span class="built_in">log</span> --onelien</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="rebase和merge"><a href="#rebase和merge" class="headerlink" title="rebase和merge"></a>rebase和merge</h3><hr>
-<blockquote>
-<p>引用自：<span class="exturl" data-url="aHR0cHM6Ly9sZWFybmdpdGJyYW5jaGluZy5qcy5vcmcvP2xvY2FsZT16aF9DTg==">https://learngitbranching.js.org/?locale=zh_CN<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>以下是关于 rebase 的优缺点：</p>
-<p>优点:</p>
-<ul>
-<li>Rebase 使你的提交树变得很干净, 所有的提交都在一条线上</li>
-</ul>
-<p>缺点:</p>
-<ul>
-<li>Rebase 修改了提交树的历史</li>
-</ul>
-<p>比如, 提交 C1 可以被 rebase 到 C3 之后。这看起来 C1 中的工作是在 C3 之后进行的，但实际上是在 C3 之前。</p>
-<p>一些开发人员喜欢保留提交历史，因此更偏爱 merge。而其他人（比如我自己）可能更喜欢干净的提交树，于是偏爱 rebase。</p>
-<hr>
-<h3 id="git-config-–list-–show-origin"><a href="#git-config-–list-–show-origin" class="headerlink" title="git config –list –show-origin"></a>git config –list –show-origin</h3><p>展示当前个人git配置</p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -6189,6 +6189,59 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>指令示调起一个弹窗Vue和React版本（未完成版）</title>
+    <url>/posts/51cf0c91/</url>
+    <content><![CDATA[<p>该功能在Vue、React版本实现起来思路一致。</p>
+<p><strong>核心思路</strong></p>
+<ul>
+<li>使用一个函数，可以创建组件实例</li>
+<li>将新创建的实例，挂载到 DOM 上</li>
+<li>如果有特殊场景，需要将上下文进行绑定（本文内实现的暂未绑定上下文）</li>
+</ul>
+<p>TODO: ant-design 在新版本实现了可以绑定上下文的 hooks，<code>Modal.useModal</code>，具体还没细看👀，后续有空再看看。</p>
+<span id="more"></span>
+
+
+<h2 id="Vue-实现"><a href="#Vue-实现" class="headerlink" title="Vue 实现"></a>Vue 实现</h2><ol>
+<li>首先定义一个 <code>CustomModal.vue</code></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;modal-container&quot; v-if=&quot;visible&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;modal-content&quot;&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      &lt;button @click=&quot;closeModal&quot; class=&quot;close-btn&quot;&gt;Close&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, defineExpose, watch &#125; from &#x27;vue&#x27;;</span><br><span class="line"></span><br><span class="line">const visible = ref(false);</span><br><span class="line"></span><br><span class="line">const openModal = () =&gt; &#123;</span><br><span class="line">  visible.value = true;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const closeModal = () =&gt; &#123;</span><br><span class="line">  visible.value = false;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">watch(visible, val =&gt; &#123;</span><br><span class="line">  console.log(&#x27;%c [custom modal val ]-24&#x27;, &#x27;font-size:13px; background:#1c4295; color:#6086d9;&#x27;, val)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">defineExpose(&#123;</span><br><span class="line">  visible,</span><br><span class="line">  openModal,</span><br><span class="line">  closeModal,</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.modal-container &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  top: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">  background-color: rgba(0, 0, 0, 0.5);</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  align-items: center;</span><br><span class="line">  z-index: 999;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.modal-content &#123;</span><br><span class="line">  background-color: white;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  border-radius: 5px;</span><br><span class="line">  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.close-btn &#123;</span><br><span class="line">  background-color: #4299e1;</span><br><span class="line">  color: white;</span><br><span class="line">  padding: 8px 16px;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 4px;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>定义指令 <code>showModal</code> 方法，写在 <code>modal.js</code> 中，核心代码在这里</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp, nextTick, watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">showModal</span>(<span class="params">component</span>) &#123;</span><br><span class="line">  <span class="comment">// 创建一个 Vue 示例</span></span><br><span class="line">  <span class="keyword">const</span> app = <span class="title function_">createApp</span>(component);</span><br><span class="line">  <span class="comment">// 创建一个容器，用来放 Modal 组件</span></span><br><span class="line">  <span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将内容挂载到页面</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(root);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将 Modal 组件挂载到页面上</span></span><br><span class="line">  <span class="keyword">const</span> instance = app.<span class="title function_">mount</span>(root);</span><br><span class="line">  <span class="comment">// 手动调用组件内部函数，展示组件</span></span><br><span class="line">  instance.<span class="title function_">openModal</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 定义卸载函数</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">unmount</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    app.<span class="title function_">unmount</span>();</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(root);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 监听 Modal 组件是否关闭</span></span><br><span class="line">  <span class="title function_">watch</span>(</span><br><span class="line">    <span class="function">() =&gt;</span> instance.<span class="property">visible</span>,</span><br><span class="line">    <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">nextTick</span>(unmount);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    instance,</span><br><span class="line">    unmount,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在调用处使用</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click=&quot;handleOpen&quot;&gt;打开模态框&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; showModal &#125; from &#x27;./modal.js&#x27;</span><br><span class="line">import CustomModal from &#x27;./CustomModal.vue&#x27;</span><br><span class="line"></span><br><span class="line">function handleOpen() &#123;</span><br><span class="line">  showModal(CustomModal)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="React-实现"><a href="#React-实现" class="headerlink" title="React 实现"></a>React 实现</h2><p>一样的步骤</p>
+<ol>
+<li>首先实现一个 <code>CustomModal.tsx</code></li>
+</ol>
+<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; forwardRef, useImperativeHandle, useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ModalProps</span> &#123;</span><br><span class="line">  children?: <span class="title class_">React</span>.<span class="property">ReactNode</span>;</span><br><span class="line">  defaultVisible?: <span class="built_in">boolean</span>;</span><br><span class="line">  onAfterClose?: <span class="function">() =&gt;</span> <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Modal</span>: <span class="title class_">React</span>.<span class="property">FC</span>&lt;<span class="title class_">ModalProps</span>&gt; = <span class="title function_">forwardRef</span>(<span class="function">(<span class="params">props, ref</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; children, defaultVisible, onAfterClose &#125; = props;</span><br><span class="line">  <span class="keyword">const</span> [isVisible, setIsVisible] = <span class="title function_">useState</span>(defaultVisible ?? <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">openModal</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setIsVisible</span>(<span class="literal">true</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">closeModal</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setIsVisible</span>(<span class="literal">false</span>);</span><br><span class="line">    onAfterClose?.()</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useImperativeHandle</span>(ref, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      openModal,</span><br><span class="line">      closeModal,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;isVisible &amp;&amp; (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">position:</span> &#x27;<span class="attr">fixed</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">top:</span> <span class="attr">0</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">left:</span> <span class="attr">0</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">width:</span> &#x27;<span class="attr">100</span>%&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">height:</span> &#x27;<span class="attr">100</span>%&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">backgroundColor:</span> &#x27;<span class="attr">rgba</span>(<span class="attr">0</span>, <span class="attr">0</span>, <span class="attr">0</span>, <span class="attr">0.5</span>)&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">display:</span> &#x27;<span class="attr">flex</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">justifyContent:</span> &#x27;<span class="attr">center</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">alignItems:</span> &#x27;<span class="attr">center</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">zIndex:</span> <span class="attr">999</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">backgroundColor:</span> &#x27;<span class="attr">white</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">padding:</span> &#x27;<span class="attr">20px</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">borderRadius:</span> &#x27;<span class="attr">5px</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">boxShadow:</span> &#x27;<span class="attr">0</span> <span class="attr">2px</span> <span class="attr">4px</span> <span class="attr">rgba</span>(<span class="attr">0</span>, <span class="attr">0</span>, <span class="attr">0</span>, <span class="attr">0.2</span>)&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          &gt;</span></span></span><br><span class="line"><span class="language-xml">            &#123;children&#125;</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">button</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">onClick</span>=<span class="string">&#123;closeModal&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">backgroundColor:</span> &#x27;#<span class="attr">4299e1</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">color:</span> &#x27;<span class="attr">white</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">padding:</span> &#x27;<span class="attr">8px</span> <span class="attr">16px</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">border:</span> &#x27;<span class="attr">none</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">borderRadius:</span> &#x27;<span class="attr">4px</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">cursor:</span> &#x27;<span class="attr">pointer</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            &gt;</span></span></span><br><span class="line"><span class="language-xml">              Close</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      )&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Modal</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>定义指令 <code>showModal</code> 方法，写在 <code>modal.ts</code> 中，核心代码在这里</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRoot &#125; <span class="keyword">from</span> <span class="string">&quot;react-dom/client&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">showModal</span> (<span class="params"><span class="attr">node</span>: <span class="title class_">React</span>.<span class="title class_">ReactElement</span></span>) &#123;</span><br><span class="line">  <span class="comment">// 一样的流程，新创建一个 dom</span></span><br><span class="line">  <span class="keyword">const</span> app = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line">  <span class="comment">// 挂载到文档中</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(app)</span><br><span class="line">  <span class="comment">// 创建一个 React 实例</span></span><br><span class="line">  <span class="keyword">const</span> root = <span class="title function_">createRoot</span>(app)</span><br><span class="line">  <span class="comment">// 进行渲染</span></span><br><span class="line">  root.<span class="title function_">render</span>(node)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 卸载函数</span></span><br><span class="line">    <span class="attr">unmount</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      root.<span class="title function_">unmount</span>()</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(app)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在调用处使用</li>
+</ol>
+<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; showModal &#125; <span class="keyword">from</span> <span class="string">&#x27;./modal.ts&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CustomModal</span> <span class="keyword">from</span> <span class="string">&#x27;./CustomModal.tsx&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span> (<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleOpenModal</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> modal = <span class="title function_">showModal</span>(</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">CustomModal</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">onAfterClose</span>=<span class="string">&#123;()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">          &#123;/* 关闭后进行卸载 */&#125;</span></span><br><span class="line"><span class="language-xml">          modal.unmount();</span></span><br><span class="line"><span class="language-xml">        &#125;&#125;</span></span><br><span class="line"><span class="language-xml">      /&gt;</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleOpenModal&#125;</span>&gt;</span>打开模态框<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXphbi92YW50L2Jsb2IvM2Q1NWM4N2Q0Y2ZjZmQyNzg5NWRkNjFlNWQ4ZjUwOTMyMjA3Y2MwYy9wYWNrYWdlcy92YW50L3NyYy90b2FzdC9mdW5jdGlvbi1jYWxsLnRzeCNMNDQ=">vant 实现源码(Vue)<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JlYWN0LWNvbXBvbmVudC91dGlsL2Jsb2IvN2FhYTFkODgxNzRiMzBkN2ZiOWM5NGI0MWI3YTM0Y2VhNWZjMzdmMy9zcmMvUmVhY3QvcmVuZGVyLnRzI0w0OA==">ant-design 实现源码(React)<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <tags>
+        <tag>Vue, react</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[项目] 折腾hexo + next</title>
     <url>/posts/3dbb4ed7/</url>
     <content><![CDATA[<ul>
@@ -6244,59 +6297,6 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>项目总结</tag>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>指令示调起一个弹窗Vue和React版本（未完成版）</title>
-    <url>/posts/51cf0c91/</url>
-    <content><![CDATA[<p>该功能在Vue、React版本实现起来思路一致。</p>
-<p><strong>核心思路</strong></p>
-<ul>
-<li>使用一个函数，可以创建组件实例</li>
-<li>将新创建的实例，挂载到 DOM 上</li>
-<li>如果有特殊场景，需要将上下文进行绑定（本文内实现的暂未绑定上下文）</li>
-</ul>
-<p>TODO: ant-design 在新版本实现了可以绑定上下文的 hooks，<code>Modal.useModal</code>，具体还没细看👀，后续有空再看看。</p>
-<span id="more"></span>
-
-
-<h2 id="Vue-实现"><a href="#Vue-实现" class="headerlink" title="Vue 实现"></a>Vue 实现</h2><ol>
-<li>首先定义一个 <code>CustomModal.vue</code></li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;modal-container&quot; v-if=&quot;visible&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;modal-content&quot;&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      &lt;button @click=&quot;closeModal&quot; class=&quot;close-btn&quot;&gt;Close&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, defineExpose, watch &#125; from &#x27;vue&#x27;;</span><br><span class="line"></span><br><span class="line">const visible = ref(false);</span><br><span class="line"></span><br><span class="line">const openModal = () =&gt; &#123;</span><br><span class="line">  visible.value = true;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const closeModal = () =&gt; &#123;</span><br><span class="line">  visible.value = false;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">watch(visible, val =&gt; &#123;</span><br><span class="line">  console.log(&#x27;%c [custom modal val ]-24&#x27;, &#x27;font-size:13px; background:#1c4295; color:#6086d9;&#x27;, val)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">defineExpose(&#123;</span><br><span class="line">  visible,</span><br><span class="line">  openModal,</span><br><span class="line">  closeModal,</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.modal-container &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  top: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">  background-color: rgba(0, 0, 0, 0.5);</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  align-items: center;</span><br><span class="line">  z-index: 999;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.modal-content &#123;</span><br><span class="line">  background-color: white;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  border-radius: 5px;</span><br><span class="line">  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.close-btn &#123;</span><br><span class="line">  background-color: #4299e1;</span><br><span class="line">  color: white;</span><br><span class="line">  padding: 8px 16px;</span><br><span class="line">  border: none;</span><br><span class="line">  border-radius: 4px;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>定义指令 <code>showModal</code> 方法，写在 <code>modal.js</code> 中，核心代码在这里</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp, nextTick, watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">showModal</span>(<span class="params">component</span>) &#123;</span><br><span class="line">  <span class="comment">// 创建一个 Vue 示例</span></span><br><span class="line">  <span class="keyword">const</span> app = <span class="title function_">createApp</span>(component);</span><br><span class="line">  <span class="comment">// 创建一个容器，用来放 Modal 组件</span></span><br><span class="line">  <span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将内容挂载到页面</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(root);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将 Modal 组件挂载到页面上</span></span><br><span class="line">  <span class="keyword">const</span> instance = app.<span class="title function_">mount</span>(root);</span><br><span class="line">  <span class="comment">// 手动调用组件内部函数，展示组件</span></span><br><span class="line">  instance.<span class="title function_">openModal</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 定义卸载函数</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">unmount</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    app.<span class="title function_">unmount</span>();</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(root);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 监听 Modal 组件是否关闭</span></span><br><span class="line">  <span class="title function_">watch</span>(</span><br><span class="line">    <span class="function">() =&gt;</span> instance.<span class="property">visible</span>,</span><br><span class="line">    <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">nextTick</span>(unmount);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    instance,</span><br><span class="line">    unmount,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>在调用处使用</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click=&quot;handleOpen&quot;&gt;打开模态框&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; showModal &#125; from &#x27;./modal.js&#x27;</span><br><span class="line">import CustomModal from &#x27;./CustomModal.vue&#x27;</span><br><span class="line"></span><br><span class="line">function handleOpen() &#123;</span><br><span class="line">  showModal(CustomModal)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="React-实现"><a href="#React-实现" class="headerlink" title="React 实现"></a>React 实现</h2><p>一样的步骤</p>
-<ol>
-<li>首先实现一个 <code>CustomModal.tsx</code></li>
-</ol>
-<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; forwardRef, useImperativeHandle, useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ModalProps</span> &#123;</span><br><span class="line">  children?: <span class="title class_">React</span>.<span class="property">ReactNode</span>;</span><br><span class="line">  defaultVisible?: <span class="built_in">boolean</span>;</span><br><span class="line">  onAfterClose?: <span class="function">() =&gt;</span> <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Modal</span>: <span class="title class_">React</span>.<span class="property">FC</span>&lt;<span class="title class_">ModalProps</span>&gt; = <span class="title function_">forwardRef</span>(<span class="function">(<span class="params">props, ref</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; children, defaultVisible, onAfterClose &#125; = props;</span><br><span class="line">  <span class="keyword">const</span> [isVisible, setIsVisible] = <span class="title function_">useState</span>(defaultVisible ?? <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">openModal</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setIsVisible</span>(<span class="literal">true</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">closeModal</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setIsVisible</span>(<span class="literal">false</span>);</span><br><span class="line">    onAfterClose?.()</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useImperativeHandle</span>(ref, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      openModal,</span><br><span class="line">      closeModal,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;isVisible &amp;&amp; (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">position:</span> &#x27;<span class="attr">fixed</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">top:</span> <span class="attr">0</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">left:</span> <span class="attr">0</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">width:</span> &#x27;<span class="attr">100</span>%&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">height:</span> &#x27;<span class="attr">100</span>%&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">backgroundColor:</span> &#x27;<span class="attr">rgba</span>(<span class="attr">0</span>, <span class="attr">0</span>, <span class="attr">0</span>, <span class="attr">0.5</span>)&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">display:</span> &#x27;<span class="attr">flex</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">justifyContent:</span> &#x27;<span class="attr">center</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">alignItems:</span> &#x27;<span class="attr">center</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">zIndex:</span> <span class="attr">999</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">backgroundColor:</span> &#x27;<span class="attr">white</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">padding:</span> &#x27;<span class="attr">20px</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">borderRadius:</span> &#x27;<span class="attr">5px</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">boxShadow:</span> &#x27;<span class="attr">0</span> <span class="attr">2px</span> <span class="attr">4px</span> <span class="attr">rgba</span>(<span class="attr">0</span>, <span class="attr">0</span>, <span class="attr">0</span>, <span class="attr">0.2</span>)&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          &gt;</span></span></span><br><span class="line"><span class="language-xml">            &#123;children&#125;</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">button</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">onClick</span>=<span class="string">&#123;closeModal&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">backgroundColor:</span> &#x27;#<span class="attr">4299e1</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">color:</span> &#x27;<span class="attr">white</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">padding:</span> &#x27;<span class="attr">8px</span> <span class="attr">16px</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">border:</span> &#x27;<span class="attr">none</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">borderRadius:</span> &#x27;<span class="attr">4px</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">cursor:</span> &#x27;<span class="attr">pointer</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            &gt;</span></span></span><br><span class="line"><span class="language-xml">              Close</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      )&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Modal</span>;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>定义指令 <code>showModal</code> 方法，写在 <code>modal.ts</code> 中，核心代码在这里</li>
-</ol>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRoot &#125; <span class="keyword">from</span> <span class="string">&quot;react-dom/client&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">showModal</span> (<span class="params"><span class="attr">node</span>: <span class="title class_">React</span>.<span class="title class_">ReactElement</span></span>) &#123;</span><br><span class="line">  <span class="comment">// 一样的流程，新创建一个 dom</span></span><br><span class="line">  <span class="keyword">const</span> app = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line">  <span class="comment">// 挂载到文档中</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(app)</span><br><span class="line">  <span class="comment">// 创建一个 React 实例</span></span><br><span class="line">  <span class="keyword">const</span> root = <span class="title function_">createRoot</span>(app)</span><br><span class="line">  <span class="comment">// 进行渲染</span></span><br><span class="line">  root.<span class="title function_">render</span>(node)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 卸载函数</span></span><br><span class="line">    <span class="attr">unmount</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      root.<span class="title function_">unmount</span>()</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(app)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>在调用处使用</li>
-</ol>
-<figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; showModal &#125; <span class="keyword">from</span> <span class="string">&#x27;./modal.ts&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CustomModal</span> <span class="keyword">from</span> <span class="string">&#x27;./CustomModal.tsx&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span> (<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">handleOpenModal</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> modal = <span class="title function_">showModal</span>(</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">CustomModal</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">onAfterClose</span>=<span class="string">&#123;()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">          &#123;/* 关闭后进行卸载 */&#125;</span></span><br><span class="line"><span class="language-xml">          modal.unmount();</span></span><br><span class="line"><span class="language-xml">        &#125;&#125;</span></span><br><span class="line"><span class="language-xml">      /&gt;</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleOpenModal&#125;</span>&gt;</span>打开模态框<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lvdXphbi92YW50L2Jsb2IvM2Q1NWM4N2Q0Y2ZjZmQyNzg5NWRkNjFlNWQ4ZjUwOTMyMjA3Y2MwYy9wYWNrYWdlcy92YW50L3NyYy90b2FzdC9mdW5jdGlvbi1jYWxsLnRzeCNMNDQ=">vant 实现源码(Vue)<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JlYWN0LWNvbXBvbmVudC91dGlsL2Jsb2IvN2FhYTFkODgxNzRiMzBkN2ZiOWM5NGI0MWI3YTM0Y2VhNWZjMzdmMy9zcmMvUmVhY3QvcmVuZGVyLnRzI0w0OA==">ant-design 实现源码(React)<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <tags>
-        <tag>Vue, react</tag>
       </tags>
   </entry>
   <entry>
@@ -6496,6 +6496,29 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
+    <title>v-if和v-show区别</title>
+    <url>/posts/e9ac0758/</url>
+    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
+<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
+<p>当条件变化时该指令触发过渡效果。</p>
+<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
+<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
+<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
+<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
+<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
+<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
+</ul>
+<p>关联文章：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIwLzEwLzE2L2Nzcy92aXNpYmlsaXR5LWhpZGRlbiVFMyU4MCU4MWRpc3BsYXktbm9uZSVFMyU4MCU4MW9wYWNpdHktMC0lRTUlOEMlQkElRTUlODglQUIv">visibility: hidden、display: none、opacity: 0 区别<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>简单聊</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>setTimeout为什么会有延迟</title>
     <url>/posts/9a771de5/</url>
     <content><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>首先来解释下什么是 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvQVBJL3NldFRpbWVvdXQ=">setTimout<i class="fa fa-external-link-alt"></i></span> ：此函数是一个全局函数，可以用来设置一个定时器，在指定时间后触发回掉函数。</p>
@@ -6525,29 +6548,6 @@ JavaScript 高级程序设计</p>
       <tags>
         <tag>面试题</tag>
         <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>v-if和v-show区别</title>
-    <url>/posts/e9ac0758/</url>
-    <content><![CDATA[<h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h3><p>根据表达式的真假值来决定是否渲染，它会造成真实DOM元素的渲染和销毁。</p>
-<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><p>根据表达式之真假值，切换元素的 <code>display</code> CSS property。</p>
-<p>当条件变化时该指令触发过渡效果。</p>
-<h3 id="v-if-和-v-show-区别"><a href="#v-if-和-v-show-区别" class="headerlink" title="v-if 和 v-show 区别"></a><code>v-if</code> 和 <code>v-show</code> 区别</h3><ul>
-<li><code>v-if</code> 会 “真正” 条件的渲染，它要确定事件监听器和子组件的正确创建和销毁（切换自组件会经历生命周期函数）</li>
-<li><code>v-if</code> 如果初始条件为假，则不会渲染，只有当值为真是才会进行渲染</li>
-<li><code>v-show</code> 无论在什么条件下都会进行渲染 DOM 元素，只是简单的切换 css 样式，来进行视觉上的显示和隐藏。</li>
-<li><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。如果元素频繁的切换，建议使用 <code>v-show</code> ；如果运行后条件很少改变，则使用 <code>v-if</code></li>
-<li><code>v-if</code> 切换会造成回流和重绘，<code>v-show</code> 则会造成重绘。</li>
-</ul>
-<p>关联文章：</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9wb3ByaW5nLmdpdGh1Yi5pby8yMDIwLzEwLzE2L2Nzcy92aXNpYmlsaXR5LWhpZGRlbiVFMyU4MCU4MWRpc3BsYXktbm9uZSVFMyU4MCU4MW9wYWNpdHktMC0lRTUlOEMlQkElRTUlODglQUIv">visibility: hidden、display: none、opacity: 0 区别<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>简单聊</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -6865,6 +6865,23 @@ JavaScript 高级程序设计</p>
       </categories>
   </entry>
   <entry>
+    <title>[转] 对贡献有激情，对回报有信心</title>
+    <url>/posts/ee47234e/</url>
+    <content><![CDATA[<blockquote>
+<p>本文摘录自是一位前辈的Blog</p>
+</blockquote>
+<p>一般的生意人，都在反复评估，自己的贡献和回报的关系。如果贡献大于回报，就说是吃亏了。贡献小于回报，就说占了便宜。<br>而我看到的伟大的公司，或者成功的生意人，发现他们有一种惊人的相似之处，总结出来，就是：<br>对贡献有激情，对回报有信心。</p>
+<p><strong>贡献和回报</strong><br>打个比方，一个作家，可以关注自己写的稿子的质量（就是自己的贡献），也可以关注自己的稿酬。<br>只对自己稿酬感兴趣的，却不关心如何提高自己写的文章的质量，他会是一个越来越失败的作家。相反的，如果把所有激情投入提高自己的文章质量，而不关心稿酬的话，他才可能成为伟大的作家。<br>有“理想”的公司，都是贡献真诚的感兴趣的公司。微软的任何产品，都在看怎样提高生产率；Google的两个创始人关心的是如何更好的组织世界的信息；皮埃尔关心让世界的任何人都有可能在互联网上实现交易，而爱迪生关心的是给人类光明。。。</p>
+<p><strong>回报和坚持</strong><br>如果一件事情是为了回报，这件事情很难持久。这和一个人的毅力无关。<br>当一个人还没有真正意识到自己做这件事情的意义的时候，常常会为了显而易见的回报来坚持做一些事情。但很少有事情可以让你立刻看到回报，于是会选择放弃。放弃，多半不是因为无法坚持而放弃，而是因为感觉到自己做这件事失去了意义，所以放弃。<br>写blog就是这样。如果只是很希望别人来看，来评论，就会一天访问十次自己的blog，看一看有没有人回复。不久就会精疲力尽，而且会发现，自己的努力并不会直接换来多少人回复（像我每天一篇写了第四个年头了，也不会有多少回复的）。这时，就会怀疑自己做这件事情的意义，于是就不写了。不用埋怨自己的毅力，这件事本来和毅力毫无关系。<br>而凡是能坚持的blogger，要么是把blog写给自己的，意识到每天的记录是帮助自己来整理思路，为了自己生活得更好，要么是为了兴趣，写BLOG仅仅是为了帮助别人，只关心分享，而不关心评论或者浏览量的。无论什么样的动机，只要能看到自己的努力是为了贡献，而不是回报，就会坚持。<br>只有对贡献有激情，不在乎回报的时候，你才能坚持做一件事情，就像伟大的公司因为有一个贡献的理念，才可以持久的保持激情，在取得巨大的成功以后，接着日复一日的寻找更大的贡献。<br>需要说明回报，绝不仅仅是钱，它可以是各种你追求的东西，甚至仅仅是一个指标。比如，锻炼身体，身体健康就是回报。如果不享受锻炼的过程，而是苦巴巴的咬着牙，说只要我坚持，就一定会身体好。。。八成，这种坚持不会超过一个月。这就是为了回报而坚持的例子。减肥不成功，不用怀疑自己的毅力。当你对一种新的生活方式本身没有兴趣而只是为了这种方式带来的回报来勒紧裤腰带不吃东西，又怎能让你长期的坚持？</p>
+<p><strong>网站的贡献和回报</strong><br>网站如何提供给用户更多的价值，这就是贡献；如何提高访问量，这是回报。<br>我个人的体会是，回报这个东西，就像一个电闸。当你把手摸上去的话，就像摸到了高压电一样，瞬间就会感觉的迷茫，压力，并看到投机取巧的办法看起来很有吸引力，就会像一个商人一样买卖流量。但如果把手抽回来，不去碰那一个电闸，感觉立刻好了很多，开始思考比如如何帮助用户，如何给予更多，贡献更多。世界于是又回到了鸟语花香，海阔天空的状态。<br>彻底想明白自己努力到底是为了贡献了，还是为了回报，是是否可以持久的，优秀的做好一件事情的关键。</p>
+<p><strong>对贡献有激情的时候，还要对回报有信心</strong><br>和对贡献的激情同等重要的是，对回报的信心，而不是置之不理。历史上成功的企业和个人，不但做出了巨大的贡献，也取得了与之相应的巨额的报酬，以及电影明星般的盛名。并不是每一个对贡献有激情的人都做得到这一点。<br>比如历史上有一个伟大的发明家（或许是最伟大的发明家之一），却鲜为人知。他就是Nikola Tesla。他发现或者开发了一系列伟大创新的基础技术，从无线电信号传输，到交流电，从特斯拉变压器到X光，荧光灯直到现代电网。他和爱迪生一起工作，却相比之下，却回报寥寥。不但老年穷困潦倒，也很少有人听说过他。1943年，这位为人类迎来电力时代的天才去世的时候，身边只有几只他捡来的病鸽子。<br>这是一个对贡献的激情却没有回报的例子。John Battelle在最近一本新书《The Search》里面就提到，Google的创始人Page就是一个深受这个故事感染的年轻人。Page说“Nikola是个伟大的发明家，但他没有取得他应该取得的成就。我喜欢发明，但同时也希望改变世界。我希望能把我的发明带到人们的手里，这样他们就可以使用我的发明，因为只有这才是真正重要的”。在发明了PageRank算法以后，到底是按照学术传统分享自己的成果，还是像商业公司一样保护自己的知识产权，是两个创办者在1997年夏天最大的问题。<br>当然，结果证明了，他们可以在像Tesla一样贡献的同时，用一种方式，来保证自己的回报。这种把贡献转换为回报方法给了他们信心，可以更专注的在贡献部分。</p>
+<p><strong>回报是贡献的影子</strong><br>回报是贡献影子。我是说，如果安排得得当的话。<br>当一个人奔向太阳的时候，影子会跟着你。<br>当他追随影子的时候，他将远离太阳，远离光明，最终失去影子。</p>
+]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+  </entry>
+  <entry>
     <title>[转] The best way to get unstuck</title>
     <url>/posts/52aeb676/</url>
     <content><![CDATA[<blockquote>
@@ -6931,23 +6948,6 @@ JavaScript 高级程序设计</p>
 <li><strong>寻求外部视角</strong>，让他人的反馈帮助自己发现盲点。</li>
 </ol>
 <p>这篇文章的核心观点是：<strong>思维卡住时，最好的办法不是硬想，而是换个方式思考</strong>。</p>
-]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>[转] 对贡献有激情，对回报有信心</title>
-    <url>/posts/ee47234e/</url>
-    <content><![CDATA[<blockquote>
-<p>本文摘录自是一位前辈的Blog</p>
-</blockquote>
-<p>一般的生意人，都在反复评估，自己的贡献和回报的关系。如果贡献大于回报，就说是吃亏了。贡献小于回报，就说占了便宜。<br>而我看到的伟大的公司，或者成功的生意人，发现他们有一种惊人的相似之处，总结出来，就是：<br>对贡献有激情，对回报有信心。</p>
-<p><strong>贡献和回报</strong><br>打个比方，一个作家，可以关注自己写的稿子的质量（就是自己的贡献），也可以关注自己的稿酬。<br>只对自己稿酬感兴趣的，却不关心如何提高自己写的文章的质量，他会是一个越来越失败的作家。相反的，如果把所有激情投入提高自己的文章质量，而不关心稿酬的话，他才可能成为伟大的作家。<br>有“理想”的公司，都是贡献真诚的感兴趣的公司。微软的任何产品，都在看怎样提高生产率；Google的两个创始人关心的是如何更好的组织世界的信息；皮埃尔关心让世界的任何人都有可能在互联网上实现交易，而爱迪生关心的是给人类光明。。。</p>
-<p><strong>回报和坚持</strong><br>如果一件事情是为了回报，这件事情很难持久。这和一个人的毅力无关。<br>当一个人还没有真正意识到自己做这件事情的意义的时候，常常会为了显而易见的回报来坚持做一些事情。但很少有事情可以让你立刻看到回报，于是会选择放弃。放弃，多半不是因为无法坚持而放弃，而是因为感觉到自己做这件事失去了意义，所以放弃。<br>写blog就是这样。如果只是很希望别人来看，来评论，就会一天访问十次自己的blog，看一看有没有人回复。不久就会精疲力尽，而且会发现，自己的努力并不会直接换来多少人回复（像我每天一篇写了第四个年头了，也不会有多少回复的）。这时，就会怀疑自己做这件事情的意义，于是就不写了。不用埋怨自己的毅力，这件事本来和毅力毫无关系。<br>而凡是能坚持的blogger，要么是把blog写给自己的，意识到每天的记录是帮助自己来整理思路，为了自己生活得更好，要么是为了兴趣，写BLOG仅仅是为了帮助别人，只关心分享，而不关心评论或者浏览量的。无论什么样的动机，只要能看到自己的努力是为了贡献，而不是回报，就会坚持。<br>只有对贡献有激情，不在乎回报的时候，你才能坚持做一件事情，就像伟大的公司因为有一个贡献的理念，才可以持久的保持激情，在取得巨大的成功以后，接着日复一日的寻找更大的贡献。<br>需要说明回报，绝不仅仅是钱，它可以是各种你追求的东西，甚至仅仅是一个指标。比如，锻炼身体，身体健康就是回报。如果不享受锻炼的过程，而是苦巴巴的咬着牙，说只要我坚持，就一定会身体好。。。八成，这种坚持不会超过一个月。这就是为了回报而坚持的例子。减肥不成功，不用怀疑自己的毅力。当你对一种新的生活方式本身没有兴趣而只是为了这种方式带来的回报来勒紧裤腰带不吃东西，又怎能让你长期的坚持？</p>
-<p><strong>网站的贡献和回报</strong><br>网站如何提供给用户更多的价值，这就是贡献；如何提高访问量，这是回报。<br>我个人的体会是，回报这个东西，就像一个电闸。当你把手摸上去的话，就像摸到了高压电一样，瞬间就会感觉的迷茫，压力，并看到投机取巧的办法看起来很有吸引力，就会像一个商人一样买卖流量。但如果把手抽回来，不去碰那一个电闸，感觉立刻好了很多，开始思考比如如何帮助用户，如何给予更多，贡献更多。世界于是又回到了鸟语花香，海阔天空的状态。<br>彻底想明白自己努力到底是为了贡献了，还是为了回报，是是否可以持久的，优秀的做好一件事情的关键。</p>
-<p><strong>对贡献有激情的时候，还要对回报有信心</strong><br>和对贡献的激情同等重要的是，对回报的信心，而不是置之不理。历史上成功的企业和个人，不但做出了巨大的贡献，也取得了与之相应的巨额的报酬，以及电影明星般的盛名。并不是每一个对贡献有激情的人都做得到这一点。<br>比如历史上有一个伟大的发明家（或许是最伟大的发明家之一），却鲜为人知。他就是Nikola Tesla。他发现或者开发了一系列伟大创新的基础技术，从无线电信号传输，到交流电，从特斯拉变压器到X光，荧光灯直到现代电网。他和爱迪生一起工作，却相比之下，却回报寥寥。不但老年穷困潦倒，也很少有人听说过他。1943年，这位为人类迎来电力时代的天才去世的时候，身边只有几只他捡来的病鸽子。<br>这是一个对贡献的激情却没有回报的例子。John Battelle在最近一本新书《The Search》里面就提到，Google的创始人Page就是一个深受这个故事感染的年轻人。Page说“Nikola是个伟大的发明家，但他没有取得他应该取得的成就。我喜欢发明，但同时也希望改变世界。我希望能把我的发明带到人们的手里，这样他们就可以使用我的发明，因为只有这才是真正重要的”。在发明了PageRank算法以后，到底是按照学术传统分享自己的成果，还是像商业公司一样保护自己的知识产权，是两个创办者在1997年夏天最大的问题。<br>当然，结果证明了，他们可以在像Tesla一样贡献的同时，用一种方式，来保证自己的回报。这种把贡献转换为回报方法给了他们信心，可以更专注的在贡献部分。</p>
-<p><strong>回报是贡献的影子</strong><br>回报是贡献影子。我是说，如果安排得得当的话。<br>当一个人奔向太阳的时候，影子会跟着你。<br>当他追随影子的时候，他将远离太阳，远离光明，最终失去影子。</p>
 ]]></content>
       <categories>
         <category>转载</category>
