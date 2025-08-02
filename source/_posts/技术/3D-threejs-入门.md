@@ -1,9 +1,9 @@
 ---
 title: 3D/threejs 入门
 categories: 技术
-abbrlink: dda1bd91
-date: 2025-06-02 12:23:59
+abbrlink: 3d-threejs-tutorial
 description: 本文整理了 Three.js 相关的入门资源、专业名词解释及常用 JavaScript 模块导入方法，帮助初学者快速了解 3D 开发的基础知识与实践技巧。
+date: 2025-06-02 12:23:59
 tags:
 ---
 
