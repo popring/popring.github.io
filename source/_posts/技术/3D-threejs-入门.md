@@ -213,3 +213,14 @@ tick()
 - [poliigon.com](https://poliigon.com/)
 - [3dtextures.me](https://3dtextures.me/)
 - [arroway-textures.ch](https://www.arroway-textures.ch/)
+
+## Font
+
+@react-three/fiber 中可以直接使用 `Text` 组件来生成文字模型，还可配置对应字体
+
+- 转换字体网站
+  - https://transfonter.org/
+  - https://www.fontsquirrel.com/tools/webfont-generator
+- [Google Fonts 字体](https://fonts.google.com/)
+- [Google Font Helper](https://gwfh.mranftl.com/fonts)
+
