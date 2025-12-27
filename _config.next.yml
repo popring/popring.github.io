@@ -101,6 +101,7 @@ menu:
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
+  links: /links/ || fa fa-link
   推荐: /posts/227406a3 || fa fa-paper-plane
   # schedule: /schedule/ || fa fa-calendar
   # sitemap: /sitemap.xml || fa fa-sitemap

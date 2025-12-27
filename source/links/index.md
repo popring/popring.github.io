@@ -1,31 +1,33 @@
-// Custom styles.
-.site-author-image {
-  border-radius: 50%;
-  transition: all .5s;
-}
+---
+title: 友情链接
+date: 2025-12-27 12:00:00
+comments: true
+---
 
-.site-author-image:hover {
-  box-shadow: 0 0 20px 5px rgba(0,0,0,.5);
-  animation: diyrote .5s ease-in-out;
-}
+## 我的朋友们
 
-@keyframes diyrote {
-  0% {
-    transform: rotate(0) scale(1, 1);
-  }
-  50% {
-    transform: rotate(360deg) scale(1.5, 1.5);
-  }
-  100% {
-    transform: rotate(360deg) scale(1, 1);
-  }
-}
+以下是我的朋友们，欢迎互换友链！
 
-.use-motion .sidebar .motion-element {
-  padding-top: 25px;
-}
+<div class="links-container">
+  <div class="link-card">
+    <a href="https://home.shuaxinjs.cn/" target="_blank" rel="noopener noreferrer">
+      <div class="link-avatar" style="background-image: url(https://avatars.githubusercontent.com/u/32100575?v=4); background-size: cover; background-position: center;">
+      </div>
+      <div class="link-info">
+        <div class="link-name">刷新的个人主页</div>
+        <div class="link-site">home.shuaxinjs.cn</div>
+        <div class="link-description">我的朋友</div>
+      </div>
+      <div class="link-arrow">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </a>
+  </div>
+</div>
 
-// 友链页面样式 - 现代渐变卡片设计
+<style>
 .links-container {
   margin: 40px 0;
   display: grid;
@@ -163,7 +165,7 @@
   color: #3b82f6;
 }
 
-// 深色模式适配
+/* 深色模式适配 */
 @media (prefers-color-scheme: dark) {
   .link-card {
     background: #374151;
@@ -195,7 +197,7 @@
   }
 }
 
-// 移动端适配
+/* 移动端适配 */
 @media (max-width: 768px) {
   .links-container {
     grid-template-columns: 1fr;
@@ -216,7 +218,7 @@
   }
 }
 
-// 多个友链的不同配色方案
+/* 添加多个友链时的不同配色方案 */
 .link-card:nth-child(2) {
   background: #e5e7eb;
 }
@@ -240,3 +242,21 @@
 .link-card:nth-child(4)::before {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
+</style>
+
+---
+
+## 友链申请
+
+欢迎交换友链！如果你也想加入友链，请在下方评论区留言或通过 [邮箱](mailto:koler778@gmail.com) 联系我。
+
+**申请格式：**
+- 网站名称：你的网站名称
+- 网站地址：你的网站URL
+- 网站描述：简短描述（一句话介绍）
+
+**本站信息：**
+- 网站名称：popring's Blog
+- 网站地址：https://popring.cn
+- 网站描述：探索、记录、分享
+
