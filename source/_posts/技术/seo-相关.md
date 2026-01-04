@@ -14,6 +14,8 @@ tags:
 
 google 文档：https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=zh-cn
 
+还有 posthog 的这篇 SEO 入门文章也不错 https://newsletter.posthog.com/p/non-obvious-seo-advice-for-startups
+
 <!-- more -->
 
 常用网站：
