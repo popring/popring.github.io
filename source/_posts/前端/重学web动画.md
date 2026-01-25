@@ -22,6 +22,8 @@ categories:
 
 [tailwindcss-radix](https://github.com/ecklf/tailwindcss-radix): 一个 Tailwind CSS 的插件，将 radix 的组件状态转换为 Tailwind CSS 的类名
 
+<!-- more -->
+
 ## CSS 动画相关属性
 
 ### opacity 属性
