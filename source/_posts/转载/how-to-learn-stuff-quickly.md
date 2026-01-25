@@ -1,9 +1,10 @@
 ---
-title: '[转] how-to-learn-stuff-quickly'
+title: '[转] 如何快速学习新知识'
 categories: 转载
 abbrlink: a40a7f50
 date: 2024-11-01 12:00:26
 tags:
+  - 学习方法
 ---
 
 > 原文：[how-to-learn-stuff-quickly](https://www.joshwcomeau.com/blog/how-to-learn-stuff-quickly/)

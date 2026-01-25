@@ -1,10 +1,11 @@
 ---
-title: '[转] how-to-do-great-work'
+title: '[转] 如何做出伟大的工作'
 categories: 转载
 abbrlink: 415c86c1
 date: 2024-11-10 18:18:34
 description: "本文整理了 Paul Graham 在《How to Do Great Work》这篇文章中探讨了如何创造出卓越的工作。他提出了一些关键理念，旨在帮助读者理解成就伟大工作的核心因素。"
 tags:
+  - 个人成长
 ---
 
 > 原文：[How to Do Great Work](https://paulgraham.com/greatwork.html)

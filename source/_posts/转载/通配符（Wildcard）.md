@@ -1,9 +1,11 @@
 ---
-title: '[转] 通配符（Wildcard）'
+title: '[转] 通配符（Wildcard）使用指南'
 categories: 转载
 abbrlink: 163f6156
 date: 2024-11-01 15:30:12
 tags:
+  - 技术
+  - 工具
 ---
 
 > 原文：https://www.computerhope.com/jargon/w/wildcard.htm

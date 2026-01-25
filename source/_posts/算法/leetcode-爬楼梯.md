@@ -1,6 +1,8 @@
 ---
-title: leetcode-70.爬楼梯
-tags: 算法
+title: LeetCode 70：爬楼梯
+tags:
+  - leetcode
+  - 动态规划
 categories: 算法
 abbrlink: 3a506125
 date: 2020-11-08 11:13:40

@@ -1,9 +1,10 @@
 ---
-title: '[转] The best way to get unstuck'
+title: '[转] 走出困境的最佳方式'
 categories: 转载
 abbrlink: 52aeb676
 date: 2025-03-31 00:39:35
 tags:
+  - 个人成长
 ---
 
 > 原文：[How to Do Great Work](https://paulgraham.com/greatwork.html)
