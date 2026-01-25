@@ -683,6 +683,170 @@
       </tags>
   </entry>
   <entry>
+    <title>UTM Tracking 规范整理：从概念到命名规则</title>
+    <url>//posts/utm-tracking-guide/</url>
+    <content><![CDATA[<p>最近在整理公司的数据分析流程，发现一个老问题又冒出来了：UTM 参数乱打。</p>
+<p>打开 Google Analytics 一看，<code>utm_source</code> 里同时存在 <code>Facebook</code>、<code>facebook</code>、<code>fb</code>、<code>FB</code> 四种写法，本来应该是同一个来源的数据，硬生生被拆成了四行。更离谱的是 <code>utm_campaign</code> 里有人写中文、有人写拼音、有人写英文，根本没法做归类分析。</p>
+<p>所以决定整理一份 UTM 规范，方便团队统一，也顺便记录一下自己踩过的坑。</p>
+<span id="more"></span>
+
+<h2 id="UTM-是什么"><a href="#UTM-是什么" class="headerlink" title="UTM 是什么"></a>UTM 是什么</h2><p>UTM 全称 Urchin Tracking Module，是 Google Analytics 前身 Urchin 搞出来的一套追踪参数。本质上就是在 URL 后面加几个特定的查询参数，告诉 GA（或其他分析工具）这个流量是从哪来的、通过什么渠道、属于哪个活动。</p>
+<p>一个带 UTM 的链接长这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://example.com/product?utm_source=facebook&amp;utm_medium=paid-social&amp;utm_campaign=2025-01-winter-sale&amp;utm_content=carousel-ad-1</span><br></pre></td></tr></table></figure>
+
+<p>用户点击这个链接访问网站后，GA 就能识别出这个访问来自 Facebook 的付费社交广告，属于 2025 年 1 月的冬季促销活动，具体是轮播广告的第一张图。</p>
+<h2 id="五个核心参数"><a href="#五个核心参数" class="headerlink" title="五个核心参数"></a>五个核心参数</h2><p>UTM 一共有五个参数，其中三个必填，两个可选：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th align="center">必填</th>
+<th>用途</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>utm_source</code></td>
+<td align="center">是</td>
+<td>流量来源平台</td>
+<td><code>google</code>, <code>facebook</code>, <code>wechat</code>, <code>newsletter</code></td>
+</tr>
+<tr>
+<td><code>utm_medium</code></td>
+<td align="center">是</td>
+<td>渠道类型</td>
+<td><code>cpc</code>, <code>email</code>, <code>organic-social</code>, <code>affiliate</code></td>
+</tr>
+<tr>
+<td><code>utm_campaign</code></td>
+<td align="center">是</td>
+<td>活动&#x2F;项目名称</td>
+<td><code>2025-01-spring-sale</code>, <code>product-launch</code></td>
+</tr>
+<tr>
+<td><code>utm_content</code></td>
+<td align="center">否</td>
+<td>区分同一活动的不同素材</td>
+<td><code>hero-banner</code>, <code>sidebar-cta</code>, <code>variant-a</code></td>
+</tr>
+<tr>
+<td><code>utm_term</code></td>
+<td align="center">否</td>
+<td>关键词或受众分组</td>
+<td><code>running-shoes</code>, <code>audience-25-34</code></td>
+</tr>
+</tbody></table>
+<p>简单解释一下每个参数：</p>
+<p><strong>utm_source</strong>：流量从哪个平台&#x2F;网站来的。比如用户是从 Google 搜索点进来的就是 <code>google</code>，从微信公众号点进来的就是 <code>wechat</code>。</p>
+<p><strong>utm_medium</strong>：什么类型的渠道。同样是 Google，搜索广告是 <code>cpc</code>（按点击付费），自然搜索结果是 <code>organic</code>，这个参数就是用来区分的。</p>
+<p><strong>utm_campaign</strong>：具体的活动或项目名称。比如双十一促销、新品发布会、Q1 拉新活动等等。</p>
+<p><strong>utm_content</strong>：同一个活动里可能有多个链接或多个广告素材，用这个参数区分。比如同一封邮件里的头部 Banner 和底部按钮，或者同一组广告的 A&#x2F;B 测试版本。</p>
+<p><strong>utm_term</strong>：最早是用来追踪搜索广告的关键词，现在也常用来做受众分组，比如按年龄段、兴趣标签分组。</p>
+<h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><p>这是最重要的部分。UTM 参数本身不难理解，难的是让团队所有人用同样的方式填写。</p>
+<h3 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h3><ol>
+<li><p><strong>全部小写</strong></p>
+<p>GA 对大小写敏感，<code>Facebook</code> 和 <code>facebook</code> 会被当成两个不同的来源。统一用小写能避免这个问题。</p>
+</li>
+<li><p><strong>用连字符分隔单词</strong></p>
+<p>推荐 <code>spring-sale</code>，不要用 <code>spring_sale</code> 或 <code>springSale</code> 或 <code>spring sale</code>（空格会被编码成 <code>%20</code>，看起来很丑）。</p>
+</li>
+<li><p><strong>不用中文和特殊字符</strong></p>
+<p>虽然技术上可以用中文，但 URL 编码后会变成一串乱码，不好看也不好管理。</p>
+</li>
+<li><p><strong>保持简短但有意义</strong></p>
+<p><code>2025-01-spring-sale</code> 比 <code>2025-january-spring-season-promotional-sale-campaign</code> 好得多。</p>
+</li>
+</ol>
+<h3 id="建立词汇表"><a href="#建立词汇表" class="headerlink" title="建立词汇表"></a>建立词汇表</h3><p>团队内部最好统一常用值的写法，避免同一个意思出现多种表达：</p>
+<p><strong>utm_source 常用值：</strong></p>
+<ul>
+<li><code>google</code> - Google 搜索&#x2F;广告</li>
+<li><code>facebook</code> &#x2F; <code>instagram</code> &#x2F; <code>linkedin</code> - 社交平台</li>
+<li><code>wechat</code> &#x2F; <code>weibo</code> - 国内社交平台</li>
+<li><code>newsletter</code> - 邮件订阅</li>
+<li><code>partner-&#123;name&#125;</code> - 合作伙伴，比如 <code>partner-techblog</code></li>
+</ul>
+<p><strong>utm_medium 常用值：</strong></p>
+<ul>
+<li><code>cpc</code> - 按点击付费广告</li>
+<li><code>email</code> - 邮件营销</li>
+<li><code>organic-social</code> - 社交平台自然流量</li>
+<li><code>paid-social</code> - 社交平台付费广告</li>
+<li><code>affiliate</code> - 联盟营销</li>
+<li><code>referral</code> - 第三方推荐</li>
+</ul>
+<h3 id="活动命名模板"><a href="#活动命名模板" class="headerlink" title="活动命名模板"></a>活动命名模板</h3><p>推荐用这个格式：<code>&#123;时间&#125;-&#123;活动名&#125;-&#123;补充信息&#125;</code></p>
+<p>比如：</p>
+<ul>
+<li><code>2025-01-winter-sale</code> - 2025 年 1 月冬季促销</li>
+<li><code>q1-2025-lead-gen</code> - 2025 年 Q1 获客活动</li>
+<li><code>2025-03-product-launch-v2</code> - 2025 年 3 月新品发布（第二版）</li>
+</ul>
+<h2 id="真实使用场景"><a href="#真实使用场景" class="headerlink" title="真实使用场景"></a>真实使用场景</h2><h3 id="场景一：邮件营销"><a href="#场景一：邮件营销" class="headerlink" title="场景一：邮件营销"></a>场景一：邮件营销</h3><p>每期 Newsletter 都应该带上 UTM，方便追踪哪一期效果好：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://example.com/article?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=2025-01-weekly-digest&amp;utm_content=top-story</span><br></pre></td></tr></table></figure>
+
+<p>如果一封邮件里有多个链接，用 <code>utm_content</code> 区分：</p>
+<ul>
+<li>头部 Banner：<code>utm_content=hero-banner</code></li>
+<li>正文链接：<code>utm_content=article-link</code></li>
+<li>底部按钮：<code>utm_content=footer-cta</code></li>
+</ul>
+<p>这样就能知道用户更喜欢点哪个位置的链接。</p>
+<h3 id="场景二：广告投放"><a href="#场景二：广告投放" class="headerlink" title="场景二：广告投放"></a>场景二：广告投放</h3><p>Facebook 和 Google Ads 都支持动态插入 UTM 参数。</p>
+<p>Facebook 广告示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://example.com/landing?utm_source=facebook&amp;utm_medium=paid-social&amp;utm_campaign=2025-01-retarget&amp;utm_content=&#123;&#123;ad.name&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>&#123;&#123;ad.name&#125;&#125;</code> 会自动替换成广告名称，省得每个广告手动填。</p>
+<p>Google Ads 可以用自动标记（auto-tagging），会自动加上 <code>gclid</code> 参数，GA 能识别。但如果你用的是其他分析工具，还是得手动加 UTM。</p>
+<h3 id="场景三：KOL-合作伙伴推广"><a href="#场景三：KOL-合作伙伴推广" class="headerlink" title="场景三：KOL&#x2F;合作伙伴推广"></a>场景三：KOL&#x2F;合作伙伴推广</h3><p>给每个 KOL 分配专属链接，方便核对转化数据和结算：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://example.com/promo?utm_source=partner-kol-zhangsan&amp;utm_medium=affiliate&amp;utm_campaign=2025-01-kol-collab</span><br></pre></td></tr></table></figure>
+
+<p>用 <code>utm_source</code> 里带上 KOL 名字，在报表里能直接看到每个人带来多少流量和转化。</p>
+<h3 id="场景四：站内-Banner"><a href="#场景四：站内-Banner" class="headerlink" title="场景四：站内 Banner"></a>场景四：站内 Banner</h3><p>这个要特别注意。<strong>站内链接一般不要加 UTM</strong>。</p>
+<p>为什么？因为 UTM 会覆盖用户的原始来源。比如用户从 Google 搜索进来，点了首页 Banner（带 UTM）跳到活动页，GA 记录的来源就变成 Banner 而不是 Google 了。这会导致外部渠道的转化数据严重失真。</p>
+<p>如果一定要追踪站内 Banner 的点击，建议用 GA 的事件追踪（Event Tracking）而不是 UTM。</p>
+<h2 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h2><p>工作中遇到的一些坑，分享出来避免大家重复踩：</p>
+<p><strong>1. 大小写不一致</strong></p>
+<p>前面说过了，<code>Facebook</code> 和 <code>facebook</code> 是两个来源。解决方案是统一用小写，或者在 GA 里配置过滤器统一转小写。</p>
+<p><strong>2. 站内链接加 UTM</strong></p>
+<p>上面也说了，会覆盖外部来源。有次我们做了一个首页弹窗，加了 UTM，结果当月 Google 渠道的转化数据掉了一半，排查了好久才发现是这个原因。</p>
+<p><strong>3. campaign 名字太长</strong></p>
+<p>见过有人把整个活动介绍写进去的，URL 长得离谱。一是不好看，二是有些平台对 URL 长度有限制。</p>
+<p><strong>4. 没有文档</strong></p>
+<p>团队没有统一的 UTM 规范文档，每个人按自己的理解填，最后数据乱成一锅粥。</p>
+<p><strong>5. 用 Excel 手动管理</strong></p>
+<p>用表格记录已使用的 UTM 容易出错，还容易忘记更新。建议用专门的工具或者内部系统管理。</p>
+<h2 id="工具推荐"><a href="#工具推荐" class="headerlink" title="工具推荐"></a>工具推荐</h2><p><strong>Google Campaign URL Builder</strong><br>官方免费工具，填好参数自动生成链接。适合临时用用，但不方便团队协作。<br><span class="exturl" data-url="aHR0cHM6Ly9nYS1kZXYtdG9vbHMuZ29vZ2xlL2dhNC9jYW1wYWlnbi11cmwtYnVpbGRlci8=">https://ga-dev-tools.google/ga4/campaign-url-builder/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>UTM.io</strong><br>团队协作工具，可以设置命名规范、保存常用模板、查看历史记录。有免费版。<br><span class="exturl" data-url="aHR0cHM6Ly91dG0uaW8v">https://utm.io/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>自建表格&#x2F;系统</strong><br>用 Notion、飞书多维表格或 Google Sheets 也能搭一个简单的 UTM 管理系统。设置好下拉选项限制可选值，加个公式自动拼接 URL 就行。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>UTM 追踪本身不复杂，核心就是五个参数。难的是让团队所有人用统一的规范填写，保证数据干净可分析。</p>
+<p>关键点：</p>
+<ul>
+<li>全部小写，用连字符分隔</li>
+<li>建立词汇表，统一常用值的写法</li>
+<li>站内链接别加 UTM</li>
+<li>用工具管理，别手动维护 Excel</li>
+</ul>
+<p>希望这篇整理对你有帮助。</p>
+<hr>
+<h2 id="引用来源"><a href="#引用来源" class="headerlink" title="引用来源"></a>引用来源</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nYS1kZXYtdG9vbHMuZ29vZ2xlL2dhNC9jYW1wYWlnbi11cmwtYnVpbGRlci8=">Google Analytics Campaign URL Builder<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93ZWIudXRtLmlvL2Jsb2cvdGhlLTIwMjUtdXRtLXRhZ2dpbmctZ3VpZGUv">UTM.io Blog - The 2025 UTM Tagging Guide<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rdXRtLmNvbS9ibG9nL3V0bS1iZXN0LXByYWN0aWNlcw==">LinkUTM - UTM Best Practices: The Complete Guide for 2025<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVVRNX3BhcmFtZXRlcnM=">Wikipedia - UTM parameters<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>seo</tag>
+        <tag>utm</tag>
+        <tag>analytics</tag>
+        <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue 入门学习笔记</title>
     <url>/posts/2b382936/</url>
     <content><![CDATA[<p>大致为一下几个方面</p>
@@ -1815,286 +1979,6 @@
       <tags>
         <tag>javascript</tag>
         <tag>踩坑记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Go 语言入门笔记</title>
-    <url>/posts/1d79f384/</url>
-    <content><![CDATA[<span id="more"></span>
-
-
-
-<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
-<p>天朝特殊环境，不得不配置为国内的源</p>
-</blockquote>
-<p>打开终端并执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
-
-
-
-<p>macOS 或 Linux</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
-
-
-
-<p>windows</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9nb3Byb3h5LmNuLw==">Goproxy 中国<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nZncuZ28xMDEub3JnL2FydGljbGUvMTAxLmh0bWw=">Go语言101<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nby5kZXYvcmVmL3NwZWMjSW50cm9kdWN0aW9u">Go官方语言规范 - 英文<i class="fa fa-external-link-alt"></i></span>：据说看完此文档，Go基本就入门了</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nb2J5ZXhhbXBsZS1jbi5naXRodWIuaW8v">Go by Example<i class="fa fa-external-link-alt"></i></span>：通过实践入门</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nZWVrdHV0dS5jb20vcG9zdC9nZWUuaHRtbA==">7天用Go从零实现Web框架Gee教程<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>go</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Node.js 学习笔记</title>
-    <url>/posts/20e30b1b/</url>
-    <content><![CDATA[<p>早期在学习 <code>node</code> 时候，做的笔记。</p>
-<span id="more"></span>
-
-
-
-<h2 id="NodeJS-简介"><a href="#NodeJS-简介" class="headerlink" title="NodeJS 简介"></a>NodeJS 简介</h2><p><strong>非阻塞IO</strong>，<strong>运行在Chome V8</strong>，<strong>事件驱动</strong></p>
-<h2 id="环境-调试"><a href="#环境-调试" class="headerlink" title="环境 调试"></a>环境 调试</h2><ul>
-<li>CommonJS</li>
-<li>global</li>
-<li>process</li>
-</ul>
-<h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a><code>CommonJS</code></h3><ul>
-<li>每个文件是一个模块，有自己的作用域</li>
-<li>在模块内部 <code>module</code> 变量代表模块本身</li>
-<li><code>module.exports</code> 属性代表模块对外接口</li>
-</ul>
-<h3 id="require-规则"><a href="#require-规则" class="headerlink" title="require 规则"></a><code>require</code> 规则</h3><ul>
-<li><p><code>/</code> 表示绝对路径， <code>./</code> 表示相对当前文件的路径</p>
-</li>
-<li><p>支持 js, json, node 拓展名，不写依次尝试</p>
-</li>
-<li><p>不写路径认为是 build-in 模块或者各级 <code>node_modules</code>内的第三方模块</p>
-</li>
-</ul>
-<h3 id="require-特性"><a href="#require-特性" class="headerlink" title="require 特性"></a><code>require</code> 特性</h3><ul>
-<li><code>module</code> 被加载的时候执行，加载后缓存</li>
-<li>一旦出现某个模块被循环加载，就只输出已经执行的部分，还未执行的部分不会输出</li>
-</ul>
-<h3 id="chalk-模块"><a href="#chalk-模块" class="headerlink" title="chalk 模块"></a><a href="https://github.com/chalk/chalk"><code>chalk</code> 模块</a></h3><p>将所有的模块安装在 <code>node_modules</code> 下，无论是项目的依赖还是模块的依赖，或者是共同的依赖，都安装在 <code>node_modules</code> 下，早期的 <code>npm</code> 会将 模块的依赖安装在自身文件夹下的 <code>node_modules</code> 下，而如今的 <code>npm</code> 则是统一安装在项目根目录下的 <code>node_modules</code> 下。</p>
-<h3 id="modules-exports-和-exports-区别"><a href="#modules-exports-和-exports-区别" class="headerlink" title="modules.exports 和 exports 区别"></a><code>modules.exports</code> 和 <code>exports</code> 区别</h3><blockquote>
-<p>exports &#x3D; modules.exports;</p>
-<p>两者是相等的</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">exports</span> = modules.<span class="property">exports</span>;</span><br><span class="line"></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">function</span>(<span class="params"><span class="built_in">exports</span>, <span class="built_in">require</span>, <span class="variable language_">module</span>, __filename, __dirname</span>)&#123;</span><br><span class="line">        <span class="comment">// code</span></span><br><span class="line">	&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">test</span> = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这样会改变 exports 的指向，故失效</span></span><br><span class="line"><span class="built_in">exports</span> = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">test</span>: <span class="number">100</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果要修改为字面量形式</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">test</span>: <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="global-变量"><a href="#global-变量" class="headerlink" title="global 变量"></a><code>global</code> 变量</h3><ul>
-<li>CommonJS</li>
-<li>Buffer, process, console</li>
-<li>timer<ul>
-<li>setTimeout</li>
-<li>SetInterval</li>
-</ul>
-</li>
-</ul>
-<h3 id="process"><a href="#process" class="headerlink" title="process"></a><span class="exturl" data-url="aHR0cDovL25vZGVqcy5jbi9hcGkvcHJvY2Vzcy5odG1s">process<i class="fa fa-external-link-alt"></i></span></h3><ul>
-<li><code>argv</code> 返回进程启动时的命令行参数。 第一个元素是 <a href="http://nodejs.cn/s/MCrAya"><code>process.execPath</code></a>。 使用 <code>process.argv0</code> 可以获取 <code>argv[0]</code> 原始的值。 第二个元素是当前执行的 JavaScript 文件的路径。 剩余的元素都是额外的命令行参数。</li>
-<li><code>argv0</code> 返回进程启动时传入的 <code>argv[0]</code> 的原始值。</li>
-<li><code>execArgv</code> 返回 Node.js 特定的命令行选项。</li>
-<li><code>execPath</code> 返回 Node.js 启动文件绝对路径</li>
-<li><code>env</code> 返回用户的环境信息</li>
-<li><code>cwd</code> 返回进程的当前工作目录</li>
-</ul>
-<h3 id="调试方法"><a href="#调试方法" class="headerlink" title="调试方法"></a><span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL3poLWNuL2RvY3MvZ3VpZGVzL2RlYnVnZ2luZy1nZXR0aW5nLXN0YXJ0ZWQv">调试方法<i class="fa fa-external-link-alt"></i></span></h3><p>chrome</p>
-<p>vscode</p>
-<p>webstrom</p>
-<p>…</p>
-<h2 id="Node-js-基础"><a href="#Node-js-基础" class="headerlink" title="Node.js 基础"></a>Node.js 基础</h2><h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><blockquote>
-<p>normalize, join, resolve,</p>
-<p>basename, extname, dirname, </p>
-<p>parse, format</p>
-<p>sep, delimiter, win32, posix</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;normalize&#125; = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> normalize = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>).<span class="property">normalize</span>;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// parse 返回当前 路径的 文件/文件夹信息</span></span><br><span class="line"><span class="keyword">let</span> parse = path.<span class="title function_">parse</span>(<span class="string">&#x27;D://nodejs/demo4/01_path.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(parse);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回</span></span><br><span class="line">&#123; </span><br><span class="line">  <span class="attr">root</span>: <span class="string">&#x27;D:/&#x27;</span>,</span><br><span class="line">  <span class="attr">dir</span>: <span class="string">&#x27;D://nodejs/demo4&#x27;</span>,</span><br><span class="line">  <span class="attr">base</span>: <span class="string">&#x27;01_path.js&#x27;</span>,</span><br><span class="line">  <span class="attr">ext</span>: <span class="string">&#x27;.js&#x27;</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;01_path&#x27;</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// format 与 parse 正好相反</span></span><br><span class="line"><span class="keyword">let</span> format = path.<span class="title function_">format</span>(&#123;</span><br><span class="line">    <span class="attr">root</span>: <span class="string">&#x27;/ignored&#x27;</span>,</span><br><span class="line">    <span class="attr">dir</span>: <span class="string">&#x27;/home/user/dir&#x27;</span>,</span><br><span class="line">    <span class="attr">base</span>: <span class="string">&#x27;file.txt&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(format);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回</span></span><br><span class="line"><span class="string">`/home/user/dir\file.txt`</span></span><br></pre></td></tr></table></figure>
-
-<p>path.format(pathObject)</p>
-<p>当为 <code>pathObject</code> 提供属性时，请记住有一个组合，其中一个属性优先于另一个属性：</p>
-<ul>
-<li>如果提供了 <code>pathObject.dir</code>，则忽略 <code>pathObject.root</code>。</li>
-<li>如果 <code>pathObject.base</code> 存在，则忽略 <code>pathObject.ext</code> 和 <code>pathObject.name</code>。</li>
-</ul>
-<blockquote>
-<p><code>__dirname</code>, <code>__filename</code>  总是返回文件的绝对路径</p>
-<p>process.cwd() 总是返回执行 node 命令所在文件夹</p>
-</blockquote>
-<h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><blockquote>
-<ul>
-<li><p>Buffer 用于处理二进制数据流</p>
-</li>
-<li><p>实例类似整数数组，大小固定</p>
-</li>
-<li><p>C++ 代码在 V8 堆外分配物理内存</p>
-</li>
-<li><p>Buffer.byteLength<br>Buffer.isBuffer() 是否为<code>Buffer</code>对象<br>Buffer.concat()</p>
-</li>
-<li><p>buf.length</p>
-<p>buf.toString()</p>
-<p>buf.fill()</p>
-<p>buf.equals()</p>
-<p>buf.indexOf()</p>
-<p>buf.copy()</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="events-事件"><a href="#events-事件" class="headerlink" title="events(事件)"></a><span class="exturl" data-url="aHR0cDovL25vZGVqcy5jbi9hcGkvZXZlbnRzLmh0bQ==">events(事件)<i class="fa fa-external-link-alt"></i></span></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">EventEmitter</span> = <span class="built_in">require</span>(<span class="string">&#x27;events&#x27;</span>);</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomEvent</span> <span class="keyword">extends</span> <span class="title class_ inherited__">EventEmitter</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ce = <span class="keyword">new</span> <span class="title class_">CustomEvent</span>();</span><br><span class="line">ce.<span class="title function_">on</span>(<span class="string">&#x27;test&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;This is a test!&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    ce.<span class="title function_">emit</span>(<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">500</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>emitter.once() 事件只触发一回</p>
-<p>emitter.emit() 触发事件</p>
-<p>emitter.on()  –  emitter.addListener() 都为绑定事件</p>
-<p>emitter.removeListener() 移除事件</p>
-<p>emitter.removeAllListeners() 移除所有事件</p>
-<h3 id="fs"><a href="#fs" class="headerlink" title="fs"></a><span class="exturl" data-url="aHR0cDovL25vZGVqcy5jbi9hcGkvZnMuaHRtbA==">fs<i class="fa fa-external-link-alt"></i></span></h3><blockquote>
-<p>readFile 读文件</p>
-<p>writeFile 写文件</p>
-<p>stat 提供文件相关信息</p>
-<p>rename 更改文件名</p>
-<p>unlink 删除文件</p>
-<p>readdir 读文件夹</p>
-<p>mkdir 创建文件夹</p>
-<p>rmdir 删除文件夹</p>
-<p>watch 监视文件&#x2F;文件夹</p>
-<p>readstream</p>
-</blockquote>
-<h3 id="解决回调地狱问题"><a href="#解决回调地狱问题" class="headerlink" title="解决回调地狱问题"></a>解决回调地狱问题</h3><blockquote>
-<p>Promise</p>
-<p>promisify</p>
-<p>async await</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// promisify</span></span><br><span class="line"><span class="keyword">const</span> &#123;promisify&#125; =  <span class="built_in">require</span>(<span class="string">&#x27;util&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> read = <span class="title function_">promisify</span>(fs.<span class="property">readFile</span>);</span><br><span class="line"><span class="title function_">read</span>(<span class="string">&#x27;b.txt&#x27;</span>).<span class="title function_">then</span>( <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="title function_">toString</span>());</span><br><span class="line">&#125;).<span class="title function_">catch</span>( <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// async await</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> content = <span class="keyword">await</span> <span class="title function_">read</span>(<span class="string">&#x27;b.txt&#x27;</span>)</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(content.<span class="title function_">toString</span>());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br></pre></td></tr></table></figure>
-
-<h2 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h2><h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p><code>git</code> 忽略文件</p>
-<blockquote>
-<p>匹配模式前 <code>/</code> 代表项目根目录</p>
-<p>匹配模式最后加 <code>/</code> 代表是目录</p>
-<p>匹配模式前加 <code>!</code> 代表取反</p>
-<p><code>*</code> 代表任意字符</p>
-<p><code>?</code> 匹配任意一个字符</p>
-<p><code>**</code> 匹配多级目录</p>
-</blockquote>
-<h3 id="npmignore"><a href="#npmignore" class="headerlink" title=".npmignore"></a>.npmignore</h3><p><code>npm</code> 忽略文件 </p>
-<h3 id="EditorConfig"><a href="#EditorConfig" class="headerlink" title=".EditorConfig"></a>.EditorConfig</h3><blockquote>
-<p> EditorConfig有助于为跨越各种编辑器和IDE的同一项目的多个开发人员维护一致的编码样式。EditorConfig项目由用于定义编码样式<strong>的文件格式</strong>和一组<strong>文本编辑器插件组成</strong>，这些<strong>插件</strong>使编辑器能够读取文件格式并遵循定义的样式。EditorConfig文件易于阅读，与版本控制系统配合使用。</p>
-</blockquote>
-<p>官方模板</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># EditorConfig is awesome: https://EditorConfig.org</span><br><span class="line"></span><br><span class="line"># top-most EditorConfig file</span><br><span class="line">root = true</span><br><span class="line"></span><br><span class="line"># Unix-style newlines with a newline ending every file</span><br><span class="line">[*]</span><br><span class="line">end_of_line = lf</span><br><span class="line">insert_final_newline = true</span><br><span class="line"></span><br><span class="line"># Matches multiple files with brace expansion notation</span><br><span class="line"># Set default charset</span><br><span class="line">[*.&#123;js,py&#125;]</span><br><span class="line">charset = utf-8</span><br><span class="line"></span><br><span class="line"># 4 space indentation</span><br><span class="line">[*.py]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 4</span><br><span class="line"></span><br><span class="line"># Tab indentation (no size specified)</span><br><span class="line">[Makefile]</span><br><span class="line">indent_style = tab</span><br><span class="line"></span><br><span class="line"># Indentation override for all JS under lib directory</span><br><span class="line">[lib/**.js]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 2</span><br><span class="line"></span><br><span class="line"># Matches the exact files either package.json or .travis.yml</span><br><span class="line">[&#123;package.json,.travis.yml&#125;]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 2</span><br></pre></td></tr></table></figure>
-
-<h3 id="eslintignore"><a href="#eslintignore" class="headerlink" title=".eslintignore"></a>.eslintignore</h3><blockquote>
-<p>需要 <code>eslint</code> 忽略检查的文件</p>
-<p>规范同 <code>gitignore</code></p>
-</blockquote>
-<p>也可以在 <code>package.json</code> 中查找忽略的文件 <code>eslintIgnore</code></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;mypackage&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.0.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;eslintConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;env&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;browser&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;node&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;eslintIgnore&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;hello.js&quot;</span><span class="punctuation">,</span> <span class="string">&quot;world.js&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h3><blockquote>
-<p>JavaScript 代码检查工具。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yarn add --dev eslint</span><br><span class="line"><span class="comment"># 生成ESLint配置</span></span><br><span class="line">./node_modules/.bin/eslint --init</span><br></pre></td></tr></table></figure>
-
-<h4 id="内联禁用-ESLint规则"><a href="#内联禁用-ESLint规则" class="headerlink" title="内联禁用 ESLint规则"></a><a href="http://eslint.cn/docs/user-guide/configuring#disabling-rules-with-inline-comments">内联禁用 <code>ESLint</code>规则</a></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* eslint-disable */</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-enable */</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* eslint-disable no-alert, no-console */</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-enable no-alert, no-console */</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>); <span class="comment">// eslint-disable-line</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// eslint-disable-next-line</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="静态资源服务器"><a href="#静态资源服务器" class="headerlink" title="静态资源服务器"></a>静态资源服务器</h2><h3 id="创建服务器"><a href="#创建服务器" class="headerlink" title="创建服务器"></a>创建服务器</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入 http 模块</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">&#x27;chalk&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> conf = <span class="built_in">require</span>(<span class="string">&#x27;./config/defaultConfig&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>)=&gt;</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(conf.<span class="property">port</span>, conf.<span class="property">hostname</span>, <span class="function">()=&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> address = <span class="string">`http://<span class="subst">$&#123;conf.hostname&#125;</span>:<span class="subst">$&#123;conf.port&#125;</span>`</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">`Server started at the <span class="subst">$&#123;chalk.green(address)&#125;</span>`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>将配置信息分离出</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">root</span>: process.<span class="title function_">cwd</span>(),</span><br><span class="line">    <span class="attr">hostname</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">9527</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="content-type-文件内容"><a href="#content-type-文件内容" class="headerlink" title="content-type: 文件内容"></a>content-type: 文件内容</h4><blockquote>
-<p>普通内容：text&#x2F;plain …</p>
-<p><span class="exturl" data-url="aHR0cDovL3Rvb2wub3NjaGluYS5uZXQvY29tbW9ucy8=">HTTP Content -Type 对照表<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h4 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h4><blockquote>
-<p>accept-encoding: gzip,bar,deflate…</p>
-</blockquote>
-<h4 id="range范围请求"><a href="#range范围请求" class="headerlink" title="range范围请求"></a>range范围请求</h4><h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><blockquote>
-<p>使用缓存技术，减少服务器压力</p>
-</blockquote>
-<h4 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x.y.z</span><br><span class="line">x 大版本，不保证兼容</span><br><span class="line">y 新增功能，并且兼容前面版本</span><br><span class="line">z 修复bug</span><br><span class="line"></span><br><span class="line">1.2.* 同等于 ~1.2.0</span><br><span class="line">永远是用最新的1.2.*</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="supervisor模块"><a href="#supervisor模块" class="headerlink" title="supervisor模块"></a>supervisor模块</h3><blockquote>
-<p>监听当前文件夹下的变化, 文件有变化 重新加载文件</p>
-<p>自动重新载入服务器</p>
-<p>supervise 模块需要全局安装</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用supervise 模块加载js文件</span><br><span class="line">supervisor app.js</span><br></pre></td></tr></table></figure>
-
-<h3 id="handlebars-模块"><a href="#handlebars-模块" class="headerlink" title="handlebars 模块"></a>handlebars 模块</h3><blockquote>
-<p>模板引擎，类似<code>art-template</code>, ejs 等 </p>
-</blockquote>
-<p>2019年3月5日 23点25分</p>
-<blockquote>
-<p>网站访问路径没有处理好</p>
-</blockquote>
-<p>跳过</p>
-<h2 id="本地构建"><a href="#本地构建" class="headerlink" title="本地构建"></a>本地构建</h2><blockquote>
-<p>gulp, babel, webpack</p>
-</blockquote>
-<h3 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h3><p>glob</p>
-<blockquote>
-<p><code>*</code>匹配任意字符</p>
-<p><code>?</code>匹配一个字符</p>
-<p><code>[...]</code>匹配范围内的字符</p>
-<p><code>!(parttern1|pattern2)</code>匹配取反</p>
-<p><code>?(parttern1|pattern2)</code>匹配0个或1个</p>
-<p><code>+(parttern1|pattern2)</code>匹配1个或多个</p>
-<p><code>*(a|b|c)</code>匹配任意个</p>
-<p><code>@(pattern|pat*|pat?erN)</code>匹配特定的一个</p>
-<p><code>**</code>任意层级匹配</p>
-</blockquote>
-<h3 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h3><h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3><h2 id="单元测试和UI测试"><a href="#单元测试和UI测试" class="headerlink" title="单元测试和UI测试"></a>单元测试和UI测试</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY2hhaWpzLmNvbS8=">chai<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tb2NoYWpzLm9yZy8=">mocha<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvdHdhcmxvc3QvaXN0YW5idWw=">istanbul<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h3><blockquote>
-<p>TDD, BDD</p>
-</blockquote>
-<h4 id="TDD：测试驱动开发"><a href="#TDD：测试驱动开发" class="headerlink" title="TDD：测试驱动开发"></a>TDD：测试驱动开发</h4><p>测试驱动开发是敏捷开发中的一项核心实践和技术，也是一种设计方法论。TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试代码确定需要编写什么产品代码。TDD的基本思路就是通过测试来推动整个开发的进行，但测试驱动开发并不只是单纯的测试工作，而是把需求分析，设计，质量控制量化的过程。TDD首先考虑使用需求（对象、功能、过程、接口等），主要是编写测试用例框架对功能的过程和接口进行设计，而测试框架可以持续进行验证。 </p>
-<h4 id="BDD：行为驱动开发（Behavior-Driven-Development）"><a href="#BDD：行为驱动开发（Behavior-Driven-Development）" class="headerlink" title="BDD：行为驱动开发（Behavior Driven Development）"></a>BDD：行为驱动开发（Behavior Driven Development）</h4><p>行为驱动开发是一种敏捷软件开发的技术，它鼓励软件项目中的开发者、QA和非技术人员或商业参与者之间的协作。主要是从用户的需求出发，强调系统行为。BDD最初是由Dan North在2003年命名，它包括验收测试和客户测试驱动等的极限编程的实践，作为对测试驱动开发的回应。</p>
-<p>转载自 <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzIwMTYxOTcwL2Fuc3dlci8xMDAwMDMyNDI=">某乎<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Mocha"><a href="#Mocha" class="headerlink" title="Mocha"></a>Mocha</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;should, expect, assert&#125; = <span class="built_in">require</span>(<span class="string">&#x27;chai&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;add, mul&#125; = <span class="built_in">require</span>(<span class="string">&#x27;../src/math&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">should</span>();</span><br><span class="line"></span><br><span class="line"><span class="title function_">add</span>(<span class="number">3</span>, <span class="number">2</span>).<span class="property">should</span>.<span class="title function_">equal</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">expect</span>(<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">assert.<span class="title function_">equal</span>(<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="Mocha-1"><a href="#Mocha-1" class="headerlink" title="Mocha"></a>Mocha</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;should, expect, assert&#125; = <span class="built_in">require</span>(<span class="string">&#x27;chai&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;add, mul&#125; = <span class="built_in">require</span>(<span class="string">&#x27;../src/math&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;#math&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;add&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should return 5 when 3 + 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            assert.<span class="title function_">equal</span>(<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should return 6 when 3 + 3&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            assert.<span class="title function_">equal</span>(<span class="title function_">add</span>(<span class="number">3</span>, <span class="number">3</span>), <span class="number">6</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;mul&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should return 6 when 3 * 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            assert.<span class="title function_">equal</span>(<span class="title function_">mul</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">6</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="istanbul"><a href="#istanbul" class="headerlink" title="istanbul"></a>istanbul</h3><p><span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMTUvMDYvaXN0YW5idWwuaHRtbA==">http://www.ruanyifeng.com/blog/2015/06/istanbul.html<i class="fa fa-external-link-alt"></i></span></p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p><span class="exturl" data-url="aHR0cDovL25vZGVqcy5jbi9hcGkv">Node.js 中文网<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm5wbWpzLmNvbS9taXNjL2RldmVsb3BlcnMja2VlcGluZy1maWxlcy1vdXQtb2YteW91ci1wYWNrYWdl">npmingore 介绍<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9kb2NzL2dpdGlnbm9yZQ==">gitignore 介绍<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9lZGl0b3Jjb25maWcub3JnLw==">EditorConfig<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cDovL2VzbGludC5jbi8=">ESLint 中文网<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9iYWJlbGpzLmlvLw==">babel 官网<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcv">webpack 官网<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>node.js</tag>
       </tags>
   </entry>
   <entry>
@@ -3332,6 +3216,286 @@
       <tags>
         <tag>vpn</tag>
         <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Go 语言入门笔记</title>
+    <url>/posts/1d79f384/</url>
+    <content><![CDATA[<span id="more"></span>
+
+
+
+<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
+<p>天朝特殊环境，不得不配置为国内的源</p>
+</blockquote>
+<p>打开终端并执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+
+
+
+<p>macOS 或 Linux</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
+
+
+
+<p>windows</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9nb3Byb3h5LmNuLw==">Goproxy 中国<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nZncuZ28xMDEub3JnL2FydGljbGUvMTAxLmh0bWw=">Go语言101<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nby5kZXYvcmVmL3NwZWMjSW50cm9kdWN0aW9u">Go官方语言规范 - 英文<i class="fa fa-external-link-alt"></i></span>：据说看完此文档，Go基本就入门了</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nb2J5ZXhhbXBsZS1jbi5naXRodWIuaW8v">Go by Example<i class="fa fa-external-link-alt"></i></span>：通过实践入门</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nZWVrdHV0dS5jb20vcG9zdC9nZWUuaHRtbA==">7天用Go从零实现Web框架Gee教程<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Node.js 学习笔记</title>
+    <url>/posts/20e30b1b/</url>
+    <content><![CDATA[<p>早期在学习 <code>node</code> 时候，做的笔记。</p>
+<span id="more"></span>
+
+
+
+<h2 id="NodeJS-简介"><a href="#NodeJS-简介" class="headerlink" title="NodeJS 简介"></a>NodeJS 简介</h2><p><strong>非阻塞IO</strong>，<strong>运行在Chome V8</strong>，<strong>事件驱动</strong></p>
+<h2 id="环境-调试"><a href="#环境-调试" class="headerlink" title="环境 调试"></a>环境 调试</h2><ul>
+<li>CommonJS</li>
+<li>global</li>
+<li>process</li>
+</ul>
+<h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a><code>CommonJS</code></h3><ul>
+<li>每个文件是一个模块，有自己的作用域</li>
+<li>在模块内部 <code>module</code> 变量代表模块本身</li>
+<li><code>module.exports</code> 属性代表模块对外接口</li>
+</ul>
+<h3 id="require-规则"><a href="#require-规则" class="headerlink" title="require 规则"></a><code>require</code> 规则</h3><ul>
+<li><p><code>/</code> 表示绝对路径， <code>./</code> 表示相对当前文件的路径</p>
+</li>
+<li><p>支持 js, json, node 拓展名，不写依次尝试</p>
+</li>
+<li><p>不写路径认为是 build-in 模块或者各级 <code>node_modules</code>内的第三方模块</p>
+</li>
+</ul>
+<h3 id="require-特性"><a href="#require-特性" class="headerlink" title="require 特性"></a><code>require</code> 特性</h3><ul>
+<li><code>module</code> 被加载的时候执行，加载后缓存</li>
+<li>一旦出现某个模块被循环加载，就只输出已经执行的部分，还未执行的部分不会输出</li>
+</ul>
+<h3 id="chalk-模块"><a href="#chalk-模块" class="headerlink" title="chalk 模块"></a><a href="https://github.com/chalk/chalk"><code>chalk</code> 模块</a></h3><p>将所有的模块安装在 <code>node_modules</code> 下，无论是项目的依赖还是模块的依赖，或者是共同的依赖，都安装在 <code>node_modules</code> 下，早期的 <code>npm</code> 会将 模块的依赖安装在自身文件夹下的 <code>node_modules</code> 下，而如今的 <code>npm</code> 则是统一安装在项目根目录下的 <code>node_modules</code> 下。</p>
+<h3 id="modules-exports-和-exports-区别"><a href="#modules-exports-和-exports-区别" class="headerlink" title="modules.exports 和 exports 区别"></a><code>modules.exports</code> 和 <code>exports</code> 区别</h3><blockquote>
+<p>exports &#x3D; modules.exports;</p>
+<p>两者是相等的</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">exports</span> = modules.<span class="property">exports</span>;</span><br><span class="line"></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">function</span>(<span class="params"><span class="built_in">exports</span>, <span class="built_in">require</span>, <span class="variable language_">module</span>, __filename, __dirname</span>)&#123;</span><br><span class="line">        <span class="comment">// code</span></span><br><span class="line">	&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.<span class="property">test</span> = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这样会改变 exports 的指向，故失效</span></span><br><span class="line"><span class="built_in">exports</span> = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">test</span>: <span class="number">100</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果要修改为字面量形式</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">test</span>: <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="global-变量"><a href="#global-变量" class="headerlink" title="global 变量"></a><code>global</code> 变量</h3><ul>
+<li>CommonJS</li>
+<li>Buffer, process, console</li>
+<li>timer<ul>
+<li>setTimeout</li>
+<li>SetInterval</li>
+</ul>
+</li>
+</ul>
+<h3 id="process"><a href="#process" class="headerlink" title="process"></a><span class="exturl" data-url="aHR0cDovL25vZGVqcy5jbi9hcGkvcHJvY2Vzcy5odG1s">process<i class="fa fa-external-link-alt"></i></span></h3><ul>
+<li><code>argv</code> 返回进程启动时的命令行参数。 第一个元素是 <a href="http://nodejs.cn/s/MCrAya"><code>process.execPath</code></a>。 使用 <code>process.argv0</code> 可以获取 <code>argv[0]</code> 原始的值。 第二个元素是当前执行的 JavaScript 文件的路径。 剩余的元素都是额外的命令行参数。</li>
+<li><code>argv0</code> 返回进程启动时传入的 <code>argv[0]</code> 的原始值。</li>
+<li><code>execArgv</code> 返回 Node.js 特定的命令行选项。</li>
+<li><code>execPath</code> 返回 Node.js 启动文件绝对路径</li>
+<li><code>env</code> 返回用户的环境信息</li>
+<li><code>cwd</code> 返回进程的当前工作目录</li>
+</ul>
+<h3 id="调试方法"><a href="#调试方法" class="headerlink" title="调试方法"></a><span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL3poLWNuL2RvY3MvZ3VpZGVzL2RlYnVnZ2luZy1nZXR0aW5nLXN0YXJ0ZWQv">调试方法<i class="fa fa-external-link-alt"></i></span></h3><p>chrome</p>
+<p>vscode</p>
+<p>webstrom</p>
+<p>…</p>
+<h2 id="Node-js-基础"><a href="#Node-js-基础" class="headerlink" title="Node.js 基础"></a>Node.js 基础</h2><h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><blockquote>
+<p>normalize, join, resolve,</p>
+<p>basename, extname, dirname, </p>
+<p>parse, format</p>
+<p>sep, delimiter, win32, posix</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;normalize&#125; = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> normalize = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>).<span class="property">normalize</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// parse 返回当前 路径的 文件/文件夹信息</span></span><br><span class="line"><span class="keyword">let</span> parse = path.<span class="title function_">parse</span>(<span class="string">&#x27;D://nodejs/demo4/01_path.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(parse);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回</span></span><br><span class="line">&#123; </span><br><span class="line">  <span class="attr">root</span>: <span class="string">&#x27;D:/&#x27;</span>,</span><br><span class="line">  <span class="attr">dir</span>: <span class="string">&#x27;D://nodejs/demo4&#x27;</span>,</span><br><span class="line">  <span class="attr">base</span>: <span class="string">&#x27;01_path.js&#x27;</span>,</span><br><span class="line">  <span class="attr">ext</span>: <span class="string">&#x27;.js&#x27;</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;01_path&#x27;</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// format 与 parse 正好相反</span></span><br><span class="line"><span class="keyword">let</span> format = path.<span class="title function_">format</span>(&#123;</span><br><span class="line">    <span class="attr">root</span>: <span class="string">&#x27;/ignored&#x27;</span>,</span><br><span class="line">    <span class="attr">dir</span>: <span class="string">&#x27;/home/user/dir&#x27;</span>,</span><br><span class="line">    <span class="attr">base</span>: <span class="string">&#x27;file.txt&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(format);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回</span></span><br><span class="line"><span class="string">`/home/user/dir\file.txt`</span></span><br></pre></td></tr></table></figure>
+
+<p>path.format(pathObject)</p>
+<p>当为 <code>pathObject</code> 提供属性时，请记住有一个组合，其中一个属性优先于另一个属性：</p>
+<ul>
+<li>如果提供了 <code>pathObject.dir</code>，则忽略 <code>pathObject.root</code>。</li>
+<li>如果 <code>pathObject.base</code> 存在，则忽略 <code>pathObject.ext</code> 和 <code>pathObject.name</code>。</li>
+</ul>
+<blockquote>
+<p><code>__dirname</code>, <code>__filename</code>  总是返回文件的绝对路径</p>
+<p>process.cwd() 总是返回执行 node 命令所在文件夹</p>
+</blockquote>
+<h3 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h3><blockquote>
+<ul>
+<li><p>Buffer 用于处理二进制数据流</p>
+</li>
+<li><p>实例类似整数数组，大小固定</p>
+</li>
+<li><p>C++ 代码在 V8 堆外分配物理内存</p>
+</li>
+<li><p>Buffer.byteLength<br>Buffer.isBuffer() 是否为<code>Buffer</code>对象<br>Buffer.concat()</p>
+</li>
+<li><p>buf.length</p>
+<p>buf.toString()</p>
+<p>buf.fill()</p>
+<p>buf.equals()</p>
+<p>buf.indexOf()</p>
+<p>buf.copy()</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="events-事件"><a href="#events-事件" class="headerlink" title="events(事件)"></a><span class="exturl" data-url="aHR0cDovL25vZGVqcy5jbi9hcGkvZXZlbnRzLmh0bQ==">events(事件)<i class="fa fa-external-link-alt"></i></span></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">EventEmitter</span> = <span class="built_in">require</span>(<span class="string">&#x27;events&#x27;</span>);</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomEvent</span> <span class="keyword">extends</span> <span class="title class_ inherited__">EventEmitter</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ce = <span class="keyword">new</span> <span class="title class_">CustomEvent</span>();</span><br><span class="line">ce.<span class="title function_">on</span>(<span class="string">&#x27;test&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;This is a test!&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    ce.<span class="title function_">emit</span>(<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">500</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>emitter.once() 事件只触发一回</p>
+<p>emitter.emit() 触发事件</p>
+<p>emitter.on()  –  emitter.addListener() 都为绑定事件</p>
+<p>emitter.removeListener() 移除事件</p>
+<p>emitter.removeAllListeners() 移除所有事件</p>
+<h3 id="fs"><a href="#fs" class="headerlink" title="fs"></a><span class="exturl" data-url="aHR0cDovL25vZGVqcy5jbi9hcGkvZnMuaHRtbA==">fs<i class="fa fa-external-link-alt"></i></span></h3><blockquote>
+<p>readFile 读文件</p>
+<p>writeFile 写文件</p>
+<p>stat 提供文件相关信息</p>
+<p>rename 更改文件名</p>
+<p>unlink 删除文件</p>
+<p>readdir 读文件夹</p>
+<p>mkdir 创建文件夹</p>
+<p>rmdir 删除文件夹</p>
+<p>watch 监视文件&#x2F;文件夹</p>
+<p>readstream</p>
+</blockquote>
+<h3 id="解决回调地狱问题"><a href="#解决回调地狱问题" class="headerlink" title="解决回调地狱问题"></a>解决回调地狱问题</h3><blockquote>
+<p>Promise</p>
+<p>promisify</p>
+<p>async await</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// promisify</span></span><br><span class="line"><span class="keyword">const</span> &#123;promisify&#125; =  <span class="built_in">require</span>(<span class="string">&#x27;util&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> read = <span class="title function_">promisify</span>(fs.<span class="property">readFile</span>);</span><br><span class="line"><span class="title function_">read</span>(<span class="string">&#x27;b.txt&#x27;</span>).<span class="title function_">then</span>( <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="title function_">toString</span>());</span><br><span class="line">&#125;).<span class="title function_">catch</span>( <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// async await</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> content = <span class="keyword">await</span> <span class="title function_">read</span>(<span class="string">&#x27;b.txt&#x27;</span>)</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(content.<span class="title function_">toString</span>());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h2><h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p><code>git</code> 忽略文件</p>
+<blockquote>
+<p>匹配模式前 <code>/</code> 代表项目根目录</p>
+<p>匹配模式最后加 <code>/</code> 代表是目录</p>
+<p>匹配模式前加 <code>!</code> 代表取反</p>
+<p><code>*</code> 代表任意字符</p>
+<p><code>?</code> 匹配任意一个字符</p>
+<p><code>**</code> 匹配多级目录</p>
+</blockquote>
+<h3 id="npmignore"><a href="#npmignore" class="headerlink" title=".npmignore"></a>.npmignore</h3><p><code>npm</code> 忽略文件 </p>
+<h3 id="EditorConfig"><a href="#EditorConfig" class="headerlink" title=".EditorConfig"></a>.EditorConfig</h3><blockquote>
+<p> EditorConfig有助于为跨越各种编辑器和IDE的同一项目的多个开发人员维护一致的编码样式。EditorConfig项目由用于定义编码样式<strong>的文件格式</strong>和一组<strong>文本编辑器插件组成</strong>，这些<strong>插件</strong>使编辑器能够读取文件格式并遵循定义的样式。EditorConfig文件易于阅读，与版本控制系统配合使用。</p>
+</blockquote>
+<p>官方模板</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># EditorConfig is awesome: https://EditorConfig.org</span><br><span class="line"></span><br><span class="line"># top-most EditorConfig file</span><br><span class="line">root = true</span><br><span class="line"></span><br><span class="line"># Unix-style newlines with a newline ending every file</span><br><span class="line">[*]</span><br><span class="line">end_of_line = lf</span><br><span class="line">insert_final_newline = true</span><br><span class="line"></span><br><span class="line"># Matches multiple files with brace expansion notation</span><br><span class="line"># Set default charset</span><br><span class="line">[*.&#123;js,py&#125;]</span><br><span class="line">charset = utf-8</span><br><span class="line"></span><br><span class="line"># 4 space indentation</span><br><span class="line">[*.py]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 4</span><br><span class="line"></span><br><span class="line"># Tab indentation (no size specified)</span><br><span class="line">[Makefile]</span><br><span class="line">indent_style = tab</span><br><span class="line"></span><br><span class="line"># Indentation override for all JS under lib directory</span><br><span class="line">[lib/**.js]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 2</span><br><span class="line"></span><br><span class="line"># Matches the exact files either package.json or .travis.yml</span><br><span class="line">[&#123;package.json,.travis.yml&#125;]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 2</span><br></pre></td></tr></table></figure>
+
+<h3 id="eslintignore"><a href="#eslintignore" class="headerlink" title=".eslintignore"></a>.eslintignore</h3><blockquote>
+<p>需要 <code>eslint</code> 忽略检查的文件</p>
+<p>规范同 <code>gitignore</code></p>
+</blockquote>
+<p>也可以在 <code>package.json</code> 中查找忽略的文件 <code>eslintIgnore</code></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;mypackage&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.0.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;eslintConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;env&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;browser&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;node&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;eslintIgnore&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;hello.js&quot;</span><span class="punctuation">,</span> <span class="string">&quot;world.js&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h3><blockquote>
+<p>JavaScript 代码检查工具。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yarn add --dev eslint</span><br><span class="line"><span class="comment"># 生成ESLint配置</span></span><br><span class="line">./node_modules/.bin/eslint --init</span><br></pre></td></tr></table></figure>
+
+<h4 id="内联禁用-ESLint规则"><a href="#内联禁用-ESLint规则" class="headerlink" title="内联禁用 ESLint规则"></a><a href="http://eslint.cn/docs/user-guide/configuring#disabling-rules-with-inline-comments">内联禁用 <code>ESLint</code>规则</a></h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* eslint-disable */</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-enable */</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* eslint-disable no-alert, no-console */</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-enable no-alert, no-console */</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>); <span class="comment">// eslint-disable-line</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// eslint-disable-next-line</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态资源服务器"><a href="#静态资源服务器" class="headerlink" title="静态资源服务器"></a>静态资源服务器</h2><h3 id="创建服务器"><a href="#创建服务器" class="headerlink" title="创建服务器"></a>创建服务器</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入 http 模块</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">&#x27;chalk&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> conf = <span class="built_in">require</span>(<span class="string">&#x27;./config/defaultConfig&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>)=&gt;</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(conf.<span class="property">port</span>, conf.<span class="property">hostname</span>, <span class="function">()=&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> address = <span class="string">`http://<span class="subst">$&#123;conf.hostname&#125;</span>:<span class="subst">$&#123;conf.port&#125;</span>`</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">`Server started at the <span class="subst">$&#123;chalk.green(address)&#125;</span>`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将配置信息分离出</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">root</span>: process.<span class="title function_">cwd</span>(),</span><br><span class="line">    <span class="attr">hostname</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">9527</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="content-type-文件内容"><a href="#content-type-文件内容" class="headerlink" title="content-type: 文件内容"></a>content-type: 文件内容</h4><blockquote>
+<p>普通内容：text&#x2F;plain …</p>
+<p><span class="exturl" data-url="aHR0cDovL3Rvb2wub3NjaGluYS5uZXQvY29tbW9ucy8=">HTTP Content -Type 对照表<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h4 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h4><blockquote>
+<p>accept-encoding: gzip,bar,deflate…</p>
+</blockquote>
+<h4 id="range范围请求"><a href="#range范围请求" class="headerlink" title="range范围请求"></a>range范围请求</h4><h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><blockquote>
+<p>使用缓存技术，减少服务器压力</p>
+</blockquote>
+<h4 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x.y.z</span><br><span class="line">x 大版本，不保证兼容</span><br><span class="line">y 新增功能，并且兼容前面版本</span><br><span class="line">z 修复bug</span><br><span class="line"></span><br><span class="line">1.2.* 同等于 ~1.2.0</span><br><span class="line">永远是用最新的1.2.*</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="supervisor模块"><a href="#supervisor模块" class="headerlink" title="supervisor模块"></a>supervisor模块</h3><blockquote>
+<p>监听当前文件夹下的变化, 文件有变化 重新加载文件</p>
+<p>自动重新载入服务器</p>
+<p>supervise 模块需要全局安装</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用supervise 模块加载js文件</span><br><span class="line">supervisor app.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="handlebars-模块"><a href="#handlebars-模块" class="headerlink" title="handlebars 模块"></a>handlebars 模块</h3><blockquote>
+<p>模板引擎，类似<code>art-template</code>, ejs 等 </p>
+</blockquote>
+<p>2019年3月5日 23点25分</p>
+<blockquote>
+<p>网站访问路径没有处理好</p>
+</blockquote>
+<p>跳过</p>
+<h2 id="本地构建"><a href="#本地构建" class="headerlink" title="本地构建"></a>本地构建</h2><blockquote>
+<p>gulp, babel, webpack</p>
+</blockquote>
+<h3 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h3><p>glob</p>
+<blockquote>
+<p><code>*</code>匹配任意字符</p>
+<p><code>?</code>匹配一个字符</p>
+<p><code>[...]</code>匹配范围内的字符</p>
+<p><code>!(parttern1|pattern2)</code>匹配取反</p>
+<p><code>?(parttern1|pattern2)</code>匹配0个或1个</p>
+<p><code>+(parttern1|pattern2)</code>匹配1个或多个</p>
+<p><code>*(a|b|c)</code>匹配任意个</p>
+<p><code>@(pattern|pat*|pat?erN)</code>匹配特定的一个</p>
+<p><code>**</code>任意层级匹配</p>
+</blockquote>
+<h3 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h3><h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3><h2 id="单元测试和UI测试"><a href="#单元测试和UI测试" class="headerlink" title="单元测试和UI测试"></a>单元测试和UI测试</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY2hhaWpzLmNvbS8=">chai<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tb2NoYWpzLm9yZy8=">mocha<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvdHdhcmxvc3QvaXN0YW5idWw=">istanbul<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h3><blockquote>
+<p>TDD, BDD</p>
+</blockquote>
+<h4 id="TDD：测试驱动开发"><a href="#TDD：测试驱动开发" class="headerlink" title="TDD：测试驱动开发"></a>TDD：测试驱动开发</h4><p>测试驱动开发是敏捷开发中的一项核心实践和技术，也是一种设计方法论。TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试代码确定需要编写什么产品代码。TDD的基本思路就是通过测试来推动整个开发的进行，但测试驱动开发并不只是单纯的测试工作，而是把需求分析，设计，质量控制量化的过程。TDD首先考虑使用需求（对象、功能、过程、接口等），主要是编写测试用例框架对功能的过程和接口进行设计，而测试框架可以持续进行验证。 </p>
+<h4 id="BDD：行为驱动开发（Behavior-Driven-Development）"><a href="#BDD：行为驱动开发（Behavior-Driven-Development）" class="headerlink" title="BDD：行为驱动开发（Behavior Driven Development）"></a>BDD：行为驱动开发（Behavior Driven Development）</h4><p>行为驱动开发是一种敏捷软件开发的技术，它鼓励软件项目中的开发者、QA和非技术人员或商业参与者之间的协作。主要是从用户的需求出发，强调系统行为。BDD最初是由Dan North在2003年命名，它包括验收测试和客户测试驱动等的极限编程的实践，作为对测试驱动开发的回应。</p>
+<p>转载自 <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzIwMTYxOTcwL2Fuc3dlci8xMDAwMDMyNDI=">某乎<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Mocha"><a href="#Mocha" class="headerlink" title="Mocha"></a>Mocha</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;should, expect, assert&#125; = <span class="built_in">require</span>(<span class="string">&#x27;chai&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;add, mul&#125; = <span class="built_in">require</span>(<span class="string">&#x27;../src/math&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">should</span>();</span><br><span class="line"></span><br><span class="line"><span class="title function_">add</span>(<span class="number">3</span>, <span class="number">2</span>).<span class="property">should</span>.<span class="title function_">equal</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">expect</span>(<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">assert.<span class="title function_">equal</span>(<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mocha-1"><a href="#Mocha-1" class="headerlink" title="Mocha"></a>Mocha</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;should, expect, assert&#125; = <span class="built_in">require</span>(<span class="string">&#x27;chai&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;add, mul&#125; = <span class="built_in">require</span>(<span class="string">&#x27;../src/math&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;#math&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;add&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should return 5 when 3 + 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            assert.<span class="title function_">equal</span>(<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should return 6 when 3 + 3&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            assert.<span class="title function_">equal</span>(<span class="title function_">add</span>(<span class="number">3</span>, <span class="number">3</span>), <span class="number">6</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;mul&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should return 6 when 3 * 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            assert.<span class="title function_">equal</span>(<span class="title function_">mul</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">6</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="istanbul"><a href="#istanbul" class="headerlink" title="istanbul"></a>istanbul</h3><p><span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMTUvMDYvaXN0YW5idWwuaHRtbA==">http://www.ruanyifeng.com/blog/2015/06/istanbul.html<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p><span class="exturl" data-url="aHR0cDovL25vZGVqcy5jbi9hcGkv">Node.js 中文网<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm5wbWpzLmNvbS9taXNjL2RldmVsb3BlcnMja2VlcGluZy1maWxlcy1vdXQtb2YteW91ci1wYWNrYWdl">npmingore 介绍<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9kb2NzL2dpdGlnbm9yZQ==">gitignore 介绍<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9lZGl0b3Jjb25maWcub3JnLw==">EditorConfig<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cDovL2VzbGludC5jbi8=">ESLint 中文网<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9iYWJlbGpzLmlvLw==">babel 官网<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93ZWJwYWNrLmRvY3NjaGluYS5vcmcv">webpack 官网<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>node.js</tag>
       </tags>
   </entry>
   <entry>
