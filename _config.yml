@@ -16,6 +16,7 @@ timezone: Asia/Shanghai
 url: https://popring.cn
 root: /
 # permalink: :year/:month/:day/:title/
+# 旧文章使用 abbrlink，新文章通过 frontmatter 的 permalink 字段覆盖
 permalink: posts/:abbrlink/
 permalink_defaults:
 pretty_urls:

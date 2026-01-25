@@ -6,6 +6,7 @@ tags:
   - animation
   - transition
 abbrlink: 22aaf562
+permalink: posts/relearn-web-animation-css-animation-basic/
 date: 2026-01-02 02:20:51
 categories:
   - 前端
