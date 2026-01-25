@@ -204,6 +204,22 @@ animation: name duration timing-function delay iteration-count direction fill-mo
   - `both`: 两者都应用
 - `animation-play-state`: `running` 或 `paused`，可以用来暂停动画
 
+**tip 个人习惯**
+
+实际开发时，我**一般只对时长相关不用简写（如 animation-duration）**，其他常见的动画属性（如 name、timing-function、iteration-count 等）可以用简写，只有遇到需要部分单独覆盖属性，或对时长有特殊需求时，才会拆开放。
+
+比如下面这样，推荐时长写明确的单独属性，其他用简写组合没问题：
+
+```css
+.loading {
+  animation: spin linear infinite;
+  animation-duration: 1s;
+}
+```
+
+- 原因是**简写最容易混淆的其实是时长相关参数**（将 duration、delay 写反很常见），单独写能避免出错。
+- 其他属性合并写可读性、维护都较好，但如果场景复杂、需要频繁单独覆盖某一字段，也可以全部拆开写，视团队习惯选择即可。
+
 **fill-mode 踩坑**
 
 刚学的时候经常遇到的问题：动画播完元素就跳回原位了。这时候就需要设置 `animation-fill-mode: forwards`，让元素保持在动画结束时的状态。
