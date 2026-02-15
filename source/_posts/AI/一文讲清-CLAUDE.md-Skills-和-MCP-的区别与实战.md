@@ -50,30 +50,64 @@ CLAUDE.md 是放在项目中的一个 Markdown 文件。Agent 启动时会自动
 
 你可以把它理解成**新员工入职第一天拿到的那本手册**——公司做什么、团队用什么技术栈、代码怎么组织、有哪些潜规则。
 
-### 它能放什么
+### 写什么：WHY、WHAT、HOW 框架
+
+一个好的 CLAUDE.md 应该回答三个问题：
+
+- **WHY**（为什么）— 这个项目是做什么的？解决什么问题？
+- **WHAT**（是什么）— 技术栈、目录结构、关键模块
+- **HOW**（怎么做）— 用什么工具、怎么跑测试、怎么验证改动
 
 ```markdown
 # CLAUDE.md
 
-## 项目概览
-这是一个 Next.js 电商项目，使用 TypeScript + Tailwind CSS。
+## 项目概览（WHY）
+这是一个面向 B2C 的电商项目，支持多语言、多币种。
 
-## 目录结构
+## 技术栈与目录结构（WHAT）
+Next.js + TypeScript + Tailwind CSS
 src/
 ├── app/          # Next.js App Router 页面
 ├── components/   # 共享组件
 ├── lib/          # 工具函数
 └── services/     # API 调用层
 
-## 代码规范
-- 组件使用 PascalCase 命名
-- 使用 pnpm 作为包管理器
+## 开发规范（HOW）
+- 使用 pnpm 作为包管理器（不要用 npm）
 - 提交前运行 pnpm lint && pnpm test
-
-## 注意事项
 - 不要修改 .env 文件
 - API Key 绝对不能提交到代码里
 ```
+
+### 关键原则：少即是多
+
+这一点非常重要，很多人写 CLAUDE.md 会踩坑——**写太多了**。
+
+为什么？因为 LLM 是无状态的。CLAUDE.md 是每次对话都会自动加载的唯一文件，它会占用宝贵的上下文窗口。研究表明，前沿 LLM 大约能稳定遵循 150-200 条指令，而 Claude Code 的系统提示已经占了约 50 条。留给你的空间其实不多。
+
+**几个实操建议**：
+
+- **控制在 300 行以内**，越短越好。HumanLayer 团队的根目录 CLAUDE.md 只有不到 60 行
+- **只放全局通用的信息**。如果一条指令只在特定任务中有用（比如"如何设计数据库 schema"），就不要放在 CLAUDE.md 里，否则做无关任务时它反而会干扰 Agent
+- **不要把代码风格写进 CLAUDE.md**。格式化交给 ESLint、Prettier、Biome 这些工具，别让 Agent 浪费 token 在缩进和分号上
+- **指向而非复制**。引用具体文件路径（如 `src/lib/auth.ts:42`）比直接粘贴代码片段更好，因为代码会变，CLAUDE.md 里的副本很快就过时了
+
+### 渐进式信息披露
+
+既然 CLAUDE.md 要保持精简，那详细的文档放哪？答案是**单独的文档目录** + 在 CLAUDE.md 中列出索引：
+
+```markdown
+# CLAUDE.md
+
+## 详细文档
+在开始任务前，根据需要阅读以下文档：
+- `agent_docs/building_the_project.md` — 构建和部署流程
+- `agent_docs/running_tests.md` — 测试策略和命令
+- `agent_docs/service_architecture.md` — 服务架构说明
+- `agent_docs/database_schema.md` — 数据库设计
+```
+
+这样 CLAUDE.md 保持轻量，Agent 只在需要时才去读取具体文档。这个思路跟 Skills 的渐进式加载不谋而合。
 
 ### 层级机制：三层生效
 
@@ -442,9 +476,12 @@ Agent 启动，自动加载 CLAUDE.md
 ### 最佳实践
 
 **CLAUDE.md**：
-- 控制在 200 行以内，别写成文档站
-- 只放 Agent 真正需要的信息：项目背景、规范、结构、常用命令
+- 控制在 300 行以内，越短越好
+- 遵循 WHY/WHAT/HOW 框架，只放全局通用的信息
 - 善用层级机制：通用偏好放全局，项目规则放项目级
+- 代码风格交给 Linter，不要写进 CLAUDE.md
+- 用 `agent_docs/` 目录做渐进式信息披露，CLAUDE.md 只放索引
+- 不要用 `/init` 自动生成——这是你最高杠杆的配置文件，值得手写
 
 **Skills**：
 - 单一职责，一个 Skill 只做一件事
@@ -466,7 +503,9 @@ Agent 启动，自动加载 CLAUDE.md
 | 把工作流程写在 CLAUDE.md 里 | 流程用 Skills，CLAUDE.md 只放上下文 |
 | 一个 Skill 里塞了 10 个不同任务 | 拆分成多个 Skill，各自单一职责 |
 | 不写 MCP，直接让 Agent 跑 shell 命令操作外部服务 | 用 MCP 获得结构化的工具接口，更安全可控 |
-| CLAUDE.md 写了 500 行 | 精简核心信息，详细文档用链接指向 |
+| CLAUDE.md 写了 500 行 | 精简到 300 行以内，详细文档放 agent_docs/ |
+| 把代码风格规则写进 CLAUDE.md | 交给 ESLint/Prettier/Biome，别浪费 token |
+| 用 /init 自动生成 CLAUDE.md | 手写。这是最高杠杆的配置，值得花时间 |
 | 从不更新 CLAUDE.md | 项目演进时同步更新，过时的信息比没有信息更糟 |
 | Skill 的 description 写得太模糊 | 包含具体的触发词，如"Use when user asks to..." |
 | Skill 文件夹里放了 README.md | 所有文档放在 SKILL.md 或 references/ 中 |
@@ -493,3 +532,4 @@ Agent 启动，自动加载 CLAUDE.md
 - [Model Context Protocol 官方文档](https://modelcontextprotocol.io) — MCP 协议规范与实现
 - [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code) — Claude Code 使用指南
 - [Anthropic Skills 示例仓库](https://github.com/anthropics/skills) — 官方维护的 Skills 示例，可直接参考和复用
+- [Writing a Good CLAUDE.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md) — HumanLayer 团队关于如何写好 CLAUDE.md 的深度分析
