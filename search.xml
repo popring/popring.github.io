@@ -59,8 +59,27 @@
 <hr>
 <h2 id="CLAUDE-md：给-Agent-一本员工手册"><a href="#CLAUDE-md：给-Agent-一本员工手册" class="headerlink" title="CLAUDE.md：给 Agent 一本员工手册"></a>CLAUDE.md：给 Agent 一本员工手册</h2><h3 id="它是什么"><a href="#它是什么" class="headerlink" title="它是什么"></a>它是什么</h3><p>CLAUDE.md 是放在项目中的一个 Markdown 文件。Agent 启动时会自动读取它，作为理解你项目的”背景知识”。</p>
 <p>你可以把它理解成<strong>新员工入职第一天拿到的那本手册</strong>——公司做什么、团队用什么技术栈、代码怎么组织、有哪些潜规则。</p>
-<h3 id="它能放什么"><a href="#它能放什么" class="headerlink" title="它能放什么"></a>它能放什么</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># CLAUDE.md</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 项目概览</span></span><br><span class="line">这是一个 Next.js 电商项目，使用 TypeScript + Tailwind CSS。</span><br><span class="line"></span><br><span class="line"><span class="section">## 目录结构</span></span><br><span class="line">src/</span><br><span class="line">├── app/          # Next.js App Router 页面</span><br><span class="line">├── components/   # 共享组件</span><br><span class="line">├── lib/          # 工具函数</span><br><span class="line">└── services/     # API 调用层</span><br><span class="line"></span><br><span class="line"><span class="section">## 代码规范</span></span><br><span class="line"><span class="bullet">-</span> 组件使用 PascalCase 命名</span><br><span class="line"><span class="bullet">-</span> 使用 pnpm 作为包管理器</span><br><span class="line"><span class="bullet">-</span> 提交前运行 pnpm lint &amp;&amp; pnpm test</span><br><span class="line"></span><br><span class="line"><span class="section">## 注意事项</span></span><br><span class="line"><span class="bullet">-</span> 不要修改 .env 文件</span><br><span class="line"><span class="bullet">-</span> API Key 绝对不能提交到代码里</span><br></pre></td></tr></table></figure>
+<h3 id="写什么：WHY、WHAT、HOW-框架"><a href="#写什么：WHY、WHAT、HOW-框架" class="headerlink" title="写什么：WHY、WHAT、HOW 框架"></a>写什么：WHY、WHAT、HOW 框架</h3><p>一个好的 CLAUDE.md 应该回答三个问题：</p>
+<ul>
+<li><strong>WHY</strong>（为什么）— 这个项目是做什么的？解决什么问题？</li>
+<li><strong>WHAT</strong>（是什么）— 技术栈、目录结构、关键模块</li>
+<li><strong>HOW</strong>（怎么做）— 用什么工具、怎么跑测试、怎么验证改动</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># CLAUDE.md</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 项目概览（WHY）</span></span><br><span class="line">这是一个面向 B2C 的电商项目，支持多语言、多币种。</span><br><span class="line"></span><br><span class="line"><span class="section">## 技术栈与目录结构（WHAT）</span></span><br><span class="line">Next.js + TypeScript + Tailwind CSS</span><br><span class="line">src/</span><br><span class="line">├── app/          # Next.js App Router 页面</span><br><span class="line">├── components/   # 共享组件</span><br><span class="line">├── lib/          # 工具函数</span><br><span class="line">└── services/     # API 调用层</span><br><span class="line"></span><br><span class="line"><span class="section">## 开发规范（HOW）</span></span><br><span class="line"><span class="bullet">-</span> 使用 pnpm 作为包管理器（不要用 npm）</span><br><span class="line"><span class="bullet">-</span> 提交前运行 pnpm lint &amp;&amp; pnpm test</span><br><span class="line"><span class="bullet">-</span> 不要修改 .env 文件</span><br><span class="line"><span class="bullet">-</span> API Key 绝对不能提交到代码里</span><br></pre></td></tr></table></figure>
 
+<h3 id="关键原则：少即是多"><a href="#关键原则：少即是多" class="headerlink" title="关键原则：少即是多"></a>关键原则：少即是多</h3><p>这一点非常重要，很多人写 CLAUDE.md 会踩坑——<strong>写太多了</strong>。</p>
+<p>为什么？因为 LLM 是无状态的。CLAUDE.md 是每次对话都会自动加载的唯一文件，它会占用宝贵的上下文窗口。研究表明，前沿 LLM 大约能稳定遵循 150-200 条指令，而 Claude Code 的系统提示已经占了约 50 条。留给你的空间其实不多。</p>
+<p><strong>几个实操建议</strong>：</p>
+<ul>
+<li><strong>控制在 300 行以内</strong>，越短越好。HumanLayer 团队的根目录 CLAUDE.md 只有不到 60 行</li>
+<li><strong>只放全局通用的信息</strong>。如果一条指令只在特定任务中有用（比如”如何设计数据库 schema”），就不要放在 CLAUDE.md 里，否则做无关任务时它反而会干扰 Agent</li>
+<li><strong>不要把代码风格写进 CLAUDE.md</strong>。格式化交给 ESLint、Prettier、Biome 这些工具，别让 Agent 浪费 token 在缩进和分号上</li>
+<li><strong>指向而非复制</strong>。引用具体文件路径（如 <code>src/lib/auth.ts:42</code>）比直接粘贴代码片段更好，因为代码会变，CLAUDE.md 里的副本很快就过时了</li>
+</ul>
+<h3 id="渐进式信息披露"><a href="#渐进式信息披露" class="headerlink" title="渐进式信息披露"></a>渐进式信息披露</h3><p>既然 CLAUDE.md 要保持精简，那详细的文档放哪？答案是<strong>单独的文档目录</strong> + 在 CLAUDE.md 中列出索引：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># CLAUDE.md</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 详细文档</span></span><br><span class="line">在开始任务前，根据需要阅读以下文档：</span><br><span class="line"><span class="bullet">-</span> <span class="code">`agent_docs/building_the_project.md`</span> — 构建和部署流程</span><br><span class="line"><span class="bullet">-</span> <span class="code">`agent_docs/running_tests.md`</span> — 测试策略和命令</span><br><span class="line"><span class="bullet">-</span> <span class="code">`agent_docs/service_architecture.md`</span> — 服务架构说明</span><br><span class="line"><span class="bullet">-</span> <span class="code">`agent_docs/database_schema.md`</span> — 数据库设计</span><br></pre></td></tr></table></figure>
+
+<p>这样 CLAUDE.md 保持轻量，Agent 只在需要时才去读取具体文档。这个思路跟 Skills 的渐进式加载不谋而合。</p>
 <h3 id="层级机制：三层生效"><a href="#层级机制：三层生效" class="headerlink" title="层级机制：三层生效"></a>层级机制：三层生效</h3><p>CLAUDE.md 支持三个层级，从大到小依次覆盖：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~/.claude/CLAUDE.md          ← 全局：所有项目通用的偏好</span><br><span class="line">项目根目录/CLAUDE.md          ← 项目级：团队共享的规范（会提交到 Git）</span><br><span class="line">项目子目录/CLAUDE.md          ← 模块级：特定目录的规则</span><br></pre></td></tr></table></figure>
 
@@ -192,9 +211,12 @@
 <hr>
 <h2 id="写好配置的几条建议"><a href="#写好配置的几条建议" class="headerlink" title="写好配置的几条建议"></a>写好配置的几条建议</h2><h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><p><strong>CLAUDE.md</strong>：</p>
 <ul>
-<li>控制在 200 行以内，别写成文档站</li>
-<li>只放 Agent 真正需要的信息：项目背景、规范、结构、常用命令</li>
+<li>控制在 300 行以内，越短越好</li>
+<li>遵循 WHY&#x2F;WHAT&#x2F;HOW 框架，只放全局通用的信息</li>
 <li>善用层级机制：通用偏好放全局，项目规则放项目级</li>
+<li>代码风格交给 Linter，不要写进 CLAUDE.md</li>
+<li>用 <code>agent_docs/</code> 目录做渐进式信息披露，CLAUDE.md 只放索引</li>
+<li>不要用 <code>/init</code> 自动生成——这是你最高杠杆的配置文件，值得手写</li>
 </ul>
 <p><strong>Skills</strong>：</p>
 <ul>
@@ -232,7 +254,15 @@
 </tr>
 <tr>
 <td>CLAUDE.md 写了 500 行</td>
-<td>精简核心信息，详细文档用链接指向</td>
+<td>精简到 300 行以内，详细文档放 agent_docs&#x2F;</td>
+</tr>
+<tr>
+<td>把代码风格规则写进 CLAUDE.md</td>
+<td>交给 ESLint&#x2F;Prettier&#x2F;Biome，别浪费 token</td>
+</tr>
+<tr>
+<td>用 &#x2F;init 自动生成 CLAUDE.md</td>
+<td>手写。这是最高杠杆的配置，值得花时间</td>
 </tr>
 <tr>
 <td>从不更新 CLAUDE.md</td>
@@ -262,6 +292,7 @@
 <li><span class="exturl" data-url="aHR0cHM6Ly9tb2RlbGNvbnRleHRwcm90b2NvbC5pby8=">Model Context Protocol 官方文档<i class="fa fa-external-link-alt"></i></span> — MCP 协议规范与实现</li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmFudGhyb3BpYy5jb20vZW4vZG9jcy9jbGF1ZGUtY29kZQ==">Claude Code 官方文档<i class="fa fa-external-link-alt"></i></span> — Claude Code 使用指南</li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FudGhyb3BpY3Mvc2tpbGxz">Anthropic Skills 示例仓库<i class="fa fa-external-link-alt"></i></span> — 官方维护的 Skills 示例，可直接参考和复用</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuaHVtYW5sYXllci5kZXYvYmxvZy93cml0aW5nLWEtZ29vZC1jbGF1ZGUtbWQ=">Writing a Good CLAUDE.md<i class="fa fa-external-link-alt"></i></span> — HumanLayer 团队关于如何写好 CLAUDE.md 的深度分析</li>
 </ul>
 ]]></content>
       <categories>
@@ -2646,47 +2677,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Go 语言入门笔记</title>
-    <url>/posts/1d79f384/</url>
-    <content><![CDATA[<span id="more"></span>
-
-
-
-<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
-<p>天朝特殊环境，不得不配置为国内的源</p>
-</blockquote>
-<p>打开终端并执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
-
-
-
-<p>macOS 或 Linux</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
-
-
-
-<p>windows</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9nb3Byb3h5LmNuLw==">Goproxy 中国<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nZncuZ28xMDEub3JnL2FydGljbGUvMTAxLmh0bWw=">Go语言101<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nby5kZXYvcmVmL3NwZWMjSW50cm9kdWN0aW9u">Go官方语言规范 - 英文<i class="fa fa-external-link-alt"></i></span>：据说看完此文档，Go基本就入门了</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nb2J5ZXhhbXBsZS1jbi5naXRodWIuaW8v">Go by Example<i class="fa fa-external-link-alt"></i></span>：通过实践入门</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9nZWVrdHV0dS5jb20vcG9zdC9nZWUuaHRtbA==">7天用Go从零实现Web框架Gee教程<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>go</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Node.js 学习笔记</title>
     <url>/posts/20e30b1b/</url>
     <content><![CDATA[<p>早期在学习 <code>node</code> 时候，做的笔记。</p>
@@ -2923,6 +2913,47 @@
       <tags>
         <tag>学习笔记</tag>
         <tag>node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Go 语言入门笔记</title>
+    <url>/posts/1d79f384/</url>
+    <content><![CDATA[<span id="more"></span>
+
+
+
+<h2 id="首先配置仓库来源"><a href="#首先配置仓库来源" class="headerlink" title="首先配置仓库来源"></a>首先配置仓库来源</h2><blockquote>
+<p>天朝特殊环境，不得不配置为国内的源</p>
+</blockquote>
+<p>打开终端并执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+
+
+
+<p>macOS 或 Linux</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> GO111MODULE=on</span><br><span class="line"><span class="built_in">export</span> GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GO111MODULE=on&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export GOPROXY=https://goproxy.cn&quot;</span> &gt;&gt; ~/.profile</span><br><span class="line"><span class="built_in">source</span> ~/.profile</span><br></pre></td></tr></table></figure>
+
+
+
+<p>windows</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$env:GO111MODULE</span> = <span class="string">&quot;on&quot;</span></span><br><span class="line"><span class="variable">$env:GOPROXY</span> = <span class="string">&quot;https://goproxy.cn&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="相关Go资料"><a href="#相关Go资料" class="headerlink" title="相关Go资料"></a>相关Go资料</h2><p><span class="exturl" data-url="aHR0cHM6Ly9nb3Byb3h5LmNuLw==">Goproxy 中国<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nZncuZ28xMDEub3JnL2FydGljbGUvMTAxLmh0bWw=">Go语言101<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nby5kZXYvcmVmL3NwZWMjSW50cm9kdWN0aW9u">Go官方语言规范 - 英文<i class="fa fa-external-link-alt"></i></span>：据说看完此文档，Go基本就入门了</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nb2J5ZXhhbXBsZS1jbi5naXRodWIuaW8v">Go by Example<i class="fa fa-external-link-alt"></i></span>：通过实践入门</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9nZWVrdHV0dS5jb20vcG9zdC9nZWUuaHRtbA==">7天用Go从零实现Web框架Gee教程<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>go</tag>
       </tags>
   </entry>
   <entry>
@@ -4067,24 +4098,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PowerShell 常用命令速查</title>
-    <url>/posts/50e64c9a/</url>
-    <content><![CDATA[<p>开启管理员模式</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
-
-<p>删除文件夹</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>powershell</tag>
-        <tag>windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vim 常用命令速查</title>
     <url>/posts/bceeaa0d/</url>
     <content><![CDATA[<p><code>vim</code> 神器，依旧宝刀未老，用起来真香。</p>
@@ -4135,6 +4148,24 @@
       <tags>
         <tag>学习笔记</tag>
         <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PowerShell 常用命令速查</title>
+    <url>/posts/50e64c9a/</url>
+    <content><![CDATA[<p>开启管理员模式</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Start-Process</span> powershell <span class="literal">-verb</span> runAs</span><br></pre></td></tr></table></figure>
+
+<p>删除文件夹</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> <span class="literal">-r</span> <span class="operator">-f</span> [文件夹名称]</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>powershell</tag>
+        <tag>windows</tag>
       </tags>
   </entry>
   <entry>
@@ -6495,22 +6526,6 @@ JavaScript 高级程序设计</p>
       </tags>
   </entry>
   <entry>
-    <title>六顶思考帽：多角度思考问题</title>
-    <url>/posts/65c3010a/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlODUlQUQlRTklQTElQjYlRTYlODAlOUQlRTglODAlODMlRTUlQjglQkQ=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
-<p>六顶思考帽，是指使用六种不同颜色的帽子代表六种不同的思维模式。任何人都有能力使用以下六种基本思维模式：</p>
-<p>白色思考帽：白色是中立而客观的。戴上白色思考帽，人们思考的是关注客观的事实和数据。<br>绿色思考帽：绿色代表茵茵芳草，象征勃勃生机。绿色思考帽寓意创造力和想象力。具有创造性思考、头脑风暴、求异思维等功能。<br>黄色思考帽：黄色代表价值与肯定。戴上黄色思考帽，人们从正面考虑问题，表达乐观的、满怀希望的、建设性的观点。<br>黑色思考帽：戴上黑色思考帽，人们可以运用否定、怀疑、质疑的看法，合乎逻辑的进行批判，尽情发表负面的意见，找出逻辑上的错误。<br>红色思考帽：红色是情感的色彩。戴上红色思考帽，人们可以表现自己的情绪，人们还可以表达直觉、感受、预感等方面的看法。<br>蓝色思考帽：蓝色思考帽负责控制和调节思维过程。负责控制各种思考帽的使用顺序，规划和管理整个思考过程，并负责做出结论。</p>
-<p>不同场合、场景下使用不同的思考帽。</p>
-]]></content>
-      <categories>
-        <category>软素质</category>
-      </categories>
-      <tags>
-        <tag>思维</tag>
-        <tag>方法论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>职场效率提升工具汇总</title>
     <url>/posts/dfea4626/</url>
     <content><![CDATA[<p>这些工具都是我平时工作中经常用到的，可以帮助我们提高工作效率，提升工作质量。</p>
@@ -6611,6 +6626,22 @@ JavaScript 高级程序设计</p>
         <tag>职场</tag>
         <tag>工具</tag>
         <tag>效率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>六顶思考帽：多角度思考问题</title>
+    <url>/posts/65c3010a/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlODUlQUQlRTklQTElQjYlRTYlODAlOUQlRTglODAlODMlRTUlQjglQkQ=">百度百科<i class="fa fa-external-link-alt"></i></span></p>
+<p>六顶思考帽，是指使用六种不同颜色的帽子代表六种不同的思维模式。任何人都有能力使用以下六种基本思维模式：</p>
+<p>白色思考帽：白色是中立而客观的。戴上白色思考帽，人们思考的是关注客观的事实和数据。<br>绿色思考帽：绿色代表茵茵芳草，象征勃勃生机。绿色思考帽寓意创造力和想象力。具有创造性思考、头脑风暴、求异思维等功能。<br>黄色思考帽：黄色代表价值与肯定。戴上黄色思考帽，人们从正面考虑问题，表达乐观的、满怀希望的、建设性的观点。<br>黑色思考帽：戴上黑色思考帽，人们可以运用否定、怀疑、质疑的看法，合乎逻辑的进行批判，尽情发表负面的意见，找出逻辑上的错误。<br>红色思考帽：红色是情感的色彩。戴上红色思考帽，人们可以表现自己的情绪，人们还可以表达直觉、感受、预感等方面的看法。<br>蓝色思考帽：蓝色思考帽负责控制和调节思维过程。负责控制各种思考帽的使用顺序，规划和管理整个思考过程，并负责做出结论。</p>
+<p>不同场合、场景下使用不同的思考帽。</p>
+]]></content>
+      <categories>
+        <category>软素质</category>
+      </categories>
+      <tags>
+        <tag>思维</tag>
+        <tag>方法论</tag>
       </tags>
   </entry>
   <entry>
