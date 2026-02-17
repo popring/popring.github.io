@@ -6,23 +6,28 @@
 }
 
 :root {
-  --sh-class: #2d5e9d;
-  --sh-identifier: #354150;
-  --sh-sign: #8996a3;
-  --sh-string: #007f7a;
-  --sh-keyword: #e02518;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #6266d1;
-  --sh-property: #e25a1c;
-  --sh-entity: #e25a1c;
+  --sh-class: #8250df;
+  --sh-identifier: #24292f;
+  --sh-sign: #57606a;
+  --sh-string: #0a3069;
+  --sh-keyword: #cf222e;
+  --sh-comment: #6e7781;
+  --sh-jsxliterals: #0550ae;
+  --sh-property: #953800;
+  --sh-entity: #953800;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
+    --sh-class: #e5c07b;
+    --sh-identifier: #abb2bf;
+    --sh-sign: #818896;
+    --sh-string: #98c379;
+    --sh-keyword: #c678dd;
+    --sh-comment: #5c6370;
+    --sh-jsxliterals: #56b6c2;
+    --sh-property: #e06c75;
+    --sh-entity: #d19a66;
   }
   html {
     color-scheme: dark;
@@ -31,6 +36,7 @@
 
 html {
   min-width: 360px;
+  scroll-behavior: smooth;
 }
 
 .prose .anchor {
@@ -48,7 +54,7 @@ html {
 }
 
 .prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  @apply underline transition-all decoration-neutral-300 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em] hover:decoration-neutral-500 dark:hover:decoration-neutral-400;
 }
 
 .prose .anchor:after {
@@ -61,21 +67,22 @@ html {
 }
 
 .prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 py-3 px-4 text-[13px] leading-relaxed transition-colors;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 .prose code {
-  @apply px-1 py-0.5 rounded-lg;
+  @apply px-1.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[13px];
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 .prose pre code {
-  @apply p-0;
+  @apply p-0 bg-transparent;
   border: initial;
-  line-height: 1.5;
 }
 
 .prose code span {
-  @apply font-medium;
+  @apply font-normal;
 }
 
 .prose img {
@@ -84,23 +91,31 @@ html {
 }
 
 .prose p {
-  @apply my-4 text-neutral-800 dark:text-neutral-200;
+  @apply my-4 text-neutral-800 dark:text-neutral-200 leading-7;
+}
+
+.prose li {
+  @apply mb-1.5;
 }
 
 .prose h1 {
   @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+  scroll-margin-top: 3rem;
 }
 
 .prose h2 {
   @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  scroll-margin-top: 3rem;
 }
 
 .prose h3 {
   @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  scroll-margin-top: 3rem;
 }
 
 .prose h4 {
   @apply text-lg font-medium tracking-tight mt-6 mb-2;
+  scroll-margin-top: 3rem;
 }
 
 .prose strong {
@@ -108,11 +123,11 @@ html {
 }
 
 .prose ul {
-  @apply list-disc pl-6;
+  @apply list-disc pl-6 my-3;
 }
 
 .prose ol {
-  @apply list-decimal pl-6;
+  @apply list-decimal pl-6 my-3;
 }
 
 .prose > :first-child {
@@ -147,4 +162,75 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+/* Page entrance animations */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeSlideUp 0.5s ease-out forwards;
+}
+
+.animate-in-delay-1,
+.animate-in-delay-2,
+.animate-in-delay-3 {
+  opacity: 0;
+}
+
+.animate-in-delay-1 {
+  animation: fadeSlideUp 0.5s ease-out 0.1s forwards;
+}
+
+.animate-in-delay-2 {
+  animation: fadeSlideUp 0.5s ease-out 0.2s forwards;
+}
+
+.animate-in-delay-3 {
+  animation: fadeSlideUp 0.5s ease-out 0.3s forwards;
+}
+
+/* Anchor target highlight */
+@keyframes targetHighlight {
+  from {
+    background-color: rgba(71, 163, 243, 0.15);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+.prose h1:target,
+.prose h2:target,
+.prose h3:target,
+.prose h4:target {
+  animation: targetHighlight 1.5s ease-out;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-in,
+  .animate-in-delay-1,
+  .animate-in-delay-2,
+  .animate-in-delay-3 {
+    animation: none;
+    opacity: 1;
+  }
+  .prose h1:target,
+  .prose h2:target,
+  .prose h3:target,
+  .prose h4:target {
+    animation: none;
+  }
 }

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React, { ComponentProps } from 'react'
+import { CopyButton } from './copy-button'
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   const headers = data.headers.map((header, index) => (
@@ -53,15 +54,28 @@ function Code({ children, ...props }: { children: string }) {
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
-function slugify(str: string) {
+function Pre({ children, ...props }: { children: React.ReactElement<{ children: string }> }) {
+  const codeString = children?.props?.children || ''
+  return (
+    <div className="relative group">
+      <CopyButton text={codeString} />
+      <pre {...props}>
+        {children}
+      </pre>
+    </div>
+  )
+}
+
+export function slugify(str: string) {
   return str
     .toString()
     .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/&/g, '-and-') // Replace & with 'and'
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/&/g, '-and-')
+    .replace(/[^\p{L}\p{N}\-]+/gu, '') // Keep all Unicode letters/numbers and hyphens
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+|-+$/g, '')
 }
 
 function createHeading(level: number) {
@@ -96,6 +110,7 @@ const components = {
   Image: RoundedImage,
   a: CustomLink,
   code: Code,
+  pre: Pre,
   Table,
 }
 

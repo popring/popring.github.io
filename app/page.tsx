@@ -1,21 +1,27 @@
 import { BlogPosts } from '@/components/posts'
+import { AnimateIn } from '@/components/animate-in'
 
 export default function Page() {
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        My Portfolio
-      </h1>
-      <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
-      </p>
-      <div className="my-8">
-        <BlogPosts />
-      </div>
+      <AnimateIn>
+        <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
+          popring
+        </h1>
+      </AnimateIn>
+      <AnimateIn delay={1}>
+        <p className="mb-4">
+          {`前端开发者，关注 Web 技术与开发体验。喜欢探索新工具、记录学习过程、分享实践经验。`}
+        </p>
+      </AnimateIn>
+      <AnimateIn delay={2}>
+        <p className="mb-4 text-neutral-600 dark:text-neutral-400">
+          探索、记录、分享
+        </p>
+      </AnimateIn>
+      <AnimateIn delay={3} className="my-8">
+        <BlogPosts limit={5} />
+      </AnimateIn>
     </section>
   )
 }
