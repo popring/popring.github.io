@@ -3,7 +3,7 @@ import { getAllTags, getPostsByTag, formatDate } from '@/app/blog/utils'
 
 export function generateStaticParams() {
   return getAllTags().map(({ tag }) => ({
-    tag: encodeURIComponent(tag),
+    tag,
   }))
 }
 

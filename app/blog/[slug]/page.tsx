@@ -5,6 +5,7 @@ import { formatDate, getBlogPosts } from '@/app/blog/utils';
 import { baseUrl } from '@/app/sitemap';
 import { AnimateIn } from '@/components/animate-in';
 import { GiscusComments } from '@/components/giscus';
+import { TableOfContents } from '@/components/toc';
 
 function getHeadings(content: string) {
   const headingRegex = /^(#{2,3})\s+(.+)$/gm;
@@ -116,23 +117,7 @@ export default async function Blog({ params }: PageProps) {
           const headings = getHeadings(post.content);
           if (headings.length === 0) return null;
           return (
-            <aside className='hidden xl:block absolute -left-48 top-0 w-40 h-full'>
-              <nav className='sticky top-24 text-xs max-h-[calc(100vh-8rem)] overflow-y-auto'>
-                <p className='text-neutral-400 dark:text-neutral-500 mb-2 font-medium'>目录</p>
-                <ul className='space-y-1.5'>
-                  {headings.map((h) => (
-                    <li key={h.slug} className={h.level === 3 ? 'ml-3' : ''}>
-                      <a
-                        href={`#${h.slug}`}
-                        className='text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors leading-snug block'
-                      >
-                        {h.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </aside>
+            <TableOfContents headings={headings} />
           );
         })()}
         <AnimateIn delay={2}>

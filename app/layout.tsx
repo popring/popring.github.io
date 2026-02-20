@@ -46,13 +46,21 @@ export default function RootLayout({
   return (
     <html
       lang='zh-CN'
+      suppressHydrationWarning
       className={cx(
         'text-black bg-white dark:text-white dark:bg-black',
         GeistSans.variable,
         GeistMono.variable
       )}
     >
-      <body className='antialiased max-w-2xl mx-4 mt-8 lg:mx-auto'>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.classList.add('dark')}catch(e){}})()`,
+          }}
+        />
+      </head>
+      <body className='antialiased max-w-2xl mx-auto px-4 mt-8'>
         <main className='flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0'>
           <Navbar />
           {children}

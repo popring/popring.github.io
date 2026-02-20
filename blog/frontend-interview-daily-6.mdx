@@ -1,0 +1,224 @@
+---
+title: '前端面试刷题日记（六）'
+publishedAt: '2020-06-30'
+summary: 'setState useEffect ***'
+tags:
+  - 面试题
+  - react
+category: '面试'
+---
+
+1. setState 
+2. useEffect
+
+***
+
+
+### React this.setState()
+
+#### 1. 编程题练手
+
+思考点击按钮后， `count` 的值为多少，`countB` 的值为多少？
+
+```jsx
+class Counter extends React.Component {
+  state = {
+    count: 0,
+    countB: 0,
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.count}
+        <button onClick={() => this.clickBtn()}>add</button>
+        {this.state.countB}
+      </div>
+    )
+  }
+
+  clickBtn() {
+    this.setState({
+      count: this.state.count + 1
+    })
+    this.setState({
+      count: this.state.count + 1
+    })
+    this.setState({
+      countB: this.state.countB + 1
+    })
+  }
+}
+
+ReactDOM.render(<Counter />, document.querySelector("#root"));
+```
+
+
+
+<details> 
+  <summary>点击查看结果</summary> 
+  <pre>
+    点击按钮执行完毕后，count: 1, countB: 1
+	</pre> 
+</details>
+
+
+
+#### `setState` 总结 
+
+1. **`setState` 只在合成事件和钩子函数中是“异步”的，在原生事件和 `setTimeout` 中都是同步的。**
+2. **`setState`的“异步”并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形式了所谓的“异步”，当然可以通过第二个参数 setState(partialState, callback) 中的callback拿到更新后的结果。**
+3. **`setState` 的批量更新优化也是建立在“异步”（合成事件、钩子函数）之上的，在原生事件和setTimeout 中不会批量更新，在“异步”中如果对同一个值进行多次 `setState` ， `setState` 的批量更新策略会对其进行覆盖，取最后一次的执行，如果是同时 `setState` 多个不同的值，在更新时会对其进行合并批量更新。**
+
+总结来自[掘金虹晨](https://juejin.im/post/5b45c57c51882519790c7441#heading-7)
+
+
+
+#### **2. 进阶编程题**
+
+点击 `add` 按钮后，`this.state.count` 值会在页面显示为多少？
+
+```jsx
+import React from 'react';
+
+class Counter extends React.Component {
+  state = {
+    count: 0,
+  };
+
+  render() {
+    return (
+      <div>
+        {this.state.count}
+        <button onClick={() => this.clickBtn()}>add</button>
+      </div>
+    );
+  }
+
+  clickBtn() {
+    this.setState({
+      count: this.state.count + 1,
+    });
+
+    setTimeout(() => {
+      this.setState({
+        count: this.state.count + 2,
+      });
+      this.setState({
+        count: this.state.count + 2,
+      });
+    }, 0);
+
+    Promise.resolve(() => {
+      this.setState({
+        count: this.state.count + 3,
+      });
+    }).then((fun) => {
+      fun();
+    });
+
+    new Promise(() => {
+      this.setState({
+        count: this.state.count + 4,
+      });
+    });
+  }
+}
+
+export default Counter;
+```
+
+<details> 
+  <summary>点击查看结果</summary> 
+  <pre>
+    点击按钮执行完毕后，count: 11
+	</pre> 
+</details>
+
+根据上述总结，分析代码
+
+- 18 行 和 39行 的 `setState`  同处于一个 react 事件中（即`count+1 和 count+4`），又因为两个设置的属性相同，所以会被合并，只保留最后一个，`count + 4`
+- 22 行的 `setTimeout` 执行 `setState` 时为同步，且不会合并，会执行两次，并 render 两次， `(count + 2) *2` （注：实际运行时，根据[浏览器事件循环机制](https://popring.github.io/2020/06/24/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B/%E5%A4%87%E6%88%98%E6%A0%A1%E6%8B%9B%E7%AC%AC%E4%B8%80%E5%A4%A9/#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8CNode-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E5%8C%BA%E5%88%AB)，会在最后执行，）
+- 31 行执行 `Promise.resolve().then` 的回调中，所以也同样不会合并， `count + 3` 
+- 将以上 `count` 值相加，`count: 11`
+
+
+
+#### Hooks 中的 state
+
+在两秒内点击按钮五次，会输出什么，最后 `count` 的值为多少？
+
+```jsx
+import React, { useState } from 'react';
+
+const TestUse = () => {
+  const [count, setCount] = useState(0);
+  const increment = () => {
+    console.log('outer');
+    setTimeout(() => {
+      console.log('inner');
+      setCount(count + 1);
+    }, 2000);
+  };
+  return (
+    <div>
+      {count}
+      <button onClick={increment}>+1</button>
+    </div>
+  );
+};
+
+export default TestUse;
+
+```
+
+<details> 
+  <summary>点击查看结果</summary> 
+  <br />
+  <img src="https://raw.githubusercontent.com/popring/assets-repo/master/img/20200702200405.png" />
+</details>
+
+分析
+
+- 两秒内点击五次按钮，`increment` 函数会执行五次
+- 输出五次 `outer` 和  `inner`
+- 而这里的 `setTimeout` 读取到的 `count` 是通过闭包获取的，所以这里一直是获取的是初始值0，虽然加了五次，却每次都是 `0 +1`
+- 在前几个题 `class` 声明的组件中 `this.setState` 为什么会正常？每次获取 `count` 值是使用 `this.state.count` 获取到最新值。
+
+### useEffect
+
+这段代码如何解释？
+
+```jsx
+useEffect(function fn1 {
+	console.log(1);
+  return function fn2() {
+    console.log(2);
+  };
+}, []); 
+```
+
+[react 官方文档](https://zh-hans.reactjs.org/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects)解释道
+
+![image-20200701114715247](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200701114722.png)
+
+由此可得出，此段代码只会在挂在时输出1，卸载时输出2。
+
+
+
+
+
+
+### 参考
+
+
+
+setState相关
+
+https://zh-hans.reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
+
+https://juejin.im/post/5b45c57c51882519790c7441#heading-7
+
+https://segmentfault.com/a/1190000014498196
+
+https://mp.weixin.qq.com/s?__biz=MzI1NDU3NzM5Mg==&mid=2247485533&idx=1&sn=953a8df6f1b99084a28b7429c00464e7&chksm=e9c257c2deb5ded48a8cd2993ffb0a37b5bc57189f9dbaae279e6ae018af2026f961b43abdc6&mpshare=1&scene=23&srcid=&sharer_sharetime=1593651377344&sharer_shareid=e87930c4e43df1f0b0e2a484044a0101#rd

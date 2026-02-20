@@ -23,12 +23,19 @@ export default function Footer() {
         <li>
           <a
             className="group flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
             href="/rss"
           >
             <ArrowIcon />
             <p className="ml-2 h-7">rss</p>
+          </a>
+        </li>
+        <li>
+          <a
+            className="group flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            href="/links"
+          >
+            <ArrowIcon />
+            <p className="ml-2 h-7">友链</p>
           </a>
         </li>
         <li>
@@ -55,7 +62,15 @@ export default function Footer() {
         </li>
       </ul>
       <p className="mt-8 text-neutral-600 dark:text-neutral-300">
-        © {new Date().getFullYear()} MIT Licensed
+        © {new Date().getFullYear()}{' '}
+        <a
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 hover:text-neutral-800 dark:hover:text-neutral-100 transition-colors"
+        >
+          CC BY-NC-SA 4.0
+        </a>
       </p>
     </footer>
   )
