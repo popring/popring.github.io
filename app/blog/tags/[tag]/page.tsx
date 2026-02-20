@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { getAllTags, getPostsByTag, formatDate } from '@/app/blog/utils'
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return getAllTags().map(({ tag }) => ({
     tag: encodeURIComponent(tag),
   }))

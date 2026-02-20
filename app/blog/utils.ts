@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import matter from 'gray-matter'
 
 type Metadata = {
   title: string
@@ -12,42 +13,8 @@ type Metadata = {
 }
 
 function parseFrontmatter(fileContent: string) {
-  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-  const match = frontmatterRegex.exec(fileContent)
-  const frontMatterBlock = match![1]
-  const content = fileContent.replace(frontmatterRegex, '').trim()
-  const frontMatterLines = frontMatterBlock.trim().split('\n')
-  const metadata: Partial<Metadata> = {}
-  let currentKey = ''
-
-  frontMatterLines.forEach((line) => {
-    // Handle YAML array items (e.g., "  - tag")
-    const arrayItemMatch = line.match(/^\s+-\s+(.+)/)
-    if (arrayItemMatch && currentKey) {
-      const arr = metadata[currentKey as keyof Metadata]
-      if (Array.isArray(arr)) {
-        arr.push(arrayItemMatch[1].trim())
-      }
-      return
-    }
-
-    const [key, ...valueArr] = line.split(': ')
-    const trimmedKey = key.trim()
-    let value = valueArr.join(': ').trim()
-
-    // Handle "tags:" with no inline value (YAML array follows)
-    if (trimmedKey === 'tags' && !value) {
-      metadata.tags = []
-      currentKey = 'tags'
-      return
-    }
-
-    currentKey = ''
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[trimmedKey as keyof Metadata] = value as never
-  })
-
-  return { metadata: metadata as Metadata, content }
+  const { data, content } = matter(fileContent)
+  return { metadata: data as Metadata, content }
 }
 
 function getMDXFiles(dir: string) {
