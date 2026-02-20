@@ -116,9 +116,7 @@ export default async function Blog({ params }: PageProps) {
         {(() => {
           const headings = getHeadings(post.content);
           if (headings.length === 0) return null;
-          return (
-            <TableOfContents headings={headings} />
-          );
+          return <TableOfContents headings={headings} />;
         })()}
         <AnimateIn delay={2}>
           <article className='prose'>
