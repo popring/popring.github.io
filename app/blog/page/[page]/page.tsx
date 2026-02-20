@@ -1,13 +1,31 @@
 import Link from 'next/link'
 import { BlogPosts } from '@/components/posts'
 import { AnimateIn } from '@/components/animate-in'
+import { getBlogPosts } from '@/app/blog/utils'
+
+const PAGE_SIZE = 10
+
+export function generateStaticParams() {
+  const total = getBlogPosts().length
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
+  return Array.from({ length: totalPages }, (_, i) => ({
+    page: String(i + 1),
+  }))
+}
 
 export const metadata = {
   title: 'Blog',
   description: '探索、记录、分享',
 }
 
-export default function Page() {
+type PageProps = {
+  params: Promise<{ page: string }>
+}
+
+export default async function Page({ params }: PageProps) {
+  const { page } = await params
+  const pageNum = parseInt(page, 10)
+
   return (
     <section>
       <AnimateIn>
@@ -28,7 +46,7 @@ export default function Page() {
         </div>
       </AnimateIn>
       <AnimateIn delay={1}>
-        <BlogPosts page={1} />
+        <BlogPosts page={pageNum} pageSize={PAGE_SIZE} />
       </AnimateIn>
     </section>
   )
