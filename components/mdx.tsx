@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React, { ComponentProps } from 'react'
 import { CopyButton } from './copy-button'
+import remarkGfm from 'remark-gfm'
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   const headers = data.headers.map((header, index) => (
@@ -121,6 +122,7 @@ export function CustomMDX(props: ComponentProps<typeof MDXRemote>) {
       options={{
         mdxOptions: {
           format: 'md',
+          remarkPlugins: [remarkGfm],
         },
       }}
       components={{ ...components, ...(props.components || {}) }}
