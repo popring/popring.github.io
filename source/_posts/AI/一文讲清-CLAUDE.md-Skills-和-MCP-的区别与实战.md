@@ -1,56 +1,67 @@
 ---
-title: 一文讲清 CLAUDE.md、Skills 和 MCP 的区别与实战
+title: 一文讲清 CLAUDE.md、Skills、MCP、Hooks 的实战用法
 tags:
   - AI
   - Claude
   - Agent
   - MCP
 categories: AI
-abbrlink: claude-md-skills-mcp-guide
+abbrlink: claude-md-skills-mcp-hooks-guide
 date: 2026-02-15 20:00:00
 ---
 
 ## 背景
 
-最近用 Claude Code 写了不少项目，发现很多人（包括早期的我）都搞不清楚：CLAUDE.md、Skills、MCP 这几个东西到底是什么关系？什么时候用哪个？怎么把它们组合起来让 Agent 真正高效地工作？
+最近用 Claude Code 写了不少项目，发现很多人（包括早期的我）都搞不清楚：CLAUDE.md、Skills、MCP、Hooks 这几个东西到底是什么关系？什么时候用哪个？怎么把它们组合起来让 Agent 真正高效地工作？
 
 这篇文章用最通俗的方式讲清楚它们的区别、使用场景，以及如何用它们编排一个完整的 Agent 工作流。
 
 <!-- more -->
 
-## 先说结论：一个比喻搞懂全部
+## 先说结论：四件套各司其职
 
 想象你招了一个超级聪明的新员工。他学什么都快，但刚入职，对你的公司一无所知。
 
-你需要给他三样东西：
+你需要给他四样东西：
 
 - **员工手册**（CLAUDE.md）— 告诉他公司做什么、团队规范、项目结构
 - **标准操作流程 SOP**（Skills）— 遇到特定任务该怎么一步步执行
-- **工具箱接口**（MCP）— 让他能操作外部工具，比如数据库、Slack、Figma
+- **工具箱接口**（MCP）— 让他能操作外部工具，比如数据库、Slack、API
+- **自动化脚本**（Hooks）— 在特定事件自动执行固定流程
 
-三者的定位完全不同：
+四者的定位完全不同：
 
-| | CLAUDE.md | Skills | MCP |
-|---|---|---|---|
-| 类比 | 员工手册 | SOP 流程 | 工具箱接口 |
-| 解决什么问题 | "你是谁、项目是什么" | "遇到 X 该怎么做" | "能用什么工具" |
-| 表现形式 | Markdown 文件 | Markdown 文件 | Server 服务 |
-| 加载方式 | 自动加载 | 按需触发 | 按需连接 |
-| 本质 | 静态上下文 | 可复用的流程 | 可执行的能力 |
+| | CLAUDE.md | Skills | MCP | Hooks |
+|---|---|---|---|---|
+| 类比 | 员工手册 | SOP 流程 | 工具箱接口 | 流水线钩子 |
+| 解决什么问题 | "这是什么项目" | "遇到X怎么做" | "能用什么工具" | "自动执行任务" |
+| 表现形式 | Markdown 文件 | Markdown 文件 | Server 服务 | Shell 脚本 |
+| 加载方式 | 自动加载 | 按需触发 | 按需连接 | 事件触发 |
+| 执行方式 | LLM推理 | LLM推理 | LLM推理 | 确定性脚本 |
+| 本质 | 静态上下文 | 可复用的流程 | 可执行的能力 | 自动化钩子 |
+
+**核心区别**：
+- CLAUDE.md + Skills = **知识层**（告诉Agent怎么思考）
+- MCP + Hooks = **能力层**（让Agent能动手）
 
 下面逐个展开。
 
 ---
 
-## CLAUDE.md：给 Agent 一本员工手册
+## 一、CLAUDE.md：项目的自我介绍
 
-### 它是什么
+### 1.1 它是什么
 
 CLAUDE.md 是放在项目中的一个 Markdown 文件。Agent 启动时会自动读取它，作为理解你项目的"背景知识"。
 
 你可以把它理解成**新员工入职第一天拿到的那本手册**——公司做什么、团队用什么技术栈、代码怎么组织、有哪些潜规则。
 
-### 写什么：WHY、WHAT、HOW 框架
+**关键特点**：
+- 自动加载，每次对话都生效
+- 占用上下文窗口，所以要精简
+- 适合放"始终需要知道"的信息
+
+### 1.2 怎么写：WHY、WHAT、HOW 框架
 
 一个好的 CLAUDE.md 应该回答三个问题：
 
@@ -79,20 +90,21 @@ src/
 - API Key 绝对不能提交到代码里
 ```
 
-### 关键原则：少即是多
+### 1.3 关键原则：少即是多
 
 这一点非常重要，很多人写 CLAUDE.md 会踩坑——**写太多了**。
 
-为什么？因为 LLM 是无状态的。CLAUDE.md 是每次对话都会自动加载的唯一文件，它会占用宝贵的上下文窗口。研究表明，前沿 LLM 大约能稳定遵循 150-200 条指令，而 Claude Code 的系统提示已经占了约 50 条。留给你的空间其实不多。
+为什么？因为 CLAUDE.md 是每次对话都会自动加载的，它会占用宝贵的上下文窗口。研究表明，前沿 LLM 大约能稳定遵循 150-200 条指令，而 Claude Code 的系统提示已经占了约 50 条。留给你的空间其实不多。
 
 **几个实操建议**：
 
-- **控制在 300 行以内**，越短越好。HumanLayer 团队的根目录 CLAUDE.md 只有不到 60 行
-- **只放全局通用的信息**。如果一条指令只在特定任务中有用（比如"如何设计数据库 schema"），就不要放在 CLAUDE.md 里，否则做无关任务时它反而会干扰 Agent
+- **控制在 300-500 行以内**，越短越好。HumanLayer 团队的根目录 CLAUDE.md 只有不到 60 行
+- **只放全局通用的信息**。如果一条指令只在特定任务中有用（比如"如何设计数据库 schema"），就不要放在 CLAUDE.md 里，而应该放到 Skills 中按需加载
 - **不要把代码风格写进 CLAUDE.md**。格式化交给 ESLint、Prettier、Biome 这些工具，别让 Agent 浪费 token 在缩进和分号上
 - **指向而非复制**。引用具体文件路径（如 `src/lib/auth.ts:42`）比直接粘贴代码片段更好，因为代码会变，CLAUDE.md 里的副本很快就过时了
+- **不要把工作流写进 CLAUDE.md**。"怎么做代码审查"、"怎么部署"这类流程应该用 Skills，不是 CLAUDE.md
 
-### 渐进式信息披露
+### 1.4 渐进式信息披露
 
 既然 CLAUDE.md 要保持精简，那详细的文档放哪？答案是**单独的文档目录** + 在 CLAUDE.md 中列出索引：
 
@@ -101,15 +113,15 @@ src/
 
 ## 详细文档
 在开始任务前，根据需要阅读以下文档：
-- `agent_docs/building_the_project.md` — 构建和部署流程
-- `agent_docs/running_tests.md` — 测试策略和命令
-- `agent_docs/service_architecture.md` — 服务架构说明
-- `agent_docs/database_schema.md` — 数据库设计
+- `docs/api-guide.md` — API 规范和最佳实践
+- `docs/testing.md` — 测试策略和命令
+- `docs/deployment.md` — 部署流程说明
+- `docs/architecture.md` — 服务架构设计
 ```
 
 这样 CLAUDE.md 保持轻量，Agent 只在需要时才去读取具体文档。这个思路跟 Skills 的渐进式加载不谋而合。
 
-### 层级机制：三层生效
+### 1.5 层级机制：三层生效
 
 CLAUDE.md 支持三个层级，从大到小依次覆盖：
 
@@ -121,7 +133,26 @@ CLAUDE.md 支持三个层级，从大到小依次覆盖：
 
 比如你可以在全局配置里写"我偏好 TypeScript"，在项目级写"用 pnpm 不要用 npm"，在 `src/components/` 下写"组件必须导出 Props 类型"。
 
-### 核心定位
+**加载规则**：
+- 所有层级的 CLAUDE.md 都会被加载到上下文中
+- 当指令冲突时，Claude 会判断使用更具体的指令
+- 更靠近工作目录的 CLAUDE.md 优先级更高
+
+### 1.6 常见误区
+
+❌ **误区1：把工作流写在 CLAUDE.md**
+正确做法：工作流用 Skills，CLAUDE.md 只放背景知识
+
+❌ **误区2：把API文档全粘进来**
+正确做法：放到单独文档，CLAUDE.md 只放索引
+
+❌ **误区3：CLAUDE.md 写了 1000 行**
+正确做法：精简到 500 行以内，详细内容放单独文档
+
+❌ **误区4：把代码风格规则写进 CLAUDE.md**
+正确做法：交给 ESLint/Prettier/Biome，别浪费 token
+
+### 1.7 核心定位
 
 CLAUDE.md 是**静态上下文**。它解决的是"Agent 理解你的项目"这个问题。
 
@@ -129,25 +160,49 @@ CLAUDE.md 是**静态上下文**。它解决的是"Agent 理解你的项目"这�
 
 ---
 
-## Skills：给 Agent 一套 SOP
+## 二、Skills：可复用的操作手册
 
-### 它是什么
+### 2.1 它是什么
 
 Skills 是可复用的工作流模板——告诉 Agent 遇到特定场景该怎么一步步做。
 
-如果 CLAUDE.md 是"员工手册"，那 Skills 就是**各种标准操作流程（SOP）**。比如"收到客户投诉怎么处理""新功能上线前要检查什么"。
+如果 CLAUDE.md 是"员工手册"，那 Skills 就是**各种标准操作流程（SOP）**。比如"怎么做代码审查""怎么部署上线""怎么调试问题"。
 
-### 跟 CLAUDE.md 的关键区别
+**关键特点**：
+- 按需加载，不用不占上下文
+- 可以手动触发（`/skill-name`）
+- 也可以让 Claude 自动判断何时使用
 
-| | CLAUDE.md | Skills |
+### 2.2 Skills vs CLAUDE.md：何时用哪个
+
+| 维度 | CLAUDE.md | Skills |
 |---|---|---|
-| 加载时机 | Agent 启动时自动加载 | 需要时才触发 |
+| 加载时机 | 自动，始终在 | 按需触发 |
 | 内容类型 | 背景知识、规范 | 操作步骤、流程 |
+| 适合放什么 | "这个项目用什么技术栈" | "怎么做 code review" |
 | 类比 | 随时翻阅的手册 | 遇到特定场景才翻的 SOP |
 
-CLAUDE.md 是"永远在线的背景知识"，Skills 是"按需触发的操作指南"。
+**判断标准**：
+- 如果 Claude 应该**始终知道** → CLAUDE.md
+- 如果 Claude **有时需要** → Skills
 
-### 文件结构
+**例子**：
+- "用 pnpm 不要用 npm" → CLAUDE.md（每次都要知道）
+- "怎么做 code review" → Skill（只在审查代码时需要）
+
+### 2.3 Skills 的两种类型
+
+**参考型 Skills**（知识库）
+- 提供参考信息：API 文档、设计规范、架构说明
+- Claude 自动判断何时需要
+- 例子：API 风格指南、错误处理模式
+
+**操作型 Skills**（工作流）
+- 可调用的流程：用 `/skill-name` 手动触发
+- 例子：`/deploy`、`/code-review`、`/generate-docs`
+- 适合有明确步骤的任务
+
+### 2.4 文件结构
 
 一个 Skill 本质上是一个**文件夹**，包含以下内容：
 
@@ -161,7 +216,11 @@ code-review/
 
 其中 `SKILL.md` 是核心，由 YAML 头部 + Markdown 正文组成。
 
-### 渐进式加载
+**Skill 存放位置**：
+- 项目级：`.claude/skills/`（团队共享）
+- 用户级：`~/.claude/skills/`（个人使用）
+
+### 2.5 渐进式加载：省 token 的秘密
 
 Skills 有一个精妙的设计——**渐进式加载**（Progressive Disclosure），分三层：
 
@@ -171,7 +230,9 @@ Skills 有一个精妙的设计——**渐进式加载**（Progressive Disclosur
 
 这个设计的好处是**省 token**。你可以装 50 个 Skills，但 Agent 只会加载当前真正需要的那几个。
 
-### 一个 Skill 长什么样
+### 2.6 怎么写一个 Skill
+
+一个完整的 Skill 示例：
 
 ```markdown
 ---
@@ -198,14 +259,50 @@ Cause: Working on main branch with no changes
 Solution: Switch to feature branch first
 ```
 
-注意 `description` 字段——它不只是描述，还包含**触发条件**（"Use when..."）。这是 Agent 判断是否加载这个 Skill 的关键依据。根据 Anthropic 官方指南：description 必须同时包含"做什么"和"什么时候用"两部分。
+**关键要点**：
 
-### 触发方式
+1. **description 必须包含触发条件**：
+   - ❌ "Helps with code review"（太模糊）
+   - ✅ "Use when user asks to 'review code' or 'check PR'"（具体的触发词）
 
-- **手动触发**：用户输入 `/code-review`，Agent 加载并执行对应 Skill
-- **自动识别**：Agent 根据 description 中的触发条件判断，自动加载
+2. **步骤要具体可执行**：
+   - ❌ "确保代码质量"（模糊）
+   - ✅ "检查命名、安全漏洞、性能问题"（具体）
 
-### 核心定位
+3. **考虑异常情况**：
+   - 加上 Troubleshooting 部分
+
+### 2.7 触发方式
+
+**手动触发**：
+```
+/code-review
+```
+用户明确调用，Agent 立即加载并执行
+
+**自动识别**：
+```
+请帮我审查一下代码
+```
+Agent 根据 description 中的触发条件（"review code"）自动加载对应 Skill
+
+### 2.8 省上下文技巧
+
+对于有副作用的操作型 Skill（如部署、提交代码），建议使用：
+
+```markdown
+---
+name: deploy
+description: Deploy to production
+disable-model-invocation: true
+---
+```
+
+`disable-model-invocation: true` 让这个 Skill 对 Claude 完全隐藏，直到你手动调用。这样：
+- 节省上下文（不加载 description）
+- 避免误触发（只有你主动调用才执行）
+
+### 2.9 核心定位
 
 Skills 是**可复用的流程知识**。写一次，反复用。
 
@@ -216,19 +313,31 @@ Skills 是**可复用的流程知识**。写一次，反复用。
 
 ---
 
-## MCP：给 Agent 一个工具箱接口
+## 三、MCP：打通外部世界
 
-### 它是什么
-
-MCP（Model Context Protocol）是一个标准化协议，让 Agent 能连接外部工具和数据源。
+### 3.1 为什么需要 MCP
 
 前面讲的 CLAUDE.md 和 Skills 都是"知识"——本质是 Markdown 文本，Agent 读了之后更聪明，但它还是只能"说"不能"做"。
 
-MCP 让 Agent 真正能**动手**。
+**没有 MCP 之前**：
+- Agent 只能操作本地文件
+- 想查数据库？手动复制粘贴
+- 想发 Slack 通知？自己写脚本
+- 想操作 GitHub PR？通过网页手动点
+
+**有了 MCP 之后**：
+- Agent 直接查询数据库
+- Agent 直接发 Slack 消息
+- Agent 直接操作 GitHub PR
+- 统一协议，一次配置，处处可用
+
+### 3.2 它是什么
+
+MCP（Model Context Protocol）是一个标准化协议，让 Agent 能连接外部工具和数据源。
 
 Anthropic 官方指南里有一个很好的比喻：**MCP 是专业厨房，Skills 是菜谱**。厨房里有各种工具、食材、设备（MCP 提供的能力），但光有厨房不够，你还需要菜谱告诉你怎么把这些东西组合成一道菜（Skills 定义的流程）。
 
-### 另一个比喻：USB-C
+### 3.3 USB-C 比喻：统一接口
 
 在 MCP 出现之前，每个 AI 工具要连接外部服务都得单独写适配器。假设有 N 个 Agent 和 M 个工具，就需要 N × M 种集成方式。
 
@@ -245,9 +354,9 @@ Agent C ──┘── GitHub                             └── Figma
 (6 种集成)                    (3 + 4 = 7 个接口，但可任意组合)
 ```
 
-### 配置示例
+### 3.4 配置示例
 
-在 Claude Code 中，通过 JSON 配置连接 MCP Server：
+在 Claude Code 中，通过 `settings.json` 配置连接 MCP Server：
 
 ```json
 {
@@ -269,69 +378,249 @@ Agent C ──┘── GitHub                             └── Figma
 ```
 
 配置之后，Agent 就能：
-- 通过 GitHub MCP 读取 PR、提交 Review Comments
-- 通过 Postgres MCP 查询数据库
-- 通过 Slack MCP 发送消息通知
+- 通过 GitHub MCP 读取 PR、提交 Review Comments、创建 Issue
+- 通过 Postgres MCP 查询数据库、分析数据
+- 通过 Slack MCP 发送消息通知团队
 
 你不需要写任何胶水代码。
 
-### 核心定位
+### 3.5 常用 MCP Servers
+
+| MCP Server | 功能 | 使用场景 |
+|-----------|------|---------|
+| **github** | PR操作、Issue管理、代码搜索 | 自动化代码审查、项目管理 |
+| **slack** | 发送消息、读取频道 | 团队通知、状态更新 |
+| **postgres** | 数据库查询 | 数据分析、生成报告 |
+| **filesystem** | 高级文件操作 | 批量文件处理 |
+| **puppeteer** | 浏览器自动化 | Web抓取、UI测试 |
+| **google-drive** | 文件上传下载 | 文档管理 |
+
+更多 MCP Servers：[modelcontextprotocol.io](https://modelcontextprotocol.io)
+
+### 3.6 MCP vs Skill：互补关系
+
+| 维度 | MCP | Skill |
+|------|-----|-------|
+| 它是什么 | 连接外部服务的协议 | 知识、工作流和参考材料 |
+| 提供 | 工具和数据访问 | 知识、工作流和参考材料 |
+| 示例 | Slack 集成、数据库查询 | 代码审查清单、部署工作流 |
+
+**它们解决不同的问题，可以很好地协同工作**：
+
+- **MCP** 给予 Claude 与外部系统交互的能力。没有 MCP，Claude 无法查询你的数据库或发布到 Slack。
+- **Skill** 给予 Claude 关于如何有效使用这些工具的知识。Skill 可能包括你团队的数据库架构和查询模式，或带有你团队消息格式规则的 `/post-to-slack` 工作流。
+
+**例子**：
+- MCP server 将 Claude 连接到你的数据库
+- Skill 教导 Claude 你的数据模型、常见查询模式以及用于不同任务的表
+
+### 3.7 注意事项
+
+✅ **按需接入**，不要一次连 20 个 Server（占用上下文）
+✅ **权限最小化**，只给 Agent 必要的访问权限
+✅ **优先使用官方或社区维护的 MCP Server**
+
+❌ 不要不用 MCP，直接让 Agent 跑 shell 命令操作外部服务（不安全、不可控）
+
+**检查连接状态**：
+```
+/mcp
+```
+这个命令可以查看：
+- 哪些 MCP Servers 已连接
+- 每个 Server 的 token 成本
+- 连接状态是否正常
+
+### 3.8 核心定位
 
 MCP 是**能力扩展层**。
 
-三者的关系可以这样理解：
-- CLAUDE.md 告诉 Agent **"你在哪"**（上下文）
+四者的关系可以这样理解：
+- CLAUDE.md 告诉 Agent **"这是什么项目"**（上下文）
 - Skills 告诉 Agent **"怎么做"**（流程）
-- MCP 让 Agent **"真的能做"**（能力）
+- MCP 让 Agent **"能动手"**（能力）
+- Hooks 让固定流程 **"自动执行"**（自动化）
 
 ---
 
-## 全景图：三者如何协作
+## 四、Hooks：后台的自动化管家
 
-把三者放在一起看：
+### 4.1 它是什么
+
+Hooks 是在特定事件触发时自动执行的脚本。
+
+前面讲的 CLAUDE.md、Skills、MCP 都需要 LLM 推理判断，而 Hooks 是**确定性脚本**——它们在特定事件发生时自动运行，不需要 Agent 思考。
+
+### 4.2 Hooks vs Agent：何时用哪个
+
+| 维度 | Agent（通过 Skills/MCP） | Hooks |
+|------|------------------------|-------|
+| 执行方式 | LLM 推理决策 | 确定性脚本 |
+| 何时运行 | 对话中，需要判断 | 事件触发，自动执行 |
+| 上下文成本 | 占用 token | 零（外部运行） |
+| 适合场景 | 需要理解和判断 | 固定流程，无需判断 |
+
+**判断标准**：
+- 如果需要**判断**（"这段代码有没有问题"）→ 让 Agent 做
+- 如果是**固定流程**（"每次编辑后格式化代码"）→ 用 Hooks
+
+### 4.3 典型使用场景
+
+**场景1：编辑后自动格式化**
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm lint-staged"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+每次 Agent 编辑或写入文件后，自动运行 `pnpm lint-staged` 格式化代码。
+
+**场景2：提交前自动测试**
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/validate-commit.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+在 Agent 执行 git commit 之前，先运行测试脚本验证。
+
+**场景3：关键文件修改通知**
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/notify-if-env-changed.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+如果修改了 `.env` 等关键文件，自动发送 Slack 通知。
+
+### 4.4 常见 Hook 事件
+
+| 事件 | 何时触发 | 使用场景 |
+|------|---------|---------|
+| `PreToolUse` | 工具执行前 | 验证、权限检查 |
+| `PostToolUse` | 工具执行后 | 格式化、测试、通知 |
+| `SessionStart` | 会话开始 | 环境初始化 |
+| `Compact` | 上下文压缩时 | 保存重要信息 |
+
+### 4.5 何时用 Hook 而不是让 Agent 做
+
+✅ **用 Hook**：
+- 代码格式化（ESLint、Prettier）
+- 运行测试
+- 发送通知
+- 记录日志
+- 环境检查
+
+❌ **不用 Hook**：
+- 需要根据代码内容判断下一步
+- 需要修复问题（需要理解代码）
+- 需要与用户交互
+
+**例子**：
+- ❌ "检查代码有没有 bug" → 让 Agent 做（需要理解代码）
+- ✅ "编辑后运行 ESLint" → 用 Hook（固定流程）
+
+### 4.6 核心定位
+
+Hooks 是**自动化层**。
+
+它们不占用上下文，不需要 LLM 推理，专注于确定性的自动化任务。
+
+---
+
+## 五、全景图：四者如何协作
+
+把四者放在一起看：
 
 ```
-┌──────────────────────────────────────────────┐
-│              Agent 执行层                     │
-│         (Claude Code / Cursor 等)            │
-├──────────────────────────────────────────────┤
-│                                              │
-│   ┌────────────┐    ┌─────────────────────┐  │
-│   │ CLAUDE.md  │    │      Skills         │  │
-│   │  (上下文)   │    │    (工作流程)        │  │
-│   │            │    │                     │  │
-│   │ • 项目背景  │    │ • /commit           │  │
-│   │ • 代码规范  │    │ • /code-review      │  │
-│   │ • 目录结构  │    │ • /debug            │  │
-│   │ • 注意事项  │    │ • /deploy           │  │
-│   └────────────┘    └─────────────────────┘  │
-│                                              │
-│   ┌──────────────────────────────────────┐   │
-│   │          MCP (工具能力)               │   │
-│   │                                      │   │
-│   │  GitHub │ Slack │ DB │ Figma │ ...   │   │
-│   └──────────────────────────────────────┘   │
-└──────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────┐
+│                Agent 执行层                          │
+│           (Claude Code / Cursor 等)                 │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│   ┌─────────────┐      ┌──────────────────────┐    │
+│   │ CLAUDE.md   │      │      Skills          │    │
+│   │  (背景知识)  │      │    (工作流程)         │    │
+│   │             │      │                      │    │
+│   │ • 项目概览   │      │ • /commit            │    │
+│   │ • 技术栈     │      │ • /code-review       │    │
+│   │ • 代码规范   │      │ • /debug             │    │
+│   │ • 目录结构   │      │ • /deploy            │    │
+│   └─────────────┘      └──────────────────────┘    │
+│                                                     │
+│   ┌───────────────────────────────────────────┐    │
+│   │          MCP (外部工具能力)                │    │
+│   │                                           │    │
+│   │  GitHub │ Slack │ DB │ Figma │ Drive │... │    │
+│   └───────────────────────────────────────────┘    │
+│                                                     │
+│   ┌───────────────────────────────────────────┐    │
+│   │          Hooks (自动化脚本)                │    │
+│   │                                           │    │
+│   │  格式化 │ 测试 │ 通知 │ 日志 │ 检查 │...   │    │
+│   └───────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────┘
 ```
 
 **数据流向**：
-1. Agent 启动 → 自动读取 CLAUDE.md → 理解项目上下文
-2. 用户下达任务 → 触发对应 Skill → Agent 按流程执行
-3. 执行过程中需要操作外部工具 → 通过 MCP 调用
+1. **会话开始** → 自动读取 CLAUDE.md → 理解项目上下文
+2. **用户下达任务** → 触发对应 Skill → Agent 按流程执行
+3. **执行过程中** → 需要操作外部工具 → 通过 MCP 调用
+4. **特定事件触发** → Hooks 自动执行 → 完成自动化任务
 
-三者各司其职，互不替代。
+**四者各司其职，互不替代**：
+- CLAUDE.md = 背景知识（这是什么项目）
+- Skills = 操作流程（怎么做）
+- MCP = 执行能力（能做什么）
+- Hooks = 自动化（固定流程自动执行）
 
 ---
 
-## 实战：编排一个完整的 Agent 工作流
+## 六、实战：四件套配合编排
 
-理论讲够了，来看一个真实场景。
+理论讲够了，来看三个真实场景，展示四件套如何配合使用。
 
-### 场景：自动化 PR 审查 + 团队通知
+### 场景1：自动化 PR 审查 + 团队通知
 
-需求很常见：每次提交 PR，希望 Agent 自动审查代码，发现问题直接在 PR 上留 comment，审查完在 Slack 通知团队。
+**需求**：每次提交 PR，Agent 自动审查代码，发现问题在 PR 上留 comment，审查完发 Slack 通知团队。
 
-### Step 1 — CLAUDE.md 提供项目上下文
+#### Step 1 — CLAUDE.md 提供项目上下文
 
 ```markdown
 # CLAUDE.md
@@ -350,12 +639,12 @@ MCP 是**能力扩展层**。
 
 这是 Agent 的"背景知识"——它知道这个项目关心什么。
 
-### Step 2 — Skill 定义审查流程
+#### Step 2 — Skill 定义审查流程
 
 ```markdown
 ---
 name: pr-review
-description: PR 自动审查流程
+description: PR 自动审查流程。Use when user asks to "review PR" or "check code changes".
 ---
 
 ## 流程
@@ -375,7 +664,7 @@ description: PR 自动审查流程
 
 这是 Agent 的"操作手册"——它知道一步步该做什么。
 
-### Step 3 — MCP 提供执行能力
+#### Step 3 — MCP 提供执行能力
 
 ```json
 {
@@ -394,7 +683,29 @@ description: PR 自动审查流程
 
 这是 Agent 的"工具箱"——它能操作 GitHub 和 Slack。
 
-### 编排后的完整流程
+#### Step 4 — Hooks 自动格式化
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm lint-staged"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+如果审查过程中 Agent 修复了代码，Hook 自动格式化。
+
+#### 编排后的完整流程
 
 ```
 PR 被创建
@@ -403,7 +714,7 @@ PR 被创建
 Agent 启动，自动加载 CLAUDE.md
   │  → 理解项目规范和审查重点
   ▼
-触发 pr-review Skill
+触发 pr-review Skill（手动 /pr-review 或自动识别）
   │  → 按流程逐步执行
   ▼
 通过 GitHub MCP 读取 PR diff
@@ -415,121 +726,304 @@ Agent 启动，自动加载 CLAUDE.md
 通过 GitHub MCP 提交 Review Comments
   │  → 在 PR 上留下具体的行级评论
   ▼
+（如果修复了代码）PostToolUse Hook 触发
+  │  → 自动运行 lint-staged 格式化
+  ▼
 通过 Slack MCP 发送通知
   │  → "@channel PR #123 审查完成，发现 2 个问题需要修复"
   ▼
 完成 ✅
 ```
 
-这就是三者配合的完整闭环：**CLAUDE.md 提供语境 → Skill 定义步骤 → MCP 执行动作**。
+这就是四者配合的完整闭环：**CLAUDE.md 提供语境 → Skill 定义步骤 → MCP 执行动作 → Hooks 自动化固定流程**。
+
+### 场景2：多文件重构项目
+
+**需求**：重构 auth 模块，涉及 10+ 文件，需要保证不破坏现有功能。
+
+**配置**：
+
+1. **CLAUDE.md** - 定义架构约束
+```markdown
+## 架构规范
+- Auth 逻辑统一在 `lib/auth/`
+- 不要改动 `config/auth.ts`（生产配置）
+- 所有改动必须有测试覆盖
+```
+
+2. **Skill** - 定义重构流程
+```markdown
+---
+name: refactor-auth
+description: 重构 auth 模块的标准流程
+---
+
+## 重构步骤
+1. 读取当前 auth 相关文件
+2. 生成重构计划
+3. 征求用户确认
+4. 逐文件重构
+5. 运行测试验证
+6. 生成变更文档
+```
+
+3. **Hooks** - 自动测试
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm test auth/"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+每次修改 auth 相关文件后，自动运行相关测试。
+
+### 场景3：定时数据分析报告
+
+**需求**：每天分析数据库日志，生成报告发送到 Slack。
+
+**配置**：
+
+1. **Skill** - 定义分析流程
+```markdown
+---
+name: daily-report
+description: 生成每日数据分析报告
+disable-model-invocation: true
+---
+
+## 分析步骤
+1. 连接 Postgres 读取昨日日志
+2. 分析关键指标：
+   - 活跃用户数
+   - 错误率
+   - API 响应时间
+3. 生成 Markdown 报告
+4. 发送到 Slack #data-reports 频道
+```
+
+2. **MCP** - 数据库和 Slack 连接
+```json
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres",
+               "postgresql://localhost:5432/prod"]
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"]
+    }
+  }
+}
+```
+
+3. **外部 Cron** - 定时触发
+```bash
+# crontab
+0 9 * * * claude code /daily-report
+```
+
+每天早上 9 点自动执行。
+
+**工作流**：
+```
+Cron 触发
+  ↓
+Claude Code 启动
+  ↓
+加载 daily-report Skill
+  ↓
+通过 Postgres MCP 查询数据
+  ↓
+分析生成报告
+  ↓
+通过 Slack MCP 发送
+  ↓
+完成 ✅
+```
 
 ---
 
-## 进阶：五种常见的 Agent 编排模式
+## 七、上下文成本管理
 
-根据 Anthropic 官方 Skills 指南，实际使用中有五种常见的编排模式。了解它们能帮你设计更好的 Agent 工作流。
+你添加的每个功能都会消耗 Claude 的一些上下文。了解这些成本有助于你构建高效的设置。
 
-### 模式 1：顺序工作流（Sequential Workflow）
+### 7.1 各功能的上下文消耗
 
-**适用场景**：步骤之间有严格的先后顺序和依赖关系。
+| 功能 | 何时加载 | 加载内容 | 上下文成本 |
+|------|---------|---------|-----------|
+| **CLAUDE.md** | 会话开始 | 完整内容 | 每个请求都占用 |
+| **Skills** | 会话开始 + 使用时 | 启动时加载描述，使用时加载完整内容 | 低（仅描述占用）* |
+| **MCP** | 会话开始 | 所有工具定义和架构 | 每个请求（但有工具搜索优化） |
+| **Hooks** | 触发时 | 无（外部运行） | 零 |
 
-上面的 PR Review 例子就属于这种模式——必须先读取 diff，才能审查，审查完才能通知。
+\* 使用 `disable-model-invocation: true` 的 Skills 在调用前成本为零。
 
-关键技巧：明确步骤顺序、定义步骤间的数据依赖、在每步加入验证、提供失败时的回滚指令。
-
-### 模式 2：多 MCP 协调（Multi-MCP Coordination）
-
-**适用场景**：一个工作流需要跨多个外部服务。
-
-比如"设计交付"流程：从 Figma 导出设计稿（Figma MCP）→ 上传到 Google Drive（Drive MCP）→ 在 Linear 创建开发任务（Linear MCP）→ 在 Slack 通知团队（Slack MCP）。
-
-关键技巧：清晰的阶段划分、MCP 之间的数据传递、每个阶段完成后再进入下一阶段。
-
-### 模式 3：迭代精炼（Iterative Refinement）
-
-**适用场景**：输出质量需要多轮迭代提升。
-
-比如"报告生成"：先拉取数据生成初稿 → 运行验证脚本检查质量 → 修复发现的问题 → 重新验证 → 直到达标。
-
-关键技巧：定义明确的质量标准、限制最大迭代次数（避免死循环）、每轮只修复已识别的问题。
-
-### 模式 4：上下文感知选择（Context-Aware Tool Selection）
-
-**适用场景**：同一个目标，根据不同上下文选择不同的执行路径。
-
-比如"文件存储"：大文件用云存储 MCP，协作文档用 Notion MCP，代码文件用 GitHub MCP，临时文件用本地存储。
-
-关键技巧：清晰的决策树、每个分支的执行逻辑、向用户解释为什么选择了某个路径。
-
-### 模式 5：领域专家（Domain-Specific Intelligence）
-
-**适用场景**：Skill 不仅编排工具，还嵌入了专业领域知识。
-
-比如"支付合规检查"：在处理交易前，先根据嵌入的合规规则检查制裁名单、验证管辖区、评估风险等级，通过后才调用支付 MCP 执行交易。
-
-关键技巧：把领域知识写进 Skill 或 references/、先检查再执行、完整的审计日志。
-
----
-
-## 写好配置的几条建议
-
-### 最佳实践
+### 7.2 省 Token 技巧
 
 **CLAUDE.md**：
-- 控制在 300 行以内，越短越好
-- 遵循 WHY/WHAT/HOW 框架，只放全局通用的信息
-- 善用层级机制：通用偏好放全局，项目规则放项目级
-- 代码风格交给 Linter，不要写进 CLAUDE.md
-- 用 `agent_docs/` 目录做渐进式信息披露，CLAUDE.md 只放索引
-- 不要用 `/init` 自动生成——这是你最高杠杆的配置文件，值得手写
+- ✅ 控制在 300-500 行以内
+- ✅ 只放全局通用信息
+- ✅ 详细文档放单独文件，CLAUDE.md 只放索引
+- ❌ 不要放工作流（用 Skills）
+- ❌ 不要放 API 文档（用 Skills）
 
 **Skills**：
-- 单一职责，一个 Skill 只做一件事
-- `description` 必须包含"做什么"和"什么时候用"，不要只写"Helps with projects"
-- 步骤要具体可执行，不要写"确保代码质量"这种模糊的话
-- 把详细文档放到 `references/` 目录，SKILL.md 保持在 5000 词以内
-- 考虑异常路径，比如"如果没有变更文件，直接跳过审查"
-- 用 `name: kebab-case` 命名，不要用空格或大写
+- ✅ 参考型 Skills 按需加载
+- ✅ 操作型 Skills 用 `disable-model-invocation: true`
+- ✅ 详细文档放 `references/` 目录
+- ❌ 不要一个 Skill 塞 10 个任务
 
 **MCP**：
-- 按需接入，不要一次连 20 个 Server
-- 注意权限最小化，只给 Agent 必要的访问权限
-- 优先使用官方或社区维护的 MCP Server
+- ✅ 按需接入，不用的断开
+- ✅ 使用 `/mcp` 查看每个 Server 的 token 成本
+- ❌ 不要一次连 20 个 Server
 
-### 常见误区
+**Hooks**：
+- ✅ 零上下文成本，大胆使用
+- ✅ 适合固定流程的自动化
 
-| 误区 | 正确做法 |
-|---|---|
-| 把工作流程写在 CLAUDE.md 里 | 流程用 Skills，CLAUDE.md 只放上下文 |
-| 一个 Skill 里塞了 10 个不同任务 | 拆分成多个 Skill，各自单一职责 |
-| 不写 MCP，直接让 Agent 跑 shell 命令操作外部服务 | 用 MCP 获得结构化的工具接口，更安全可控 |
-| CLAUDE.md 写了 500 行 | 精简到 300 行以内，详细文档放 agent_docs/ |
-| 把代码风格规则写进 CLAUDE.md | 交给 ESLint/Prettier/Biome，别浪费 token |
-| 用 /init 自动生成 CLAUDE.md | 手写。这是最高杠杆的配置，值得花时间 |
-| 从不更新 CLAUDE.md | 项目演进时同步更新，过时的信息比没有信息更糟 |
-| Skill 的 description 写得太模糊 | 包含具体的触发词，如"Use when user asks to..." |
-| Skill 文件夹里放了 README.md | 所有文档放在 SKILL.md 或 references/ 中 |
+### 7.3 功能加载时机
+
+```
+会话开始
+  ↓
+自动加载：CLAUDE.md（完整内容）
+         Skills（仅描述）
+         MCP（工具定义）
+  ↓
+执行任务
+  ↓
+按需加载：Skills（完整内容）
+         Skills references/（具体文档）
+  ↓
+事件触发
+  ↓
+自动执行：Hooks（外部运行，零成本）
+```
+
+**关键洞察**：
+- CLAUDE.md 和 MCP 是"重量级"的（始终占用上下文）
+- Skills 是"轻量级"的（只加载描述，用时才加载内容）
+- Hooks 是"零成本"的（完全外部运行）
 
 ---
 
-## 总结
+## 八、最佳实践清单
 
-用三句话记住这套体系：
+### 8.1 CLAUDE.md 最佳实践
 
-- **CLAUDE.md** — 告诉 Agent "你是谁"（上下文）
-- **Skills** — 告诉 Agent "怎么做"（流程）
-- **MCP** — 让 Agent "能动手"（能力）
+✅ **推荐做法**：
+- 控制在 300-500 行以内，越短越好
+- 遵循 WHY/WHAT/HOW 框架
+- 只放全局通用的信息
+- 善用层级机制：通用偏好放全局，项目规则放项目级
+- 用单独文档做渐进式信息披露，CLAUDE.md 只放索引
+- 手写，不要用 `/init` 自动生成
 
-它们不是互相替代的关系，而是互补的三层。组合起来，就是一套完整的 Agent 编排方案。
+❌ **常见错误**：
+- 把工作流程写进去（应该用 Skills）
+- 把 API 文档全粘进来（应该放单独文档）
+- 把代码风格规则写进去（交给 ESLint/Prettier）
+- 写了 1000 行（太多了）
+- 从不更新（过时的信息比没有信息更糟）
 
-与其花时间在每次对话里重复解释项目背景、手动指导操作步骤，不如花 30 分钟把这三样配好。**教会 Agent 一次，受益每一次。**
+### 8.2 Skills 最佳实践
+
+✅ **推荐做法**：
+- 单一职责，一个 Skill 只做一件事
+- `description` 必须包含触发条件："Use when user asks to..."
+- 步骤要具体可执行
+- 详细文档放 `references/` 目录
+- 考虑异常路径和错误处理
+- 用 `kebab-case` 命名
+- 操作型 Skills 使用 `disable-model-invocation: true`
+
+❌ **常见错误**：
+- 一个 Skill 塞 10 个任务
+- description 写得太模糊："Helps with projects"
+- 步骤写得太抽象："确保代码质量"
+- Skill 文件夹里放 README.md（应该放 SKILL.md）
+
+### 8.3 MCP 最佳实践
+
+✅ **推荐做法**：
+- 按需接入，不用的断开
+- 权限最小化
+- 优先使用官方或社区维护的 Server
+- 定期检查连接状态（`/mcp`）
+- 查看每个 Server 的 token 成本
+
+❌ **常见错误**：
+- 一次连 20 个 Server
+- 不用 MCP，直接让 Agent 跑 shell 命令
+- 给了过多权限
+
+### 8.4 Hooks 最佳实践
+
+✅ **推荐做法**：
+- 用于固定流程的自动化
+- 格式化、测试、通知等确定性任务
+- 零上下文成本，大胆使用
+
+❌ **常见错误**：
+- 用 Hook 做需要判断的任务（应该让 Agent 做）
+- 用 Hook 修复代码问题（需要理解代码）
+
+### 8.5 常见误区对照表
+
+| 误区 | 正确做法 |
+|------|---------|
+| 把工作流写在 CLAUDE.md | 用 Skills |
+| 一个 Skill 塞 10 个任务 | 拆分成多个 Skill |
+| 不用 MCP，直接跑 shell | 用 MCP 获得结构化接口 |
+| CLAUDE.md 写了 1000 行 | 精简到 500 行以内 |
+| 把代码风格写进 CLAUDE.md | 交给 ESLint/Prettier/Biome |
+| 用 Agent 做代码格式化 | 用 Hook + ESLint |
+| Skills description 太模糊 | 包含具体触发词 |
+| 从不更新 CLAUDE.md | 项目演进时同步更新 |
+
+---
+
+## 九、总结
+
+用四句话记住这套体系：
+
+1. **CLAUDE.md** — 告诉 Agent "这是什么项目"（上下文）
+2. **Skills** — 告诉 Agent "遇到 X 怎么做"（流程）
+3. **MCP** — 让 Agent "能操作外部工具"（能力）
+4. **Hooks** — 让固定流程"自动执行"（自动化）
+
+**它们不是互相替代的关系，而是协作关系**。
+
+- CLAUDE.md + Skills = **知识层**（告诉 Agent 怎么思考）
+- MCP + Hooks = **能力层**（让 Agent 能动手）
+
+与其每次对话都重复解释项目背景、手动指导操作步骤，不如花 30 分钟把这四样配好。
+
+**教会 Agent 一次，受益每一次。**
 
 ---
 
 ## 参考资料
 
-- [The Complete Guide to Building Skills for Claude](https://claude.com/blog/complete-guide-to-building-skills-for-claude) — Anthropic 官方 Skills 构建指南（含 PDF 下载）
-- [Model Context Protocol 官方文档](https://modelcontextprotocol.io) — MCP 协议规范与实现
-- [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code) — Claude Code 使用指南
-- [Anthropic Skills 示例仓库](https://github.com/anthropics/skills) — 官方维护的 Skills 示例，可直接参考和复用
-- [Writing a Good CLAUDE.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md) — HumanLayer 团队关于如何写好 CLAUDE.md 的深度分析
+- [Claude Code 官方文档](https://code.claude.com/docs/zh-CN/features-overview) — 功能概览和使用指南（中文）
+- [CLAUDE.md 文档](https://code.claude.com/docs/zh-CN/memory) — 如何编写项目上下文
+- [Skills 文档](https://code.claude.com/docs/zh-CN/skills) — Skills 完整指南
+- [MCP 文档](https://code.claude.com/docs/zh-CN/mcp) — MCP 配置和使用
+- [Hooks 文档](https://code.claude.com/docs/zh-CN/hooks) — Hooks 事件和配置
+- [Model Context Protocol 官方网站](https://modelcontextprotocol.io) — MCP 协议规范与 Server 列表
+- [Writing a Good CLAUDE.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md) — HumanLayer 团队的深度分析
+- [Anthropic Skills 示例仓库](https://github.com/anthropics/skills) — 官方维护的 Skills 示例
