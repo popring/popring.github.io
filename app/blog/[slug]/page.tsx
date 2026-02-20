@@ -45,9 +45,7 @@ export async function generateMetadata({ params }: PageProps) {
     summary: description,
     image,
   } = post.metadata;
-  const ogImage = image
-    ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+  const ogImage = image ? image : undefined;
 
   return {
     title,
@@ -58,17 +56,13 @@ export async function generateMetadata({ params }: PageProps) {
       type: 'article',
       publishedTime,
       url: `${baseUrl}/blog/${post.slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [ogImage],
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
   };
 }
@@ -96,7 +90,7 @@ export default async function Blog({ params }: PageProps) {
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+              : undefined,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               '@type': 'Person',

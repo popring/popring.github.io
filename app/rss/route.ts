@@ -1,3 +1,4 @@
+export const dynamic = 'force-static'
 import { baseUrl } from '@/app/sitemap'
 import { getBlogPosts } from '@/app/blog/utils'
 
