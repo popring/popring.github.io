@@ -46,27 +46,49 @@ export function getBlogPosts() {
 
 export function getAllCategories(): { category: string; count: number }[] {
   const posts = getBlogPosts()
-  const map = new Map<string, number>()
+  const map = new Map<string, { count: number; latest: string }>()
   posts.forEach((post) => {
     const cat = post.metadata.category
-    if (cat) map.set(cat, (map.get(cat) || 0) + 1)
+    if (cat) {
+      const existing = map.get(cat)
+      map.set(cat, {
+        count: (existing?.count || 0) + 1,
+        latest: !existing || post.metadata.publishedAt > existing.latest
+          ? post.metadata.publishedAt
+          : existing.latest,
+      })
+    }
   })
   return Array.from(map.entries())
-    .map(([category, count]) => ({ category, count }))
-    .sort((a, b) => b.count - a.count)
+    .map(([category, { count }]) => ({ category, count }))
+    .sort((a, b) => {
+      const la = map.get(a.category)!.latest
+      const lb = map.get(b.category)!.latest
+      return lb.localeCompare(la)
+    })
 }
 
 export function getAllTags(): { tag: string; count: number }[] {
   const posts = getBlogPosts()
-  const map = new Map<string, number>()
+  const map = new Map<string, { count: number; latest: string }>()
   posts.forEach((post) => {
     post.metadata.tags?.forEach((tag) => {
-      map.set(tag, (map.get(tag) || 0) + 1)
+      const existing = map.get(tag)
+      map.set(tag, {
+        count: (existing?.count || 0) + 1,
+        latest: !existing || post.metadata.publishedAt > existing.latest
+          ? post.metadata.publishedAt
+          : existing.latest,
+      })
     })
   })
   return Array.from(map.entries())
-    .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => b.count - a.count)
+    .map(([tag, { count }]) => ({ tag, count }))
+    .sort((a, b) => {
+      const la = map.get(a.tag)!.latest
+      const lb = map.get(b.tag)!.latest
+      return lb.localeCompare(la)
+    })
 }
 
 export function getPostsByTag(tag: string) {

@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;
@@ -18,7 +20,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
     --sh-class: #e5c07b;
     --sh-identifier: #abb2bf;
     --sh-sign: #818896;
@@ -29,9 +31,22 @@
     --sh-property: #e06c75;
     --sh-entity: #d19a66;
   }
-  html {
+  html:not(.light) {
     color-scheme: dark;
   }
+}
+
+.dark {
+  --sh-class: #e5c07b;
+  --sh-identifier: #abb2bf;
+  --sh-sign: #818896;
+  --sh-string: #98c379;
+  --sh-keyword: #c678dd;
+  --sh-comment: #5c6370;
+  --sh-jsxliterals: #56b6c2;
+  --sh-property: #e06c75;
+  --sh-entity: #d19a66;
+  color-scheme: dark;
 }
 
 html {
@@ -211,7 +226,8 @@ table {
 .prose h1:target,
 .prose h2:target,
 .prose h3:target,
-.prose h4:target {
+.prose h4:target,
+.prose .toc-highlight {
   animation: targetHighlight 1.5s ease-out;
   border-radius: 4px;
 }
@@ -230,7 +246,8 @@ table {
   .prose h1:target,
   .prose h2:target,
   .prose h3:target,
-  .prose h4:target {
+  .prose h4:target,
+  .prose .toc-highlight {
     animation: none;
   }
 }

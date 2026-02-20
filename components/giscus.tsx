@@ -9,7 +9,7 @@ export function GiscusComments() {
     if (!ref.current || ref.current.querySelector('.giscus')) return
 
     const getTheme = () =>
-      window.matchMedia('(prefers-color-scheme: dark)').matches
+      document.documentElement.classList.contains('dark')
         ? 'dark'
         : 'light'
 
@@ -31,8 +31,7 @@ export function GiscusComments() {
     script.async = true
     ref.current.appendChild(script)
 
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleChange = () => {
+    const updateGiscusTheme = () => {
       const iframe = document.querySelector<HTMLIFrameElement>(
         'iframe.giscus-frame'
       )
@@ -41,10 +40,15 @@ export function GiscusComments() {
         'https://giscus.app'
       )
     }
-    mediaQuery.addEventListener('change', handleChange)
+
+    const observer = new MutationObserver(updateGiscusTheme)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    })
 
     return () => {
-      mediaQuery.removeEventListener('change', handleChange)
+      observer.disconnect()
     }
   }, [])
 

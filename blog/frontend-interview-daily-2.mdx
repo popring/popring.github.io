@@ -1,0 +1,324 @@
+---
+title: '前端面试刷题日记（二）'
+publishedAt: '2020-06-25'
+summary: 'css 盒模型 css 布局方式 跨域 前端安全（XSS、CSRF） 防抖和节流 <hr>'
+tags:
+  - 面试题
+  - javascript
+  - css
+category: '面试'
+---
+
+1. css 盒模型
+2. css 布局方式
+3. 跨域
+4. 前端安全（XSS、CSRF）
+5. 防抖和节流
+
+<hr />
+
+
+### css 盒模型
+
+```css
+/* 默认值，实际内容宽高度计算方式（width，height） */
+box-sizing : content-box;
+/* 默认值，实际内容宽高度计算方式（width - border - padding） */
+box-sizing : border-box;
+```
+
+**content-box**
+
+尺寸计算公式：
+
+`width` = 内容的宽度
+
+`height` = 内容的高度
+
+宽度和高度的计算值都不包含内容的边框（border）和内边距（padding）。
+
+```html
+<div
+  style="
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    border: 1px solid red;
+    box-sizing: content-box;
+  "
+></div>
+```
+
+![image-20200625105733283](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105733.png)
+
+实际内容区域为 `100px` ，边框为 `1px` 
+
+
+
+**border-box**
+
+尺寸计算公式：
+
+*`width` = border + padding + 内容的宽度*
+
+*`height` = border + padding + 内容的高度*
+
+```html
+<div
+  style="
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    border: 1px solid red;
+    box-sizing: border-box;
+  "
+></div>
+```
+
+![image-20200625105909902](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200625105910.png)
+
+实际内容区域为 `98px` ，上下边框各为 `1px` 
+
+
+
+### css 布局方式
+
+**改变布局的常见属性** 
+
+- display: flex; table; grid;
+
+- float
+- position
+
+**常见布局**
+
+- 正常布局流
+
+  浏览器默认的 `html` 布局方式
+
+- 弹性布局（flex）
+
+  **介绍**：弹性盒子布局，用于创建横向或纵向的一维页面布局，等分划分。
+
+  **使用**：只需将父元素设置为 `display: flex;` 就可以按照 `flex` 布局。（设置flex布局后，子元素的 `float`、`clear`  、`vertical-align` 属性都会失效）
+
+- 网格布局（grid）
+
+  **介绍**：Grid布局被设计用于同时在两个维度上把元素按行和列排列整齐，二维布局。
+
+  **使用**：父元素设置 `display: grid;` 也可以设置为行内元素 `display: inline-grid;`
+
+- 浮动布局（float）
+
+  浮动布局，利用 `float` 属性进行左右浮动。
+
+- 定位布局（position）
+
+  静态定位、相对定位、绝对定位、固定定位、粘性定位（相对定位和固定定位的混合，设置 `top` 值之后，元素以决定定位的方式显示位置，直到 `viewport` 视口回滚到阈值之下，以固定定位方式显示，显示 top 所指的值之处。）
+
+- 表格
+
+  现在很少使用 `table` 进行布局，但显示表格数据你没有选择。
+
+- 多列布局
+
+  简单的进行多列布局，`columns` 设置列数，`column-width` 设置列宽。
+
+
+
+### 跨域
+
+同源策略（协议、域名、端口相同），防止信息被恶意利用。
+
+- jsonp
+
+  利用 `script` 标签可以跨域特性，但只支持 `GET` 请求，且需要服务端进行配合，于是就有了下面代码（通常规范为 url 最后params规定 `callback=回调函数名`）
+
+  ```js
+  <script>
+        var sc = document.createElement('script')
+        sc.setAttribute(
+          'src',
+          'https://suggest.taobao.com/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3&callback=cb'
+        )
+        document.body.append(sc)
+  
+        function cb(res) {
+          console.log(res)
+        }
+   </script>
+  ```
+
+  代码执行后，将 `script` 标签添加到网页内，会去自动请求地址，服务器配合后会返回
+
+  ```js
+  cb({"result":[["卫衣女","183618.0781806928"],["卫衣男","88788.9164616466"],["卫衣女春秋薄款","31281.50912988837"],["卫衣女宽松韩版","108819.03279878093"]...]})
+  ```
+
+  页面会将请求后的代码进行执行，于是会调用 `cb` 函数，就可以进行对数据为所欲为了，哈哈哈。
+
+- CORS（跨域资源共享）
+
+  CORS请求分为两类，简单请求和非简单请求（也称为复杂请求）
+
+  **简单请求**
+
+  服务端设置 `Access-Control-Allow-Origin` 值为请求头的 `origin` 的值或者 `*`，指定域名或者接受所有域名。
+
+  服务端`Access-Control-Allow-Credentials` 设置为 `true`，请求时将 `cookie` 添加到请求中，一起发送给服务器。本地ajax请求也要将 `withCredentials` 设置为 `true`。（注意：如果要发送 cookie，必须指定 `Access-Control-Allow-Origin` 具体值，不能为 `*`。）
+
+  **非简单请求**
+
+  在请求前会发送一个“预检”请求，`OPTIONS`请求
+
+  比如
+
+  ```js
+  var url = 'http://api.alice.com/cors';
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', url, true);
+  xhr.setRequestHeader('X-Custom-Header', 'value');
+  xhr.send();
+  ```
+
+  发送 `PUT` 请求，会先发送一个预检请求，内容如下
+
+  ```http
+  OPTIONS /cors HTTP/1.1
+  Origin: http://api.bob.com // 请求域
+  Access-Control-Request-Method: PUT // 请求方法
+  Access-Control-Request-Headers: X-Custom-Header // 请求头信息
+  Host: api.alice.com
+  Accept-Language: en-US
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0...
+  ```
+
+  服务端如果确认，返回如下信息
+
+  ```http
+  HTTP/1.1 200 OK
+  Date: Mon, 01 Dec 2008 01:15:39 GMT
+  Server: Apache/2.0.61 (Unix)
+  Access-Control-Allow-Origin: http://api.bob.com // 允许跨域地址
+  Access-Control-Allow-Methods: GET, POST, PUT // 允许跨域方法
+  Access-Control-Allow-Headers: X-Custom-Header // 支持首部列表
+  Content-Type: text/html; charset=utf-8
+  Content-Encoding: gzip
+  Content-Length: 0
+  Keep-Alive: timeout=2, max=100
+  Connection: Keep-Alive
+  Content-Type: text/plain
+  ```
+
+  服务端如果否定了，返回一个正常的HTTP响应即可，但不包含跨域相关信息（此时，会触发`ajax`的 `onerror` 错误回调）
+
+  ```http
+  XMLHttpRequest cannot load http://api.alice.com.
+  Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.
+  ```
+
+  
+
+  
+
+### 前端安全
+
+- XSS（Cross-site scripting）
+
+  首先推荐一个 `XSS` 训练平台，链接在这里：[prompt](http://prompt.ml/0)
+
+  全称为跨站脚本攻击，一共分为三类
+
+  - 存储型 XSS，一般出现在可输入的文本框中，例如留言板、评论、个人资料等地方，将恶意脚本存储到服务器上，当浏览器进行数据请求时，脚本会返回给用户并执行。
+  - 反射性 XSS，一般出现在URL参数中，需要点击恶意代码的链接才可以出发。
+  - 基于DOM的XSS，通过脚本动态修改页面，不与服务端进行交互，代码可见，获取数据并在本地执行。
+
+- CSRF（cross-site request forgery）
+
+  跨站请求伪造，恶意请求提交。
+  
+  攻击者往往不会获取 `cookie` 信息，只会利用本机信息进行恶意操作。登录受信任网站A，访问危险网站B。
+  
+  防御方法
+  
+  - 令牌同步模式：当用户发送请求前，服务端生成唯一令牌，发送数据时携带该令牌，在服务端进行校验。
+  - 检查Referer字段：确定改请求来源是否安全
+  - 添加校验token：恶意请求不会自动添加token，也无法获取，服务端进行校验，就可以排除可疑请求。
+
+
+
+### 防抖和节流
+
+**防抖（debounce）**
+
+高频事件在 n 秒内只执行一次，如果 n 秒内事件再次触发，则重新计算时间。
+
+下列代码，没有防抖前，每次用户输入都会触发事件，防抖后，只有在 500ms 内没有进行输入才会执行事件。
+
+```js
+<input type="text" id="inp">
+<script>
+      function debounce(fn) {
+        let timeout = null // 创建一个标记用来存放定时器的返回值
+        return function () {
+          clearTimeout(timeout) // 每当用户输入的时候把前一个 setTimeout clear 掉
+          timeout = setTimeout(() => {
+            // 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数
+            fn.apply(this, arguments)
+          }, 500)
+        }
+      }
+      function sayHi() {
+        console.log('防抖成功')
+      }
+
+      var inp = document.getElementById('inp')
+      inp.addEventListener('input', debounce(sayHi)) // 防抖
+</script>
+```
+
+**节流（throttle）**
+
+降低高频事件的触发次数。
+
+```js
+function throttle(fn) {
+  let canRun = true; // 通过闭包保存一个标记
+  return function () {
+    if (!canRun) return; // 在函数开头判断标记是否为true，不为true则return
+    canRun = false; // 立即设置为false
+    setTimeout(() => { // 将外部传入的函数的执行放在setTimeout中
+      fn.apply(this, arguments);
+      // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉
+      canRun = true;
+    }, 500);
+  };
+}
+function sayHi(e) {
+  console.log(e.target.innerWidth, e.target.innerHeight);
+}
+window.addEventListener('resize', throttle(sayHi));
+```
+
+
+
+### 参考
+
+盒模型
+
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing
+
+
+
+跨域
+
+https://segmentfault.com/a/1190000011145364
+
+https://www.ruanyifeng.com/blog/2016/04/cors.html
+
+
+
+防抖和节流
+
+https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/5

@@ -1,0 +1,82 @@
+---
+title: '前端面试刷题日记（八）'
+publishedAt: '2020-07-30'
+summary: 'display:none 和 visibilty: hidden 区别 ---'
+tags:
+  - 面试题
+category: '面试'
+---
+
+- `display:none` 和 `visibilty: hidden` 区别
+
+
+---
+
+
+
+
+## `display:none` 和 `visibility: hidden` 区别
+
+
+
+代码
+
+```html
+<hr>
+<h2>第一个ul</h2>
+<ul style="visibility: hidden;">
+  <li>第一个ul</li>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+</ul>
+<hr>
+<h2>第二个ul</h2>
+<ul style="display: none;">
+  <li>第二个ul</li>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+</ul>
+<hr>
+```
+
+
+
+显示如下
+
+![image-20200730115503519](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200730115508.png)
+
+可以看出
+
+- 占据位置
+
+  visibility 隐藏元素而不更改文档的布局，相当于此元素变成透明。
+
+  display 直接将元素完全隐藏（就好像这个元素不存在一样）。
+
+- 属性继承
+
+  visibility 是继承属性，**要注意若将其子元素设为 `visibility: visible`，则该子元素依然可见。**
+
+  display 若父元素设置为 `none` ，子元素也随之隐藏。
+
+- 页面修改相关值后，是否会重新渲染
+
+  visibility 不会重新渲染，
+
+  display 会重新渲染
+
+
+
+
+
+## 参考文章
+
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/display
+
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility

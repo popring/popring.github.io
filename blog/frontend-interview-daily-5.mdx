@@ -1,0 +1,217 @@
+---
+title: '前端面试刷题日记（五）'
+publishedAt: '2020-06-29'
+summary: '状态码304 原理 http1.0、http1.1和http2.0 ***'
+tags:
+  - 面试题
+  - http
+category: '面试'
+---
+
+1. 状态码304 原理
+3. http1.0、http1.1和http2.0
+
+***
+
+
+### 状态码304 原理
+
+> 来自百度百科：如果客户端发送了一个带条件的GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个304状态码。简单的表达就是：服务端已经执行了GET，但文件未变化。
+
+
+
+因为只有协商缓存才会发送请求到服务器，所以只有 `Last-Modified、If-Modified-Since` 和 `Etag、If-None-Match` 相关
+
+服务器返回字段 `Last-Modified` 、 `Etag`
+
+客户端请求字段 `If-Modified-Since` 、 `If-None-Match`
+
+
+
+以 `Etag` 为例，首次请求资源访问地址 `example.com` ，状态码（Status Code）为200，响应头包括字段 `Etag：”3147526947“`
+
+![image-20200629085901263](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200629085908.png)
+
+我们此时再刷新一次页面，查看控制台，会发现请求字段自动添加了 `If-None-Match: "3147526947"` 表示本地资源的 `Etag` 值，服务端校验 `If-None-Match` 和服务器的资源是否一致，若一致（像下图），会看到状态码为 304，表示服务器校验资源发现没有变化，所以返回给客户端 304。
+
+![image-20200629091734519](https://raw.githubusercontent.com/popring/assets-repo/master/img/20200629091734.png)
+
+
+
+### http协议
+
+HTTP 是基于 TCP/IP 的应用层协议，端口 80。
+
+#### http0.9
+
+该版本只有 `GET` 请求，协议规定只能返回 html 格式字符串，不能响应其他格式。服务器相应完毕，关闭连接。
+
+```http
+GET /index.html
+```
+
+
+
+#### http1.0
+
+- 除`GET` 外又引入 `POST` 请求
+- 除数据部分，每次通必须要包含**头信息**
+- 增加状态码
+- 多字符集支持
+- 多部份发送
+- 权限
+- 缓存
+  - `expires`
+  - `Last-Modified, If-Modified-Since`
+- 内容编码
+
+##### 请求格式
+
+```http
+GET / HTTP/1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)
+Accept: */*
+```
+
+第一行是请求命令，必须在尾部添加协议版本（`HTTP/1.0`）。后面就是多行头信息，描述客户端的情况
+
+##### 响应格式
+
+```http
+HTTP/1.0 200 OK 
+Content-Type: text/plain
+Content-Length: 137582
+Expires: Thu, 05 Dec 1997 16:00:00 GMT
+Last-Modified: Wed, 5 August 1996 15:55:28 GMT
+Server: Apache 0.84
+
+<html>
+  <body>Hello World</body>
+</html>
+```
+
+回应的格式是"头信息 + 一个空行（`\r\n`） + 数据"。其中，第一行是"协议版本 + 状态码（status code） + 状态描述"。
+
+##### Content-Type 字段
+
+关于字符的编码，1.0版规定，头信息必须是 ASCII 码，后面的数据可以是任何格式。因此，服务器回应的时候，必须告诉客户端，数据是什么格式，这就是`Content-Type`字段的作用。
+
+```
+text/plain
+text/html
+text/css
+image/jpeg
+image/png
+video/mp4
+application/javascript
+```
+
+这类数据称为 `MIME type` ，每个值包括一级类型和二级类型，斜杠分割，厂商也可自定义。
+
+##### Content-Encoding 字段
+
+数据压缩格式
+
+```http
+Content-Encoding: gzip
+Content-Encoding: compress
+Content-Encoding: deflate
+```
+
+客户端在请求时，用`Accept-Encoding`字段说明自己可以接受哪些压缩方法。
+
+> ```http
+> Accept-Encoding: gzip, deflate
+> ```
+
+##### 缺点
+
+每个 TCP 只能发送一个请求，而 TCP 连接建立成本高，所以就出现了一个非标准的 `Connection` 字段
+
+```http
+Connection: keep-alive
+```
+
+服务器也返回同样的字段，服务器就不会关闭连接，以便复用。
+
+#### http1.1
+
+- 持久连接
+
+  无需再添加 `Connection: keep-alive` 字段，服务器默认不会关闭TCP连接。如果客户端和服务器发送长时间没有进行通信，才会关闭。规范做法：客户端最后一个请求，发送`Connection: close` 表示关闭连接。
+
+- 管道机制
+
+  同一个 TCP 连接中，可以同时发送多个请求，但服务器响应还是按照顺序响应。
+
+- Content-Length 字段
+
+  根据管道机制，就需要区分数据包属于哪个回应。 而 `Content-Length` 字段表示本次响应数据长度，后面的字节就属于下一个回应了。
+
+  而在 `http1.0` 版本中，`Content-Length` 则不是必须的，关闭TCP连接则表示当前数据包接收完毕。
+
+- 分块传输编码
+
+  对于一些很耗时的动态操作来说，这意味着，服务器要等到所有操作完成，才能发送数据，显然这样的效率不高。更好的处理方法是，产生一块数据，就发送一块，采用"流模式"（stream）取代"缓存模式"（buffer）。
+
+  因此，1.1版规定可以不使用`Content-Length`字段，而使用["分块传输编码"](https://zh.wikipedia.org/wiki/分块传输编码)（chunked transfer encoding）。只要请求或回应的头信息有`Transfer-Encoding`字段，就表明回应将由数量未定的数据块组成。
+
+- 缓存（具体详看`备战校招第三天`）
+
+  - cache-control
+  - Etag
+
+- 其他
+
+  添加方法： PUT、PATCH、HEAD、OPTIOPS、DELETE
+
+  请求头中添加 `Host` 字段，将请求发往同一台服务器上的不同网站，（为后来的虚拟主机兴起打下基础）。
+
+- 缺点
+
+  一个TCP连接虽然可以发送多个请求，但响应还是按照顺序来，如果第一个响应慢，会导致阻塞后面的请求，这称为”队头堵塞“。
+
+  为了避免这个问题，解决方法
+
+  - 减少请求数
+  - 同时多开持久连接
+
+#### http2.0
+
+- 二进制协议
+
+  http1.1 中头信息是文本，数据体可以为文本和二进制，而 http2.0 是一个彻底的二进制协议，头信息和数据体都是二进制，统称为 ”帧“，头信息帧和数据帧。
+
+- 多工（多路复用）
+
+  解决了 http1.1 中缺点（队头堵塞），举例，在一个TCP连接中，服务器同时收到 A和B 请求，先响应 请求A，但发现处理非常耗时，于是就发送A请求已经处理好的部分，紧接着响应请求B，完成后，继续处理请求A，并返回。
+
+  这样双向的、实时的通信，就叫做多工，也成为多路复用（Multiplexing）。
+
+- 数据流
+
+  http2.0 的数据包不按照顺序发送，所以每个需要一个独立的ID作为标记。
+
+  规定：客户端发送出的数据流，ID为奇数。服务端发送的，ID为偶数。
+
+  数据流发送一般时候，如果需要取消这个数据流，服务器或客户端都可以发送信号（RST_STREAM帧）。也就是说，取消这次请求还可以保持TCP连接打开。而 http1.0 取消数据流的唯一方法，只能关闭 TCP 连接。
+
+- 头信息压缩
+
+  http 无状态，请求必须携带所有信息。但每次很多时候字段都是重复的，比如：`cookie`、`user-agent`，在 http2.0 进行了优化，头信息使用 `gzip`、`compress` 压缩后再发送，客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成索引号，之后只需要发送索引号即可，可以提高速度。
+
+- 服务器推送
+
+  HTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送（server push）。
+
+  常见场景是客户端请求一个网页，这个网页里面包含很多静态资源。正常情况下，客户端必须收到网页后，解析HTML源码，发现有静态资源，再发出静态资源请求。其实，服务器可以预期到客户端请求网页后，很可能会再请求静态资源，所以就主动把这些静态资源随着网页一起发给客户端了。
+
+
+
+
+
+### 参考
+
+http 协议
+
+https://www.ruanyifeng.com/blog/2016/08/http.html

@@ -3,7 +3,7 @@ import { getAllCategories, getPostsByCategory, formatDate } from '@/app/blog/uti
 
 export async function generateStaticParams() {
   return getAllCategories().map(({ category }) => ({
-    category: encodeURIComponent(category),
+    category,
   }))
 }
 
