@@ -1,8 +1,10 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CustomMDX, slugify } from '@/components/mdx';
 import { formatDate, getBlogPosts } from '@/app/blog/utils';
 import { baseUrl } from '@/app/sitemap';
 import { AnimateIn } from '@/components/animate-in';
+import { GiscusComments } from '@/components/giscus';
 
 function getHeadings(content: string) {
   const headingRegex = /^(#{2,3})\s+(.+)$/gm;
@@ -145,6 +147,33 @@ export default async function Blog({ params }: PageProps) {
           </article>
         </AnimateIn>
       </div>
+      {(post.metadata.category || (post.metadata.tags && post.metadata.tags.length > 0)) && (
+        <div className='mt-12 pt-6 border-t border-neutral-200 dark:border-neutral-800'>
+          <div className='flex flex-wrap items-center gap-2 text-sm'>
+            {post.metadata.category && (
+              <Link
+                href={`/blog/categories/${encodeURIComponent(post.metadata.category)}`}
+                className='text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors'
+              >
+                {post.metadata.category}
+              </Link>
+            )}
+            {post.metadata.category && post.metadata.tags && post.metadata.tags.length > 0 && (
+              <span className='text-neutral-300 dark:text-neutral-700'>|</span>
+            )}
+            {post.metadata.tags?.map((tag) => (
+              <Link
+                key={tag}
+                href={`/blog/tags/${encodeURIComponent(tag)}`}
+                className='rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-0.5 text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors'
+              >
+                {tag}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+      <GiscusComments />
     </section>
   );
 }

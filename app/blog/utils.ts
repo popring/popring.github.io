@@ -5,7 +5,10 @@ type Metadata = {
   title: string
   publishedAt: string
   summary: string
+  slug?: string
   image?: string
+  tags?: string[]
+  category?: string
 }
 
 function parseFrontmatter(fileContent: string) {
@@ -15,12 +18,33 @@ function parseFrontmatter(fileContent: string) {
   const content = fileContent.replace(frontmatterRegex, '').trim()
   const frontMatterLines = frontMatterBlock.trim().split('\n')
   const metadata: Partial<Metadata> = {}
+  let currentKey = ''
 
   frontMatterLines.forEach((line) => {
+    // Handle YAML array items (e.g., "  - tag")
+    const arrayItemMatch = line.match(/^\s+-\s+(.+)/)
+    if (arrayItemMatch && currentKey) {
+      const arr = metadata[currentKey as keyof Metadata]
+      if (Array.isArray(arr)) {
+        arr.push(arrayItemMatch[1].trim())
+      }
+      return
+    }
+
     const [key, ...valueArr] = line.split(': ')
+    const trimmedKey = key.trim()
     let value = valueArr.join(': ').trim()
+
+    // Handle "tags:" with no inline value (YAML array follows)
+    if (trimmedKey === 'tags' && !value) {
+      metadata.tags = []
+      currentKey = 'tags'
+      return
+    }
+
+    currentKey = ''
     value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
+    metadata[trimmedKey as keyof Metadata] = value as never
   })
 
   return { metadata: metadata as Metadata, content }
@@ -39,7 +63,7 @@ function getMDXData(dir: string) {
   const mdxFiles = getMDXFiles(dir)
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file))
-    const slug = path.basename(file, path.extname(file))
+    const slug = metadata.slug || path.basename(file, path.extname(file))
 
     return {
       metadata,
@@ -51,6 +75,47 @@ function getMDXData(dir: string) {
 
 export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), 'blog'))
+}
+
+export function getAllCategories(): { category: string; count: number }[] {
+  const posts = getBlogPosts()
+  const map = new Map<string, number>()
+  posts.forEach((post) => {
+    const cat = post.metadata.category
+    if (cat) map.set(cat, (map.get(cat) || 0) + 1)
+  })
+  return Array.from(map.entries())
+    .map(([category, count]) => ({ category, count }))
+    .sort((a, b) => b.count - a.count)
+}
+
+export function getAllTags(): { tag: string; count: number }[] {
+  const posts = getBlogPosts()
+  const map = new Map<string, number>()
+  posts.forEach((post) => {
+    post.metadata.tags?.forEach((tag) => {
+      map.set(tag, (map.get(tag) || 0) + 1)
+    })
+  })
+  return Array.from(map.entries())
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count)
+}
+
+export function getPostsByTag(tag: string) {
+  return getBlogPosts()
+    .filter((post) => post.metadata.tags?.includes(tag))
+    .sort((a, b) =>
+      new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+    )
+}
+
+export function getPostsByCategory(category: string) {
+  return getBlogPosts()
+    .filter((post) => post.metadata.category === category)
+    .sort((a, b) =>
+      new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+    )
 }
 
 export function formatDate(date: string, includeRelative = false) {

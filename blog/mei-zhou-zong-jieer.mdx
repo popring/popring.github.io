@@ -1,0 +1,155 @@
+---
+title: '每周总结（二）'
+publishedAt: '2019-01-28'
+summary: '本周总结： Yarn 学习 Ajax 中 XHR 和 Fetch 的区别'
+slug: 'mei-zhou-zong-jieer'
+tags:
+  - 前端
+  - ajax
+  - 总结
+category: '年度总结'
+---
+
+本周总结：
+
+- Yarn 学习
+- Ajax 中 XHR 和 Fetch 的区别
+
+
+## Yarn
+
+### [安装 Yarn](https://yarnpkg.com/zh-Hans/docs/install#windows-stable)
+
+```bash
+# 当然，官方不建议这么安装
+npm i yarn -g
+```
+
+### 更换为淘宝镜像
+
+```bash
+# 查询当前源
+yarn config get registry
+
+# 更换为淘宝镜像
+yarn config set registry https://registry.npm.taobao.org
+
+# npm 同理也可换
+npm config set registry https://registry.npm.taobao.org
+```
+
+### Yarn 命令
+
+创建一个新项目，执行以下命令会生成 `package.json`，里面有些配置和项目依赖。
+
+```bash
+yarn init 
+
+# 快速创建，跳过问题
+yarn init -y
+```
+
+添加/移除 项目依赖
+
+```bash
+# 添加项目依赖
+yarn add [package]
+# 默认为 dependencies, 代码运行时所需要的。
+yarn add babel-loader -D
+# devDependencies 开发依赖，只是在开发阶段需要，而运行时不需要的。
+
+# 移除项目依赖
+yarn remove [package]
+
+# 安装依赖
+yarn install
+
+# 升级包
+yarn upgrade
+
+# 全局安装包
+yarn global add [package]
+```
+
+[详细依赖类型](https://yarnpkg.com/zh-Hans/docs/dependency-types#toc-dev-dependencies)
+
+### CLI 命令比较
+
+| npm (v5)                                | Yarn                            |
+| --------------------------------------- | ------------------------------- |
+| `npm install`                           | `yarn install`                  |
+| **(不适用)**                            | `yarn install --flat`           |
+| **(不适用)**                            | `yarn install --har`            |
+| `npm install --no-package-lock`         | `yarn install --no-lockfile`    |
+| **(不适用)**                            | `yarn install --pure-lockfile`  |
+| `npm install [package]`                 | `yarn add [package]`            |
+| `npm install [package] --save-dev`      | `yarn add [package] --dev`      |
+| **(不适用)**                            | `yarn add [package] --peer`     |
+| `npm install [package] --save-optional` | `yarn add [package] --optional` |
+| `npm install [package] --save-exact`    | `yarn add [package] --exact`    |
+| **(不适用)**                            | `yarn add [package] --tilde`    |
+| `npm install [package] --global`        | `yarn global add [package]`     |
+| `npm update --global`                   | `yarn global upgrade`           |
+| `npm rebuild`                           | `yarn install --force`          |
+| `npm uninstall [package]`               | `yarn remove [package]`         |
+| `npm cache clean`                       | `yarn cache clean [package]`    |
+| `rm -rf node_modules && npm install`    | `yarn upgrade`                  |
+
+
+
+## Ajax 请求
+
+### XMLHttpRequest
+
+[MDN XMLHttpRequest](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest)
+
+简单的来写一个 `XMLHttpRequest ` 请求
+
+```js
+// 实例化一个对象
+var xhr = new XMLHttpRequest(),
+    method = "GET",
+    url = "https://developer.mozilla.org/";;
+// 设置请求超时事件
+xhr.timeout = 3000;
+// 初始话一个请求
+xhr.open(method, url, true);
+// 当 readyState 改变时 触发的函数
+xhr.onreadystatechange  = function(){
+    // 请求成功的 处理函数
+    if(xhr.readyState  == XMLHttpRequest.DONE && xhr.status == 200) {
+        document.querySelector('div').innerText = JSON.stringify(xhr.responseText);
+    }else {
+        console.log(xhr.statusText);
+    }
+}
+xhr.send();
+```
+
+XMLHttpRequest.DONE = 4 表示请求完成
+
+![](https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115231.png)
+
+> ps：原生的写起来有点费劲，不如直接用 `jquery` 来的快，一条龙服务，还带 `jsonp` 跨域请求，舒服的一匹，但是随着事件的推移，又发现问题了，如果多次接连不断的请求就会产生回调地狱。于是 `fetch` 就和 `Promise`就是出现了。
+
+
+
+### Fetch
+
+与上面功能一样实现 `get` 访问 `MDN` 官方
+
+```js
+fetch('https://developer.mozilla.org/')
+    .then(function(res){
+    	return fetch('https://developer.mozilla.org/');
+	})
+```
+
+代码简化了不知一点点，完爆XHR。
+
+由于 `fetch` 内封装了 `Promise`，也解决了回调地狱的问题，好用了很多很多。
+
+就是兼容性有点遗憾
+
+
+![](https://raw.githubusercontent.com/popring/assets-repo/master/img/20191221115232.jpg)
