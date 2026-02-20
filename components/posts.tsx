@@ -7,7 +7,7 @@ type BlogPostsProps = {
   pageSize?: number
 }
 
-export function BlogPosts({ limit, page, pageSize = 5 }: BlogPostsProps) {
+export function BlogPosts({ limit, page, pageSize = 10 }: BlogPostsProps) {
   const allBlogs = getBlogPosts().sort((a, b) => {
     if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
       return -1
@@ -49,7 +49,7 @@ export function BlogPosts({ limit, page, pageSize = 5 }: BlogPostsProps) {
         <nav className="flex items-center justify-between mt-8 text-sm text-neutral-600 dark:text-neutral-400">
           {page > 1 ? (
             <Link
-              href={page === 2 ? '/blog' : `/blog?page=${page - 1}`}
+              href={page === 2 ? '/blog' : `/blog/page/${page - 1}`}
               className="hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
             >
               上一页
@@ -60,7 +60,7 @@ export function BlogPosts({ limit, page, pageSize = 5 }: BlogPostsProps) {
           <span>{page} / {totalPages}</span>
           {page < totalPages ? (
             <Link
-              href={`/blog?page=${page + 1}`}
+              href={`/blog/page/${page + 1}`}
               className="hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
             >
               下一页

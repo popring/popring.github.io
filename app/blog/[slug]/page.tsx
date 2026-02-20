@@ -117,7 +117,7 @@ export default async function Blog({ params }: PageProps) {
           if (headings.length === 0) return null;
           return (
             <aside className='hidden xl:block absolute -left-48 top-0 w-40 h-full'>
-              <nav className='sticky top-24 text-xs'>
+              <nav className='sticky top-24 text-xs max-h-[calc(100vh-8rem)] overflow-y-auto'>
                 <p className='text-neutral-400 dark:text-neutral-500 mb-2 font-medium'>目录</p>
                 <ul className='space-y-1.5'>
                   {headings.map((h) => (
