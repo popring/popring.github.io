@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React, { ComponentProps } from 'react'
 import { CopyButton } from './copy-button'
+import { Lightbox } from './lightbox'
 import remarkGfm from 'remark-gfm'
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
@@ -46,8 +46,8 @@ function CustomLink(props: { href: string; children: React.ReactNode }) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function RoundedImage(props: ComponentProps<typeof Image>) {
-  return <Image {...props} alt={props.alt} className="rounded-lg"  />
+function RoundedImage(props: { src: string; alt: string }) {
+  return <Lightbox src={props.src} alt={props.alt} />
 }
 
 function Code({ children, ...props }: { children: string }) {

@@ -123,7 +123,7 @@ export default function Footer() {
         </li>
       </ul>
       <p className='mt-8 text-neutral-600 dark:text-neutral-300'>
-        © {new Date().getFullYear()}{' '}
+        © 2021-{new Date().getFullYear()}{' '}
         <a
           href='https://creativecommons.org/licenses/by-nc-sa/4.0/'
           target='_blank'

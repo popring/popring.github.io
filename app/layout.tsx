@@ -3,8 +3,7 @@ import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { Navbar } from '@/components/nav';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import Script from 'next/script';
 import Footer from '@/components/footer';
 import { baseUrl } from './sitemap';
 
@@ -65,8 +64,16 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
-          <Analytics />
-          <SpeedInsights />
+          <Script
+            src='https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS'
+            strategy='afterInteractive'
+          />
+          <Script id='google-analytics' strategy='afterInteractive'>
+            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WN0V7KJRVS');`}
+          </Script>
+          <Script id='baidu-analytics' strategy='afterInteractive'>
+            {`var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?f869367a20c50f7b23f96c1e4169d803";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();`}
+          </Script>
         </main>
       </body>
     </html>
