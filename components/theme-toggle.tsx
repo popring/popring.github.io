@@ -20,10 +20,17 @@ export function ThemeToggle() {
   }, [])
 
   const toggle = useCallback(() => {
-    const next = isDark ? 'light' : 'dark'
-    setIsDark(!isDark)
-    localStorage.setItem('theme', next)
-    document.documentElement.classList.toggle('dark', next === 'dark')
+    const switchTheme = () => {
+      const next = isDark ? 'light' : 'dark'
+      setIsDark(!isDark)
+      localStorage.setItem('theme', next)
+      document.documentElement.classList.toggle('dark', next === 'dark')
+    }
+    if (!document.startViewTransition) {
+      switchTheme()
+      return
+    }
+    document.startViewTransition(switchTheme)
   }, [isDark])
 
   if (!mounted) {

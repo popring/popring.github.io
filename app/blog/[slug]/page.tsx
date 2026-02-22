@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CustomMDX, slugify } from '@/components/mdx';
-import { formatDate, getBlogPosts } from '@/app/blog/utils';
+import { formatDate, getBlogPosts, getReadingStats } from '@/app/blog/utils';
 import { baseUrl } from '@/app/sitemap';
 import { AnimateIn } from '@/components/animate-in';
 import { GiscusComments } from '@/components/giscus';
@@ -109,6 +109,10 @@ export default async function Blog({ params }: PageProps) {
         <div className='flex justify-between items-center mt-2 mb-8 text-sm'>
           <p className='text-sm text-neutral-600 dark:text-neutral-400'>
             {formatDate(post.metadata.publishedAt)}
+            {(() => {
+              const { wordCount, readingTime } = getReadingStats(post.content)
+              return ` · ${wordCount}字 · ${readingTime}分钟阅读`
+            })()}
           </p>
         </div>
       </AnimateIn>

@@ -107,6 +107,14 @@ export function getPostsByCategory(category: string) {
     )
 }
 
+export function getReadingStats(content: string) {
+  const chineseChars = (content.match(/[\u4e00-\u9fff]/g) || []).length
+  const englishWords = content.replace(/[\u4e00-\u9fff]/g, '').split(/\s+/).filter(Boolean).length
+  const totalWords = chineseChars + englishWords
+  const readingTime = Math.max(1, Math.ceil(totalWords / 300))
+  return { wordCount: totalWords, readingTime }
+}
+
 export function formatDate(date: string, includeRelative = false) {
   const currentDate = new Date()
   if (!date.includes('T')) {
