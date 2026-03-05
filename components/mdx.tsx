@@ -55,6 +55,14 @@ function Code({ children, ...props }: { children: string }) {
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
+function TableWrapper(props: React.ComponentProps<'table'>) {
+  return (
+    <div className="overflow-x-auto">
+      <table {...props} />
+    </div>
+  )
+}
+
 function Pre({ children, ...props }: { children: React.ReactElement<{ children: string }> }) {
   const codeString = children?.props?.children || ''
   return (
@@ -109,9 +117,11 @@ const components = {
   h5: createHeading(5),
   h6: createHeading(6),
   Image: RoundedImage,
+  img: RoundedImage,
   a: CustomLink,
   code: Code,
   pre: Pre,
+  table: TableWrapper,
   Table,
 }
 

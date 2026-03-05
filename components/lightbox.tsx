@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 
 export function Lightbox({ src, alt }: { src: string; alt: string }) {
   const [open, setOpen] = useState(false)
@@ -21,10 +22,11 @@ export function Lightbox({ src, alt }: { src: string; alt: string }) {
       <img
         src={src}
         alt={alt}
+        loading="lazy"
         className="rounded-lg cursor-zoom-in"
         onClick={() => setOpen(true)}
       />
-      {open && (
+      {open && createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 cursor-zoom-out"
           onClick={close}
@@ -35,7 +37,8 @@ export function Lightbox({ src, alt }: { src: string; alt: string }) {
             className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
           />
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )
