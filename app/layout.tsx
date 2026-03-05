@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     locale: 'zh_CN',
     type: 'website',
   },
+  alternates: {
+    types: {
+      'application/rss+xml': '/rss',
+    },
+  },
   robots: {
     index: true,
     follow: true,
