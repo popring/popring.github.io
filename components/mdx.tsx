@@ -3,7 +3,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React, { ComponentProps } from 'react'
 import { CopyButton } from './copy-button'
-import { Lightbox } from './lightbox'
+import { ZoomableImage } from './zoomable-image'
 import remarkGfm from 'remark-gfm'
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
@@ -47,7 +47,7 @@ function CustomLink(props: { href: string; children: React.ReactNode }) {
 }
 
 function RoundedImage(props: { src: string; alt: string }) {
-  return <Lightbox src={props.src} alt={props.alt} />
+  return <ZoomableImage src={props.src} alt={props.alt} />
 }
 
 function Code({ children, ...props }: { children: string }) {
