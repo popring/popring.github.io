@@ -29,6 +29,39 @@ export function TableOfContents({ headings }: { headings: Heading[] }) {
       if (el) observer.observe(el)
     }
 
+    // Initial check: find heading currently visible in the observation zone
+    const topBound = 80
+    const bottomBound = window.innerHeight * 0.3
+    let initialSlug = ''
+    for (const slug of slugs) {
+      const el = document.getElementById(slug)
+      if (el) {
+        const rect = el.getBoundingClientRect()
+        if (rect.top >= topBound && rect.top <= bottomBound) {
+          initialSlug = slug
+          break
+        }
+      }
+    }
+    // Fallback: pick the last heading above the observation zone
+    if (!initialSlug) {
+      for (const slug of [...slugs].reverse()) {
+        const el = document.getElementById(slug)
+        if (el) {
+          const rect = el.getBoundingClientRect()
+          if (rect.top < topBound) {
+            initialSlug = slug
+            break
+          }
+        }
+      }
+    }
+    // Default to first heading if nothing else matched
+    if (!initialSlug && headings.length > 0) {
+      initialSlug = headings[0].slug
+    }
+    setActiveSlug(initialSlug)
+
     return () => observer.disconnect()
   }, [headings])
 
