@@ -124,7 +124,7 @@ export default async function Blog({ params }: PageProps) {
         })()}
         <AnimateIn delay={2}>
           <article className='prose'>
-            <CustomMDX source={post.content} />
+            <CustomMDX source={post.content} format={post.metadata.format} />
           </article>
         </AnimateIn>
       </div>

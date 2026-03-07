@@ -10,6 +10,7 @@ type Metadata = {
   image?: string
   tags?: string[]
   category?: string
+  format?: 'md' | 'mdx'
 }
 
 function parseFrontmatter(fileContent: string) {
