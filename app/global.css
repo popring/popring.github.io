@@ -109,15 +109,15 @@ html {
 .prose pre code {
   @apply p-0 bg-transparent text-inherit;
   border: initial;
-  --sh-class: initial;
-  --sh-identifier: initial;
-  --sh-sign: initial;
-  --sh-string: initial;
-  --sh-keyword: initial;
-  --sh-comment: initial;
-  --sh-jsxliterals: initial;
-  --sh-property: initial;
-  --sh-entity: initial;
+  --sh-class: inherit;
+  --sh-identifier: inherit;
+  --sh-sign: inherit;
+  --sh-string: inherit;
+  --sh-keyword: inherit;
+  --sh-comment: inherit;
+  --sh-jsxliterals: inherit;
+  --sh-property: inherit;
+  --sh-entity: inherit;
 }
 
 .prose code span {
