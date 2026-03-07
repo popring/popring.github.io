@@ -41,8 +41,7 @@ export default function Page() {
       </AnimateIn>
       <AnimateIn delay={1}>
         <p className="mb-4">
-          全栈工程师，写代码也写博客。从前端一路走来，现在对 AI
-          能改变什么充满好奇——正在探索它在开发、产品和日常生活中的各种可能性。相信好的技术值得被记录和分享，欢迎找我聊聊。
+          前端开发者，对交互、全栈与增长工程都感兴趣。喜欢探索新工具，也在关注 AI 方向。这里记录踩坑经历、有趣发现和个人想法。
         </p>
         <div className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400">
           <a

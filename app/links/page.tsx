@@ -9,8 +9,14 @@ const links = [
   {
     name: '刷新',
     url: 'https://home.shuaxinjs.cn/',
-    avatar: 'https://github.com/shuaxinjs.png',
+    avatar: 'https://avatars.githubusercontent.com/u/32100575?v=4',
     description: '刷新的个人主页',
+  },
+  {
+    name: '大橙子',
+    url: 'https://log.660066.xyz/',
+    avatar: 'https://log.660066.xyz/about/index/avatar.jpg',
+    description: '新的斗争开始了',
   },
 ]
 
@@ -48,8 +54,8 @@ export default function LinksPage() {
         ))}
       </div>
       <div className="mt-12 text-sm text-neutral-500 dark:text-neutral-400">
-        <p className="mb-2">交换友链</p>
-        <p>
+        <p className="mb-4">交换友链</p>
+        <p className="mb-3">
           欢迎留言或发送邮件到{' '}
           <a
             href="mailto:koler778@gmail.com"
@@ -58,6 +64,12 @@ export default function LinksPage() {
             koler778@gmail.com
           </a>
         </p>
+        <div className="rounded-lg border border-neutral-200 dark:border-neutral-800 p-4 space-y-1 font-mono text-xs">
+          <p><span className="text-neutral-400">站点名称：</span>popring</p>
+          <p><span className="text-neutral-400">站点地址：</span>https://popring.cn</p>
+          <p><span className="text-neutral-400">头像：</span>https://popring.cn/avatar.jpg</p>
+          <p><span className="text-neutral-400">描述：</span>前端出身，向全栈延伸，探索技术与增长的交叉地带</p>
+        </div>
       </div>
     </section>
   )
