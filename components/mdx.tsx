@@ -63,10 +63,17 @@ function TableWrapper(props: React.ComponentProps<'table'>) {
   )
 }
 
-function Pre({ children, ...props }: { children: React.ReactElement<{ children: string }> }) {
+function Pre({ children, ...props }: { children: React.ReactElement<{ children: string; className?: string }> }) {
   const codeString = children?.props?.children || ''
+  const className = children?.props?.className || ''
+  const language = className.replace(/language-/, '')
   return (
     <div className="relative group">
+      {language && (
+        <span className="absolute right-10 top-0 z-10 rounded-b-md bg-neutral-200 dark:bg-neutral-700 px-2 py-0.5 text-[11px] font-medium text-neutral-500 dark:text-neutral-400 select-none">
+          {language}
+        </span>
+      )}
       <CopyButton text={codeString} />
       <pre {...props}>
         {children}
