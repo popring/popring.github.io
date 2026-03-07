@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React, { ComponentProps } from 'react'
 import { CopyButton } from './copy-button'
+import { CodePreview } from './code-preview'
 import { ZoomableImage } from './zoomable-image'
 import remarkGfm from 'remark-gfm'
 
@@ -130,19 +131,21 @@ const components = {
   pre: Pre,
   table: TableWrapper,
   Table,
+  CodePreview,
 }
 
-export function CustomMDX(props: ComponentProps<typeof MDXRemote>) {
+export function CustomMDX(props: ComponentProps<typeof MDXRemote> & { format?: 'md' | 'mdx' }) {
+  const { format = 'md', ...rest } = props
   return (
     <MDXRemote
-      {...props}
+      {...rest}
       options={{
         mdxOptions: {
-          format: 'md',
+          format,
           remarkPlugins: [remarkGfm],
         },
       }}
-      components={{ ...components, ...(props.components || {}) }}
+      components={{ ...components, ...(rest.components || {}) }}
     />
   )
 }
