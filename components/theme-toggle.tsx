@@ -25,6 +25,7 @@ export function ThemeToggle() {
       setIsDark(!isDark)
       localStorage.setItem('theme', next)
       document.documentElement.classList.toggle('dark', next === 'dark')
+      document.documentElement.classList.toggle('light', next === 'light')
     }
     if (!document.startViewTransition) {
       switchTheme()
