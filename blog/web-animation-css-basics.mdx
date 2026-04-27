@@ -1,106 +1,150 @@
 ---
 title: '重学 Web 动画（一）：CSS 动画基础'
 publishedAt: '2026-01-02'
-summary: '动画库相关 这里列举了部分流行的 css 动画库，我感觉都还不错各有特色 easings.net: 动画缓动函数，可以直接预览一些常用的动画缓动函数 cubic-bezier 函数 tw-animate-css: 一个动画库，内置了大量的动画效果，可以方便的添加到项目中 tailwindcss-radix: 一个 Tailwind CSS 的插件，将 radix 的组件状态转换为 Tailwind'
+summary: '按属性回顾 CSS 动画 —— opacity、transform、transition、animation、@keyframes、clip-path —— 以及性能优化和无障碍的常用要点。'
 tags:
   - web动画
   - css
   - animation
   - transition
 category: '视觉动效'
+format: mdx
 ---
 
-## 动画库相关
+前阵子写几个 hover 动画时，发现常用的 CSS 属性都有点生疏了。趁这次把 `opacity`、`transform`、`transition`、`animation`、`@keyframes`、`clip-path` 这几个最常打交道的捋一遍，当备忘。
 
-这里列举了部分流行的 css 动画库，我感觉都还不错各有特色
+> 🌟 **一句话前置**：动画首选 `opacity` 和 `transform`，它们只触发**合成（Composite）**，不会触发重排和重绘，性能最好；其他属性能不动就别动。
 
-[easings.net](https://easings.net/): 动画缓动函数，可以直接预览一些常用的动画缓动函数 cubic-bezier 函数
+## opacity
 
-[tw-animate-css](https://github.com/Wombosvideo/tw-animate-css?tab=readme-ov-file#readme): 一个动画库，内置了大量的动画效果，可以方便的添加到项目中
-
-[tailwindcss-radix](https://github.com/ecklf/tailwindcss-radix): 一个 Tailwind CSS 的插件，将 radix 的组件状态转换为 Tailwind CSS 的类名
-
-
-## CSS 动画相关属性
-
-### opacity 属性
-
-透明度，取值 0~1，0 是完全透明，1 是完全不透明。这个属性本身没什么复杂的，但它是做动画时最常用的属性之一。
-
-最典型的场景就是淡入淡出效果：
+透明度，0 ~ 1。看起来只是个数值，但配合 transition 就能做出很自然的淡入淡出效果：
 
 ```css
-.fade-in {
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.fade-card {
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
 }
-
-.fade-in.visible {
+.fade-card:hover {
   opacity: 1;
 }
 ```
 
-值得一提的是，opacity 是可以被 GPU 加速的属性，所以用它来做动画性能很好，不会卡顿。
+<Playground
+  html={`<div class="fade-card">Hover me</div>`}
+  css={`
+/* 关键: opacity + transition */
+.fade-card {
+    padding: 8px 20px;
+    background: #111;
+    color: white;
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 24px auto;
+    width: fit-content;
+    user-select: none;
+    opacity: 0.4;
+    transition: opacity 0.4s ease;
+}
+.fade-card:hover {
+    opacity: 1;
+}
+`}
+/>
 
-### transform 属性
+也可以配合 `@keyframes` 做循环呼吸效果，常见于通知红点、加载提示：
 
-transform 是做动画的核心属性，它可以让元素移动、旋转、缩放、倾斜，而且不会触发页面重排，性能非常好。
+```css
+.dot {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+```
 
-常用的几个函数：
+> ⚠️ **小坑**：`opacity: 0` 的元素**仍然可点击**、**仍会被屏幕阅读器读到**。要彻底隐藏要配合 `visibility: hidden`、`pointer-events: none` 或 `aria-hidden`。
+
+## transform
+
+让元素移动、旋转、缩放、倾斜，全都走 GPU。
 
 **translate - 位移**
 
 ```css
-/* 水平移动 */
 transform: translateX(100px);
-/* 垂直移动 */
 transform: translateY(50px);
-/* 同时移动 */
 transform: translate(100px, 50px);
-/* 3D 移动，可以触发 GPU 加速 */
-transform: translate3d(100px, 50px, 0);
+transform: translate3d(100px, 50px, 0);  /* 强制 GPU 加速 */
 ```
 
-实际开发中，如果要移动元素位置，用 `translate` 比改 `left`/`top` 性能好太多了。因为 `left`/`top` 会触发重排，而 `translate` 只会触发合成。
+要移动元素就用 `translate`，不要改 `left`/`top` —— 后者会触发重排。
 
 **rotate - 旋转**
 
 ```css
-transform: rotate(45deg);      /* 顺时针旋转 45 度 */
-transform: rotate(-45deg);     /* 逆时针旋转 45 度 */
-transform: rotateX(45deg);     /* 沿 X 轴旋转，有 3D 效果 */
-transform: rotateY(45deg);     /* 沿 Y 轴旋转 */
+transform: rotate(45deg);      /* 顺时针 */
+transform: rotate(-45deg);     /* 逆时针 */
+transform: rotateX(45deg);     /* 沿 X 轴翻转，有 3D 效果 */
+transform: rotateY(45deg);
 ```
 
 **scale - 缩放**
 
 ```css
-transform: scale(1.5);         /* 放大 1.5 倍 */
-transform: scale(0.5);         /* 缩小到 0.5 倍 */
-transform: scaleX(2);          /* 只在水平方向拉伸 */
+transform: scale(1.5);
+transform: scale(0.5);
+transform: scaleX(2);
 ```
 
-hover 放大效果用这个很方便：
+按钮的点按反馈也是 `scale` 的常见用法 —— hover 时变色提示可点，按下时缩一点给出物理反馈：
 
 ```css
-.card:hover {
-  transform: scale(1.05);
+.card:hover  { background: #2a2a2a; }
+.card:active { transform: scale(0.96); }
+```
+
+<Playground
+  html={`<div class="card">Click me</div>`}
+  css={`
+/* 关键: transform + :hover / :active */
+.card {
+    padding: 8px 20px;
+    background: #111;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 24px auto;
+    width: fit-content;
+    user-select: none;
+    transition: transform 0.15s ease, background 0.2s ease;
 }
-```
+.card:hover {
+    background: #2a2a2a;
+}
+.card:active {
+    transform: scale(0.96);
+}
+`}
+/>
 
-**组合使用**
+**组合 & 顺序**
 
-多个变换可以写在一起，但要注意顺序会影响结果：
+多个变换写在一起，顺序会影响结果：
 
 ```css
-/* 先移动再旋转 vs 先旋转再移动，效果是不一样的 */
-transform: translateX(100px) rotate(45deg);
-transform: rotate(45deg) translateX(100px);
+transform: translateX(100px) rotate(45deg);  /* 先平移，再就地旋转 */
+transform: rotate(45deg) translateX(100px);  /* 先旋转坐标系，再平移，会画出弧 */
 ```
 
 **transform-origin**
 
-默认情况下，变换是以元素中心为原点的。如果想改变原点位置，可以用 `transform-origin`：
+默认以元素中心为原点。要换原点用 `transform-origin`：
 
 ```css
 transform-origin: top left;    /* 左上角 */
@@ -108,17 +152,9 @@ transform-origin: center;      /* 中心，默认值 */
 transform-origin: 50% 100%;    /* 底部中心 */
 ```
 
-### transition 属性
+## transition
 
-transition 是最简单的动画方式，当属性值变化时，它会自动产生过渡效果。
-
-完整语法：
-
-```css
-transition: property duration timing-function delay;
-```
-
-举个例子：
+transition 是最简单的动画方式 —— 属性值一变，它就自动补出过渡。完整语法：`transition: property duration timing-function delay;`。
 
 ```css
 .button {
@@ -133,78 +169,162 @@ transition: property duration timing-function delay;
 
 **四个子属性**
 
-- `transition-property`: 要过渡的属性，可以写 `all` 表示所有属性
-- `transition-duration`: 过渡时长，比如 `0.3s`、`300ms`
-- `transition-timing-function`: 缓动函数，这个是灵魂
-- `transition-delay`: 延迟时间
+- `transition-property`：要过渡的属性，`all` 表示全部
+- `transition-duration`：时长，如 `0.3s`、`300ms`
+- `transition-timing-function`：缓动函数，决定动画的「感觉」
+- `transition-delay`：延迟
 
 **timing-function 缓动函数**
 
-这是 transition 里最重要的部分。不同的缓动函数会让动画感觉完全不一样。
-
 内置的几个：
-- `linear`: 匀速，比较生硬
-- `ease`: 默认值，先快后慢
-- `ease-in`: 慢进
-- `ease-out`: 慢出，感觉比较自然
-- `ease-in-out`: 慢进慢出
 
-但很多时候内置的不够用，这时候就要用 `cubic-bezier()` 自定义曲线。前面提到的 [easings.net](https://easings.net/) 就是专门预览和复制这些曲线的，非常好用。
+- `linear`：匀速，比较生硬
+- `ease`：默认值，先快后慢
+- `ease-in`：慢进
+- `ease-out`：慢出，最自然
+- `ease-in-out`：慢进慢出
+
+**怎么选**：
+
+- **进入**用 `ease-out`（弹窗、菜单展开 —— 元素从无到有）
+- **离开**用 `ease-in`（关闭、隐藏 —— 元素从有到无）
+- **双向**用 `ease-in-out`（来回切换的状态）
+- UI 动画一般**避开 `linear`**，匀速会让人觉得机械、不自然
+
+不够用时上 `cubic-bezier()` 自定义曲线。配 [easings.net](https://easings.net/) 直接抄就行。
 
 ```css
 /* 弹性效果 */
 transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 ```
 
-### animation 属性
-
-如果 transition 满足不了需求，比如要做循环动画、多阶段动画，就得用 animation 了。
-
-基本语法：
-
-```css
-animation: name duration timing-function delay iteration-count direction fill-mode;
-```
-
-看起来参数很多，但常用的就那几个：
-
-```css
-.loading {
-  animation: spin 1s linear infinite;
+<Playground
+  html={`<button class="elastic">Hover me</button>`}
+  css={`
+/* 关键: cubic-bezier 自定义缓动 */
+.elastic {
+    padding: 8px 20px;
+    background: #111;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 24px auto;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.elastic:hover {
+    transform: scale(1.3);
 }
-```
+`}
+/>
+
+## animation
+
+要做循环、多阶段动画，transition 就不够了，得用 animation。完整语法：`animation: name duration timing-function delay iteration-count direction fill-mode;`。
+
+下面几个常见的小动画，分别对应 animation 几种典型的用法：
+
+**通知红点呼吸** — 多属性同时变化（`scale` + `opacity`），适合做消息提醒、在线状态点。
+
+<Playground
+  html={`<div class="dot"></div>`}
+  css={`
+/* 关键: 多属性 keyframes（scale + opacity） */
+.dot {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    background: #ef4444;
+    border-radius: 50%;
+    margin: 50px auto;
+}
+.dot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #ef4444;
+    animation: pulse 1.5s ease-out infinite;
+}
+@keyframes pulse {
+    from { transform: scale(1);   opacity: 0.6; }
+    to   { transform: scale(2.8); opacity: 0;   }
+}
+`}
+/>
+
+**进度条滑动** — 单属性循环位移，适合做不确定进度的加载提示。
+
+<Playground
+  html={`<div class="track"><div class="bar"></div></div>`}
+  css={`
+/* 关键: animation + transform 位移 */
+.track {
+    width: 200px;
+    height: 4px;
+    background: #e5e5e5;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 50px auto;
+}
+.bar {
+    width: 40%;
+    height: 100%;
+    background: #111;
+    border-radius: 2px;
+    animation: slide 1.4s linear infinite;
+}
+@keyframes slide {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(250%); }
+}
+`}
+/>
+
+**心跳节奏** — 多阶段 keyframes（百分比写法），能做出"咚-哒"两段式的节奏感 —— 这是 transition 表达不出来的。
+
+<Playground
+  html={`<div class="heart">♥</div>`}
+  css={`
+/* 关键: 多阶段 keyframes（百分比写法） */
+.heart {
+    font-size: 48px;
+    color: #ef4444;
+    line-height: 1;
+    text-align: center;
+    margin: 30px auto;
+    animation: heartbeat 1.2s ease-in-out infinite;
+}
+@keyframes heartbeat {
+    0%, 70% { transform: scale(1); }
+    14%     { transform: scale(1.3); }
+    28%     { transform: scale(1); }
+    42%     { transform: scale(1.2); }
+}
+`}
+/>
+
+这三个例子覆盖了 animation 大部分日常用法 —— 单属性循环、多属性组合、多阶段节奏。下面拆开看每个子属性。
 
 **常用子属性**
 
-- `animation-name`: 对应 @keyframes 的名字
-- `animation-duration`: 动画时长
-- `animation-timing-function`: 缓动函数，和 transition 一样
-- `animation-delay`: 延迟
-- `animation-iteration-count`: 播放次数，`infinite` 表示无限循环
-- `animation-direction`: 播放方向
-  - `normal`: 正常播放
-  - `reverse`: 反向播放
-  - `alternate`: 来回播放，做呼吸灯效果很好用
-- `animation-fill-mode`: 动画结束后的状态
-  - `forwards`: 保持在最后一帧，这个最常用
-  - `backwards`: 保持在第一帧
-  - `both`: 两者都应用
-- `animation-play-state`: `running` 或 `paused`，可以用来暂停动画
+- `animation-name`：对应 `@keyframes` 的名字
+- `animation-duration`：时长
+- `animation-timing-function`：缓动函数，和 transition 一样
+- `animation-delay`：延迟
+- `animation-iteration-count`：播放次数，`infinite` 即无限循环
+- `animation-direction`：播放方向
+  - `normal` / `reverse` / `alternate`（来回播放，呼吸灯效果常用）
+- `animation-fill-mode`：动画结束后停在哪一帧
+  - `forwards` 停在最后一帧（最常用，避免动画播完跳回原位）
+  - `backwards` 停在第一帧 / `both` 两者都应用
+- `animation-play-state`：`running` / `paused`，用来暂停
 
-**tip 个人习惯**
+**简写小技巧**
 
-实际开发时，我**一般只对时长相关不用简写（如 animation-duration）**，其他常见的动画属性（如 name、timing-function、iteration-count 等）可以用简写，只有遇到需要部分单独覆盖属性，或对时长有特殊需求时，才会拆开放。
-
-比如下面这样，推荐时长写明确的单独属性，其他用简写组合没问题：
+时长建议单独写 `animation-duration`，其他用简写。原因是简写里 duration 和 delay 顺序最容易写反，单独拎出来不会错。
 
 ```css
 .loading {
@@ -213,77 +333,48 @@ animation: name duration timing-function delay iteration-count direction fill-mo
 }
 ```
 
-- 原因是**简写最容易混淆的其实是时长相关参数**（将 duration、delay 写反很常见），单独写能避免出错。
-- 其他属性合并写可读性、维护都较好，但如果场景复杂、需要频繁单独覆盖某一字段，也可以全部拆开写，视团队习惯选择即可。
+## @keyframes
 
-**fill-mode 踩坑**
-
-刚学的时候经常遇到的问题：动画播完元素就跳回原位了。这时候就需要设置 `animation-fill-mode: forwards`，让元素保持在动画结束时的状态。
-
-### @keyframes 规则
-
-@keyframes 用来定义动画的关键帧，有两种写法：
-
-**from...to 写法**
-
-适合简单的两帧动画：
+两种写法。简单两帧用 `from / to`：
 
 ```css
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 ```
 
-**百分比写法**
-
-适合多阶段动画：
+多阶段用百分比：
 
 ```css
 @keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
 }
 ```
 
-也可以把相同的帧合并写：
+相同的帧可以合并：
 
 ```css
 @keyframes flash {
-  0%, 50%, 100% {
-    opacity: 1;
-  }
-  25%, 75% {
-    opacity: 0;
-  }
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75%     { opacity: 0; }
 }
 ```
 
-## clip-path 属性
+## clip-path
 
-clip-path 可以裁剪元素的显示区域，做一些不规则形状的效果。配合 transition 可以做出很有意思的动画。
+clip-path 用来裁剪元素的显示区域，配合 transition 能做出不规则的揭示动画。
 
 **circle() - 圆形**
 
 ```css
-/* 以中心为圆心，半径 50% 的圆 */
-clip-path: circle(50%);
-/* 指定圆心位置 */
-clip-path: circle(50% at 0% 50%);
+clip-path: circle(50%);              /* 以中心为圆心，半径 50% */
+clip-path: circle(50% at 0% 50%);    /* 指定圆心位置 */
 ```
 
-一个常见的应用是 hover 时从某个点展开：
+常见用法是 hover 时从某个点展开：
 
 ```css
 .card {
@@ -296,43 +387,75 @@ clip-path: circle(50% at 0% 50%);
 }
 ```
 
+<Playground
+  html={`
+<div class="reveal">
+    <span>Hover to reveal</span>
+</div>
+`}
+  css={`
+/* 关键: clip-path + transition */
+.reveal {
+    width: 200px;
+    height: 120px;
+    background: #111;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 24px auto;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+.reveal::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 0.5s ease;
+}
+.reveal:hover::before {
+    clip-path: circle(120% at 50% 50%);
+}
+.reveal span {
+    position: relative;
+    z-index: 1;
+}
+`}
+/>
+
 **polygon() - 多边形**
 
-可以画任意多边形，参数是各个顶点的坐标：
+参数是各个顶点的坐标：
 
 ```css
-/* 三角形 */
-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-/* 菱形 */
-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+clip-path: polygon(50% 0%, 0% 100%, 100% 100%);            /* 三角形 */
+clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);    /* 菱形 */
 ```
 
 **inset() - 矩形内缩**
 
-从四边向内裁剪：
-
 ```css
-/* 四边各裁掉 10px */
-clip-path: inset(10px);
-/* 分别设置上右下左 */
-clip-path: inset(10px 20px 30px 40px);
-/* 还可以加圆角 */
-clip-path: inset(10px round 10px);
+clip-path: inset(10px);                  /* 四边各裁 10px */
+clip-path: inset(10px 20px 30px 40px);   /* 上右下左 */
+clip-path: inset(10px round 10px);       /* 加圆角 */
 ```
 
-## 性能优化小技巧
+## 性能优化
 
-做动画时最怕的就是卡顿，这里总结一下怎么让动画更流畅。
+**一句话原则：能用 transform 和 opacity 解决的，就别碰别的。**
 
-**只用 transform 和 opacity**
+它们只触发合成，不会触发重排和重绘。其他属性多多少少都会拖累帧率。
 
-这两个属性是性能最好的，因为它们只会触发合成（Composite），不会触发重排（Layout）和重绘（Paint）。
+**避免动画这些属性**：`width` / `height`、`top` / `left` / `right` / `bottom`、`margin` / `padding`、`font-size`。要改大小用 `transform: scale()` 代替。
 
-如果你要移动元素，用 `transform: translate()` 而不是改 `left`/`top`。要改透明度就用 `opacity` 而不是 `visibility`。
-
-**will-change 提前告知**
-
-如果知道某个元素马上要做动画，可以用 `will-change` 提前告诉浏览器：
+**will-change：提前告知浏览器**
 
 ```css
 .will-animate {
@@ -340,34 +463,69 @@ clip-path: inset(10px round 10px);
 }
 ```
 
-这样浏览器会提前做好优化准备。但不要滥用，用完记得移除，不然会占用额外内存。
+浏览器会提前做好优化准备，但**不要滥用**——用完要移除，否则一直占内存。
 
-**transform: translate3d() 或 translateZ(0)**
+**强制 GPU 加速**
 
-这是个小技巧，加上 Z 轴的变换可以强制开启 GPU 加速：
+加一个 Z 轴上的变换，浏览器就会把元素扔到合成层：
 
 ```css
-.gpu-accelerated {
-  transform: translateZ(0);
-  /* 或者 */
-  transform: translate3d(0, 0, 0);
+transform: translateZ(0);
+/* 或 */
+transform: translate3d(0, 0, 0);
+```
+
+老技巧了，现代浏览器对 `transform` 默认已经处理得很好，只在确实需要时再用。
+
+## 常见的坑
+
+- **`height: auto` 不能 transition** —— `auto` 不是数值，没法插值。要展开收起一般用 `grid-template-rows: 0fr → 1fr`，或者测出像素值再过渡。
+- **`overflow: hidden` 会裁掉子元素 transform 出去的部分** —— 经典 bug：hover 放大被切了一半，多半是父容器有 `overflow: hidden`。
+- **transform 顺序不可换** —— `translate rotate` 和 `rotate translate` 结果不一样，前面已经讲过。
+
+## 无障碍
+
+部分用户开启了系统的「减少动效」（出于前庭功能、注意力等真实原因），可以用 `prefers-reduced-motion` 检测。非必要的动画都应该尊重这个设置：
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 ```
 
-**避免动画这些属性**
+或者只关掉装饰性动画，保留功能性反馈：
 
-以下属性会触发重排，尽量不要用它们做动画：
-- `width`、`height`
-- `top`、`left`、`right`、`bottom`
-- `margin`、`padding`
-- `font-size`
+```css
+@media (prefers-reduced-motion: reduce) {
+  .decorative {
+    animation: none;
+    transition: none;
+  }
+}
+```
 
-如果非要改变大小，可以用 `transform: scale()` 代替。
+## 写在最后
 
-## 做的比较好的可参考的网站
+**动画应该让交互更清晰，而不是装饰。** 如果一个交互去掉动画也没问题，那这个动画就要问问自己在做什么 —— 不是说要砍掉，而是要让它真的在传达信息（状态变了、东西出现了、操作被确认了）。
 
-- [Vercel 官网](https://vercel.com/home)
-- [Vercel 设计系统](https://vercel.com/geist/introduction)
+## 延伸阅读
+
+**工具 / 库**
+
+- [easings.net](https://easings.net/) — 缓动函数预览，直接复制 `cubic-bezier()`
+- [tw-animate-css](https://github.com/Wombosvideo/tw-animate-css#readme) — Tailwind 风格的动画库，内置大量效果
+- [tailwindcss-radix](https://github.com/ecklf/tailwindcss-radix) — 把 Radix 组件状态转成 Tailwind 类名
+
+**最佳实践**
+
+- [Animata - Best Practices](https://animata.design/docs/contributing/best-practices) — 动画性能、无障碍、时长缓动的实用 checklist
+
+**做得好的网站（找灵感）**
+
+- [Vercel 官网](https://vercel.com/home) / [Geist 设计系统](https://vercel.com/geist/introduction)
 - [Linear 官网](https://linear.app/)
-- [Aave 官网](https://aave.com/)
-- [Aave 文档](https://aave.com/docs)
+- [Aave 官网](https://aave.com/) / [Aave 文档](https://aave.com/docs)
