@@ -87,7 +87,7 @@ html {
   @apply visible;
 }
 
-.prose pre {
+.prose pre:not(.not-prose *) {
   @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 py-3 px-4 text-[13px] leading-relaxed transition-colors;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
 }

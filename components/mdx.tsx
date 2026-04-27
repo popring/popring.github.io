@@ -4,6 +4,7 @@ import { highlight } from 'sugar-high'
 import React, { ComponentProps } from 'react'
 import { CopyButton } from './copy-button'
 import { CodePreview } from './code-preview'
+import { Playground } from './playground'
 import { ZoomableImage } from './zoomable-image'
 import remarkGfm from 'remark-gfm'
 
@@ -132,6 +133,7 @@ const components = {
   table: TableWrapper,
   Table,
   CodePreview,
+  Playground,
 }
 
 export function CustomMDX(props: ComponentProps<typeof MDXRemote> & { format?: 'md' | 'mdx' }) {
@@ -144,6 +146,10 @@ export function CustomMDX(props: ComponentProps<typeof MDXRemote> & { format?: '
           format,
           remarkPlugins: [remarkGfm],
         },
+        // next-mdx-remote v6 blocks JSX/JS in MDX by default. We trust our own
+        // blog content, so allow it; keep blockDangerousJS on to still block
+        // eval/Function/require globals.
+        blockJS: false,
       }}
       components={{ ...components, ...(rest.components || {}) }}
     />
