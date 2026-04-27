@@ -5,6 +5,7 @@ import { GeistMono } from 'geist/font/mono';
 import { Navbar } from '@/components/nav';
 import Script from 'next/script';
 import Footer from '@/components/footer';
+import { BackToTop } from '@/components/back-to-top';
 import { baseUrl } from './sitemap';
 
 export const metadata: Metadata = {
@@ -69,6 +70,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <BackToTop />
           <Script
             src='https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS'
             strategy='afterInteractive'
