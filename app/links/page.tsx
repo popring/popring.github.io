@@ -20,6 +20,17 @@ const links = [
   },
 ]
 
+// 给友链外跳带上标准 UTM，朋友的 GA / Plausible / Umami 都能识别。
+// 已存在的 utm_source 不覆盖（比如对方提供的 URL 自己已经带了追踪）。
+function withUTM(url: string): string {
+  const u = new URL(url)
+  if (!u.searchParams.has('utm_source')) {
+    u.searchParams.set('utm_source', 'popring.cn')
+    u.searchParams.set('utm_medium', 'blogroll')
+  }
+  return u.toString()
+}
+
 export default function LinksPage() {
   return (
     <section>
@@ -30,7 +41,7 @@ export default function LinksPage() {
         {links.map((link) => (
           <a
             key={link.url}
-            href={link.url}
+            href={withUTM(link.url)}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-sm"
