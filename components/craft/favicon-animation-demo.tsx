@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-const MODES = [
+export const MODES = [
   { key: 'pacman', label: '吃豆人', emoji: '🟡' },
   { key: 'equalizer', label: '音频条', emoji: '📊' },
   { key: 'orbit', label: '轨道', emoji: '🪐' },
@@ -13,7 +13,7 @@ type Mode = (typeof MODES)[number]['key'] | 'stop'
 
 // 所有形状用 32×32 网格设计（favicon 原生分辨率），再用 s = size/32 放缩到目标尺寸。
 // 这样同一份代码能给 worker 画 32×32 的真 favicon，也能给主线程的预览 canvas 画 384×384 的高清版。
-function drawFrame(ctx: any, t: number, mode: string, size: number) {
+export function drawFrame(ctx: any, t: number, mode: string, size: number) {
   const s = size / 32
   const noise = (t: number, k: number) =>
     Math.sin(t * 7.3 + k) * 0.5 +
