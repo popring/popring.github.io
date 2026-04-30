@@ -138,8 +138,13 @@ export function drawFrame(ctx: any, t: number, mode: string, size: number) {
 
 // Worker 在后台线程画 32×32 favicon 帧 —— 用 worker 是为了切到后台 tab 时
 // setTimeout 不被节流，favicon 还能继续动。
+//
+// 注意：必须用 `const drawFrame = ${drawFrame.toString()}` 显式绑定一个固定名字。
+// 生产构建会 minify 函数名（drawFrame → s 之类），.toString() 拿到的是 "function s(...){...}"。
+// 如果直接 ${drawFrame.toString()} 注入，worker 里调 `drawFrame(...)` 就成了 ReferenceError，
+// 整个 favicon 动画静默失效（dev 不 minify 所以看不出来）。
 const WORKER_SOURCE = `
-${drawFrame.toString()}
+const drawFrame = ${drawFrame.toString()};
 
 const canvas = new OffscreenCanvas(32, 32);
 const ctx = canvas.getContext('2d');
