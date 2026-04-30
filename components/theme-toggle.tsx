@@ -1,7 +1,9 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+
+const THEME_CHANGE_EVENT = 'themechange'
 
 function getResolvedTheme(): 'light' | 'dark' {
   if (typeof window === 'undefined') return 'light'
@@ -10,22 +12,53 @@ function getResolvedTheme(): 'light' | 'dark' {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
-export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false)
-  const [mounted, setMounted] = useState(false)
+function subscribeTheme(onStoreChange: () => void) {
+  if (typeof window === 'undefined') return () => {}
 
-  useEffect(() => {
-    setIsDark(getResolvedTheme() === 'dark')
-    setMounted(true)
-  }, [])
+  const media = window.matchMedia('(prefers-color-scheme: dark)')
+  window.addEventListener('storage', onStoreChange)
+  window.addEventListener(THEME_CHANGE_EVENT, onStoreChange)
+  media.addEventListener('change', onStoreChange)
+
+  return () => {
+    window.removeEventListener('storage', onStoreChange)
+    window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange)
+    media.removeEventListener('change', onStoreChange)
+  }
+}
+
+function subscribeHydration() {
+  return () => {}
+}
+
+function getHydratedSnapshot() {
+  return true
+}
+
+function getServerHydratedSnapshot() {
+  return false
+}
+
+export function ThemeToggle() {
+  const mounted = useSyncExternalStore(
+    subscribeHydration,
+    getHydratedSnapshot,
+    getServerHydratedSnapshot
+  )
+  const theme = useSyncExternalStore(
+    subscribeTheme,
+    getResolvedTheme,
+    () => 'light'
+  )
+  const isDark = theme === 'dark'
 
   const toggle = useCallback(() => {
     const switchTheme = () => {
       const next = isDark ? 'light' : 'dark'
-      setIsDark(!isDark)
       localStorage.setItem('theme', next)
       document.documentElement.classList.toggle('dark', next === 'dark')
       document.documentElement.classList.toggle('light', next === 'light')
+      window.dispatchEvent(new Event(THEME_CHANGE_EVENT))
     }
     if (!document.startViewTransition) {
       switchTheme()

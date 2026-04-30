@@ -34,7 +34,7 @@ export default function Page() {
             className="text-sm text-neutral-500 dark:text-neutral-400"
             style={monoStyle}
           >
-            <span className="text-neutral-400 dark:text-neutral-600">//</span>{' '}
+            <span className="text-neutral-400 dark:text-neutral-600">{'//'}</span>{' '}
             还没有作品
           </p>
         ) : (
@@ -73,7 +73,7 @@ export default function Page() {
                             style={monoStyle}
                           >
                             <span className="text-neutral-400 dark:text-neutral-600">
-                              //
+                              {'//'}
                             </span>{' '}
                             no preview
                           </span>

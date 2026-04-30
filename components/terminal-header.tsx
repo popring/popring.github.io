@@ -38,7 +38,7 @@ export function TerminalHeader({ path, count, comment }: TerminalHeaderProps) {
           className="text-sm text-neutral-500 dark:text-neutral-400"
           style={monoFont}
         >
-          <span className="text-neutral-400 dark:text-neutral-600">//</span>{' '}
+          <span className="text-neutral-400 dark:text-neutral-600">{'//'}</span>{' '}
           {comment}
         </p>
       )}

@@ -66,11 +66,11 @@ function highlightCode(code: string, lang: Tab, theme: PrismTheme) {
       {({ tokens, getLineProps, getTokenProps }) => (
         <>
           {tokens.map((line, i) => {
-            const { key: _lineKey, ...lineProps } = getLineProps({ line })
+            const lineProps = getLineProps({ line })
             return (
               <div key={i} {...lineProps}>
                 {line.map((token, j) => {
-                  const { key: _tokenKey, ...tokenProps } = getTokenProps({ token })
+                  const tokenProps = getTokenProps({ token })
                   return <span key={j} {...tokenProps} />
                 })}
               </div>

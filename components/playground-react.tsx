@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence, stagger } from 'motion/react'
 import { themes } from 'prism-react-renderer'
 import * as React from 'react'
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live'
@@ -16,6 +16,7 @@ type Props = {
 const DEFAULT_SCOPE = {
   motion,
   AnimatePresence,
+  stagger,
   useState: React.useState,
   useEffect: React.useEffect,
   useRef: React.useRef,

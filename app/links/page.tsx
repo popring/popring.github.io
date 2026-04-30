@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: '友情链接',
@@ -46,7 +47,7 @@ export default function LinksPage() {
             rel="noopener noreferrer"
             className="group flex items-center gap-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-sm"
           >
-            <img
+            <Image
               src={link.avatar}
               alt={link.name}
               width={48}

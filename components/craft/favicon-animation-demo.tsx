@@ -10,10 +10,18 @@ export const MODES = [
 ] as const
 
 type Mode = (typeof MODES)[number]['key'] | 'stop'
+type FaviconCanvasContext =
+  | CanvasRenderingContext2D
+  | OffscreenCanvasRenderingContext2D
 
 // 所有形状用 32×32 网格设计（favicon 原生分辨率），再用 s = size/32 放缩到目标尺寸。
 // 这样同一份代码能给 worker 画 32×32 的真 favicon，也能给主线程的预览 canvas 画 384×384 的高清版。
-export function drawFrame(ctx: any, t: number, mode: string, size: number) {
+export function drawFrame(
+  ctx: FaviconCanvasContext,
+  t: number,
+  mode: string,
+  size: number
+) {
   const s = size / 32
   const noise = (t: number, k: number) =>
     Math.sin(t * 7.3 + k) * 0.5 +

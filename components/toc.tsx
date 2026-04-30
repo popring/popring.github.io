@@ -9,7 +9,7 @@ type Heading = {
 }
 
 export function TableOfContents({ headings }: { headings: Heading[] }) {
-  const [activeSlug, setActiveSlug] = useState('')
+  const [activeSlug, setActiveSlug] = useState(headings[0]?.slug ?? '')
 
   useEffect(() => {
     const slugs = headings.map((h) => h.slug)
@@ -60,9 +60,14 @@ export function TableOfContents({ headings }: { headings: Heading[] }) {
     if (!initialSlug && headings.length > 0) {
       initialSlug = headings[0].slug
     }
-    setActiveSlug(initialSlug)
+    const frame = window.requestAnimationFrame(() => {
+      setActiveSlug(initialSlug)
+    })
 
-    return () => observer.disconnect()
+    return () => {
+      window.cancelAnimationFrame(frame)
+      observer.disconnect()
+    }
   }, [headings])
 
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>, slug: string) {

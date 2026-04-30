@@ -1,0 +1,767 @@
+---
+title: '重学 Web 动画（二）：Motion 入门'
+publishedAt: '2026-04-27'
+summary: 'Motion（曾叫 framer-motion）入门：从 React 状态变化出发，理解 initial / animate / transition、手势动画、AnimatePresence 离场动画、variants 编排和 layout 布局动画。'
+tags:
+  - web动画
+  - motion
+  - framer-motion
+  - animation
+  - react
+category: '视觉动效'
+format: mdx
+---
+
+上一篇把 [CSS 动画基础](/blog/web-animation-css-basics) 过了一遍。这篇不重复 `transition`、`animation`、`transform` 这些属性，重点看另一个问题：当动画跟着 React 状态、组件挂载卸载、列表变化、布局变化一起发生时，Motion 为什么会更顺手。
+
+本文示例使用 Motion 12 的包名：
+
+```tsx
+import { motion, AnimatePresence } from 'motion/react'
+```
+
+如果你之前用过 `framer-motion`，会发现大部分写法都很熟。现在更推荐安装 `motion`，从 `motion/react` 引入。
+
+## 先说结论
+
+Motion 解决的不是“能不能做动画”，而是“动画能不能自然地跟着状态走”。
+
+CSS 很适合做简单、稳定的状态过渡，比如 hover 变色、按钮按下缩放、loading 循环。但只要进入下面这些场景，Motion 的优势就会明显很多：
+
+| 场景 | CSS | Motion |
+|---|---|---|
+| 元素进场 | 可以做 | 更直接，`initial` 到 `animate` |
+| 元素离场 | 麻烦，DOM 已经被卸载 | `AnimatePresence + exit` |
+| React 状态驱动 | 要切 class，状态和动画分散 | `animate` 直接读状态 |
+| 一组元素级联出现 | 要写 delay 或多个 class | `variants + stagger` |
+| 布局变化 | 往往要手算高度、位置 | `layout` 自动补间 |
+
+我的判断是：**纯样式变化优先 CSS，组件状态变化优先 Motion。**
+
+## 安装和使用方式
+
+安装：
+
+```bash
+pnpm add motion
+```
+
+在 React Client Component 里使用：
+
+```tsx
+'use client'
+
+import { motion } from 'motion/react'
+
+export function Card() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25 }}
+    >
+      Hello Motion
+    </motion.div>
+  )
+}
+```
+
+如果是 Next.js App Router，大部分有交互的 Motion 组件都应该放在 Client Component 里，因为你会用到点击事件、`useState`、`AnimatePresence` 等客户端能力。纯静态的服务端组件也可以用 `motion/react-client`，但入门阶段先记住上面这种写法就够了。
+
+## 核心心智：声明目标状态
+
+CSS transition 的心智是：“属性变了，浏览器帮我过渡过去。”
+
+Motion 的心智更像是：“我声明这个组件当前应该长什么样，Motion 负责把它补到目标状态。”
+
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: 16 }}
+  animate={{ opacity: 1, y: 0 }}
+/>
+```
+
+这里有三个最常用的属性：
+
+- `initial`：刚进入页面时的初始状态
+- `animate`：目标状态，也可以跟着 React state 改变
+- `transition`：从初始状态到目标状态的方式
+
+下面是一个最小的进场动画。示例里的代码省略了 `import`，当前 Playground 已经把 `motion` 注入进去了。
+
+<Playground
+  noInline
+  jsx={`
+function Demo() {
+  return (
+    <div style={{
+      width: '100%',
+      minHeight: 220,
+      display: 'grid',
+      placeItems: 'center',
+      background: 'linear-gradient(135deg, #f8fafc, #e2e8f0)',
+      borderRadius: 16
+    }}>
+      <motion.div
+        initial={{ opacity: 0, y: 18, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          width: 220,
+          padding: 20,
+          borderRadius: 18,
+          background: '#111827',
+          color: 'white',
+          boxShadow: '0 22px 50px rgba(15, 23, 42, 0.22)'
+        }}
+      >
+        <div style={{ fontSize: 13, opacity: 0.62, marginBottom: 8 }}>
+          Motion Card
+        </div>
+        <div style={{ fontSize: 22, fontWeight: 700, lineHeight: 1.1 }}>
+          状态变了，动画跟着走
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+render(<Demo />)
+`}
+/>
+
+需要注意，`x`、`y`、`scale`、`rotate` 这些不是普通 CSS 属性，而是 Motion 对 `transform` 的拆分写法：
+
+```tsx
+<motion.div animate={{ x: 40, scale: 1.08, rotate: 3 }} />
+```
+
+这样比手写 `transform: translateX(...) scale(...) rotate(...)` 更适合动态组合。你不需要关心 transform 字符串的顺序，也不用在不同状态里拼一整段 `transform`。
+
+## 让动画跟着 state 变化
+
+Motion 真正顺手的地方，是 `animate` 可以直接由 state 决定：
+
+```tsx
+const [active, setActive] = useState(false)
+
+<motion.div
+  animate={{
+    x: active ? 96 : 0,
+    rotate: active ? 4 : 0,
+    backgroundColor: active ? '#111827' : '#e5e7eb',
+  }}
+/>
+```
+
+这比“state 决定 className，className 再触发 CSS transition”少绕一层。状态和动画目标就在同一处，读起来更直接。
+
+<Playground
+  noInline
+  jsx={`
+function Demo() {
+  const [active, setActive] = useState(false)
+
+  return (
+    <div style={{
+      width: '100%',
+      minHeight: 240,
+      display: 'grid',
+      placeItems: 'center',
+      background: '#f4f4f5',
+      borderRadius: 16
+    }}>
+      <button
+        onClick={() => setActive(!active)}
+        style={{
+          position: 'relative',
+          width: 260,
+          height: 92,
+          padding: 0,
+          border: 0,
+          borderRadius: 999,
+          background: '#e4e4e7',
+          cursor: 'pointer',
+          overflow: 'hidden'
+        }}
+      >
+        <motion.div
+          animate={{
+            x: active ? 166 : 0,
+            backgroundColor: active ? '#111827' : '#ffffff',
+            rotate: active ? 8 : 0
+          }}
+          transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+          style={{
+            position: 'absolute',
+            top: 10,
+            left: 10,
+            width: 72,
+            height: 72,
+            borderRadius: 24,
+            boxShadow: '0 12px 30px rgba(15, 23, 42, 0.18)'
+          }}
+        />
+        <span style={{
+          position: 'relative',
+          zIndex: 1,
+          fontSize: 13,
+          fontWeight: 700,
+          color: active ? '#111827' : '#71717a'
+        }}>
+          {active ? 'ON' : 'OFF'}
+        </span>
+      </button>
+    </div>
+  )
+}
+
+render(<Demo />)
+`}
+/>
+
+这个例子里没有写任何 CSS class，核心只有两件事：
+
+- `active` 决定目标样式
+- `transition` 决定过去的方式
+
+## transition 决定动画手感
+
+动画“能动”和“动得舒服”是两回事。Motion 里最常调的不是 `animate`，而是 `transition`。
+
+常用参数：
+
+| 参数 | 用途 | 例子 |
+|---|---|---|
+| `duration` | 动画时长 | `0.2`、`0.35` |
+| `ease` | 缓动曲线 | `'easeOut'`、`[0.22, 1, 0.36, 1]` |
+| `type` | 动画类型 | `'tween'`、`'spring'` |
+| `stiffness` | 弹簧刚度，越大越快 | `300`、`420` |
+| `damping` | 阻尼，越大越不弹 | `24`、`32` |
+| `delay` | 延迟播放 | `0.08` |
+
+普通 UI 动画可以先用 tween：
+
+```tsx
+<motion.div
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    duration: 0.28,
+    ease: 'easeOut',
+  }}
+/>
+```
+
+带物理感的交互可以用 spring：
+
+```tsx
+<motion.button
+  whileTap={{ scale: 0.96 }}
+  transition={{
+    type: 'spring',
+    stiffness: 500,
+    damping: 32,
+  }}
+/>
+```
+
+我的粗略经验：
+
+- 进场、淡入、弹窗显示：`duration + ease`
+- 拖拽、按钮按压、开关滑块：`spring`
+- 觉得“飘”：缩短 `duration` 或提高 `stiffness`
+- 觉得“弹过头”：提高 `damping`
+- 觉得“机械”：换一个更自然的 `ease`，不要默认全靠线性变化
+
+## 交互动画：hover 和 tap
+
+按钮、卡片、列表项这类元素，最常见的是 hover 和 tap 反馈。Motion 直接提供了 `whileHover` 和 `whileTap`：
+
+```tsx
+<motion.button
+  whileHover={{ scale: 1.04 }}
+  whileTap={{ scale: 0.96 }}
+  transition={{ type: 'spring', stiffness: 500, damping: 32 }}
+>
+  Save
+</motion.button>
+```
+
+它的好处不是少写几行 CSS，而是交互意图更清楚：这个组件 hover 时变成什么样，按下时变成什么样，都写在组件上。
+
+<Playground
+  noInline
+  jsx={`
+function Demo() {
+  return (
+    <div style={{
+      width: '100%',
+      minHeight: 220,
+      display: 'grid',
+      placeItems: 'center',
+      background: '#fff7ed',
+      borderRadius: 16
+    }}>
+      <motion.button
+        whileHover={{ scale: 1.04, y: -2 }}
+        whileTap={{ scale: 0.96, y: 0 }}
+        transition={{ type: 'spring', stiffness: 520, damping: 32 }}
+        style={{
+          border: 0,
+          borderRadius: 999,
+          padding: '14px 24px',
+          background: '#ea580c',
+          color: 'white',
+          fontSize: 15,
+          fontWeight: 700,
+          cursor: 'pointer',
+          boxShadow: '0 16px 36px rgba(234, 88, 12, 0.28)'
+        }}
+      >
+        Hover / Press
+      </motion.button>
+    </div>
+  )
+}
+
+render(<Demo />)
+`}
+/>
+
+除了这两个，常用的还有：
+
+- `whileFocus`：输入框、按钮聚焦时的反馈
+- `whileInView`：元素进入视口时触发，适合内容区渐入
+- `whileDrag`：拖拽时的状态
+
+先把 `whileHover` 和 `whileTap` 用熟，再去看拖拽、滚动这些高级场景。
+
+## 离场动画：AnimatePresence
+
+React 条件渲染里最麻烦的不是进场，而是离场。
+
+```tsx
+{open ? <Panel /> : null}
+```
+
+当 `open` 变成 `false`，`Panel` 会直接从 React tree 里消失。DOM 都没了，CSS 没机会慢慢把它淡出。
+
+Motion 的做法是用 `AnimatePresence` 包住可能离场的元素，然后给元素写 `exit`：
+
+```tsx
+<AnimatePresence>
+  {open ? (
+    <motion.div
+      key="panel"
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 8 }}
+    />
+  ) : null}
+</AnimatePresence>
+```
+
+完整例子：
+
+<Playground
+  noInline
+  jsx={`
+function Demo() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div style={{
+      width: '100%',
+      minHeight: 280,
+      display: 'grid',
+      placeItems: 'center',
+      background: '#ecfeff',
+      borderRadius: 16
+    }}>
+      <div style={{ width: 260 }}>
+        <button
+          onClick={() => setOpen(!open)}
+          style={{
+            width: '100%',
+            border: 0,
+            borderRadius: 12,
+            padding: '12px 14px',
+            background: '#0f172a',
+            color: 'white',
+            fontWeight: 700,
+            cursor: 'pointer'
+          }}
+        >
+          {open ? '关闭面板' : '打开面板'}
+        </button>
+
+        <AnimatePresence>
+          {open ? (
+            <motion.div
+              key="panel"
+              initial={{ opacity: 0, y: 10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.98 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              style={{
+                marginTop: 12,
+                padding: 16,
+                borderRadius: 16,
+                background: 'white',
+                color: '#0f172a',
+                boxShadow: '0 18px 42px rgba(8, 47, 73, 0.16)'
+              }}
+            >
+              <strong>AnimatePresence</strong>
+              <p style={{ margin: '8px 0 0', fontSize: 14, lineHeight: 1.6 }}>
+                组件被移除之前，会先执行 exit 动画。
+              </p>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
+    </div>
+  )
+}
+
+render(<Demo />)
+`}
+/>
+
+`AnimatePresence` 有几个要点：
+
+- 直接子元素要有稳定的 `key`
+- `exit` 只在元素从 React tree 移除时触发
+- `AnimatePresence` 本身不能跟着一起被卸载，否则它没机会接管离场
+- 一个位置只展示一个元素时，可以用 `mode="wait"` 让旧元素先离场，新元素再进场
+
+例如图标切换、步骤切换、tab 内容切换，可以这样写：
+
+```tsx
+<AnimatePresence mode="wait" initial={false}>
+  <motion.div
+    key={activeTab}
+    initial={{ opacity: 0, y: 6 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -6 }}
+    transition={{ duration: 0.18 }}
+  >
+    {content}
+  </motion.div>
+</AnimatePresence>
+```
+
+## variants：给一组动画命名
+
+单个元素直接写 `animate={{ ... }}` 就够了。但真实界面里，经常是一组元素一起动：
+
+- 弹窗出现后，标题、正文、按钮依次出现
+- 列表项一个接一个进入
+- 菜单打开时，容器先展开，子项再淡入
+
+这时就适合用 `variants`。它的本质是：**给动画状态起名字，然后让父子组件共享这些状态名。**
+
+```tsx
+import { motion, stagger } from 'motion/react'
+
+const list = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: stagger(0.06),
+    },
+  },
+}
+
+const item = {
+  hidden: { opacity: 0, y: 8 },
+  show: { opacity: 1, y: 0 },
+}
+
+export function TodoList() {
+  return (
+    <motion.ul initial="hidden" animate="show" variants={list}>
+      {items.map((text) => (
+        <motion.li key={text} variants={item}>
+          {text}
+        </motion.li>
+      ))}
+    </motion.ul>
+  )
+}
+```
+
+这里父级 `motion.ul` 只负责把状态从 `hidden` 切到 `show`。子级 `motion.li` 看到同名状态后，会执行自己的 `hidden -> show`。`delayChildren: stagger(0.06)` 则让每个子项错开一点点。
+
+<Playground
+  noInline
+  jsx={`
+const tasks = ['写下目标状态', '补 transition 手感', '处理离场动画', '最后再做性能检查']
+
+const list = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: stagger(0.07)
+    }
+  }
+}
+
+const item = {
+  hidden: { opacity: 0, y: 10, filter: 'blur(4px)' },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.28, ease: 'easeOut' }
+  }
+}
+
+function Demo() {
+  const [version, setVersion] = useState(0)
+
+  return (
+    <div style={{
+      width: '100%',
+      minHeight: 280,
+      display: 'grid',
+      placeItems: 'center',
+      background: '#f8fafc',
+      borderRadius: 16
+    }}>
+      <div style={{ width: 300 }}>
+        <button
+          onClick={() => setVersion(version + 1)}
+          style={{
+            marginBottom: 12,
+            border: 0,
+            borderRadius: 10,
+            padding: '9px 12px',
+            background: '#111827',
+            color: 'white',
+            fontWeight: 700,
+            cursor: 'pointer'
+          }}
+        >
+          replay
+        </button>
+
+        <motion.ul
+          key={version}
+          initial="hidden"
+          animate="show"
+          variants={list}
+          style={{
+            listStyle: 'none',
+            margin: 0,
+            padding: 0,
+            display: 'grid',
+            gap: 10
+          }}
+        >
+          {tasks.map((task) => (
+            <motion.li
+              key={task}
+              variants={item}
+              style={{
+                padding: '12px 14px',
+                borderRadius: 14,
+                background: 'white',
+                color: '#111827',
+                boxShadow: '0 10px 24px rgba(15, 23, 42, 0.08)',
+                fontSize: 14,
+                fontWeight: 650
+              }}
+            >
+              {task}
+            </motion.li>
+          ))}
+        </motion.ul>
+      </div>
+    </div>
+  )
+}
+
+render(<Demo />)
+`}
+/>
+
+`variants` 不一定一开始就用。我的习惯是：
+
+- 单个元素：直接写 `initial / animate / exit`
+- 两三个元素：先直接写，别过度抽象
+- 一组元素、父子编排、复用状态：再上 `variants`
+
+## layout：不用手算位置的布局动画
+
+Motion 最有区分度的能力之一是 `layout`。
+
+很多 UI 变化不是单个属性变化，而是布局变化：
+
+- 卡片展开，下面的内容被推开
+- tab indicator 从一个按钮移动到另一个按钮
+- 列表项被删除，其他项自动补位
+- accordion 打开关闭，高度跟着内容变
+
+如果用 CSS，你经常需要手算高度、位置，或者在 `height: auto` 上撞墙。Motion 的 `layout` 会在组件重新渲染后测量前后布局差异，然后自动补出中间动画。
+
+最小写法：
+
+```tsx
+<motion.div layout />
+```
+
+如果是共享元素动画，用 `layoutId`：
+
+```tsx
+{tabs.map((tab) => (
+  <button key={tab} onClick={() => setActive(tab)}>
+    {active === tab ? <motion.span layoutId="active-pill" /> : null}
+    {tab}
+  </button>
+))}
+```
+
+下面这个 tab 胶囊就是 `layoutId` 在移动：
+
+<Playground
+  noInline
+  jsx={`
+const tabs = ['Motion', 'React', 'Layout']
+
+function Demo() {
+  const [active, setActive] = useState('Motion')
+
+  return (
+    <div style={{
+      width: '100%',
+      minHeight: 240,
+      display: 'grid',
+      placeItems: 'center',
+      background: '#f5f3ff',
+      borderRadius: 16
+    }}>
+      <div style={{
+        display: 'flex',
+        gap: 6,
+        padding: 6,
+        borderRadius: 999,
+        background: 'white',
+        boxShadow: '0 18px 42px rgba(76, 29, 149, 0.14)'
+      }}>
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActive(tab)}
+            style={{
+              position: 'relative',
+              border: 0,
+              background: 'transparent',
+              padding: '10px 16px',
+              borderRadius: 999,
+              cursor: 'pointer',
+              color: active === tab ? 'white' : '#6b21a8',
+              fontWeight: 800
+            }}
+          >
+            {active === tab ? (
+              <motion.span
+                layoutId="motion-blog-active-pill"
+                transition={{ type: 'spring', stiffness: 500, damping: 38 }}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: 999,
+                  background: '#6d28d9'
+                }}
+              />
+            ) : null}
+            <span style={{ position: 'relative', zIndex: 1 }}>
+              {tab}
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+render(<Demo />)
+`}
+/>
+
+`layout` 适合做“尺寸和位置变化”的动画，不适合拿来替代所有动画。透明度、位移、缩放这些明确的视觉状态，继续用 `animate` 就行。
+
+## 什么时候用 CSS，什么时候用 Motion
+
+不要因为学了 Motion，就把所有动画都改成 Motion。更实际的选择是：
+
+| 场景 | 建议 |
+|---|---|
+| hover 变色、简单按钮反馈 | CSS 就够 |
+| 页面元素进场 | CSS 或 Motion 都行，看是否和 React 状态相关 |
+| 弹窗、抽屉、Toast 离场 | Motion，重点是 `AnimatePresence` |
+| 组件状态驱动的移动、缩放、透明度变化 | Motion |
+| 列表级联、父子动画编排 | Motion `variants` |
+| tab indicator、卡片展开、列表重排 | Motion `layout / layoutId` |
+| 大量粒子、复杂逐帧、游戏类动画 | 考虑 Canvas / WebGL / 专用动画库 |
+
+我的默认策略：
+
+```text
+能用 CSS 简单表达，就不要上库。
+动画和组件状态强绑定，就用 Motion。
+动画需要离场或布局补间，优先试 Motion。
+```
+
+## 性能和无障碍
+
+Motion 不是性能免死金牌。第一篇讲过的原则仍然成立：**优先动画 `transform` 和 `opacity`。**
+
+实际写的时候注意这些：
+
+- 不要为了“有动效”而让所有元素都动，动画越多，信息噪音越大
+- 列表很长时，不要一次性给几百个元素做复杂进场动画
+- 避免频繁动画 `width`、`height`、`top`、`left`，能用 `x/y/scale` 就用它们
+- `AnimatePresence` 里的列表项要用稳定 id 当 `key`，不要用数组下标
+- `layoutId` 要避免和页面上其他共享动画冲突，名字尽量具体
+- 复杂动画在低端设备上要真机看，不要只在开发机上判断
+
+还有一个容易忽略的点：用户可能开启了“减少动态效果”。Motion 提供了 `useReducedMotion`：
+
+```tsx
+import { motion, useReducedMotion } from 'motion/react'
+
+export function Panel({ open }: { open: boolean }) {
+  const shouldReduceMotion = useReducedMotion()
+
+  return (
+    <motion.div
+      animate={{
+        opacity: open ? 1 : 0,
+        y: shouldReduceMotion ? 0 : open ? 0 : 12,
+      }}
+    />
+  )
+}
+```
+
+减少动效不一定等于完全没有动画。更好的做法通常是：保留透明度这类轻量反馈，减少大幅位移、缩放、视差、旋转。
+
+## 写在最后
+
+Motion 入门不难，难的是动画手感。
+
+API 会用之后，最有效的练习方式还是临摹：找几个你觉得舒服的网站或组件，录屏慢放，看清楚它到底是先动了透明度、位置、尺寸还是阴影。然后自己复刻一遍，反复调 `duration`、`ease`、`stiffness`、`damping`。
+
+好的动效不是“它会动”，而是“状态变化因此更清楚”。如果动画去掉以后，用户反而更容易理解，那这个动画就不是加分项。
+
+## 延伸阅读
+
+- [Motion for React - Get started](https://motion.dev/docs/react)
+- [React animation - Motion](https://motion.dev/docs/react-animation)
+- [AnimatePresence - Motion](https://motion.dev/motion/animate-presence/)
+- [Layout animation - Motion](https://motion.dev/docs/react-layout-animations)
+- [useReducedMotion - Motion](https://motion.dev/motion/use-reduced-motion/)
