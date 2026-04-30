@@ -1,4 +1,5 @@
 @AGENTS.md
+@docs/ui-design-language.md
 
 ## Project
 

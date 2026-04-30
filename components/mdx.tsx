@@ -97,9 +97,22 @@ export function slugify(str: string) {
     .replace(/^-+|-+$/g, '')
 }
 
+// 标题里有 inline code（`foo`）等子元素时，children 是 React 数组而不是 string。
+// 直接 slugify 数组会经 toString() 变成 "[object Object]"。这里递归扁平出纯文本。
+function extractText(node: React.ReactNode): string {
+  if (node == null || typeof node === 'boolean') return ''
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(extractText).join('')
+  if (typeof node === 'object' && 'props' in node) {
+    const props = (node as { props?: { children?: React.ReactNode } }).props
+    return extractText(props?.children)
+  }
+  return ''
+}
+
 function createHeading(level: number) {
-  const Heading = ({ children }: { children: string }) => {
-    const slug = slugify(children)
+  const Heading = ({ children }: { children: React.ReactNode }) => {
+    const slug = slugify(extractText(children))
     return React.createElement(
       `h${level}`,
       { id: slug },

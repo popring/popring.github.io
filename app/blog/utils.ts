@@ -123,31 +123,22 @@ export function formatDate(date: string, includeRelative = false) {
   }
   const targetDate = new Date(date)
 
+  const y = targetDate.getFullYear()
+  const m = String(targetDate.getMonth() + 1).padStart(2, '0')
+  const d = String(targetDate.getDate()).padStart(2, '0')
+  const isoDate = `${y}.${m}.${d}`
+
+  if (!includeRelative) return isoDate
+
   const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear()
   const monthsAgo = currentDate.getMonth() - targetDate.getMonth()
   const daysAgo = currentDate.getDate() - targetDate.getDate()
 
-  let formattedDate = ''
+  let rel = ''
+  if (yearsAgo > 0) rel = `${yearsAgo}y ago`
+  else if (monthsAgo > 0) rel = `${monthsAgo}mo ago`
+  else if (daysAgo > 0) rel = `${daysAgo}d ago`
+  else rel = 'today'
 
-  if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`
-  } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`
-  } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`
-  } else {
-    formattedDate = 'Today'
-  }
-
-  const fullDate = targetDate.toLocaleString('en-us', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  })
-
-  if (!includeRelative) {
-    return fullDate
-  }
-
-  return `${fullDate} (${formattedDate})`
+  return `${isoDate} (${rel})`
 }

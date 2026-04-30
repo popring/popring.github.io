@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { formatDate, getBlogPosts } from '@/app/blog/utils'
+import { monoStyle } from './terminal-header'
 
 type BlogPostsProps = {
   limit?: number
@@ -29,44 +30,64 @@ export function BlogPosts({ limit, page, pageSize = 10 }: BlogPostsProps) {
 
   return (
     <div>
-      {posts.map((post) => (
-        <Link
-          key={post.slug}
-          className="flex flex-col space-y-1 mb-4 group pl-3 border-l-2 border-transparent hover:border-neutral-300 dark:hover:border-neutral-600 transition-all"
-          href={`/blog/${post.slug}`}
-        >
-          <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <p className="text-neutral-600 dark:text-neutral-400 w-[140px] shrink-0 tabular-nums">
-              {formatDate(post.metadata.publishedAt, false)}
-            </p>
-            <p className="text-neutral-900 dark:text-neutral-100 tracking-tight group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors">
-              {post.metadata.title}
-            </p>
-          </div>
-        </Link>
-      ))}
+      <ul className="divide-y divide-neutral-100 dark:divide-neutral-900">
+        {posts.map((post) => (
+          <li key={post.slug}>
+            <Link
+              className="group flex items-baseline gap-3 py-2.5 transition-colors"
+              href={`/blog/${post.slug}`}
+            >
+              <span
+                className="text-xs text-neutral-400 dark:text-neutral-600 tabular-nums shrink-0 w-[88px]"
+                style={monoStyle}
+              >
+                {formatDate(post.metadata.publishedAt, false)}
+              </span>
+              <span
+                className="text-neutral-300 dark:text-neutral-700 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors shrink-0"
+                style={monoStyle}
+                aria-hidden
+              >
+                {'>'}
+              </span>
+              <span className="text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors leading-snug">
+                {post.metadata.title}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
       {page && totalPages > 1 && (
-        <nav className="flex items-center justify-between mt-8 text-sm text-neutral-600 dark:text-neutral-400">
+        <nav
+          className="flex items-center justify-between mt-6 text-xs text-neutral-500 dark:text-neutral-400"
+          style={monoStyle}
+        >
           {page > 1 ? (
             <Link
               href={page === 2 ? '/blog' : `/blog/page/${page - 1}`}
-              className="hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+              className="hover:text-amber-700 dark:hover:text-amber-400 transition-colors"
             >
-              上一页
+              ← prev
             </Link>
           ) : (
-            <span className="text-neutral-300 dark:text-neutral-700">上一页</span>
+            <span className="text-neutral-300 dark:text-neutral-700">
+              ← prev
+            </span>
           )}
-          <span>{page} / {totalPages}</span>
+          <span className="text-neutral-400 dark:text-neutral-600 tabular-nums">
+            [{String(page).padStart(2, '0')} / {String(totalPages).padStart(2, '0')}]
+          </span>
           {page < totalPages ? (
             <Link
               href={`/blog/page/${page + 1}`}
-              className="hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+              className="hover:text-amber-700 dark:hover:text-amber-400 transition-colors"
             >
-              下一页
+              next →
             </Link>
           ) : (
-            <span className="text-neutral-300 dark:text-neutral-700">下一页</span>
+            <span className="text-neutral-300 dark:text-neutral-700">
+              next →
+            </span>
           )}
         </nav>
       )}
