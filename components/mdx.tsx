@@ -6,6 +6,7 @@ import { CopyButton } from './copy-button'
 import { CodePreview } from './code-preview'
 import { Playground } from './playground'
 import { ZoomableImage } from './zoomable-image'
+import { FaviconAnimationDemo } from './craft/favicon-animation-demo'
 import remarkGfm from 'remark-gfm'
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
@@ -134,6 +135,7 @@ const components = {
   Table,
   CodePreview,
   Playground,
+  FaviconAnimationDemo,
 }
 
 export function CustomMDX(props: ComponentProps<typeof MDXRemote> & { format?: 'md' | 'mdx' }) {

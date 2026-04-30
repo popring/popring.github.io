@@ -357,3 +357,18 @@ input[type='email'] {
     animation: none !important;
   }
 }
+
+/* Thumbnail capture mode: hide site chrome so only the page content renders.
+   Triggered by appending `?thumb=1` to any URL — primarily for headless
+   screenshots of /craft/<slug> pages. */
+html.thumb-mode aside,
+html.thumb-mode footer,
+html.thumb-mode button[aria-label='返回顶部'] {
+  display: none !important;
+}
+html.thumb-mode body {
+  margin-top: 0 !important;
+}
+html.thumb-mode main {
+  margin-top: 0 !important;
+}

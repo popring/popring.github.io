@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Favicon 动画 Demo</title>
+<!-- 初始 favicon 由 JS 创建，避免内联 SVG 转义问题 -->
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0f0f12; color: #e8e8ea;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; min-height: 100vh; margin: 0; padding: 40px;
+    gap: 32px;
+  }
+  h1 { margin: 0; font-size: 20px; font-weight: 500; }
+  .hint { color: #888; font-size: 13px; }
+  .arrow { font-size: 32px; animation: bounce 1.5s ease-in-out infinite; }
+  @keyframes bounce { 0%,100% {transform:translateY(0);} 50% {transform:translateY(-8px);} }
+  .controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  button {
+    padding: 10px 20px; border-radius: 10px; border: 1px solid #2a2a30;
+    background: #1a1a1f; color: #e8e8ea; cursor: pointer;
+    font-size: 14px; transition: all .2s;
+  }
+  button:hover { border-color: #4a9eff; }
+  button.active { background: #4a9eff; border-color: #4a9eff; color: #fff; }
+  canvas { background: #1a1a1f; border-radius: 12px; image-rendering: pixelated; }
+</style>
+</head>
+<body>
+
+<h1>看左上角 tab 图标 ↑</h1>
+<div class="arrow">↑</div>
+<div class="hint">Worker + OffscreenCanvas 渲染，切到后台也不会停</div>
+
+<div class="controls">
+  <button data-mode="pacman" class="active">🟡 吃豆人</button>
+  <button data-mode="equalizer">📊 音频条</button>
+  <button data-mode="bounce">🟣 弹跳球</button>
+  <button data-mode="flame">🔥 火焰</button>
+  <button data-mode="stop">停止</button>
+</div>
+
+<div class="hint">下方是放大的预览（实际渲染 32×32） · <span id="counter">starting...</span></div>
+<canvas id="preview" width="32" height="32" style="width:128px; height:128px;"></canvas>
+
+<script>
+// —— 主线程：只负责 favicon link 和 worker 通信 ——
+let favicon = document.querySelector("link[rel~='icon']");
+if (!favicon) {
+  favicon = document.createElement('link');
+  favicon.rel = 'icon';
+  favicon.type = 'image/png';
+  document.head.appendChild(favicon);
+}
+const counter = document.getElementById('counter');
+const preview = document.getElementById('preview');
+const pctx = preview.getContext('2d');
+
+let mode = 'pacman';
+let lastObjectURL = null;
+
+// —— Worker 代码：所有渲染都在这里跑，不受主线程节流影响 ——
+const workerSource = `
+  const canvas = new OffscreenCanvas(32, 32);
+  const ctx = canvas.getContext('2d');
+  let mode = 'pacman';
+  let startTime = performance.now();
+  let running = false;
+
+  const noise = (t, k) =>
+    Math.sin(t * 7.3 + k) * 0.5 +
+    Math.sin(t * 13.7 + k * 2.1) * 0.3 +
+    Math.sin(t * 23.1 + k * 3.7) * 0.2;
+
+  function draw(t) {
+    ctx.clearRect(0, 0, 32, 32);
+
+    if (mode === 'pacman') {
+      ctx.fillStyle = '#0f0f12';
+      ctx.fillRect(0, 0, 32, 32);
+      const m = (Math.sin(t * Math.PI * 5) * 0.5 + 0.5) * 0.42 * Math.PI + 0.02;
+      ctx.fillStyle = '#fbbf24';
+      ctx.beginPath();
+      ctx.moveTo(16, 16);
+      ctx.arc(16, 16, 14, m, Math.PI * 2 - m);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = '#0f0f12';
+      ctx.beginPath();
+      ctx.arc(17, 9, 2, 0, Math.PI * 2);
+      ctx.fill();
+      const beadProgress = (t * 0.8) % 1;
+      const beadX = 32 - beadProgress * 16;
+      if (beadX > 16) {
+        ctx.fillStyle = '#fde047';
+        ctx.beginPath();
+        ctx.arc(beadX, 16, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    else if (mode === 'equalizer') {
+      ctx.fillStyle = '#0f0f12';
+      ctx.fillRect(0, 0, 32, 32);
+      const bars = 4, barW = 5, gap = 2;
+      const startX = (32 - (bars * barW + (bars - 1) * gap)) / 2;
+      for (let i = 0; i < bars; i++) {
+        const h = 6 + (Math.sin(t * 4 + i * 1.3) * 0.5 + 0.5) * 22;
+        const grad = ctx.createLinearGradient(0, 32 - h, 0, 32);
+        grad.addColorStop(0, '#fde047');
+        grad.addColorStop(1, '#10b981');
+        ctx.fillStyle = grad;
+        ctx.fillRect(startX + i * (barW + gap), 32 - h, barW, h);
+      }
+    }
+    else if (mode === 'bounce') {
+      ctx.fillStyle = '#1a1a1f';
+      ctx.fillRect(0, 0, 32, 32);
+      const period = 0.7;
+      const phase = (t % period) / period;
+      const groundY = 26, peakY = 6;
+      const y = groundY - 4 * (groundY - peakY) * phase * (1 - phase);
+      const distToGround = (groundY - y) / (groundY - peakY);
+      const squash = distToGround < 0.15
+        ? 1 - (1 - distToGround / 0.15) * 0.4
+        : 1;
+      const sy = squash;
+      const sx = 1 + (1 - squash) * 0.6;
+      ctx.fillStyle = '#3a3a44';
+      ctx.fillRect(0, 28, 32, 2);
+      ctx.fillStyle = '#a78bfa';
+      ctx.beginPath();
+      ctx.ellipse(16, y, 5 * sx, 5 * sy, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.4)';
+      ctx.beginPath();
+      ctx.arc(16 - 2 * sx, y - 1.5 * sy, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    else if (mode === 'flame') {
+      ctx.fillStyle = '#0f0f12';
+      ctx.fillRect(0, 0, 32, 32);
+      const ox = noise(t, 1) * 1.8;
+      const oy = noise(t, 2) * 1.5;
+      ctx.fillStyle = '#f97316';
+      ctx.beginPath();
+      ctx.moveTo(16 + ox, 5 + oy);
+      ctx.bezierCurveTo(6,  14, 7,  24, 16, 28);
+      ctx.bezierCurveTo(25, 24, 26, 14, 16 + ox, 5 + oy);
+      ctx.fill();
+      const ix = noise(t, 3) * 1.2;
+      const iy = noise(t, 4) * 1;
+      ctx.fillStyle = '#fde047';
+      ctx.beginPath();
+      ctx.moveTo(16 + ix, 13 + iy);
+      ctx.bezierCurveTo(11, 19, 12, 25, 16, 27);
+      ctx.bezierCurveTo(20, 25, 21, 19, 16 + ix, 13 + iy);
+      ctx.fill();
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.ellipse(16, 22 + noise(t, 5) * 0.5, 1.5, 3, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#7c2d12';
+      ctx.fillRect(11, 28, 10, 2);
+    }
+  }
+
+  async function tick() {
+    if (!running) return;
+    const t = (performance.now() - startTime) / 1000;
+    draw(t);
+    try {
+      const blob = await canvas.convertToBlob({ type: 'image/png' });
+      self.postMessage({ type: 'frame', blob, t });
+    } catch (e) {}
+    setTimeout(tick, 33); // ~30fps，worker 里的 setTimeout 不会被节流
+  }
+
+  self.onmessage = (e) => {
+    const d = e.data;
+    if (d.type === 'start') {
+      mode = d.mode;
+      startTime = performance.now();
+      if (!running) { running = true; tick(); }
+    } else if (d.type === 'mode') {
+      mode = d.mode;
+      startTime = performance.now();
+    } else if (d.type === 'stop') {
+      running = false;
+    }
+  };
+`;
+
+const worker = new Worker(URL.createObjectURL(
+  new Blob([workerSource], { type: 'application/javascript' })
+));
+
+let lastTickTime = performance.now();
+let smoothedFps = 30;
+
+worker.onmessage = (e) => {
+  if (e.data.type !== 'frame') return;
+
+  // 更新 favicon
+  if (lastObjectURL) URL.revokeObjectURL(lastObjectURL);
+  lastObjectURL = URL.createObjectURL(e.data.blob);
+  favicon.href = lastObjectURL;
+
+  // 计算实际接收 fps（指数平滑）
+  const now = performance.now();
+  const dt = now - lastTickTime;
+  lastTickTime = now;
+  if (dt > 0) smoothedFps = smoothedFps * 0.9 + (1000 / dt) * 0.1;
+
+  counter.textContent = `t=${e.data.t.toFixed(1)}s · ${smoothedFps.toFixed(0)}fps · ${document.hidden ? '后台' : '前台'}`;
+
+  // 预览只在前台时画（后台画也看不见，浪费 CPU）
+  if (!document.hidden) {
+    createImageBitmap(e.data.blob).then(bmp => {
+      pctx.clearRect(0, 0, 32, 32);
+      pctx.drawImage(bmp, 0, 0);
+      bmp.close();
+    }).catch(() => {});
+  }
+};
+
+worker.postMessage({ type: 'start', mode });
+
+document.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const m = btn.dataset.mode;
+    if (m === 'stop') {
+      worker.postMessage({ type: 'stop' });
+      counter.textContent = 'stopped';
+      return;
+    }
+    mode = m;
+    worker.postMessage({ type: 'start', mode: m });
+  });
+});
+</script>
+</body>
+</html>
