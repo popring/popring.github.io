@@ -11,158 +11,166 @@ const MODES = [
 
 type Mode = (typeof MODES)[number]['key'] | 'stop'
 
+// 所有形状用 32×32 网格设计（favicon 原生分辨率），再用 s = size/32 放缩到目标尺寸。
+// 这样同一份代码能给 worker 画 32×32 的真 favicon，也能给主线程的预览 canvas 画 384×384 的高清版。
+function drawFrame(ctx: any, t: number, mode: string, size: number) {
+  const s = size / 32
+  const noise = (t: number, k: number) =>
+    Math.sin(t * 7.3 + k) * 0.5 +
+    Math.sin(t * 13.7 + k * 2.1) * 0.3 +
+    Math.sin(t * 23.1 + k * 3.7) * 0.2
+
+  ctx.clearRect(0, 0, size, size)
+
+  if (mode === 'pacman') {
+    ctx.fillStyle = '#0f0f12'
+    ctx.fillRect(0, 0, size, size)
+    const m = (Math.sin(t * Math.PI * 5) * 0.5 + 0.5) * 0.42 * Math.PI + 0.02
+    ctx.fillStyle = '#fbbf24'
+    ctx.beginPath()
+    ctx.moveTo(16 * s, 16 * s)
+    ctx.arc(16 * s, 16 * s, 14 * s, m, Math.PI * 2 - m)
+    ctx.closePath()
+    ctx.fill()
+    ctx.fillStyle = '#0f0f12'
+    ctx.beginPath()
+    ctx.arc(17 * s, 9 * s, 2 * s, 0, Math.PI * 2)
+    ctx.fill()
+    const beadProgress = (t * 0.8) % 1
+    const beadX = (32 - beadProgress * 16)
+    if (beadX > 16) {
+      ctx.fillStyle = '#fde047'
+      ctx.beginPath()
+      ctx.arc(beadX * s, 16 * s, 1.5 * s, 0, Math.PI * 2)
+      ctx.fill()
+    }
+  } else if (mode === 'equalizer') {
+    ctx.fillStyle = '#0f0f12'
+    ctx.fillRect(0, 0, size, size)
+    const bars = 4, barW = 5, gap = 2
+    const startX = (32 - (bars * barW + (bars - 1) * gap)) / 2
+    for (let i = 0; i < bars; i++) {
+      const h = 6 + (Math.sin(t * 4 + i * 1.3) * 0.5 + 0.5) * 22
+      const grad = ctx.createLinearGradient(0, (32 - h) * s, 0, 32 * s)
+      grad.addColorStop(0, '#fde047')
+      grad.addColorStop(1, '#10b981')
+      ctx.fillStyle = grad
+      ctx.fillRect((startX + i * (barW + gap)) * s, (32 - h) * s, barW * s, h * s)
+    }
+  } else if (mode === 'orbit') {
+    // 中心球 + 卫星绕轨道转，带 trail
+    ctx.fillStyle = '#0f0f12'
+    ctx.fillRect(0, 0, size, size)
+    const cx = 16, cy = 16, R = 11
+    // 轨道线（淡灰）
+    ctx.lineWidth = 0.8 * s
+    ctx.strokeStyle = '#27272a'
+    ctx.beginPath()
+    ctx.arc(cx * s, cy * s, R * s, 0, Math.PI * 2)
+    ctx.stroke()
+    // 中心球
+    ctx.fillStyle = '#a78bfa'
+    ctx.beginPath()
+    ctx.arc(cx * s, cy * s, 3.5 * s, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.fillStyle = 'rgba(255,255,255,0.4)'
+    ctx.beginPath()
+    ctx.arc((cx - 1) * s, (cy - 1) * s, 1.1 * s, 0, Math.PI * 2)
+    ctx.fill()
+    // 卫星 + trail
+    const orbitPeriod = 1.4
+    for (let i = 7; i >= 0; i--) {
+      const lag = i * 0.04
+      const angle = (t - lag) * Math.PI * 2 / orbitPeriod - Math.PI / 2
+      const x = cx + Math.cos(angle) * R
+      const y = cy + Math.sin(angle) * R
+      const alpha = (1 - i / 8) * 0.95
+      const sz = Math.max(0.7, 2.6 - i * 0.22)
+      ctx.fillStyle = 'rgba(251, 146, 60, ' + alpha + ')'
+      ctx.beginPath()
+      ctx.arc(x * s, y * s, sz * s, 0, Math.PI * 2)
+      ctx.fill()
+    }
+  } else if (mode === 'pulse') {
+    // ECG 心跳波形：横线 + 主峰 + 副峰副谷，从右向左滚动
+    // 节律：奇数 beat 是"大波"（振幅 ~1.5x），偶数 beat 正常（~0.85x），形成 small/BIG/small/BIG 交替
+    // 再叠一层 noise 给每个 beat 微小抖动，避免完全节拍器感
+    ctx.fillStyle = '#0f0f12'
+    ctx.fillRect(0, 0, size, size)
+    const baseY = 19
+    const period = 44
+    const cycleT = (t * 22) % period
+    const beatIndex = Math.floor((t * 22) / period)
+    const isBig = beatIndex % 2 === 1
+    const ampN = noise(beatIndex, 4.3)
+    const ampScale = isBig ? 1.5 + ampN * 0.08 : 0.85 + ampN * 0.12
+    const peakOffset = noise(beatIndex, 1.7) * 1.4
+    const peakX = 36 - cycleT + peakOffset
+    ctx.strokeStyle = '#10b981'
+    ctx.lineWidth = 1.5 * s
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+    ctx.beginPath()
+    for (let x = 0; x <= 32; x += 0.5) {
+      const dx = x - peakX
+      let y = baseY + Math.sin(t * 9 + x * 1.7) * 0.18 + noise(t * 0.4, x * 0.5) * 0.25
+      y -= 10 * ampScale * Math.exp(-(dx * dx) / 1.4)
+      y -= 2.5 * ampScale * Math.exp(-((dx + 4) * (dx + 4)) / 1.6)
+      y += 3 * ampScale * Math.exp(-((dx - 3) * (dx - 3)) / 2)
+      if (x === 0) ctx.moveTo(x * s, y * s)
+      else ctx.lineTo(x * s, y * s)
+    }
+    ctx.stroke()
+    // 峰头光点：大波更亮更大
+    if (peakX > -2 && peakX < 34) {
+      const peakY = baseY - 10 * ampScale
+      ctx.fillStyle = '#10b981'
+      ctx.beginPath()
+      ctx.arc(peakX * s, peakY * s, (isBig ? 2 : 1.4) * s, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.fillStyle = isBig ? 'rgba(167, 243, 208, 0.9)' : 'rgba(167, 243, 208, 0.6)'
+      ctx.beginPath()
+      ctx.arc(peakX * s, peakY * s, (isBig ? 1 : 0.7) * s, 0, Math.PI * 2)
+      ctx.fill()
+    }
+  }
+}
+
 // Worker 在后台线程画 32×32 favicon 帧 —— 用 worker 是为了切到后台 tab 时
 // setTimeout 不被节流，favicon 还能继续动。
 const WORKER_SOURCE = `
-  const canvas = new OffscreenCanvas(32, 32);
-  const ctx = canvas.getContext('2d');
-  let mode = 'pacman';
-  let startTime = performance.now();
-  let running = false;
+${drawFrame.toString()}
 
-  const noise = (t, k) =>
-    Math.sin(t * 7.3 + k) * 0.5 +
-    Math.sin(t * 13.7 + k * 2.1) * 0.3 +
-    Math.sin(t * 23.1 + k * 3.7) * 0.2;
+const canvas = new OffscreenCanvas(32, 32);
+const ctx = canvas.getContext('2d');
+let mode = 'pacman';
+let startTime = performance.now();
+let running = false;
 
-  function draw(t) {
-    ctx.clearRect(0, 0, 32, 32);
-    if (mode === 'pacman') {
-      ctx.fillStyle = '#0f0f12';
-      ctx.fillRect(0, 0, 32, 32);
-      const m = (Math.sin(t * Math.PI * 5) * 0.5 + 0.5) * 0.42 * Math.PI + 0.02;
-      ctx.fillStyle = '#fbbf24';
-      ctx.beginPath();
-      ctx.moveTo(16, 16);
-      ctx.arc(16, 16, 14, m, Math.PI * 2 - m);
-      ctx.closePath();
-      ctx.fill();
-      ctx.fillStyle = '#0f0f12';
-      ctx.beginPath();
-      ctx.arc(17, 9, 2, 0, Math.PI * 2);
-      ctx.fill();
-      const beadProgress = (t * 0.8) % 1;
-      const beadX = 32 - beadProgress * 16;
-      if (beadX > 16) {
-        ctx.fillStyle = '#fde047';
-        ctx.beginPath();
-        ctx.arc(beadX, 16, 1.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    } else if (mode === 'equalizer') {
-      ctx.fillStyle = '#0f0f12';
-      ctx.fillRect(0, 0, 32, 32);
-      const bars = 4, barW = 5, gap = 2;
-      const startX = (32 - (bars * barW + (bars - 1) * gap)) / 2;
-      for (let i = 0; i < bars; i++) {
-        const h = 6 + (Math.sin(t * 4 + i * 1.3) * 0.5 + 0.5) * 22;
-        const grad = ctx.createLinearGradient(0, 32 - h, 0, 32);
-        grad.addColorStop(0, '#fde047');
-        grad.addColorStop(1, '#10b981');
-        ctx.fillStyle = grad;
-        ctx.fillRect(startX + i * (barW + gap), 32 - h, barW, h);
-      }
-    } else if (mode === 'orbit') {
-      // 中心球 + 卫星绕轨道转，带 trail
-      ctx.fillStyle = '#0f0f12';
-      ctx.fillRect(0, 0, 32, 32);
-      const cx = 16, cy = 16, R = 11;
-      // 轨道线（淡灰）
-      ctx.lineWidth = 0.8;
-      ctx.strokeStyle = '#27272a';
-      ctx.beginPath();
-      ctx.arc(cx, cy, R, 0, Math.PI * 2);
-      ctx.stroke();
-      // 中心球
-      ctx.fillStyle = '#a78bfa';
-      ctx.beginPath();
-      ctx.arc(cx, cy, 3.5, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = 'rgba(255,255,255,0.4)';
-      ctx.beginPath();
-      ctx.arc(cx - 1, cy - 1, 1.1, 0, Math.PI * 2);
-      ctx.fill();
-      // 卫星 + trail
-      const orbitPeriod = 1.4;
-      for (let i = 7; i >= 0; i--) {
-        const lag = i * 0.04;
-        const angle = (t - lag) * Math.PI * 2 / orbitPeriod - Math.PI / 2;
-        const x = cx + Math.cos(angle) * R;
-        const y = cy + Math.sin(angle) * R;
-        const alpha = (1 - i / 8) * 0.95;
-        const size = Math.max(0.7, 2.6 - i * 0.22);
-        ctx.fillStyle = 'rgba(251, 146, 60, ' + alpha + ')';
-        ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    } else if (mode === 'pulse') {
-      // ECG 心跳波形：横线 + 主峰 + 副峰副谷，从右向左滚动
-      // 节律：奇数 beat 是"大波"（振幅 ~1.5x），偶数 beat 正常（~0.85x），形成 small/BIG/small/BIG 交替
-      // 再叠一层 noise 给每个 beat 微小抖动，避免完全节拍器感
-      ctx.fillStyle = '#0f0f12';
-      ctx.fillRect(0, 0, 32, 32);
-      const baseY = 19;
-      const period = 44;
-      const cycleT = (t * 22) % period;
-      const beatIndex = Math.floor((t * 22) / period);
-      const isBig = beatIndex % 2 === 1;
-      const ampN = noise(beatIndex, 4.3);
-      const ampScale = isBig ? 1.5 + ampN * 0.08 : 0.85 + ampN * 0.12;
-      const peakOffset = noise(beatIndex, 1.7) * 1.4;
-      const peakX = 36 - cycleT + peakOffset;
-      ctx.strokeStyle = '#10b981';
-      ctx.lineWidth = 1.5;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.beginPath();
-      for (let x = 0; x <= 32; x += 0.5) {
-        const dx = x - peakX;
-        let y = baseY + Math.sin(t * 9 + x * 1.7) * 0.18 + noise(t * 0.4, x * 0.5) * 0.25;
-        y -= 10 * ampScale * Math.exp(-(dx * dx) / 1.4);
-        y -= 2.5 * ampScale * Math.exp(-((dx + 4) * (dx + 4)) / 1.6);
-        y += 3 * ampScale * Math.exp(-((dx - 3) * (dx - 3)) / 2);
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-      // 峰头光点：大波更亮更大
-      if (peakX > -2 && peakX < 34) {
-        const peakY = baseY - 10 * ampScale;
-        ctx.fillStyle = '#10b981';
-        ctx.beginPath();
-        ctx.arc(peakX, peakY, isBig ? 2 : 1.4, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = isBig ? 'rgba(167, 243, 208, 0.9)' : 'rgba(167, 243, 208, 0.6)';
-        ctx.beginPath();
-        ctx.arc(peakX, peakY, isBig ? 1 : 0.7, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+async function tick() {
+  if (!running) return;
+  const t = (performance.now() - startTime) / 1000;
+  drawFrame(ctx, t, mode, 32);
+  try {
+    const blob = await canvas.convertToBlob({ type: 'image/png' });
+    self.postMessage({ type: 'frame', blob });
+  } catch (e) {}
+  setTimeout(tick, 33);
+}
+
+self.onmessage = (e) => {
+  const d = e.data;
+  if (d.type === 'start') {
+    mode = d.mode;
+    startTime = performance.now();
+    if (!running) { running = true; tick(); }
+  } else if (d.type === 'stop') {
+    running = false;
   }
-
-  async function tick() {
-    if (!running) return;
-    const t = (performance.now() - startTime) / 1000;
-    draw(t);
-    try {
-      const blob = await canvas.convertToBlob({ type: 'image/png' });
-      self.postMessage({ type: 'frame', blob });
-    } catch (e) {}
-    setTimeout(tick, 33);
-  }
-
-  self.onmessage = (e) => {
-    const d = e.data;
-    if (d.type === 'start') {
-      mode = d.mode;
-      startTime = performance.now();
-      if (!running) { running = true; tick(); }
-    } else if (d.type === 'stop') {
-      running = false;
-    }
-  };
+};
 `
+
+const PREVIEW_CSS_SIZE = 192
 
 export function FaviconAnimationDemo() {
   const [mode, setMode] = useState<Mode>('pacman')
@@ -178,6 +186,15 @@ export function FaviconAnimationDemo() {
   // 桥接 mount useEffect 内的闭包给 mode useEffect 使用。
   const ensureLinkRef = useRef<(() => HTMLLinkElement) | null>(null)
   const restoreFaviconRef = useRef<(() => void) | null>(null)
+
+  // mount: 设置 preview canvas 的真实像素大小（DPR-aware），让矢量绘制在高分屏也清晰
+  useEffect(() => {
+    const canvas = previewCanvasRef.current
+    if (!canvas) return
+    const dpr = Math.min(2, window.devicePixelRatio || 1)
+    canvas.width = PREVIEW_CSS_SIZE * dpr
+    canvas.height = PREVIEW_CSS_SIZE * dpr
+  }, [])
 
   useEffect(() => {
     const ensureLink = () => {
@@ -242,7 +259,6 @@ export function FaviconAnimationDemo() {
         tabCanvasRef.current
           ?.getContext('2d')
           ?.drawImage(bmp, 0, 0, 16, 16)
-        previewCanvasRef.current?.getContext('2d')?.drawImage(bmp, 0, 0)
         bmp.close()
       } catch {}
     }
@@ -254,6 +270,7 @@ export function FaviconAnimationDemo() {
     }
   }, [])
 
+  // mode 变化：worker 切模式 + 大预览 canvas 起一条 RAF 直绘高清帧
   useEffect(() => {
     const w = workerRef.current
     if (!w) return
@@ -262,11 +279,31 @@ export function FaviconAnimationDemo() {
       w.postMessage({ type: 'stop' })
       restoreFaviconRef.current?.()
       tabCanvasRef.current?.getContext('2d')?.clearRect(0, 0, 16, 16)
-      previewCanvasRef.current?.getContext('2d')?.clearRect(0, 0, 32, 32)
-    } else {
-      ensureLinkRef.current?.()
-      stoppedRef.current = false
-      w.postMessage({ type: 'start', mode })
+      return
+    }
+    ensureLinkRef.current?.()
+    stoppedRef.current = false
+    w.postMessage({ type: 'start', mode })
+
+    const canvas = previewCanvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    const start = performance.now()
+    let raf = 0
+    let cancelled = false
+    const loop = () => {
+      if (cancelled) return
+      const t = (performance.now() - start) / 1000
+      drawFrame(ctx, t, mode, canvas.width)
+      raf = requestAnimationFrame(loop)
+    }
+    loop()
+
+    return () => {
+      cancelled = true
+      cancelAnimationFrame(raf)
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
   }, [mode])
 
@@ -293,7 +330,7 @@ export function FaviconAnimationDemo() {
               </span>
             </div>
             <span className="text-[11px] text-neutral-500 dark:text-neutral-400">
-              ← 模拟 tab
+              ← 模拟 tab（实际 16×16）
             </span>
           </div>
 
@@ -313,13 +350,11 @@ export function FaviconAnimationDemo() {
             />
             <canvas
               ref={previewCanvasRef}
-              width={32}
-              height={32}
               className="relative block rounded-xl bg-neutral-100 dark:bg-neutral-900 ring-1 ring-neutral-200 dark:ring-neutral-800 shadow-sm"
-              style={{ imageRendering: 'pixelated', width: 192, height: 192 }}
+              style={{ width: PREVIEW_CSS_SIZE, height: PREVIEW_CSS_SIZE }}
             />
             <span className="absolute -bottom-2 right-1 translate-y-full text-[10px] text-neutral-400 dark:text-neutral-600 tabular-nums">
-              32×32 · 6×
+              高清矢量预览 · favicon 仍是 32×32
             </span>
           </div>
         </div>
