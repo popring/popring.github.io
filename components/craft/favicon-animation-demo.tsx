@@ -6,7 +6,7 @@ const MODES = [
   { key: 'pacman', label: '吃豆人', emoji: '🟡' },
   { key: 'equalizer', label: '音频条', emoji: '📊' },
   { key: 'orbit', label: '轨道', emoji: '🪐' },
-  { key: 'pulse', label: '心跳', emoji: '💓' },
+  { key: 'pulse', label: '心跳', emoji: '🫀' },
 ] as const
 
 type Mode = (typeof MODES)[number]['key'] | 'stop'
@@ -98,10 +98,19 @@ const WORKER_SOURCE = `
       }
     } else if (mode === 'pulse') {
       // ECG 心跳波形：横线 + 主峰 + 副峰副谷，从右向左滚动
+      // 不规律来源：每个 beat 的振幅、横向偏移、是否"弱跳"由 noise(beatIndex) 决定
+      // 基线再叠一层连续 tremble，让线整体看着活
       ctx.fillStyle = '#0f0f12';
       ctx.fillRect(0, 0, 32, 32);
       const baseY = 19;
-      const peakX = 36 - ((t * 22) % 44);
+      const period = 44;
+      const cycleT = (t * 22) % period;
+      const beatIndex = Math.floor((t * 22) / period);
+      const peakOffset = noise(beatIndex, 1.7) * 1.4;
+      const peakX = 36 - cycleT + peakOffset;
+      const ampN = noise(beatIndex, 4.3);
+      const weakBeat = ampN < -0.35;
+      const ampScale = weakBeat ? 0.35 : 0.85 + ampN * 0.2;
       ctx.strokeStyle = '#10b981';
       ctx.lineWidth = 1.5;
       ctx.lineCap = 'round';
@@ -109,23 +118,24 @@ const WORKER_SOURCE = `
       ctx.beginPath();
       for (let x = 0; x <= 32; x += 0.5) {
         const dx = x - peakX;
-        let y = baseY;
-        y -= 10 * Math.exp(-(dx * dx) / 1.4);
-        y -= 2.5 * Math.exp(-((dx + 4) * (dx + 4)) / 1.6);
-        y += 3 * Math.exp(-((dx - 3) * (dx - 3)) / 2);
+        let y = baseY + Math.sin(t * 9 + x * 1.7) * 0.18 + noise(t * 0.4, x * 0.5) * 0.25;
+        y -= 10 * ampScale * Math.exp(-(dx * dx) / 1.4);
+        y -= 2.5 * ampScale * Math.exp(-((dx + 4) * (dx + 4)) / 1.6);
+        y += 3 * ampScale * Math.exp(-((dx - 3) * (dx - 3)) / 2);
         if (x === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
       ctx.stroke();
-      // 峰头光点
-      if (peakX > -2 && peakX < 34) {
+      // 峰头光点（弱跳时不画，更显"漏一拍"）
+      if (!weakBeat && peakX > -2 && peakX < 34) {
+        const peakY = baseY - 10 * ampScale;
         ctx.fillStyle = '#10b981';
         ctx.beginPath();
-        ctx.arc(peakX, baseY - 10, 1.7, 0, Math.PI * 2);
+        ctx.arc(peakX, peakY, 1.7, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = 'rgba(167, 243, 208, 0.7)';
         ctx.beginPath();
-        ctx.arc(peakX, baseY - 10, 0.8, 0, Math.PI * 2);
+        ctx.arc(peakX, peakY, 0.8, 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -348,6 +358,32 @@ export function FaviconAnimationDemo() {
         >
           停止
         </button>
+      </div>
+
+      {/* 参考 + 源码 */}
+      <div className="mt-4 text-[12px] text-neutral-500 dark:text-neutral-400 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+        <a
+          href="https://favicon.im/zh/blog/animated-favicon-live-demo"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+        >
+          参考文章
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M7 17 17 7M7 7h10v10" />
+          </svg>
+        </a>
+        <a
+          href="https://github.com/popring/popring.github.io/blob/main/components/craft/favicon-animation-demo.tsx"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+          查看源码
+        </a>
       </div>
     </div>
   )
