@@ -6,7 +6,7 @@ const MODES = [
   { key: 'pacman', label: '吃豆人', emoji: '🟡' },
   { key: 'equalizer', label: '音频条', emoji: '📊' },
   { key: 'orbit', label: '轨道', emoji: '🪐' },
-  { key: 'pulse', label: '心跳', emoji: '🫀' },
+  { key: 'pulse', label: '心跳', emoji: '❤️' },
 ] as const
 
 type Mode = (typeof MODES)[number]['key'] | 'stop'
@@ -98,19 +98,19 @@ const WORKER_SOURCE = `
       }
     } else if (mode === 'pulse') {
       // ECG 心跳波形：横线 + 主峰 + 副峰副谷，从右向左滚动
-      // 不规律来源：每个 beat 的振幅、横向偏移、是否"弱跳"由 noise(beatIndex) 决定
-      // 基线再叠一层连续 tremble，让线整体看着活
+      // 节律：奇数 beat 是"大波"（振幅 ~1.5x），偶数 beat 正常（~0.85x），形成 small/BIG/small/BIG 交替
+      // 再叠一层 noise 给每个 beat 微小抖动，避免完全节拍器感
       ctx.fillStyle = '#0f0f12';
       ctx.fillRect(0, 0, 32, 32);
       const baseY = 19;
       const period = 44;
       const cycleT = (t * 22) % period;
       const beatIndex = Math.floor((t * 22) / period);
+      const isBig = beatIndex % 2 === 1;
+      const ampN = noise(beatIndex, 4.3);
+      const ampScale = isBig ? 1.5 + ampN * 0.08 : 0.85 + ampN * 0.12;
       const peakOffset = noise(beatIndex, 1.7) * 1.4;
       const peakX = 36 - cycleT + peakOffset;
-      const ampN = noise(beatIndex, 4.3);
-      const weakBeat = ampN < -0.35;
-      const ampScale = weakBeat ? 0.35 : 0.85 + ampN * 0.2;
       ctx.strokeStyle = '#10b981';
       ctx.lineWidth = 1.5;
       ctx.lineCap = 'round';
@@ -126,16 +126,16 @@ const WORKER_SOURCE = `
         else ctx.lineTo(x, y);
       }
       ctx.stroke();
-      // 峰头光点（弱跳时不画，更显"漏一拍"）
-      if (!weakBeat && peakX > -2 && peakX < 34) {
+      // 峰头光点：大波更亮更大
+      if (peakX > -2 && peakX < 34) {
         const peakY = baseY - 10 * ampScale;
         ctx.fillStyle = '#10b981';
         ctx.beginPath();
-        ctx.arc(peakX, peakY, 1.7, 0, Math.PI * 2);
+        ctx.arc(peakX, peakY, isBig ? 2 : 1.4, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = 'rgba(167, 243, 208, 0.7)';
+        ctx.fillStyle = isBig ? 'rgba(167, 243, 208, 0.9)' : 'rgba(167, 243, 208, 0.6)';
         ctx.beginPath();
-        ctx.arc(peakX, peakY, 0.8, 0, Math.PI * 2);
+        ctx.arc(peakX, peakY, isBig ? 1 : 0.7, 0, Math.PI * 2);
         ctx.fill();
       }
     }
