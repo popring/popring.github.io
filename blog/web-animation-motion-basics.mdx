@@ -87,41 +87,64 @@ Motion 的心智更像是：“我声明这个组件当前应该长什么样，M
 - `animate`：目标状态，也可以跟着 React state 改变
 - `transition`：从初始状态到目标状态的方式
 
-下面是一个最小的进场动画。示例里的代码省略了 `import`，当前 Playground 已经把 `motion` 注入进去了。
+下面是一个最小的进场动画。点按钮可以让卡片在"显示"和"隐藏"两个状态之间切换——`animate` 拿到哪个声明，Motion 就把它补到那边。示例里的代码省略了 `import`，当前 Playground 已经把 `motion`、`useState` 注入进去了。
 
 <Playground
   noInline
+  height={480}
+  bg='#f1ece2'
   jsx={`
+const shown = { opacity: 1, y: 0, scale: 1 }
+const hidden = { opacity: 0, y: 18, scale: 0.96 }
+
 function Demo() {
+  const [visible, setVisible] = useState(true)
   return (
     <div style={{
       width: '100%',
-      minHeight: 220,
-      display: 'grid',
-      placeItems: 'center',
-      background: 'linear-gradient(135deg, #f8fafc, #e2e8f0)',
-      borderRadius: 16
+      minHeight: 280,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 28,
+      padding: '32px 16px'
     }}>
       <motion.div
-        initial={{ opacity: 0, y: 18, scale: 0.96 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+        initial={hidden}
+        animate={visible ? shown : hidden}
         transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
         style={{
           width: 220,
           padding: 20,
           borderRadius: 18,
-          background: '#111827',
-          color: 'white',
-          boxShadow: '0 22px 50px rgba(15, 23, 42, 0.22)'
+          background: '#7a4220',
+          color: '#f5ece0',
+          boxShadow: '0 22px 50px -8px rgba(122, 66, 32, 0.32)'
         }}
       >
-        <div style={{ fontSize: 13, opacity: 0.62, marginBottom: 8 }}>
+        <div style={{ fontSize: 13, opacity: 0.7, marginBottom: 8 }}>
           Motion Card
         </div>
         <div style={{ fontSize: 22, fontWeight: 700, lineHeight: 1.1 }}>
           状态变了，动画跟着走
         </div>
       </motion.div>
+      <button
+        onClick={() => setVisible(!visible)}
+        style={{
+          border: 0,
+          borderRadius: 999,
+          padding: '8px 20px',
+          background: '#7a4220',
+          color: '#f5ece0',
+          fontSize: 13,
+          fontWeight: 600,
+          cursor: 'pointer'
+        }}
+      >
+        {visible ? '播放离场' : '播放进场'}
+      </button>
     </div>
   )
 }
@@ -158,61 +181,67 @@ const [active, setActive] = useState(false)
 
 <Playground
   noInline
+  height={520}
   jsx={`
 function Demo() {
-  const [active, setActive] = useState(false)
-
+  const [dark, setDark] = useState(false)
   return (
-    <div style={{
-      width: '100%',
-      minHeight: 240,
-      display: 'grid',
-      placeItems: 'center',
-      background: '#f4f4f5',
-      borderRadius: 16
-    }}>
-      <button
-        onClick={() => setActive(!active)}
+    <motion.div
+      animate={{ backgroundColor: dark ? '#0c1226' : '#faf3e1' }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        width: '100%',
+        minHeight: 280,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 22,
+        padding: '40px 16px',
+        borderRadius: 16
+      }}
+    >
+      <motion.button
+        onClick={() => setDark(!dark)}
+        animate={{ backgroundColor: dark ? '#1c2949' : '#ead7b1' }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         style={{
           position: 'relative',
-          width: 260,
-          height: 92,
+          width: 132,
+          height: 56,
           padding: 0,
           border: 0,
           borderRadius: 999,
-          background: '#e4e4e7',
           cursor: 'pointer',
-          overflow: 'hidden'
+          boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, 0.05)'
         }}
       >
         <motion.div
           animate={{
-            x: active ? 166 : 0,
-            backgroundColor: active ? '#111827' : '#ffffff',
-            rotate: active ? 8 : 0
+            x: dark ? 76 : 0,
+            backgroundColor: dark ? '#ece8d9' : '#ecbe6c',
+            scale: dark ? 1 : 1.04
           }}
-          transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+          transition={{ type: 'spring', stiffness: 380, damping: 28 }}
           style={{
             position: 'absolute',
-            top: 10,
-            left: 10,
-            width: 72,
-            height: 72,
-            borderRadius: 24,
-            boxShadow: '0 12px 30px rgba(15, 23, 42, 0.18)'
+            top: 6,
+            left: 6,
+            width: 44,
+            height: 44,
+            borderRadius: '50%',
+            boxShadow: '0 10px 24px rgba(0, 0, 0, 0.16)'
           }}
         />
-        <span style={{
-          position: 'relative',
-          zIndex: 1,
-          fontSize: 13,
-          fontWeight: 700,
-          color: active ? '#111827' : '#71717a'
-        }}>
-          {active ? 'ON' : 'OFF'}
-        </span>
-      </button>
-    </div>
+      </motion.button>
+      <motion.span
+        animate={{ color: dark ? '#d8d2bd' : '#4a3520' }}
+        transition={{ duration: 0.5 }}
+        style={{ fontSize: 13, fontWeight: 500, letterSpacing: '0.04em' }}
+      >
+        {dark ? '夜间' : '白天'}
+      </motion.span>
+    </motion.div>
   )
 }
 
@@ -291,6 +320,7 @@ render(<Demo />)
 
 <Playground
   noInline
+  bg='#ede4d3'
   jsx={`
 function Demo() {
   return (
@@ -298,9 +328,7 @@ function Demo() {
       width: '100%',
       minHeight: 220,
       display: 'grid',
-      placeItems: 'center',
-      background: '#fff7ed',
-      borderRadius: 16
+      placeItems: 'center'
     }}>
       <motion.button
         whileHover={{ scale: 1.04, y: -2 }}
@@ -310,12 +338,12 @@ function Demo() {
           border: 0,
           borderRadius: 999,
           padding: '14px 24px',
-          background: '#ea580c',
-          color: 'white',
+          background: '#7a4220',
+          color: '#f5ece0',
           fontSize: 15,
           fontWeight: 700,
           cursor: 'pointer',
-          boxShadow: '0 16px 36px rgba(234, 88, 12, 0.28)'
+          boxShadow: '0 16px 36px -10px rgba(122, 66, 32, 0.45)'
         }}
       >
         Hover / Press
@@ -365,6 +393,7 @@ Motion 的做法是用 `AnimatePresence` 包住可能离场的元素，然后给
 
 <Playground
   noInline
+  bg='#e8e6df'
   jsx={`
 function Demo() {
   const [open, setOpen] = useState(false)
@@ -373,10 +402,11 @@ function Demo() {
     <div style={{
       width: '100%',
       minHeight: 280,
-      display: 'grid',
-      placeItems: 'center',
-      background: '#ecfeff',
-      borderRadius: 16
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      paddingTop: 48,
+      paddingBottom: 48
     }}>
       <div style={{ width: 260 }}>
         <button
@@ -386,8 +416,8 @@ function Demo() {
             border: 0,
             borderRadius: 12,
             padding: '12px 14px',
-            background: '#0f172a',
-            color: 'white',
+            background: '#7a4220',
+            color: '#f5ece0',
             fontWeight: 700,
             cursor: 'pointer'
           }}
@@ -407,15 +437,17 @@ function Demo() {
                 marginTop: 12,
                 padding: 16,
                 borderRadius: 16,
-                background: 'white',
-                color: '#0f172a',
-                boxShadow: '0 18px 42px rgba(8, 47, 73, 0.16)'
+                background: '#fbf7ee',
+                color: '#3d2510',
+                boxShadow: '0 18px 42px -10px rgba(122, 66, 32, 0.22)'
               }}
             >
-              <strong>AnimatePresence</strong>
-              <p style={{ margin: '8px 0 0', fontSize: 14, lineHeight: 1.6 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#7a4220' }}>
+                AnimatePresence
+              </div>
+              <div style={{ marginTop: 8, fontSize: 14, lineHeight: 1.6, color: '#3d2510' }}>
                 组件被移除之前，会先执行 exit 动画。
-              </p>
+              </div>
             </motion.div>
           ) : null}
         </AnimatePresence>
@@ -496,6 +528,7 @@ export function TodoList() {
 
 <Playground
   noInline
+  bg='#f5f1e8'
   jsx={`
 const tasks = ['写下目标状态', '补 transition 手感', '处理离场动画', '最后再做性能检查']
 
@@ -521,32 +554,51 @@ const item = {
 
 function Demo() {
   const [version, setVersion] = useState(0)
-
   return (
     <div style={{
       width: '100%',
       minHeight: 280,
       display: 'grid',
-      placeItems: 'center',
-      background: '#f8fafc',
-      borderRadius: 16
+      placeItems: 'center'
     }}>
-      <div style={{ width: 300 }}>
-        <button
-          onClick={() => setVersion(version + 1)}
-          style={{
-            marginBottom: 12,
-            border: 0,
-            borderRadius: 10,
-            padding: '9px 12px',
-            background: '#111827',
-            color: 'white',
-            fontWeight: 700,
-            cursor: 'pointer'
-          }}
-        >
-          replay
-        </button>
+      <div style={{
+        width: 320,
+        padding: '18px 22px 8px',
+        borderRadius: 14,
+        background: '#fbf7ef',
+        boxShadow: '0 14px 32px -10px rgba(122, 66, 32, 0.14)'
+      }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          paddingBottom: 12,
+          borderBottom: '1px solid rgba(122, 66, 32, 0.08)'
+        }}>
+          <span style={{
+            fontSize: 11,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: '#a07a55',
+            fontWeight: 600
+          }}>
+            tasks
+          </span>
+          <button
+            onClick={() => setVersion(version + 1)}
+            style={{
+              background: 'transparent',
+              border: 0,
+              padding: 0,
+              color: '#7a4220',
+              fontSize: 12,
+              fontWeight: 500,
+              cursor: 'pointer'
+            }}
+          >
+            重播 ↻
+          </button>
+        </div>
 
         <motion.ul
           key={version}
@@ -556,26 +608,37 @@ function Demo() {
           style={{
             listStyle: 'none',
             margin: 0,
-            padding: 0,
-            display: 'grid',
-            gap: 10
+            padding: 0
           }}
         >
-          {tasks.map((task) => (
+          {tasks.map((task, idx) => (
             <motion.li
               key={task}
               variants={item}
               style={{
-                padding: '12px 14px',
-                borderRadius: 14,
-                background: 'white',
-                color: '#111827',
-                boxShadow: '0 10px 24px rgba(15, 23, 42, 0.08)',
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: 16,
+                padding: '14px 0',
+                borderBottom: idx === tasks.length - 1
+                  ? 'none'
+                  : '1px solid rgba(122, 66, 32, 0.08)',
                 fontSize: 14,
-                fontWeight: 650
+                color: '#3d2510'
               }}
             >
-              {task}
+              <span style={{
+                fontFamily: 'ui-monospace, monospace',
+                fontSize: 11,
+                color: '#b08a64',
+                letterSpacing: '0.04em',
+                minWidth: 16
+              }}>
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+              <span style={{ flex: 1, fontWeight: 500, lineHeight: 1.45 }}>
+                {task}
+              </span>
             </motion.li>
           ))}
         </motion.ul>
@@ -628,6 +691,7 @@ Motion 最有区分度的能力之一是 `layout`。
 
 <Playground
   noInline
+  bg='#ece8df'
   jsx={`
 const tabs = ['Motion', 'React', 'Layout']
 
@@ -639,17 +703,15 @@ function Demo() {
       width: '100%',
       minHeight: 240,
       display: 'grid',
-      placeItems: 'center',
-      background: '#f5f3ff',
-      borderRadius: 16
+      placeItems: 'center'
     }}>
       <div style={{
         display: 'flex',
         gap: 6,
         padding: 6,
         borderRadius: 999,
-        background: 'white',
-        boxShadow: '0 18px 42px rgba(76, 29, 149, 0.14)'
+        background: '#faf6ed',
+        boxShadow: '0 18px 42px -10px rgba(122, 66, 32, 0.18)'
       }}>
         {tabs.map((tab) => (
           <button
@@ -662,7 +724,7 @@ function Demo() {
               padding: '10px 16px',
               borderRadius: 999,
               cursor: 'pointer',
-              color: active === tab ? 'white' : '#6b21a8',
+              color: active === tab ? '#f5ece0' : '#7a4220',
               fontWeight: 800
             }}
           >
@@ -674,7 +736,7 @@ function Demo() {
                   position: 'absolute',
                   inset: 0,
                   borderRadius: 999,
-                  background: '#6d28d9'
+                  background: '#7a4220'
                 }}
               />
             ) : null}

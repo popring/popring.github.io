@@ -5,19 +5,27 @@ import { Highlight, themes, type PrismTheme } from 'prism-react-renderer'
 import { useMemo, useState } from 'react'
 import Editor from 'react-simple-code-editor'
 import { useDarkMode } from './use-dark-mode'
+import { ReloadButton } from './reload-button'
 
 const PlaygroundReact = dynamic(() => import('./playground-react'), {
   ssr: false,
   loading: () => <Skeleton label='jsx' />,
 })
 
-type ReactProps = {
+type CommonProps = {
+  /** Pane height in px. Applies to both code editor (max-height) and preview (height). Default 320. */
+  height?: number
+  /** Background color of the preview pane (overrides the default bg-white). */
+  bg?: string
+}
+
+type ReactProps = CommonProps & {
   jsx: string
   scope?: Record<string, unknown>
   noInline?: boolean
 }
 
-type HtmlProps = {
+type HtmlProps = CommonProps & {
   html: string
   css?: string
   js?: string
@@ -25,14 +33,17 @@ type HtmlProps = {
 
 export type PlaygroundProps = ReactProps | HtmlProps
 
+export const PLAYGROUND_DEFAULT_HEIGHT = 320
+
 export function Playground(props: PlaygroundProps) {
   const isDark = useDarkMode()
+  const height = props.height ?? PLAYGROUND_DEFAULT_HEIGHT
   return (
     <div className='not-prose my-6 rounded-lg border border-neutral-200 dark:border-neutral-800 overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors'>
       {'jsx' in props ? (
-        <PlaygroundReact {...props} isDark={isDark} />
+        <PlaygroundReact {...props} isDark={isDark} height={height} />
       ) : (
-        <PlaygroundHtml {...props} isDark={isDark} />
+        <PlaygroundHtml {...props} isDark={isDark} height={height} />
       )}
     </div>
   )
@@ -47,7 +58,10 @@ function Skeleton({ label }: { label: string }) {
         </div>
         <div className='px-4 py-2 font-medium'>Preview</div>
       </div>
-      <div className='h-80 bg-neutral-50 dark:bg-neutral-900' />
+      <div
+        className='bg-neutral-50 dark:bg-neutral-900'
+        style={{ height: PLAYGROUND_DEFAULT_HEIGHT }}
+      />
     </>
   )
 }
@@ -95,7 +109,13 @@ body {
 }
 `
 
-function PlaygroundHtml({ html, css, js, isDark }: HtmlProps & { isDark: boolean }) {
+function PlaygroundHtml({
+  html,
+  css,
+  js,
+  isDark,
+  height,
+}: HtmlProps & { isDark: boolean; height: number; bg?: string }) {
   const [htmlCode, setHtmlCode] = useState(html.trim())
   const [cssCode, setCssCode] = useState(css?.trim() ?? '')
   const [jsCode, setJsCode] = useState(js?.trim() ?? '')
@@ -109,6 +129,7 @@ function PlaygroundHtml({ html, css, js, isDark }: HtmlProps & { isDark: boolean
 
   const [active, setActive] = useState<Tab>('html')
   const [mobileView, setMobileView] = useState<'code' | 'preview'>('code')
+  const [reloadKey, setReloadKey] = useState(0)
 
   const srcDoc = useMemo(
     () =>
@@ -156,7 +177,8 @@ function PlaygroundHtml({ html, css, js, isDark }: HtmlProps & { isDark: boolean
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2'>
         <div
-          className={`${mobileView === 'preview' ? 'hidden' : ''} md:block md:border-r border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 overflow-auto max-h-80`}
+          className={`${mobileView === 'preview' ? 'hidden' : ''} md:block md:border-r border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 overflow-auto`}
+          style={{ maxHeight: height }}
         >
           <Editor
             key={active}
@@ -168,19 +190,26 @@ function PlaygroundHtml({ html, css, js, isDark }: HtmlProps & { isDark: boolean
             insertSpaces
             textareaClassName='!outline-none'
             preClassName='!m-0 !border-0 !rounded-none !bg-transparent !overflow-visible hover:!border-transparent'
-            className='text-[13px] leading-relaxed min-h-80'
+            className='text-[13px] leading-relaxed'
             style={{
               fontFamily: 'var(--font-geist-mono), ui-monospace, monospace',
               background: 'transparent',
+              minHeight: height,
             }}
           />
         </div>
-        <div className={`${mobileView === 'code' ? 'hidden' : ''} md:block bg-white dark:bg-neutral-100`}>
+        <div className={`${mobileView === 'code' ? 'hidden' : ''} md:block relative bg-white dark:bg-neutral-100`}>
+          <ReloadButton
+            onClick={() => setReloadKey((k) => k + 1)}
+            spinKey={reloadKey}
+          />
           <iframe
+            key={reloadKey}
             title='HTML preview'
             srcDoc={srcDoc}
             sandbox='allow-scripts'
-            className='w-full h-80 border-0'
+            className='w-full border-0'
+            style={{ height }}
           />
         </div>
       </div>
