@@ -21,6 +21,11 @@
     "react-simple-code-editor": "^0.14.1",
     "remark-gfm": "^4.0.1"
   },
+  "pnpm": {
+    "overrides": {
+      "postcss": "^8.5.10"
+    }
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.4",
     "@types/node": "^25.6.0",
