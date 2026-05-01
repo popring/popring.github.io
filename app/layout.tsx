@@ -52,6 +52,7 @@ export default function RootLayout({
     <html
       lang='zh-CN'
       suppressHydrationWarning
+      data-scroll-behavior='smooth'
       className={cx(
         'text-black bg-white dark:text-white dark:bg-black',
         GeistSans.variable,
