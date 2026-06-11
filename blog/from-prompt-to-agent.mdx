@@ -1,0 +1,99 @@
+---
+title: '从 Prompt 到 Agent：这几年我们是怎么学会"用"大模型的'
+publishedAt: '2026-06-11'
+summary: '模型一直在变强，但更有意思的是另一条线——我们驾驭它的方式，三年里换了三种打法。'
+tags:
+  - AI
+  - Agent
+  - 学习笔记
+category: '思考'
+---
+
+前阵子翻自己的笔记，发现一个有意思的现象：2023 年我记的关键词是 "prompt engineering"，2024 年底变成了 "context engineering"，到了今年，满屏都是 "agent"。
+
+同一拨人、同一批模型厂商，每隔一年就换一个词。一开始我以为是炒概念，后来想明白了——**这三个词其实是同一件事在不同阶段的名字：我们是怎么一步步学会"用好"大模型的。**
+
+模型本身当然在变强，但这条线我觉得更值得讲：**不是模型突然变乖了，是我们学会了怎么喂它、怎么放手。**
+
+按时间，正好是三级跳。
+
+## 第一幕：Prompt Engineering——把话说清楚
+
+最早大家发现一件反直觉的事：同一个模型，你换种说法问，答案质量天差地别。
+
+于是有了 prompt engineering。说白了就一句话：**怎么跟一个聪明但完全没脾气、没记性的实习生交代任务。**
+
+你不能甩一句"帮我搞一下"就指望他懂。你得说清楚要什么、给两个例子、让他别急着下结论先一步步想。最经典的发现就是那句"让我们一步步思考"（Chain-of-Thought）——就加这么一句，复杂推理的正确率能大幅往上跳。我第一次试的时候是真的有点震惊，模型不是不会，是你得给它留出"想"的空间。
+
+这一阶段官方的东西其实已经够用了，不用看花里胡哨的技巧贴：
+
+- [Anthropic 官方 Prompt Engineering 指南](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
+- [OpenAI 官方指南](https://platform.openai.com/docs/guides/prompt-engineering)
+- [Lilian Weng 的综述](https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/)（想系统看就看这篇，写得最清楚）
+- 想看源头：[Chain-of-Thought 论文](https://arxiv.org/abs/2201.11903)、[ReAct 论文](https://arxiv.org/abs/2210.03629)
+
+但很快就撞墙了：**话说得再漂亮，一句提示里也塞不下一个真实任务需要的所有东西。** 我要它改我的代码，得让它先看到代码库吧？要它写报告，得让它读到那几份文档吧？
+
+问题就从"怎么说"，变成了"该让它看到什么"。
+
+## 第二幕：Context Engineering——管好它的"工位"
+
+这是我觉得最有技术含量、也最被低估的一幕。
+
+打个我自己最受用的比方：**模型的上下文窗口（context window）就是它的工位桌面，而你是那个帮它收拾桌面的人。**
+
+桌面就那么大。你以为把所有资料都堆上去它就能干得更好？恰恰相反。这里有个特别违反直觉的事实，叫 **context rot**（上下文腐烂）：**喂进去的内容越多，模型从里面准确捞出关键信息的能力反而越差。** 它不会"崩"，但会悄悄变笨——就像一个人桌上堆了两百份文件，他还在，但你让他找一张特定的纸，他就开始翻半天找错。
+
+所以 context engineering 的核心不是"塞得多"，是"**永远只放最少、最关键的东西**"。LangChain 把所有手段归成了四类，我觉得记这四个动词就够了：
+
+- **Write（写出去）**：让模型把笔记记到桌面外面，比如存成一个文件、一份待办，需要时再拿回来。
+- **Select（选进来）**：每一步只把这一步用得上的资料拉到桌面上，而不是全摊开。
+- **Compress（压一压）**：聊太长了就做个摘要，把前面几十轮浓缩成一段，腾出桌面。
+- **Isolate（拆开）**：一个人忙不过来的活，拆给几个人分别干，各看各的资料。
+
+我自己踩过最深的坑就在这——给一个子任务的 AI 连了太多工具和资料，结果它直接被信息淹死，啥也干不成。后来想通了，这其实就是没做好 Isolate 和 Select。**那一刻我才意识到，我天天在干 context engineering，只是之前没这个词。**
+
+两篇权威的，我建议都读：
+
+- [Anthropic：Effective Context Engineering for AI Agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)（讲透了"为什么 context 是稀缺资源"）
+- [LangChain：Context Engineering for Agents](https://www.langchain.com/blog/context-engineering-for-agents)（上面那四个动词的出处）
+
+但桌面收拾得再干净，模型还是**被动的**——你问一句，它答一句。下一步很自然：能不能别让我一步步喂了，**给它个目标，让它自己跑？**
+
+## 第三幕：Agent Engineering——把方向盘交出去
+
+这就是现在进行时。
+
+如果说前两幕是"怎么把任务交代给一个被动的助手"，这一幕是**让助手变成一个能自己规划、自己动手、还能带几个小弟的同事。**
+
+核心是一个循环：**规划 → 动手（调工具）→ 看结果 → 再规划**，一直转到把事办成。你不再盯着每一步，你给目标，它自己决定下一步干嘛、要调哪个工具、要不要拆几个子任务并行。
+
+更有意思的是**多智能体**这套玩法：一个主 agent 负责统筹，派出去好几个子 agent 各干各的脏活累活，每个子 agent 可能烧掉几万 token 去翻资料，但最后只回传给主 agent 一两千 token 的"干货摘要"。这不就是个项目经理带团队么——老板只要结论，不要你查资料的全过程。
+
+这一幕"现在"到什么程度？给几个上个月的真实数据感受一下：Devin（一个编程 agent）背后的公司说，**他们自己 89% 的代码是 agent 写的**；Supabase 这种数据库平台估值翻倍，原因是**平台上大多数新数据库已经不是人建的，是 agent 建的**。
+
+我的体感是：**agent 正在从"一个工具"变成"一类用户"。** 这句话对做产品、做增长的人冲击挺大的——你的下一批用户，可能根本不是人。
+
+要入门 agent，这几篇是公认的圣经：
+
+- [Anthropic：Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)（必读，讲清楚了什么时候该用 agent、什么时候不该）
+- [Anthropic：How we built our multi-agent research system](https://www.anthropic.com/engineering/built-multi-agent-research-system)（多智能体怎么搭）
+- [OpenAI：A Practical Guide to Building Agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf)
+
+## 三幕背后其实是同一件事
+
+把这三幕摆一起看，那条暗线就很清楚了——**我们对模型的控制粒度，一直在往上放：**
+
+> 一句话（Prompt）→ 整个工位（Context）→ 整条自主轨迹（Agent）
+
+从"管好我说的每个字"，到"管好它看到的所有信息"，到"管好它自己跑的整个过程"。每一跳，我们都往后退一步、把更多东西交给模型，同时把自己的精力挪到更高的地方。
+
+最后留一个我自己最受用的判断，也是最容易被忽略的一点：**这三层不是替代关系，是嵌套关系。**
+
+agent 时代了不代表 prompt 就不重要了——恰恰相反，你在搭 agent 的时候，照样要把每个子任务的提示写清楚（第一幕），照样要管好每个 agent 的上下文别让它过载（第二幕）。
+
+所以真要学，顺序别反。先会把话说清楚，再会收拾桌面，最后才谈得上放手。跳着学的人，搭出来的 agent 往往就是个套了壳的、说不清话的实习生。
+
+---
+
+*相关：工具越强，越要警惕自己的判断力被一起外包出去——关于怎么用 AI 提效的同时自己也真的在长，写在[《AI 时代如何真正提升自己，而不是成为 Prompt 指令师》](/blog/growing-in-ai-era)。*
