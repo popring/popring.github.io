@@ -110,9 +110,22 @@ function extractText(node: React.ReactNode): string {
   return ''
 }
 
-function createHeading(level: number) {
+// 同一篇文档里重名标题会生成相同 slug，导致 DOM id 重复、TOC key 冲突、锚点跳错。
+// 这个去重器对重复 slug 追加 -1/-2…（与 github-slugger 行为一致）。
+// 真实标题渲染和 TOC 提取共用它、按相同顺序消费，保证 id 与锚点对得上。
+export function createSlugger() {
+  const counts = new Map<string, number>()
+  return (text: string) => {
+    const base = slugify(text)
+    const n = counts.get(base) ?? 0
+    counts.set(base, n + 1)
+    return n === 0 ? base : `${base}-${n}`
+  }
+}
+
+function createHeading(level: number, slugger: (text: string) => string) {
   const Heading = ({ children }: { children: React.ReactNode }) => {
-    const slug = slugify(extractText(children))
+    const slug = slugger(extractText(children))
     return React.createElement(
       `h${level}`,
       { id: slug },
@@ -133,12 +146,6 @@ function createHeading(level: number) {
 }
 
 const components = {
-  h1: createHeading(1),
-  h2: createHeading(2),
-  h3: createHeading(3),
-  h4: createHeading(4),
-  h5: createHeading(5),
-  h6: createHeading(6),
   Image: RoundedImage,
   img: RoundedImage,
   a: CustomLink,
@@ -151,8 +158,21 @@ const components = {
   FaviconAnimationDemo,
 }
 
+// 标题组件按渲染（= 文档）顺序共用一个 slugger，所以放到每次渲染时构建。
+function createHeadingComponents(slugger: (text: string) => string) {
+  return {
+    h1: createHeading(1, slugger),
+    h2: createHeading(2, slugger),
+    h3: createHeading(3, slugger),
+    h4: createHeading(4, slugger),
+    h5: createHeading(5, slugger),
+    h6: createHeading(6, slugger),
+  }
+}
+
 export function CustomMDX(props: ComponentProps<typeof MDXRemote> & { format?: 'md' | 'mdx' }) {
   const { format = 'md', ...rest } = props
+  const headingComponents = createHeadingComponents(createSlugger())
   return (
     <MDXRemote
       {...rest}
@@ -166,7 +186,7 @@ export function CustomMDX(props: ComponentProps<typeof MDXRemote> & { format?: '
         // eval/Function/require globals.
         blockJS: false,
       }}
-      components={{ ...components, ...(rest.components || {}) }}
+      components={{ ...components, ...headingComponents, ...(rest.components || {}) }}
     />
   )
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { CustomMDX, slugify } from '@/components/mdx';
+import { CustomMDX, createSlugger } from '@/components/mdx';
 import { formatDate, getBlogPosts, getReadingStats } from '@/app/blog/utils';
 import { baseUrl } from '@/app/sitemap';
 import { AnimateIn } from '@/components/animate-in';
@@ -8,15 +8,21 @@ import { GiscusComments } from '@/components/giscus';
 import { TableOfContents } from '@/components/toc';
 
 function getHeadings(content: string) {
-  const headingRegex = /^(#{2,3})\s+(.+)$/gm;
+  // 去掉围栏代码块，避免代码里的 # 注释被当成标题。
+  const withoutCode = content.replace(/```[\s\S]*?```/g, '');
+  // 扫描全部级别并共用 slugger，使去重计数与 MDX 渲染时的标题 id 完全对齐，
+  // 只把 h2/h3 放进目录。
+  const slugger = createSlugger();
+  const headingRegex = /^(#{1,6})\s+(.+)$/gm;
   const headings: { level: number; text: string; slug: string }[] = [];
   let match;
-  while ((match = headingRegex.exec(content)) !== null) {
-    headings.push({
-      level: match[1].length,
-      text: match[2],
-      slug: slugify(match[2]),
-    });
+  while ((match = headingRegex.exec(withoutCode)) !== null) {
+    const level = match[1].length;
+    const text = match[2].trim();
+    const slug = slugger(text);
+    if (level === 2 || level === 3) {
+      headings.push({ level, text, slug });
+    }
   }
   return headings;
 }
