@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import Fuse from 'fuse.js'
 
 type PostItem = {
@@ -14,7 +15,22 @@ type PostItem = {
 }
 
 export function SearchClient({ posts }: { posts: PostItem[] }) {
-  const [query, setQuery] = useState('')
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
+
+  const handleQueryChange = (value: string) => {
+    setQuery(value)
+    const params = new URLSearchParams(searchParams.toString())
+    if (value.trim()) {
+      params.set('q', value)
+    } else {
+      params.delete('q')
+    }
+    const qs = params.toString()
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false })
+  }
 
   const fuse = useMemo(
     () =>
@@ -40,7 +56,7 @@ export function SearchClient({ posts }: { posts: PostItem[] }) {
       <input
         type="text"
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => handleQueryChange(e.target.value)}
         placeholder="输入关键词搜索文章..."
         className="w-full px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-transparent text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors"
         autoFocus

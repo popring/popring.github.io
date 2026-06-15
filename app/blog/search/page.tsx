@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { getBlogPosts } from '@/app/blog/utils'
 import { SearchClient } from './search-client'
 
@@ -25,7 +26,9 @@ export default function SearchPage() {
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">搜索</h1>
-      <SearchClient posts={posts} />
+      <Suspense>
+        <SearchClient posts={posts} />
+      </Suspense>
     </section>
   )
 }
