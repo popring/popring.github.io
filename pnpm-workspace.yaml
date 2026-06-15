@@ -1,3 +1,8 @@
 allowBuilds:
   sharp: true
   unrs-resolver: true
+
+# next 自带 postcss@8.4.31 仍中 GHSA-qx2v-qp2m-jg93(postcss <8.5.10 XSS)，
+# 顶到已修复版本。next 升级带上新 postcss 后可移除。
+overrides:
+  postcss: 8.5.14
