@@ -74,7 +74,7 @@ html {
   @apply visible;
 }
 
-.prose a {
+.prose a:not(.not-prose *) {
   @apply underline transition-all decoration-neutral-300 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em] hover:decoration-neutral-500 dark:hover:decoration-neutral-400;
 }
 
@@ -92,7 +92,7 @@ html {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-.prose code {
+.prose code:not(.not-prose *) {
   @apply px-1.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[13px] text-amber-700 dark:text-amber-400;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   --sh-class: currentColor;
@@ -124,56 +124,56 @@ html {
   @apply font-normal;
 }
 
-.prose blockquote {
+.prose blockquote:not(.not-prose *) {
   @apply border-l-3 border-neutral-300 dark:border-neutral-600 pl-4 my-4 text-neutral-600 dark:text-neutral-400 italic;
 }
 
-.prose blockquote p {
+.prose blockquote p:not(.not-prose *) {
   @apply my-2;
 }
 
-.prose img {
+.prose img:not(.not-prose *) {
   /* Don't apply styles to next/image */
   @apply m-0;
 }
 
-.prose p {
+.prose p:not(.not-prose *) {
   @apply my-4 text-neutral-800 dark:text-neutral-200 leading-7;
 }
 
-.prose li {
+.prose li:not(.not-prose *) {
   @apply mb-1.5;
 }
 
-.prose h1 {
+.prose h1:not(.not-prose *) {
   @apply text-4xl font-medium tracking-tight mt-6 mb-2;
   scroll-margin-top: 3rem;
 }
 
-.prose h2 {
+.prose h2:not(.not-prose *) {
   @apply text-xl font-medium tracking-tight mt-6 mb-2;
   scroll-margin-top: 3rem;
 }
 
-.prose h3 {
+.prose h3:not(.not-prose *) {
   @apply text-xl font-medium tracking-tight mt-6 mb-2;
   scroll-margin-top: 3rem;
 }
 
-.prose h4 {
+.prose h4:not(.not-prose *) {
   @apply text-lg font-medium tracking-tight mt-6 mb-2;
   scroll-margin-top: 3rem;
 }
 
-.prose strong {
+.prose strong:not(.not-prose *) {
   @apply font-medium;
 }
 
-.prose ul {
+.prose ul:not(.not-prose *) {
   @apply list-disc pl-6 my-3;
 }
 
-.prose ol {
+.prose ol:not(.not-prose *) {
   @apply list-decimal pl-6 my-3;
 }
 

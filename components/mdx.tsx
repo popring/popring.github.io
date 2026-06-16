@@ -6,6 +6,7 @@ import { CopyButton } from './copy-button'
 import { CodePreview } from './code-preview'
 import { Playground } from './playground'
 import { ZoomableImage } from './zoomable-image'
+import { BookCard } from './book-card'
 import { FaviconAnimationDemo } from './craft/favicon-animation-demo'
 import remarkGfm from 'remark-gfm'
 
@@ -155,6 +156,7 @@ const components = {
   Table,
   CodePreview,
   Playground,
+  BookCard,
   FaviconAnimationDemo,
 }
 
