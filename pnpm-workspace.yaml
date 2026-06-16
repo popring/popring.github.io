@@ -1,3 +1,10 @@
+# 供应链防护：新发布的版本要"满龄"才允许安装，给社区发现并下架被投毒版本留窗口期。
+# 单位=分钟，4320=3 天。需要装更新的包，等过了冷却期即可；紧急安全补丁用
+# minimumReleaseAgeExclude 单独放行（支持 pkg@version 和 "@scope/*" 通配）。
+minimumReleaseAge: 4320
+# minimumReleaseAgeExclude:
+#   - some-pkg@1.2.3
+
 allowBuilds:
   sharp: true
   unrs-resolver: true
