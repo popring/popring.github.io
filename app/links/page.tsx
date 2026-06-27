@@ -80,7 +80,7 @@ export default function LinksPage() {
           <p><span className="text-neutral-400">站点名称：</span>popring</p>
           <p><span className="text-neutral-400">站点地址：</span>https://popring.cn</p>
           <p><span className="text-neutral-400">头像：</span>https://popring.cn/avatar.jpg</p>
-          <p><span className="text-neutral-400">描述：</span>前端出身，向全栈延伸，探索技术与增长的交叉地带</p>
+          <p><span className="text-neutral-400">描述：</span>AI 公司做增长的全栈工程师，前端出身，探索技术与增长的交叉地带</p>
         </div>
       </div>
     </section>

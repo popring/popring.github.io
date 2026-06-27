@@ -78,7 +78,7 @@ export default function Page() {
 
       <AnimateIn delay={1}>
         <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-          前端开发者，对交互、全栈与增长工程都感兴趣。喜欢探索新工具，也在关注 AI 方向。这里记录踩坑经历、有趣发现和个人想法。
+          AI 公司做增长的全栈工程师，关注交互、AI 与增长。喜欢一边做一边把问题想明白，这里记录踩坑经历、有趣发现和个人想法。
         </p>
 
         <SectionHeading label="links" />
