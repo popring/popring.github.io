@@ -1,5 +1,3 @@
-import Link from 'next/link'
-import { BlogPosts } from '@/components/posts'
 import { AnimateIn } from '@/components/animate-in'
 import { TerminalHeader, monoStyle } from '@/components/terminal-header'
 
@@ -8,28 +6,17 @@ const links = [
   { id: 'x', label: 'x.com/Harry5Sea', href: 'https://x.com/Harry5Sea' },
 ] as const
 
-const shelf = [
-  {
-    id: '01',
-    type: 'book',
-    title: '高效能人士的七个习惯',
-    href: 'https://book.douban.com/subject/5325618/',
-    external: true,
-  },
-  {
-    id: '02',
-    type: 'list',
-    title: '前端技术书指引',
-    href: 'https://www.douban.com/doulist/160109862/',
-    external: true,
-  },
-  {
-    id: '03',
-    type: 'note',
-    title: '2025 年读书笔记汇总',
-    href: '/blog/2025-reading-notes',
-    external: false,
-  },
+const now = [
+  { label: '在学', text: 'Go 并发、SQL 事务与锁' },
+  { label: '在做', text: '折腾 AI agent 工作流' },
+  { label: '在读', text: '《金字塔原理》' },
+] as const
+
+const exploring = [
+  'AI agent',
+  '增长实验',
+  '交互与动效',
+  '全栈工程',
 ] as const
 
 const quotes = [
@@ -77,9 +64,44 @@ export default function Page() {
       </AnimateIn>
 
       <AnimateIn delay={1}>
-        <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-          AI 公司做增长的全栈工程师，关注交互、AI 与增长。喜欢一边做一边把问题想明白，这里记录踩坑经历、有趣发现和个人想法。
-        </p>
+        <div className="space-y-3 text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <p>
+            AI 公司做增长的全栈工程师，前端出身，正往全栈和增长延伸。
+          </p>
+          <p>
+            平时关注交互、AI 与增长，业余喜欢折腾各种新工具。
+          </p>
+          <p>
+            比起写得快，更在意把问题想明白——这里记录踩坑、发现，和一些还没想透的念头。
+          </p>
+        </div>
+
+        <SectionHeading label="now" meta="最近在做" />
+        <ul className="space-y-1.5" style={monoStyle}>
+          {now.map((n) => (
+            <li key={n.label} className="text-sm flex items-baseline gap-2">
+              <span className="text-neutral-400 dark:text-neutral-600 shrink-0 w-14">
+                {n.label}
+              </span>
+              <span className="text-neutral-700 dark:text-neutral-300">
+                {n.text}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <SectionHeading label="exploring" />
+        <ul className="flex flex-wrap gap-x-3 gap-y-1.5" style={monoStyle}>
+          {exploring.map((e) => (
+            <li
+              key={e}
+              className="text-sm text-neutral-600 dark:text-neutral-400"
+            >
+              <span className="text-neutral-300 dark:text-neutral-700">#</span>
+              {e}
+            </li>
+          ))}
+        </ul>
 
         <SectionHeading label="links" />
         <ul className="space-y-1.5" style={monoStyle}>
@@ -105,62 +127,6 @@ export default function Page() {
       </AnimateIn>
 
       <AnimateIn delay={2}>
-        <SectionHeading label="recent" meta="~/blog" />
-        <BlogPosts limit={5} />
-        <div className="mt-4 text-xs" style={monoStyle}>
-          <Link
-            href="/blog"
-            className="text-neutral-500 dark:text-neutral-400 hover:text-amber-700 dark:hover:text-amber-400 transition-colors"
-          >
-            <span className="text-neutral-400 dark:text-neutral-600">→</span>{' '}
-            all posts
-          </Link>
-        </div>
-      </AnimateIn>
-
-      <AnimateIn delay={3}>
-        <SectionHeading label="shelf" meta="recommended" />
-        <ul className="space-y-1.5" style={monoStyle}>
-          {shelf.map((s) => {
-            const inner = (
-              <>
-                <span className="text-neutral-400 dark:text-neutral-600 tabular-nums shrink-0 w-7">
-                  {s.id}
-                </span>
-                <span className="text-neutral-400 dark:text-neutral-600 shrink-0 w-12">
-                  {s.type}
-                </span>
-                <span className="text-neutral-700 dark:text-neutral-300 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">
-                  {s.title}
-                </span>
-                <span className="text-neutral-300 dark:text-neutral-700 text-xs ml-auto">
-                  {s.external ? '↗' : '→'}
-                </span>
-              </>
-            )
-            return (
-              <li key={s.id} className="text-sm">
-                {s.external ? (
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-baseline gap-2"
-                  >
-                    {inner}
-                  </a>
-                ) : (
-                  <Link href={s.href} className="group flex items-baseline gap-2">
-                    {inner}
-                  </Link>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-      </AnimateIn>
-
-      <AnimateIn delay={3}>
         <SectionHeading label="motto" />
         <ul className="space-y-4">
           {quotes.map((q, i) => (
