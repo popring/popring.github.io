@@ -66,13 +66,10 @@ export default function Page() {
       <AnimateIn delay={1}>
         <div className="space-y-3 text-neutral-700 dark:text-neutral-300 leading-relaxed">
           <p>
-            AI 公司做增长的全栈工程师，前端出身，正往全栈和增长延伸。
+            既对技术本身好奇，也关心它能不能让产品和增长真的发生。
           </p>
           <p>
-            平时关注交互、AI 与增长，业余喜欢折腾各种新工具。
-          </p>
-          <p>
-            比起写得快，更在意把问题想明白——这里记录踩坑、发现，和一些还没想透的念头。
+            日常在 AI、增长和前后端之间来回，看到值得记的——一个好设计、一次踩坑、一个想通的点——就写在这。
           </p>
         </div>
 
