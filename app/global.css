@@ -92,6 +92,11 @@ html {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
 }
 
+/* 右上角有语言标记(tab)的代码块，首行会被标记盖住，顶部多留出标记高度 */
+.prose pre:has(> code[class*='language-']):not(.not-prose *) {
+  padding-top: 1.75rem;
+}
+
 .prose code:not(.not-prose *) {
   @apply px-1.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[13px] text-amber-700 dark:text-amber-400;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
@@ -106,7 +111,7 @@ html {
   --sh-entity: currentColor;
 }
 
-.prose pre code {
+.prose pre code:not(.not-prose *) {
   @apply p-0 bg-transparent text-inherit;
   border: initial;
   --sh-class: inherit;
