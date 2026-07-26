@@ -17,6 +17,8 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: `分类: ${decoded}`,
     description: `${decoded} 分类下的所有文章`,
+    keywords: [decoded],
+    alternates: { canonical: `/blog/categories/${encodeURIComponent(decoded)}` },
   }
 }
 

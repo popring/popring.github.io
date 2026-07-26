@@ -49,27 +49,32 @@ export async function generateMetadata({ params }: PageProps) {
   const {
     title,
     publishedAt: publishedTime,
+    updatedAt,
     summary: description,
     image,
+    tags,
   } = post.metadata;
-  const ogImage = image ? image : undefined;
+  const ogImage = image || '/og-default.png';
 
   return {
     title,
     description,
+    keywords: tags,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title,
       description,
       type: 'article',
       publishedTime,
+      ...(updatedAt ? { modifiedTime: updatedAt } : {}),
       url: `${baseUrl}/blog/${post.slug}`,
-      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
+      images: [{ url: ogImage }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      ...(ogImage ? { images: [ogImage] } : {}),
+      images: [ogImage],
     },
   };
 }
@@ -93,11 +98,10 @@ export default async function Blog({ params }: PageProps) {
             '@type': 'BlogPosting',
             headline: post.metadata.title,
             datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
+            dateModified: post.metadata.updatedAt || post.metadata.publishedAt,
             description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
-              : undefined,
+            keywords: post.metadata.tags?.join(', '),
+            image: `${baseUrl}${post.metadata.image || '/og-default.png'}`,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               '@type': 'Person',

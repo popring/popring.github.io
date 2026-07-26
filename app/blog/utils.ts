@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 type Metadata = {
   title: string
   publishedAt: string
+  updatedAt?: string
   summary: string
   slug?: string
   image?: string

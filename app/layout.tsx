@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     template: "%s | popring's blog",
   },
   description: '探索、记录、分享',
+  keywords: ['popring', '前端', '全栈', '增长工程', 'AI', 'JavaScript', 'React', 'Vue', 'Next.js', 'TypeScript'],
   openGraph: {
     title: "popring's blog",
     description: '探索、记录、分享',
@@ -22,8 +23,16 @@ export const metadata: Metadata = {
     siteName: "popring's blog",
     locale: 'zh_CN',
     type: 'website',
+    images: [{ url: '/og-default.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "popring's blog",
+    description: '探索、记录、分享',
+    images: ['/og-default.png'],
   },
   alternates: {
+    canonical: '/',
     types: {
       'application/rss+xml': '/rss',
     },
