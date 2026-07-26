@@ -73,12 +73,12 @@ export default function RootLayout({
           <BackToTop />
           <Script
             src='https://www.googletagmanager.com/gtag/js?id=G-WN0V7KJRVS'
-            strategy='afterInteractive'
+            strategy='lazyOnload'
           />
-          <Script id='google-analytics' strategy='afterInteractive'>
+          <Script id='google-analytics' strategy='lazyOnload'>
             {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WN0V7KJRVS');`}
           </Script>
-          <Script id='baidu-analytics' strategy='afterInteractive'>
+          <Script id='baidu-analytics' strategy='lazyOnload'>
             {`var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?f869367a20c50f7b23f96c1e4169d803";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();`}
           </Script>
         </main>
