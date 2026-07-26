@@ -1,0 +1,171 @@
+---
+title: '给红米 AX6000 解锁 SSH，让整台路由器自动翻墙（AI 全程代劳）'
+publishedAt: '2026-07-05'
+summary: '撬开 SSH 的真正目的，是让整台路由器自动分流翻墙——海外网站走海外节点、国内直连，全屋设备一次搞定。省事就装 ShellCrash，想折腾就上 OpenWrt。而且这次整套流程我没自己敲，是把完整上下文喂给 AI 让它全程做的。'
+tags:
+  - 路由器
+  - 折腾
+  - SSH
+  - Claude Code
+category: '技术'
+---
+
+手上这台红米 AX6000，CPU 是四核 A53、2.5G 网口，硬件规格放到软路由里也不虚，但出厂系统被小米锁得死死的——连个 shell 都进不去。于是把 SSH 撬开了。
+
+## 撬 SSH 到底图什么：让整台路由器自动翻墙
+
+单纯进 shell 没意思，真正的目的是——**让路由器本身承担翻墙这件事**。
+
+一旦在路由器上跑起代理，全屋所有连这台路由器的设备（手机、电脑、电视、连不方便装代理的智能家居）都自动享受，而且是**自动分流**：访问海外网站自动走海外节点，访问国内网站直连本地——不用每台设备各自装客户端、各自切节点，也不用手动判断哪个站该走代理。路由器根据域名 / IP 的归属（GEOSITE / GEOIP 规则）替你分好流，"按需翻墙"就这么实现。
+
+要让小米这款路由器具备这个能力，有两条路线：
+
+- **图省事：解锁 SSH + 装 [ShellCrash](https://github.com/juewuy/ShellCrash)。** 不用刷机、动出厂系统，风险低。装完就能自动分流翻墙，内核是 mihomo（Clash.Meta），还能开个 Web 面板（Yacd / zashboard 之类）在浏览器里管节点、看分流、切策略，配合 UI 用体验不差。**这也是本文走的路线。**
+- **想自定义程度更高：刷 OpenWrt。** 配合 OpenClash 等插件、LuCI 图形界面，防火墙、DNS、分流规则全都能自己捏，玩法多得多。代价是要刷 U-Boot、动 factory / bdata 分区，变砖风险高、也更折腾——适合确实有定制需求、愿意花时间的人。
+
+我只要"全屋自动翻墙"这个结果，不折腾极致定制，所以选了 ShellCrash 这条省事路线。
+
+## 这件事的做法变了：从纯手动到喂给 AI 全程做
+
+解锁 SSH 的方法网上一堆，其中这份仓库整理得最全、亲测能跑：
+
+👉 **[dqzboy/Redmi-AX6000](https://github.com/dqzboy/Redmi-AX6000)**
+
+以前这种活只能自己一条命令一条命令地敲。这次我一条都没敲——**全程是 AI（Claude Code）替我做的**：它直连我日常在用的 Chrome（带路由器后台登录态），也能在我 Mac 上跑命令，于是在浏览器里登后台、拿 stok、发漏洞注入把 telnet 撬开，再切终端 telnet/ssh 进去固化，最后装 ShellCrash、配节点，一条链路它自己走完，我在旁边确认。
+
+但直接把那份教程丢给 AI，会踩坑——**不是教程错，而是它只给步骤、不讲原理**。就说"固化 SSH"：教程其实给了对的做法（把脚本放进持久的 `/data`、用 firewall include 挂钩开机跑），可它没说清**为什么必须这样**——AX6000 的 `/etc` 是 ramfs、一重启就整个重置，dropbear 又被通道卡着不肯启动。AI 不懂这层约束，就自作主张改用了看起来等价的 `/etc/rc.local` 做开机自启，结果重启后 `/etc` 被冲掉、SSH 起不来，白装。它当时还信心满满地说"搞定了"。
+
+更集中的过时在后半段——**装 ShellCrash 那部分**。教程还停在项目的旧名"ShellClash"，安装命令、初始化配置几乎全是 2023 年的截图：那会儿用的还是 Clash 原版内核（后来删库停更了）、旧版面板。你照着两年多前的图去点，`crash` 的菜单结构、内核选项（现在是 mihomo / sing-box）、UI 面板（现在有 zashboard 这些）早就对不上号。
+
+所以当执行本身可以外包给 AI 之后，真正决定成败的不再是"谁来敲命令"，而是**你喂给它的上下文够不够全、够不够新**。于是我把这次踩过的每个坑、验证过的每条命令，连同**跟最新版对齐的 ShellCrash 装法**，整理成了一份可以直接喂给 AI 的 skill——**放在文末，点开即用，常规情况下 AI 自己就能跑完**。
+
+## 用下来的几点体感
+
+**AI 不靠猜，这点最值。** 后来我嫌代理单连接速度慢，它没张口就"可能是 CPU/延迟"糊弄我，而是真去测：逐个节点测延迟、下载时盯着路由器 CPU、拿真实大文件量单流吞吐——然后用数据推翻了自己一开始的假设（单流其实能到 160 多 Mbps，CPU 全程空闲，慢是被某些网站的分流规则带偏了）。先拿 ground truth 再下结论，比一堆听起来有道理的猜测有用得多。
+
+**但它确实会漏、会过度自信，所以得谨慎。** 就算喂了完整上下文，也不是丢给它就撒手的"自动驾驶"。这次有两处得我把它拽回来：
+
+- 一开始它自作主张用 `/etc/rc.local` 做开机自启，结果因为 `/etc` 会重置而悄悄失效。是我让它"回去把那篇文章重读一遍看漏了啥"，它才找到跳过的那步。
+- 中途它还一惊一乍地报"你密码失效了！"，我让它冷静复测——其实是它自己脚本的时序 bug，密码好好的。
+
+再加上前面说的：**教程会过时，AI 不会凭空补上过时的那部分**。所以文末那份 skill 的价值，本质是替 AI 把"它 get 不到的细节"提前铺好。即便如此，物理操作（插网线、顶 reset）只能我来，高风险不可逆的动作（降级、重启、刷机）它也得停下来问。
+
+**要说体感——变化不是"AI 替我干活"，而是"它负责动手，我负责拿主意"。** 而当动手可以外包之后，真正稀缺的两样东西浮出来了：一是**判断**（哪些该停、哪些结论要拿数据验），二是**喂给它的上下文质量**。把这两样做好，一晚上折腾路由器的琐事，就真能变成一次对话。
+
+---
+
+<details>
+<summary><strong>点开：可直接复制的 skill（喂给你的 AI）</strong></summary>
+
+复制下面整段，丢给一个**能直连浏览器（带路由器后台登录态）和本机终端**的 AI 助手（Claude Code 这类），它就能全程替你走完解锁 + 固化 + 装 ShellCrash。里面已经把社区教程漏掉的固化坑补齐了。
+
+`````markdown
+# Skill：给红米 AX6000 解锁并固化 SSH + 装 ShellCrash 自动翻墙
+
+## 角色与目标
+你是一个能直连浏览器（带路由器后台登录态）和本机终端的助手。目标：给红米
+AX6000 解锁 SSH 并**真正固化**（重启后无需任何手动操作也能 ssh 进），随后装
+ShellCrash 实现全屋自动分流翻墙。只解 SSH，不刷 U-Boot / OpenWrt（那是另一档风险）。
+
+## 执行原则（默认自主完成，不用每步都请示）
+- **常规情况下你自己走完全程，包括重启、验证，不需要人工逐步确认。**只有两种才停：
+  1. 需要**降级固件**时（happy path 用不到；风险高、可能变砖）——停下说明并等人确认。
+  2. 需要**物理操作**（插网线、救砖时顶 reset）——你做不了，明确告诉人来做。
+- 需要人提供的唯一数据：**机场订阅地址**（装 ShellCrash 时要用）。开工前先问一次，拿到再动手。
+- 重启是正常流程的一部分：你可以自己重启、自己等它回来再继续，不用每次请示。
+- 不要把真实密码 / host key / 订阅地址写进任何会公开或提交的产物。
+- **判定"成功"的唯一标准：重启后不做任何手动操作能复现（ssh 能进、代理服务自动拉起）。**
+  不要看到"端口在 LISTEN"或"现在能连"就宣布成功——那可能只是你手动起的进程，一重启就没。
+  固化 / 自启类任务必须用"重启后能否自动复现"来验收。
+
+## 阶段 0：前置判断
+1. 固件版本：这个 Web 漏洞只对旧稳定版有效，已知 1.0.48 / 1.0.60 / 1.0.67。
+   版本太新要先去 https://www1.miwifi.com/miwifi_download.html 下旧版、后台
+   手动降级——这是最容易变砖的一步，降级前务必先跟人确认。
+2. 有线把电脑连到路由器 LAN 口（2/3/4 任意一个）。
+3. 拿 stok：浏览器登录 192.168.31.1，地址栏里 stok=xxxx 后面那串就是 TOKEN。
+   它会过期，失效就重新登录再取。
+
+## 阶段 1：用漏洞开 telnet（浏览器按顺序访问，把 TOKEN 换成上一步拿到的）
+魔数 %A5%5A 照抄，别改。
+
+① 写 crash 分区：
+http://192.168.31.1/cgi-bin/luci/;stok=TOKEN/api/misystem/set_sys_time?timezone=%20%27%20%3B%20zz%3D%24%28dd%20if%3D%2Fdev%2Fzero%20bs%3D1%20count%3D2%202%3E%2Fdev%2Fnull%29%20%3B%20printf%20%27%A5%5A%25c%25c%27%20%24zz%20%24zz%20%7C%20mtd%20write%20-%20crash%20%3B%20
+
+② 写 bdata，开 telnet / ssh / uart：
+http://192.168.31.1/cgi-bin/luci/;stok=TOKEN/api/misystem/set_sys_time?timezone=%20%27%20%3B%20bdata%20set%20telnet_en%3D1%20%3B%20bdata%20set%20ssh_en%3D1%20%3B%20bdata%20set%20uart_en%3D1%20%3B%20bdata%20commit%20%3B%20
+
+③ 重启（重启前提醒人一声）：
+http://192.168.31.1/cgi-bin/luci/;stok=TOKEN/api/misystem/set_sys_time?timezone=%20%27%20%3b%20reboot%20%3b%20
+
+## 阶段 2：telnet 进入 + 固化 SSH（社区教程最容易漏的地方）
+开发模式下 telnet 免密直进 root：
+    telnet 192.168.31.1
+
+设 root 密码（printf 管道喂两遍，弱密码告警可忽略，看到 changed 即成功）：
+    printf '你的密码\n你的密码\n' | passwd root
+
+⚠️ 只 `nvram set ssh_en=1 && commit` 是"假固化"，重启后 SSH 起不来。两个根因：
+  1. /etc 是 ramfs（mount 里能看到 none on /etc type ramfs），每次重启从固件
+     重置，往 /etc 塞的东西（dropbear 配置 / host key）全丢。
+  2. dropbear 被通道卡住：仅 channel=debug 才启动，出厂是 release。开关也在
+     /etc，重启又被重置。
+
+持久分区是 /data 和 /etc/config（ubifs）。正确固化 = 脚本放 /data + 注册
+firewall include，让它每次开机跑，由脚本每次去修 channel、挂回 host key、拉起
+dropbear。用 lemoeo/AX6S 的 auto_ssh.sh（跑之前先 cat 一遍确认脚本干净）：
+    mkdir -p /data/auto_ssh && cd /data/auto_ssh
+    # 放入 auto_ssh.sh（内容见 https://github.com/lemoeo/AX6S）
+    chmod +x auto_ssh.sh
+    sh auto_ssh.sh install   # 修 channel + 生成/备份 host key + 注册 include + 起 dropbear
+
+漏洞把时区改乱了，修回来：
+    uci set system.@system[0].timezone='CST-8'
+    uci set system.@system[0].webtimezone='CST-8'
+    uci set system.@system[0].timezoneindex='2.84'
+    uci commit
+
+验证：
+    pidof dropbear
+    netstat -ltn | grep :22
+    uci show firewall.auto_ssh
+    ls /data/auto_ssh/          # 应有脚本 + host key 备份
+**然后必须重启一次**：重启后不手动做任何操作能 ssh 进 = 真固化。做不到就是没固化好。
+
+## 阶段 3：SSH 登录
+    ssh root@192.168.31.1
+若报 no matching host key type（新版 OpenSSH 弃用了 ssh-rsa），加参数：
+    ssh root@192.168.31.1 -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa
+（也可以写进 ~/.ssh/config 一劳永逸。）
+
+## 阶段 4：装 ShellCrash 自动分流翻墙（用最新版，别照旧教程的 2023 截图）
+社区教程这部分最旧（还叫旧名 ShellClash、菜单全是 2023 年截图）。**一律以官方最新为准，
+菜单按屏幕实际显示的选项走，别硬记编号——版本一变编号就错。**
+
+1. 用官方最新一键脚本安装（dev 分支，中文菜单 install.sh）：
+       export url='https://raw.githubusercontent.com/juewuy/ShellCrash/dev' && sh -c "$(curl -kfsSl $url/install.sh)" && . /etc/profile &> /dev/null
+   连不上 GitHub 就换镜像源（url 换成 https://gh.jwsc.eu.org/dev，脚本名不变）。
+   装完源码在持久的 /data/ShellCrash，不会被重置。
+2. 输入 crash 打开交互菜单。它是数字选择式菜单，**每一步先读屏幕真实列出的选项**，
+   照下面的目标去选对应项（不同版本文案 / 编号会变，认字不认号）：
+   - 安装内核：选 mihomo（Clash.Meta）；别选已停更的 Clash 原版。
+   - 导入配置：填人提供的机场订阅地址，让它拉取节点。
+   - 运行模式：选透明代理 / TProxy（让全屋设备自动分流，而不是只给本机做 PAC）。
+   - Web 面板：装一个本地面板（zashboard / metacubexd 都行），记下访问地址
+     （一般是 http://192.168.31.1:9999/ui/）。
+   - 开机自启：在菜单里开启，确保重启后服务自动拉起。
+3. 分流规则用配置自带的（GEOSITE / GEOIP：国内直连、海外走节点、广告拦截），
+   这就是"按需自动翻墙"。要加自定义直连 / 代理域名，改订阅配置或规则文件即可。
+4. **重启验证**：重启后不做任何手动操作，确认代理服务自动起、面板能打开，再用一台设备
+   实测访问海外站走节点、国内站直连。做不到就是没配好，回去查开机自启和运行模式。
+
+## 阶段 5：救砖兜底（真弄坏了才用）
+- reset 针顶住 → 插电，continue 顶 8~15 秒，黄灯闪烁松手 → 进 recovery。
+- 网线接电脑 LAN 口 → 小米路由器修复工具 → 选官方固件 → 选对网卡 → 自动刷。
+- 注意：官方工具只刷系统固件，**不恢复 bdata / factory**。所以只解 SSH 风险很低，
+  但将来要刷 U-Boot / OpenWrt 前，一定先 nanddump 备份 bdata + factory。
+`````
+
+这份 skill 和原教程的差别，就在那几处"过时 / 没讲透"的地方被补实了：`/etc` 是 ramfs、dropbear 被通道卡、固化必须走 `/data` + firewall include、host key 要单独持久化、ssh 客户端要加 `-o HostKeyAlgorithms=+ssh-rsa`；ShellCrash 部分也换成了最新装法（dev 分支、mihomo 内核、菜单认字不认号），不再照两年前的旧截图点。这些都是真去重启、再回来检查验出来的。
+
+</details>
