@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | popring's blog",
   },
   description: '探索、记录、分享',
-  keywords: ['popring', '前端', '全栈', '增长工程', 'AI', 'JavaScript', 'React', 'Vue', 'Next.js', 'TypeScript'],
+  keywords: ['popring', '全栈', '增长工程', 'Growth', 'AI', '前端', 'JavaScript', 'React', 'Next.js', 'TypeScript'],
   openGraph: {
     title: "popring's blog",
     description: '探索、记录、分享',

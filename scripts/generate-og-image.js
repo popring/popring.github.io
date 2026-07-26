@@ -45,7 +45,7 @@ const el = h(
     h('div', { style: { fontSize: 96, color: '#fafafa', fontWeight: 700, lineHeight: 1.1 } }, "popring's blog"),
     h('div', { style: { display: 'flex', marginTop: 24, fontSize: 40, color: '#8b8b93' } }, '探索 · 记录 · 分享')
   ),
-  h('div', { style: { display: 'flex', fontSize: 28, color: '#5a5a62' } }, '前端 · 全栈成长 · AI'),
+  h('div', { style: { display: 'flex', fontSize: 28, color: '#5a5a62' } }, '全栈 · 增长 · AI'),
   h('div', {
     style: {
       position: 'absolute',
