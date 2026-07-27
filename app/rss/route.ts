@@ -2,6 +2,18 @@ export const dynamic = 'force-static'
 import { baseUrl } from '@/app/sitemap'
 import { getBlogPosts } from '@/app/blog/utils'
 
+// title / summary 直接插进 XML 会炸整个 feed：只要正文摘要里出现 <hr>、<object>、
+// <div id="app"> 这类标签（前端类文章很常见），解析器就报 tag mismatch 并停在第一个错误处。
+// & 必须先替换，否则会把后面替换出来的实体再转义一次。
+function escapeXml(str: string) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
 export async function GET() {
   const allBlogs = await getBlogPosts()
 
@@ -15,9 +27,9 @@ export async function GET() {
     .map(
       (post) =>
         `<item>
-          <title>${post.metadata.title}</title>
-          <link>${baseUrl}/blog/${post.slug}</link>
-          <description>${post.metadata.summary || ''}</description>
+          <title>${escapeXml(post.metadata.title)}</title>
+          <link>${escapeXml(`${baseUrl}/blog/${post.slug}`)}</link>
+          <description>${escapeXml(post.metadata.summary || '')}</description>
           <pubDate>${new Date(
             post.metadata.publishedAt
           ).toUTCString()}</pubDate>
