@@ -11,7 +11,7 @@ Before any Next.js work, find and read the relevant doc in `node_modules/next/di
 
 ## Project
 
-Personal blog (popring.github.io). Next.js 16.2 App Router · React 19 · Tailwind 4 · MDX. Statically exported to GitHub Pages.
+Personal blog (popring.github.io). Next.js 16.3 App Router · React 19 · Tailwind 4 · MDX. Statically exported to GitHub Pages.
 
 ## Layout
 

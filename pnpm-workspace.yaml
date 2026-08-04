@@ -2,8 +2,25 @@
 # 单位=分钟，4320=3 天。需要装更新的包，等过了冷却期即可；紧急安全补丁用
 # minimumReleaseAgeExclude 单独放行（支持 pkg@version 和 "@scope/*" 通配）。
 minimumReleaseAge: 4320
-# minimumReleaseAgeExclude:
-#   - some-pkg@1.2.3
+
+# 临时放行：Next.js 16.3.0（2026-08-03 20:34 UTC 发布）提前升，没等满 3 天。
+# 全部按 pkg@version pin 死，不用 "@next/*" 通配——不给整个 scope 开永久后门。
+# ⚠️ 冷却期在 `pnpm install --frozen-lockfile` 时也会重新校验锁文件里的每个条目，
+# 所以这些条目现在删不掉，删了 GitHub Pages 的 deploy 会直接失败。
+# 2026-08-06 20:34 UTC（北京时间 8/7 04:34）之后 16.3.0 自然满龄，整块删除即可。
+minimumReleaseAgeExclude:
+  - next@16.3.0
+  - eslint-config-next@16.3.0
+  - "@next/env@16.3.0"
+  - "@next/eslint-plugin-next@16.3.0"
+  - "@next/swc-darwin-arm64@16.3.0"
+  - "@next/swc-darwin-x64@16.3.0"
+  - "@next/swc-linux-arm64-gnu@16.3.0"
+  - "@next/swc-linux-arm64-musl@16.3.0"
+  - "@next/swc-linux-x64-gnu@16.3.0"
+  - "@next/swc-linux-x64-musl@16.3.0"
+  - "@next/swc-win32-arm64-msvc@16.3.0"
+  - "@next/swc-win32-x64-msvc@16.3.0"
 
 allowBuilds:
   sharp: true
