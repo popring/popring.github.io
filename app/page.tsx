@@ -6,18 +6,16 @@ const links = [
   { id: 'x', label: 'x.com/Harry5Sea', href: 'https://x.com/Harry5Sea' },
 ] as const
 
-const now = [
-  { label: '在学', text: 'Go 并发、SQL 事务与锁' },
-  { label: '在做', text: '折腾 AI agent 工作流' },
-  { label: '在读', text: '《金字塔原理》' },
-] as const
+const now: { label: string; text: string; href?: string }[] = [
+  { label: '在学', text: 'Go —— 语法过完了，接下来啃并发' },
+  {
+    label: '在读',
+    text: '《代码整洁之道》',
+    href: 'https://book.douban.com/subject/4199741/',
+  },
+]
 
-const exploring = [
-  'AI agent',
-  '增长实验',
-  '交互与动效',
-  '全栈工程',
-] as const
+const exploring = ['增长实验', '交互体验', '全栈工程'] as const
 
 const quotes = [
   {
@@ -80,9 +78,25 @@ export default function Page() {
               <span className="text-neutral-400 dark:text-neutral-600 shrink-0 w-14">
                 {n.label}
               </span>
-              <span className="text-neutral-700 dark:text-neutral-300">
-                {n.text}
-              </span>
+              {n.href ? (
+                <span className="flex items-baseline gap-1">
+                  <a
+                    href={n.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-neutral-700 dark:text-neutral-300 hover:text-amber-700 dark:hover:text-amber-400 transition-colors"
+                  >
+                    {n.text}
+                  </a>
+                  <span className="text-neutral-300 dark:text-neutral-700 text-xs">
+                    ↗
+                  </span>
+                </span>
+              ) : (
+                <span className="text-neutral-700 dark:text-neutral-300">
+                  {n.text}
+                </span>
+              )}
             </li>
           ))}
         </ul>
