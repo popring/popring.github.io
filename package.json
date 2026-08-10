@@ -31,7 +31,7 @@
     "geist": "^1.7.0",
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^6.0.0",
-    "postcss": "8.5.22",
+    "postcss": "8.5.26",
     "sugar-high": "^1.1.0",
     "tailwindcss": "^4.3.3",
     "transliteration": "^2.6.1",
