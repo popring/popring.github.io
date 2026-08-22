@@ -1,7 +1,7 @@
 ---
 title: '命令式调用弹窗：Vue 与 React 实现对比'
 publishedAt: '2024-10-22'
-summary: '该功能在Vue、React版本实现起来思路一致。 核心思路 使用一个函数，可以创建组件实例 将新创建的实例，挂载到 DOM 上 如果有特殊场景，需要将上下文进行绑定（本文内实现的暂未绑定上下文） TODO: ant-design 在新版本实现了可以绑定上下文的 hooks，Modal.useModal，具体还没细看👀，后续有空再看看。'
+summary: '用函数命令式打开弹窗的实现对比：Vue 用 createApp 动态挂载组件，React 用 createRoot 渲染，讲清创建实例、挂载 DOM、关闭后卸载的完整流程，附 vant 与 antd 源码参考。'
 tags:
   - vue
   - react

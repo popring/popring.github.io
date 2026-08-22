@@ -1,7 +1,7 @@
 ---
 title: 'Vue 父子组件生命周期执行顺序'
 publishedAt: '2020-11-30'
-summary: 'Vue官网找了一圈没找到关于在父组件中使用子组件，生命周期是如何运行的。 先说结论 父组件 beforeCreated、created、beforeMount 子组件 beforeCreated、created、beforeMount 、mounted 父组件 mounted 若使用 props 进行父子组件传值（若只进行自身组件数据进行维护，只会执行自身组件的生命周期函数） 父组件 before'
+summary: 'Vue 父子组件生命周期执行顺序实测：首次挂载、props 更新、销毁三个阶段各钩子的先后次序，先给结论再附完整实验代码和在线示例，并解释背后的设计原因。'
 tags:
   - vue
 category: '前端'
