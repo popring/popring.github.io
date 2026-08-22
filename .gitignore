@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 package-lock.json
+
+# Claude 本地私有文件（不进公开仓库）
+CLAUDE.local.md
+.claude/
