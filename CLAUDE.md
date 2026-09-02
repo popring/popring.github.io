@@ -18,6 +18,7 @@ Personal blog (popring.github.io). Next.js 16.3 App Router · React 19 · Tailwi
 ## Layout
 
 - Posts: `blog/*.mdx` — kebab-case filenames, gray-matter frontmatter. (`source/` is legacy Hexo, unused.)
+- Drafts: add `draft: true` to frontmatter. Visible in `pnpm dev`, excluded from the production build everywhere (filtered in `getBlogPosts`). Remove the flag to publish.
 - MDX renderer + component map: `components/mdx.tsx`.
 - Components: `components/*.tsx` (kebab-case files).
 

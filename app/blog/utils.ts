@@ -12,6 +12,7 @@ type Metadata = {
   tags?: string[]
   category?: string
   format?: 'md' | 'mdx'
+  draft?: boolean
 }
 
 function parseFrontmatter(fileContent: string) {
@@ -43,7 +44,11 @@ function getMDXData(dir: string) {
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'blog'))
+  // draft: true posts show in `pnpm dev` but are dropped from the production export
+  // (pages, list, search, sitemap, RSS, llms.txt all read through here)
+  return getMDXData(path.join(process.cwd(), 'blog')).filter(
+    (post) => !(post.metadata.draft && process.env.NODE_ENV === 'production')
+  )
 }
 
 export function getAllCategories(): { category: string; count: number }[] {
