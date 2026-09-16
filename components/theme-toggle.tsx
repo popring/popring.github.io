@@ -72,12 +72,14 @@ export function ThemeToggle() {
 
   return (
     <button
+      type="button"
       onClick={toggle}
       className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
       aria-label={isDark ? '切换到亮色模式' : '切换到暗色模式'}
     >
       <span className="relative w-4 h-4 block">
         <svg
+          aria-hidden="true"
           width="16"
           height="16"
           viewBox="0 0 24 24"
@@ -85,15 +87,14 @@ export function ThemeToggle() {
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-          className={`absolute inset-0 transition-all duration-200 ${
+          strokeLinejoin="round"          className={`absolute inset-0 transition-all duration-200 ${
             isDark ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'
           }`}
         >
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
         <svg
+          aria-hidden="true"
           width="16"
           height="16"
           viewBox="0 0 24 24"
@@ -101,9 +102,7 @@ export function ThemeToggle() {
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-          className={`absolute inset-0 transition-all duration-200 ${
+          strokeLinejoin="round"          className={`absolute inset-0 transition-all duration-200 ${
             isDark ? 'opacity-0 rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'
           }`}
         >

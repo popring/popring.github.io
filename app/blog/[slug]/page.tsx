@@ -15,8 +15,7 @@ function getHeadings(content: string) {
   const slugger = createSlugger();
   const headingRegex = /^(#{1,6})\s+(.+)$/gm;
   const headings: { level: number; text: string; slug: string }[] = [];
-  let match;
-  while ((match = headingRegex.exec(withoutCode)) !== null) {
+  for (const match of withoutCode.matchAll(headingRegex)) {
     const level = match[1].length;
     const text = match[2].trim();
     const slug = slugger(text);

@@ -211,7 +211,7 @@ export function FaviconAnimationDemo() {
 
   useEffect(() => {
     const ensureLink = () => {
-      if (linkRef.current && linkRef.current.isConnected) return linkRef.current
+      if (linkRef.current?.isConnected) return linkRef.current
       let link = document.querySelector<HTMLLinkElement>("link[rel~='icon']")
       if (link) {
         if (originalHrefRef.current === null) originalHrefRef.current = link.href

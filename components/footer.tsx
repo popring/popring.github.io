@@ -3,6 +3,7 @@ const iconClass = 'transition-transform duration-200 group-hover:scale-110';
 function RssIcon() {
   return (
     <svg
+      aria-hidden="true"
       width='14'
       height='14'
       viewBox='0 0 24 24'
@@ -22,6 +23,7 @@ function RssIcon() {
 function LinkIcon() {
   return (
     <svg
+      aria-hidden="true"
       width='14'
       height='14'
       viewBox='0 0 24 24'
@@ -50,6 +52,7 @@ function LinkIcon() {
 function GitHubIcon() {
   return (
     <svg
+      aria-hidden="true"
       width='14'
       height='14'
       viewBox='0 0 24 24'
@@ -65,6 +68,7 @@ function GitHubIcon() {
 function XIcon() {
   return (
     <svg
+      aria-hidden="true"
       width='14'
       height='14'
       viewBox='0 0 24 24'

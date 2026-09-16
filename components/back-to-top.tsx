@@ -16,6 +16,7 @@ export function BackToTop() {
 
   return (
     <button
+      type="button"
       onClick={scrollUp}
       aria-label='返回顶部'
       aria-hidden={!visible}
@@ -25,6 +26,7 @@ export function BackToTop() {
       }`}
     >
       <svg
+        aria-hidden="true"
         width='16'
         height='16'
         viewBox='0 0 24 24'

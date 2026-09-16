@@ -59,6 +59,7 @@ export function SearchClient({ posts }: { posts: PostItem[] }) {
         onChange={(e) => handleQueryChange(e.target.value)}
         placeholder="输入关键词搜索文章..."
         className="w-full px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-transparent text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors"
+        // biome-ignore lint/a11y/noAutofocus: 专用搜索页，进入即聚焦是预期行为
         autoFocus
       />
       {query.trim() && (

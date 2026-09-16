@@ -1,4 +1,3 @@
-import React from 'react'
 import { monoStyle } from './terminal-header'
 
 interface BookCardProps {
@@ -50,7 +49,7 @@ export function BookCard({
           className="shrink-0"
           aria-label={title}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element -- 本地静态封面，无需 next/image */}
+          {/* biome-ignore lint/performance/noImgElement: 本地静态封面，站点为静态导出且 images.unoptimized，next/image 无收益 */}
           <img
             src={cover}
             alt={title}

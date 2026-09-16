@@ -48,12 +48,14 @@ export default function PlaygroundReact({ jsx, scope, noInline = false, isDark =
         <div className='flex md:grid md:grid-cols-2'>
           <div className='flex md:border-r border-neutral-200 dark:border-neutral-800'>
             <button
+              type="button"
               onClick={() => setMobileView('code')}
               className={tabBtnClass(mobileView === 'code')}
             >
               Code <span className='ml-2 text-neutral-400 dark:text-neutral-500'>jsx</span>
             </button>
             <button
+              type="button"
               onClick={() => setMobileView('preview')}
               className={`md:hidden ${tabBtnClass(mobileView === 'preview')}`}
             >

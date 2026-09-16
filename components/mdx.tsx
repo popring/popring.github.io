@@ -93,8 +93,8 @@ export function slugify(str: string) {
     .trim()
     .replace(/\s+/g, '-')
     .replace(/&/g, '-and-')
-    .replace(/[^\p{L}\p{N}\-]+/gu, '') // Keep all Unicode letters/numbers and hyphens
-    .replace(/\-\-+/g, '-')
+    .replace(/[^\p{L}\p{N}-]+/gu, '') // Keep all Unicode letters/numbers and hyphens
+    .replace(/--+/g, '-')
     .replace(/^-+|-+$/g, '')
 }
 

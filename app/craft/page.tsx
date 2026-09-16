@@ -52,7 +52,7 @@ export default function Page() {
                       {LivePreview ? (
                         <LivePreview />
                       ) : item.thumb ? (
-                        /* eslint-disable-next-line @next/next/no-img-element */
+                        /* biome-ignore lint/performance/noImgElement: 站点为静态导出且 images.unoptimized，next/image 无收益 */
                         <img
                           src={item.thumb}
                           alt={item.title}

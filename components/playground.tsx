@@ -155,6 +155,7 @@ function PlaygroundHtml({
           <div className='flex md:border-r border-neutral-200 dark:border-neutral-800'>
             {tabs.map((t) => (
               <button
+                type="button"
                 key={t}
                 onClick={() => {
                   setActive(t)
@@ -166,6 +167,7 @@ function PlaygroundHtml({
               </button>
             ))}
             <button
+              type="button"
               onClick={() => setMobileView('preview')}
               className={`md:hidden ${tabBtnClass(mobileView === 'preview')}`}
             >
