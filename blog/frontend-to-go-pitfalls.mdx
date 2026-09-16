@@ -1,0 +1,402 @@
+---
+title: '前端转 Go 第三个月：语法一周就会了，卡住我的是这些反直觉的地方'
+publishedAt: '2026-09-16'
+summary: '写了六年 JS 的前端学 Go，语法一周能看懂，真正摔跤的是 struct 是值不是引用、nil 不是 null、错误要亲手往上递、interface 不用 implements 这几条。按我实际踩坑的顺序整理，附我写错的代码和改对的版本。'
+tags:
+  - Go
+  - Golang
+  - 前端转后端
+  - 全栈
+  - 学习笔记
+category: '后端'
+---
+
+
+公司后端是 Go 写的。之前改需求，前端这边写完了，接口差一个字段就得等后端排期，看着后端仓库里的代码又读不太顺。今年五月我决定把 Go 真正学起来，目标不高：能读懂后端代码，能自己写一个带数据库的 API。
+
+六年前我写过一篇 [Go 入门笔记](/blog/go-beginner-notes)，内容是配 GOPROXY，然后就没有然后了。这次不一样，我是边学边写，用 AI 当私教，每学一节就写一道题，每个阶段做一个小项目。三个月下来阶段一（基础语法 + 命令行 Todo）过了，阶段二（interface、错误处理）走了一半，并发还没开始。
+
+回头看，语法层面真的一周就能看懂。写过 TS 的人看 Go，`func`、`struct`、`:=` 这些都是换个写法。真正让我反复摔跤的，是几条 JS 直觉在 Go 里正好是反的。这篇按"我在哪摔的"来排，每条都带我当时写错的代码。
+
+## 前端学 Go 唯一要反直觉的一条：struct 是值，不是引用
+
+这一条是所有坑的根。我在这上面卡了一个月，直到把它用 JS 的语言重新说了一遍才通。
+
+JS 里对象天生是引用。`const u = {name: "h"}` 传给函数，函数里改 `u.name`，外面跟着变。Go 的 struct 不是这样，**它默认是复印件**。传给函数、赋给另一个变量、在 `for range` 里拿到，全都是复印一份。
+
+我给自己的模型是两个词：**值 = 复印件，引用 = 共享链接**。Go 里能当共享链接的只有六种：指针、slice、map、channel、func、interface。其他所有东西，包括 struct，都是复印件。
+
+第一次真正被它咬是 `for range`：
+
+```go
+for _, u := range users {
+    u.Name = "改了"   // 改的是复印件，users 里纹丝不动
+}
+```
+
+编译器不报错，程序也不崩，就是不生效。要改得走下标：
+
+```go
+for i := range users {
+    users[i].Name = "改了"
+}
+```
+
+我后来写命令行 Todo 的 `Complete` 方法时，总算把这条用对了。比较用复印件，修改走下标：
+
+```go
+func (l *List) Complete(id int) error {
+    for i, t := range l.Items {
+        if t.ID == id {
+            l.Items[i].Done = true   // 不是 t.Done = true
+            return nil
+        }
+    }
+    return fmt.Errorf("todo [%d] not found", id)
+}
+```
+
+同样的坑换个地方就是 receiver。方法写成 `func (u User) Rename()`，改的是复印件；要改本体得写 `func (u *User) Rename()`。默认用指针 receiver，想明白了要复印再用值。
+
+### 指针就是手动把复印件变成链接
+
+指针我卡了三次。第三次是在写 `errors.As(err, &nfe)` 的时候，我问"这里为什么要 `&`，为什么类型里要 `*`"。最后记住的版本是这样：
+
+- `&x`：造链接。给我 x 的地址。
+- `*p`：开链接。顺着地址找到本体，读它或改它。
+
+`*` 有两个身份，这是最容易混的：
+
+| 位置 | 含义 | 例子 |
+|---|---|---|
+| 在类型里 | 这是个装链接的变量 | `var e *MyErr`、`func swap(a *int)` |
+| 在值前面 | 打开链接 | `*p = 20` |
+
+`&` 只有一个身份，永远不出现在类型里。
+
+```go
+func swap(a, b *int) {
+    t := *a
+    *a = *b
+    *b = t
+}
+
+x, y := 1, 2
+swap(&x, &y)   // 函数要 *int，我手里是 int，就 & 一下交出去
+```
+
+什么时候用指针，我只记四条：函数要改外面的东西，传 `&x`；方法要改字段，用指针 receiver；要表达"可能没有"，用 `*T`（值类型没法是 nil）；都不沾，传值。
+
+还有一个让我困惑过的语法糖：todo-cli 里我写 `list.Complete(id)`，`Complete` 是指针 receiver，但我没写 `&list`。这是因为 receiver 位置 Go 自动补 `&`，普通参数位置没有这个待遇，必须手写。
+
+为什么 JS 里从来不用写这两个符号？因为 JS 对象天生全是链接，访问属性时自动开链接。我不是不懂指针，只是一直没需要手写这两个符号。
+
+## Go 的 nil 只属于六种类型：什么能 nil、什么不能
+
+第二个坑跟第一个是同一条线。学 nil 的时候我做了两道题，全错，错因都是没搞清"这个变量是直接装着数据，还是指向数据"。
+
+直接装着数据的（int、string、bool、struct），**永远不可能是 nil**。它们的"空"是零值：`0`、`""`、`false`、字段全零的 struct。指向数据的那六种引用类型，零值才是 `nil`。
+
+这条直接决定了函数签名怎么写。返回 `*User` 出错时可以 `return nil, err`；返回 `User` 就不行，只能 `return User{}, err`，调用方也没法 `if u == nil` 防御。所以"查无此物"和"结果恰好是零值"在值类型上没法区分。用 ORM 查一条不存在的记录，接收的 struct 字段全是零值，全程没有任何 nil 出现，这和 JS 里习惯的 `if (!user)` 完全是两回事。
+
+nil map 是另一个必踩的坑：
+
+```go
+var m map[string]int   // nil map
+v := m["a"]            // 读没事，返回 0
+m["b"] = 1             // panic: assignment to entry in nil map
+```
+
+map 要写入，必须经过 `make` 或字面量诞生。nil slice 反而可以直接 `append`。这俩规则不对称，只能记。
+
+### typed-nil：一个贴着标签的空盒子
+
+这是 nil 里最诡异的一条，也是 Go 面试题常客。
+
+```go
+type MyErr struct{ Msg string }
+func (e *MyErr) Error() string { return e.Msg }
+
+func doWork(fail bool) error {
+    var e *MyErr
+    if fail {
+        e = &MyErr{Msg: "boom"}
+    }
+    return e   // 坑在这行
+}
+
+err := doWork(false)
+if err != nil {
+    fmt.Println("居然有错？！", err)   // 会打印
+}
+```
+
+`fail` 是 false，`e` 是 nil 指针，为什么 `err != nil` 是 true？
+
+interface 变量内部是两个槽：(动态类型, 值)。`return e` 时 Go 把 `e` 装进 `error` 这个盒子，装进去的是 `(*MyErr, nil)`，类型槽有货，值槽是空的。`err != nil` 判的是"有没有盒子"，不开盖看里面。真正的 nil error 是根本没有盒子；typed-nil 是一个贴着 `*MyErr` 标签的空盒子。
+
+推论只有一条：返回 `error` 的函数，成功路径永远写字面量 `return nil`，别把一个可能为 nil 的具体类型指针当 error 返回。
+
+## Go 的错误是包裹，不是电梯
+
+JS 的错误是电梯。`throw` 一扔，自己一路弹到最外层，有 `try/catch` 接住为止，中间几层函数完全不知情。
+
+Go 的错误是包裹。它就是一个普通返回值，你得一层一层亲手往上递，谁也不会替你送。
+
+```go
+func divmod(a, b int) (int, int, error) {
+    if b == 0 {
+        return 0, 0, errors.New("b can not be 0")
+    }
+    return a / b, a % b, nil
+}
+```
+
+三条规矩：error 永远是最后一个返回值；`nil` 表示没出错；`if err != nil` 你得自己写。
+
+我第一次写 `divmod` 时犯了三个错，后面两个反复复发：
+
+```go
+m1, m2, error := divmod(3, 0)   // 错 1：用 error 当变量名，遮住了内置类型
+if error == nil {               // 错 2：只写了 happy path
+    fmt.Println("m: ", m1, m2)
+}
+// 除零时什么都不打印，程序若无其事往下跑
+```
+
+JS 里你不接 `throw`，它至少会炸到控制台让你看见。Go 里你不接，它真的什么都不会发生。这就是为什么 Go 的习惯是**先拦错误，拦到就 return，正常逻辑写在外面不缩进**，叫 happy path 靠左：
+
+```go
+m1, m2, err := divmod(3, 0)
+if err != nil {
+    fmt.Println("出错了:", err)
+    return
+}
+fmt.Println("商", m1, "余", m2)
+```
+
+`if err == nil` 这个条件我在写 Todo 项目时又写反了三次。`done 1` 打印 `err: <nil>` 然后退出，`done abc` 反而拿着 `id=0` 往下走。后来给自己定了条肌肉规则：**`err != nil` = 出事了才进 if**。
+
+
+### 错误是一条链：%w、errors.Is、errors.As
+
+`error` 是一个 interface，只有一个方法 `Error() string`。所以错误就是普通的值：能放变量、能比较、能塞进 struct 字段。这个认知打通之后，三件套就好懂了。
+
+**哨兵错误**：包级别放一个固定值，返回它就是返回同一个地址，比身份。像 JS 里比 Symbol。
+
+```go
+var ErrNotFound = errors.New("not found")
+```
+
+**包装**：每往上递一层，加一层上下文。`%w` 造一个新 error，里面存着旧 error 的引用，链还在；`%v` 只是把文字拼进去，链断了。JS 对应物是 ES2022 的 `new Error("outer", { cause: inner })`。
+
+```go
+func loadProfile(id int) (string, error) {
+    name, err := findUser(id)
+    if err != nil {
+        return "", fmt.Errorf("load profile %d: %w", id, err)
+    }
+    return name, nil
+}
+```
+
+这里我犯过一个很 JS 的错：把 `fmt.Errorf(...)` 单独写成一行，然后 `return "", err`。`fmt.Errorf` 是造值，不是抛异常，不 return 它，包装就没发生。`go vet` 会抓这个：`result of fmt.Errorf call not used`。
+
+**判断**：`==` 只看最外层，包过一层就 false。`errors.Is` 沿链往里找。
+
+**自定义类型 + errors.As**：错误要带数据（哪个 ID 没找到），就定义 struct 实现 `Error()`，用 `errors.As` 沿链找到第一个这个类型的节点，拷进你给的变量。
+
+```go
+type NotFoundError struct{ ID int }
+func (e *NotFoundError) Error() string { return fmt.Sprintf("user %d not found", e.ID) }
+
+var nfe *NotFoundError
+if errors.As(err, &nfe) {
+    fmt.Println("not found id:", nfe.ID)
+}
+```
+
+我在这里问了三个问题，现在看每一个都值。
+
+为什么 `nfe` 的类型带 `*`？因为 `Error()` 是指针 receiver，能当 error 用的是 `*NotFoundError`，我返回的也是 `&NotFoundError{ID: id}`，链上就是这个类型。星号不是 `errors.As` 要求的，是我自己造出来的类型，它只是照着找。
+
+为什么传 `&nfe`？因为 `errors.As` 的工作是往 `nfe` 里写东西。Go 传参永远是复印件，直接传 `nfe` 它写进复印件，我手上的还是 nil。函数要改我的变量，我就传 `&变量`。`json.Unmarshal(data, &v)` 也是这一条。
+
+为什么不能直接 `err.ID`？因为 `err` 的声明类型是 `error`，编译器只认它有 `Error()`。要读字段先收窄，和 TS 里 `instanceof` 一样。类型断言 `err.(*NotFoundError)` 只看最外层，`errors.As` 能穿透 `%w` 链。实际项目里错误几乎总会被包，所以习惯上直接用 `Is`/`As`。
+
+Is 和 As 的区别我最后是这么记的：**`Is` 比值，`As` 找类型并取出**。哨兵用 `Is`，自定义 struct 用 `As`，用哪个在定义错误那一刻就决定了。
+
+### defer：把收尾提前写在你还记得的地方
+
+```go
+f, err := os.Open("config.yaml")
+if err != nil {
+    return err
+}
+defer f.Close()   // 挂上，函数结束时自动执行
+```
+
+JS 的 `try/finally` 要把整段逻辑包进 `try` 里，`close` 离 `open` 十万八千里。Go 的 `defer` 就一行，紧贴在 `Open` 后面。规矩：凡是成对的操作，第二个立刻用 defer 写掉。
+
+有一个坑我当场答对了但值得写：
+
+```go
+i := 0
+defer fmt.Println(i)   // 打印 0，不是 10
+i = 10
+```
+
+参数在 `defer` 那一行就求值了，被推迟的只是"调用"这个动作。想读最新值，包一层 `func(){}()`。
+
+命名返回值 + defer 可以改返回值，我第一版写错了：
+
+```go
+func double(x int) (result int) {
+    r := x * 2
+    defer func() { r = r + 1 }()   // 改的是 r，result 拿的是 r 的复印件
+    return r                        // 返回 2x，+1 没生效
+}
+```
+
+`return r` 其实是三步：把 `r` 赋给 `result`，执行 defer，交出 `result`。defer 要改结果就必须改 `result`。这又回到了第一条：复印一旦发生，两边就断了联系。
+
+## interface 不用写 implements
+
+TS 的 interface 是"长得像就算"，Go 也是同一个思路，所以这块我上手最快。只有两个差别：
+
+1. **Go 的 interface 只能列方法，不能列字段**。`interface { Name string }` 非法。TS 里最常见的写法在 Go 里不存在。
+2. **匹配检查发生在"把值赋给 interface 变量"那一刻**，编译期查完。
+
+```go
+type Shape interface {
+    Area() float64
+}
+
+type Circle struct{ R float64 }
+
+func (c Circle) Area() float64 { return 3.14159 * c.R * c.R }
+// 到此为止 Circle 就是 Shape 了，没人声明过
+```
+
+第一次写我多写了个参数 `func (c Circle) Area(r float64) float64`。接口要求 `Area() float64`，在编译器眼里这是两个不同的方法，Circle 就不算实现 Shape 了。签名必须一个字都不差。而且我根本不需要那个参数，半径已经在 `c.R` 里，这正是方法和普通函数的区别：数据跟着 receiver 走。
+
+receiver 那个 `(c Circle)` 我一开始不懂"c 从哪传来"。答案是点号前面那个值：写 `myCircle.Area()`，Go 把 `myCircle` 塞进 `c` 的位置。它就是 JS 的 `this`，只是 Go 强迫你显式写出来并起名，从此没有"this 指向哪"的问题。
+
+type、struct、interface 三个词的关系，一句话：**struct 说"我有什么"，interface 说"我会做什么"，type 是把这两种形状注册成一个名字的关键字**。
+
+### 删掉方法编译照样绿：为什么要加一行保险丝
+
+隐式实现有个后果我一开始没意识到。删掉 `Rectangle.Area()`，只要没人往 `Shape` 变量里塞 Rectangle，编译照样绿。"实现接口"只是在赋值那一刻才被核对的一个事实，没人核对就没人管。大项目里接口在 A 文件、实现在 B 文件、使用在 C 文件，B 少写一个方法，报错会出现在遥远的 C。
+
+Go 的对策是一行保险丝：
+
+```go
+var _ Shape = (*Rectangle)(nil)
+```
+
+声明一个丢弃的变量，类型 Shape，值是 nil 的 `*Rectangle`。没实现就在这行报错，钉在实现旁边。
+
+### type switch：打开 any 的正规方式
+
+```go
+func describe(x any) {
+    switch v := x.(type) {
+    case int:
+        fmt.Println("int:", v)
+    case string:
+        fmt.Println("string:", v)
+    default:
+        fmt.Println("other:", v)
+    }
+}
+```
+
+`x.(type)` 是固定写法，只能出现在 switch 头里；`v` 进到哪个 case 就自动是那个类型。它和类型断言 `n := x.(int)` 是一对：知道类型用断言，不知道用 type switch。
+
+顺手记一个编辑器坑。我把 `x.(type)` 打成了 `x.(types)`，gopls 静默帮我 import 了标准库的 `go/types`，拼写错误被伪装成了合法代码，报错出现在完全不相关的地方。
+
+还有一个我问过的格式问题：为什么 gofmt 把 `case` 和 `switch` 放同一列？因为 case 被当成标签，不当成内容，只有 case 下面的语句才缩进。更重要的是这不是"最优解"，是"钦定解"。gofmt 零配置，全世界 Go 代码长一样。写惯 Prettier 十几个配置项的人，第一反应是不习惯，第二反应是省心。
+
+## len("你好") 等于 6：Go 的 string 按字节存
+
+```go
+s := "Go你好"
+len(s)              // 8，不是 4
+for i, c := range s {
+    fmt.Println(i, c)
+}
+// 0 G / 1 o / 2 你 / 5 好   ← "好"的索引是 5 不是 3
+```
+
+我当时答的是 len=4、索引 0 1 2 3，全错。Go 的 string 是 UTF-8 字节序列，`len()` 返回字节数，`range` 给的 `i` 是字节索引。JS 的 `"你好".length === 2` 是 UTF-16 code unit，两边选了不同的路。
+
+要字符数用 `utf8.RuneCountInString(s)`，要按字符切用 `[]rune(s)`。截中文昵称直接 `s[:10]` 会把一个汉字切成乱码。
+
+另一个 string 相关的坑，我在写 Todo 的错误消息时踩了：
+
+```go
+errors.New("todo " + string(id) + " not found")   // string(65) 是 "A"，不是 "65"
+```
+
+`string(int)` 是把数字当 Unicode 码位转成那个字符。转十进制字符串要 `strconv.Itoa(id)`，或者直接 `fmt.Errorf("todo %d not found", id)`。同类的还有 `"user " + e.ID`，JS 会帮你拼，Go 直接编译报错。规矩：Go 里转字符串永远不用 `string(数字)`。
+
+## 前端转 Go 会撞到的小差异，一次列完
+
+这些单条都不值一节，但每条我都实际撞过：
+
+| JS/TS 直觉 | Go 实际 | 我怎么记 |
+|---|---|---|
+| `a ? b : c` | 没有三元 | 先给默认值，再用 if 覆盖，四行就四行 |
+| `while`、`do-while`、`for...of` | 只有 `for`，四种形态 | range 第一个值永远是"位置"，只写一个变量拿的是下标 |
+| switch 要写 `break` 防穿透 | 默认不穿透 | switch 里的 `break` 断的是 switch 不是 for，跳循环用 labeled break |
+| `public`/`private` | 首字母大小写 | 边界是包不是文件；同包小写随便用，出包看大写；json 序列化永远算"外部" |
+| 没用的变量顶多 lint 黄一下 | 编译报错 | 未使用的 import 也报错 |
+| `1 + 1.5` 随便加 | 没有隐式数值转换 | `int` 和 `int64` 都不能互相赋值，且转换不检查溢出 |
+| Object 遍历顺序稳定 | map 遍历顺序故意随机 | 要顺序先排 key |
+| `new Set()` | 没有 set | `map[T]bool` 当 set，见到 `map[T]struct{}` 认得出就行 |
+| `count[w] = (count[w] ?? 0) + 1` | `m[w]++` | 读不存在的 key 返回零值，零值本身就有用 |
+| `YYYY-MM-DD` | `"2006-01-02 15:04:05"` | 月日时分秒年正好是 1 2 3 4 5 6 |
+| `console.log` | `Println` 打一句，`Printf` 带 `%` | 有占位符就用 Printf，用 Print 带 %d 会被 vet 警告 |
+
+大小写那条我当时归因错了。把 `nextID` 改成 `NextID` 修好了"重启后 ID 重号"的 bug，我以为是"字段都该大写是规范"。其实小写字段 `encoding/json` 看不见，既不写进文件、读回来也填不上，所以 `nextID` 永远是 0。大写不是规范，是 public/private 开关，"都大写"恰恰是反模式。
+
+## 三个月怎么学的：时间线和真实节奏
+
+
+| 时间 | 做了什么 | 结果 |
+|---|---|---|
+| 5 月底 | 8 个主题速查表过一遍，反向检验 | 3 题错 2，都是 string 字节坑和 int64 |
+| 6 月 | 基本类型深挖、nil 专题 | nil 两题 0/2，暴露"值 vs 引用"主线没建立 |
+| 7 月中 | 值 vs 引用重讲 | 换成"复印件 / 共享链接"说法后 4/4 |
+| 8 月 9 日 | error、defer、控制流、包，阶段一收口 | 40 分钟 |
+| 8 月 19 至 22 日 | 命令行 Todo，全部手写 | 两个 session 约 3.5 小时，验收通过 |
+| 8 月 26 至 28 日 | interface、map、指针补课 | 一天犯了三次"没跑就交" |
+| 9 月 2 日 | 错误处理三件套 | 这篇文章 |
+
+几件真正起作用的事：
+
+**用 JS 搭桥，而不是从零学**。"struct 是值"用 JS 语言说出来就是"和 JS 对象反着"，一句话记住。指针是"JS 帮你自动 & 和 *，Go 要手写"。错误是"电梯 vs 包裹"。每个概念找到 JS 里的对应物或反面，比背定义快十倍。第一次学值引用的时候，AI 一口气讲了 interface、typed-nil、slice 扩容三件套，我直接看不懂了。换成上面这套说法之后，四道题全对。
+
+**空文件综合征的解法是填空骨架**。写 Todo 第一天，我盯着空文件说"忽然一下发现不知道怎么写了"。解法是先要一个 10 行的骨架，`Add` 方法 5 行就能赢一局，然后再往下写。我问过"不是应该先写 main 吗"，答案是 bottom-up 和 top-down 都合法，选 bottom-up 只因为最小步更小。
+
+**交作业的格式 = 代码 + 输出**。我最高频的问题不是概念，是懒得跑。编译不过就说"写好了"，dedup 输出空数组也贴过来。每道题的价值全在"预测输出，跑，对照"那三秒，代码本身不值钱。不跑就交等于把 debug 外包出去，自己留下的只有打字练习。后来定了规矩，没有输出的提交不看代码。
+
+**阶段项目比小题重要**。语法单独问都会，连起来写不出来。这个缝只有动手写才会暴露。Todo 项目让我第一次把 struct、slice、指针 receiver、error、JSON、文件 IO 组装到一起，也是在那里发现 `if err == nil` 会被我反复写反。
+
+**拖进度的是频率**。阶段一预算 15 小时，实际有效学时大概 10 到 14 小时，达标。但日历上从 2 周拖成了 5 周半。单次学习没问题，问题是隔太久，每次回来都要先想"上次学到哪了"。并发那块我打算压在 10 天内连续攻。
+
+我的高频 bug 清单，给同样从前端过来的人对照：
+
+1. `if err == nil` 当错误分支（写反 3 次以上）
+2. 用 `error` 当变量名（自己在 README 记过还犯）
+3. `for i := range xs` 单变量拿到下标当元素用（一天两次）
+4. 没跑就交
+5. `fmt.Errorf(...)` 不 return，以为它像 throw
+
+练习代码都在 [popring/go-exercises](https://github.com/popring/go-exercises)，每个练习独立 `go.mod`，进目录 `go run .` 就能跑。下一步是并发：goroutine、channel、select、context，阶段项目是一个并发 URL 状态检查器。写完再更。
+
+## 今晚可以做的一件事
+
+打开 [Go Playground](https://go.dev/play/)，把上面 typed-nil 那段 `doWork` 原样敲进去，先在纸上写下你预测 `doWork(false)` 会不会打印"居然有错"，再点 Run。
+
+如果预测对了，你已经比三个月前的我强了。如果错了，回到"两个槽、一个空盒子"那段再读一遍。
