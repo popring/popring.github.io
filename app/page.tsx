@@ -7,11 +7,15 @@ const links = [
 ] as const
 
 const now: { label: string; text: string; href?: string }[] = [
-  { label: '在学', text: 'Go —— 语法过完了，接下来啃并发' },
+  {
+    label: '在学',
+    text: 'Go —— 阶段二走了一半，并发还没开始',
+    href: '/blog/frontend-to-go-pitfalls',
+  },
   {
     label: '在读',
-    text: '《代码整洁之道》',
-    href: 'https://book.douban.com/subject/4199741/',
+    text: '《增长黑客》',
+    href: 'https://book.douban.com/subject/27593848/',
   },
 ]
 
@@ -82,15 +86,18 @@ export default function Page() {
                 <span className="flex items-baseline gap-1">
                   <a
                     href={n.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(n.href.startsWith('/')
+                      ? {}
+                      : { target: '_blank', rel: 'noopener noreferrer' })}
                     className="text-neutral-700 dark:text-neutral-300 hover:text-amber-700 dark:hover:text-amber-400 transition-colors"
                   >
                     {n.text}
                   </a>
-                  <span className="text-neutral-300 dark:text-neutral-700 text-xs">
-                    ↗
-                  </span>
+                  {!n.href.startsWith('/') && (
+                    <span className="text-neutral-300 dark:text-neutral-700 text-xs">
+                      ↗
+                    </span>
+                  )}
                 </span>
               ) : (
                 <span className="text-neutral-700 dark:text-neutral-300">
