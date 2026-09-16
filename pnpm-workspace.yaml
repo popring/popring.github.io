@@ -14,17 +14,24 @@ allowBuilds:
 # postcss    GHSA-qx2v-qp2m-jg93 (<8.5.10 XSS) + sourceMappingURL 路径遍历 GHSA-6g55-p6wh-862q
 #            (<=8.5.17)，后者修得不彻底 → GHSA-fxqj-rqcc-2cmp / CVE-2026-69153（<=8.5.22，
 #            `from` 未设时仍可读任意 .map），8.5.23 才真正修完
-# sharp      libvips CVE-2026-33327/33328/35590/35591 (<0.35.0)
+# sharp      libvips CVE-2026-33327/33328/35590/35591 (<0.35.0)；libheif
+#            GHSA-g89c-p67h-r497 → 需 0.35.4
 # js-yaml    merge key 链导致二次复杂度 DoS (3.x <3.15.0 / 4.x <4.3.0)，之后又出
 #            GHSA-5p4m-2wfm-xmqj（!!omap 解析二次复杂度，CVE-2026-59870 没回移植到
-#            3.x/4.x）→ 需 3.15.1 / 4.3.1
+#            3.x/4.x）→ 3.15.1 / 4.3.1；再之后 maxTotalMergeKeys 不限制 CPU
+#            → 需 3.15.2 / 4.3.2
 # brace-expansion  连续空 {} 组导致指数级展开 DoS (1.x <1.1.16 / 5.x <5.0.7)；后续
 #            GHSA-mh99-v99m-4gvg（展开长度无上限 OOM）→ 1.1.17 / 5.0.8，再之后
 #            GHSA-rgw5-rvv9-x895（中间数组无上限，绕过 CVE-2026-14257 缓解）→ 1.1.18 / 5.0.9
+# browserslist  GHSA-c83g-rgw3-j3cx（缓存无淘汰导致 OOM）+ 未受信 browserslist-stats.json
+#            触发崩溃/原型写入 → 需 4.28.7，这里取同 minor 线最新的 4.28.9
+# baseline-browser-mapping  进程终止 → 需 2.11.0，这里取已过熟化期的 2.11.23
 overrides:
-  postcss: 8.5.26
-  sharp: 0.35.3
-  js-yaml@3: 3.15.1
-  js-yaml@4: 4.3.1
+  postcss: 8.5.28
+  sharp: 0.35.4
+  js-yaml@3: 3.15.2
+  js-yaml@4: 4.3.2
   brace-expansion@1: 1.1.18
   brace-expansion@5: 5.0.9
+  browserslist: 4.28.9
+  baseline-browser-mapping: 2.11.23
