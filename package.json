@@ -32,7 +32,7 @@
     "gray-matter": "^4.0.3",
     "next-mdx-remote": "^6.0.0",
     "postcss": "8.5.28",
-    "sugar-high": "^1.1.0",
+    "sugar-high": "^2.4.0",
     "tailwindcss": "^4.3.3",
     "transliteration": "^2.6.1",
     "typescript": "^6.0.3"
