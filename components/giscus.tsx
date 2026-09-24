@@ -8,10 +8,16 @@ export function GiscusComments() {
   useEffect(() => {
     if (!ref.current || ref.current.querySelector('.giscus')) return
 
-    const getTheme = () =>
-      document.documentElement.classList.contains('dark')
+    // 纸面主题 CSS 在 public/giscus/。Giscus 跑在 https 的 iframe 里，加载不了
+    // http://localhost 的 CSS（混合内容会被拦），所以本地开发退回官方主题。
+    const getTheme = () => {
+      const mode = document.documentElement.classList.contains('dark')
         ? 'dark'
         : 'light'
+      return location.protocol === 'https:'
+        ? `${location.origin}/giscus/paper-${mode}.css`
+        : mode
+    }
 
     const script = document.createElement('script')
     script.src = 'https://giscus.app/client.js'

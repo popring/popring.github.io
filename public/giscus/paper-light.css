@@ -1,0 +1,57 @@
+/* popring 纸面主题（浅色）：在 Giscus 官方主题上只覆盖颜色和圆角。
+   颜色与 app/global.css 的纸面 token 保持一致，改 token 时这里同步改。 */
+@import url('https://giscus.app/themes/light.css');
+
+main {
+  --color-fg-default: #1c1917;
+  --color-fg-muted: #78716c;
+  --color-fg-subtle: #a8a29e;
+  --color-canvas-default: #ffffff;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: #fafaf9;
+  --color-canvas-subtle: #fafaf9;
+  --color-border-default: rgba(28, 25, 23, 0.2);
+  --color-border-muted: rgba(28, 25, 23, 0.09);
+  --color-neutral-muted: rgba(28, 25, 23, 0.05);
+  --color-accent-fg: #1c1917;
+  --color-accent-emphasis: #1c1917;
+  --color-accent-muted: rgba(28, 25, 23, 0.2);
+  --color-accent-subtle: rgba(28, 25, 23, 0.05);
+  --color-segmented-control-bg: #fafaf9;
+  --color-segmented-control-button-bg: #ffffff;
+
+  --color-btn-text: #1c1917;
+  --color-btn-bg: #ffffff;
+  --color-btn-border: rgba(28, 25, 23, 0.2);
+  --color-btn-hover-bg: #fafaf9;
+  --color-btn-hover-border: rgba(28, 25, 23, 0.2);
+  --color-btn-active-bg: #fafaf9;
+  --color-btn-selected-bg: #fafaf9;
+
+  /* 主按钮：GitHub 绿换成站内的反色块 */
+  --color-btn-primary-text: #fafaf9;
+  --color-btn-primary-bg: #1c1917;
+  --color-btn-primary-border: transparent;
+  --color-btn-primary-hover-bg: #44403c;
+  --color-btn-primary-hover-border: transparent;
+  --color-btn-primary-selected-bg: #44403c;
+  --color-btn-primary-disabled-text: #a8a29e;
+  --color-btn-primary-disabled-bg: rgba(28, 25, 23, 0.05);
+  --color-btn-primary-disabled-border: transparent;
+
+  --color-social-reaction-bg-hover: rgba(28, 25, 23, 0.05);
+  --color-social-reaction-bg-reacted-hover: rgba(28, 25, 23, 0.05);
+}
+
+/* 形状：跟站内纸页一致的手绘不规则圆角 */
+main .gsc-comment-box,
+main .gsc-comment > div {
+  border-radius: 4px 18px 6px 16px / 16px 6px 18px 4px;
+}
+main .btn,
+main .gsc-social-reaction-summary-item {
+  border-radius: 14px 10px 16px 9px / 10px 15px 9px 14px;
+}
+main .btn-primary {
+  font-weight: 600;
+}
