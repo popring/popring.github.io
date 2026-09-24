@@ -21,7 +21,7 @@ export function BackToTop() {
       aria-label='返回顶部'
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
-      className={`fixed bottom-6 right-6 z-50 w-10 h-10 flex items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 shadow-sm cursor-pointer transition-all duration-200 hover:text-neutral-900 dark:hover:text-neutral-100 hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-md ${
+      className={`fixed right-6 bottom-6 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-line bg-card text-muted shadow-note transition-[opacity,color,border-color] duration-200 hover:border-line-strong hover:text-ink ${
         visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >

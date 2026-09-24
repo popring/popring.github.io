@@ -2,57 +2,186 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-::selection {
-  background-color: #47a3f3;
-  color: #fefefe;
-}
-
+/* ============================================================
+   纸面 token（手绘笔记风）。规则见 docs/ui-design-language.md。
+   组件里只用下面 @theme 生成的工具类（bg-paper / text-ink …），不写 hex。
+   ============================================================ */
 :root {
+  --paper: #fafaf9;
+  --card: #ffffff;
+  --ink: #1c1917;
+  --body: #57534e;
+  --muted: #78716c;
+  --faint: #a8a29e;
+  --line: rgba(28, 25, 23, 0.09);
+  --line-strong: rgba(28, 25, 23, 0.2);
+  --hover: rgba(28, 25, 23, 0.05);
+  --inv: #1c1917;
+  --inv-ink: #fafaf9;
+  --tape: rgba(168, 162, 158, 0.28);
+  --hl: rgba(250, 204, 21, 0.28);
+  --shadow-note: 0 1px 1px rgba(0, 0, 0, 0.03), 0 8px 16px -10px rgba(0, 0, 0, 0.14);
+
   --expo-out: linear(
     0 0%, 0.1684 2.66%, 0.3165 5.49%, 0.446 8.52%, 0.5581 11.78%,
     0.6535 15.29%, 0.7341 19.11%, 0.8011 23.3%, 0.8557 27.93%,
     0.8962 32.68%, 0.9283 38.01%, 0.9529 44.08%, 0.9711 51.14%,
     0.9833 59.06%, 0.9915 68.74%, 1 100%
   );
-  --sh-class: #8250df;
-  --sh-identifier: #24292f;
-  --sh-sign: #57606a;
-  --sh-string: #0a3069;
-  --sh-keyword: #cf222e;
-  --sh-comment: #6e7781;
-  --sh-jsxliterals: #0550ae;
-  --sh-property: #953800;
-  --sh-entity: #953800;
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* 代码高亮（sugar-high） */
+  --sh-class: #6b3fa0;
+  --sh-identifier: #1c1917;
+  --sh-sign: #78716c;
+  --sh-string: #1e4b8f;
+  --sh-keyword: #b4232a;
+  --sh-comment: #8a817a;
+  --sh-jsxliterals: #1e4b8f;
+  --sh-property: #8a4b0f;
+  --sh-entity: #8a4b0f;
 }
 
+/* 暗色：没 JS 时跟系统走，有 JS 时跟 <html class="dark"> 走 */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --sh-class: #e5c07b;
-    --sh-identifier: #abb2bf;
-    --sh-sign: #818896;
-    --sh-string: #98c379;
-    --sh-keyword: #c678dd;
-    --sh-comment: #5c6370;
-    --sh-jsxliterals: #56b6c2;
-    --sh-property: #e06c75;
-    --sh-entity: #d19a66;
-  }
-  html:not(.light) {
+    --paper: #0c0a09;
+    --card: #161412;
+    --ink: #f5f5f4;
+    --body: #b6b0ab;
+    --muted: #8f8983;
+    --faint: #5c5652;
+    --line: #26221f;
+    --line-strong: #3d3833;
+    --hover: rgba(245, 245, 244, 0.06);
+    --inv: #f5f5f4;
+    --inv-ink: #1c1917;
+    --tape: rgba(245, 245, 244, 0.12);
+    --hl: rgba(250, 204, 21, 0.16);
+    --shadow-note: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 16px -10px rgba(0, 0, 0, 0.5);
+    --sh-class: #c9a4f0;
+    --sh-identifier: #f5f5f4;
+    --sh-sign: #8f8983;
+    --sh-string: #93b7ea;
+    --sh-keyword: #f0868a;
+    --sh-comment: #6d6660;
+    --sh-jsxliterals: #93b7ea;
+    --sh-property: #e5a868;
+    --sh-entity: #e5a868;
     color-scheme: dark;
   }
 }
 
 .dark {
-  --sh-class: #e5c07b;
-  --sh-identifier: #abb2bf;
-  --sh-sign: #818896;
-  --sh-string: #98c379;
-  --sh-keyword: #c678dd;
-  --sh-comment: #5c6370;
-  --sh-jsxliterals: #56b6c2;
-  --sh-property: #e06c75;
-  --sh-entity: #d19a66;
+  --paper: #0c0a09;
+  --card: #161412;
+  --ink: #f5f5f4;
+  --body: #b6b0ab;
+  --muted: #8f8983;
+  --faint: #5c5652;
+  --line: #26221f;
+  --line-strong: #3d3833;
+  --hover: rgba(245, 245, 244, 0.06);
+  --inv: #f5f5f4;
+  --inv-ink: #1c1917;
+  --tape: rgba(245, 245, 244, 0.12);
+  --hl: rgba(250, 204, 21, 0.16);
+  --shadow-note: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 16px -10px rgba(0, 0, 0, 0.5);
+  --sh-class: #c9a4f0;
+  --sh-identifier: #f5f5f4;
+  --sh-sign: #8f8983;
+  --sh-string: #93b7ea;
+  --sh-keyword: #f0868a;
+  --sh-comment: #6d6660;
+  --sh-jsxliterals: #93b7ea;
+  --sh-property: #e5a868;
+  --sh-entity: #e5a868;
   color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-hover: var(--hover);
+  --color-inv: var(--inv);
+  --color-inv-ink: var(--inv-ink);
+  --color-tape: var(--tape);
+  --color-hl: var(--hl);
+  --shadow-note: var(--shadow-note);
+  --font-sans: var(--font-geist-sans), -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-hand: var(--font-hand-latin), var(--font-hand-zh), 'Kaiti SC', 'STKaiti', cursive;
+}
+
+::selection {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-synthesis: none;
+}
+
+/* ---------- 纸面小部件 ---------- */
+
+/* 荧光笔：<mark className="hl"> 或正文 strong */
+.hl {
+  background: linear-gradient(transparent 55%, var(--hl) 55%, var(--hl) 92%, transparent 92%);
+  color: inherit;
+  padding: 0 2px;
+}
+
+/* 便利贴：--tilt 由 <StickyNote tilt> 传入，hover 摆正 */
+.sticky-note {
+  transform: rotate(var(--tilt, -1.2deg));
+  box-shadow: var(--shadow-note);
+  transition: transform 250ms var(--ease-out-strong);
+}
+.sticky-note:hover {
+  transform: rotate(0) translateY(-2px);
+}
+.sticky-note::before,
+.tape::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 72px;
+  height: 20px;
+  margin-left: -36px;
+  background: var(--tape);
+  transform: rotate(-3deg);
+}
+
+/* 线稿描线入场：外层加 .doodle-draw（由 <DrawIn> 只在首次进入时加） */
+.doodle-draw :is(path, circle, ellipse) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: doodleDraw 900ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.doodle-draw :nth-child(2) { animation-delay: 120ms; }
+.doodle-draw :nth-child(3) { animation-delay: 240ms; }
+.doodle-draw :nth-child(n + 4):nth-child(-n + 6) { animation-delay: 420ms; }
+.doodle-draw :nth-child(7) { animation-delay: 560ms; }
+.doodle-draw :nth-child(8) { animation-delay: 640ms; }
+.doodle-draw :nth-child(9) { animation-delay: 720ms; }
+.doodle-draw-late :is(path, circle, ellipse) { animation-delay: 900ms; animation-duration: 600ms; }
+@keyframes doodleDraw {
+  to { stroke-dashoffset: 0; }
+}
+.note-pop {
+  animation: notePop 400ms var(--ease-out-strong) 1.1s backwards;
+}
+@keyframes notePop {
+  from { opacity: 0; translate: 0 6px; }
 }
 
 html {
@@ -352,6 +481,16 @@ input[type='email'] {
   html {
     scroll-behavior: auto;
   }
+  .doodle-draw :is(path, circle, ellipse) {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .note-pop {
+    animation: none;
+  }
+  .sticky-note {
+    transition: none;
+  }
   .animate-in,
   .animate-in-delay-1,
   .animate-in-delay-2,
@@ -377,6 +516,7 @@ input[type='email'] {
    Triggered by appending `?thumb=1` to any URL — primarily for headless
    screenshots of /craft/<slug> pages. */
 html.thumb-mode aside,
+html.thumb-mode nav[aria-label='站点导航'],
 html.thumb-mode footer,
 html.thumb-mode button[aria-label='返回顶部'] {
   display: none !important;

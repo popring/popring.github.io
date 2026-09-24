@@ -47,7 +47,8 @@ Personal blog (popring.github.io). Next.js 16.3 App Router · React 19 · Tailwi
 Every component / page must support:
 
 - **Mobile viewports** — use Tailwind responsive prefixes; assume mobile-first and gate desktop layout behind `md:` / `lg:`.
-- **Both light and dark mode** — use Tailwind `dark:` variants on every color-bearing class; verify both visually before calling a UI task done.
+- **Both light and dark mode** — use the paper tokens (`bg-paper` / `bg-card` / `text-ink` / `text-body` / `text-muted` / `text-faint` / `border-line` …, defined in `app/global.css`). They switch with the theme on their own, so no `dark:` variants and no raw hex/`neutral-*` classes. Verify both themes visually before calling a UI task done.
+- **Hand-written text** — wrap it in `<Hand>` (`components/doodle.tsx`) or use `font-hand`, then rerun `python3 scripts/subset-hand-font.py` so the new characters get into the font subset (needs `pip install fonttools brotli`).
 
 Dark mode toggles by adding `class="dark"` on `<html>` (set early by an inline script in `app/layout.tsx`). For dynamic theme-aware logic in components, use the `useDarkMode` hook in `components/use-dark-mode.ts`.
 

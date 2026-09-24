@@ -67,14 +67,14 @@ export function ThemeToggle() {
   }, [isDark])
 
   if (!mounted) {
-    return <div className="w-8 h-8" />
+    return <div className="w-9 h-9" />
   }
 
   return (
     <button
       type="button"
       onClick={toggle}
-      className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+      className="w-9 h-9 flex items-center justify-center rounded-lg text-muted hover:text-ink hover:bg-hover active:scale-[0.96] transition-colors duration-150"
       aria-label={isDark ? '切换到亮色模式' : '切换到暗色模式'}
     >
       <span className="relative w-4 h-4 block">

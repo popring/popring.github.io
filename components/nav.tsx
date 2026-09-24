@@ -5,50 +5,36 @@ import { usePathname } from 'next/navigation'
 import { ThemeToggle } from './theme-toggle'
 import { Logo } from './logo'
 
-const navItems = {
-  '/': {
-    name: 'home',
-  },
-  '/blog': {
-    name: 'blog',
-  },
-  '/craft': {
-    name: 'craft',
-  },
-}
+const navItems = [
+  { href: '/', name: '首页' },
+  { href: '/blog', name: '文章' },
+  { href: '/craft', name: 'Craft' },
+]
 
 export function Navbar() {
   const pathname = usePathname()
 
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
-      <div className="lg:sticky lg:top-20">
-        <nav
-          className="flex flex-row items-center justify-between relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
-          id="nav"
-        >
-          <div className="flex flex-row items-center space-x-0 pr-10">
-            <Logo size={22} />
-            {Object.entries(navItems).map(([path, { name }]) => {
-              const isActive = path === '/' ? pathname === '/' : pathname.startsWith(path)
-              return (
-                <Link
-                  key={path}
-                  href={path}
-                  className={`transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 border-b-2 ${
-                    isActive
-                      ? 'border-neutral-400 dark:border-neutral-500'
-                      : 'border-transparent'
-                  }`}
-                >
-                  {name}
-                </Link>
-              )
-            })}
-          </div>
-          <ThemeToggle />
-        </nav>
+    <nav className="mb-14 flex items-center justify-between" aria-label="站点导航">
+      <Logo />
+      <div className="flex items-center gap-1">
+        {navItems.map(({ href, name }) => {
+          const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href)
+          return (
+            <Link
+              key={href}
+              href={href}
+              aria-current={isActive ? 'page' : undefined}
+              className={`rounded-lg px-2.5 py-1.5 text-sm transition-colors duration-150 hover:bg-hover hover:text-ink ${
+                isActive ? 'bg-hover text-ink' : 'text-muted'
+              }`}
+            >
+              {name}
+            </Link>
+          )
+        })}
+        <ThemeToggle />
       </div>
-    </aside>
+    </nav>
   )
 }

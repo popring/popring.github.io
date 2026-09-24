@@ -81,62 +81,44 @@ function XIcon() {
   );
 }
 
+const links = [
+  { href: 'https://github.com/popring', label: 'GitHub', Icon: GitHubIcon, external: true },
+  { href: 'https://x.com/Harry5Sea', label: 'X', Icon: XIcon, external: true },
+  { href: '/links', label: '友链', Icon: LinkIcon, external: false },
+  { href: '/rss', label: 'RSS', Icon: RssIcon, external: false },
+]
+
 export default function Footer() {
   return (
-    <footer className='mb-16 animate-in-delay-3'>
-      <ul className='font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300'>
-        <li>
+    <footer className="mt-28 mb-16 flex flex-wrap items-end justify-between gap-4 border-t border-dashed border-line-strong pt-7">
+      <div>
+        <p className="font-hand text-[34px] leading-none font-bold text-ink">Harry</p>
+        <p className="mt-2 text-[13px] text-faint">
+          © 2021–{new Date().getFullYear()} ·{' '}
           <a
-            className='group flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
-            rel='noopener noreferrer'
-            target='_blank'
-            href='https://github.com/popring'
+            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-line-strong underline-offset-[3px] transition-colors hover:text-ink"
           >
-            <GitHubIcon />
-            <p className='ml-2 h-7'>github</p>
+            CC BY-NC-SA 4.0
           </a>
-        </li>
-        <li>
-          <a
-            className='group flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
-            rel='noopener noreferrer'
-            target='_blank'
-            href='https://x.com/Harry5Sea'
-          >
-            <XIcon />
-            <p className='ml-2 h-7'>twitter</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className='group flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
-            href='/links'
-          >
-            <LinkIcon />
-            <p className='ml-2 h-7'>友链</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className='group flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100'
-            href='/rss'
-          >
-            <RssIcon />
-            <p className='ml-2 h-7'>rss</p>
-          </a>
-        </li>
+        </p>
+      </div>
+      <ul className="flex flex-wrap gap-x-[18px] gap-y-2 text-sm">
+        {links.map(({ href, label, Icon, external }) => (
+          <li key={href}>
+            <a
+              href={href}
+              {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              className="group flex items-center gap-1.5 text-muted transition-colors duration-150 hover:text-ink"
+            >
+              <Icon />
+              {label}
+            </a>
+          </li>
+        ))}
       </ul>
-      <p className='mt-8 text-neutral-600 dark:text-neutral-300'>
-        © 2021-{new Date().getFullYear()}{' '}
-        <a
-          href='https://creativecommons.org/licenses/by-nc-sa/4.0/'
-          target='_blank'
-          rel='noopener noreferrer'
-          className='underline decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 hover:text-neutral-800 dark:hover:text-neutral-100 transition-colors'
-        >
-          CC BY-NC-SA 4.0
-        </a>
-      </p>
     </footer>
   );
 }

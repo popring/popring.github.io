@@ -44,3 +44,6 @@ package-lock.json
 # Claude 本地私有文件（不进公开仓库）
 CLAUDE.local.md
 .claude/
+
+# 手写字体子集化的源字体缓存（scripts/subset-hand-font.py）
+/.cache/

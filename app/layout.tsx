@@ -2,6 +2,7 @@ import './global.css';
 import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
+import localFont from 'next/font/local';
 import { Navbar } from '@/components/nav';
 import Script from 'next/script';
 import Footer from '@/components/footer';
@@ -50,6 +51,21 @@ export const metadata: Metadata = {
   },
 };
 
+// 手写体：子集化后自托管（国内打不开 Google Fonts）。字不够时重跑 scripts/subset-hand-font.py
+const handLatin = localFont({
+  src: [
+    { path: './fonts/hand-latin-500.woff2', weight: '500' },
+    { path: './fonts/hand-latin-700.woff2', weight: '700' },
+  ],
+  variable: '--font-hand-latin',
+  display: 'swap',
+});
+const handZh = localFont({
+  src: './fonts/hand-zh.woff2',
+  variable: '--font-hand-zh',
+  display: 'swap',
+});
+
 const cx = (...classes: string[]) => classes.filter(Boolean).join(' ');
 
 export default function RootLayout({
@@ -62,9 +78,11 @@ export default function RootLayout({
       lang='zh-CN'
       suppressHydrationWarning
       className={cx(
-        'text-black bg-white dark:text-white dark:bg-black',
+        'bg-paper text-ink',
         GeistSans.variable,
-        GeistMono.variable
+        GeistMono.variable,
+        handLatin.variable,
+        handZh.variable
       )}
     >
       <head>
