@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import Fuse from 'fuse.js'
+import { Face } from '@/components/doodle'
+import { PostRow, Sheet, monthDay } from '@/components/paper'
 
 type PostItem = {
   slug: string
@@ -47,48 +49,105 @@ export function SearchClient({ posts }: { posts: PostItem[] }) {
     [posts]
   )
 
-  const results = query.trim()
-    ? fuse.search(query).map((r) => r.item)
-    : []
+  const results = query.trim() ? fuse.search(query).map((r) => r.item) : []
+
+  const q = query.trim()
 
   return (
     <div>
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => handleQueryChange(e.target.value)}
-        placeholder="输入关键词搜索文章..."
-        className="w-full px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-transparent text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors"
-        // biome-ignore lint/a11y/noAutofocus: 专用搜索页，进入即聚焦是预期行为
-        autoFocus
-      />
-      {query.trim() && (
-        <p className="mt-4 mb-2 text-sm text-neutral-500">
-          找到 {results.length} 篇文章
-        </p>
-      )}
-      <div>
-        {results.map((post) => (
-          <Link
-            key={post.slug}
-            className="flex flex-col space-y-1 mb-4 group pl-3 border-l-2 border-transparent hover:border-neutral-300 dark:hover:border-neutral-600 transition-all"
-            href={`/blog/${post.slug}`}
+      <label className="relative mb-3 block">
+        <span className="sr-only">搜索文章</span>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => handleQueryChange(e.target.value)}
+          placeholder="输入关键词，比如 Go"
+          autoComplete="off"
+          enterKeyHint="search"
+          className="w-full bg-transparent pt-2 pr-11 pb-3.5 text-[clamp(24px,4vw,32px)] leading-[1.3] font-semibold tracking-[-0.02em] text-ink outline-none placeholder:font-medium placeholder:text-faint"
+          // biome-ignore lint/a11y/noAutofocus: 专用搜索页，进入即聚焦是预期行为
+          autoFocus
+        />
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 600 12"
+          preserveAspectRatio="none"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2.4}
+          strokeLinecap="round"
+          className="pointer-events-none absolute bottom-0 left-0 h-3 w-full text-ink"
+        >
+          <path d="M2 7c90-4 200-5 300-3s200 3 296-1" />
+        </svg>
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.8}
+          strokeLinecap="round"
+          className="pointer-events-none absolute top-3 right-1 size-7 text-muted"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20l-3.5-3.5" />
+        </svg>
+      </label>
+      <p className="mb-7 font-hand text-[22px] text-muted">
+        试试
+        {suggestions.map((s) => (
+          <button
+            key={s}
+            type="button"
+            onClick={() => handleQueryChange(s)}
+            className="ml-2 cursor-pointer px-0.5 text-ink underline decoration-faint underline-offset-4"
           >
-            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-              <p className="text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums shrink-0">
-                {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
-              </p>
-              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors">
-                {post.title}
-              </p>
-            </div>
-          </Link>
+            {s}
+          </button>
         ))}
-      </div>
+      </p>
+      {q &&
+        (results.length ? (
+          <>
+            <p className="mb-3 font-hand text-[22px] text-ink">找到 {results.length} 篇</p>
+            <Sheet>
+              {results.map((post) => (
+                <PostRow
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  date={monthDay(post.publishedAt)}
+                  title={highlight(post.title, q)}
+                  category={post.category}
+                />
+              ))}
+            </Sheet>
+          </>
+        ) : (
+          <div className="py-10 text-center text-muted">
+            <Face className="mx-auto mb-3 block size-24 text-faint" />
+            <b className="block font-hand text-[26px] font-medium text-ink">本子里没写过"{q}"</b>
+            换个词试试，或者去
+            <Link href="/blog/categories" className="mx-0.5 text-ink underline decoration-faint underline-offset-4">
+              分类
+            </Link>
+            里翻翻
+          </div>
+        ))}
     </div>
+  )
+}
+
+const suggestions = ['AI', '动画', '增长']
+
+/** 标题里第一处命中关键词的地方涂荧光笔；模糊命中没有原词时原样返回 */
+function highlight(text: string, q: string) {
+  const i = text.toLowerCase().indexOf(q.toLowerCase())
+  if (i < 0) return text
+  return (
+    <>
+      {text.slice(0, i)}
+      <mark className="hl">{text.slice(i, i + q.length)}</mark>
+      {text.slice(i + q.length)}
+    </>
   )
 }

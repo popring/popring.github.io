@@ -19,8 +19,8 @@ type Props = {
 const tabBtnClass = (selected: boolean) =>
   `px-4 py-2 font-medium transition-colors outline-none ${
     selected
-      ? 'text-neutral-900 dark:text-neutral-100 border-b-2 border-neutral-900 dark:border-neutral-100 -mb-px'
-      : 'hover:text-neutral-700 dark:hover:text-neutral-300'
+      ? 'text-ink border-b-2 border-ink -mb-px'
+      : 'hover:text-ink'
   }`
 
 // Default scope available in every JSX Playground — saves ceremony in MDX.
@@ -44,15 +44,15 @@ export default function PlaygroundReact({ jsx, scope, noInline = false, isDark =
   const [reloadKey, setReloadKey] = useState(0)
   return (
     <LiveProvider code={jsx.trim()} scope={mergedScope} noInline={noInline} theme={theme}>
-      <div className='border-b border-neutral-200 dark:border-neutral-800 text-xs text-neutral-500 dark:text-neutral-400'>
+      <div className='border-b border-line text-xs text-muted'>
         <div className='flex md:grid md:grid-cols-2'>
-          <div className='flex md:border-r border-neutral-200 dark:border-neutral-800'>
+          <div className='flex md:border-r border-line'>
             <button
               type="button"
               onClick={() => setMobileView('code')}
               className={tabBtnClass(mobileView === 'code')}
             >
-              Code <span className='ml-2 text-neutral-400 dark:text-neutral-500'>jsx</span>
+              Code <span className='ml-2 font-mono text-faint'>jsx</span>
             </button>
             <button
               type="button"
@@ -67,13 +67,13 @@ export default function PlaygroundReact({ jsx, scope, noInline = false, isDark =
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2'>
         <div
-          className={`${mobileView === 'preview' ? 'hidden' : ''} md:block md:border-r border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-[13px] leading-relaxed font-mono overflow-auto`}
+          className={`${mobileView === 'preview' ? 'hidden' : ''} md:block md:border-r border-line bg-paper text-[13px] leading-relaxed font-mono overflow-auto`}
           style={{ maxHeight: height }}
         >
           <LiveEditor className='!bg-transparent' />
         </div>
         <div
-          className={`${mobileView === 'code' ? 'hidden' : 'flex'} md:flex relative p-4 bg-white dark:bg-neutral-100 flex-col items-center justify-center gap-3 overflow-auto`}
+          className={`${mobileView === 'code' ? 'hidden' : 'flex'} md:flex relative p-4 bg-white flex-col items-center justify-center gap-3 overflow-auto`}
           style={{ maxHeight: height, backgroundColor: bg }}
         >
           <ReloadButton

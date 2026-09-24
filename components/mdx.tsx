@@ -23,12 +23,12 @@ function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   ))
 
   return (
-    <table>
+    <TableWrapper>
       <thead>
         <tr>{headers}</tr>
       </thead>
       <tbody>{rows}</tbody>
-    </table>
+    </TableWrapper>
   )
 }
 
@@ -61,7 +61,7 @@ function Code({ children, ...props }: { children: string }) {
 
 function TableWrapper(props: React.ComponentProps<'table'>) {
   return (
-    <div className="overflow-x-auto">
+    <div className="tbl">
       <table {...props} />
     </div>
   )
@@ -72,16 +72,12 @@ function Pre({ children, ...props }: { children: React.ReactElement<{ children: 
   const className = children?.props?.className || ''
   const language = className.replace(/language-/, '')
   return (
-    <div className="relative group">
-      {language && (
-        <span className="absolute right-10 top-0 z-10 rounded-b-md bg-neutral-200 dark:bg-neutral-700 px-2 py-0.5 text-[11px] font-medium text-neutral-500 dark:text-neutral-400 select-none">
-          {language}
-        </span>
-      )}
-      <CopyButton text={codeString} />
-      <pre {...props}>
-        {children}
-      </pre>
+    <div className="code-card">
+      <div className="flex items-center justify-between border-b border-line py-1.5 pr-1.5 pl-4">
+        <span className="font-mono text-xs text-faint select-none">{language}</span>
+        <CopyButton text={codeString} />
+      </div>
+      <pre {...props}>{children}</pre>
     </div>
   )
 }

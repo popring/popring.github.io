@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from '@/components/mdx'
-import { AnimateIn } from '@/components/animate-in'
 import { baseUrl } from '@/app/sitemap'
 import { getCraftItem, getCraftItems } from '../utils'
 
@@ -41,12 +40,8 @@ export default async function CraftDetail({ params }: PageProps) {
   if (!item) notFound()
 
   return (
-    <section>
-      <AnimateIn>
-        <div className="not-prose">
-          <CustomMDX source={item.content} format={item.format} />
-        </div>
-      </AnimateIn>
+    <section className="not-prose">
+      <CustomMDX source={item.content} format={item.format} />
     </section>
   )
 }

@@ -189,6 +189,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ---------- 文章正文 .prose ----------
+   全自定义（没用 typography 插件）。元素级规则都带 :not(.not-prose *) 守卫，
+   否则会漏进 not-prose 组件（BookCard / Playground …）。 */
+.prose {
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--body);
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
 
@@ -203,12 +216,8 @@ html {
   @apply visible;
 }
 
-.prose a:not(.not-prose *) {
-  @apply underline transition-all decoration-neutral-300 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em] hover:decoration-neutral-500 dark:hover:decoration-neutral-400;
-}
-
 .prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
+  color: var(--faint);
   content: '#';
 }
 
@@ -216,19 +225,145 @@ html {
   @apply visible;
 }
 
-.prose pre:not(.not-prose *) {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 py-3 px-4 text-[13px] leading-relaxed transition-colors;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+.prose a:not(.not-prose *):not(.anchor) {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.prose a:not(.not-prose *):not(.anchor):hover {
+  text-decoration-style: wavy;
 }
 
-/* 右上角有语言标记(tab)的代码块，首行会被标记盖住，顶部多留出标记高度 */
-.prose pre:has(> code[class*='language-']):not(.not-prose *) {
-  padding-top: 1.75rem;
+.prose p:not(.not-prose *) {
+  margin: 0 0 1.2em;
 }
 
+.prose strong:not(.not-prose *) {
+  color: var(--ink);
+  font-weight: 600;
+  background: linear-gradient(transparent 60%, var(--hl) 60%, var(--hl) 92%, transparent 92%);
+}
+
+.prose :is(h1, h2, h3, h4):not(.not-prose *) {
+  position: relative;
+  color: var(--ink);
+  text-wrap: balance;
+  scroll-margin-top: 3rem;
+}
+
+.prose h1:not(.not-prose *) {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  margin: 2em 0 0.8em;
+}
+
+.prose h2:not(.not-prose *) {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  margin: 2.2em 0 0.8em;
+}
+
+/* h2 下面一笔手绘短下划线 */
+.prose h2:not(.not-prose *)::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 8px;
+  margin-top: 10px;
+  background: var(--ink);
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 8"><path d="M2 5c10-3 22-3 32-1s14 1 20-1" stroke="black" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>') no-repeat;
+}
+
+.prose h3:not(.not-prose *) {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  margin: 1.8em 0 0.6em;
+}
+
+.prose h4:not(.not-prose *) {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 1.6em 0 0.5em;
+}
+
+.prose ul:not(.not-prose *) {
+  list-style: disc;
+  padding-left: 1.3em;
+  margin: 0 0 1.2em;
+}
+
+.prose ol:not(.not-prose *) {
+  list-style: decimal;
+  padding-left: 1.4em;
+  margin: 0 0 1.2em;
+}
+
+.prose li:not(.not-prose *) {
+  margin: 0.3em 0;
+}
+
+.prose li:not(.not-prose *)::marker {
+  color: var(--faint);
+}
+
+.prose :is(li, blockquote) > p:not(.not-prose *) {
+  margin: 0;
+}
+
+.prose hr:not(.not-prose *) {
+  border: 0;
+  border-top: 1px dashed var(--line-strong);
+  margin: 2.5em 0;
+}
+
+/* 引用块 = 贴了胶带的便利贴 */
+.prose blockquote:not(.not-prose *) {
+  position: relative;
+  margin: 1.6em 0 1.4em;
+  padding: 18px 20px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  box-shadow: var(--shadow-note);
+  transform: rotate(-0.6deg);
+}
+.prose blockquote:not(.not-prose *)::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 24px;
+  width: 64px;
+  height: 18px;
+  background: var(--tape);
+  transform: rotate(-4deg);
+}
+.prose blockquote:not(.not-prose *) > * + * {
+  margin-top: 0.6em;
+}
+
+.prose img:not(.not-prose *) {
+  /* Don't apply styles to next/image */
+  @apply m-0;
+}
+
+/* 行内代码 */
 .prose code:not(.not-prose *) {
-  @apply px-1.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[13px] text-amber-700 dark:text-amber-400;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1px 6px;
+  overflow-wrap: anywhere;
   --sh-class: currentColor;
   --sh-identifier: currentColor;
   --sh-sign: currentColor;
@@ -240,9 +375,37 @@ html {
   --sh-entity: currentColor;
 }
 
+.prose code span {
+  @apply font-normal;
+}
+
+/* 代码卡：<Pre> 渲染成 .code-card（顶栏 = 语言 + 复制） */
+.prose .code-card {
+  margin: 0 0 1.4em;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.prose pre:not(.not-prose *) {
+  margin: 0;
+  padding: 18px 20px;
+  overflow-x: auto;
+  background: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
 .prose pre code:not(.not-prose *) {
-  @apply p-0 bg-transparent text-inherit;
-  border: initial;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
+  overflow-wrap: normal;
   --sh-class: inherit;
   --sh-identifier: inherit;
   --sh-sign: inherit;
@@ -254,69 +417,6 @@ html {
   --sh-entity: inherit;
 }
 
-.prose code span {
-  @apply font-normal;
-}
-
-.prose blockquote:not(.not-prose *) {
-  @apply border-l-3 border-neutral-300 dark:border-neutral-600 pl-4 my-4 text-neutral-600 dark:text-neutral-400 italic;
-}
-
-.prose blockquote p:not(.not-prose *) {
-  @apply my-2;
-}
-
-.prose img:not(.not-prose *) {
-  /* Don't apply styles to next/image */
-  @apply m-0;
-}
-
-.prose p:not(.not-prose *) {
-  @apply my-4 text-neutral-800 dark:text-neutral-200 leading-7;
-}
-
-.prose li:not(.not-prose *) {
-  @apply mb-1.5;
-}
-
-.prose h1:not(.not-prose *) {
-  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
-  scroll-margin-top: 3rem;
-}
-
-.prose h2:not(.not-prose *) {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
-  scroll-margin-top: 3rem;
-}
-
-.prose h3:not(.not-prose *) {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
-  scroll-margin-top: 3rem;
-}
-
-.prose h4:not(.not-prose *) {
-  @apply text-lg font-medium tracking-tight mt-6 mb-2;
-  scroll-margin-top: 3rem;
-}
-
-.prose strong:not(.not-prose *) {
-  @apply font-medium;
-}
-
-.prose ul:not(.not-prose *) {
-  @apply list-disc pl-6 my-3;
-}
-
-.prose ol:not(.not-prose *) {
-  @apply list-decimal pl-6 my-3;
-}
-
-.prose > :first-child {
-  /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
-}
-
 pre::-webkit-scrollbar {
   display: none;
 }
@@ -326,59 +426,59 @@ pre {
   scrollbar-width: none; /* Firefox */
 }
 
+/* 表格 = 一张纸：墨色表头线 + 虚线行 */
+.prose .tbl {
+  overflow-x: auto;
+  margin: 0 0 1.4em;
+  padding: 4px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px 16px 6px 14px / 14px 6px 16px 4px;
+}
+
+.prose table:not(.not-prose *) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.prose th:not(.not-prose *) {
+  text-align: start;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 10px 12px 10px 0;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.prose td:not(.not-prose *) {
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px dashed var(--line-strong);
+  vertical-align: top;
+}
+
+.prose tr:last-child td:not(.not-prose *) {
+  border-bottom: 0;
+}
+
+/* 文末标签：胶带，一左一右歪 */
+.tape-tag {
+  transform: rotate(-1.5deg);
+  transition: background-color 150ms ease-out;
+}
+.tape-tag:nth-child(2n) {
+  transform: rotate(1.2deg);
+}
+.tape-tag:hover {
+  background-color: color-mix(in oklch, var(--tape), var(--ink) 8%);
+}
+
 /* Remove Safari input shadow on mobile */
 input[type='text'],
 input[type='email'] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-}
-
-.prose table {
-  display: table !important;
-  width: 100% !important;
-  border-collapse: collapse !important;
-  margin: 1.5rem 0 !important;
-  font-size: 0.875rem !important;
-  border: 1px solid #d4d4d4 !important;
-  border-radius: 0.375rem;
-}
-
-.prose th,
-.prose td {
-  padding: 0.5rem 0.75rem !important;
-  text-align: left !important;
-  border: 1px solid #d4d4d4 !important;
-  white-space: normal !important;
-}
-
-.prose th {
-  font-weight: 600 !important;
-  background-color: #f5f5f5 !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) .prose table {
-    border-color: #404040 !important;
-  }
-  :root:not(.light) .prose th,
-  :root:not(.light) .prose td {
-    border-color: #404040 !important;
-  }
-  :root:not(.light) .prose th {
-    background-color: #262626 !important;
-  }
-}
-
-.dark .prose table {
-  border-color: #404040 !important;
-}
-.dark .prose th,
-.dark .prose td {
-  border-color: #404040 !important;
-}
-.dark .prose th {
-  background-color: #262626 !important;
 }
 
 .title {
@@ -432,7 +532,7 @@ input[type='email'] {
 /* Anchor target highlight */
 @keyframes targetHighlight {
   from {
-    background-color: rgba(71, 163, 243, 0.15);
+    background-color: var(--hl);
   }
   to {
     background-color: transparent;

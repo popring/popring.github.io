@@ -79,30 +79,41 @@ export function TableOfContents({ headings }: { headings: Heading[] }) {
     }
   }
 
+  const items = (compact: boolean) =>
+    headings.map((h) => (
+      <li key={h.slug} className={h.level === 3 ? (compact ? 'ml-3' : 'ml-4 text-[14px]') : ''}>
+        <a
+          href={`#${h.slug}`}
+          onClick={(e) => handleClick(e, h.slug)}
+          className={
+            compact
+              ? `block leading-snug transition-colors ${
+                  activeSlug === h.slug ? 'font-medium text-ink' : 'text-muted hover:text-ink'
+                }`
+              : 'text-body decoration-faint decoration-wavy decoration-1 underline-offset-4 transition-colors hover:text-ink hover:underline'
+          }
+        >
+          {h.text}
+        </a>
+      </li>
+    ))
+
   return (
-    <aside className='hidden xl:block absolute -left-48 top-0 w-40 h-full'>
-      <nav
-        aria-label='目录'
-        className='sticky top-24 text-xs max-h-[calc(100vh-8rem)] overflow-y-auto'
-      >
-        <ul className='space-y-1.5'>
-          {headings.map((h) => (
-            <li key={h.slug} className={h.level === 3 ? 'ml-3' : ''}>
-              <a
-                href={`#${h.slug}`}
-                onClick={(e) => handleClick(e, h.slug)}
-                className={`transition-colors leading-snug block ${
-                  activeSlug === h.slug
-                    ? 'text-neutral-900 dark:text-neutral-100 font-medium'
-                    : 'text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200'
-                }`}
-              >
-                {h.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </aside>
+    <>
+      {/* 窄屏：正文上方的折叠目录 */}
+      <details className='group mb-10 rounded-[10px] border border-dashed border-line-strong px-[18px] py-3.5 xl:hidden'>
+        <summary className='cursor-pointer list-none font-hand text-2xl text-ink after:text-faint after:content-["_+"] group-open:after:content-["_−"] [&::-webkit-details-marker]:hidden'>
+          目录
+        </summary>
+        <ul className='mt-2 text-[15px] leading-[1.9]'>{items(false)}</ul>
+      </details>
+      {/* 宽屏：左侧 sticky */}
+      <aside className='absolute top-0 -left-52 hidden h-full w-40 xl:block'>
+        <nav aria-label='目录' className='sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto text-[13px]'>
+          <p className='mb-2 font-hand text-[22px] text-ink'>目录</p>
+          <ul className='space-y-1.5'>{items(true)}</ul>
+        </nav>
+      </aside>
+    </>
   )
 }

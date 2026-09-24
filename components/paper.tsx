@@ -26,10 +26,14 @@ export function PageHeader({
       </h1>
       {sub && <p className="max-w-[34em] text-base leading-[1.7] text-body">{sub}</p>}
       {note && (
-        <span className="absolute top-7 right-0 hidden rotate-[4deg] font-hand text-2xl text-muted sm:block">
-          <Arrow dir="right" className="-ml-2 block h-[30px] w-14 text-faint" />
-          {note}
-        </span>
+        <>
+          <span className="absolute top-7 right-0 hidden rotate-[4deg] font-hand text-2xl text-muted sm:block">
+            <Arrow dir="right" className="-ml-2 block h-[30px] w-14 text-faint" />
+            {note}
+          </span>
+          {/* 手机上没地方放斜批注，改成跟在说明下面的一行 */}
+          <p className="mt-3 font-hand text-[22px] text-muted sm:hidden">{note}</p>
+        </>
       )}
     </header>
   )

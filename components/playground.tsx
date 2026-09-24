@@ -39,7 +39,7 @@ export function Playground(props: PlaygroundProps) {
   const isDark = useDarkMode()
   const height = props.height ?? PLAYGROUND_DEFAULT_HEIGHT
   return (
-    <div className='not-prose my-6 rounded-lg border border-neutral-200 dark:border-neutral-800 overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors'>
+    <div className='not-prose my-6 overflow-hidden rounded-[14px] border border-line bg-card'>
       {'jsx' in props ? (
         <PlaygroundReact {...props} isDark={isDark} height={height} />
       ) : (
@@ -52,14 +52,14 @@ export function Playground(props: PlaygroundProps) {
 function Skeleton({ label }: { label: string }) {
   return (
     <>
-      <div className='grid grid-cols-2 border-b border-neutral-200 dark:border-neutral-800 text-xs text-neutral-500 dark:text-neutral-400'>
-        <div className='px-4 py-2 font-medium border-r border-neutral-200 dark:border-neutral-800'>
-          Code <span className='ml-2 text-neutral-400 dark:text-neutral-500'>{label}</span>
+      <div className='grid grid-cols-2 border-b border-line text-xs text-muted'>
+        <div className='px-4 py-2 font-medium border-r border-line'>
+          Code <span className='ml-2 font-mono text-faint'>{label}</span>
         </div>
         <div className='px-4 py-2 font-medium'>Preview</div>
       </div>
       <div
-        className='bg-neutral-50 dark:bg-neutral-900'
+        className='bg-paper'
         style={{ height: PLAYGROUND_DEFAULT_HEIGHT }}
       />
     </>
@@ -144,15 +144,15 @@ function PlaygroundHtml({
   const tabBtnClass = (selected: boolean) =>
     `px-4 py-2 font-medium transition-colors outline-none ${
       selected
-        ? 'text-neutral-900 dark:text-neutral-100 border-b-2 border-neutral-900 dark:border-neutral-100 -mb-px'
-        : 'hover:text-neutral-700 dark:hover:text-neutral-300'
+        ? 'text-ink border-b-2 border-ink -mb-px'
+        : 'hover:text-ink'
     }`
 
   return (
     <>
-      <div className='border-b border-neutral-200 dark:border-neutral-800 text-xs text-neutral-500 dark:text-neutral-400'>
+      <div className='border-b border-line text-xs text-muted'>
         <div className='flex md:grid md:grid-cols-2'>
-          <div className='flex md:border-r border-neutral-200 dark:border-neutral-800'>
+          <div className='flex md:border-r border-line'>
             {tabs.map((t) => (
               <button
                 type="button"
@@ -179,7 +179,7 @@ function PlaygroundHtml({
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2'>
         <div
-          className={`${mobileView === 'preview' ? 'hidden' : ''} md:block md:border-r border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 overflow-auto`}
+          className={`${mobileView === 'preview' ? 'hidden' : ''} md:block md:border-r border-line bg-paper overflow-auto`}
           style={{ maxHeight: height }}
         >
           <Editor
@@ -200,7 +200,8 @@ function PlaygroundHtml({
             }}
           />
         </div>
-        <div className={`${mobileView === 'code' ? 'hidden' : ''} md:block relative bg-white dark:bg-neutral-100`}>
+        {/* 预览区固定白底：demo 的 HTML/CSS 是按浅色写死的，不跟主题 */}
+        <div className={`${mobileView === 'code' ? 'hidden' : ''} md:block relative bg-white`}>
           <ReloadButton
             onClick={() => setReloadKey((k) => k + 1)}
             spinKey={reloadKey}

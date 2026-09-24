@@ -1,31 +1,30 @@
-import Link from 'next/link'
 import { getAllCategories } from '@/app/blog/utils'
+import { PageHeader, StickyNote } from '@/components/paper'
 
 export const metadata = {
   title: '分类',
   description: '按分类浏览文章',
 }
 
+const tilts = [-1.4, 0.8, -0.4]
+
 export default function CategoriesPage() {
   const categories = getAllCategories()
 
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">分类</h1>
-      <div>
-        {categories.map(({ category, count }) => (
-          <Link
+      <PageHeader eyebrow="按主题翻" title="分类" sub={`${categories.length} 个分类，每篇文章只属于一个。`} />
+      <div className="grid grid-cols-2 gap-[18px] sm:grid-cols-4">
+        {categories.map(({ category, count }, i) => (
+          <StickyNote
             key={category}
             href={`/blog/categories/${encodeURIComponent(category)}`}
-            className="flex justify-between items-center py-3 pl-3 border-l-2 border-transparent hover:border-neutral-300 dark:hover:border-neutral-600 transition-all group"
+            tilt={tilts[i % tilts.length]}
+            className="px-4 pb-4"
           >
-            <span className="text-neutral-900 dark:text-neutral-100 group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors">
-              {category}
-            </span>
-            <span className="text-neutral-500 dark:text-neutral-500 text-sm">
-              {count}
-            </span>
-          </Link>
+            <b className="block text-[17px] font-semibold text-ink">{category}</b>
+            <span className="mt-2 block font-hand text-[30px] leading-none text-muted">{count} 篇</span>
+          </StickyNote>
         ))}
       </div>
     </section>

@@ -6,11 +6,16 @@
 Long Cang 全量 5MB，按实际用字裁完只有几十 KB。
 
 用法（需要 fonttools + brotli：pip install fonttools brotli）：
-    python3 scripts/subset-hand-font.py
+    pnpm build && python3 scripts/subset-hand-font.py
 
-什么时候要重跑：新增了手写文案（<Hand>、eyebrow=、note=）或新增了文章分类。
-漏掉的字不会崩，只会回落到楷体。
+取字来源（取并集）：
+1. 构建产物 out/**/*.html 里所有 font-hand 元素的文字（最准，先 build）
+2. 源码里含 Hand / font-hand / eyebrow= / note= 的行（兜住只在客户端渲染的文案）
+3. CLIENT_ONLY：只在浏览器里才出现、上面两步都抓不到的手写文案
+
+什么时候要重跑：新增了手写文案或文章分类。漏掉的字不会崩，只会回落到楷体。
 """
+import html.parser
 import pathlib
 import re
 import subprocess
@@ -31,6 +36,33 @@ HAND_LINE = re.compile(r'Hand|font-hand|eyebrow=|note=')
 CJK = re.compile(r'[　-〿一-鿿＀-￯]')
 # 动态内容里一定会用到的字（日期、计数、分页）
 ALWAYS = '篇年月日共第页上下一个写于最新前后回到文章目录'
+# 只在客户端渲染的手写文案（搜索结果数、空状态）
+CLIENT_ONLY = '找到篇本子里没写过换个词试试动画增长'
+
+
+class HandText(html.parser.HTMLParser):
+    """收集 class 含 font-hand 的元素（含子元素）里的文字"""
+
+    VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr', 'path', 'circle', 'ellipse', 'line', 'rect'}
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.stack: list[bool] = []
+        self.chars: set[str] = set()
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.VOID:
+            return
+        hand = 'font-hand' in (dict(attrs).get('class') or '')
+        self.stack.append(hand or (bool(self.stack) and self.stack[-1]))
+
+    def handle_endtag(self, tag):
+        if tag not in self.VOID and self.stack:
+            self.stack.pop()
+
+    def handle_data(self, data):
+        if self.stack and self.stack[-1]:
+            self.chars.update(CJK.findall(data))
 
 
 def fetch(name: str, url: str) -> pathlib.Path:
@@ -43,7 +75,15 @@ def fetch(name: str, url: str) -> pathlib.Path:
 
 
 def collect_zh() -> str:
-    chars = set(ALWAYS)
+    chars = set(ALWAYS) | set(CLIENT_ONLY)
+    out_dir = ROOT / 'out'
+    if out_dir.exists():
+        parser = HandText()
+        for f in out_dir.rglob('*.html'):
+            parser.feed(f.read_text(encoding='utf-8'))
+        chars |= parser.chars
+    else:
+        print('⚠️  没有 out/，只按源码抓字。先 pnpm build 再跑更准')
     for f in list((ROOT / 'app').rglob('*.tsx')) + list((ROOT / 'components').rglob('*.tsx')):
         for line in f.read_text(encoding='utf-8').splitlines():
             if HAND_LINE.search(line):

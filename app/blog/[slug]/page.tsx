@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation';
 import { CustomMDX, createSlugger } from '@/components/mdx';
 import { formatDate, getBlogPosts, getReadingStats } from '@/app/blog/utils';
 import { baseUrl } from '@/app/sitemap';
-import { AnimateIn } from '@/components/animate-in';
+import { ArrowShort } from '@/components/doodle';
 import { GiscusComments } from '@/components/giscus';
+import { StickyNote } from '@/components/paper';
 import { TableOfContents } from '@/components/toc';
 
 function getHeadings(content: string) {
@@ -80,14 +81,26 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function Blog({ params }: PageProps) {
   const { slug } = await params;
-  const post = getBlogPosts().find((post) => post.slug === slug);
+  const posts = getBlogPosts().sort(
+    (a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+  );
+  const index = posts.findIndex((post) => post.slug === slug);
+  const post = posts[index];
 
   if (!post) {
     notFound();
   }
 
+  // 列表按新到旧排：前一项更新（下一篇），后一项更旧（上一篇）
+  const newer = posts[index - 1];
+  const older = posts[index + 1];
+  const { category, tags, publishedAt } = post.metadata;
+  const { wordCount, readingTime } = getReadingStats(post.content);
+  const headings = getHeadings(post.content);
+  const date = formatDate(publishedAt);
+
   return (
-    <section>
+    <section className='mx-auto w-full max-w-[680px]'>
       <script
         type='application/ld+json'
         suppressHydrationWarning
@@ -109,61 +122,81 @@ export default async function Blog({ params }: PageProps) {
           }),
         }}
       />
-      <AnimateIn>
-        <h1 className='title font-semibold text-2xl tracking-tighter'>
-          {post.metadata.title}
-        </h1>
-      </AnimateIn>
-      <AnimateIn delay={1}>
-        <div className='flex justify-between items-center mt-2 mb-8 text-sm'>
-          <p className='text-sm text-neutral-600 dark:text-neutral-400'>
-            {formatDate(post.metadata.publishedAt)}
-            {(() => {
-              const { wordCount, readingTime } = getReadingStats(post.content)
-              return ` · ${wordCount}字 · ${readingTime}分钟阅读`
-            })()}
-          </p>
-        </div>
-      </AnimateIn>
+      <Link
+        href='/blog'
+        className='mb-7 inline-flex items-center gap-1.5 font-hand text-[22px] text-muted transition-colors hover:text-ink'
+      >
+        <ArrowShort className='h-3.5 w-[30px] -scale-x-100' />
+        回到文章
+      </Link>
+      <p className='mb-2.5 flex flex-wrap gap-x-4 gap-y-1 font-hand text-[22px] text-muted tabular-nums'>
+        {category && (
+          <Link
+            href={`/blog/categories/${encodeURIComponent(category)}`}
+            className='transition-colors hover:text-ink'
+          >
+            {category}
+          </Link>
+        )}
+        <span>{date}</span>
+      </p>
+      <h1 className='mb-4 text-[clamp(30px,5.2vw,42px)] font-bold leading-[1.25] tracking-[-0.035em] text-balance text-ink'>
+        {post.metadata.title}
+      </h1>
+      <p className='mb-10 text-sm text-faint tabular-nums'>
+        {wordCount} 字 · {readingTime} 分钟读完
+      </p>
       <div className='relative'>
-        {(() => {
-          const headings = getHeadings(post.content);
-          if (headings.length === 0) return null;
-          return <TableOfContents headings={headings} />;
-        })()}
-        <AnimateIn delay={2}>
-          <article className='prose'>
-            <CustomMDX source={post.content} format={post.metadata.format} />
-          </article>
-        </AnimateIn>
+        {headings.length > 0 && <TableOfContents headings={headings} />}
+        <article className='prose'>
+          <CustomMDX source={post.content} format={post.metadata.format} />
+        </article>
       </div>
-      {(post.metadata.category || (post.metadata.tags && post.metadata.tags.length > 0)) && (
-        <div className='mt-12 pt-6 border-t border-neutral-200 dark:border-neutral-800'>
-          <div className='flex flex-wrap items-center gap-2 text-sm'>
-            {post.metadata.category && (
-              <Link
-                href={`/blog/categories/${encodeURIComponent(post.metadata.category)}`}
-                className='text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors'
-              >
-                {post.metadata.category}
-              </Link>
-            )}
-            {post.metadata.category && post.metadata.tags && post.metadata.tags.length > 0 && (
-              <span className='text-neutral-300 dark:text-neutral-700'>|</span>
-            )}
-            {post.metadata.tags?.map((tag) => (
+      <div className='mt-16 grid gap-7'>
+        {tags && tags.length > 0 && (
+          <div className='flex flex-wrap gap-2.5'>
+            {tags.map((tag) => (
               <Link
                 key={tag}
                 href={`/blog/tags/${encodeURIComponent(tag)}`}
-                className='rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-0.5 text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors'
+                className='tape-tag inline-block bg-tape px-3 py-1 text-sm text-ink'
               >
                 {tag}
               </Link>
             ))}
           </div>
-        </div>
-      )}
-      <GiscusComments />
+        )}
+        <p className='text-right font-hand text-2xl text-muted'>
+          写于 {date}
+          <b className='ml-1.5 text-[32px] font-bold text-ink'>Harry</b>
+        </p>
+        {(older || newer) && (
+          <nav aria-label='上下篇' className='grid gap-5 sm:grid-cols-2'>
+            {older && (
+              <StickyNote href={`/blog/${older.slug}`} tilt={-1}>
+                <span className='block font-hand text-[21px] text-muted'>← 上一篇</span>
+                <span className='text-[15px] font-semibold leading-normal text-ink'>{older.metadata.title}</span>
+              </StickyNote>
+            )}
+            {newer && (
+              <StickyNote
+                href={`/blog/${newer.slug}`}
+                tilt={1}
+                className='text-right sm:col-start-2'
+              >
+                <span className='block font-hand text-[21px] text-muted'>下一篇 →</span>
+                <span className='text-[15px] font-semibold leading-normal text-ink'>{newer.metadata.title}</span>
+              </StickyNote>
+            )}
+          </nav>
+        )}
+        <section aria-labelledby='comments-title' className='rounded-[14px] border-[1.5px] border-dashed border-line-strong p-4 sm:p-6'>
+          <h2 id='comments-title' className='mb-3 font-hand text-[26px] text-ink'>
+            留言
+          </h2>
+          <GiscusComments />
+        </section>
+      </div>
     </section>
   );
 }
