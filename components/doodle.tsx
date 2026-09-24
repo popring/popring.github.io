@@ -17,9 +17,10 @@ export function Face(props: SvgProps) {
       <path pathLength={1} d="M20 30c-1-9 5-16 13-16 7 0 12 5 12 12 0 3-.5 5-1.5 7" />
       <path pathLength={1} d="M20 30c0 9 5 15 12 15 5 0 9-3 11-8" />
       <path pathLength={1} d="M21 25c4-1 8-4 10-8 2 4 7 7 13 7" />
-      <circle pathLength={1} cx="27" cy="31" r="3.2" />
-      <circle pathLength={1} cx="38" cy="31" r="3.2" />
-      <path pathLength={1} d="M30.2 31h4.6" />
+      {/* 眼镜：上边平、下边圆的方框（照 Harry 本人的眼镜） */}
+      <path pathLength={1} d="M22.8 29.4C22.8 28.4 23.5 27.8 24.6 27.8H28.4C29.6 27.8 30.2 28.5 30.2 29.6V31C30.2 33 29 34.2 27 34.2H26C24 34.2 22.8 33 22.8 31Z" />
+      <path pathLength={1} d="M34.8 29.4C34.8 28.4 35.5 27.8 36.6 27.8H40.4C41.6 27.8 42.2 28.5 42.2 29.6V31C42.2 33 41 34.2 39 34.2H38C36 34.2 34.8 33 34.8 31Z" />
+      <path pathLength={1} d="M30.2 30.4C31.7 29.6 33.3 29.6 34.8 30.4" />
       <path pathLength={1} d="M30 39c1.5 1 3.5 1 5 0" />
       <path pathLength={1} d="M24 45l-3 5c-4 1-7 4-8 9M40 45l3 5c4 1 7 4 8 9" />
       <path pathLength={1} d="M28 52l4 3 4-3" />
