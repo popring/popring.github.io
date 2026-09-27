@@ -76,6 +76,8 @@ export default function RootLayout({
   return (
     <html
       lang='zh-CN'
+      // Next 16 起默认不再在切页时临时关掉 smooth，不加这个每次跳页都会平滑滚回顶部
+      data-scroll-behavior='smooth'
       suppressHydrationWarning
       className={cx(
         'bg-paper text-ink',

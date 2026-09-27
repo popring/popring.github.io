@@ -1,54 +1,79 @@
 import Link from 'next/link'
-import { getBlogPosts } from '@/app/blog/utils'
-import { ArrowShort, Circled } from './doodle'
+import type { ReactNode } from 'react'
+import { getAllCategories, getAllTags, getBlogPosts } from '@/app/blog/utils'
+import { ArrowShort, Circled, Underline } from './doodle'
 import { PageHeader, PostRow, Sheet, monthDay } from './paper'
 
 type Post = ReturnType<typeof getBlogPosts>[number]
 
-const pill = 'rounded-[14px_10px_16px_9px/10px_15px_9px_14px] border px-3.5 py-1.5 text-sm transition-colors duration-150'
-
 const tabs = [
   { href: '/blog', label: '全部' },
-  { href: '/blog/recommended-articles', label: '推荐' },
-  { href: '/blog/tags', label: '标签' },
   { href: '/blog/categories', label: '分类' },
+  { href: '/blog/tags', label: '标签' },
   { href: '/blog/search', label: '搜索' },
-]
+] as const
 
-/** /blog 与 /blog/page/N 共用：页头 + 筛选 tab + 按年分组列表 + 分页 */
-export function BlogIndex({ page, pageSize = 10 }: { page: number; pageSize?: number }) {
-  const total = getBlogPosts().length
+type Tab = (typeof tabs)[number]['label']
+
+/** 文章区四个 tab 共用：页头固定不变，切 tab 只换下面的内容 */
+export function BlogShell({ active, children }: { active: Tab; children: ReactNode }) {
+  const counts: Partial<Record<Tab, number>> = {
+    全部: getBlogPosts().length,
+    分类: getAllCategories().length,
+    标签: getAllTags().length,
+  }
   return (
     <section>
       <PageHeader
         eyebrow="全部文章"
         title="文章"
-        sub="按时间倒序。踩过的坑、读过的书、想通的事，都在这。"
+        sub="踩过的坑、读过的书、想通的事，都在这。"
         note={
           <>
-            一共 <Circled>{total}</Circled> 篇
+            一共 <Circled>{counts.全部}</Circled> 篇
           </>
         }
       />
-      <nav aria-label="筛选" className="mb-10 flex flex-wrap gap-2">
-        {tabs.map((t) =>
-          t.href === '/blog' ? (
-            <Link key={t.href} href={t.href} aria-current="page" className={`${pill} border-transparent bg-inv text-inv-ink`}>
-              {t.label}
-            </Link>
-          ) : (
+      <nav aria-label="浏览方式" className="mb-10 flex flex-wrap items-baseline gap-x-7 gap-y-3 border-b border-dashed border-line-strong pb-3">
+        {tabs.map((t) => {
+          const on = t.label === active
+          return (
             <Link
               key={t.href}
               href={t.href}
-              className={`${pill} border-line bg-card text-body hover:border-line-strong hover:text-ink`}
+              scroll={false}
+              aria-current={on ? 'page' : undefined}
+              className={`relative text-[17px] transition-colors duration-150 ${on ? 'font-semibold text-ink' : 'text-muted hover:text-ink'}`}
             >
               {t.label}
+              {counts[t.label] !== undefined && (
+                <sup className="ml-1 font-hand text-[0.95em] font-normal text-faint">{counts[t.label]}</sup>
+              )}
+              {on && <Underline className="pointer-events-none absolute -bottom-[15px] -left-[8%] h-2.5 w-[116%] text-ink" />}
             </Link>
-          ),
-        )}
+          )
+        })}
+        {/* 推荐是一篇文章不是筛选，放成批注式链接，点了去文章页是意料之中 */}
+        <Link
+          href="/blog/recommended-articles"
+          className="group ml-auto inline-flex items-center gap-1 font-hand text-[21px] text-muted transition-colors hover:text-ink"
+        >
+          好文推荐
+          <ArrowShort className="h-3 w-7 transition-transform duration-250 ease-(--ease-out-strong) group-hover:translate-x-1" />
+        </Link>
       </nav>
-      <BlogPosts page={page} pageSize={pageSize} />
+      {/* 各 tab 内容高矮不一，给个下限，切过去页脚不会上下跳 */}
+      <div className="min-h-[70vh]">{children}</div>
     </section>
+  )
+}
+
+/** /blog 与 /blog/page/N 共用 */
+export function BlogIndex({ page, pageSize = 10 }: { page: number; pageSize?: number }) {
+  return (
+    <BlogShell active="全部">
+      <BlogPosts page={page} pageSize={pageSize} />
+    </BlogShell>
   )
 }
 

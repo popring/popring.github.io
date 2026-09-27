@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { getAllTags } from '@/app/blog/utils'
-import { PageHeader } from '@/components/paper'
+import { BlogShell } from '@/components/posts'
 
 export const metadata = {
   title: '标签',
@@ -14,8 +14,8 @@ export default function TagsPage() {
   const scale = (count: number) => (maxCount === minCount ? 0.3 : (count - minCount) / (maxCount - minCount))
 
   return (
-    <section>
-      <PageHeader eyebrow="更细一点" title="标签" sub="一篇文章可以有好几个标签。字越大，写得越多。" />
+    <BlogShell active="标签">
+      <p className="mb-5 font-hand text-[22px] text-muted">字越大 写得越多</p>
       <div className="flex flex-wrap items-baseline gap-x-3.5 gap-y-2.5">
         {tags.map(({ tag, count }) => (
           <Link
@@ -29,6 +29,6 @@ export default function TagsPage() {
           </Link>
         ))}
       </div>
-    </section>
+    </BlogShell>
   )
 }

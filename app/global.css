@@ -187,6 +187,8 @@ body {
 html {
   min-width: 360px;
   scroll-behavior: smooth;
+  /* 长短页切换时滚动条忽有忽无会让整页左右晃，先把位置留出来 */
+  scrollbar-gutter: stable;
 }
 
 /* ---------- 文章正文 .prose ----------

@@ -177,7 +177,16 @@ export default function Page() {
           </ul>
         </section>
 
-        <section className="mx-auto grid w-full max-w-[460px] gap-10">
+        <section>
+          <SectionHeading
+            icon={
+              <span aria-hidden="true" className="w-[38px] shrink-0 text-center font-hand text-[44px] leading-none text-ink">
+                “
+              </span>
+            }
+            title="贴在桌前的话"
+          />
+          <div className="mx-auto grid w-full max-w-[460px] gap-10 pt-4">
           {quotes.map((q, i) => (
             <figure
               key={q.text}
@@ -191,6 +200,7 @@ export default function Page() {
               )}
             </figure>
           ))}
+          </div>
         </section>
       </div>
     </section>

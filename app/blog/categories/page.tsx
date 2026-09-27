@@ -1,5 +1,6 @@
 import { getAllCategories } from '@/app/blog/utils'
-import { PageHeader, StickyNote } from '@/components/paper'
+import { StickyNote } from '@/components/paper'
+import { BlogShell } from '@/components/posts'
 
 export const metadata = {
   title: '分类',
@@ -12,8 +13,7 @@ export default function CategoriesPage() {
   const categories = getAllCategories()
 
   return (
-    <section>
-      <PageHeader eyebrow="按主题翻" title="分类" sub={`${categories.length} 个分类，每篇文章只属于一个。`} />
+    <BlogShell active="分类">
       <div className="grid grid-cols-2 gap-[18px] sm:grid-cols-4">
         {categories.map(({ category, count }, i) => (
           <StickyNote
@@ -27,6 +27,6 @@ export default function CategoriesPage() {
           </StickyNote>
         ))}
       </div>
-    </section>
+    </BlogShell>
   )
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { getBlogPosts } from '@/app/blog/utils'
-import { PageHeader } from '@/components/paper'
+import { BlogShell } from '@/components/posts'
 import { SearchClient } from './search-client'
 
 export const metadata: Metadata = {
@@ -25,11 +25,10 @@ export default function SearchPage() {
     )
 
   return (
-    <section>
-      <PageHeader eyebrow="找一篇" title="搜索" />
+    <BlogShell active="搜索">
       <Suspense>
         <SearchClient posts={posts} />
       </Suspense>
-    </section>
+    </BlogShell>
   )
 }
